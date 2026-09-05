@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Temporary Differences &amp; Income Taxes Practice — ACCT 615</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple:#592C88;
+    --purple-deep:#38195A;
+    --purple-mid:#6E3FA3;
+    --gold:#B0925C;
+    --gold-soft:#D6C398;
+    --gold-pale:#F1E9D6;
+    --parchment:#F7F4EC;
+    --paper:#FFFEFA;
+    --ink:#221B2E;
+    --slate:#5F5A6B;
+    --line:#DBD3E0;
+    --line-soft:#EAE4EF;
+    --answer:#1E5C34;
+    --answer-bg:#E7F1E9;
+    --danger:#9C3B34;
+    --shadow: 0 1px 2px rgba(56,25,90,0.07), 0 6px 18px rgba(56,25,90,0.08);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--parchment);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ color:inherit; }
+
+  header{
+    background: linear-gradient(180deg, var(--purple) 0%, var(--purple-deep) 100%);
+    color:#F1E9D6;
+    padding: 30px 6vw 24px;
+    position:relative;
+  }
+  header::after{
+    content:"";
+    position:absolute; left:0; right:0; bottom:0; height:4px;
+    background: linear-gradient(90deg, var(--gold-soft), var(--gold) 40%, var(--gold-soft) 70%, var(--gold));
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--gold-soft); margin:0 0 10px;
+  }
+  h1.title{
+    font-family:'Source Serif 4', serif; font-weight:600;
+    font-size:clamp(24px,3.4vw,34px); margin:0 0 8px; letter-spacing:-0.01em;
+  }
+  .subtitle{ font-size:14.5px; color:#D9CDE5; max-width:680px; margin:0; }
+
+  .id-bar{
+    max-width:900px; margin:0 auto; padding:18px 6vw 0;
+    display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+  }
+  .id-bar label{ font-size:13px; font-weight:600; color:var(--slate); }
+  .id-bar input[type="text"]{
+    font-family:'IBM Plex Mono', monospace; font-size:13.5px; padding:8px 11px;
+    border:1px solid var(--line); border-radius:5px; background:var(--paper); color:var(--ink);
+    width:220px;
+  }
+  .id-bar input:focus{ outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); }
+
+  .grade-line{
+    max-width:900px; margin:0 auto; padding:10px 6vw 0;
+    font-size:13.5px; font-weight:600; color:var(--slate);
+  }
+  .grade-line .grade-value.good{ color:var(--answer); }
+  .grade-line .grade-value.bad{ color:var(--danger); }
+
+  main{ max-width:900px; margin:0 auto; padding:22px 6vw 90px; }
+
+  .part{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    box-shadow:var(--shadow);
+    padding:24px 26px 26px;
+    margin-top:26px;
+  }
+  .part-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; color:var(--gold); background:var(--purple);
+    display:inline-block; padding:3px 9px; border-radius:4px; letter-spacing:.04em;
+    margin-bottom:12px;
+  }
+  .part h2{
+    font-family:'Source Serif 4', serif; font-size:21px; font-weight:600;
+    color:var(--purple); margin:0 0 12px;
+  }
+  .scenario{
+    background:var(--parchment);
+    border-left:3px solid var(--gold);
+    padding:14px 18px;
+    border-radius:0 6px 6px 0;
+    font-size:14.5px;
+    color:var(--ink);
+    margin-bottom:20px;
+  }
+  .scenario p{ margin:0 0 10px; }
+  .scenario p:last-child{ margin-bottom:0; }
+  .je-hint{ font-size:12px; color:var(--slate); margin:2px 0 14px; font-style:italic; }
+
+  .req{
+    font-weight:600;
+    font-size:14.5px;
+    color:var(--ink);
+    margin:20px 0 10px;
+  }
+
+  h4.subsection{
+    font-family:'Source Serif 4',serif; font-size:16px; color:var(--purple); margin:24px 0 8px;
+    border-bottom:1px solid var(--line-soft); padding-bottom:6px;
+  }
+
+  table.given{ width:100%; border-collapse:collapse; font-size:13px; margin:6px 0 14px; }
+  table.given th{ text-align:left; font-size:10.5px; text-transform:uppercase; letter-spacing:.03em; color:var(--slate); border-bottom:2px solid var(--purple); padding:6px 8px; }
+  table.given td{ border-bottom:1px solid var(--line); padding:5px 8px; font-family:'IBM Plex Mono', monospace; }
+  table.given td.num, table.given th.num{ text-align:right; }
+
+  ol.addinfo{ margin:8px 0; padding-left:20px; font-size:13.5px; }
+  ol.addinfo li{ margin:8px 0; }
+
+  .no-entry{
+    background:var(--parchment);
+    border:1px dashed var(--gold);
+    border-radius:6px;
+    padding:12px 16px;
+    font-size:13.5px;
+    color:var(--slate);
+    margin:22px 0 0;
+  }
+  .no-entry strong{ color:var(--purple-deep); }
+
+  table.worksheet{
+    width:100%;
+    border-collapse:collapse;
+    font-size:13.5px;
+    margin:10px 0 4px;
+  }
+  table.worksheet th{
+    text-align:left;
+    font-size:11.5px;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+    color:var(--slate);
+    border-bottom:2px solid var(--purple);
+    padding:8px 8px;
+  }
+  table.worksheet th.num{ text-align:right; }
+  table.worksheet td{
+    border-bottom:1px solid var(--line);
+    padding:9px 8px;
+    vertical-align:middle;
+  }
+  table.worksheet td.method{ font-weight:600; }
+  table.worksheet td.amt{ width:150px; }
+  table.worksheet input[type="text"]{
+    width:100%;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13.5px;
+    padding:6px 8px;
+    border:1px solid var(--line);
+    border-radius:5px;
+    background:var(--parchment);
+    color:var(--ink);
+  }
+  table.worksheet input[type="text"]:focus{
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
+  }
+
+  table.amort{
+    width:100%;
+    border-collapse:collapse;
+    font-size:12.5px;
+    margin:10px 0 4px;
+  }
+  table.amort th{
+    text-align:right;
+    font-size:10.5px;
+    text-transform:uppercase;
+    letter-spacing:.02em;
+    color:var(--slate);
+    border-bottom:2px solid var(--purple);
+    padding:7px 6px;
+  }
+  table.amort th.period{ text-align:left; }
+  table.amort td{
+    border-bottom:1px solid var(--line);
+    padding:6px 6px;
+  }
+  table.amort td.period{ font-weight:600; font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--slate); white-space:nowrap; }
+  table.amort input[type="text"]{
+    width:100%;
+    min-width:78px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    padding:5px 6px;
+    border:1px solid var(--line);
+    border-radius:5px;
+    background:var(--parchment);
+    color:var(--ink);
+    text-align:right;
+  }
+  table.amort input[type="text"]:focus{
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
+  }
+
+  table.je{
+    width:100%;
+    border-collapse:collapse;
+    font-size:13.5px;
+    margin-top:6px;
+  }
+  table.je th{
+    text-align:left;
+    font-size:11.5px;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+    color:var(--slate);
+    border-bottom:2px solid var(--purple);
+    padding:8px 8px;
+  }
+  table.je td{
+    border-bottom:1px solid var(--line);
+    padding:8px 8px;
+  }
+  table.je input[type="text"]{
+    width:100%;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13.5px;
+    padding:6px 8px;
+    border:1px solid var(--line);
+    border-radius:5px;
+    background:var(--parchment);
+    color:var(--ink);
+  }
+  table.je select.acct-select{
+    width:100%;
+    font-family:'Inter',sans-serif;
+    font-size:13.5px;
+    padding:6px 8px;
+    border:1px solid var(--line);
+    border-radius:5px;
+    background:var(--parchment);
+    color:var(--ink);
+    cursor:pointer;
+  }
+  table.je select.acct-select:focus{
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
+  }
+  table.je select.acct-select:invalid{ color:var(--slate); }
+  table.je td.indent input{ padding-left:22px; }
+  table.je tr.je-total td{ border-top:2px solid var(--purple); border-bottom:none; font-weight:600; padding-top:10px; }
+  .je-block{ margin-top:22px; }
+  .je-block-title{ font-weight:600; font-size:14px; color:var(--purple-deep); margin:0 0 6px; }
+  .je-block-desc{ font-size:13px; color:var(--slate); margin:0 0 8px; }
+
+  table.classify{ width:100%; border-collapse:collapse; font-size:13.5px; margin:10px 0 4px; }
+  table.classify th{ text-align:left; font-size:11.5px; text-transform:uppercase; letter-spacing:.03em; color:var(--slate); border-bottom:2px solid var(--purple); padding:8px; }
+  table.classify td{ border-bottom:1px solid var(--line); padding:9px 8px; }
+  table.classify td.party{ font-weight:600; }
+  table.classify select.classify-select{
+    width:100%;
+    max-width:280px;
+    font-family:'Inter',sans-serif;
+    font-size:13.5px;
+    padding:7px 9px;
+    border:1px solid var(--line);
+    border-radius:5px;
+    background:var(--parchment);
+    color:var(--ink);
+    cursor:pointer;
+  }
+  table.classify select.classify-select:focus{
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
+  }
+
+  .check-bar{
+    margin-top:26px;
+    padding-top:18px;
+    border-top:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .btn-check{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:9px 18px; border:1px solid var(--purple);
+    background:var(--purple); color:#fff; cursor:pointer;
+  }
+  .btn-check:hover{ background:var(--purple-mid); }
+  .check-summary{ font-size:13.5px; font-weight:600; }
+  .check-summary.good{ color:var(--answer); }
+  .check-summary.bad{ color:var(--danger); }
+  .check-disclaimer{ font-size:11.5px; color:var(--slate); width:100%; margin-top:2px; font-style:italic; }
+
+  .table-check{
+    font-size:12px;
+    font-weight:600;
+    margin:6px 2px 0;
+    font-family:'IBM Plex Mono', monospace;
+  }
+  .table-check.good{ color:var(--answer); }
+  .table-check.bad{ color:var(--danger); }
+
+  input.field-correct{
+    border-color:var(--answer) !important;
+    background:var(--answer-bg) !important;
+  }
+  input.field-incorrect{
+    border-color:var(--danger) !important;
+    background:#F3E1DE !important;
+  }
+  select.field-correct{
+    border-color:var(--answer) !important;
+    background:var(--answer-bg) !important;
+    color:var(--answer);
+  }
+  select.field-incorrect{
+    border-color:var(--danger) !important;
+    background:#F3E1DE !important;
+    color:var(--danger);
+  }
+
+  .submit-bar{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    box-shadow:var(--shadow);
+    padding:22px 26px 24px;
+    margin-top:26px;
+  }
+  .submit-bar h2{
+    font-family:'Source Serif 4', serif; font-size:19px; font-weight:600;
+    color:var(--purple); margin:0 0 14px;
+  }
+  .btn-submit{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:10px 18px; border:1px solid var(--purple);
+    background:var(--purple); color:#fff; cursor:pointer;
+  }
+  .btn-submit:hover{ background:var(--purple-mid); }
+  .btn-submit-outline{ background:var(--paper); color:var(--purple); }
+  .btn-submit-outline:hover{ background:var(--parchment); }
+  .submit-status{ font-size:13px; font-weight:600; min-height:18px; margin:10px 0 0; color:var(--answer); }
+  .submit-status.error{ color:var(--danger); }
+  .submit-hint{ font-size:12px; color:var(--slate); margin:6px 0 0; }
+
+  @media print{
+    .print-hide, .id-bar, .check-bar{ display:none !important; }
+    header{ background:none !important; color:var(--ink) !important; padding:0 0 14px !important; }
+    header::after{ display:none !important; }
+    .eyebrow{ color:var(--purple) !important; }
+    .subtitle{ color:var(--slate) !important; }
+    body{ background:#fff !important; }
+    .part{ box-shadow:none !important; border:1px solid #999 !important; }
+    .part h2, .part-label, .scenario, h4.subsection, .je-block-title{ break-after:avoid; break-inside:avoid; }
+    table.worksheet, table.je{ break-inside:auto; }
+    table.worksheet tr, table.je tr{ break-inside:avoid; }
+    .submit-bar{ break-before:avoid; }
+    input[type="text"]{
+      border:none !important;
+      border-bottom:1px solid #000 !important;
+      background:transparent !important;
+      border-radius:0 !important;
+      color:#000 !important;
+      -webkit-appearance:none;
+      appearance:none;
+      padding:2px 4px !important;
+    }
+    select.acct-select{
+      border:none !important;
+      border-bottom:1px solid #000 !important;
+      background:transparent !important;
+      border-radius:0 !important;
+      color:#000 !important;
+      -webkit-appearance:none;
+      appearance:none;
+      padding:2px 4px !important;
+    }
+    .print-name-line{ display:block !important; }
+  }
+  .print-name-line{ display:none; font-size:13px; color:var(--ink); padding:0 6vw; margin:0 0 10px; }
+
+  footer{ text-align:center; padding:26px 6vw 40px; font-size:12px; color:var(--slate); }
+
+  @media (max-width:600px){
+    header, main, .id-bar{ padding-left:5vw; padding-right:5vw; }
+    table.worksheet, table.je{ font-size:12.5px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <p class="eyebrow">ACCT 615 &middot; Accounting Theory and Practice &middot; Income Taxes</p>
+  <h1 class="title">Temporary Differences &amp; Income Taxes</h1>
+  <p class="subtitle">A single revenue-timing difference that flips direction from year to year &mdash; tracking the cumulative receivable balance is the key to getting each year's deferred tax liability right.</p>
+</header>
+
+<p class="print-name-line" id="printNameLine"></p>
+
+<div class="id-bar print-hide">
+  <label for="studentName">Name</label>
+  <input type="text" id="studentName" placeholder="Your name">
+  <label for="studentId">Student ID</label>
+  <input type="text" id="studentId" placeholder="e.g. 920410165">
+</div>
+
+<p class="grade-line print-hide" id="gradeLine">Grade: <span class="grade-value" id="gradeValue">not checked yet</span></p>
+
+<main>
+
+  <div class="part">
+    <span class="part-label">Income Taxes</span>
+    <h2>Cashiers Consulting Group</h2>
+    <div class="scenario">
+      <p>Cashiers Consulting Group sometimes performs services for which it receives payment at the conclusion of the engagement, up to six months after services commence. Cashiers recognizes service revenue for financial reporting purposes when the services are performed. For tax purposes, revenue is reported when fees are collected. There are no differences between accounting income and taxable income other than the temporary difference described. The enacted tax rate for each year is 25%.</p>
+    </div>
+
+    <table class="given">
+      <thead><tr><th>Year</th><th class="num">Service Revenue / Collections / Pretax Income</th></tr></thead>
+      <tbody>
+        <tr><td>2026</td><td class="num">$716,000 / $676,000 / $242,000</td></tr>
+        <tr><td>2027</td><td class="num">$806,000 / $834,000 / $316,000</td></tr>
+        <tr><td>2028</td><td class="num">$766,000 / $758,000 / $284,000</td></tr>
+        <tr><td>2029</td><td class="num">$772,000 / $776,000 / $256,000</td></tr>
+      </tbody>
+    </table>
+
+    <p class="je-hint">Hint: it helps to track the cumulative balance in service revenue receivable at each December 31. Enter answers in whole dollars, and select &ldquo;No Journal Entry Required&rdquo; if an item calls for none.</p>
+
+    <h4 class="subsection">1. Journal Entry &mdash; 2027 Income Taxes</h4>
+    <div class="req">Prepare the appropriate journal entry to record Cashiers's 2027 income taxes.</div>
+    <div class="je-block">
+      <p class="je-block-title">Cashiers Consulting Group &mdash; 2027</p>
+      <table class="je" id="je-2027">
+        <thead><tr><th>Account</th><th class="num" style="width:150px;">Debit</th><th class="num" style="width:150px;">Credit</th></tr></thead>
+        <tbody>
+<tr><td><select class="acct-select"><option value="">Select account…</option><option value="Income Tax Expense">Income Tax Expense</option><option value="Income Tax Payable">Income Tax Payable</option><option value="Deferred Tax Liability">Deferred Tax Liability</option><option value="No Journal Entry Required">No Journal Entry Required</option></select></td><td><input type="text" placeholder="$"></td><td><input type="text" placeholder="$"></td></tr>
+<tr><td><select class="acct-select"><option value="">Select account…</option><option value="Income Tax Expense">Income Tax Expense</option><option value="Income Tax Payable">Income Tax Payable</option><option value="Deferred Tax Liability">Deferred Tax Liability</option><option value="No Journal Entry Required">No Journal Entry Required</option></select></td><td><input type="text" placeholder="$"></td><td><input type="text" placeholder="$"></td></tr>
+<tr><td><select class="acct-select"><option value="">Select account…</option><option value="Income Tax Expense">Income Tax Expense</option><option value="Income Tax Payable">Income Tax Payable</option><option value="Deferred Tax Liability">Deferred Tax Liability</option><option value="No Journal Entry Required">No Journal Entry Required</option></select></td><td><input type="text" placeholder="$"></td><td><input type="text" placeholder="$"></td></tr>
+        </tbody>
+      </table>
+      <p class="table-check print-hide" id="tc-2027"></p>
+    </div>
+
+    <h4 class="subsection">2. Journal Entry &mdash; 2028 Income Taxes</h4>
+    <div class="req">Prepare the appropriate journal entry to record Cashiers's 2028 income taxes.</div>
+    <div class="je-block">
+      <p class="je-block-title">Cashiers Consulting Group &mdash; 2028</p>
+      <table class="je" id="je-2028">
+        <thead><tr><th>Account</th><th class="num" style="width:150px;">Debit</th><th class="num" style="width:150px;">Credit</th></tr></thead>
+        <tbody>
+<tr><td><select class="acct-select"><option value="">Select account…</option><option value="Income Tax Expense">Income Tax Expense</option><option value="Income Tax Payable">Income Tax Payable</option><option value="Deferred Tax Liability">Deferred Tax Liability</option><option value="No Journal Entry Required">No Journal Entry Required</option></select></td><td><input type="text" placeholder="$"></td><td><input type="text" placeholder="$"></td></tr>
+<tr><td><select class="acct-select"><option value="">Select account…</option><option value="Income Tax Expense">Income Tax Expense</option><option value="Income Tax Payable">Income Tax Payable</option><option value="Deferred Tax Liability">Deferred Tax Liability</option><option value="No Journal Entry Required">No Journal Entry Required</option></select></td><td><input type="text" placeholder="$"></td><td><input type="text" placeholder="$"></td></tr>
+<tr><td><select class="acct-select"><option value="">Select account…</option><option value="Income Tax Expense">Income Tax Expense</option><option value="Income Tax Payable">Income Tax Payable</option><option value="Deferred Tax Liability">Deferred Tax Liability</option><option value="No Journal Entry Required">No Journal Entry Required</option></select></td><td><input type="text" placeholder="$"></td><td><input type="text" placeholder="$"></td></tr>
+        </tbody>
+      </table>
+      <p class="table-check print-hide" id="tc-2028"></p>
+    </div>
+
+    <h4 class="subsection">3. Journal Entry &mdash; 2029 Income Taxes</h4>
+    <div class="req">Prepare the appropriate journal entry to record Cashiers's 2029 income taxes.</div>
+    <div class="je-block">
+      <p class="je-block-title">Cashiers Consulting Group &mdash; 2029</p>
+      <table class="je" id="je-2029">
+        <thead><tr><th>Account</th><th class="num" style="width:150px;">Debit</th><th class="num" style="width:150px;">Credit</th></tr></thead>
+        <tbody>
+<tr><td><select class="acct-select"><option value="">Select account…</option><option value="Income Tax Expense">Income Tax Expense</option><option value="Income Tax Payable">Income Tax Payable</option><option value="Deferred Tax Liability">Deferred Tax Liability</option><option value="No Journal Entry Required">No Journal Entry Required</option></select></td><td><input type="text" placeholder="$"></td><td><input type="text" placeholder="$"></td></tr>
+<tr><td><select class="acct-select"><option value="">Select account…</option><option value="Income Tax Expense">Income Tax Expense</option><option value="Income Tax Payable">Income Tax Payable</option><option value="Deferred Tax Liability">Deferred Tax Liability</option><option value="No Journal Entry Required">No Journal Entry Required</option></select></td><td><input type="text" placeholder="$"></td><td><input type="text" placeholder="$"></td></tr>
+<tr><td><select class="acct-select"><option value="">Select account…</option><option value="Income Tax Expense">Income Tax Expense</option><option value="Income Tax Payable">Income Tax Payable</option><option value="Deferred Tax Liability">Deferred Tax Liability</option><option value="No Journal Entry Required">No Journal Entry Required</option></select></td><td><input type="text" placeholder="$"></td><td><input type="text" placeholder="$"></td></tr>
+        </tbody>
+      </table>
+      <p class="table-check print-hide" id="tc-2029"></p>
+    </div>
+
+    <div class="check-bar print-hide">
+      <button class="btn-check" id="checkAnswersBtn" type="button">Check my work</button>
+      <span class="check-summary" id="checkSummary"></span>
+      <span class="check-disclaimer">This checks the account and dollar amount on every journal-entry line against the key (green for correct, red for incorrect) &mdash; it does not confirm your supporting computations.</span>
+    </div>
+  </div>
+
+  <div class="submit-bar print-hide">
+    <h2>Download Your Answers</h2>
+    <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+      <button class="btn-submit" id="downloadDocxBtn" type="button">Download as Word (.docx)</button>
+      <button class="btn-submit btn-submit-outline" id="printBtn" type="button">Print / Save as PDF</button>
+    </div>
+    <p class="submit-status" id="submitStatus"></p>
+    <p class="submit-hint">The Word download pulls in whatever you've typed into the fields above, formatted to match this worksheet.</p>
+  </div>
+
+</main>
+
+<footer>Temporary Differences & Income Taxes &middot; ACCT 615 &middot; Accounting Theory and Practice</footer>
+
+<script>
+(function(){
+  function val(id){
+    var el = document.getElementById(id);
+    return el ? el.value.trim() : '';
+  }
+  function blankIfEmpty(s){ return s && s.length ? s : '\u2014'; }
+  function cleanText(s){ return (s || '').replace(/\s+/g, ' ').trim(); }
+  var lastGradeText = null; // populated by "Check my work"; reused by print and Word export
+
+  // ---------------- Check my work ----------------
+  function parseNumber(s){
+    if(s === null || s === undefined) return NaN;
+    var cleaned = String(s).replace(/[^0-9.\-]/g, '');
+    if(cleaned === '' || cleaned === '-') return NaN;
+    return parseFloat(cleaned);
+  }
+  function near(a, b, tol){
+    if(isNaN(a) || isNaN(b)) return false;
+    return Math.abs(a - b) <= tol;
+  }
+  function clearFieldState(el){
+    if(!el) return;
+    el.classList.remove('field-correct', 'field-incorrect');
+  }
+  function markField(id, correct, tol){
+    var el = document.getElementById(id);
+    if(!el) return null;
+    el.classList.remove('field-correct', 'field-incorrect');
+    var val = parseNumber(el.value);
+    var ok = near(val, correct, tol);
+    el.classList.add(ok ? 'field-correct' : 'field-incorrect');
+    if(!el.dataset.clearBound){
+      el.addEventListener('input', function(){ clearFieldState(el); });
+      el.dataset.clearBound = '1';
+    }
+    return ok;
+  }
+  function markSelect(id, correctValue){
+    var el = document.getElementById(id);
+    if(!el) return null;
+    el.classList.remove('field-correct', 'field-incorrect');
+    bindClear(el);
+    if(!el.value) return null;
+    var ok = el.value === correctValue;
+    el.classList.add(ok ? 'field-correct' : 'field-incorrect');
+    return ok;
+  }
+  function updateSummary(elId, results){
+    var el = document.getElementById(elId);
+    var graded = results.filter(function(r){ return r !== null; }).length;
+    var correct = results.filter(function(r){ return r === true; }).length;
+    el.textContent = correct + ' of ' + graded + ' correct';
+    el.classList.remove('good', 'bad');
+    el.classList.add(correct === graded && graded > 0 ? 'good' : 'bad');
+  }
+  function updateGradeLine(results){
+    var el = document.getElementById('gradeValue');
+    var graded = results.filter(function(r){ return r !== null; }).length;
+    var correct = results.filter(function(r){ return r === true; }).length;
+    var pct = graded > 0 ? Math.round((correct / graded) * 100) : 0;
+    lastGradeText = correct + ' / ' + graded + ' (' + pct + '%)';
+    el.textContent = lastGradeText;
+    el.classList.remove('good', 'bad');
+    el.classList.add(correct === graded && graded > 0 ? 'good' : 'bad');
+  }
+  function fmtMoney(n){
+    if(isNaN(n)) return '\u2014';
+    return '$' + Math.round(n).toLocaleString('en-US');
+  }
+  function sumColumn(tableEl, colIndex){
+    var sum = 0, any = false;
+    tableEl.querySelectorAll('tbody tr td:nth-child(' + colIndex + ') input').forEach(function(inp){
+      var v = parseNumber(inp.value);
+      if(!isNaN(v)){ sum += v; any = true; }
+    });
+    return any ? sum : NaN;
+  }
+  function bindClear(el){
+    if(!el || el.dataset.clearBound) return;
+    var evt = el.tagName === 'SELECT' ? 'change' : 'input';
+    el.addEventListener(evt, function(){ el.classList.remove('field-correct', 'field-incorrect'); });
+    el.dataset.clearBound = '1';
+  }
+  // Grades both the account chosen and the dollar amount entered on each row of a
+  // journal-entry table against the expected {account, amount} lines for that
+  // entry. Matching is by account name within the debit side / credit side (order
+  // doesn't matter), so any correctly-identified line also gets its amount checked
+  // against that specific line's expected value.
+  function gradeJeLines(tableId){
+    var tableEl = document.getElementById(tableId);
+    var key = JE_LINE_KEY[tableId];
+    if(!tableEl || !key) return null;
+
+    // Special case: an item where the correct answer is that no journal entry
+    // is needed at all. Graded by whether the single row's account matches.
+    if(key.noEntry){
+      var soloSelect = tableEl.querySelector('select.acct-select');
+      if(!soloSelect) return null;
+      soloSelect.classList.remove('field-correct', 'field-incorrect');
+      bindClear(soloSelect);
+      if(!soloSelect.value) return null;
+      var noEntryOk = soloSelect.value === key.expectedAccount;
+      soloSelect.classList.add(noEntryOk ? 'field-correct' : 'field-incorrect');
+      return noEntryOk;
+    }
+
+    var debitPool = key.debit.slice();
+    var creditPool = key.credit.slice();
+    var anyAnswered = false;
+    var allOk = true;
+    tableEl.querySelectorAll('tbody tr').forEach(function(tr){
+      var select = tr.querySelector('select.acct-select');
+      var debitInput = tr.querySelector('td:nth-child(2) input');
+      var creditInput = tr.querySelector('td:nth-child(3) input');
+      if(!select) return;
+      select.classList.remove('field-correct', 'field-incorrect');
+      if(debitInput) debitInput.classList.remove('field-correct', 'field-incorrect');
+      if(creditInput) creditInput.classList.remove('field-correct', 'field-incorrect');
+      bindClear(select); bindClear(debitInput); bindClear(creditInput);
+
+      var debitVal = debitInput ? parseNumber(debitInput.value) : NaN;
+      var creditVal = creditInput ? parseNumber(creditInput.value) : NaN;
+      var hasDebit = !isNaN(debitVal) && debitVal !== 0;
+      var hasCredit = !isNaN(creditVal) && creditVal !== 0;
+      if(!hasDebit && !hasCredit && !select.value) return; // fully blank row, don't grade
+
+      anyAnswered = true;
+      var pool = hasDebit ? debitPool : (hasCredit ? creditPool : null);
+      var amtInput = hasDebit ? debitInput : (hasCredit ? creditInput : null);
+      var amtVal = hasDebit ? debitVal : (hasCredit ? creditVal : NaN);
+      var idx = pool ? pool.findIndex(function(e){ return e.account === select.value; }) : -1;
+
+      if(pool && idx !== -1){
+        var entry = pool[idx];
+        pool.splice(idx, 1);
+        select.classList.add('field-correct');
+        var amtOk = near(amtVal, entry.amount, key.tol);
+        if(amtInput) amtInput.classList.add(amtOk ? 'field-correct' : 'field-incorrect');
+        if(!amtOk) allOk = false;
+      } else {
+        select.classList.add('field-incorrect');
+        if(amtInput) amtInput.classList.add('field-incorrect');
+        allOk = false;
+      }
+    });
+    if(debitPool.length > 0 || creditPool.length > 0) allOk = false;
+    return anyAnswered ? allOk : null;
+  }
+  function checkJeTable(tableId){
+    var tableEl = document.getElementById(tableId);
+    var statusEl = document.getElementById(tableId.replace('je-', 'tc-'));
+    var key = JE_LINE_KEY[tableId];
+    if(!tableEl) return null;
+    var lineResult = gradeJeLines(tableId);
+    var ok = lineResult === true;
+
+    if(key && key.noEntry){
+      if(statusEl){
+        statusEl.classList.remove('good', 'bad');
+        if(lineResult === null){
+          statusEl.textContent = 'Not yet answered.';
+          statusEl.classList.add('bad');
+        } else {
+          statusEl.textContent = ok ? 'Correct \u2713 \u2014 no entry needed this period.' : 'Incorrect \u2014 select "No Journal Entry Required."';
+          statusEl.classList.add(ok ? 'good' : 'bad');
+        }
+      }
+      return ok;
+    }
+
+    var debitSum = sumColumn(tableEl, 2);
+    var creditSum = sumColumn(tableEl, 3);
+    if(statusEl){
+      statusEl.classList.remove('good', 'bad');
+      if(isNaN(debitSum) && isNaN(creditSum) && lineResult === null){
+        statusEl.textContent = 'Not yet answered.';
+        statusEl.classList.add('bad');
+      } else {
+        var parts = [
+          'Debits ' + fmtMoney(debitSum),
+          'Credits ' + fmtMoney(creditSum),
+          ok ? 'All lines correct \u2713' : 'Some lines need review'
+        ];
+        statusEl.textContent = parts.join('    ');
+        statusEl.classList.add(ok ? 'good' : 'bad');
+      }
+    }
+    return ok;
+  }
+
+  // Answer key. Each journal entry is graded line by line: the account picked
+  // in a Debit-column row is matched (order-independent) against the expected
+  // debit-side accounts, and once matched, that row's dollar amount is checked
+  // against that specific line's expected value (and likewise for the credit
+  // side).
+  var JE_LINE_KEY = {
+    'je-2027': {
+      debit: [
+        { account: 'Income Tax Expense', amount: 79000 },
+        { account: 'Deferred Tax Liability', amount: 7000 }
+      ],
+      credit: [{ account: 'Income Tax Payable', amount: 86000 }],
+      tol: 1
+    },
+    'je-2028': {
+      debit: [{ account: 'Income Tax Expense', amount: 71000 }],
+      credit: [
+        { account: 'Deferred Tax Liability', amount: 2000 },
+        { account: 'Income Tax Payable', amount: 69000 }
+      ],
+      tol: 1
+    },
+    'je-2029': {
+      debit: [
+        { account: 'Income Tax Expense', amount: 64000 },
+        { account: 'Deferred Tax Liability', amount: 1000 }
+      ],
+      credit: [{ account: 'Income Tax Payable', amount: 65000 }],
+      tol: 1
+    }
+  };
+
+  var CLASSIFY_KEY = [];
+  var OTHER_ANSWER_FIELDS = [];
+
+  document.getElementById('checkAnswersBtn').addEventListener('click', function(){
+    var results = CLASSIFY_KEY.map(function(f){ return markSelect(f.id, f.correct); });
+    Object.keys(JE_LINE_KEY).forEach(function(id){ results.push(checkJeTable(id)); });
+    OTHER_ANSWER_FIELDS.forEach(function(f){ results.push(markField(f.id, f.correct, f.tol)); });
+    updateSummary('checkSummary', results);
+    updateGradeLine(results);
+  });
+
+  // ---------------- Print / Save as PDF ----------------
+  document.getElementById('printBtn').addEventListener('click', function(){
+    var name = val('studentName');
+    var id = val('studentId');
+    var line = document.getElementById('printNameLine');
+    var text = 'Name: ' + (name || '_______________________') + '     Student ID: ' + (id || '_______________________');
+    text += '     Grade: ' + (lastGradeText || 'Not checked yet');
+    line.textContent = text;
+    var oldTitle = document.title;
+    document.title = 'TempDifferences-' + (id || 'submission');
+    window.print();
+    document.title = oldTitle;
+  });
+
+  // ---------------- Download as Word (.docx) ----------------
+  var docxLoadPromise = null;
+  function loadDocxLib(){
+    if(window.docx) return Promise.resolve();
+    if(docxLoadPromise) return docxLoadPromise;
+    docxLoadPromise = new Promise(function(resolve, reject){
+      var s = document.createElement('script');
+      s.src = 'https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.umd.js';
+      s.onload = function(){ window.docx ? resolve() : reject(new Error('docx library did not load correctly')); };
+      s.onerror = function(){ reject(new Error('network error loading docx library')); };
+      document.head.appendChild(s);
+    });
+    return docxLoadPromise;
+  }
+
+  function readJeTable(tableEl){
+    var rows = [];
+    tableEl.querySelectorAll('tbody tr').forEach(function(tr){
+      var tds = tr.querySelectorAll('td');
+      var acctField = tds[0].querySelector('select, input');
+      var acct = acctField ? acctField.value.trim() : cleanText(tds[0].textContent);
+      var debitInput = tds[1] ? tds[1].querySelector('input') : null;
+      var creditInput = tds[2] ? tds[2].querySelector('input') : null;
+      var debit = debitInput ? debitInput.value.trim() : '';
+      var credit = creditInput ? creditInput.value.trim() : '';
+      rows.push({ acct: acct, debit: debit, credit: credit, total: tr.classList.contains('je-total') });
+    });
+    return rows;
+  }
+
+  function buildAnswersDoc(){
+    var D = window.docx;
+    var PURPLE = '592C88', GOLD_PALE = 'F1E9D6', INK = '221B2E', SLATE = '5F5A6B';
+    var name = blankIfEmpty(val('studentName'));
+    var sid = blankIfEmpty(val('studentId'));
+
+    function h(text, size){
+      return new D.Paragraph({ spacing: { before: 260, after: 100 }, children: [new D.TextRun({ text: text, bold: true, color: PURPLE, size: size || 26 })] });
+    }
+    function h4(text){
+      return new D.Paragraph({ spacing: { before: 160, after: 60 }, children: [new D.TextRun({ text: text, bold: true, color: PURPLE, size: 21 })] });
+    }
+    function p(text, opts){
+      opts = opts || {};
+      return new D.Paragraph({ spacing: { before: 60, after: 60 }, children: [new D.TextRun({ text: text, size: opts.size || 20, color: opts.color || INK, bold: !!opts.bold, italics: !!opts.italics })] });
+    }
+    function cell(text, width, opts){
+      opts = opts || {};
+      var borders = {};
+      if (opts.borderTop) borders.top = { style: D.BorderStyle.SINGLE, size: 6, color: PURPLE };
+      return new D.TableCell({
+        width: { size: width, type: D.WidthType.DXA },
+        colSpan: opts.colSpan || undefined,
+        shading: opts.shading ? { type: D.ShadingType.CLEAR, fill: opts.shading } : undefined,
+        borders: opts.borderTop ? borders : undefined,
+        margins: { top: 60, bottom: 60, left: 90, right: 90 },
+        children: [new D.Paragraph({ children: [new D.TextRun({ text: text, size: 19, bold: !!opts.bold, color: opts.color || INK })] })]
+      });
+    }
+    function row(cells){ return new D.TableRow({ children: cells }); }
+    function table(widths, rows){
+      return new D.Table({ width: { size: widths.reduce(function(a,b){return a+b;},0), type: D.WidthType.DXA }, columnWidths: widths, rows: rows });
+    }
+
+    function jeTableDocx(tableEl){
+      var rows = readJeTable(tableEl);
+      var widths = [5040, 2160, 2160];
+      var out = [];
+      out.push(row([
+        cell('Account', widths[0], { bold: true, shading: PURPLE, color: 'FFFFFF' }),
+        cell('Debit', widths[1], { bold: true, shading: PURPLE, color: 'FFFFFF' }),
+        cell('Credit', widths[2], { bold: true, shading: PURPLE, color: 'FFFFFF' })
+      ]));
+      rows.forEach(function(r){
+        out.push(row([
+          cell(r.total ? r.acct : blankIfEmpty(r.acct), widths[0], { bold: r.total, borderTop: r.total }),
+          cell(blankIfEmpty(r.debit), widths[1], { bold: r.total, borderTop: r.total }),
+          cell(blankIfEmpty(r.credit), widths[2], { bold: r.total, borderTop: r.total })
+        ]));
+      });
+      return table(widths, out);
+    }
+
+    var children = [];
+    children.push(new D.Paragraph({ heading: D.HeadingLevel.TITLE, spacing: { after: 60 }, children: [new D.TextRun({ text: 'Temporary Differences & Income Taxes', color: PURPLE, size: 32, bold: true })] }));
+    children.push(p('Name: ' + name + '     Student ID: ' + sid, { bold: true }));
+    children.push(p('Grade: ' + (lastGradeText || 'Not checked yet'), { bold: true, color: lastGradeText ? '1E5C34' : SLATE }));
+    children.push(p('ACCT 615  ·  Accounting Theory and Practice  ·  Temporary Differences & Income Taxes', { color: SLATE }));
+
+    document.querySelectorAll('main > .part').forEach(function(partEl){
+      var label = cleanText((partEl.querySelector('.part-label') || {}).textContent || '');
+      var company = cleanText((partEl.querySelector('h2') || {}).textContent || '');
+      children.push(h(label + ' \u2014 ' + company));
+
+      var scenarioEl = partEl.querySelector('.scenario');
+      if (scenarioEl) children.push(p(cleanText(scenarioEl.textContent)));
+
+      var content = partEl.querySelectorAll('table.given, h4.subsection, ol.addinfo, .req, .no-entry, table.classify, table.worksheet, table.amort, .je-block');
+      content.forEach(function(el){
+        if (el.tagName === 'TABLE' && el.classList.contains('classify')) {
+          var cRows = [];
+          var cHeader = el.querySelector('thead tr');
+          var cWidths = [4680, 4680];
+          cRows.push(row(Array.prototype.map.call(cHeader.querySelectorAll('th'), function(th, i){ return cell(cleanText(th.textContent), cWidths[i], { bold: true, shading: PURPLE, color: 'FFFFFF' }); })));
+          el.querySelectorAll('tbody tr').forEach(function(tr){
+            var party = cleanText(tr.querySelector('td.party').textContent);
+            var select = tr.querySelector('select');
+            cRows.push(row([cell(party, cWidths[0], {}), cell(blankIfEmpty(select ? select.value : ''), cWidths[1], {})]));
+          });
+          children.push(table(cWidths, cRows));
+        } else if (el.tagName === 'TABLE' && el.classList.contains('given')) {
+          var gRows = [];
+          var gHeader = el.querySelector('thead tr');
+          var gWidths = [6480, 2880];
+          gRows.push(row(Array.prototype.map.call(gHeader.querySelectorAll('th'), function(th, i){ return cell(cleanText(th.textContent), gWidths[i], { bold: true, shading: PURPLE, color: 'FFFFFF' }); })));
+          el.querySelectorAll('tbody tr').forEach(function(tr){
+            var tds = tr.querySelectorAll('td');
+            gRows.push(row([cell(cleanText(tds[0].textContent), gWidths[0], {}), cell(cleanText(tds[1].textContent), gWidths[1], {})]));
+          });
+          children.push(table(gWidths, gRows));
+        } else if (el.tagName === 'H4') {
+          children.push(h4(cleanText(el.textContent)));
+        } else if (el.tagName === 'OL' && el.classList.contains('addinfo')) {
+          var startVal = parseInt(el.getAttribute('start') || '1', 10);
+          Array.prototype.forEach.call(el.querySelectorAll('li'), function(li, i){
+            var letter = String.fromCharCode(96 + startVal + i);
+            children.push(p(letter + '. ' + cleanText(li.textContent)));
+          });
+        } else if (el.classList.contains('req')) {
+          children.push(p(cleanText(el.textContent), { bold: true }));
+        } else if (el.classList.contains('no-entry')) {
+          children.push(p(cleanText(el.textContent), { italics: true, color: SLATE }));
+        } else if (el.tagName === 'TABLE' && el.classList.contains('amort')) {
+          var aRows = [];
+          var aHeaderThs = el.querySelector('thead tr').querySelectorAll('th');
+          var aCols = aHeaderThs.length;
+          var aWidths = aCols === 5 ? [1080, 1840, 1840, 1840, 1840] : [1440, 3960, 3960];
+          aRows.push(row(Array.prototype.map.call(aHeaderThs, function(th, i){ return cell(cleanText(th.textContent), aWidths[i], { bold: true, shading: PURPLE, color: 'FFFFFF' }); })));
+          el.querySelectorAll('tbody tr').forEach(function(tr){
+            var periodTxt = cleanText(tr.querySelector('td.period').textContent);
+            var inputs = tr.querySelectorAll('input');
+            var aCells = [cell(periodTxt, aWidths[0], { bold: true })];
+            for (var ai = 0; ai < aCols - 1; ai++) {
+              aCells.push(cell(blankIfEmpty(inputs[ai] ? inputs[ai].value.trim() : ''), aWidths[ai + 1], {}));
+            }
+            aRows.push(row(aCells));
+          });
+          children.push(table(aWidths, aRows));
+        } else if (el.tagName === 'TABLE' && el.classList.contains('worksheet')) {
+          var wRows = [];
+          var wHeader = el.querySelector('thead tr');
+          var wHeaderThs = wHeader.querySelectorAll('th');
+          var nCols = wHeaderThs.length;
+          var wWidths = nCols === 3 ? [4320, 2520, 2520] : [6480, 2880];
+          wRows.push(row(Array.prototype.map.call(wHeaderThs, function(th, i){ return cell(cleanText(th.textContent), wWidths[i], { bold: true, shading: PURPLE, color: 'FFFFFF' }); })));
+          el.querySelectorAll('tbody tr').forEach(function(tr){
+            var methodCell = tr.querySelector('td.method');
+            var methodTxt = cleanText(methodCell.textContent);
+            var isBold = !!methodCell.querySelector('strong');
+            var inputs = tr.querySelectorAll('input');
+            var rowCells = [cell(methodTxt, wWidths[0], { bold: isBold })];
+            for (var i = 0; i < nCols - 1; i++) {
+              rowCells.push(cell(blankIfEmpty(inputs[i] ? inputs[i].value.trim() : ''), wWidths[i + 1], { bold: isBold }));
+            }
+            wRows.push(row(rowCells));
+          });
+          children.push(table(wWidths, wRows));
+        } else if (el.classList.contains('je-block')) {
+          var titleEl = el.querySelector('.je-block-title');
+          var descEl = el.querySelector('.je-block-desc');
+          if (titleEl) children.push(p(cleanText(titleEl.textContent), { bold: true }));
+          if (descEl) children.push(p(cleanText(descEl.textContent), { italics: true, color: SLATE, size: 17 }));
+          var jeTable = el.querySelector('table.je');
+          if (jeTable) children.push(jeTableDocx(jeTable));
+        }
+      });
+    });
+
+    children.push(new D.Paragraph({ spacing: { before: 300 }, alignment: D.AlignmentType.CENTER, children: [new D.TextRun({ text: 'Temporary Differences & Income Taxes  \u00b7  ACCT 615  \u00b7  Accounting Theory and Practice', size: 16, italics: true, color: SLATE })] }));
+
+    return new D.Document({
+      sections: [{
+        properties: { page: { size: { width: 12240, height: 15840 }, margin: { top: 1440, bottom: 1440, left: 1440, right: 1440 } } },
+        children: children
+      }]
+    });
+  }
+
+  document.getElementById('downloadDocxBtn').addEventListener('click', function(){
+    var statusEl = document.getElementById('submitStatus');
+    statusEl.classList.remove('error');
+    statusEl.textContent = 'Preparing your Word document\u2026';
+    loadDocxLib().then(function(){
+      var doc = buildAnswersDoc();
+      return window.docx.Packer.toBlob(doc);
+    }).then(function(blob){
+      var idPart = val('studentId') || 'submission';
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'TempDifferences-' + idPart + '.docx';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      statusEl.textContent = 'Downloaded.';
+      setTimeout(function(){ statusEl.textContent = ''; }, 4000);
+    }).catch(function(err){
+      statusEl.classList.add('error');
+      statusEl.textContent = 'Could not load the Word export tool (needs internet access) \u2014 use Print / Save as PDF instead.';
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
