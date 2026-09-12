@@ -183,6 +183,30 @@
     outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
   }
 
+  .score-panel{
+    display:flex; align-items:center; gap:18px;
+    margin-top:22px; padding:14px 18px;
+    background:var(--parchment);
+    border:1px solid var(--line);
+    border-radius:8px;
+  }
+  .score-panel.scored-good{ background:var(--answer-bg); border-color:#B7D3BE; }
+  .score-panel.scored-bad{ background:#F8F0EF; border-color:#E2C6C2; }
+  .score-pct{
+    font-family:'Source Serif 4', serif;
+    font-size:30px; font-weight:700; line-height:1.05;
+    color:var(--slate); min-width:96px; text-align:center;
+  }
+  .score-panel.scored-good .score-pct{ color:var(--answer); }
+  .score-panel.scored-bad .score-pct{ color:var(--danger); }
+  .score-detail{ flex:1; min-width:0; }
+  .score-meta{ font-size:13.5px; font-weight:600; color:var(--ink); margin:0 0 7px; }
+  .score-bar{ height:8px; border-radius:4px; background:var(--line-soft); overflow:hidden; }
+  .score-bar span{ display:block; height:100%; width:0; background:var(--purple-mid); transition:width .35s ease; }
+  .score-panel.scored-good .score-bar span{ background:var(--answer); }
+  .score-panel.scored-bad .score-bar span{ background:var(--danger); }
+  .score-sub{ font-size:11.5px; color:var(--slate); margin:7px 0 0; }
+
   .check-bar{
     margin-top:20px;
     padding-top:16px;
@@ -252,6 +276,9 @@
     .subtitle{ color:var(--slate) !important; }
     body{ background:#fff !important; }
     .part{ box-shadow:none !important; border:1px solid #999 !important; break-inside:auto; }
+    .score-panel{ background:#fff !important; border:1.5px solid #000 !important; break-inside:avoid; }
+    .score-bar{ display:none !important; }
+    .score-pct, .score-panel.scored-good .score-pct, .score-panel.scored-bad .score-pct{ color:#000 !important; }
     .part h2, .part-label, .scenario, h4.subsection{ break-after:avoid; break-inside:avoid; }
     table.given, table.worksheet{ break-inside:auto; }
     table.given tr, table.worksheet tr{ break-inside:avoid; }
@@ -534,6 +561,89 @@
     el.classList.add(correct === graded && graded > 0 ? 'good' : 'bad');
   }
 
+  // ---------- score ----------
+  var SCORES = {};   // keyed by check-button id
+
+  function scoreState(g){
+    if(!SCORES[g.btn]) SCORES[g.btn] = { correct:0, graded:0, attempts:0, checked:false, stale:false };
+    return SCORES[g.btn];
+  }
+  function scorePct(s){
+    return s.graded ? Math.round(s.correct / s.graded * 100) : 0;
+  }
+  function scoreText(g){
+    var s = scoreState(g);
+    if(!s.checked) return 'not checked';
+    return s.correct + ' / ' + s.graded + ' (' + scorePct(s) + '%)' + (s.stale ? ' — answers edited since' : '');
+  }
+
+  function ensureScorePanel(g){
+    var summary = document.getElementById(g.summary);
+    if(!summary) return null;
+    var bar = summary.closest('.check-bar');
+    if(!bar) return null;
+    var panel = bar.parentNode.querySelector('.score-panel[data-for="' + g.btn + '"]');
+    if(panel) return panel;
+    panel = document.createElement('div');
+    panel.className = 'score-panel';
+    panel.setAttribute('data-for', g.btn);
+    panel.innerHTML =
+      '<div class="score-pct">&mdash;</div>' +
+      '<div class="score-detail">' +
+        '<p class="score-meta">Score</p>' +
+        '<div class="score-bar"><span></span></div>' +
+        '<p class="score-sub">Fill in the worksheet above, then choose <strong>Check my work</strong>. Every blank counts as incorrect.</p>' +
+      '</div>';
+    bar.parentNode.insertBefore(panel, bar);
+    return panel;
+  }
+
+  function renderScore(g){
+    var panel = ensureScorePanel(g);
+    if(!panel) return;
+    var s = scoreState(g);
+    var pctEl = panel.querySelector('.score-pct');
+    var metaEl = panel.querySelector('.score-meta');
+    var fillEl = panel.querySelector('.score-bar span');
+    var subEl = panel.querySelector('.score-sub');
+    panel.classList.remove('scored-good', 'scored-bad');
+
+    if(!s.checked){
+      pctEl.innerHTML = '&mdash;';
+      metaEl.textContent = 'Score';
+      fillEl.style.width = '0%';
+      subEl.innerHTML = 'Fill in the worksheet above, then choose <strong>Check my work</strong>. Every blank counts as incorrect.';
+      return;
+    }
+    var pct = scorePct(s);
+    pctEl.textContent = pct + '%';
+    metaEl.textContent = 'Score: ' + s.correct + ' of ' + s.graded + ' correct';
+    fillEl.style.width = pct + '%';
+    if(s.stale){
+      subEl.textContent = 'You have changed an answer since this score was calculated — check your work again to update it.';
+    } else if(s.correct === s.graded){
+      subEl.textContent = 'All ' + s.graded + ' figures match the key. Attempt ' + s.attempts + '.';
+      panel.classList.add('scored-good');
+    } else {
+      var missing = s.graded - s.correct;
+      subEl.innerHTML = missing + ' figure' + (missing === 1 ? '' : 's') + ' still to fix' +
+                        '<span class="print-hide"> — outlined in red above</span>. Attempt ' + s.attempts + '.';
+      panel.classList.add('scored-bad');
+    }
+  }
+
+  function markScoreStale(g){
+    var s = scoreState(g);
+    if(!s.checked || s.stale) return;
+    s.stale = true;
+    renderScore(g);
+  }
+
+  function resetScore(g){
+    SCORES[g.btn] = { correct:0, graded:0, attempts:0, checked:false, stale:false };
+    renderScore(g);
+  }
+
 
   function baseline(){
     return {
@@ -698,6 +808,7 @@
     currentScenario = generateScenario(id);
     applyScenario(currentScenario);
     clearAllFieldStates();
+    CHECK_GROUPS.forEach(resetScore);
   }
   genBtn.addEventListener('click', function(){ applyAndStore(idInput.value); });
   idInput.addEventListener('keydown', function(e){
@@ -708,6 +819,16 @@
   CHECK_GROUPS.forEach(function(g){
     var btn = document.getElementById(g.btn);
     if(!btn) return;
+    renderScore(g);
+
+    // any edit after a check makes the standing score stale
+    var part = btn.closest('.part');
+    if(part){
+      part.addEventListener('input', function(e){
+        if(e.target && e.target.tagName === 'INPUT') markScoreStale(g);
+      });
+    }
+
     btn.addEventListener('click', function(){
       if(!currentScenario) return;
       var d = currentScenario;
@@ -716,6 +837,13 @@
         return markField(f.id, correct, f.tol !== undefined ? f.tol : TOL[f.type || 'money']);
       });
       updateSummary(g.summary, results);
+      var s = scoreState(g);
+      s.graded = results.filter(function(r){ return r !== null; }).length;
+      s.correct = results.filter(function(r){ return r === true; }).length;
+      s.attempts += 1;
+      s.checked = true;
+      s.stale = false;
+      renderScore(g);
     });
   });
 
@@ -728,7 +856,9 @@
     var name = val('studentName');
     var id = val('studentId');
     var line = document.getElementById('printNameLine');
-    line.textContent = 'Name: ' + (name || '_______________________') + '     Student ID: ' + (id || '_______________________');
+    line.textContent = 'Name: ' + (name || '_______________________') +
+                       '     Student ID: ' + (id || '_______________________') +
+                       '     Score: ' + CHECK_GROUPS.map(scoreText).join('; ');
     var oldTitle = document.title;
     document.title = FILE_SLUG + '-' + (id || 'submission');
     window.print();
@@ -819,6 +949,7 @@
     var children = [];
     children.push(new D.Paragraph({ heading: D.HeadingLevel.TITLE, spacing: { after: 60 }, children: [new D.TextRun({ text: DOC_TITLE, color: PURPLE, size: 32, bold: true })] }));
     children.push(p('Name: ' + name + '     Student ID: ' + sid, { bold: true }));
+    children.push(p('Score: ' + CHECK_GROUPS.map(scoreText).join('; '), { bold: true, color: PURPLE }));
     children.push(p(COURSE_LINE, { color: SLATE }));
 
     document.querySelectorAll('main > .part').forEach(function(partEl){
@@ -828,7 +959,20 @@
 
       Array.prototype.forEach.call(partEl.children, function(el){
         if (el.classList.contains('part-label') || el.tagName === 'H2' || el.classList.contains('check-bar')) return;
-        if (el.classList.contains('scenario')) {
+        if (el.classList.contains('score-panel')) {
+          var forId = el.getAttribute('data-for');
+          var grp = CHECK_GROUPS.filter(function(x){ return x.btn === forId; })[0];
+          var st = grp ? scoreState(grp) : null;
+          if (st && st.checked) {
+            children.push(p('Score: ' + st.correct + ' of ' + st.graded + ' correct (' + scorePct(st) + '%)', { bold: true, color: PURPLE }));
+            children.push(p(st.stale
+              ? 'An answer was edited after this score was calculated, so it may no longer be current.'
+              : 'Self-checked against the key on attempt ' + st.attempts + '.',
+              { italics: true, color: SLATE, size: 17 }));
+          } else {
+            children.push(p('Score: not checked', { bold: true, color: PURPLE }));
+          }
+        } else if (el.classList.contains('scenario')) {
           Array.prototype.forEach.call(el.querySelectorAll('p'), function(pp){ children.push(p(cleanText(pp.textContent))); });
           if (!el.querySelector('p')) children.push(p(cleanText(el.textContent)));
         } else if (el.tagName === 'H4') {
