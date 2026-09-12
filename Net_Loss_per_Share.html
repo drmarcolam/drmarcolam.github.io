@@ -78,6 +78,9 @@
   }
   .id-bar button:hover{ background:var(--purple-mid); }
   .id-bar .id-hint{ font-size:12px; color:var(--slate); }
+  .id-bar input#studentName{ width:220px; font-family:'Inter',sans-serif; }
+
+  .score-area{ max-width:900px; margin:0 auto; padding:14px 6vw 0; }
 
   .rounding-note{
     max-width:900px; margin:14px auto 0; padding:12px 6vw;
@@ -185,7 +188,7 @@
 
   .score-panel{
     display:flex; align-items:center; gap:18px;
-    margin-top:22px; padding:14px 18px;
+    margin:0 0 4px; padding:14px 18px;
     background:var(--parchment);
     border:1px solid var(--line);
     border-radius:8px;
@@ -318,11 +321,15 @@
 <p class="print-name-line" id="printNameLine"></p>
 
 <div class="id-bar">
+  <label for="studentName">Name</label>
+  <input type="text" id="studentName" placeholder="First and last name">
   <label for="studentId">Student ID</label>
   <input type="text" id="studentId" placeholder="e.g. 920410165">
   <button id="genBtn" type="button">Generate scenario</button>
-  <span class="id-hint">Leave blank and click to restore the original textbook figures.</span>
+  <span class="id-hint">Leave the ID blank and click to restore the original textbook figures.</span>
 </div>
+
+<div class="score-area" id="scoreArea"></div>
 
 <div class="rounding-note">
   <strong>Rounding convention:</strong> do not round intermediate calculations. Enter dollar and share amounts in millions. Round per-share amounts to the nearest cent; losses may be entered with a minus sign or in parentheses.
@@ -416,10 +423,7 @@
 
   <div class="submit-bar print-hide">
     <h2>Ready to submit?</h2>
-    <div class="submit-row">
-      <label for="studentName">Your name</label>
-      <input type="text" id="studentName" placeholder="First and last name">
-    </div>
+    <p class="submit-hint" style="margin:0 0 12px;">Your name, student ID and score are taken from the top of the page.</p>
     <div class="submit-row submit-actions">
       <button class="btn-submit" id="printBtn" type="button">Print / Save as PDF</button>
       <button class="btn-submit btn-submit-outline" id="downloadDocxBtn" type="button">Download as Word (.docx)</button>
@@ -580,12 +584,12 @@
     return s.correct + ' / ' + s.graded + ' (' + scorePct(s) + '%)' + (s.stale ? ' — answers edited since' : '');
   }
 
+  var SCORE_PROMPT = 'Fill in the worksheet below, then choose <strong>Check my work</strong>. Every blank counts as incorrect.';
+
   function ensureScorePanel(g){
-    var summary = document.getElementById(g.summary);
-    if(!summary) return null;
-    var bar = summary.closest('.check-bar');
-    if(!bar) return null;
-    var panel = bar.parentNode.querySelector('.score-panel[data-for="' + g.btn + '"]');
+    var area = document.getElementById('scoreArea');
+    if(!area) return null;
+    var panel = area.querySelector('.score-panel[data-for="' + g.btn + '"]');
     if(panel) return panel;
     panel = document.createElement('div');
     panel.className = 'score-panel';
@@ -595,9 +599,9 @@
       '<div class="score-detail">' +
         '<p class="score-meta">Score</p>' +
         '<div class="score-bar"><span></span></div>' +
-        '<p class="score-sub">Fill in the worksheet above, then choose <strong>Check my work</strong>. Every blank counts as incorrect.</p>' +
+        '<p class="score-sub">' + SCORE_PROMPT + '</p>' +
       '</div>';
-    bar.parentNode.insertBefore(panel, bar);
+    area.appendChild(panel);
     return panel;
   }
 
@@ -615,7 +619,7 @@
       pctEl.innerHTML = '&mdash;';
       metaEl.textContent = 'Score';
       fillEl.style.width = '0%';
-      subEl.innerHTML = 'Fill in the worksheet above, then choose <strong>Check my work</strong>. Every blank counts as incorrect.';
+      subEl.innerHTML = SCORE_PROMPT;
       return;
     }
     var pct = scorePct(s);
@@ -630,7 +634,7 @@
     } else {
       var missing = s.graded - s.correct;
       subEl.innerHTML = missing + ' figure' + (missing === 1 ? '' : 's') + ' still to fix' +
-                        '<span class="print-hide"> — outlined in red above</span>. Attempt ' + s.attempts + '.';
+                        '<span class="print-hide"> — outlined in red below</span>. Attempt ' + s.attempts + '.';
       panel.classList.add('scored-bad');
     }
   }
@@ -802,8 +806,7 @@
     var id = val('studentId');
     var line = document.getElementById('printNameLine');
     line.textContent = 'Name: ' + (name || '_______________________') +
-                       '     Student ID: ' + (id || '_______________________') +
-                       '     Score: ' + CHECK_GROUPS.map(scoreText).join('; ');
+                       '     Student ID: ' + (id || '_______________________');
     var oldTitle = document.title;
     document.title = FILE_SLUG + '-' + (id || 'submission');
     window.print();
@@ -894,7 +897,13 @@
     var children = [];
     children.push(new D.Paragraph({ heading: D.HeadingLevel.TITLE, spacing: { after: 60 }, children: [new D.TextRun({ text: DOC_TITLE, color: PURPLE, size: 32, bold: true })] }));
     children.push(p('Name: ' + name + '     Student ID: ' + sid, { bold: true }));
-    children.push(p('Score: ' + CHECK_GROUPS.map(scoreText).join('; '), { bold: true, color: PURPLE }));
+    children.push(p('Score: ' + CHECK_GROUPS.map(function(g){
+      var s = scoreState(g);
+      if(!s.checked) return 'not checked';
+      return s.correct + ' of ' + s.graded + ' correct (' + scorePct(s) + '%)' +
+             (s.stale ? ' — an answer was edited after this score was calculated'
+                      : ', self-checked on attempt ' + s.attempts);
+    }).join('; '), { bold: true, color: PURPLE }));
     children.push(p(COURSE_LINE, { color: SLATE }));
 
     document.querySelectorAll('main > .part').forEach(function(partEl){
@@ -904,20 +913,7 @@
 
       Array.prototype.forEach.call(partEl.children, function(el){
         if (el.classList.contains('part-label') || el.tagName === 'H2' || el.classList.contains('check-bar')) return;
-        if (el.classList.contains('score-panel')) {
-          var forId = el.getAttribute('data-for');
-          var grp = CHECK_GROUPS.filter(function(x){ return x.btn === forId; })[0];
-          var st = grp ? scoreState(grp) : null;
-          if (st && st.checked) {
-            children.push(p('Score: ' + st.correct + ' of ' + st.graded + ' correct (' + scorePct(st) + '%)', { bold: true, color: PURPLE }));
-            children.push(p(st.stale
-              ? 'An answer was edited after this score was calculated, so it may no longer be current.'
-              : 'Self-checked against the key on attempt ' + st.attempts + '.',
-              { italics: true, color: SLATE, size: 17 }));
-          } else {
-            children.push(p('Score: not checked', { bold: true, color: PURPLE }));
-          }
-        } else if (el.classList.contains('scenario')) {
+        if (el.classList.contains('scenario')) {
           Array.prototype.forEach.call(el.querySelectorAll('p'), function(pp){ children.push(p(cleanText(pp.textContent))); });
           if (!el.querySelector('p')) children.push(p(cleanText(el.textContent)));
         } else if (el.tagName === 'H4') {
