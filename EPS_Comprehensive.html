@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comprehensive EPS Practice — Pisgah Steel Corporation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --purple:#592C88;
+    --purple-deep:#38195A;
+    --purple-mid:#6E3FA3;
+    --gold:#B0925C;
+    --gold-soft:#D6C398;
+    --gold-pale:#F1E9D6;
+    --parchment:#F7F4EC;
+    --paper:#FFFEFA;
+    --ink:#221B2E;
+    --slate:#5F5A6B;
+    --line:#DBD3E0;
+    --line-soft:#EAE4EF;
+    --answer:#1E5C34;
+    --answer-bg:#E7F1E9;
+    --danger:#9C3B34;
+    --shadow: 0 1px 2px rgba(56,25,90,0.07), 0 6px 18px rgba(56,25,90,0.08);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--parchment);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ color:inherit; }
+
+  header{
+    background: linear-gradient(180deg, var(--purple) 0%, var(--purple-deep) 100%);
+    color:#F1E9D6;
+    padding: 30px 6vw 24px;
+    position:relative;
+  }
+  header::after{
+    content:"";
+    position:absolute; left:0; right:0; bottom:0; height:4px;
+    background: linear-gradient(90deg, var(--gold-soft), var(--gold) 40%, var(--gold-soft) 70%, var(--gold));
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--gold-soft); margin:0 0 10px;
+  }
+  h1.title{
+    font-family:'Source Serif 4', serif; font-weight:600;
+    font-size:clamp(24px,3.4vw,34px); margin:0 0 8px; letter-spacing:-0.01em;
+  }
+  .subtitle{ font-size:14.5px; color:#D9CDE5; max-width:680px; margin:0; }
+
+  .id-bar{
+    max-width:900px; margin:0 auto; padding:18px 6vw 0;
+    display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+  }
+  .id-bar label{ font-size:13px; font-weight:600; color:var(--slate); }
+  .id-bar input[type="text"]{
+    font-family:'IBM Plex Mono', monospace; font-size:13.5px; padding:8px 11px;
+    border:1px solid var(--line); border-radius:5px; background:var(--paper); color:var(--ink);
+    width:180px;
+  }
+  .id-bar input:focus{ outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); }
+  .id-bar button{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:8px 15px; border:1px solid var(--purple);
+    background:var(--purple); color:#fff; cursor:pointer;
+  }
+  .id-bar button:hover{ background:var(--purple-mid); }
+  .id-bar .id-hint{ font-size:12px; color:var(--slate); }
+
+  .rounding-note{
+    max-width:900px; margin:14px auto 0; padding:12px 6vw;
+    font-size:12.5px; color:var(--slate); line-height:1.5;
+  }
+  .rounding-note strong{ color:var(--purple); font-weight:600; }
+
+  main{ max-width:900px; margin:0 auto; padding:22px 6vw 90px; }
+
+  .part{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    box-shadow:var(--shadow);
+    padding:24px 26px 26px;
+    margin-top:26px;
+  }
+  .part-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; color:var(--gold); background:var(--purple);
+    display:inline-block; padding:3px 9px; border-radius:4px; letter-spacing:.04em;
+    margin-bottom:12px;
+  }
+  .part h2{
+    font-family:'Source Serif 4', serif; font-size:21px; font-weight:600;
+    color:var(--purple); margin:0 0 12px;
+  }
+  .scenario{
+    background:var(--parchment);
+    border-left:3px solid var(--gold);
+    padding:14px 18px;
+    border-radius:0 6px 6px 0;
+    font-size:14.5px;
+    color:var(--ink);
+    margin-bottom:16px;
+  }
+  .scenario p{ margin:0 0 10px; }
+  .scenario p:last-child{ margin-bottom:0; }
+  .scenario span.val{ font-weight:700; color:var(--purple-deep); }
+
+  .req{
+    font-weight:600;
+    font-size:14.5px;
+    color:var(--ink);
+    margin:20px 0 10px;
+  }
+  .req span.reqlabel{ color:var(--purple); }
+
+  h4.subsection{
+    font-family:'Source Serif 4',serif; font-size:15px; color:var(--purple); margin:22px 0 6px;
+    border-bottom:1px solid var(--line-soft); padding-bottom:4px;
+  }
+
+  table.given{ width:100%; border-collapse:collapse; font-size:13px; margin:6px 0 14px; }
+  table.given th{ text-align:left; font-size:10.5px; text-transform:uppercase; letter-spacing:.03em; color:var(--slate); border-bottom:2px solid var(--purple); padding:6px 8px; }
+  table.given td{ border-bottom:1px solid var(--line); padding:5px 8px; font-family:'IBM Plex Mono', monospace; }
+  table.given td.lbl{ font-family:'Inter',sans-serif; }
+  table.given td.num, table.given th.num{ text-align:right; }
+  table.given tr.given-total td{ border-top:1.3px solid var(--purple); font-weight:600; }
+  table.given tr.given-head td{ font-family:'Source Serif 4',serif; font-weight:600; color:var(--purple); text-align:center; }
+  ol.addinfo{ margin:8px 0; padding-left:20px; font-size:13.5px; }
+  ol.addinfo li{ margin:6px 0; }
+  .footnote{ font-size:12px; color:var(--slate); margin:2px 0 14px; font-style:italic; }
+  .hint{ font-size:12.5px; color:var(--slate); margin:4px 0 10px; }
+
+  table.worksheet{
+    width:100%;
+    border-collapse:collapse;
+    font-size:13.5px;
+    margin:10px 0 4px;
+  }
+  table.worksheet th{
+    text-align:left;
+    font-size:11.5px;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+    color:var(--slate);
+    border-bottom:2px solid var(--purple);
+    padding:8px 8px;
+  }
+  table.worksheet th.num{ text-align:right; }
+  table.worksheet td{
+    border-bottom:1px solid var(--line);
+    padding:9px 8px;
+    vertical-align:middle;
+  }
+  table.worksheet td.method{ font-weight:600; }
+  table.worksheet td.sub{ padding-left:24px; font-weight:400; }
+  table.worksheet td.amt{ width:160px; }
+  table.worksheet td.dash{ text-align:center; color:var(--slate); font-family:'IBM Plex Mono',monospace; }
+  table.worksheet tr.ws-total td{ border-top:1.6px solid var(--purple); font-weight:600; }
+  table.worksheet input[type="text"]{
+    width:100%;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13.5px;
+    padding:6px 8px;
+    border:1px solid var(--line);
+    border-radius:5px;
+    background:var(--parchment);
+    color:var(--ink);
+  }
+  table.worksheet input[type="text"]:focus{
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
+  }
+
+  .check-bar{
+    margin-top:20px;
+    padding-top:16px;
+    border-top:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .btn-check{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:9px 18px; border:1px solid var(--purple);
+    background:var(--purple); color:#fff; cursor:pointer;
+  }
+  .btn-check:hover{ background:var(--purple-mid); }
+  .check-summary{ font-size:13.5px; font-weight:600; }
+  .check-summary.good{ color:var(--answer); }
+  .check-summary.bad{ color:var(--danger); }
+  .check-disclaimer{ font-size:11.5px; color:var(--slate); width:100%; margin-top:2px; font-style:italic; }
+
+  input.field-correct{
+    border-color:var(--answer) !important;
+    background:var(--answer-bg) !important;
+  }
+  input.field-incorrect{
+    border-color:var(--danger) !important;
+    background:#F3E1DE !important;
+  }
+
+  .submit-bar{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    box-shadow:var(--shadow);
+    padding:22px 26px 24px;
+    margin-top:26px;
+  }
+  .submit-bar h2{
+    font-family:'Source Serif 4', serif; font-size:19px; font-weight:600;
+    color:var(--purple); margin:0 0 14px;
+  }
+  .submit-row{ display:flex; align-items:center; gap:10px; margin-bottom:12px; flex-wrap:wrap; }
+  .submit-row label{ font-size:13px; font-weight:600; color:var(--slate); }
+  .submit-row input[type="text"]{
+    font-family:'Inter',sans-serif; font-size:13.5px; padding:8px 11px;
+    border:1px solid var(--line); border-radius:5px; background:var(--parchment); color:var(--ink);
+    width:240px;
+  }
+  .submit-row input:focus{ outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); }
+  .btn-submit{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:10px 18px; border:1px solid var(--purple);
+    background:var(--purple); color:#fff; cursor:pointer;
+  }
+  .btn-submit:hover{ background:var(--purple-mid); }
+  .btn-submit-outline{ background:var(--paper); color:var(--purple); }
+  .btn-submit-outline:hover{ background:var(--parchment); }
+  .submit-status{ font-size:13px; font-weight:600; min-height:18px; margin:10px 0 0; color:var(--answer); }
+  .submit-status.error{ color:var(--danger); }
+  .submit-hint{ font-size:12px; color:var(--slate); margin:6px 0 0; }
+
+  @media print{
+    .print-hide, .id-bar, .check-bar, .rounding-note{ display:none !important; }
+    header{ background:none !important; color:var(--ink) !important; padding:0 0 14px !important; }
+    header::after{ display:none !important; }
+    .eyebrow{ color:var(--purple) !important; }
+    .subtitle{ color:var(--slate) !important; }
+    body{ background:#fff !important; }
+    .part{ box-shadow:none !important; border:1px solid #999 !important; break-inside:auto; }
+    .part h2, .part-label, .scenario, h4.subsection{ break-after:avoid; break-inside:avoid; }
+    table.given, table.worksheet{ break-inside:auto; }
+    table.given tr, table.worksheet tr{ break-inside:avoid; }
+    ol.addinfo li{ break-inside:avoid; }
+    .submit-bar{ break-before:avoid; }
+    input[type="text"]{
+      border:none !important;
+      border-bottom:1px solid #000 !important;
+      background:transparent !important;
+      border-radius:0 !important;
+      color:#000 !important;
+      -webkit-appearance:none;
+      appearance:none;
+      padding:2px 4px !important;
+    }
+    .print-name-line{ display:block !important; }
+  }
+  .print-name-line{ display:none; font-size:13px; color:var(--ink); padding:0 6vw; margin:0 0 10px; }
+
+  footer{ text-align:center; padding:26px 6vw 40px; font-size:12px; color:var(--slate); }
+
+  @media (max-width:600px){
+    header, main, .id-bar{ padding-left:5vw; padding-right:5vw; }
+    table.worksheet{ font-size:12.5px; }
+  }
+
+</style>
+</head>
+<body>
+
+<header>
+  <p class="eyebrow">ACCT 605 &middot; Advanced Financial Accounting &middot; Earnings per Share</p>
+  <h1 class="title">Comprehensive Earnings per Share</h1>
+  <p class="subtitle">Weighted-average shares with a stock dividend, share sales and retirements, plus stock options, contingently issuable shares, and convertible bonds under the treasury stock and if-converted methods.</p>
+</header>
+
+<p class="print-name-line" id="printNameLine"></p>
+
+<div class="id-bar">
+  <label for="studentId">Student ID</label>
+  <input type="text" id="studentId" placeholder="e.g. 920410165">
+  <button id="genBtn" type="button">Generate scenario</button>
+  <span class="id-hint">Leave blank and click to restore the original textbook figures.</span>
+</div>
+
+<div class="rounding-note">
+  <strong>Rounding convention:</strong> do not round intermediate calculations. Round per-share amounts to the nearest cent and all other dollar figures to the nearest whole dollar. Share counts may be entered to the nearest whole share.
+</div>
+
+<main>
+
+  <div class="part">
+    <span class="part-label">Comprehensive Problem</span>
+    <h2>Pisgah Steel Corporation</h2>
+
+    <div class="scenario">
+      <p>On December 31, 2026, Pisgah Steel Corporation had <span class="val" id="begShares">630,000</span> shares of common stock and <span class="val" id="prefShares">303,000</span> shares of <span class="val" id="prefRate">7%</span>, noncumulative, nonconvertible preferred stock issued and outstanding.</p>
+      <p>Pisgah issued a <span class="val" id="sdPct">4%</span> common stock dividend on May 15 and paid cash dividends of <span class="val" id="divCommon">$430,000</span> and <span class="val" id="divPref">$72,000</span> to common and preferred shareholders, respectively, on December 15, 2027.</p>
+      <p>On February 28, 2027, Pisgah sold <span class="val" id="soldShares">54,000</span> common shares. In keeping with its long-term share repurchase plan, <span class="val" id="retiredShares">2,000</span> shares were retired on July 1.</p>
+      <p>Pisgah's net income for the year ended December 31, 2027, was <span class="val" id="niDisp">$2,250,000</span>. The income tax rate is <span class="val" id="taxDisp">25%</span>.</p>
+      <p>Also, as part of a 2026 agreement for the acquisition of Nantahala Cable Company, another <span class="val" id="contShares">27,000</span> shares (already adjusted for the stock dividend) are to be issued to former Nantahala shareholders on December 31, 2028, if Nantahala's 2028 net income is at least <span class="val" id="contThresh">$530,000</span>. In 2027, Nantahala's net income was <span class="val" id="subNI">$660,000</span>.</p>
+      <p>As part of an incentive compensation plan, Pisgah granted incentive stock options to division managers on December 31 of the current and each of the previous two years. Each option permits its holder to buy one share of common stock at an exercise price equal to market value at the date of grant and can be exercised one year from that date. Information concerning the number of options granted and common share prices follows:</p>
+    </div>
+
+    <table class="given">
+      <thead><tr><th>Date Granted</th><th class="num">Options Granted<br>(adjusted for the stock dividend)</th><th class="num">Share Price</th></tr></thead>
+      <tbody id="optGiven"></tbody>
+    </table>
+
+    <div class="scenario">
+      <p>The market price of the common stock averaged <span class="val" id="avgPrice">$20</span> per share during 2027.</p>
+      <p>On July 12, 2025, Pisgah issued <span class="val" id="bondFace">$700,000</span> of convertible <span class="val" id="bondRate">8%</span> bonds at face value. Each $1,000 bond is convertible into <span class="val" id="convRatio">40</span> common shares (adjusted for the stock dividend).</p>
+    </div>
+
+    <div class="req"><span class="reqlabel">Required:</span> Compute Pisgah's basic and diluted earnings per share for the year ended December 31, 2027.</div>
+
+    <h4 class="subsection">Part A &mdash; Weighted-average common shares outstanding</h4>
+    <p class="hint">Restate every share count that was outstanding <em>before</em> May 15 for the stock dividend. Enter share retirements as a negative number.</p>
+    <table class="worksheet">
+      <thead><tr><th>Component</th><th class="num">Weighted shares</th></tr></thead>
+      <tbody>
+        <tr><td class="method">Shares outstanding January 1, restated for the stock dividend</td><td class="amt"><input type="text" placeholder="shares" id="p1-wa-a"></td></tr>
+        <tr><td class="method">Shares sold February 28 &mdash; weighted and restated</td><td class="amt"><input type="text" placeholder="shares" id="p1-wa-b"></td></tr>
+        <tr><td class="method">Shares retired July 1 &mdash; weighted</td><td class="amt"><input type="text" placeholder="shares" id="p1-wa-c"></td></tr>
+        <tr class="ws-total"><td class="method">Weighted-average common shares outstanding</td><td class="amt"><input type="text" placeholder="shares" id="p1-basic-den"></td></tr>
+      </tbody>
+    </table>
+
+    <h4 class="subsection">Part B &mdash; Basic earnings per share</h4>
+    <table class="worksheet">
+      <thead><tr><th>Item</th><th class="num">Amount</th></tr></thead>
+      <tbody>
+        <tr><td class="method">Numerator &mdash; net income available to common shareholders</td><td class="amt"><input type="text" placeholder="$" id="p1-basic-num"></td></tr>
+        <tr class="ws-total"><td class="method">Basic earnings per share</td><td class="amt"><input type="text" placeholder="$0.00" id="p1-basic-eps"></td></tr>
+      </tbody>
+    </table>
+
+    <h4 class="subsection">Part C &mdash; Incremental shares from the stock options</h4>
+    <p class="hint">Apply the treasury stock method. Enter <strong>0</strong> for any grant that is antidilutive or that was outstanding for none of the year.</p>
+    <table class="worksheet">
+      <thead><tr><th>Date granted</th><th class="num">Options</th><th class="num">Exercise price</th><th class="num">Incremental shares included</th></tr></thead>
+      <tbody id="optWs"></tbody>
+    </table>
+
+    <h4 class="subsection">Part D &mdash; Other potential common shares</h4>
+    <p class="hint">Enter <strong>0</strong> for anything that is excluded from diluted EPS.</p>
+    <table class="worksheet">
+      <thead><tr><th>Item</th><th class="num">Amount</th></tr></thead>
+      <tbody>
+        <tr><td class="method">Contingently issuable shares included in diluted EPS</td><td class="amt"><input type="text" placeholder="shares" id="p1-cont-shares"></td></tr>
+        <tr><td class="method">Shares issuable on assumed conversion of the convertible bonds</td><td class="amt"><input type="text" placeholder="shares" id="p1-bond-shares"></td></tr>
+        <tr><td class="method">Bond interest added back to the numerator, net of tax</td><td class="amt"><input type="text" placeholder="$" id="p1-bond-interest"></td></tr>
+      </tbody>
+    </table>
+
+    <h4 class="subsection">Part E &mdash; Diluted earnings per share</h4>
+    <table class="worksheet">
+      <thead><tr><th>Item</th><th class="num">Amount</th></tr></thead>
+      <tbody>
+        <tr><td class="method">Numerator &mdash; diluted</td><td class="amt"><input type="text" placeholder="$" id="p1-dil-num"></td></tr>
+        <tr><td class="method">Denominator &mdash; diluted</td><td class="amt"><input type="text" placeholder="shares" id="p1-dil-den"></td></tr>
+        <tr class="ws-total"><td class="method">Diluted earnings per share</td><td class="amt"><input type="text" placeholder="$0.00" id="p1-dil-eps"></td></tr>
+      </tbody>
+    </table>
+
+    <div class="check-bar">
+      <button class="btn-check" id="checkP1" type="button">Check my work</button>
+      <span class="check-summary" id="p1Summary"></span>
+      <span class="check-disclaimer">This checks whether your figures match the key within a small rounding tolerance &mdash; it does not confirm your supporting computations.</span>
+    </div>
+  </div>
+
+  <div class="submit-bar print-hide">
+    <h2>Ready to submit?</h2>
+    <div class="submit-row">
+      <label for="studentName">Your name</label>
+      <input type="text" id="studentName" placeholder="First and last name">
+    </div>
+    <div class="submit-row submit-actions">
+      <button class="btn-submit" id="printBtn" type="button">Print / Save as PDF</button>
+      <button class="btn-submit btn-submit-outline" id="downloadDocxBtn" type="button">Download as Word (.docx)</button>
+    </div>
+    <p class="submit-status" id="submitStatus"></p>
+    <p class="submit-hint">Both options capture exactly what's currently filled in above, including your generated scenario numbers. "Print / Save as PDF" works offline; "Download as Word" needs an internet connection to load the export tool.</p>
+  </div>
+</main>
+
+<footer>Comprehensive Earnings per Share &middot; ACCT 605 &middot; Western Carolina University</footer>
+
+<script>
+(function(){
+  var DOC_TITLE = "Comprehensive Earnings per Share";
+  var COURSE_LINE = "ACCT 605  \u00b7  Advanced Financial Accounting  \u00b7  Earnings per Share";
+  var FILE_SLUG = "ACCT605-EPS-Comprehensive";
+
+  // ---------- seeded pseudo-random ----------
+  function hashSeed(str){
+    var h = 2166136261;
+    for(var i=0;i<str.length;i++){
+      h ^= str.charCodeAt(i);
+      h = Math.imul(h, 16777619);
+    }
+    return h >>> 0;
+  }
+  function mulberry32(seed){
+    return function(){
+      seed |= 0; seed = seed + 0x6D2B79F5 | 0;
+      var t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
+  }
+  function pick(rand, arr){ return arr[Math.floor(rand() * arr.length)]; }
+  function rTo(x, m){ return Math.round(x/m)*m; }
+
+  // ---------- formatting ----------
+  function num0(n){ return Math.round(n).toLocaleString('en-US'); }
+  function money0(n){
+    var v = Math.round(n);
+    return (v < 0 ? '$(' + Math.abs(v).toLocaleString('en-US') + ')' : '$' + v.toLocaleString('en-US'));
+  }
+  function num1(n){
+    return Number(n).toLocaleString('en-US', {minimumFractionDigits:0, maximumFractionDigits:1});
+  }
+  function money1(n){
+    var v = Number(n);
+    var s = Math.abs(v).toLocaleString('en-US', {minimumFractionDigits:0, maximumFractionDigits:1});
+    return v < 0 ? '$(' + s + ')' : '$' + s;
+  }
+  function eps2(n){
+    var v = Number(n);
+    var s = Math.abs(v).toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
+    return v < 0 ? '$(' + s + ')' : '$' + s;
+  }
+  function pct(n){ return num1(n) + '%'; }
+
+  function setText(id, text){
+    var el = document.getElementById(id);
+    if(el) el.textContent = text;
+  }
+  function setHTML(id, html){
+    var el = document.getElementById(id);
+    if(el) el.innerHTML = html;
+  }
+
+  // ---------- dilution engine ----------
+  // items: [{label, num, shares}]  -> ranked by incremental EPS, added while dilutive
+  function diluteInOrder(basicNum, basicDen, items){
+    var live = items.filter(function(it){ return it.shares > 1e-9; });
+    live.forEach(function(it){ it.incEPS = it.num / it.shares; });
+    live.sort(function(a,b){ return a.incEPS - b.incEPS; });
+    var num = basicNum, den = basicDen, eps = basicNum/basicDen;
+    var steps = [];
+    var stopped = false;
+    for(var i=0;i<live.length;i++){
+      var tentNum = num + live[i].num;
+      var tentDen = den + live[i].shares;
+      var tentEPS = tentNum/tentDen;
+      var dilutive = !stopped && (tentEPS < eps - 1e-12);
+      steps.push({
+        label: live[i].label, incEPS: live[i].incEPS,
+        num: tentNum, den: tentDen, eps: tentEPS,
+        included: dilutive
+      });
+      if(dilutive){ num = tentNum; den = tentDen; eps = tentEPS; }
+      else { stopped = true; }
+    }
+    return { num:num, den:den, eps:eps, order:live, steps:steps };
+  }
+
+  // ---------- answer checking ----------
+  var TOL = { money:5, shares:10, mil:0.6, milsh:0.3, eps:0.011, eps3:0.02 };
+
+  function parseMoney(s){
+    if(s === null || s === undefined) return NaN;
+    var raw = String(s).trim();
+    var neg = /^\(.*\)$/.test(raw) || /^-/.test(raw);
+    var cleaned = raw.replace(/[^0-9.]/g, '');
+    if(cleaned === '') return NaN;
+    var v = parseFloat(cleaned);
+    if(isNaN(v)) return NaN;
+    return neg ? -v : v;
+  }
+  function near(a, b, tol){
+    if(isNaN(a) || isNaN(b)) return false;
+    return Math.abs(a - b) <= tol;
+  }
+  function clearFieldState(el){
+    if(!el) return;
+    el.classList.remove('field-correct', 'field-incorrect');
+  }
+  function clearAllFieldStates(){
+    document.querySelectorAll('.field-correct, .field-incorrect').forEach(function(el){
+      el.classList.remove('field-correct', 'field-incorrect');
+    });
+    document.querySelectorAll('.check-summary').forEach(function(el){
+      el.textContent = ''; el.classList.remove('good','bad');
+    });
+  }
+  function markField(id, correct, tol){
+    var el = document.getElementById(id);
+    if(!el) return null;
+    el.classList.remove('field-correct', 'field-incorrect');
+    var val = parseMoney(el.value);
+    var ok = near(val, correct, tol);
+    el.classList.add(ok ? 'field-correct' : 'field-incorrect');
+    if(!el.dataset.clearBound){
+      el.addEventListener('input', function(){ clearFieldState(el); });
+      el.dataset.clearBound = '1';
+    }
+    return ok;
+  }
+  function updateSummary(elId, results){
+    var el = document.getElementById(elId);
+    if(!el) return;
+    var graded = results.filter(function(r){ return r !== null; }).length;
+    var correct = results.filter(function(r){ return r === true; }).length;
+    el.textContent = correct + ' of ' + graded + ' correct';
+    el.classList.remove('good', 'bad');
+    el.classList.add(correct === graded && graded > 0 ? 'good' : 'bad');
+  }
+
+
+  function baseline(){
+    return {
+      begShares:630000, prefShares:303000, prefRate:7,
+      sdPct:4, divCommon:430000, divPref:72000,
+      soldShares:54000, retiredShares:2000,
+      ni:2250000, taxRate:25,
+      contShares:27000, contThresh:530000, subNI:660000,
+      avgPrice:20,
+      opt:[{d:'December 31, 2025', n:10000, px:12},
+           {d:'December 31, 2026', n:5000,  px:21},
+           {d:'December 31, 2027', n:8500,  px:20}],
+      bondFace:700000, bondRate:8, convRatio:40
+    };
+  }
+
+  function randomParams(rand){
+    var scale = 0.6 + pick(rand,[0,1,2,3,4,5,6,7,8,9])*0.1;
+    var avg = pick(rand,[16,18,20,22,24,26]);
+    var niFactor = pick(rand,[0.9,1.0,1.1]);
+    return {
+      begShares: Math.max(100000, rTo(630000*scale, 500)),
+      prefShares: Math.max(50000, rTo(303000*scale, 500)),
+      prefRate: pick(rand,[6,7,8]),
+      sdPct: pick(rand,[2,3,4,5]),
+      divCommon: Math.max(50000, rTo(430000*scale, 1000)),
+      divPref: Math.max(20000, rTo(72000*scale, 1000)),
+      soldShares: Math.max(6000, rTo(54000*scale, 500)),
+      retiredShares: Math.max(500, rTo(2000*scale, 500)),
+      ni: rTo(2250000*scale*niFactor, 1000),
+      taxRate: 25,
+      contShares: Math.max(5000, rTo(27000*scale, 500)),
+      contThresh: rTo(530000*scale, 1000),
+      subNI: rTo(530000*scale*pick(rand,[1.15,1.25,1.35]), 1000),
+      avgPrice: avg,
+      opt:[{d:'December 31, 2025', n: Math.max(1000, rTo(10000*scale,500)), px: avg - pick(rand,[5,6,7,8])},
+           {d:'December 31, 2026', n: Math.max(1000, rTo(5000*scale,500)),  px: avg + pick(rand,[1,2,3])},
+           {d:'December 31, 2027', n: Math.max(1000, rTo(8500*scale,500)),  px: avg}],
+      bondFace: pick(rand,[500,600,700,800,900,1000])*1000,
+      bondRate: pick(rand,[7,8,9]),
+      convRatio: pick(rand,[35,40,45,50])
+    };
+  }
+
+  function solve(p){
+    var d = {};
+    for(var k in p) d[k] = p[k];
+
+    var f = 1 + p.sdPct/100;
+    d.waA = p.begShares * f;
+    d.waB = p.soldShares * (10/12) * f;     // sold February 28 -> 10 months, pre-dividend
+    d.waC = -p.retiredShares * (6/12);      // retired July 1 -> post-dividend, no restatement
+    d.waTotal = d.waA + d.waB + d.waC;
+
+    d.basicNum = p.ni - p.divPref;          // noncumulative preferred: dividends declared
+    d.basicEPS = d.basicNum / d.waTotal;
+
+    // treasury stock method; the grant dated December 31 of the current year
+    // was outstanding for none of the year, so it is weighted zero.
+    d.optInc = [0,0,0];
+    for(var i=0;i<2;i++){
+      var o = p.opt[i];
+      d.optInc[i] = (o.px < p.avgPrice) ? (o.n - o.n*o.px/p.avgPrice) : 0;
+    }
+    d.optInc1 = d.optInc[0]; d.optInc2 = d.optInc[1]; d.optInc3 = d.optInc[2];
+
+    var contIncluded = (p.subNI >= p.contThresh);
+    var bondShares = (p.bondFace/1000) * p.convRatio;
+    var bondInterestAT = p.bondFace * (p.bondRate/100) * (1 - p.taxRate/100);
+
+    var items = [];
+    var optTotal = d.optInc1 + d.optInc2 + d.optInc3;
+    if(optTotal > 0) items.push({label:'Stock options', num:0, shares:optTotal});
+    if(contIncluded && p.contShares > 0) items.push({label:'Contingently issuable shares', num:0, shares:p.contShares});
+    items.push({label:'Convertible bonds', num:bondInterestAT, shares:bondShares});
+
+    var res = diluteInOrder(d.basicNum, d.waTotal, items);
+
+    function inc(label){
+      var s = res.steps.filter(function(x){ return x.label === label; })[0];
+      return (s && s.included) ? s : null;
+    }
+    d.optShares = inc('Stock options') ? optTotal : 0;
+    if(!inc('Stock options')){ d.optInc1 = 0; d.optInc2 = 0; d.optInc3 = 0; }
+    d.contIncluded = inc('Contingently issuable shares') ? p.contShares : 0;
+    var bondStep = inc('Convertible bonds');
+    d.bondSharesInc = bondStep ? bondShares : 0;
+    d.bondInterestInc = bondStep ? bondInterestAT : 0;
+
+    d.dilNum = res.num;
+    d.dilDen = res.den;
+    d.dilEPS = res.eps;
+    return d;
+  }
+
+  function generateScenario(id){
+    var seed = (id || '').trim();
+    if(seed === '') return solve(baseline());
+    return solve(randomParams(mulberry32(hashSeed(seed.toLowerCase()))));
+  }
+
+  function applyScenario(d){
+    setText('begShares', num0(d.begShares));
+    setText('prefShares', num0(d.prefShares));
+    setText('prefRate', d.prefRate + '%');
+    setText('sdPct', d.sdPct + '%');
+    setText('divCommon', money0(d.divCommon));
+    setText('divPref', money0(d.divPref));
+    setText('soldShares', num0(d.soldShares));
+    setText('retiredShares', num0(d.retiredShares));
+    setText('niDisp', money0(d.ni));
+    setText('taxDisp', d.taxRate + '%');
+    setText('contShares', num0(d.contShares));
+    setText('contThresh', money0(d.contThresh));
+    setText('subNI', money0(d.subNI));
+    setText('avgPrice', money0(d.avgPrice));
+    setText('bondFace', money0(d.bondFace));
+    setText('bondRate', d.bondRate + '%');
+    setText('convRatio', num0(d.convRatio));
+
+    setHTML('optGiven', d.opt.map(function(o){
+      return '<tr><td>'+o.d+'</td><td class="num">'+num0(o.n)+'</td><td class="num">'+money0(o.px)+'</td></tr>';
+    }).join(''));
+
+    setHTML('optWs', d.opt.map(function(o,i){
+      return '<tr><td class="method">'+o.d+'</td><td class="num">'+num0(o.n)+'</td><td class="num">'+money0(o.px)+
+             '</td><td class="amt"><input type="text" placeholder="shares" id="p1-opt'+(i+1)+'"></td></tr>';
+    }).join('') +
+    '<tr class="ws-total"><td class="method">Total incremental shares from options</td><td class="num">&nbsp;</td><td class="num">&nbsp;</td>' +
+    '<td class="amt"><input type="text" placeholder="shares" id="p1-opt-total"></td></tr>');
+  }
+
+  var CHECK_GROUPS = [{
+    btn:'checkP1', summary:'p1Summary',
+    fields:[
+      {id:'p1-wa-a', key:'waA', type:'shares'},
+      {id:'p1-wa-b', key:'waB', type:'shares'},
+      {id:'p1-wa-c', key:'waC', type:'shares'},
+      {id:'p1-basic-den', key:'waTotal', type:'shares'},
+      {id:'p1-basic-num', key:'basicNum', type:'money'},
+      {id:'p1-basic-eps', key:'basicEPS', type:'eps'},
+      {id:'p1-opt1', key:'optInc1', type:'shares'},
+      {id:'p1-opt2', key:'optInc2', type:'shares'},
+      {id:'p1-opt3', key:'optInc3', type:'shares'},
+      {id:'p1-opt-total', key:'optShares', type:'shares'},
+      {id:'p1-cont-shares', key:'contIncluded', type:'shares'},
+      {id:'p1-bond-shares', key:'bondSharesInc', type:'shares'},
+      {id:'p1-bond-interest', key:'bondInterestInc', type:'money'},
+      {id:'p1-dil-num', key:'dilNum', type:'money'},
+      {id:'p1-dil-den', key:'dilDen', type:'shares'},
+      {id:'p1-dil-eps', key:'dilEPS', type:'eps'}
+    ]
+  }];
+
+
+  // ---------------- wiring ----------------
+  var idInput = document.getElementById('studentId');
+  var genBtn = document.getElementById('genBtn');
+  var currentScenario = null;
+
+  function applyAndStore(id){
+    currentScenario = generateScenario(id);
+    applyScenario(currentScenario);
+    clearAllFieldStates();
+  }
+  genBtn.addEventListener('click', function(){ applyAndStore(idInput.value); });
+  idInput.addEventListener('keydown', function(e){
+    if(e.key === 'Enter'){ e.preventDefault(); applyAndStore(idInput.value); }
+  });
+  applyAndStore('');
+
+  CHECK_GROUPS.forEach(function(g){
+    var btn = document.getElementById(g.btn);
+    if(!btn) return;
+    btn.addEventListener('click', function(){
+      if(!currentScenario) return;
+      var d = currentScenario;
+      var results = g.fields.map(function(f){
+        var correct = (typeof f.key === 'function') ? f.key(d) : d[f.key];
+        return markField(f.id, correct, f.tol !== undefined ? f.tol : TOL[f.type || 'money']);
+      });
+      updateSummary(g.summary, results);
+    });
+  });
+
+  // ---------------- Print / Save as PDF ----------------
+  function val(id){
+    var el = document.getElementById(id);
+    return el ? el.value.trim() : '';
+  }
+  document.getElementById('printBtn').addEventListener('click', function(){
+    var name = val('studentName');
+    var id = val('studentId');
+    var line = document.getElementById('printNameLine');
+    line.textContent = 'Name: ' + (name || '_______________________') + '     Student ID: ' + (id || '_______________________');
+    var oldTitle = document.title;
+    document.title = FILE_SLUG + '-' + (id || 'submission');
+    window.print();
+    document.title = oldTitle;
+  });
+
+  // ---------------- Download as Word (.docx) ----------------
+  var docxLoadPromise = null;
+  function loadDocxLib(){
+    if(window.docx) return Promise.resolve();
+    if(docxLoadPromise) return docxLoadPromise;
+    docxLoadPromise = new Promise(function(resolve, reject){
+      var s = document.createElement('script');
+      s.src = 'https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.umd.js';
+      s.onload = function(){ window.docx ? resolve() : reject(new Error('docx library did not load correctly')); };
+      s.onerror = function(){ reject(new Error('network error loading docx library')); };
+      document.head.appendChild(s);
+    });
+    return docxLoadPromise;
+  }
+  function blankIfEmpty(s){ return s && s.length ? s : '—'; }
+  function cleanText(s){ return (s || '').replace(/\s+/g, ' ').trim(); }
+
+  function buildAnswersDoc(){
+    var D = window.docx;
+    var PURPLE = '592C88', INK = '221B2E', SLATE = '5F5A6B';
+    var name = blankIfEmpty(val('studentName'));
+    var sid = blankIfEmpty(val('studentId'));
+
+    function h(text, size){
+      return new D.Paragraph({ spacing: { before: 260, after: 100 }, children: [new D.TextRun({ text: text, bold: true, color: PURPLE, size: size || 26 })] });
+    }
+    function h4(text){
+      return new D.Paragraph({ spacing: { before: 180, after: 60 }, children: [new D.TextRun({ text: text, bold: true, color: PURPLE, size: 21 })] });
+    }
+    function p(text, opts){
+      opts = opts || {};
+      return new D.Paragraph({ spacing: { before: 60, after: 60 }, children: [new D.TextRun({ text: text, size: opts.size || 20, color: opts.color || INK, bold: !!opts.bold, italics: !!opts.italics })] });
+    }
+    function cell(text, width, opts){
+      opts = opts || {};
+      var borders = {};
+      if (opts.borderTop) borders.top = { style: D.BorderStyle.SINGLE, size: 6, color: PURPLE };
+      return new D.TableCell({
+        width: { size: width, type: D.WidthType.DXA },
+        shading: opts.shading ? { type: D.ShadingType.CLEAR, fill: opts.shading } : undefined,
+        borders: opts.borderTop ? borders : undefined,
+        margins: { top: 60, bottom: 60, left: 90, right: 90 },
+        children: [new D.Paragraph({ children: [new D.TextRun({ text: text, size: 19, bold: !!opts.bold, color: opts.color || INK })] })]
+      });
+    }
+    function row(cells){ return new D.TableRow({ children: cells }); }
+    function table(widths, rows){
+      return new D.Table({ width: { size: widths.reduce(function(a,b){return a+b;},0), type: D.WidthType.DXA }, columnWidths: widths, rows: rows });
+    }
+    function widthsFor(n){
+      var FULL = 9360;
+      if(n <= 1) return [FULL];
+      var first = Math.round(FULL * (n === 2 ? 0.56 : (n === 3 ? 0.46 : 0.34)));
+      var rest = Math.round((FULL - first) / (n - 1));
+      var w = [first];
+      for(var i=1;i<n;i++) w.push(rest);
+      return w;
+    }
+    function anyTableDocx(tableEl){
+      var headRow = tableEl.querySelector('thead tr');
+      var headers = headRow ? Array.prototype.map.call(headRow.querySelectorAll('th'), function(th){ return cleanText(th.textContent); }) : null;
+      var bodyRows = Array.prototype.slice.call(tableEl.querySelectorAll('tbody tr'));
+      var ncols = headers ? headers.length : (bodyRows[0] ? bodyRows[0].children.length : 2);
+      var widths = widthsFor(ncols);
+      var out = [];
+      if(headers){
+        out.push(row(headers.map(function(t,i){ return cell(t, widths[i], { bold:true, shading:PURPLE, color:'FFFFFF' }); })));
+      }
+      bodyRows.forEach(function(tr){
+        var isTotal = tr.classList.contains('ws-total') || tr.classList.contains('given-total');
+        var cells = [];
+        Array.prototype.forEach.call(tr.children, function(td, i){
+          var inp = td.querySelector('input');
+          var txt = inp ? blankIfEmpty(inp.value.trim()) : cleanText(td.textContent);
+          cells.push(cell(txt, widths[Math.min(i, widths.length-1)], { bold: isTotal || tr.classList.contains('given-head'), borderTop: isTotal }));
+        });
+        out.push(row(cells));
+      });
+      return table(widths, out);
+    }
+
+    var children = [];
+    children.push(new D.Paragraph({ heading: D.HeadingLevel.TITLE, spacing: { after: 60 }, children: [new D.TextRun({ text: DOC_TITLE, color: PURPLE, size: 32, bold: true })] }));
+    children.push(p('Name: ' + name + '     Student ID: ' + sid, { bold: true }));
+    children.push(p(COURSE_LINE, { color: SLATE }));
+
+    document.querySelectorAll('main > .part').forEach(function(partEl){
+      var label = cleanText((partEl.querySelector('.part-label') || {}).textContent || '');
+      var company = cleanText((partEl.querySelector('h2') || {}).textContent || '');
+      children.push(h((label ? label + ' — ' : '') + company));
+
+      Array.prototype.forEach.call(partEl.children, function(el){
+        if (el.classList.contains('part-label') || el.tagName === 'H2' || el.classList.contains('check-bar')) return;
+        if (el.classList.contains('scenario')) {
+          Array.prototype.forEach.call(el.querySelectorAll('p'), function(pp){ children.push(p(cleanText(pp.textContent))); });
+          if (!el.querySelector('p')) children.push(p(cleanText(el.textContent)));
+        } else if (el.tagName === 'H4') {
+          children.push(h4(cleanText(el.textContent)));
+        } else if (el.tagName === 'TABLE') {
+          children.push(anyTableDocx(el));
+        } else if (el.classList.contains('footnote') || el.classList.contains('hint')) {
+          children.push(p(cleanText(el.textContent), { italics:true, color:SLATE, size:17 }));
+        } else if (el.classList.contains('req')) {
+          children.push(p(cleanText(el.textContent), { bold:true }));
+        } else if (el.tagName === 'OL') {
+          Array.prototype.forEach.call(el.querySelectorAll('li'), function(li, i){
+            children.push(p((i+1) + '. ' + cleanText(li.textContent)));
+          });
+        } else if (el.tagName === 'P') {
+          children.push(p(cleanText(el.textContent)));
+        }
+      });
+    });
+
+    children.push(new D.Paragraph({ spacing: { before: 300 }, alignment: D.AlignmentType.CENTER, children: [new D.TextRun({ text: DOC_TITLE + '  ·  ACCT 605  ·  Western Carolina University', size: 16, italics: true, color: SLATE })] }));
+
+    return new D.Document({
+      sections: [{
+        properties: { page: { size: { width: 12240, height: 15840 }, margin: { top: 1440, bottom: 1440, left: 1440, right: 1440 } } },
+        children: children
+      }]
+    });
+  }
+
+  document.getElementById('downloadDocxBtn').addEventListener('click', function(){
+    var statusEl = document.getElementById('submitStatus');
+    statusEl.classList.remove('error');
+    statusEl.textContent = 'Preparing your Word document…';
+    loadDocxLib().then(function(){
+      var doc = buildAnswersDoc();
+      return window.docx.Packer.toBlob(doc);
+    }).then(function(blob){
+      var idPart = val('studentId') || 'submission';
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = FILE_SLUG + '-' + idPart + '.docx';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      statusEl.textContent = 'Downloaded.';
+      setTimeout(function(){ statusEl.textContent = ''; }, 4000);
+    }).catch(function(err){
+      statusEl.classList.add('error');
+      statusEl.textContent = 'Could not load the Word export tool (needs internet access) — use Print / Save as PDF instead.';
+    });
+  });
+
+})();
+</script>
+
+</body>
+</html>
