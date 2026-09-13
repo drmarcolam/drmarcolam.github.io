@@ -219,6 +219,24 @@
   table.je input[type="text"]:focus{
     outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
   }
+  table.je select.acct{
+    width:100%;
+    font-family:'Inter', sans-serif;
+    font-size:13px;
+    padding:6px 8px;
+    border:1px solid var(--line);
+    border-radius:5px;
+    background:var(--parchment);
+    color:var(--ink);
+  }
+  table.je select.acct:focus{
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
+  }
+  select.field-correct{ border-color:var(--answer) !important; background:var(--answer-bg) !important; }
+  select.field-incorrect{ border-color:var(--danger) !important; background:#F3E1DE !important; }
+  .je-status{ font-size:12.5px; font-weight:600; margin:8px 0 0; min-height:15px; }
+  .je-status.good{ color:var(--answer); }
+  .je-status.bad{ color:var(--danger); }
   table.je tr.je-total td{ border-top:2px solid var(--purple); border-bottom:none; font-weight:600; padding-top:10px; }
   .je-block{ margin-top:22px; }
   .je-block-title{ font-weight:600; font-size:14px; color:var(--purple-deep); margin:0 0 6px; }
@@ -327,7 +345,7 @@
     .je-block-title{ break-after:avoid; }
     ol.addinfo li{ break-inside:avoid; }
     .submit-bar{ break-before:avoid; }
-    input[type="text"]{
+    input[type="text"], table.je select.acct{
       border:none !important;
       border-bottom:1px solid #000 !important;
       background:transparent !important;
@@ -337,6 +355,7 @@
       appearance:none;
       padding:2px 4px !important;
     }
+    .je-status{ color:#000 !important; }
     .print-name-line{ display:block !important; }
   }
   .print-name-line{ display:none; font-size:13px; color:var(--ink); padding:0 6vw; margin:0 0 10px; }
@@ -434,20 +453,21 @@
 
     <h4 class="subsection">Requirement 2 &mdash; Adjusting journal entries</h4>
     <p class="hint">Only the book-side reconciling items produce journal entries &mdash; the bank's own errors and timing differences are the bank's to fix.</p>
-<p class="hint">For each entry, list the account titles and the dollar amounts you believe belong on the debit and credit sides in the blank rows, then enter the total of each column in the shaded total row. Not every blank row needs to be used &mdash; only the totals are checked.</p>
+<p class="hint">Choose each account title from the dropdown and put its amount in the debit or the credit column, then enter the total of each column in the shaded total row. Leave any rows you do not need blank. The account titles, the side each one sits on, and the amounts are all checked, so the order of the rows within an entry does not matter.</p>
     <div class="je-block">
       <p class="je-block-title">1. Correct the error in recording the rent check.</p>
       
       <table class="je">
         <thead><tr><th>Account</th><th class="num" style="width:150px;">Debit</th><th class="num" style="width:150px;">Credit</th></tr></thead>
         <tbody>
-        <tr><td><input type="text" placeholder=" "></td><td><input type="text" placeholder="$"></td><td><input type="text" placeholder="$"></td></tr>
-        <tr><td><input type="text" placeholder=" "></td><td><input type="text" placeholder="$"></td><td><input type="text" placeholder="$"></td></tr>
+        <tr><td><select class="acct"><option value="">&mdash; select account &mdash;</option><option value="Cash">Cash</option><option value="Accounts receivable">Accounts receivable</option><option value="Accounts payable">Accounts payable</option><option value="Note payable">Note payable</option><option value="Interest expense">Interest expense</option><option value="Rent expense">Rent expense</option><option value="Miscellaneous expense">Miscellaneous expense</option><option value="Petty cash">Petty cash</option><option value="Sales revenue">Sales revenue</option></select></td><td><input type="text" placeholder="$"></td><td><input type="text" placeholder="$"></td></tr>
+        <tr><td><select class="acct"><option value="">&mdash; select account &mdash;</option><option value="Cash">Cash</option><option value="Accounts receivable">Accounts receivable</option><option value="Accounts payable">Accounts payable</option><option value="Note payable">Note payable</option><option value="Interest expense">Interest expense</option><option value="Rent expense">Rent expense</option><option value="Miscellaneous expense">Miscellaneous expense</option><option value="Petty cash">Petty cash</option><option value="Sales revenue">Sales revenue</option></select></td><td><input type="text" placeholder="$"></td><td><input type="text" placeholder="$"></td></tr>
           <tr class="je-total"><td>Totals</td>
             <td><input type="text" placeholder="$" id="p7-je1-debit"></td>
             <td><input type="text" placeholder="$" id="p7-je1-credit"></td></tr>
         </tbody>
       </table>
+      <p class="je-status" id="p7-je1-status"></p>
     </div>
 
     <div class="je-block">
@@ -456,14 +476,15 @@
       <table class="je">
         <thead><tr><th>Account</th><th class="num" style="width:150px;">Debit</th><th class="num" style="width:150px;">Credit</th></tr></thead>
         <tbody>
-        <tr><td><input type="text" placeholder=" "></td><td><input type="text" placeholder="$"></td><td><input type="text" placeholder="$"></td></tr>
-        <tr><td><input type="text" placeholder=" "></td><td><input type="text" placeholder="$"></td><td><input type="text" placeholder="$"></td></tr>
-        <tr><td><input type="text" placeholder=" "></td><td><input type="text" placeholder="$"></td><td><input type="text" placeholder="$"></td></tr>
+        <tr><td><select class="acct"><option value="">&mdash; select account &mdash;</option><option value="Cash">Cash</option><option value="Accounts receivable">Accounts receivable</option><option value="Accounts payable">Accounts payable</option><option value="Note payable">Note payable</option><option value="Interest expense">Interest expense</option><option value="Rent expense">Rent expense</option><option value="Miscellaneous expense">Miscellaneous expense</option><option value="Petty cash">Petty cash</option><option value="Sales revenue">Sales revenue</option></select></td><td><input type="text" placeholder="$"></td><td><input type="text" placeholder="$"></td></tr>
+        <tr><td><select class="acct"><option value="">&mdash; select account &mdash;</option><option value="Cash">Cash</option><option value="Accounts receivable">Accounts receivable</option><option value="Accounts payable">Accounts payable</option><option value="Note payable">Note payable</option><option value="Interest expense">Interest expense</option><option value="Rent expense">Rent expense</option><option value="Miscellaneous expense">Miscellaneous expense</option><option value="Petty cash">Petty cash</option><option value="Sales revenue">Sales revenue</option></select></td><td><input type="text" placeholder="$"></td><td><input type="text" placeholder="$"></td></tr>
+        <tr><td><select class="acct"><option value="">&mdash; select account &mdash;</option><option value="Cash">Cash</option><option value="Accounts receivable">Accounts receivable</option><option value="Accounts payable">Accounts payable</option><option value="Note payable">Note payable</option><option value="Interest expense">Interest expense</option><option value="Rent expense">Rent expense</option><option value="Miscellaneous expense">Miscellaneous expense</option><option value="Petty cash">Petty cash</option><option value="Sales revenue">Sales revenue</option></select></td><td><input type="text" placeholder="$"></td><td><input type="text" placeholder="$"></td></tr>
           <tr class="je-total"><td>Totals</td>
             <td><input type="text" placeholder="$" id="p7-je2-debit"></td>
             <td><input type="text" placeholder="$" id="p7-je2-credit"></td></tr>
         </tbody>
       </table>
+      <p class="je-status" id="p7-je2-status"></p>
     </div>
 
     <div class="je-block">
@@ -472,13 +493,14 @@
       <table class="je">
         <thead><tr><th>Account</th><th class="num" style="width:150px;">Debit</th><th class="num" style="width:150px;">Credit</th></tr></thead>
         <tbody>
-        <tr><td><input type="text" placeholder=" "></td><td><input type="text" placeholder="$"></td><td><input type="text" placeholder="$"></td></tr>
-        <tr><td><input type="text" placeholder=" "></td><td><input type="text" placeholder="$"></td><td><input type="text" placeholder="$"></td></tr>
+        <tr><td><select class="acct"><option value="">&mdash; select account &mdash;</option><option value="Cash">Cash</option><option value="Accounts receivable">Accounts receivable</option><option value="Accounts payable">Accounts payable</option><option value="Note payable">Note payable</option><option value="Interest expense">Interest expense</option><option value="Rent expense">Rent expense</option><option value="Miscellaneous expense">Miscellaneous expense</option><option value="Petty cash">Petty cash</option><option value="Sales revenue">Sales revenue</option></select></td><td><input type="text" placeholder="$"></td><td><input type="text" placeholder="$"></td></tr>
+        <tr><td><select class="acct"><option value="">&mdash; select account &mdash;</option><option value="Cash">Cash</option><option value="Accounts receivable">Accounts receivable</option><option value="Accounts payable">Accounts payable</option><option value="Note payable">Note payable</option><option value="Interest expense">Interest expense</option><option value="Rent expense">Rent expense</option><option value="Miscellaneous expense">Miscellaneous expense</option><option value="Petty cash">Petty cash</option><option value="Sales revenue">Sales revenue</option></select></td><td><input type="text" placeholder="$"></td><td><input type="text" placeholder="$"></td></tr>
           <tr class="je-total"><td>Totals</td>
             <td><input type="text" placeholder="$" id="p7-je3-debit"></td>
             <td><input type="text" placeholder="$" id="p7-je3-credit"></td></tr>
         </tbody>
       </table>
+      <p class="je-status" id="p7-je3-status"></p>
     </div>
 
     <div class="je-block">
@@ -487,13 +509,14 @@
       <table class="je">
         <thead><tr><th>Account</th><th class="num" style="width:150px;">Debit</th><th class="num" style="width:150px;">Credit</th></tr></thead>
         <tbody>
-        <tr><td><input type="text" placeholder=" "></td><td><input type="text" placeholder="$"></td><td><input type="text" placeholder="$"></td></tr>
-        <tr><td><input type="text" placeholder=" "></td><td><input type="text" placeholder="$"></td><td><input type="text" placeholder="$"></td></tr>
+        <tr><td><select class="acct"><option value="">&mdash; select account &mdash;</option><option value="Cash">Cash</option><option value="Accounts receivable">Accounts receivable</option><option value="Accounts payable">Accounts payable</option><option value="Note payable">Note payable</option><option value="Interest expense">Interest expense</option><option value="Rent expense">Rent expense</option><option value="Miscellaneous expense">Miscellaneous expense</option><option value="Petty cash">Petty cash</option><option value="Sales revenue">Sales revenue</option></select></td><td><input type="text" placeholder="$"></td><td><input type="text" placeholder="$"></td></tr>
+        <tr><td><select class="acct"><option value="">&mdash; select account &mdash;</option><option value="Cash">Cash</option><option value="Accounts receivable">Accounts receivable</option><option value="Accounts payable">Accounts payable</option><option value="Note payable">Note payable</option><option value="Interest expense">Interest expense</option><option value="Rent expense">Rent expense</option><option value="Miscellaneous expense">Miscellaneous expense</option><option value="Petty cash">Petty cash</option><option value="Sales revenue">Sales revenue</option></select></td><td><input type="text" placeholder="$"></td><td><input type="text" placeholder="$"></td></tr>
           <tr class="je-total"><td>Totals</td>
             <td><input type="text" placeholder="$" id="p7-je4-debit"></td>
             <td><input type="text" placeholder="$" id="p7-je4-credit"></td></tr>
         </tbody>
       </table>
+      <p class="je-status" id="p7-je4-status"></p>
     </div>
 
     <table class="worksheet">
@@ -520,7 +543,7 @@
     <div class="check-bar">
       <button class="btn-check" id="checkP7" type="button">Check my work</button>
       <span class="check-summary" id="p7Summary"></span>
-      <span class="check-disclaimer">This checks whether your figures match the key within a small rounding tolerance &mdash; it does not confirm your account titles or your supporting computations.</span>
+      <span class="check-disclaimer">This checks your account titles, the side each amount sits on, and every figure, within a small rounding tolerance &mdash; it does not confirm your supporting computations.</span>
     </div>
   </div>
 
@@ -652,6 +675,9 @@
     document.querySelectorAll('.field-correct, .field-incorrect').forEach(function(el){
       el.classList.remove('field-correct', 'field-incorrect');
     });
+    document.querySelectorAll('.je-status').forEach(function(el){
+      el.textContent = ''; el.classList.remove('good', 'bad');
+    });
     document.querySelectorAll('.check-summary').forEach(function(el){
       el.textContent = ''; el.classList.remove('good','bad');
     });
@@ -677,6 +703,97 @@
     el.textContent = correct + ' of ' + graded + ' correct';
     el.classList.remove('good', 'bad');
     el.classList.add(correct === graded && graded > 0 ? 'good' : 'bad');
+  }
+
+  // ---------- journal entries ----------
+  // Compares the whole entry as a set: account title, which side it sits on, and the amount.
+  // Row order inside an entry does not matter.
+  function markEntry(spec, d){
+    var totalEl = document.getElementById(spec.prefix + '-debit');
+    if(!totalEl) return null;
+    var table = totalEl.closest('table.je');
+    var statusEl = document.getElementById(spec.prefix + '-status');
+    var tol = spec.tol !== undefined ? spec.tol : (typeof JE_TOL !== 'undefined' ? JE_TOL : 5);
+
+    var keyRows = (typeof spec.rows === 'function') ? spec.rows(d) : spec.rows;
+    var wanted = keyRows.map(function(r){
+      var amt = (typeof r.key === 'function') ? r.key(d) : (r.key !== undefined ? d[r.key] : r.amt);
+      return { acct: r.acct, side: r.side, amt: amt };
+    });
+
+    var rowEls = [];
+    Array.prototype.forEach.call(table.querySelectorAll('tbody tr'), function(tr){
+      if(!tr.classList.contains('je-total')) rowEls.push(tr);
+    });
+
+    var got = [], bothSides = false;
+    rowEls.forEach(function(tr){
+      var sel = tr.querySelector('select');
+      var inputs = tr.querySelectorAll('input');
+      var acct = sel ? sel.value : '';
+      var dv = parseMoney(inputs[0] ? inputs[0].value : '');
+      var cv = parseMoney(inputs[1] ? inputs[1].value : '');
+      if(!acct && isNaN(dv) && isNaN(cv)) return;            // untouched row
+      if(!isNaN(dv) && !isNaN(cv)) bothSides = true;         // an amount on both sides
+      got.push({
+        acct: acct,
+        side: !isNaN(dv) ? 'debit' : 'credit',
+        amt: !isNaN(dv) ? dv : cv,
+        el: tr
+      });
+    });
+
+    var ok = !bothSides && (got.length === wanted.length) && got.length > 0;
+    if(ok){
+      var remaining = wanted.slice();
+      got.forEach(function(row){
+        for(var i = 0; i < remaining.length; i++){
+          if(remaining[i].acct === row.acct && remaining[i].side === row.side &&
+             near(row.amt, remaining[i].amt, tol)){
+            remaining.splice(i, 1);
+            return;
+          }
+        }
+        ok = false;
+      });
+      if(remaining.length) ok = false;
+    }
+
+    rowEls.forEach(function(tr){
+      var sel = tr.querySelector('select');
+      if(!sel) return;
+      sel.classList.remove('field-correct', 'field-incorrect');
+      if(sel.value || tr.querySelector('input').value.trim()){
+        sel.classList.add(ok ? 'field-correct' : 'field-incorrect');
+      }
+      if(!sel.dataset.clearBound){
+        sel.addEventListener('change', function(){
+          sel.classList.remove('field-correct', 'field-incorrect');
+        });
+        sel.dataset.clearBound = '1';
+      }
+    });
+
+    if(statusEl){
+      statusEl.classList.remove('good', 'bad');
+      if(ok){
+        statusEl.textContent = 'Entry is correct — accounts, sides and amounts all match.';
+        statusEl.classList.add('good');
+      } else if(got.length === 0){
+        statusEl.textContent = 'Nothing entered yet for this entry.';
+        statusEl.classList.add('bad');
+      } else if(bothSides){
+        statusEl.textContent = 'One line has an amount in both the debit and the credit column.';
+        statusEl.classList.add('bad');
+      } else if(got.length !== wanted.length){
+        statusEl.textContent = 'This entry needs ' + wanted.length + ' lines — you have used ' + got.length + '.';
+        statusEl.classList.add('bad');
+      } else {
+        statusEl.textContent = 'Check the account titles, which side each amount belongs on, and the amounts.';
+        statusEl.classList.add('bad');
+      }
+    }
+    return ok;
   }
 
   // ---------- score ----------
@@ -845,8 +962,23 @@
     setText('tbills', money0(d.tbills));
   }
 
+  var JE_TOL = 0.05;
+
+  var JE_CHECKS = [
+    {prefix:'p7-je1', rows:[{acct:'Cash', side:'debit', key:'bookRent'},
+                            {acct:'Rent expense', side:'credit', key:'bookRent'}]},
+    {prefix:'p7-je2', rows:[{acct:'Interest expense', side:'debit', key:'noteInt'},
+                            {acct:'Note payable', side:'debit', key:'notePrin'},
+                            {acct:'Cash', side:'credit', key:'notePmt'}]},
+    {prefix:'p7-je3', rows:[{acct:'Miscellaneous expense', side:'debit', key:'svcChg'},
+                            {acct:'Cash', side:'credit', key:'svcChg'}]},
+    {prefix:'p7-je4', rows:[{acct:'Accounts receivable', side:'debit', key:'nsf'},
+                            {acct:'Cash', side:'credit', key:'nsf'}]}
+  ];
+
   var CHECK_GROUPS = [{
     btn:'checkP7', summary:'p7Summary',
+    entries: JE_CHECKS,
     fields:[
       {id:'p7-bank-bal', key:'bankBal', type:'cents'},
       {id:'p7-bank-dep', key:'bankDep', type:'cents'},
@@ -915,6 +1047,7 @@
         var correct = (typeof f.key === 'function') ? f.key(d) : d[f.key];
         return markField(f.id, correct, f.tol !== undefined ? f.tol : TOL[f.type || 'money']);
       });
+      (g.entries || []).forEach(function(e){ results.push(markEntry(e, d)); });
       updateSummary(g.summary, results);
       var s = scoreState(g);
       s.graded = results.filter(function(r){ return r !== null; }).length;
@@ -1015,8 +1148,8 @@
         var isTotal = tr.classList.contains('ws-total') || tr.classList.contains('given-total') || tr.classList.contains('je-total');
         var cells = [];
         Array.prototype.forEach.call(tr.children, function(td, i){
-          var inp = td.querySelector('input');
-          var txt = inp ? blankIfEmpty(inp.value.trim()) : cleanText(td.textContent);
+          var ctrl = td.querySelector('select') || td.querySelector('input');
+          var txt = ctrl ? blankIfEmpty(ctrl.value.trim()) : cleanText(td.textContent);
           cells.push(cell(txt, widths[Math.min(i, widths.length-1)], { bold: isTotal || tr.classList.contains('given-head'), borderTop: isTotal }));
         });
         out.push(row(cells));
@@ -1065,6 +1198,10 @@
           if (jeDesc) children.push(p(cleanText(jeDesc.textContent), { italics: true, color: SLATE, size: 17 }));
           var jeTable = el.querySelector('table.je');
           if (jeTable) children.push(anyTableDocx(jeTable));
+          var jeStatus = el.querySelector('.je-status');
+          if (jeStatus && cleanText(jeStatus.textContent)) {
+            children.push(p(cleanText(jeStatus.textContent), { italics: true, color: SLATE, size: 17 }));
+          }
         } else if (el.tagName === 'P') {
           children.push(p(cleanText(el.textContent)));
         }
