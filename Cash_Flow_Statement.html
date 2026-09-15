@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Statement of Cash Flows — Indirect Method — Pisgah Company</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --purple:#592C88;
+    --purple-deep:#38195A;
+    --purple-mid:#6E3FA3;
+    --gold:#B0925C;
+    --gold-soft:#D6C398;
+    --gold-pale:#F1E9D6;
+    --parchment:#F7F4EC;
+    --paper:#FFFEFA;
+    --ink:#221B2E;
+    --slate:#5F5A6B;
+    --line:#DBD3E0;
+    --line-soft:#EAE4EF;
+    --answer:#1E5C34;
+    --answer-bg:#E7F1E9;
+    --danger:#9C3B34;
+    --shadow: 0 1px 2px rgba(56,25,90,0.07), 0 6px 18px rgba(56,25,90,0.08);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--parchment);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ color:inherit; }
+
+  header{
+    background: linear-gradient(180deg, var(--purple) 0%, var(--purple-deep) 100%);
+    color:#F1E9D6;
+    padding: 30px 6vw 24px;
+    position:relative;
+  }
+  header::after{
+    content:"";
+    position:absolute; left:0; right:0; bottom:0; height:4px;
+    background: linear-gradient(90deg, var(--gold-soft), var(--gold) 40%, var(--gold-soft) 70%, var(--gold));
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--gold-soft); margin:0 0 10px;
+  }
+  h1.title{
+    font-family:'Source Serif 4', serif; font-weight:600;
+    font-size:clamp(24px,3.4vw,34px); margin:0 0 8px; letter-spacing:-0.01em;
+  }
+  .subtitle{ font-size:14.5px; color:#D9CDE5; max-width:680px; margin:0; }
+
+  .id-bar{
+    max-width:900px; margin:0 auto; padding:18px 6vw 0;
+    display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+  }
+  .id-bar label{ font-size:13px; font-weight:600; color:var(--slate); }
+  .id-bar input[type="text"]{
+    font-family:'IBM Plex Mono', monospace; font-size:13.5px; padding:8px 11px;
+    border:1px solid var(--line); border-radius:5px; background:var(--paper); color:var(--ink);
+    width:180px;
+  }
+  .id-bar input:focus{ outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); }
+  .id-bar button{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:8px 15px; border:1px solid var(--purple);
+    background:var(--purple); color:#fff; cursor:pointer;
+  }
+  .id-bar button:hover{ background:var(--purple-mid); }
+  .id-bar .id-hint{ font-size:12px; color:var(--slate); }
+  .id-bar input#studentName{ width:220px; font-family:'Inter',sans-serif; }
+
+  .score-area{ max-width:900px; margin:0 auto; padding:14px 6vw 0; }
+
+  .rounding-note{
+    max-width:900px; margin:14px auto 0; padding:12px 6vw;
+    font-size:12.5px; color:var(--slate); line-height:1.5;
+  }
+  .rounding-note strong{ color:var(--purple); font-weight:600; }
+
+  main{ max-width:900px; margin:0 auto; padding:22px 6vw 90px; }
+
+  .part{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    box-shadow:var(--shadow);
+    padding:24px 26px 26px;
+    margin-top:26px;
+  }
+  .part-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; color:var(--gold); background:var(--purple);
+    display:inline-block; padding:3px 9px; border-radius:4px; letter-spacing:.04em;
+    margin-bottom:12px;
+  }
+  .part h2{
+    font-family:'Source Serif 4', serif; font-size:21px; font-weight:600;
+    color:var(--purple); margin:0 0 12px;
+  }
+  .scenario{
+    background:var(--parchment);
+    border-left:3px solid var(--gold);
+    padding:14px 18px;
+    border-radius:0 6px 6px 0;
+    font-size:14.5px;
+    color:var(--ink);
+    margin-bottom:16px;
+  }
+  .scenario p{ margin:0 0 10px; }
+  .scenario p:last-child{ margin-bottom:0; }
+  .scenario span.val{ font-weight:700; color:var(--purple-deep); }
+
+  .req{
+    font-weight:600;
+    font-size:14.5px;
+    color:var(--ink);
+    margin:20px 0 10px;
+  }
+  .req span.reqlabel{ color:var(--purple); }
+
+  h4.subsection{
+    font-family:'Source Serif 4',serif; font-size:15px; color:var(--purple); margin:22px 0 6px;
+    border-bottom:1px solid var(--line-soft); padding-bottom:4px;
+  }
+
+  table.given{ width:100%; border-collapse:collapse; font-size:13px; margin:6px 0 14px; }
+  table.given th{ text-align:left; font-size:10.5px; text-transform:uppercase; letter-spacing:.03em; color:var(--slate); border-bottom:2px solid var(--purple); padding:6px 8px; }
+  table.given td{ border-bottom:1px solid var(--line); padding:5px 8px; font-family:'IBM Plex Mono', monospace; }
+  table.given td.lbl{ font-family:'Inter',sans-serif; }
+  table.given td.num, table.given th.num{ text-align:right; }
+  table.given tr.given-total td{ border-top:1.3px solid var(--purple); font-weight:600; }
+  table.given tr.given-head td{ font-family:'Source Serif 4',serif; font-weight:600; color:var(--purple); text-align:center; }
+  table.given tr.given-sec td{ font-family:'Inter',sans-serif; font-weight:600; color:var(--purple); padding-top:9px; }
+  table.given tr.given-sec td.lbl{ font-weight:700; }
+  table.given td.lbl{ white-space:normal; }
+  h4.subsection .stmt-sub{ display:block; font-family:'Inter',sans-serif; font-size:12px; font-weight:500; color:var(--slate); }
+  table.worksheet td.sub{ padding-left:24px; font-weight:400; }
+  .stmt-sep{ display:none; }
+  .stmt-caption{ font-size:13px; color:var(--slate); margin:4px 0 2px; }
+  ol.addinfo{ margin:8px 0; padding-left:20px; font-size:13.5px; }
+  ol.addinfo li{ margin:6px 0; }
+  .footnote{ font-size:12px; color:var(--slate); margin:2px 0 14px; font-style:italic; }
+  .hint{ font-size:12.5px; color:var(--slate); margin:4px 0 10px; }
+
+  table.worksheet{
+    width:100%;
+    border-collapse:collapse;
+    font-size:13.5px;
+    margin:10px 0 4px;
+  }
+  table.worksheet th{
+    text-align:left;
+    font-size:11.5px;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+    color:var(--slate);
+    border-bottom:2px solid var(--purple);
+    padding:8px 8px;
+  }
+  table.worksheet th.num{ text-align:right; }
+  table.worksheet td{
+    border-bottom:1px solid var(--line);
+    padding:9px 8px;
+    vertical-align:middle;
+  }
+  table.worksheet td.method{ font-weight:600; }
+  table.worksheet td.sub{ padding-left:24px; font-weight:400; }
+  table.worksheet td.amt{ width:160px; }
+  table.worksheet td.dash{ text-align:center; color:var(--slate); font-family:'IBM Plex Mono',monospace; }
+  table.worksheet tr.ws-total td{ border-top:1.6px solid var(--purple); font-weight:600; }
+  table.worksheet input[type="text"]{
+    width:100%;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13.5px;
+    padding:6px 8px;
+    border:1px solid var(--line);
+    border-radius:5px;
+    background:var(--parchment);
+    color:var(--ink);
+  }
+  table.worksheet input[type="text"]:focus{
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
+  }
+
+  .score-panel{
+    display:flex; align-items:center; gap:18px;
+    margin:0 0 4px; padding:14px 18px;
+    background:var(--parchment);
+    border:1px solid var(--line);
+    border-radius:8px;
+  }
+  .score-panel.scored-good{ background:var(--answer-bg); border-color:#B7D3BE; }
+  .score-panel.scored-bad{ background:#F8F0EF; border-color:#E2C6C2; }
+  .score-pct{
+    font-family:'Source Serif 4', serif;
+    font-size:30px; font-weight:700; line-height:1.05;
+    color:var(--slate); min-width:96px; text-align:center;
+  }
+  .score-panel.scored-good .score-pct{ color:var(--answer); }
+  .score-panel.scored-bad .score-pct{ color:var(--danger); }
+  .score-detail{ flex:1; min-width:0; }
+  .score-meta{ font-size:13.5px; font-weight:600; color:var(--ink); margin:0 0 7px; }
+  .score-bar{ height:8px; border-radius:4px; background:var(--line-soft); overflow:hidden; }
+  .score-bar span{ display:block; height:100%; width:0; background:var(--purple-mid); transition:width .35s ease; }
+  .score-panel.scored-good .score-bar span{ background:var(--answer); }
+  .score-panel.scored-bad .score-bar span{ background:var(--danger); }
+  .score-sub{ font-size:11.5px; color:var(--slate); margin:7px 0 0; }
+
+  .check-bar{
+    margin-top:20px;
+    padding-top:16px;
+    border-top:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .btn-check{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:9px 18px; border:1px solid var(--purple);
+    background:var(--purple); color:#fff; cursor:pointer;
+  }
+  .btn-check:hover{ background:var(--purple-mid); }
+  .check-summary{ font-size:13.5px; font-weight:600; }
+  .check-summary.good{ color:var(--answer); }
+  .check-summary.bad{ color:var(--danger); }
+  .check-disclaimer{ font-size:11.5px; color:var(--slate); width:100%; margin-top:2px; font-style:italic; }
+
+  input.field-correct{
+    border-color:var(--answer) !important;
+    background:var(--answer-bg) !important;
+  }
+  input.field-incorrect{
+    border-color:var(--danger) !important;
+    background:#F3E1DE !important;
+  }
+
+  .submit-bar{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    box-shadow:var(--shadow);
+    padding:22px 26px 24px;
+    margin-top:26px;
+  }
+  .submit-bar h2{
+    font-family:'Source Serif 4', serif; font-size:19px; font-weight:600;
+    color:var(--purple); margin:0 0 14px;
+  }
+  .submit-row{ display:flex; align-items:center; gap:10px; margin-bottom:12px; flex-wrap:wrap; }
+  .submit-row label{ font-size:13px; font-weight:600; color:var(--slate); }
+  .submit-row input[type="text"]{
+    font-family:'Inter',sans-serif; font-size:13.5px; padding:8px 11px;
+    border:1px solid var(--line); border-radius:5px; background:var(--parchment); color:var(--ink);
+    width:240px;
+  }
+  .submit-row input:focus{ outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); }
+  .btn-submit{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:10px 18px; border:1px solid var(--purple);
+    background:var(--purple); color:#fff; cursor:pointer;
+  }
+  .btn-submit:hover{ background:var(--purple-mid); }
+  .btn-submit-outline{ background:var(--paper); color:var(--purple); }
+  .btn-submit-outline:hover{ background:var(--parchment); }
+  .submit-status{ font-size:13px; font-weight:600; min-height:18px; margin:10px 0 0; color:var(--answer); }
+  .submit-status.error{ color:var(--danger); }
+  .submit-hint{ font-size:12px; color:var(--slate); margin:6px 0 0; }
+
+  @media print{
+    .print-hide, .id-bar, .check-bar, .rounding-note{ display:none !important; }
+    header{ background:none !important; color:var(--ink) !important; padding:0 0 14px !important; }
+    header::after{ display:none !important; }
+    .eyebrow{ color:var(--purple) !important; }
+    .subtitle{ color:var(--slate) !important; }
+    body{ background:#fff !important; }
+    .part{ box-shadow:none !important; border:1px solid #999 !important; break-inside:auto; }
+    .score-panel{ background:#fff !important; border:1.5px solid #000 !important; break-inside:avoid; }
+    .score-bar{ display:none !important; }
+    .score-pct, .score-panel.scored-good .score-pct, .score-panel.scored-bad .score-pct{ color:#000 !important; }
+    .part h2, .part-label, .scenario, h4.subsection{ break-after:avoid; break-inside:avoid; }
+    table.given, table.worksheet{ break-inside:auto; }
+    table.given tr, table.worksheet tr{ break-inside:avoid; }
+    ol.addinfo li{ break-inside:avoid; }
+    .submit-bar{ break-before:avoid; }
+    input[type="text"]{
+      border:none !important;
+      border-bottom:1px solid #000 !important;
+      background:transparent !important;
+      border-radius:0 !important;
+      color:#000 !important;
+      -webkit-appearance:none;
+      appearance:none;
+      padding:2px 4px !important;
+    }
+    .print-name-line{ display:block !important; }
+  }
+  .print-name-line{ display:none; font-size:13px; color:var(--ink); padding:0 6vw; margin:0 0 10px; }
+
+  footer{ text-align:center; padding:26px 6vw 40px; font-size:12px; color:var(--slate); }
+
+  @media (max-width:600px){
+    header, main, .id-bar{ padding-left:5vw; padding-right:5vw; }
+    table.worksheet{ font-size:12.5px; }
+  }
+
+</style>
+</head>
+<body>
+
+<header>
+  <p class="eyebrow">ACCT 615 &middot; Advanced Financial Accounting &middot; Statement of Cash Flows</p>
+  <h1 class="title">Statement of Cash Flows — Indirect Method</h1>
+  <p class="subtitle">Preparing a complete statement of cash flows from comparative balance sheets, an income statement and supplementary information, with operating activities presented by the indirect method.</p>
+</header>
+
+<p class="print-name-line" id="printNameLine"></p>
+
+<div class="id-bar">
+  <label for="studentName">Name</label>
+  <input type="text" id="studentName" placeholder="First and last name">
+  <label for="studentId">Student ID</label>
+  <input type="text" id="studentId" placeholder="e.g. 920410165">
+  <button id="genBtn" type="button">Generate scenario</button>
+  <span class="id-hint">Leave the ID blank and click to restore the original textbook figures.</span>
+</div>
+
+<div class="score-area" id="scoreArea"></div>
+
+<div class="rounding-note">
+  <strong>Rounding convention:</strong> do not round intermediate calculations. Enter every answer in millions (i.e., 10,000,000 is entered as 10). Enter amounts that are deducted, or that reduce cash, with a minus sign.
+</div>
+
+<main>
+
+  <div class="part">
+    <span class="part-label">Problem</span>
+    <h2>Pisgah Company</h2>
+
+    <div class="scenario">
+      <p>The comparative balance sheets for 2027 and 2026 and the income statement for 2027 are given below for Pisgah Company. Additional information from Pisgah&rsquo;s accounting records is provided also.</p>
+    </div>
+
+    <h4 class="subsection">Pisgah Company &mdash; Comparative Balance Sheets<span class="stmt-sep">, </span><span class="stmt-sub">December 31, 2027 and 2026 ($ in millions)</span></h4>
+    <table class="given">
+      <thead><tr><th>Account</th><th class="num">2027</th><th class="num">2026</th></tr></thead>
+      <tbody id="cf_bs"></tbody>
+    </table>
+
+    <h4 class="subsection">Pisgah Company &mdash; Income Statement<span class="stmt-sep">, </span><span class="stmt-sub">For the Year Ended December 31, 2027 ($ in millions)</span></h4>
+    <table class="given">
+      <thead><tr><th>Account</th><th class="num"></th><th class="num"></th></tr></thead>
+      <tbody id="cf_is"></tbody>
+    </table>
+
+    <h4 class="subsection">Additional information from the accounting records</h4>
+    <ol class="addinfo" type="a">
+      <li>Investment revenue includes Pisgah Company&rsquo;s $<span id="ai_eq">19</span> million share of the net income of Balsam Company, an equity method investee.</li>
+      <li>Treasury bills were sold during 2027 at a gain of $<span id="ai_gain">2</span> million. Pisgah Company classifies its investments in Treasury bills as cash equivalents.</li>
+      <li>Equipment originally costing $<span id="ai_eqcost">96</span> million that was one-half depreciated was rendered unusable by a flood. Most major components of the equipment were unharmed and were sold for $<span id="ai_eqproc">16</span> million.</li>
+      <li>Temporary differences between pretax accounting income and taxable income caused the deferred tax liability to increase by $<span id="ai_dtl">16</span> million.</li>
+      <li>The preferred stock of Franklin Corporation was purchased for $<span id="ai_pref">38</span> million as a long-term investment.</li>
+      <li>Land costing $<span id="ai_landcost">59</span> million was acquired by issuing $<span id="ai_landcash">29</span> million cash and a 15%, four-year, $<span id="ai_landnote">30</span> million note payable to the seller.</li>
+      <li>At December 31, 2027, the right to use a building was acquired with a 15-year finance lease agreement; present value of lease payments, $<span id="ai_lease">96</span> million. Annual lease payments of $<span id="ai_leasepay">6</span> million are paid at the end of each year beginning in 2027.</li>
+      <li>$<span id="ai_bonds">73</span> million of bonds were retired at maturity.</li>
+      <li>In February, Pisgah issued a stock dividend (<span id="ai_sd">9.2</span> million shares). The market price of the $5 par value common stock was <span id="ai_sdprice">$7.50</span> per share at that time.</li>
+      <li>In April, <span id="ai_ts">1</span> million shares of common stock were repurchased as treasury stock at a cost of <span id="ai_tscost">$22.00</span> million.</li>
+    </ol>
+
+    <div class="req"><span class="reqlabel">Required:</span> Prepare the statement of cash flows of Pisgah Company for the year ended December 31, 2027. Present cash flows from operating activities by the indirect method.</div>
+
+    <p class="hint">Enter every answer <strong>in millions</strong> (i.e., 10,000,000 is entered as 10) and do not round intermediate calculations. Enter amounts that are deducted, or that reduce cash, with a minus sign. Enter <strong>0</strong> for any listed item that requires no adjustment. Do not leave any box blank.</p>
+
+    <h4 class="subsection">Cash flows from operating activities</h4>
+    <table class="worksheet">
+      <thead><tr><th>Item</th><th class="num">Amount ($ millions)</th></tr></thead>
+      <tbody>
+        <tr><td class="method">Net income</td><td class="amt"><input type="text" placeholder="$ millions" id="cf-ni"></td></tr>
+        <tr><td class="method sub">Depreciation expense</td><td class="amt"><input type="text" placeholder="$ millions" id="cf-dep"></td></tr>
+        <tr><td class="method sub">Amortization of patent</td><td class="amt"><input type="text" placeholder="$ millions" id="cf-amort"></td></tr>
+        <tr><td class="method sub">Loss on sale of equipment</td><td class="amt"><input type="text" placeholder="$ millions" id="cf-loss"></td></tr>
+        <tr><td class="method sub">Gain on sale of Treasury bills</td><td class="amt"><input type="text" placeholder="$ millions" id="cf-gain"></td></tr>
+        <tr><td class="method sub">Investment revenue &mdash; equity in Balsam Company&rsquo;s net income</td><td class="amt"><input type="text" placeholder="$ millions" id="cf-eq"></td></tr>
+        <tr><td class="method sub">Amortization of discount on bonds</td><td class="amt"><input type="text" placeholder="$ millions" id="cf-disc"></td></tr>
+        <tr><td class="method sub">Change in deferred tax liability</td><td class="amt"><input type="text" placeholder="$ millions" id="cf-dtl"></td></tr>
+        <tr><td class="method sub">Change in accounts receivable</td><td class="amt"><input type="text" placeholder="$ millions" id="cf-ar"></td></tr>
+        <tr><td class="method sub">Change in investment revenue receivable</td><td class="amt"><input type="text" placeholder="$ millions" id="cf-irr"></td></tr>
+        <tr><td class="method sub">Change in inventory</td><td class="amt"><input type="text" placeholder="$ millions" id="cf-inv"></td></tr>
+        <tr><td class="method sub">Change in prepaid insurance</td><td class="amt"><input type="text" placeholder="$ millions" id="cf-pp"></td></tr>
+        <tr><td class="method sub">Change in accounts payable</td><td class="amt"><input type="text" placeholder="$ millions" id="cf-ap"></td></tr>
+        <tr><td class="method sub">Change in salaries payable</td><td class="amt"><input type="text" placeholder="$ millions" id="cf-sal"></td></tr>
+        <tr><td class="method sub">Change in interest payable</td><td class="amt"><input type="text" placeholder="$ millions" id="cf-int"></td></tr>
+        <tr><td class="method sub">Change in income tax payable</td><td class="amt"><input type="text" placeholder="$ millions" id="cf-itp"></td></tr>
+        <tr class="ws-total"><td class="method">Net cash flows from operating activities</td><td class="amt"><input type="text" placeholder="$ millions" id="cf-cfo"></td></tr>
+      </tbody>
+    </table>
+
+    <h4 class="subsection">Cash flows from investing activities</h4>
+    <table class="worksheet">
+      <thead><tr><th>Item</th><th class="num">Amount ($ millions)</th></tr></thead>
+      <tbody>
+        <tr><td class="method sub">Purchase of long-term investment (Franklin Corporation preferred stock)</td><td class="amt"><input type="text" placeholder="$ millions" id="cf-lti"></td></tr>
+        <tr><td class="method sub">Sale of equipment</td><td class="amt"><input type="text" placeholder="$ millions" id="cf-eqsale"></td></tr>
+        <tr><td class="method sub">Purchase of land</td><td class="amt"><input type="text" placeholder="$ millions" id="cf-land"></td></tr>
+        <tr class="ws-total"><td class="method">Net cash flows from investing activities</td><td class="amt"><input type="text" placeholder="$ millions" id="cf-cfi"></td></tr>
+      </tbody>
+    </table>
+
+    <h4 class="subsection">Cash flows from financing activities</h4>
+    <table class="worksheet">
+      <thead><tr><th>Item</th><th class="num">Amount ($ millions)</th></tr></thead>
+      <tbody>
+        <tr><td class="method sub">Sale of preferred stock</td><td class="amt"><input type="text" placeholder="$ millions" id="cf-pref"></td></tr>
+        <tr><td class="method sub">Retirement of bonds payable</td><td class="amt"><input type="text" placeholder="$ millions" id="cf-bonds"></td></tr>
+        <tr><td class="method sub">Purchase of treasury stock</td><td class="amt"><input type="text" placeholder="$ millions" id="cf-ts"></td></tr>
+        <tr><td class="method sub">Payment of finance lease liability</td><td class="amt"><input type="text" placeholder="$ millions" id="cf-lease"></td></tr>
+        <tr><td class="method sub">Payment of cash dividends</td><td class="amt"><input type="text" placeholder="$ millions" id="cf-div"></td></tr>
+        <tr class="ws-total"><td class="method">Net cash flows from financing activities</td><td class="amt"><input type="text" placeholder="$ millions" id="cf-cff"></td></tr>
+      </tbody>
+    </table>
+
+    <h4 class="subsection">Change in cash</h4>
+    <table class="worksheet">
+      <thead><tr><th>Item</th><th class="num">Amount ($ millions)</th></tr></thead>
+      <tbody>
+        <tr><td class="method">Net increase (decrease) in cash</td><td class="amt"><input type="text" placeholder="$ millions" id="cf-net"></td></tr>
+        <tr><td class="method sub">Cash balance, January 1, 2027</td><td class="amt"><input type="text" placeholder="$ millions" id="cf-beg"></td></tr>
+        <tr class="ws-total"><td class="method">Cash balance, December 31, 2027</td><td class="amt"><input type="text" placeholder="$ millions" id="cf-end"></td></tr>
+      </tbody>
+    </table>
+
+    <h4 class="subsection">Noncash investing and financing activities</h4>
+    <table class="worksheet">
+      <thead><tr><th>Item</th><th class="num">Amount ($ millions)</th></tr></thead>
+      <tbody>
+        <tr><td class="method sub">Acquired land by issuing a note payable</td><td class="amt"><input type="text" placeholder="$ millions" id="cf-nc-land"></td></tr>
+        <tr><td class="method sub">Acquired right-of-use asset by finance lease</td><td class="amt"><input type="text" placeholder="$ millions" id="cf-nc-lease"></td></tr>
+      </tbody>
+    </table>
+
+    <div class="check-bar">
+      <button class="btn-check" id="checkCF" type="button">Check my work</button>
+      <span class="check-summary" id="cfSummary"></span>
+      <span class="check-disclaimer">This checks whether your figures match the key within a small rounding tolerance &mdash; it does not confirm your supporting computations.</span>
+    </div>
+  </div>
+
+  <div class="submit-bar print-hide">
+    <h2>Ready to submit?</h2>
+    <p class="submit-hint" style="margin:0 0 12px;">Your name, student ID and score are taken from the top of the page.</p>
+    <div class="submit-row submit-actions">
+      <button class="btn-submit" id="printBtn" type="button">Print / Save as PDF</button>
+      <button class="btn-submit btn-submit-outline" id="downloadDocxBtn" type="button">Download as Word (.docx)</button>
+    </div>
+    <p class="submit-status" id="submitStatus"></p>
+    <p class="submit-hint">Both options capture exactly what's currently filled in above, including your generated scenario numbers. "Print / Save as PDF" works offline; "Download as Word" needs an internet connection to load the export tool.</p>
+  </div>
+</main>
+
+<footer>Statement of Cash Flows — Indirect Method &middot; ACCT 615 &middot; Western Carolina University</footer>
+
+<script>
+(function(){
+  var DOC_TITLE = "Statement of Cash Flows — Indirect Method";
+  var COURSE_LINE = "ACCT 615  \u00b7  Advanced Financial Accounting  \u00b7  Statement of Cash Flows";
+  var FILE_SLUG = "ACCT615-Cash-Flow-Statement";
+
+  // ---------- seeded pseudo-random ----------
+  function hashSeed(str){
+    var h = 2166136261;
+    for(var i=0;i<str.length;i++){
+      h ^= str.charCodeAt(i);
+      h = Math.imul(h, 16777619);
+    }
+    return h >>> 0;
+  }
+  function mulberry32(seed){
+    return function(){
+      seed |= 0; seed = seed + 0x6D2B79F5 | 0;
+      var t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
+  }
+  function pick(rand, arr){ return arr[Math.floor(rand() * arr.length)]; }
+  function rTo(x, m){ return Math.round(x/m)*m; }
+
+  // ---------- formatting ----------
+  function num0(n){ return Math.round(n).toLocaleString('en-US'); }
+  function money0(n){
+    var v = Math.round(n);
+    return (v < 0 ? '$(' + Math.abs(v).toLocaleString('en-US') + ')' : '$' + v.toLocaleString('en-US'));
+  }
+  function num1(n){
+    return Number(n).toLocaleString('en-US', {minimumFractionDigits:0, maximumFractionDigits:1});
+  }
+  function money1(n){
+    var v = Number(n);
+    var s = Math.abs(v).toLocaleString('en-US', {minimumFractionDigits:0, maximumFractionDigits:1});
+    return v < 0 ? '$(' + s + ')' : '$' + s;
+  }
+  function eps2(n){
+    var v = Number(n);
+    var s = Math.abs(v).toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
+    return v < 0 ? '$(' + s + ')' : '$' + s;
+  }
+  function pct(n){ return num1(n) + '%'; }
+
+  function setText(id, text){
+    var el = document.getElementById(id);
+    if(el) el.textContent = text;
+  }
+  function setHTML(id, html){
+    var el = document.getElementById(id);
+    if(el) el.innerHTML = html;
+  }
+
+  // ---------- answer checking ----------
+  var TOL = { money:5, shares:10, mil:0.6, milsh:0.3, eps:0.011, eps3:0.02 };
+
+  function parseMoney(s){
+    if(s === null || s === undefined) return NaN;
+    var raw = String(s).trim();
+    var neg = /^\(.*\)$/.test(raw) || /^-/.test(raw);
+    var cleaned = raw.replace(/[^0-9.]/g, '');
+    if(cleaned === '') return NaN;
+    var v = parseFloat(cleaned);
+    if(isNaN(v)) return NaN;
+    return neg ? -v : v;
+  }
+  function near(a, b, tol){
+    if(isNaN(a) || isNaN(b)) return false;
+    return Math.abs(a - b) <= tol;
+  }
+  function clearFieldState(el){
+    if(!el) return;
+    el.classList.remove('field-correct', 'field-incorrect');
+  }
+  function clearAllFieldStates(){
+    document.querySelectorAll('.field-correct, .field-incorrect').forEach(function(el){
+      el.classList.remove('field-correct', 'field-incorrect');
+    });
+    document.querySelectorAll('.check-summary').forEach(function(el){
+      el.textContent = ''; el.classList.remove('good','bad');
+    });
+  }
+  function markField(id, correct, tol){
+    var el = document.getElementById(id);
+    if(!el) return null;
+    el.classList.remove('field-correct', 'field-incorrect');
+    var val = parseMoney(el.value);
+    var ok = near(val, correct, tol);
+    el.classList.add(ok ? 'field-correct' : 'field-incorrect');
+    if(!el.dataset.clearBound){
+      el.addEventListener('input', function(){ clearFieldState(el); });
+      el.dataset.clearBound = '1';
+    }
+    return ok;
+  }
+  function updateSummary(elId, results){
+    var el = document.getElementById(elId);
+    if(!el) return;
+    var graded = results.filter(function(r){ return r !== null; }).length;
+    var correct = results.filter(function(r){ return r === true; }).length;
+    el.textContent = correct + ' of ' + graded + ' correct';
+    el.classList.remove('good', 'bad');
+    el.classList.add(correct === graded && graded > 0 ? 'good' : 'bad');
+  }
+
+  // ---------- score ----------
+  var SCORES = {};   // keyed by check-button id
+
+  function scoreState(g){
+    if(!SCORES[g.btn]) SCORES[g.btn] = { correct:0, graded:0, attempts:0, checked:false, stale:false };
+    return SCORES[g.btn];
+  }
+  function scorePct(s){
+    return s.graded ? Math.round(s.correct / s.graded * 100) : 0;
+  }
+  function scoreText(g){
+    var s = scoreState(g);
+    if(!s.checked) return 'not checked';
+    return s.correct + ' / ' + s.graded + ' (' + scorePct(s) + '%)' + (s.stale ? ' — answers edited since' : '');
+  }
+
+  var SCORE_PROMPT = 'Fill in the worksheet below, then choose <strong>Check my work</strong>. Every blank counts as incorrect.';
+
+  function ensureScorePanel(g){
+    var area = document.getElementById('scoreArea');
+    if(!area) return null;
+    var panel = area.querySelector('.score-panel[data-for="' + g.btn + '"]');
+    if(panel) return panel;
+    panel = document.createElement('div');
+    panel.className = 'score-panel';
+    panel.setAttribute('data-for', g.btn);
+    panel.innerHTML =
+      '<div class="score-pct">&mdash;</div>' +
+      '<div class="score-detail">' +
+        '<p class="score-meta">Score</p>' +
+        '<div class="score-bar"><span></span></div>' +
+        '<p class="score-sub">' + SCORE_PROMPT + '</p>' +
+      '</div>';
+    area.appendChild(panel);
+    return panel;
+  }
+
+  function renderScore(g){
+    var panel = ensureScorePanel(g);
+    if(!panel) return;
+    var s = scoreState(g);
+    var pctEl = panel.querySelector('.score-pct');
+    var metaEl = panel.querySelector('.score-meta');
+    var fillEl = panel.querySelector('.score-bar span');
+    var subEl = panel.querySelector('.score-sub');
+    panel.classList.remove('scored-good', 'scored-bad');
+
+    if(!s.checked){
+      pctEl.innerHTML = '&mdash;';
+      metaEl.textContent = 'Score';
+      fillEl.style.width = '0%';
+      subEl.innerHTML = SCORE_PROMPT;
+      return;
+    }
+    var pct = scorePct(s);
+    pctEl.textContent = pct + '%';
+    metaEl.textContent = 'Score: ' + s.correct + ' of ' + s.graded + ' correct';
+    fillEl.style.width = pct + '%';
+    if(s.stale){
+      subEl.textContent = 'You have changed an answer since this score was calculated — check your work again to update it.';
+    } else if(s.correct === s.graded){
+      subEl.textContent = 'All ' + s.graded + ' figures match the key. Attempt ' + s.attempts + '.';
+      panel.classList.add('scored-good');
+    } else {
+      var missing = s.graded - s.correct;
+      subEl.innerHTML = missing + ' figure' + (missing === 1 ? '' : 's') + ' still to fix' +
+                        '<span class="print-hide"> — outlined in red below</span>. Attempt ' + s.attempts + '.';
+      panel.classList.add('scored-bad');
+    }
+  }
+
+  function markScoreStale(g){
+    var s = scoreState(g);
+    if(!s.checked || s.stale) return;
+    s.stale = true;
+    renderScore(g);
+  }
+
+  function resetScore(g){
+    SCORES[g.btn] = { correct:0, graded:0, attempts:0, checked:false, stale:false };
+    renderScore(g);
+  }
+
+
+  // ================= Pisgah Company — statement of cash flows (indirect) =================
+  function paren(n){
+    var v = Math.round(n);
+    return v < 0 ? '(' + Math.abs(v).toLocaleString('en-US') + ')' : v.toLocaleString('en-US');
+  }
+  function dol(n){
+    var v = Math.round(n);
+    return v < 0 ? '$ (' + Math.abs(v).toLocaleString('en-US') + ')' : '$ ' + v.toLocaleString('en-US');
+  }
+  function fmtPrice(n){
+    return '$' + Number(n).toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
+  }
+
+  function baseline(){
+    return {
+      cash0:94,
+      ar0:220, ar1:203, irr0:17, irr1:19, inv0:213, inv1:222, pp0:25, pp1:17,
+      lti0:138, prefInv:38, eqInc:19, otherInvRev:6,
+      land0:163, landCost:59, landNote:30,
+      be0:413, eqCost:96, eqProceeds:16, ad0:146, dep:13,
+      lease:96, leasePay:6, pat0:50, amort:2,
+      ap0:91, ap1:63, sal0:31, sal1:19, int0:17, int1:21, itp0:29, itp1:25,
+      dtl0:21, dtlInc:16, bonds0:301, bondsRet:73, disc0:41, discAmort:6,
+      cs0:423, pic0:98, sdShares:9.2, sdPrice:7.5, prefIss:88, tsShares:1, tsPrice:22, cashDiv:44,
+      sales:535, gainTB:2, cogs:193, salExp:86, insExp:20, intExp:41, taxExp:49
+    };
+  }
+
+  function validScenario(d){
+    var pos = ['ar1','irr1','inv1','pp1','ap1','sal1','int1','itp1'];
+    for(var i=0;i<pos.length;i++){ if(!(d[pos[i]] > 0)) return false; }
+    if(d.landNote >= d.landCost) return false;
+    if(d.eqCost >= d.be0 * 0.5) return false;
+    if(d.eqCost/2 >= d.ad0 + d.dep - 10) return false;
+    if(d.eqProceeds >= d.eqCost/2 - 2) return false;
+    if(d.discAmort >= d.disc0 - 5) return false;
+    if(d.bondsRet >= d.bonds0 - 50) return false;
+    if(d.intExp - d.discAmort - (d.int1 - d.int0) <= 5) return false;     // interest paid
+    if(d.taxExp - d.dtlInc - (d.itp1 - d.itp0) <= 5) return false;        // taxes paid
+    if(d.insExp + (d.pp1 - d.pp0) <= 3) return false;                      // insurance paid
+    if(d.leasePay >= d.lease) return false;
+    if(d.ni < 40 || d.re0 < 60 || d.re1 < 60) return false;
+    if(d.cash1 < 30 || d.cash0 < 30) return false;
+    if(d.cfo <= 0 || d.cfi === 0 || d.cff === 0 || d.netChange === 0) return false;
+    return true;
+  }
+
+  function randomParams(rand){
+    function vary(b, f){ return Math.max(1, Math.round(b * (1 + (rand()*2 - 1) * f))); }
+    function delta(lo, hi){
+      var m = lo + Math.floor(rand() * (hi - lo + 1));
+      return rand() < 0.5 ? -m : m;
+    }
+    for(var tries=0; tries<400; tries++){
+      var p = {};
+      p.cash0 = vary(94,.3);
+      p.ar0 = vary(220,.2);  p.ar1 = p.ar0 + delta(5,30);
+      p.irr0 = vary(17,.3);  p.irr1 = p.irr0 + delta(1,5);
+      p.inv0 = vary(213,.2); p.inv1 = p.inv0 + delta(4,30);
+      p.pp0 = vary(25,.3);   p.pp1 = p.pp0 + delta(2,8);
+      p.lti0 = vary(138,.25); p.prefInv = vary(38,.3); p.eqInc = vary(19,.3); p.otherInvRev = vary(6,.4);
+      p.land0 = vary(163,.25); p.landCost = vary(59,.3);
+      p.landNote = Math.round(p.landCost * pick(rand,[0.4,0.5,0.6]));
+      p.be0 = vary(413,.2); p.eqCost = 2 * vary(48,.3);
+      p.eqProceeds = Math.round(p.eqCost/2 * pick(rand,[0.25,0.3,0.35,0.4,0.5]));
+      p.ad0 = vary(146,.2); p.dep = vary(13,.3);
+      p.lease = vary(96,.25); p.leasePay = Math.max(2, Math.round(p.lease / pick(rand,[10,11,12])));
+      p.pat0 = vary(50,.3); p.amort = Math.max(1, Math.round(p.pat0 / pick(rand,[20,25])));
+      p.ap0 = vary(91,.25);  p.ap1 = p.ap0 + delta(5,30);
+      p.sal0 = vary(31,.3);  p.sal1 = p.sal0 + delta(2,12);
+      p.int0 = vary(17,.3);  p.int1 = p.int0 + delta(1,6);
+      p.itp0 = vary(29,.3);  p.itp1 = p.itp0 + delta(1,8);
+      p.dtl0 = vary(21,.3);  p.dtlInc = vary(16,.4);
+      p.bonds0 = vary(301,.2); p.bondsRet = vary(73,.3);
+      p.disc0 = vary(41,.25);  p.discAmort = vary(6,.4);
+      p.cs0 = 5 * vary(85,.2); p.pic0 = vary(98,.25);
+      p.sdShares = pick(rand,[6.4,7.2,8,8.8,9.2,10.4]); p.sdPrice = pick(rand,[7.5,10,12.5]);
+      p.prefIss = vary(88,.3);
+      p.tsShares = pick(rand,[0.5,1,1.5,2]); p.tsPrice = pick(rand,[16,18,20,22,24]);
+      p.cashDiv = vary(44,.35);
+      p.sales = vary(535,.12); p.gainTB = pick(rand,[1,2,3,4]); p.cogs = vary(193,.15);
+      p.salExp = vary(86,.15); p.insExp = vary(20,.25); p.intExp = vary(41,.2); p.taxExp = vary(49,.25);
+      if(validScenario(solve(p))) return p;
+    }
+    return baseline();
+  }
+
+  function solve(p){
+    var d = {};
+    for(var k in p) d[k] = p[k];
+    // income statement
+    d.invRev = p.eqInc + p.otherInvRev;
+    d.loss = p.eqCost/2 - p.eqProceeds;
+    d.revTotal = p.sales + d.invRev + p.gainTB;
+    d.expTotal = p.cogs + p.salExp + p.dep + p.amort + p.insExp + p.intExp + d.loss + p.taxExp;
+    d.ni = d.revTotal - d.expTotal;
+    // equity transactions
+    d.sdValue = Math.round(p.sdShares * p.sdPrice * 100)/100;
+    d.sdPar = Math.round(p.sdShares * 5 * 100)/100;
+    d.sdExcess = d.sdValue - d.sdPar;
+    d.tsCost = Math.round(p.tsShares * p.tsPrice * 100)/100;
+    // 2027 balances (other than cash and retained earnings)
+    d.lti1 = p.lti0 + p.prefInv + p.eqInc;
+    d.land1 = p.land0 + p.landCost;
+    d.be1 = p.be0 - p.eqCost;
+    d.ad1 = p.ad0 + p.dep - p.eqCost/2;
+    d.rou1 = p.lease;
+    d.pat1 = p.pat0 - p.amort;
+    d.dtl1 = p.dtl0 + p.dtlInc;
+    d.note1 = p.landNote;
+    d.leaseLiab1 = p.lease - p.leasePay;
+    d.bonds1 = p.bonds0 - p.bondsRet;
+    d.disc1 = p.disc0 - p.discAmort;
+    d.cs1 = p.cs0 + d.sdPar;
+    d.pic1 = p.pic0 + d.sdExcess;
+    d.pref1 = p.prefIss;
+    d.ts1 = d.tsCost;
+    // 2026 retained earnings makes the 2026 balance sheet balance
+    d.assets0 = p.cash0 + p.ar0 + p.irr0 + p.inv0 + p.pp0 + p.lti0 + p.land0 + p.be0 - p.ad0 + p.pat0;
+    d.liab0 = p.ap0 + p.sal0 + p.int0 + p.itp0 + p.dtl0 + p.bonds0 - p.disc0;
+    d.re0 = d.assets0 - d.liab0 - p.cs0 - p.pic0;
+    d.re1 = d.re0 + d.ni - d.sdValue - p.cashDiv;
+
+    // ---- statement of cash flows ----
+    d.cfNI = d.ni;
+    d.cfDep = p.dep;
+    d.cfAmort = p.amort;
+    d.cfLoss = d.loss;
+    d.cfGain = 0;                       // T-bills are cash equivalents — no adjustment
+    d.cfEq = -p.eqInc;
+    d.cfDisc = p.discAmort;
+    d.cfDTL = p.dtlInc;
+    d.cfAR = p.ar0 - p.ar1;
+    d.cfIRR = p.irr0 - p.irr1;
+    d.cfInv = p.inv0 - p.inv1;
+    d.cfPP = p.pp0 - p.pp1;
+    d.cfAP = p.ap1 - p.ap0;
+    d.cfSal = p.sal1 - p.sal0;
+    d.cfInt = p.int1 - p.int0;
+    d.cfITP = p.itp1 - p.itp0;
+    d.cfo = d.cfNI + d.cfDep + d.cfAmort + d.cfLoss + d.cfGain + d.cfEq + d.cfDisc + d.cfDTL +
+            d.cfAR + d.cfIRR + d.cfInv + d.cfPP + d.cfAP + d.cfSal + d.cfInt + d.cfITP;
+    d.cfLTI = -p.prefInv;
+    d.cfEqSale = p.eqProceeds;
+    d.cfLand = -(p.landCost - p.landNote);
+    d.cfi = d.cfLTI + d.cfEqSale + d.cfLand;
+    d.cfPref = p.prefIss;
+    d.cfBonds = -p.bondsRet;
+    d.cfTS = -d.tsCost;
+    d.cfLease = -p.leasePay;
+    d.cfDiv = -p.cashDiv;
+    d.cff = d.cfPref + d.cfBonds + d.cfTS + d.cfLease + d.cfDiv;
+    d.netChange = d.cfo + d.cfi + d.cff;
+    d.cash1 = p.cash0 + d.netChange;
+    d.ncLand = p.landNote;
+    d.ncLease = p.lease;
+
+    d.assets1 = d.cash1 + p.ar1 + p.irr1 + p.inv1 + p.pp1 + d.lti1 + d.land1 + d.be1 - d.ad1 + d.rou1 + d.pat1;
+    d.le1 = p.ap1 + p.sal1 + p.int1 + p.itp1 + d.dtl1 + d.note1 + d.leaseLiab1 + d.bonds1 - d.disc1 +
+            d.cs1 + d.pic1 + d.pref1 + d.re1 - d.ts1;
+    d.le0 = d.liab0 + p.cs0 + p.pic0 + d.re0;
+    return d;
+  }
+
+  function generateScenario(id){
+    var seed = (id || '').trim();
+    if(seed === '') return solve(baseline());
+    return solve(randomParams(mulberry32(hashSeed(seed.toLowerCase()))));
+  }
+
+  function bsRow(label, a, b, opts){
+    opts = opts || {};
+    var f = opts.dollar ? dol : paren;
+    return '<tr' + (opts.total ? ' class="given-total"' : '') + '><td class="lbl">' + label + '</td>' +
+           '<td class="num">' + (a === null ? '' : f(a)) + '</td><td class="num">' + (b === null ? '' : f(b)) + '</td></tr>';
+  }
+  function secRow(label, n){
+    var cells = '';
+    for(var i=0;i<(n||2);i++) cells += '<td></td>';
+    return '<tr class="given-sec"><td class="lbl">' + label + '</td>' + cells + '</tr>';
+  }
+
+  function applyScenario(d){
+    setHTML('cf_bs',
+      secRow('Assets') +
+      bsRow('Cash', d.cash1, d.cash0, {dollar:true}) +
+      bsRow('Accounts receivable', d.ar1, d.ar0) +
+      bsRow('Investment revenue receivable', d.irr1, d.irr0) +
+      bsRow('Inventory', d.inv1, d.inv0) +
+      bsRow('Prepaid insurance', d.pp1, d.pp0) +
+      bsRow('Long-term investment', d.lti1, d.lti0) +
+      bsRow('Land', d.land1, d.land0) +
+      bsRow('Buildings and equipment', d.be1, d.be0) +
+      bsRow('Less: Accumulated depreciation', -d.ad1, -d.ad0) +
+      bsRow('Right-of-use asset&mdash;building', d.rou1, 0) +
+      bsRow('Patent', d.pat1, d.pat0) +
+      bsRow('Total assets', d.assets1, d.assets0, {dollar:true, total:true}) +
+      secRow('Liabilities') +
+      bsRow('Accounts payable', d.ap1, d.ap0, {dollar:true}) +
+      bsRow('Salaries payable', d.sal1, d.sal0) +
+      bsRow('Interest payable (bonds)', d.int1, d.int0) +
+      bsRow('Income tax payable', d.itp1, d.itp0) +
+      bsRow('Deferred tax liability', d.dtl1, d.dtl0) +
+      bsRow('Notes payable', d.note1, 0) +
+      bsRow('Finance lease liability', d.leaseLiab1, 0) +
+      bsRow('Bonds payable', d.bonds1, d.bonds0) +
+      bsRow('Less: Discount on bonds', -d.disc1, -d.disc0) +
+      secRow('Shareholders&rsquo; Equity') +
+      bsRow('Common stock', d.cs1, d.cs0) +
+      bsRow('Paid-in capital&mdash;excess of par', d.pic1, d.pic0) +
+      bsRow('Preferred stock', d.pref1, 0) +
+      bsRow('Retained earnings', d.re1, d.re0) +
+      bsRow('Less: Treasury stock', -d.ts1, 0) +
+      bsRow('Total liabilities and shareholders&rsquo; equity', d.le1, d.le0, {dollar:true, total:true})
+    );
+    setHTML('cf_is',
+      secRow('Revenues and gain:') +
+      bsRow('Sales revenue', d.sales, null, {dollar:true}) +
+      bsRow('Investment revenue', d.invRev, null) +
+      bsRow('Gain on sale of Treasury bills', d.gainTB, d.revTotal, {}) +
+      secRow('Expenses and loss:') +
+      bsRow('Cost of goods sold', d.cogs, null) +
+      bsRow('Salaries expense', d.salExp, null) +
+      bsRow('Depreciation expense', d.dep, null) +
+      bsRow('Amortization expense', d.amort, null) +
+      bsRow('Insurance expense', d.insExp, null) +
+      bsRow('Interest expense', d.intExp, null) +
+      bsRow('Loss on sale of equipment', d.loss, null) +
+      bsRow('Income tax expense', d.taxExp, d.expTotal) +
+      bsRow('Net income', null, d.ni, {dollar:true, total:true})
+    );
+    setText('ai_eq', num1(d.eqInc));
+    setText('ai_gain', num1(d.gainTB));
+    setText('ai_eqcost', num1(d.eqCost));
+    setText('ai_eqproc', num1(d.eqProceeds));
+    setText('ai_dtl', num1(d.dtlInc));
+    setText('ai_pref', num1(d.prefInv));
+    setText('ai_landcost', num1(d.landCost));
+    setText('ai_landcash', num1(d.landCost - d.landNote));
+    setText('ai_landnote', num1(d.landNote));
+    setText('ai_lease', num1(d.lease));
+    setText('ai_leasepay', num1(d.leasePay));
+    setText('ai_bonds', num1(d.bondsRet));
+    setText('ai_sd', num1(d.sdShares));
+    setText('ai_sdprice', fmtPrice(d.sdPrice));
+    setText('ai_ts', num1(d.tsShares));
+    setText('ai_tscost', fmtPrice(d.tsCost));
+  }
+
+  var CHECK_GROUPS = [{
+    btn:'checkCF', summary:'cfSummary',
+    fields:[
+      {id:'cf-ni', key:'cfNI', type:'mil'},
+      {id:'cf-dep', key:'cfDep', type:'mil'},
+      {id:'cf-amort', key:'cfAmort', type:'mil'},
+      {id:'cf-loss', key:'cfLoss', type:'mil'},
+      {id:'cf-gain', key:'cfGain', type:'mil'},
+      {id:'cf-eq', key:'cfEq', type:'mil'},
+      {id:'cf-disc', key:'cfDisc', type:'mil'},
+      {id:'cf-dtl', key:'cfDTL', type:'mil'},
+      {id:'cf-ar', key:'cfAR', type:'mil'},
+      {id:'cf-irr', key:'cfIRR', type:'mil'},
+      {id:'cf-inv', key:'cfInv', type:'mil'},
+      {id:'cf-pp', key:'cfPP', type:'mil'},
+      {id:'cf-ap', key:'cfAP', type:'mil'},
+      {id:'cf-sal', key:'cfSal', type:'mil'},
+      {id:'cf-int', key:'cfInt', type:'mil'},
+      {id:'cf-itp', key:'cfITP', type:'mil'},
+      {id:'cf-cfo', key:'cfo', type:'mil'},
+      {id:'cf-lti', key:'cfLTI', type:'mil'},
+      {id:'cf-eqsale', key:'cfEqSale', type:'mil'},
+      {id:'cf-land', key:'cfLand', type:'mil'},
+      {id:'cf-cfi', key:'cfi', type:'mil'},
+      {id:'cf-pref', key:'cfPref', type:'mil'},
+      {id:'cf-bonds', key:'cfBonds', type:'mil'},
+      {id:'cf-ts', key:'cfTS', type:'mil'},
+      {id:'cf-lease', key:'cfLease', type:'mil'},
+      {id:'cf-div', key:'cfDiv', type:'mil'},
+      {id:'cf-cff', key:'cff', type:'mil'},
+      {id:'cf-net', key:'netChange', type:'mil'},
+      {id:'cf-beg', key:'cash0', type:'mil'},
+      {id:'cf-end', key:'cash1', type:'mil'},
+      {id:'cf-nc-land', key:'ncLand', type:'mil'},
+      {id:'cf-nc-lease', key:'ncLease', type:'mil'}
+    ]
+  }];
+
+
+  // ---------------- wiring ----------------
+  var idInput = document.getElementById('studentId');
+  var genBtn = document.getElementById('genBtn');
+  var currentScenario = null;
+
+  function applyAndStore(id){
+    currentScenario = generateScenario(id);
+    applyScenario(currentScenario);
+    clearAllFieldStates();
+    CHECK_GROUPS.forEach(resetScore);
+  }
+  genBtn.addEventListener('click', function(){ applyAndStore(idInput.value); });
+  idInput.addEventListener('keydown', function(e){
+    if(e.key === 'Enter'){ e.preventDefault(); applyAndStore(idInput.value); }
+  });
+  applyAndStore('');
+
+  CHECK_GROUPS.forEach(function(g){
+    var btn = document.getElementById(g.btn);
+    if(!btn) return;
+    renderScore(g);
+
+    // any edit after a check makes the standing score stale
+    var part = btn.closest('.part');
+    if(part){
+      part.addEventListener('input', function(e){
+        if(e.target && e.target.tagName === 'INPUT') markScoreStale(g);
+      });
+    }
+
+    btn.addEventListener('click', function(){
+      if(!currentScenario) return;
+      var d = currentScenario;
+      var results = g.fields.map(function(f){
+        var correct = (typeof f.key === 'function') ? f.key(d) : d[f.key];
+        return markField(f.id, correct, f.tol !== undefined ? f.tol : TOL[f.type || 'money']);
+      });
+      updateSummary(g.summary, results);
+      var s = scoreState(g);
+      s.graded = results.filter(function(r){ return r !== null; }).length;
+      s.correct = results.filter(function(r){ return r === true; }).length;
+      s.attempts += 1;
+      s.checked = true;
+      s.stale = false;
+      renderScore(g);
+    });
+  });
+
+  // ---------------- Print / Save as PDF ----------------
+  function val(id){
+    var el = document.getElementById(id);
+    return el ? el.value.trim() : '';
+  }
+  document.getElementById('printBtn').addEventListener('click', function(){
+    var name = val('studentName');
+    var id = val('studentId');
+    var line = document.getElementById('printNameLine');
+    line.textContent = 'Name: ' + (name || '_______________________') +
+                       '     Student ID: ' + (id || '_______________________');
+    var oldTitle = document.title;
+    document.title = FILE_SLUG + '-' + (id || 'submission');
+    window.print();
+    document.title = oldTitle;
+  });
+
+  // ---------------- Download as Word (.docx) ----------------
+  var docxLoadPromise = null;
+  function loadDocxLib(){
+    if(window.docx) return Promise.resolve();
+    if(docxLoadPromise) return docxLoadPromise;
+    docxLoadPromise = new Promise(function(resolve, reject){
+      var s = document.createElement('script');
+      s.src = 'https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.umd.js';
+      s.onload = function(){ window.docx ? resolve() : reject(new Error('docx library did not load correctly')); };
+      s.onerror = function(){ reject(new Error('network error loading docx library')); };
+      document.head.appendChild(s);
+    });
+    return docxLoadPromise;
+  }
+  function blankIfEmpty(s){ return s && s.length ? s : '—'; }
+  function cleanText(s){ return (s || '').replace(/\s+/g, ' ').trim(); }
+
+  function buildAnswersDoc(){
+    var D = window.docx;
+    var PURPLE = '592C88', INK = '221B2E', SLATE = '5F5A6B';
+    var name = blankIfEmpty(val('studentName'));
+    var sid = blankIfEmpty(val('studentId'));
+
+    function h(text, size){
+      return new D.Paragraph({ spacing: { before: 260, after: 100 }, children: [new D.TextRun({ text: text, bold: true, color: PURPLE, size: size || 26 })] });
+    }
+    function h4(text){
+      return new D.Paragraph({ spacing: { before: 180, after: 60 }, children: [new D.TextRun({ text: text, bold: true, color: PURPLE, size: 21 })] });
+    }
+    function p(text, opts){
+      opts = opts || {};
+      return new D.Paragraph({ spacing: { before: 60, after: 60 }, children: [new D.TextRun({ text: text, size: opts.size || 20, color: opts.color || INK, bold: !!opts.bold, italics: !!opts.italics })] });
+    }
+    function cell(text, width, opts){
+      opts = opts || {};
+      var borders = {};
+      if (opts.borderTop) borders.top = { style: D.BorderStyle.SINGLE, size: 6, color: PURPLE };
+      return new D.TableCell({
+        width: { size: width, type: D.WidthType.DXA },
+        shading: opts.shading ? { type: D.ShadingType.CLEAR, fill: opts.shading } : undefined,
+        borders: opts.borderTop ? borders : undefined,
+        margins: { top: 60, bottom: 60, left: 90, right: 90 },
+        children: [new D.Paragraph({ children: [new D.TextRun({ text: text, size: 19, bold: !!opts.bold, color: opts.color || INK })] })]
+      });
+    }
+    function row(cells){ return new D.TableRow({ children: cells }); }
+    function table(widths, rows){
+      return new D.Table({ width: { size: widths.reduce(function(a,b){return a+b;},0), type: D.WidthType.DXA }, columnWidths: widths, rows: rows });
+    }
+    function widthsFor(n){
+      var FULL = 9360;
+      if(n <= 1) return [FULL];
+      var first = Math.round(FULL * (n === 2 ? 0.56 : (n === 3 ? 0.46 : 0.34)));
+      var rest = Math.round((FULL - first) / (n - 1));
+      var w = [first];
+      for(var i=1;i<n;i++) w.push(rest);
+      return w;
+    }
+    function anyTableDocx(tableEl){
+      var headRow = tableEl.querySelector('thead tr');
+      var headers = headRow ? Array.prototype.map.call(headRow.querySelectorAll('th'), function(th){ return cleanText(th.textContent); }) : null;
+      var bodyRows = Array.prototype.slice.call(tableEl.querySelectorAll('tbody tr'));
+      var ncols = headers ? headers.length : (bodyRows[0] ? bodyRows[0].children.length : 2);
+      var widths = widthsFor(ncols);
+      var out = [];
+      if(headers){
+        out.push(row(headers.map(function(t,i){ return cell(t, widths[i], { bold:true, shading:PURPLE, color:'FFFFFF' }); })));
+      }
+      bodyRows.forEach(function(tr){
+        var isTotal = tr.classList.contains('ws-total') || tr.classList.contains('given-total');
+        var cells = [];
+        Array.prototype.forEach.call(tr.children, function(td, i){
+          var inp = td.querySelector('input');
+          var txt = inp ? blankIfEmpty(inp.value.trim()) : cleanText(td.textContent);
+          cells.push(cell(txt, widths[Math.min(i, widths.length-1)], { bold: isTotal || tr.classList.contains('given-head'), borderTop: isTotal }));
+        });
+        out.push(row(cells));
+      });
+      return table(widths, out);
+    }
+
+    var children = [];
+    children.push(new D.Paragraph({ heading: D.HeadingLevel.TITLE, spacing: { after: 60 }, children: [new D.TextRun({ text: DOC_TITLE, color: PURPLE, size: 32, bold: true })] }));
+    children.push(p('Name: ' + name + '     Student ID: ' + sid, { bold: true }));
+    children.push(p('Score: ' + CHECK_GROUPS.map(function(g){
+      var s = scoreState(g);
+      if(!s.checked) return 'not checked';
+      return s.correct + ' of ' + s.graded + ' correct (' + scorePct(s) + '%)' +
+             (s.stale ? ' — an answer was edited after this score was calculated'
+                      : ', self-checked on attempt ' + s.attempts);
+    }).join('; '), { bold: true, color: PURPLE }));
+    children.push(p(COURSE_LINE, { color: SLATE }));
+
+    document.querySelectorAll('main > .part').forEach(function(partEl){
+      var label = cleanText((partEl.querySelector('.part-label') || {}).textContent || '');
+      var company = cleanText((partEl.querySelector('h2') || {}).textContent || '');
+      children.push(h((label ? label + ' — ' : '') + company));
+
+      Array.prototype.forEach.call(partEl.children, function(el){
+        if (el.classList.contains('part-label') || el.tagName === 'H2' || el.classList.contains('check-bar')) return;
+        if (el.classList.contains('scenario')) {
+          Array.prototype.forEach.call(el.querySelectorAll('p'), function(pp){ children.push(p(cleanText(pp.textContent))); });
+          if (!el.querySelector('p')) children.push(p(cleanText(el.textContent)));
+        } else if (el.tagName === 'H4') {
+          children.push(h4(cleanText(el.textContent)));
+        } else if (el.tagName === 'TABLE') {
+          children.push(anyTableDocx(el));
+        } else if (el.classList.contains('footnote') || el.classList.contains('hint')) {
+          children.push(p(cleanText(el.textContent), { italics:true, color:SLATE, size:17 }));
+        } else if (el.classList.contains('req')) {
+          children.push(p(cleanText(el.textContent), { bold:true }));
+        } else if (el.tagName === 'OL') {
+          Array.prototype.forEach.call(el.querySelectorAll('li'), function(li, i){
+            children.push(p((el.getAttribute('type') === 'a' ? String.fromCharCode(97 + i) : (i+1)) + '. ' + cleanText(li.textContent)));
+          });
+        } else if (el.tagName === 'P') {
+          children.push(p(cleanText(el.textContent)));
+        }
+      });
+    });
+
+    children.push(new D.Paragraph({ spacing: { before: 300 }, alignment: D.AlignmentType.CENTER, children: [new D.TextRun({ text: DOC_TITLE + '  ·  ACCT 615  ·  Western Carolina University', size: 16, italics: true, color: SLATE })] }));
+
+    return new D.Document({
+      sections: [{
+        properties: { page: { size: { width: 12240, height: 15840 }, margin: { top: 1440, bottom: 1440, left: 1440, right: 1440 } } },
+        children: children
+      }]
+    });
+  }
+
+  document.getElementById('downloadDocxBtn').addEventListener('click', function(){
+    var statusEl = document.getElementById('submitStatus');
+    statusEl.classList.remove('error');
+    statusEl.textContent = 'Preparing your Word document…';
+    loadDocxLib().then(function(){
+      var doc = buildAnswersDoc();
+      return window.docx.Packer.toBlob(doc);
+    }).then(function(blob){
+      var idPart = val('studentId') || 'submission';
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = FILE_SLUG + '-' + idPart + '.docx';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      statusEl.textContent = 'Downloaded.';
+      setTimeout(function(){ statusEl.textContent = ''; }, 4000);
+    }).catch(function(err){
+      statusEl.classList.add('error');
+      statusEl.textContent = 'Could not load the Word export tool (needs internet access) — use Print / Save as PDF instead.';
+    });
+  });
+
+})();
+</script>
+
+</body>
+</html>
