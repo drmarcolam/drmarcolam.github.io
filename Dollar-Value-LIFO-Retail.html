@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dollar-Value LIFO Retail — Practice</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --purple:#592C88;
+    --purple-deep:#38195A;
+    --purple-mid:#6E3FA3;
+    --gold:#B0925C;
+    --gold-soft:#D6C398;
+    --gold-pale:#F1E9D6;
+    --parchment:#F7F4EC;
+    --paper:#FFFEFA;
+    --ink:#221B2E;
+    --slate:#5F5A6B;
+    --line:#DBD3E0;
+    --line-soft:#EAE4EF;
+    --answer:#1E5C34;
+    --answer-bg:#E7F1E9;
+    --danger:#9C3B34;
+    --shadow: 0 1px 2px rgba(56,25,90,0.07), 0 6px 18px rgba(56,25,90,0.08);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--parchment);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ color:inherit; }
+
+  header{
+    background: linear-gradient(180deg, var(--purple) 0%, var(--purple-deep) 100%);
+    color:#F1E9D6;
+    padding: 30px 6vw 24px;
+    position:relative;
+  }
+  header::after{
+    content:"";
+    position:absolute; left:0; right:0; bottom:0; height:4px;
+    background: linear-gradient(90deg, var(--gold-soft), var(--gold) 40%, var(--gold-soft) 70%, var(--gold));
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--gold-soft); margin:0 0 10px;
+  }
+  h1.title{
+    font-family:'Source Serif 4', serif; font-weight:600;
+    font-size:clamp(24px,3.4vw,34px); margin:0 0 8px; letter-spacing:-0.01em;
+  }
+  .subtitle{ font-size:14.5px; color:#D9CDE5; max-width:680px; margin:0; }
+
+  .rounding-note{
+    max-width:900px; margin:14px auto 0; padding:12px 6vw;
+    font-size:12.5px; color:var(--slate); line-height:1.5;
+  }
+  .rounding-note strong{ color:var(--purple); font-weight:600; }
+
+  main{ max-width:900px; margin:0 auto; padding:22px 6vw 90px; }
+
+  .part{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    box-shadow:var(--shadow);
+    padding:24px 26px 26px;
+    margin-top:26px;
+  }
+  .part-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; color:var(--gold); background:var(--purple);
+    display:inline-block; padding:3px 9px; border-radius:4px; letter-spacing:.04em;
+    margin-bottom:12px;
+  }
+  .part h2{
+    font-family:'Source Serif 4', serif; font-size:21px; font-weight:600;
+    color:var(--purple); margin:0 0 12px;
+  }
+  .scenario{
+    background:var(--parchment);
+    border-left:3px solid var(--gold);
+    padding:14px 18px;
+    border-radius:0 6px 6px 0;
+    font-size:14.5px;
+    color:var(--ink);
+    margin-bottom:20px;
+  }
+  .scenario p{ margin:0 0 10px; }
+  .scenario p:last-child{ margin-bottom:0; }
+  .scenario span.val{ font-weight:700; color:var(--purple-deep); }
+
+  .req{
+    font-weight:600;
+    font-size:14.5px;
+    color:var(--ink);
+    margin:20px 0 10px;
+  }
+
+  h4.subsection{
+    font-family:'Source Serif 4',serif; font-size:14.5px; color:var(--purple); margin:18px 0 6px;
+  }
+
+  table.given{ width:100%; border-collapse:collapse; font-size:13px; margin:6px 0 14px; }
+  table.given th{ text-align:left; font-size:10.5px; text-transform:uppercase; letter-spacing:.03em; color:var(--slate); border-bottom:2px solid var(--purple); padding:6px 8px; }
+  table.given td{ border-bottom:1px solid var(--line); padding:5px 8px; font-family:'IBM Plex Mono', monospace; }
+  table.given td.num, table.given th.num{ text-align:right; }
+  table.given tr.given-total td{ border-top:1.3px solid var(--purple); font-weight:600; }
+  .footnote{ font-size:12px; color:var(--slate); margin:2px 0 14px; font-style:italic; }
+
+  table.worksheet{
+    width:100%;
+    border-collapse:collapse;
+    font-size:13.5px;
+    margin:10px 0 4px;
+  }
+  table.worksheet th{
+    text-align:left;
+    font-size:11.5px;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+    color:var(--slate);
+    border-bottom:2px solid var(--purple);
+    padding:8px 8px;
+  }
+  table.worksheet th.num{ text-align:right; }
+  table.worksheet td{
+    border-bottom:1px solid var(--line);
+    padding:9px 8px;
+    vertical-align:middle;
+  }
+  table.worksheet td.method{ font-weight:600; }
+  table.worksheet td.amt{ width:150px; }
+  table.worksheet input[type="text"]{
+    width:100%;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13.5px;
+    padding:6px 8px;
+    border:1px solid var(--line);
+    border-radius:5px;
+    background:var(--parchment);
+    color:var(--ink);
+  }
+  table.worksheet input[type="text"]:focus{
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
+  }
+
+  table.je{
+    width:100%;
+    border-collapse:collapse;
+    font-size:13.5px;
+    margin-top:6px;
+  }
+  table.je th{
+    text-align:left;
+    font-size:11.5px;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+    color:var(--slate);
+    border-bottom:2px solid var(--purple);
+    padding:8px 8px;
+  }
+  table.je td{
+    border-bottom:1px solid var(--line);
+    padding:8px 8px;
+  }
+  table.je input[type="text"]{
+    width:100%;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13.5px;
+    padding:6px 8px;
+    border:1px solid var(--line);
+    border-radius:5px;
+    background:var(--parchment);
+    color:var(--ink);
+  }
+  table.je td.indent input{ padding-left:22px; }
+  .acct-cell{ display:flex; flex-direction:column; gap:6px; }
+  table.je select.acct-select{
+    width:100%;
+    font-family:'Inter',sans-serif;
+    font-size:13px;
+    padding:6px 8px;
+    border:1px solid var(--line);
+    border-radius:5px;
+    background:var(--parchment);
+    color:var(--ink);
+    cursor:pointer;
+  }
+  table.je select.acct-select:focus{
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
+  }
+  table.je input.acct-other{
+    width:100%;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    padding:6px 8px;
+    border:1px solid var(--gold);
+    border-radius:5px;
+    background:var(--gold-pale);
+    color:var(--ink);
+  }
+  table.je input.acct-other:focus{
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
+  }
+  .je-block{ margin-top:22px; }
+  .je-block-title{ font-weight:600; font-size:14px; color:var(--purple-deep); margin:0 0 6px; }
+  .je-block-desc{ font-size:13px; color:var(--slate); margin:0 0 8px; }
+
+  textarea.wide{
+    width:100%;
+    min-height:70px;
+    font-family:'Inter',sans-serif;
+    font-size:13.5px;
+    padding:9px 10px;
+    border:1px solid var(--line);
+    border-radius:6px;
+    background:var(--parchment);
+    color:var(--ink);
+    resize:vertical;
+  }
+  textarea.wide:focus{
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
+  }
+
+  .check-bar{
+    margin-top:20px;
+    padding-top:16px;
+    border-top:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .btn-check{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:9px 18px; border:1px solid var(--purple);
+    background:var(--purple); color:#fff; cursor:pointer;
+  }
+  .btn-check:hover{ background:var(--purple-mid); }
+  .check-summary{ font-size:13.5px; font-weight:600; }
+  .check-summary.good{ color:var(--answer); }
+  .check-summary.bad{ color:var(--danger); }
+  .check-disclaimer{ font-size:11.5px; color:var(--slate); width:100%; margin-top:2px; font-style:italic; }
+
+  input.field-correct{
+    border-color:var(--answer) !important;
+    background:var(--answer-bg) !important;
+  }
+  input.field-incorrect{
+    border-color:var(--danger) !important;
+    background:#F3E1DE !important;
+  }
+
+  .submit-bar{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    box-shadow:var(--shadow);
+    padding:22px 26px 24px;
+    margin-top:26px;
+  }
+  .submit-bar h2{
+    font-family:'Source Serif 4', serif; font-size:19px; font-weight:600;
+    color:var(--purple); margin:0 0 14px;
+  }
+  .submit-row{ display:flex; align-items:center; gap:10px; margin-bottom:12px; flex-wrap:wrap; }
+  .submit-row label{ font-size:13px; font-weight:600; color:var(--slate); }
+  .submit-row input[type="text"]{
+    font-family:'Inter',sans-serif; font-size:13.5px; padding:8px 11px;
+    border:1px solid var(--line); border-radius:5px; background:var(--parchment); color:var(--ink);
+    width:240px;
+  }
+  .submit-row input:focus{ outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); }
+  .btn-submit{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:10px 18px; border:1px solid var(--purple);
+    background:var(--purple); color:#fff; cursor:pointer;
+  }
+  .btn-submit:hover{ background:var(--purple-mid); }
+  .btn-submit-outline{ background:var(--paper); color:var(--purple); }
+  .btn-submit-outline:hover{ background:var(--parchment); }
+  .submit-status{ font-size:13px; font-weight:600; min-height:18px; margin:10px 0 0; color:var(--answer); }
+  .submit-status.error{ color:var(--danger); }
+  .submit-hint{ font-size:12px; color:var(--slate); margin:6px 0 0; }
+
+  @media print{
+    .print-hide, .check-bar, .rounding-note{ display:none !important; }
+    header{ background:none !important; color:var(--ink) !important; padding:0 0 14px !important; }
+    header::after{ display:none !important; }
+    .eyebrow{ color:var(--purple) !important; }
+    .subtitle{ color:var(--slate) !important; }
+    body{ background:#fff !important; }
+    .part{ box-shadow:none !important; border:1px solid #999 !important; break-inside:auto; }
+    .part h2, .part-label, .scenario, h4.subsection, .je-block-title{ break-after:avoid; break-inside:avoid; }
+    table.given, table.worksheet, table.je{ break-inside:auto; }
+    table.given tr, table.worksheet tr, table.je tr{ break-inside:avoid; }
+    .submit-bar{ break-before:avoid; }
+    input[type="text"], textarea{
+      border:none !important;
+      border-bottom:1px solid #000 !important;
+      background:transparent !important;
+      border-radius:0 !important;
+      color:#000 !important;
+      -webkit-appearance:none;
+      appearance:none;
+      padding:2px 4px !important;
+    }
+    select.acct-select{
+      border:none !important;
+      border-bottom:1px solid #000 !important;
+      background:transparent !important;
+      border-radius:0 !important;
+      color:#000 !important;
+      -webkit-appearance:none;
+      appearance:none;
+      padding:2px 4px !important;
+    }
+    .print-name-line{ display:block !important; }
+  }
+  .print-name-line{ display:none; font-size:13px; color:var(--ink); padding:0 6vw; margin:0 0 10px; }
+
+  footer{ text-align:center; padding:26px 6vw 40px; font-size:12px; color:var(--slate); }
+
+  @media (max-width:600px){
+    header, main{ padding-left:5vw; padding-right:5vw; }
+    table.worksheet, table.je{ font-size:12.5px; }
+  }
+
+
+  .top-score{
+    font-size:14px;
+    font-weight:600;
+    margin:4px 0 0;
+    padding:8px 12px;
+    border-radius:6px;
+    display:inline-block;
+    background:var(--parchment);
+    border:1px solid var(--line);
+    color:var(--slate);
+  }
+  .top-score.ts-good{ background:var(--answer-bg); border-color:#B7D3BE; color:var(--answer); }
+  .top-score.ts-mid{ background:var(--gold-pale); border-color:var(--gold-soft); color:#7A5B1E; }
+  .top-score.ts-bad{ background:#F3E1DE; border-color:#E0B8B2; color:var(--danger); }
+
+</style>
+</head>
+<body>
+
+<header>
+  <p class="eyebrow">ACCT 605 &middot; Advanced Financial Accounting</p>
+  <h1 class="title">Dollar-Value LIFO Retail Inventory Method</h1>
+  <p class="subtitle">Estimating ending inventory and cost of goods sold across two years using the dollar-value LIFO retail method.</p>
+</header>
+
+<p class="print-name-line" id="printNameLine"></p>
+
+<div class="rounding-note">
+  <strong>Rounding convention:</strong> do not round intermediate calculations; round the cost-to-retail percentage to 2 decimal places and all final dollar answers to the nearest whole dollar.
+</div>
+
+<main>
+
+  <div class="submit-bar print-hide">
+    <h2>Ready to submit?</h2>
+    <div class="submit-row">
+      <label for="studentName">Your name</label>
+      <input type="text" id="studentName" placeholder="First and last name">
+    </div>
+    <div class="submit-row">
+      <label for="studentId">Student ID</label>
+      <input type="text" id="studentId" placeholder="e.g. 920410165">
+    </div>
+    <p class="top-score" id="topScore">Score: not yet calculated</p>
+    <div class="submit-row submit-actions" style="margin-top:14px;">
+      <button class="btn-submit" id="printBtn" type="button">Print / Save as PDF</button>
+      <button class="btn-submit btn-submit-outline" id="downloadDocxBtn" type="button">Download as Word (.docx)</button>
+    </div>
+    <p class="submit-status" id="submitStatus"></p>
+    <p class="submit-hint">Both options capture exactly what's currently filled in above, including your live score. "Print / Save as PDF" works offline; "Download as Word" needs an internet connection to load the export tool.</p>
+  </div>
+
+
+  <div class="part">
+    <span class="part-label">Problem 1 of 1</span>
+    <h2>Highlands Camera Company</h2>
+    <div class="scenario">
+      <p>On January 1, 2027, Highlands Camera Company adopted the dollar-value LIFO retail inventory method. Inventory transactions at both cost and retail, and cost indexes for 2027 and 2028, are given below.</p>
+    </div>
+
+    <h4 class="subsection">Inventory Data</h4>
+    <table class="given">
+      <thead><tr><th>Item</th><th class="num">2027 Cost</th><th class="num">2027 Retail</th><th class="num">2028 Cost</th><th class="num">2028 Retail</th></tr></thead>
+      <tbody>
+        <tr><td>Beginning inventory</td><td class="num">$51,800</td><td class="num">$74,000</td><td class="num">&mdash;</td><td class="num">&mdash;</td></tr>
+        <tr><td>Net purchases</td><td class="num">$101,150</td><td class="num">$125,000</td><td class="num">$107,532</td><td class="num">$131,700</td></tr>
+        <tr><td>Freight-in</td><td class="num">$3,700</td><td class="num">&mdash;</td><td class="num">$4,200</td><td class="num">&mdash;</td></tr>
+        <tr><td>Net markups</td><td class="num">&mdash;</td><td class="num">$18,500</td><td class="num">&mdash;</td><td class="num">$11,400</td></tr>
+        <tr><td>Net markdowns</td><td class="num">&mdash;</td><td class="num">$3,700</td><td class="num">&mdash;</td><td class="num">$3,900</td></tr>
+        <tr><td>Net sales to customers</td><td class="num">&mdash;</td><td class="num">$125,250</td><td class="num">&mdash;</td><td class="num">$118,800</td></tr>
+        <tr><td>Sales to employees (net of 20% discount)</td><td class="num">&mdash;</td><td class="num">$3,000</td><td class="num">&mdash;</td><td class="num">$6,720</td></tr>
+      </tbody>
+    </table>
+    <table class="given">
+      <thead><tr><th>Price Index</th><th class="num">Value</th></tr></thead>
+      <tbody>
+        <tr><td>January 1, 2027</td><td class="num">1.00</td></tr>
+        <tr><td>December 31, 2027</td><td class="num">1.06</td></tr>
+        <tr><td>December 31, 2028</td><td class="num">1.10</td></tr>
+      </tbody>
+    </table>
+
+    <div class="req">Requirement. Estimate the 2027 and 2028 ending inventory and cost of goods sold using the dollar-value LIFO retail inventory method.</div>
+
+    <h4 class="subsection">2027</h4>
+    <table class="worksheet">
+      <thead><tr><th>Step</th><th class="num">Amount</th></tr></thead>
+      <tbody>
+        <tr><td class="method">Current-year cost-to-retail % (net purchases + freight-in, over net purchases + markups &minus; markdowns)</td><td class="amt"><input type="text" placeholder="%" id="p27-ratio"></td></tr>
+        <tr><td class="method">Ending inventory at retail, 12/31/2027 (current prices)</td><td class="amt"><input type="text" placeholder="$" id="p27-ret"></td></tr>
+        <tr><td class="method">Ending inventory at retail, deflated to base-year (1/1/2027) prices</td><td class="amt"><input type="text" placeholder="$" id="p27-base"></td></tr>
+        <tr><td class="method">2027 LIFO layer, at base-year retail</td><td class="amt"><input type="text" placeholder="$" id="p27-layer-base"></td></tr>
+        <tr><td class="method">2027 LIFO layer, at 2027 cost</td><td class="amt"><input type="text" placeholder="$" id="p27-layer-cost"></td></tr>
+        <tr><td class="method"><strong>Ending inventory, 12/31/2027 (DV LIFO cost)</strong></td><td class="amt"><input type="text" placeholder="$" id="p27-ei"></td></tr>
+        <tr><td class="method"><strong>Cost of goods sold, 2027</strong></td><td class="amt"><input type="text" placeholder="$" id="p27-cogs"></td></tr>
+      </tbody>
+    </table>
+
+    <div class="check-bar">
+      <button class="btn-check" id="check2027" type="button">Check my work</button>
+      <span class="check-summary" id="check2027Summary"></span>
+      <span class="check-disclaimer">Percentage fields are checked as a percent (e.g. enter 75 for 75.00%); tolerance allows small rounding differences.</span>
+    </div>
+
+    <h4 class="subsection">2028</h4>
+    <table class="worksheet">
+      <thead><tr><th>Step</th><th class="num">Amount</th></tr></thead>
+      <tbody>
+        <tr><td class="method">Current-year (2028) cost-to-retail %</td><td class="amt"><input type="text" placeholder="%" id="p28-ratio"></td></tr>
+        <tr><td class="method">Ending inventory at retail, 12/31/2028 (current prices)</td><td class="amt"><input type="text" placeholder="$" id="p28-ret"></td></tr>
+        <tr><td class="method">Ending inventory at retail, deflated to base-year prices</td><td class="amt"><input type="text" placeholder="$" id="p28-base"></td></tr>
+        <tr><td class="method">2028 LIFO layer, at base-year retail</td><td class="amt"><input type="text" placeholder="$" id="p28-layer-base"></td></tr>
+        <tr><td class="method">2028 LIFO layer, at 2028 cost</td><td class="amt"><input type="text" placeholder="$" id="p28-layer-cost"></td></tr>
+        <tr><td class="method"><strong>Ending inventory, 12/31/2028 (DV LIFO cost)</strong></td><td class="amt"><input type="text" placeholder="$" id="p28-ei"></td></tr>
+        <tr><td class="method"><strong>Cost of goods sold, 2028</strong></td><td class="amt"><input type="text" placeholder="$" id="p28-cogs"></td></tr>
+      </tbody>
+    </table>
+
+    <div class="check-bar">
+      <button class="btn-check" id="check2028" type="button">Check my work</button>
+      <span class="check-summary" id="check2028Summary"></span>
+      <span class="check-disclaimer">Percentage fields are checked as a percent (e.g. enter 80.27 for 80.27%); tolerance allows small rounding differences.</span>
+    </div>
+  </div>
+
+
+</main>
+
+<footer>Dollar-Value LIFO Retail Inventory Method &middot; ACCT 605 &middot; Western Carolina University</footer>
+
+<script>
+(function(){
+
+  // ---------------- Answer key ----------------
+  var KEY = {
+    p27ratio: 75.00,
+    p27ret: 85550,
+    p27base: 80708,
+    p27layerbase: 6708,
+    p27layercost: 5333,
+    p27ei: 57133,
+    p27cogs: 99518,
+    p28ratio: 80.27,
+    p28ret: 99230,
+    p28base: 90209,
+    p28layerbase: 9502,
+    p28layercost: 8390,
+    p28ei: 65522,
+    p28cogs: 103342
+  };
+
+  function parseMoney(s){
+    if(s === null || s === undefined) return NaN;
+    var cleaned = String(s).replace(/[^0-9.\-]/g, '');
+    if(cleaned === '' || cleaned === '-') return NaN;
+    return parseFloat(cleaned);
+  }
+  function near(a, b, tol){
+    if(isNaN(a) || isNaN(b)) return false;
+    return Math.abs(a - b) <= tol;
+  }
+  function clearFieldState(el){
+    if(!el) return;
+    el.classList.remove('field-correct', 'field-incorrect');
+  }
+  function markMoney(id, correct, tol){
+    var el = document.getElementById(id);
+    if(!el) return null;
+    el.classList.remove('field-correct', 'field-incorrect');
+    var v = parseMoney(el.value);
+    var ok = near(v, correct, tol === undefined ? 3 : tol);
+    el.classList.add(ok ? 'field-correct' : 'field-incorrect');
+    if(!el.dataset.clearBound){
+      el.addEventListener('input', function(){ clearFieldState(el); });
+      el.dataset.clearBound = '1';
+    }
+    return ok;
+  }
+  function markJeTable(tableId, expected, tol){
+    var t = document.getElementById(tableId);
+    if(!t) return [null, null];
+    tol = tol === undefined ? 3 : tol;
+    var debitInputs = t.querySelectorAll('input.je-debit');
+    var creditInputs = t.querySelectorAll('input.je-credit');
+    var debitSum = 0, creditSum = 0;
+    debitInputs.forEach(function(el){ var v = parseMoney(el.value); if(!isNaN(v)) debitSum += v; });
+    creditInputs.forEach(function(el){ var v = parseMoney(el.value); if(!isNaN(v)) creditSum += v; });
+    var debitOk = near(debitSum, expected, tol);
+    var creditOk = near(creditSum, expected, tol);
+    function markGroup(inputs, ok){
+      inputs.forEach(function(el){
+        el.classList.remove('field-correct', 'field-incorrect');
+        el.classList.add(ok ? 'field-correct' : 'field-incorrect');
+        if(!el.dataset.clearBound){
+          el.addEventListener('input', function(){ clearFieldState(el); });
+          el.dataset.clearBound = '1';
+        }
+      });
+    }
+    markGroup(debitInputs, debitOk);
+    markGroup(creditInputs, creditOk);
+    return [debitOk, creditOk];
+  }
+  function updateSummary(elId, results){
+    var el = document.getElementById(elId);
+    if(!el) return;
+    var graded = results.filter(function(r){ return r !== null; }).length;
+    var correct = results.filter(function(r){ return r === true; }).length;
+    el.textContent = correct + ' of ' + graded + ' correct';
+    el.classList.remove('good', 'bad');
+    el.classList.add(correct === graded && graded > 0 ? 'good' : 'bad');
+  }
+
+  var CHECK_GROUPS = [
+    { btn: 'check2027', summary: 'check2027Summary', fields: [
+      { id: 'p27-ratio',      key: KEY.p27ratio, tol: 0.05 },
+      { id: 'p27-ret',        key: KEY.p27ret },
+      { id: 'p27-base',       key: KEY.p27base, tol: 2 },
+      { id: 'p27-layer-base', key: KEY.p27layerbase, tol: 2 },
+      { id: 'p27-layer-cost', key: KEY.p27layercost, tol: 2 },
+      { id: 'p27-ei',         key: KEY.p27ei, tol: 2 },
+      { id: 'p27-cogs',       key: KEY.p27cogs, tol: 2 }
+    ] },
+    { btn: 'check2028', summary: 'check2028Summary', fields: [
+      { id: 'p28-ratio',      key: KEY.p28ratio, tol: 0.05 },
+      { id: 'p28-ret',        key: KEY.p28ret },
+      { id: 'p28-base',       key: KEY.p28base, tol: 2 },
+      { id: 'p28-layer-base', key: KEY.p28layerbase, tol: 2 },
+      { id: 'p28-layer-cost', key: KEY.p28layercost, tol: 2 },
+      { id: 'p28-ei',         key: KEY.p28ei, tol: 2 },
+      { id: 'p28-cogs',       key: KEY.p28cogs, tol: 2 }
+    ] }
+  ];
+
+  CHECK_GROUPS.forEach(function(g){
+    var btn = document.getElementById(g.btn);
+    if(!btn) return;
+    btn.addEventListener('click', function(){
+      var results = [];
+      (g.fields || []).forEach(function(f){ results.push(markMoney(f.id, f.key, f.tol)); });
+      (g.jeTables || []).forEach(function(j){ results = results.concat(markJeTable(j.id, j.key, j.tol)); });
+      updateSummary(g.summary, results);
+    });
+  });
+
+  var PCT_FIELDS = (function(){
+    var seen = {};
+    var out = [];
+    CHECK_GROUPS.forEach(function(g){
+      (g.fields || []).forEach(function(f){
+        if(!seen['f:' + f.id]){ seen['f:' + f.id] = true; out.push({ type: 'field', id: f.id, key: f.key, tol: f.tol }); }
+      });
+      (g.jeTables || []).forEach(function(j){
+        if(!seen['j:' + j.id]){ seen['j:' + j.id] = true; out.push({ type: 'je', id: j.id, key: j.key, tol: j.tol }); }
+      });
+    });
+    return out;
+  })();
+
+  // ---------------- Live score (top of page, print, and Word export) ----------------
+  function computeScoreSilent(){
+    var correct = 0, total = 0;
+    PCT_FIELDS.forEach(function(item){
+      var tol = item.tol === undefined ? 3 : item.tol;
+      if(item.type === 'je'){
+        total += 2;
+        var t = document.getElementById(item.id);
+        if(t){
+          var debitSum = 0, creditSum = 0;
+          t.querySelectorAll('input.je-debit').forEach(function(el){ var v = parseMoney(el.value); if(!isNaN(v)) debitSum += v; });
+          t.querySelectorAll('input.je-credit').forEach(function(el){ var v = parseMoney(el.value); if(!isNaN(v)) creditSum += v; });
+          if(near(debitSum, item.key, tol)) correct++;
+          if(near(creditSum, item.key, tol)) correct++;
+        }
+      } else {
+        total += 1;
+        var el = document.getElementById(item.id);
+        var v = el ? parseMoney(el.value) : NaN;
+        if(near(v, item.key, tol)) correct++;
+      }
+    });
+    var pct = total > 0 ? Math.round((correct / total) * 100) : 0;
+    return { correct: correct, total: total, pct: pct };
+  }
+  function refreshTopScore(){
+    var s = computeScoreSilent();
+    var el = document.getElementById('topScore');
+    if(!el) return;
+    el.classList.remove('ts-good', 'ts-mid', 'ts-bad');
+    var tier = s.pct >= 90 ? 'ts-good' : (s.pct >= 60 ? 'ts-mid' : 'ts-bad');
+    el.classList.add(tier);
+    el.textContent = 'Score: ' + s.pct + '% (' + s.correct + ' of ' + s.total + ' graded fields filled in correctly)';
+  }
+  PCT_FIELDS.forEach(function(item){
+    if(item.type === 'je'){
+      var t = document.getElementById(item.id);
+      if(t) t.querySelectorAll('input.je-debit, input.je-credit').forEach(function(el){ el.addEventListener('input', refreshTopScore); });
+    } else {
+      var el = document.getElementById(item.id);
+      if(el) el.addEventListener('input', refreshTopScore);
+    }
+  });
+  refreshTopScore();
+
+  document.querySelectorAll('.acct-cell').forEach(function(wrap){
+    var sel = wrap.querySelector('select.acct-select');
+    var other = wrap.querySelector('input.acct-other');
+    if(!sel || !other) return;
+    sel.addEventListener('change', function(){
+      if(sel.value === 'Other'){
+        other.style.display = 'block';
+        other.focus();
+      } else {
+        other.style.display = 'none';
+        other.value = '';
+      }
+    });
+  });
+
+  // ---------------- Print / Save as PDF ----------------
+  function val(id){
+    var el = document.getElementById(id);
+    return el ? el.value.trim() : '';
+  }
+
+  document.getElementById('printBtn').addEventListener('click', function(){
+    var name = val('studentName');
+    var sid = val('studentId');
+    var s = computeScoreSilent();
+    var line = document.getElementById('printNameLine');
+    line.textContent = 'Name: ' + (name || '_______________________') + '     Student ID: ' + (sid || '_______________________') + '     Score: ' + s.pct + '% (' + s.correct + ' of ' + s.total + ')';
+    var oldTitle = document.title;
+    document.title = 'Dollar-Value-LIFO-Retail-' + (sid || 'submission');
+    window.print();
+    document.title = oldTitle;
+  });
+
+  // ---------------- Download as Word (.docx) ----------------
+  var docxLoadPromise = null;
+  function loadDocxLib(){
+    if(window.docx) return Promise.resolve();
+    if(docxLoadPromise) return docxLoadPromise;
+    docxLoadPromise = new Promise(function(resolve, reject){
+      var s = document.createElement('script');
+      s.src = 'https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.umd.js';
+      s.onload = function(){ window.docx ? resolve() : reject(new Error('docx library did not load correctly')); };
+      s.onerror = function(){ reject(new Error('network error loading docx library')); };
+      document.head.appendChild(s);
+    });
+    return docxLoadPromise;
+  }
+
+  function blankIfEmpty(s){ return s && s.length ? s : '\u2014'; }
+  function formatMoney(n){
+    if(isNaN(n)) return '\u2014';
+    var sign = n < 0 ? '-' : '';
+    var rounded = Math.round(Math.abs(n));
+    return sign + '$' + rounded.toLocaleString('en-US');
+  }
+
+  function readJeTable(tableEl){
+    var rows = [];
+    tableEl.querySelectorAll('tbody tr').forEach(function(tr){
+      var tds = tr.querySelectorAll('td');
+      var acct = '';
+      var sel = tds[0].querySelector('select.acct-select');
+      if(sel){
+        acct = sel.value === 'Other' ? (tds[0].querySelector('input.acct-other') || {}).value || '' : sel.value;
+      } else {
+        var acctInput = tds[0].querySelector('input');
+        acct = acctInput ? acctInput.value.trim() : (tds[0].textContent || '').trim();
+      }
+      var debitInput = tr.querySelector('input.je-debit');
+      var creditInput = tr.querySelector('input.je-credit');
+      var debit = debitInput ? debitInput.value.trim() : '';
+      var credit = creditInput ? creditInput.value.trim() : '';
+      rows.push({ acct: acct.trim(), debit: debit, credit: credit });
+    });
+    return rows;
+  }
+
+  var DOCX_PURPLE = '592C88', DOCX_INK = '221B2E', DOCX_SLATE = '5F5A6B';
+  function docxH(D, text, size){
+    return new D.Paragraph({ spacing: { before: 260, after: 100 }, children: [new D.TextRun({ text: text, bold: true, color: DOCX_PURPLE, size: size || 26 })] });
+  }
+  function docxH4(D, text){
+    return new D.Paragraph({ spacing: { before: 160, after: 60 }, children: [new D.TextRun({ text: text, bold: true, color: DOCX_PURPLE, size: 21 })] });
+  }
+  function docxP(D, text, opts){
+    opts = opts || {};
+    return new D.Paragraph({ spacing: { before: 60, after: 60 }, children: [new D.TextRun({ text: text, size: opts.size || 20, color: opts.color || DOCX_INK, bold: !!opts.bold, italics: !!opts.italics })] });
+  }
+  function docxCell(D, text, width, opts){
+    opts = opts || {};
+    var borders = {};
+    if (opts.borderTop) borders.top = { style: D.BorderStyle.SINGLE, size: 6, color: DOCX_PURPLE };
+    return new D.TableCell({
+      width: { size: width, type: D.WidthType.DXA },
+      shading: opts.shading ? { type: D.ShadingType.CLEAR, fill: opts.shading } : undefined,
+      borders: opts.borderTop ? borders : undefined,
+      margins: { top: 60, bottom: 60, left: 90, right: 90 },
+      children: [new D.Paragraph({ children: [new D.TextRun({ text: text, size: 19, bold: !!opts.bold, color: opts.color || DOCX_INK })] })]
+    });
+  }
+  function docxRow(cells){ return new (window.docx.TableRow)({ children: cells }); }
+  function docxTable(D, widths, rows){
+    return new D.Table({ width: { size: widths.reduce(function(a,b){return a+b;},0), type: D.WidthType.DXA }, columnWidths: widths, rows: rows });
+  }
+  function docxJeTable(D, tableEl, widths){
+    widths = widths || [5040, 2160, 2160];
+    var rows = readJeTable(tableEl);
+    var debitSum = 0, creditSum = 0;
+    rows.forEach(function(r){
+      var d = parseMoney(r.debit); if(!isNaN(d)) debitSum += d;
+      var c = parseMoney(r.credit); if(!isNaN(c)) creditSum += c;
+    });
+    var out = [];
+    out.push(docxRow([
+      docxCell(D, 'Account', widths[0], { bold: true, shading: DOCX_PURPLE, color: 'FFFFFF' }),
+      docxCell(D, 'Debit', widths[1], { bold: true, shading: DOCX_PURPLE, color: 'FFFFFF' }),
+      docxCell(D, 'Credit', widths[2], { bold: true, shading: DOCX_PURPLE, color: 'FFFFFF' })
+    ]));
+    rows.forEach(function(r){
+      out.push(docxRow([
+        docxCell(D, blankIfEmpty(r.acct), widths[0], {}),
+        docxCell(D, blankIfEmpty(r.debit), widths[1], {}),
+        docxCell(D, blankIfEmpty(r.credit), widths[2], {})
+      ]));
+    });
+    out.push(docxRow([
+      docxCell(D, 'Totals', widths[0], { bold: true, borderTop: true }),
+      docxCell(D, formatMoney(debitSum), widths[1], { bold: true, borderTop: true }),
+      docxCell(D, formatMoney(creditSum), widths[2], { bold: true, borderTop: true })
+    ]));
+    return docxTable(D, widths, out);
+  }
+  function docxScoreLine(D){
+    var s = computeScoreSilent();
+    var color = s.pct >= 90 ? '1E5C34' : (s.pct >= 60 ? '7A5B1E' : '9C3B34');
+    return docxP(D, 'Score: ' + s.pct + '% (' + s.correct + ' of ' + s.total + ' graded fields correct)', { bold: true, color: color, size: 22 });
+  }
+
+  function buildAnswersDoc(){
+    var D = window.docx;
+    var name = blankIfEmpty(val('studentName'));
+    var sid = blankIfEmpty(val('studentId'));
+    var children = [];
+    children.push(new D.Paragraph({ heading: D.HeadingLevel.TITLE, spacing: { after: 60 }, children: [new D.TextRun({ text: 'Dollar-Value LIFO Retail Inventory Method', color: DOCX_PURPLE, size: 32, bold: true })] }));
+    children.push(docxP(D, 'Name: ' + name + '     Student ID: ' + sid, { bold: true }));
+    children.push(docxP(D, 'ACCT 605  \u00b7  Advanced Financial Accounting  \u00b7  Highlands Camera Company', { color: DOCX_SLATE }));
+    children.push(docxScoreLine(D));
+
+    children.push(docxH(D, 'Scenario'));
+    children.push(docxP(D, 'Highlands Camera Company adopted the dollar-value LIFO retail method on January 1, 2027. Price indexes were 1.00 at 1/1/2027, 1.06 at 12/31/2027, and 1.10 at 12/31/2028.'));
+
+    function stepTable(rows){
+      var widths = [6480, 2160];
+      var out = [docxRow([docxCell(D,'Step',widths[0],{bold:true,shading:DOCX_PURPLE,color:'FFFFFF'}), docxCell(D,'Value',widths[1],{bold:true,shading:DOCX_PURPLE,color:'FFFFFF'})])];
+      rows.forEach(function(r){ out.push(docxRow([docxCell(D,r[0],widths[0],{}), docxCell(D,r[1],widths[1],{})])); });
+      return docxTable(D, widths, out);
+    }
+
+    children.push(docxH(D, '2027'));
+    children.push(stepTable([
+      ['Current-year cost-to-retail %', blankIfEmpty(val('p27-ratio'))],
+      ['Ending inventory at retail (current prices)', blankIfEmpty(val('p27-ret'))],
+      ['Ending inventory at retail (base-year prices)', blankIfEmpty(val('p27-base'))],
+      ['2027 LIFO layer, base-year retail', blankIfEmpty(val('p27-layer-base'))],
+      ['2027 LIFO layer, at 2027 cost', blankIfEmpty(val('p27-layer-cost'))],
+      ['Ending inventory, 12/31/2027 (DV LIFO cost)', blankIfEmpty(val('p27-ei'))],
+      ['Cost of goods sold, 2027', blankIfEmpty(val('p27-cogs'))]
+    ]));
+    children.push(docxP(D, 'Key: cost-to-retail % 75.00%; ending retail $85,550; deflated $80,708; 2027 layer $6,708 base / $5,333 at cost; ending inventory $57,133; COGS $99,518.', { italics: true, color: DOCX_SLATE, size: 18 }));
+
+    children.push(docxH(D, '2028'));
+    children.push(stepTable([
+      ['Current-year (2028) cost-to-retail %', blankIfEmpty(val('p28-ratio'))],
+      ['Ending inventory at retail (current prices)', blankIfEmpty(val('p28-ret'))],
+      ['Ending inventory at retail (base-year prices)', blankIfEmpty(val('p28-base'))],
+      ['2028 LIFO layer, base-year retail', blankIfEmpty(val('p28-layer-base'))],
+      ['2028 LIFO layer, at 2028 cost', blankIfEmpty(val('p28-layer-cost'))],
+      ['Ending inventory, 12/31/2028 (DV LIFO cost)', blankIfEmpty(val('p28-ei'))],
+      ['Cost of goods sold, 2028', blankIfEmpty(val('p28-cogs'))]
+    ]));
+    children.push(docxP(D, 'Key: cost-to-retail % 80.27%; ending retail $99,230; deflated $90,209; 2028 layer $9,502 base / $8,390 at cost; ending inventory $65,522; COGS $103,342.', { italics: true, color: DOCX_SLATE, size: 18 }));
+
+    children.push(new D.Paragraph({ spacing: { before: 300 }, alignment: D.AlignmentType.CENTER, children: [new D.TextRun({ text: 'Dollar-Value LIFO Retail Inventory Method  \u00b7  ACCT 605  \u00b7  Western Carolina University', size: 16, italics: true, color: DOCX_SLATE })] }));
+
+    return new D.Document({
+      sections: [{
+        properties: { page: { size: { width: 12240, height: 15840 }, margin: { top: 1440, bottom: 1440, left: 1440, right: 1440 } } },
+        children: children
+      }]
+    });
+  }
+
+  document.getElementById('downloadDocxBtn').addEventListener('click', function(){
+    var statusEl = document.getElementById('submitStatus');
+    statusEl.classList.remove('error');
+    statusEl.textContent = 'Preparing your Word document\u2026';
+    loadDocxLib().then(function(){
+      var doc = buildAnswersDoc();
+      return window.docx.Packer.toBlob(doc);
+    }).then(function(blob){
+      var idPart = val('studentId') || 'submission';
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'Dollar-Value-LIFO-Retail-' + idPart + '.docx';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      statusEl.textContent = 'Downloaded.';
+      setTimeout(function(){ statusEl.textContent = ''; }, 4000);
+    }).catch(function(err){
+      statusEl.classList.add('error');
+      statusEl.textContent = 'Could not load the Word export tool (needs internet access) \u2014 use Print / Save as PDF instead.';
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
