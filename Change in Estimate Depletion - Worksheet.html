@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Change in Estimate: Depletion &mdash; Spruce Pine Minerals</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+
+  :root{
+    --purple:#592C88;
+    --purple-deep:#38195A;
+    --purple-mid:#6E3FA3;
+    --gold:#B0925C;
+    --gold-soft:#D6C398;
+    --gold-pale:#F1E9D6;
+    --parchment:#F7F4EC;
+    --paper:#FFFEFA;
+    --ink:#221B2E;
+    --slate:#5F5A6B;
+    --line:#DBD3E0;
+    --line-soft:#EAE4EF;
+    --answer:#1E5C34;
+    --answer-bg:#E7F1E9;
+    --danger:#9C3B34;
+    --shadow: 0 1px 2px rgba(56,25,90,0.07), 0 6px 18px rgba(56,25,90,0.08);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--parchment);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ color:inherit; }
+
+  header{
+    background: linear-gradient(180deg, var(--purple) 0%, var(--purple-deep) 100%);
+    color:#F1E9D6;
+    padding: 30px 6vw 24px;
+    position:relative;
+  }
+  header::after{
+    content:"";
+    position:absolute; left:0; right:0; bottom:0; height:4px;
+    background: linear-gradient(90deg, var(--gold-soft), var(--gold) 40%, var(--gold-soft) 70%, var(--gold));
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--gold-soft); margin:0 0 10px;
+  }
+  h1.title{
+    font-family:'Source Serif 4', serif; font-weight:600;
+    font-size:clamp(24px,3.4vw,34px); margin:0 0 8px; letter-spacing:-0.01em;
+  }
+  .subtitle{ font-size:14.5px; color:#D9CDE5; max-width:680px; margin:0; }
+
+  .id-bar{
+    max-width:900px; margin:0 auto; padding:18px 6vw 0;
+    display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+  }
+  .id-bar label{ font-size:13px; font-weight:600; color:var(--slate); }
+  .id-bar input[type="text"]{
+    font-family:'IBM Plex Mono', monospace; font-size:13.5px; padding:8px 11px;
+    border:1px solid var(--line); border-radius:5px; background:var(--paper); color:var(--ink);
+    width:180px;
+  }
+  .id-bar input:focus{ outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); }
+  .id-bar button{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:8px 15px; border:1px solid var(--purple);
+    background:var(--purple); color:#fff; cursor:pointer;
+  }
+  .id-bar button:hover{ background:var(--purple-mid); }
+  .id-bar .id-hint{ font-size:12px; color:var(--slate); }
+  .id-bar input#studentName{ width:220px; font-family:'Inter',sans-serif; }
+
+  .score-area{ max-width:900px; margin:0 auto; padding:14px 6vw 0; }
+
+  .rounding-note{
+    max-width:900px; margin:14px auto 0; padding:12px 6vw;
+    font-size:12.5px; color:var(--slate); line-height:1.5;
+  }
+  .rounding-note strong{ color:var(--purple); font-weight:600; }
+
+  main{ max-width:900px; margin:0 auto; padding:22px 6vw 90px; }
+
+  .part{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    box-shadow:var(--shadow);
+    padding:24px 26px 26px;
+    margin-top:26px;
+  }
+  .part-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; color:var(--gold); background:var(--purple);
+    display:inline-block; padding:3px 9px; border-radius:4px; letter-spacing:.04em;
+    margin-bottom:12px;
+  }
+  .part h2{
+    font-family:'Source Serif 4', serif; font-size:21px; font-weight:600;
+    color:var(--purple); margin:0 0 12px;
+  }
+  .scenario{
+    background:var(--parchment);
+    border-left:3px solid var(--gold);
+    padding:14px 18px;
+    border-radius:0 6px 6px 0;
+    font-size:14.5px;
+    color:var(--ink);
+    margin-bottom:16px;
+  }
+  .scenario p{ margin:0 0 10px; }
+  .scenario p:last-child{ margin-bottom:0; }
+  .scenario span.val{ font-weight:700; color:var(--purple-deep); }
+
+  .req{
+    font-weight:600;
+    font-size:14.5px;
+    color:var(--ink);
+    margin:20px 0 10px;
+  }
+  .req span.reqlabel{ color:var(--purple); }
+
+  h4.subsection{
+    font-family:'Source Serif 4',serif; font-size:15px; color:var(--purple); margin:22px 0 6px;
+    border-bottom:1px solid var(--line-soft); padding-bottom:4px;
+  }
+
+  table.given{ width:100%; border-collapse:collapse; font-size:13px; margin:6px 0 14px; }
+  table.given th{ text-align:left; font-size:10.5px; text-transform:uppercase; letter-spacing:.03em; color:var(--slate); border-bottom:2px solid var(--purple); padding:6px 8px; }
+  table.given td{ border-bottom:1px solid var(--line); padding:5px 8px; font-family:'IBM Plex Mono', monospace; }
+  table.given td.lbl{ font-family:'Inter',sans-serif; }
+  table.given td.num, table.given th.num{ text-align:right; }
+  table.given tr.given-total td{ border-top:1.3px solid var(--purple); font-weight:600; }
+  table.given tr.given-head td{ font-family:'Source Serif 4',serif; font-weight:600; color:var(--purple); text-align:center; }
+  ol.addinfo{ margin:8px 0; padding-left:20px; font-size:13.5px; }
+  ol.addinfo li{ margin:6px 0; }
+  .footnote{ font-size:12px; color:var(--slate); margin:2px 0 14px; font-style:italic; }
+  .hint{ font-size:12.5px; color:var(--slate); margin:4px 0 10px; }
+
+  table.worksheet{
+    width:100%;
+    border-collapse:collapse;
+    font-size:13.5px;
+    margin:10px 0 4px;
+  }
+  table.worksheet th{
+    text-align:left;
+    font-size:11.5px;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+    color:var(--slate);
+    border-bottom:2px solid var(--purple);
+    padding:8px 8px;
+  }
+  table.worksheet th.num{ text-align:right; }
+  table.worksheet td{
+    border-bottom:1px solid var(--line);
+    padding:9px 8px;
+    vertical-align:middle;
+  }
+  table.worksheet td.method{ font-weight:600; }
+  table.worksheet td.sub{ padding-left:24px; font-weight:400; }
+  table.worksheet td.amt{ width:160px; }
+  table.worksheet td.dash{ text-align:center; color:var(--slate); font-family:'IBM Plex Mono',monospace; }
+  table.worksheet tr.ws-total td{ border-top:1.6px solid var(--purple); font-weight:600; }
+  table.worksheet input[type="text"]{
+    width:100%;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13.5px;
+    padding:6px 8px;
+    border:1px solid var(--line);
+    border-radius:5px;
+    background:var(--parchment);
+    color:var(--ink);
+  }
+  table.worksheet input[type="text"]:focus{
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
+  }
+
+  .score-panel{
+    display:flex; align-items:center; gap:18px;
+    margin:0 0 4px; padding:14px 18px;
+    background:var(--parchment);
+    border:1px solid var(--line);
+    border-radius:8px;
+  }
+  .score-panel.scored-good{ background:var(--answer-bg); border-color:#B7D3BE; }
+  .score-panel.scored-bad{ background:#F8F0EF; border-color:#E2C6C2; }
+  .score-pct{
+    font-family:'Source Serif 4', serif;
+    font-size:30px; font-weight:700; line-height:1.05;
+    color:var(--slate); min-width:96px; text-align:center;
+  }
+  .score-panel.scored-good .score-pct{ color:var(--answer); }
+  .score-panel.scored-bad .score-pct{ color:var(--danger); }
+  .score-detail{ flex:1; min-width:0; }
+  .score-meta{ font-size:13.5px; font-weight:600; color:var(--ink); margin:0 0 7px; }
+  .score-bar{ height:8px; border-radius:4px; background:var(--line-soft); overflow:hidden; }
+  .score-bar span{ display:block; height:100%; width:0; background:var(--purple-mid); transition:width .35s ease; }
+  .score-panel.scored-good .score-bar span{ background:var(--answer); }
+  .score-panel.scored-bad .score-bar span{ background:var(--danger); }
+  .score-sub{ font-size:11.5px; color:var(--slate); margin:7px 0 0; }
+
+  .check-bar{
+    margin-top:20px;
+    padding-top:16px;
+    border-top:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .btn-check{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:9px 18px; border:1px solid var(--purple);
+    background:var(--purple); color:#fff; cursor:pointer;
+  }
+  .btn-check:hover{ background:var(--purple-mid); }
+  .check-summary{ font-size:13.5px; font-weight:600; }
+  .check-summary.good{ color:var(--answer); }
+  .check-summary.bad{ color:var(--danger); }
+  .check-disclaimer{ font-size:11.5px; color:var(--slate); width:100%; margin-top:2px; font-style:italic; }
+
+  input.field-correct{
+    border-color:var(--answer) !important;
+    background:var(--answer-bg) !important;
+  }
+  input.field-incorrect{
+    border-color:var(--danger) !important;
+    background:#F3E1DE !important;
+  }
+
+  .submit-bar{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    box-shadow:var(--shadow);
+    padding:22px 26px 24px;
+    margin-top:26px;
+  }
+  .submit-bar h2{
+    font-family:'Source Serif 4', serif; font-size:19px; font-weight:600;
+    color:var(--purple); margin:0 0 14px;
+  }
+  .submit-row{ display:flex; align-items:center; gap:10px; margin-bottom:12px; flex-wrap:wrap; }
+  .submit-row label{ font-size:13px; font-weight:600; color:var(--slate); }
+  .submit-row input[type="text"]{
+    font-family:'Inter',sans-serif; font-size:13.5px; padding:8px 11px;
+    border:1px solid var(--line); border-radius:5px; background:var(--parchment); color:var(--ink);
+    width:240px;
+  }
+  .submit-row input:focus{ outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); }
+  .btn-submit{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:10px 18px; border:1px solid var(--purple);
+    background:var(--purple); color:#fff; cursor:pointer;
+  }
+  .btn-submit:hover{ background:var(--purple-mid); }
+  .btn-submit-outline{ background:var(--paper); color:var(--purple); }
+  .btn-submit-outline:hover{ background:var(--parchment); }
+  .submit-status{ font-size:13px; font-weight:600; min-height:18px; margin:10px 0 0; color:var(--answer); }
+  .submit-status.error{ color:var(--danger); }
+  .submit-hint{ font-size:12px; color:var(--slate); margin:6px 0 0; }
+
+  @media print{
+    .print-hide, .id-bar, .check-bar, .rounding-note{ display:none !important; }
+    header{ background:none !important; color:var(--ink) !important; padding:0 0 14px !important; }
+    header::after{ display:none !important; }
+    .eyebrow{ color:var(--purple) !important; }
+    .subtitle{ color:var(--slate) !important; }
+    body{ background:#fff !important; }
+    .part{ box-shadow:none !important; border:1px solid #999 !important; break-inside:auto; }
+    .score-panel{ background:#fff !important; border:1.5px solid #000 !important; break-inside:avoid; }
+    .score-bar{ display:none !important; }
+    .score-pct, .score-panel.scored-good .score-pct, .score-panel.scored-bad .score-pct{ color:#000 !important; }
+    .part h2, .part-label, .scenario, h4.subsection{ break-after:avoid; break-inside:avoid; }
+    table.given, table.worksheet{ break-inside:auto; }
+    table.given tr, table.worksheet tr{ break-inside:avoid; }
+    ol.addinfo li{ break-inside:avoid; }
+    .submit-bar{ break-before:avoid; }
+    input[type="text"]{
+      border:none !important;
+      border-bottom:1px solid #000 !important;
+      background:transparent !important;
+      border-radius:0 !important;
+      color:#000 !important;
+      -webkit-appearance:none;
+      appearance:none;
+      padding:2px 4px !important;
+    }
+    .print-name-line{ display:block !important; }
+  }
+  .print-name-line{ display:none; font-size:13px; color:var(--ink); padding:0 6vw; margin:0 0 10px; }
+
+  footer{ text-align:center; padding:26px 6vw 40px; font-size:12px; color:var(--slate); }
+
+  @media (max-width:600px){
+    header, main, .id-bar{ padding-left:5vw; padding-right:5vw; }
+    table.worksheet{ font-size:12.5px; }
+  }
+
+
+  /* ---- additions for journal-entry worksheets and dropdown fields ---- */
+  table.worksheet select{
+    width:100%;
+    font-family:'Inter',sans-serif;
+    font-size:13px;
+    padding:6px 6px;
+    border:1px solid var(--line);
+    border-radius:5px;
+    background:var(--parchment);
+    color:var(--ink);
+  }
+  table.worksheet select:focus{
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
+  }
+  select.field-correct{ border-color:var(--answer) !important; background:var(--answer-bg) !important; }
+  select.field-incorrect{ border-color:var(--danger) !important; background:#F3E1DE !important; }
+
+  table.je{ width:100%; border-collapse:collapse; font-size:13.5px; margin:8px 0 6px; }
+  table.je th{
+    text-align:left; font-size:11.5px; text-transform:uppercase; letter-spacing:.03em;
+    color:var(--slate); border-bottom:2px solid var(--purple); padding:8px 8px;
+  }
+  table.je th.num{ text-align:right; }
+  table.je td{ border-bottom:1px solid var(--line); padding:7px 8px; vertical-align:middle; }
+  table.je td.acct{ width:52%; }
+  table.je td.amt{ width:24%; }
+  table.je tr.indent td.acct{ padding-left:30px; }
+  table.je input[type="text"]{
+    width:100%; font-family:'IBM Plex Mono', monospace; font-size:13.5px;
+    padding:6px 8px; border:1px solid var(--line); border-radius:5px;
+    background:var(--parchment); color:var(--ink); text-align:right;
+  }
+  table.je input[type="text"]:focus{
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
+  }
+  table.je select{
+    width:100%; font-family:'Inter',sans-serif; font-size:13px; padding:6px 6px;
+    border:1px solid var(--line); border-radius:5px; background:var(--parchment); color:var(--ink);
+  }
+  table.je select:focus{
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
+  }
+  .je-cap{ font-size:12.5px; font-weight:600; color:var(--purple); margin:16px 0 0; }
+  .je-sub{ font-size:12px; color:var(--slate); margin:2px 0 0; font-style:italic; }
+  .situation{
+    border-left:3px solid var(--purple-mid);
+    background:#FBF9F4;
+    padding:12px 16px;
+    border-radius:0 6px 6px 0;
+    font-size:14px;
+    margin:26px 0 10px;
+  }
+  .situation .sit-tag{
+    font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.06em;
+    text-transform:uppercase; color:var(--purple); display:block; margin-bottom:4px;
+  }
+  .situation p{ margin:0 0 8px; }
+  .situation p:last-child{ margin-bottom:0; }
+  .situation span.val{ font-weight:700; color:var(--purple-deep); }
+  @media print{
+    table.je{ break-inside:auto; }
+    table.je tr{ break-inside:avoid; }
+    .situation{ break-inside:avoid; background:#fff !important; }
+    table.worksheet select, table.je select{
+      border:none !important; border-bottom:1px solid #000 !important;
+      background:transparent !important; border-radius:0 !important;
+      -webkit-appearance:none; appearance:none; padding:2px 4px !important;
+    }
+  }
+
+  table.worksheet td.amt-wide{ width:56%; }
+
+</style>
+</head>
+<body>
+
+<header>
+  <p class="eyebrow">ACCT 615 &middot; Advanced Financial Accounting &middot; Changes in Estimate</p>
+  <h1 class="title">Change in Estimate: Depletion</h1>
+  <p class="subtitle">Units-of-production depletion and depreciation for a mineral mine, and the prospective effect of revising estimated ore reserves.</p>
+</header>
+
+<p class="print-name-line" id="printNameLine"></p>
+
+<div class="id-bar">
+  <label for="studentName">Name</label>
+  <input type="text" id="studentName" placeholder="First and last name">
+  <label for="studentId">Student ID</label>
+  <input type="text" id="studentId" placeholder="e.g. 920410165">
+  <button id="genBtn" type="button">Generate scenario</button>
+  <span class="id-hint">Leave the ID blank and click to restore the original textbook figures.</span>
+</div>
+
+<div class="score-area" id="scoreArea"></div>
+
+<div class="rounding-note">
+  <strong>Rounding convention:</strong> enter dollar amounts in whole dollars without cents, and per-ton rates to the nearest cent. Do not round intermediate calculations.
+</div>
+
+<main>
+
+
+  <div class="part">
+    <span class="part-label">Problem</span>
+    <h2>Spruce Pine Minerals Company</h2>
+
+    <div class="scenario">
+      <p>In <span class="val" id="yr1">2027</span>, Spruce Pine Minerals purchased land containing a mineral mine for <span class="val" id="landDisp">$1,680,000</span>. Additional costs of <span class="val" id="devDisp">$680,000</span> were incurred to develop the mine. Geologists estimated that <span class="val" id="tonsDisp">250,000</span> tons of ore would be extracted. After the ore is removed, the land will have a resale value of <span class="val" id="resaleDisp">$110,000</span>.</p>
+      <p>To aid in the extraction, Spruce Pine built various structures and small storage buildings on the site at a cost of <span class="val" id="structDisp">$157,500</span>. These structures have a useful life of <span class="val" id="structLifeDisp">10</span> years. The structures cannot be moved after the ore has been removed and will be left at the site. In addition, new equipment costing <span class="val" id="equipDisp">$73,000</span> was purchased and installed at the site. Spruce Pine does not plan to move the equipment to another site, but estimates that it can be sold at auction for <span class="val" id="equipSalvDisp">$5,500</span> after the mining project is completed.</p>
+      <p>In <span class="val" id="yr1b">2027</span>, <span class="val" id="ext1Disp">58,000</span> tons of ore were extracted and sold. In <span class="val" id="yr2">2028</span>, the estimate of total tons of ore in the mine was revised from <span class="val" id="tonsDisp2">250,000</span> to <span class="val" id="tonsRevDisp">274,000</span>. During <span id="yr2b">2028</span>, <span class="val" id="ext2Disp">73,000</span> tons were extracted.</p>
+    </div>
+
+    <div class="req"><span class="reqlabel">Required 1:</span> Compute depletion of the mine and depreciation of the mining structures and equipment for <span id="yr1c">2027</span> and <span id="yr2c">2028</span>. Spruce Pine uses the units-of-production method to determine depreciation on the mining structures and equipment.</div>
+    <div class="req"><span class="reqlabel">Required 2:</span> Compute the book value of the mineral mine, the structures, and the equipment as of December 31, <span id="yr2d">2028</span>.</div>
+
+    <p class="hint">Enter dollar amounts in whole dollars without cents. Enter per-ton rates to the nearest cent (for example, 9.00 or 0.63). Do not round intermediate calculations.</p>
+
+    <h4 class="subsection">Step 1 &mdash; Classify the revision</h4>
+    <table class="worksheet">
+      <thead><tr><th>Question</th><th>Your answer</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="method">How is the <span id="yr2e">2028</span> revision of estimated ore reserves reported?</td>
+          <td class="amt amt-wide">
+            <select id="p3-class">
+              <option value="">— select —</option>
+              <option value="A change in estimate, accounted for prospectively over the remaining reserves">A change in estimate, accounted for prospectively over the remaining reserves</option>
+              <option value="A change in accounting principle, applied retrospectively to prior years">A change in accounting principle, applied retrospectively to prior years</option>
+              <option value="A correction of an error, reported as a prior period adjustment">A correction of an error, reported as a prior period adjustment</option>
+              <option value="An impairment, recognized as a loss in the current period">An impairment, recognized as a loss in the current period</option>
+            </select>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="je-sub">No prior-year amount is restated. The remaining cost at the beginning of the year of the revision is spread over the newly estimated remaining tons.</p>
+
+    <h4 class="subsection">Step 2 &mdash; The depletion base and the original rates</h4>
+    <table class="worksheet">
+      <thead><tr><th>Item</th><th class="num">Amount</th></tr></thead>
+      <tbody>
+        <tr><td class="method">Cost of the land containing the mine</td><td class="amt"><input type="text" id="p3-cost-land" placeholder="$"></td></tr>
+        <tr><td class="method">Add: development costs</td><td class="amt"><input type="text" id="p3-cost-dev" placeholder="$"></td></tr>
+        <tr><td class="method">Less: residual resale value of the land</td><td class="amt"><input type="text" id="p3-cost-resale" placeholder="$"></td></tr>
+        <tr class="ws-total"><td class="method">Depletion base of the mine</td><td class="amt"><input type="text" id="p3-base-mine" placeholder="$"></td></tr>
+        <tr><td class="method">Depletion rate per ton</td><td class="amt"><input type="text" id="p3-rate-mine" placeholder="$ per ton"></td></tr>
+        <tr><td class="method">Depreciable base of the structures</td><td class="amt"><input type="text" id="p3-base-struct" placeholder="$"></td></tr>
+        <tr><td class="method">Structures depreciation rate per ton</td><td class="amt"><input type="text" id="p3-rate-struct" placeholder="$ per ton"></td></tr>
+        <tr><td class="method">Depreciable base of the equipment</td><td class="amt"><input type="text" id="p3-base-equip" placeholder="$"></td></tr>
+        <tr class="ws-total"><td class="method">Equipment depreciation rate per ton</td><td class="amt"><input type="text" id="p3-rate-equip" placeholder="$ per ton"></td></tr>
+      </tbody>
+    </table>
+    <p class="je-sub">The structures have a stated useful life in years, but they are depreciated by units of production over the life of the mine: the mine will be exhausted first, and the structures cannot be moved or sold afterward.</p>
+
+    <h4 class="subsection">Step 3 &mdash; Required 1(a): <span id="yr1d">2027</span> depletion and depreciation</h4>
+    <table class="worksheet">
+      <thead><tr><th>Asset</th><th class="num">Rate per ton</th><th class="num">Tons extracted</th><th class="num">Expense</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="method">Mineral mine &mdash; depletion</td>
+          <td class="amt"><input type="text" id="p3-27-r1" placeholder="$/ton"></td>
+          <td class="amt"><input type="text" id="p3-27-q1" placeholder="tons"></td>
+          <td class="amt"><input type="text" id="p3-27-e1" placeholder="$"></td>
+        </tr>
+        <tr>
+          <td class="method">Structures &mdash; depreciation</td>
+          <td class="amt"><input type="text" id="p3-27-r2" placeholder="$/ton"></td>
+          <td class="amt"><input type="text" id="p3-27-q2" placeholder="tons"></td>
+          <td class="amt"><input type="text" id="p3-27-e2" placeholder="$"></td>
+        </tr>
+        <tr>
+          <td class="method">Equipment &mdash; depreciation</td>
+          <td class="amt"><input type="text" id="p3-27-r3" placeholder="$/ton"></td>
+          <td class="amt"><input type="text" id="p3-27-q3" placeholder="tons"></td>
+          <td class="amt"><input type="text" id="p3-27-e3" placeholder="$"></td>
+        </tr>
+        <tr class="ws-total">
+          <td class="method">Total charged to <span id="yr1e">2027</span></td>
+          <td class="dash">&mdash;</td>
+          <td class="dash">&mdash;</td>
+          <td class="amt"><input type="text" id="p3-27-tot" placeholder="$"></td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="je-sub">All of the ore extracted in each year was sold, so the full amount is charged to the period rather than remaining in inventory.</p>
+
+    <h4 class="subsection">Step 4 &mdash; Revised rates at the beginning of <span id="yr2f">2028</span></h4>
+    <p class="hint">Remaining tons at the beginning of the year equal the revised total estimate less the tons already extracted. Each revised rate is the asset's remaining unallocated cost divided by those remaining tons.</p>
+    <table class="worksheet">
+      <thead><tr><th>Item</th><th class="num">Amount</th></tr></thead>
+      <tbody>
+        <tr><td class="method">Revised estimate of total tons in the mine</td><td class="amt"><input type="text" id="p3-rev-tot" placeholder="tons"></td></tr>
+        <tr><td class="method">Less: tons extracted in <span id="yr1f">2027</span></td><td class="amt"><input type="text" id="p3-rev-used" placeholder="tons"></td></tr>
+        <tr class="ws-total"><td class="method">Remaining estimated tons at January 1, <span id="yr2g">2028</span></td><td class="amt"><input type="text" id="p3-rev-rem" placeholder="tons"></td></tr>
+        <tr><td class="method">Mine &mdash; remaining depletable cost</td><td class="amt"><input type="text" id="p3-rem-mine" placeholder="$"></td></tr>
+        <tr><td class="method">Mine &mdash; revised depletion rate per ton</td><td class="amt"><input type="text" id="p3-rate2-mine" placeholder="$/ton"></td></tr>
+        <tr><td class="method">Structures &mdash; remaining depreciable cost</td><td class="amt"><input type="text" id="p3-rem-struct" placeholder="$"></td></tr>
+        <tr><td class="method">Structures &mdash; revised rate per ton</td><td class="amt"><input type="text" id="p3-rate2-struct" placeholder="$/ton"></td></tr>
+        <tr><td class="method">Equipment &mdash; remaining depreciable cost</td><td class="amt"><input type="text" id="p3-rem-equip" placeholder="$"></td></tr>
+        <tr class="ws-total"><td class="method">Equipment &mdash; revised rate per ton</td><td class="amt"><input type="text" id="p3-rate2-equip" placeholder="$/ton"></td></tr>
+      </tbody>
+    </table>
+
+    <h4 class="subsection">Step 5 &mdash; Required 1(b): <span id="yr2h">2028</span> depletion and depreciation</h4>
+    <table class="worksheet">
+      <thead><tr><th>Asset</th><th class="num">Revised rate</th><th class="num">Tons extracted</th><th class="num">Expense</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="method">Mineral mine &mdash; depletion</td>
+          <td class="amt"><input type="text" id="p3-28-r1" placeholder="$/ton"></td>
+          <td class="amt"><input type="text" id="p3-28-q1" placeholder="tons"></td>
+          <td class="amt"><input type="text" id="p3-28-e1" placeholder="$"></td>
+        </tr>
+        <tr>
+          <td class="method">Structures &mdash; depreciation</td>
+          <td class="amt"><input type="text" id="p3-28-r2" placeholder="$/ton"></td>
+          <td class="amt"><input type="text" id="p3-28-q2" placeholder="tons"></td>
+          <td class="amt"><input type="text" id="p3-28-e2" placeholder="$"></td>
+        </tr>
+        <tr>
+          <td class="method">Equipment &mdash; depreciation</td>
+          <td class="amt"><input type="text" id="p3-28-r3" placeholder="$/ton"></td>
+          <td class="amt"><input type="text" id="p3-28-q3" placeholder="tons"></td>
+          <td class="amt"><input type="text" id="p3-28-e3" placeholder="$"></td>
+        </tr>
+        <tr class="ws-total">
+          <td class="method">Total charged to <span id="yr2i">2028</span></td>
+          <td class="dash">&mdash;</td>
+          <td class="dash">&mdash;</td>
+          <td class="amt"><input type="text" id="p3-28-tot" placeholder="$"></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h4 class="subsection">Step 6 &mdash; Required 2: book values at December 31, <span id="yr2j">2028</span></h4>
+    <table class="worksheet">
+      <thead><tr><th>Asset</th><th class="num">Cost</th><th class="num">Accumulated depletion / depreciation</th><th class="num">Book value</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="method">Mineral mine (including development costs)</td>
+          <td class="amt"><input type="text" id="p3-bv-c1" placeholder="$"></td>
+          <td class="amt"><input type="text" id="p3-bv-a1" placeholder="$"></td>
+          <td class="amt"><input type="text" id="p3-bv-b1" placeholder="$"></td>
+        </tr>
+        <tr>
+          <td class="method">Structures</td>
+          <td class="amt"><input type="text" id="p3-bv-c2" placeholder="$"></td>
+          <td class="amt"><input type="text" id="p3-bv-a2" placeholder="$"></td>
+          <td class="amt"><input type="text" id="p3-bv-b2" placeholder="$"></td>
+        </tr>
+        <tr>
+          <td class="method">Equipment</td>
+          <td class="amt"><input type="text" id="p3-bv-c3" placeholder="$"></td>
+          <td class="amt"><input type="text" id="p3-bv-a3" placeholder="$"></td>
+          <td class="amt"><input type="text" id="p3-bv-b3" placeholder="$"></td>
+        </tr>
+        <tr class="ws-total">
+          <td class="method">Total</td>
+          <td class="amt"><input type="text" id="p3-bv-cT" placeholder="$"></td>
+          <td class="amt"><input type="text" id="p3-bv-aT" placeholder="$"></td>
+          <td class="amt"><input type="text" id="p3-bv-bT" placeholder="$"></td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="je-sub">Check your mine book value: the remaining depletable cost plus the residual resale value of the land should equal it.</p>
+
+    <div class="check-bar">
+      <button class="btn-check" id="checkP3" type="button">Check my work</button>
+      <span class="check-summary" id="p3Summary"></span>
+      <span class="check-disclaimer">This checks whether your figures match the key within a small rounding tolerance &mdash; it does not confirm your supporting computations.</span>
+    </div>
+  </div>
+
+
+  <div class="submit-bar print-hide">
+    <h2>Ready to submit?</h2>
+    <p class="submit-hint" style="margin:0 0 12px;">Your name, student ID and score are taken from the top of the page.</p>
+    <div class="submit-row submit-actions">
+      <button class="btn-submit" id="printBtn" type="button">Print / Save as PDF</button>
+      <button class="btn-submit btn-submit-outline" id="downloadDocxBtn" type="button">Download as Word (.docx)</button>
+    </div>
+    <p class="submit-status" id="submitStatus"></p>
+    <p class="submit-hint">Both options capture exactly what's currently filled in above, including your generated scenario numbers. "Print / Save as PDF" works offline; "Download as Word" needs an internet connection to load the export tool.</p>
+  </div>
+</main>
+
+<footer>Change in Estimate: Depletion &middot; ACCT 615 &middot; Western Carolina University</footer>
+
+<script>
+(function(){
+  var DOC_TITLE = "Change in Estimate: Depletion";
+  var COURSE_LINE = "ACCT 615  \u00b7  Advanced Financial Accounting  \u00b7  Changes in Estimate";
+  var FILE_SLUG = "ACCT615-ChangeInEstimate-Depletion";
+
+  // ---------- seeded pseudo-random ----------
+  function hashSeed(str){
+    var h = 2166136261;
+    for(var i=0;i<str.length;i++){
+      h ^= str.charCodeAt(i);
+      h = Math.imul(h, 16777619);
+    }
+    return h >>> 0;
+  }
+  function mulberry32(seed){
+    return function(){
+      seed |= 0; seed = seed + 0x6D2B79F5 | 0;
+      var t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
+  }
+  function pick(rand, arr){ return arr[Math.floor(rand() * arr.length)]; }
+  function rTo(x, m){ return Math.round(x/m)*m; }
+
+  // ---------- formatting ----------
+  function num0(n){ return Math.round(n).toLocaleString('en-US'); }
+  function money0(n){
+    var v = Math.round(n);
+    return (v < 0 ? '$(' + Math.abs(v).toLocaleString('en-US') + ')' : '$' + v.toLocaleString('en-US'));
+  }
+  function num1(n){
+    return Number(n).toLocaleString('en-US', {minimumFractionDigits:0, maximumFractionDigits:1});
+  }
+  function money1(n){
+    var v = Number(n);
+    var s = Math.abs(v).toLocaleString('en-US', {minimumFractionDigits:0, maximumFractionDigits:1});
+    return v < 0 ? '$(' + s + ')' : '$' + s;
+  }
+  function money2(n){
+    var v = Number(n);
+    var s = Math.abs(v).toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
+    return v < 0 ? '$(' + s + ')' : '$' + s;
+  }
+  function eps2(n){ return money2(n); }
+  function pct(n){ return num1(n) + '%'; }
+
+  function setText(id, text){
+    var el = document.getElementById(id);
+    if(el) el.textContent = text;
+  }
+  function setHTML(id, html){
+    var el = document.getElementById(id);
+    if(el) el.innerHTML = html;
+  }
+
+  // ---------- answer checking ----------
+  // tolerances: 'dollar' whole dollars, 'rate' per-unit rates, 'yr' years, 'text' exact match
+  var TOL = { dollar:2, dollar10:10, rate:0.011, rate3:0.0015, yr:0.01, mil:0.6, milsh:0.3, eps:0.011, text:0 };
+
+  function parseMoney(s){
+    if(s === null || s === undefined) return NaN;
+    var raw = String(s).trim();
+    var neg = /^\(.*\)$/.test(raw) || /^-/.test(raw);
+    var cleaned = raw.replace(/[^0-9.]/g, '');
+    if(cleaned === '') return NaN;
+    var v = parseFloat(cleaned);
+    if(isNaN(v)) return NaN;
+    return neg ? -v : v;
+  }
+  function near(a, b, tol){
+    if(isNaN(a) || isNaN(b)) return false;
+    return Math.abs(a - b) <= tol;
+  }
+  function clearFieldState(el){
+    if(!el) return;
+    el.classList.remove('field-correct', 'field-incorrect');
+  }
+  function clearAllFieldStates(){
+    document.querySelectorAll('.field-correct, .field-incorrect').forEach(function(el){
+      el.classList.remove('field-correct', 'field-incorrect');
+    });
+    document.querySelectorAll('.check-summary').forEach(function(el){
+      el.textContent = ''; el.classList.remove('good','bad');
+    });
+  }
+  function markField(id, correct, tol, isText){
+    var el = document.getElementById(id);
+    if(!el) return null;
+    el.classList.remove('field-correct', 'field-incorrect');
+    var ok;
+    if(isText){
+      ok = String(el.value || '').trim() === String(correct == null ? '' : correct).trim();
+    } else {
+      ok = near(parseMoney(el.value), correct, tol);
+    }
+    el.classList.add(ok ? 'field-correct' : 'field-incorrect');
+    if(!el.dataset.clearBound){
+      var ev = (el.tagName === 'SELECT') ? 'change' : 'input';
+      el.addEventListener(ev, function(){ clearFieldState(el); });
+      el.dataset.clearBound = '1';
+    }
+    return ok;
+  }
+  function updateSummary(elId, results){
+    var el = document.getElementById(elId);
+    if(!el) return;
+    var graded = results.filter(function(r){ return r !== null; }).length;
+    var correct = results.filter(function(r){ return r === true; }).length;
+    el.textContent = correct + ' of ' + graded + ' correct';
+    el.classList.remove('good', 'bad');
+    el.classList.add(correct === graded && graded > 0 ? 'good' : 'bad');
+  }
+
+  // ---------- score ----------
+  var SCORES = {};
+
+  function scoreState(g){
+    if(!SCORES[g.btn]) SCORES[g.btn] = { correct:0, graded:0, attempts:0, checked:false, stale:false };
+    return SCORES[g.btn];
+  }
+  function scorePct(s){
+    return s.graded ? Math.round(s.correct / s.graded * 100) : 0;
+  }
+
+  var SCORE_PROMPT = 'Fill in the worksheet below, then choose <strong>Check my work</strong>. Every blank counts as incorrect.';
+
+  function ensureScorePanel(g){
+    var area = document.getElementById('scoreArea');
+    if(!area) return null;
+    var panel = area.querySelector('.score-panel[data-for="' + g.btn + '"]');
+    if(panel) return panel;
+    panel = document.createElement('div');
+    panel.className = 'score-panel';
+    panel.setAttribute('data-for', g.btn);
+    panel.innerHTML =
+      '<div class="score-pct">&mdash;</div>' +
+      '<div class="score-detail">' +
+        '<p class="score-meta">Score</p>' +
+        '<div class="score-bar"><span></span></div>' +
+        '<p class="score-sub">' + SCORE_PROMPT + '</p>' +
+      '</div>';
+    area.appendChild(panel);
+    return panel;
+  }
+
+  function renderScore(g){
+    var panel = ensureScorePanel(g);
+    if(!panel) return;
+    var s = scoreState(g);
+    var pctEl = panel.querySelector('.score-pct');
+    var metaEl = panel.querySelector('.score-meta');
+    var fillEl = panel.querySelector('.score-bar span');
+    var subEl = panel.querySelector('.score-sub');
+    panel.classList.remove('scored-good', 'scored-bad');
+
+    if(!s.checked){
+      pctEl.innerHTML = '&mdash;';
+      metaEl.textContent = 'Score';
+      fillEl.style.width = '0%';
+      subEl.innerHTML = SCORE_PROMPT;
+      return;
+    }
+    var p = scorePct(s);
+    pctEl.textContent = p + '%';
+    metaEl.textContent = 'Score: ' + s.correct + ' of ' + s.graded + ' correct';
+    fillEl.style.width = p + '%';
+    if(s.stale){
+      subEl.textContent = 'You have changed an answer since this score was calculated — check your work again to update it.';
+    } else if(s.correct === s.graded){
+      subEl.textContent = 'All ' + s.graded + ' figures match the key. Attempt ' + s.attempts + '.';
+      panel.classList.add('scored-good');
+    } else {
+      var missing = s.graded - s.correct;
+      subEl.innerHTML = missing + ' figure' + (missing === 1 ? '' : 's') + ' still to fix' +
+                        '<span class="print-hide"> — outlined in red below</span>. Attempt ' + s.attempts + '.';
+      panel.classList.add('scored-bad');
+    }
+  }
+
+  function markScoreStale(g){
+    var s = scoreState(g);
+    if(!s.checked || s.stale) return;
+    s.stale = true;
+    renderScore(g);
+  }
+
+  function resetScore(g){
+    SCORES[g.btn] = { correct:0, graded:0, attempts:0, checked:false, stale:false };
+    renderScore(g);
+  }
+
+  // ---------- account dropdown helper ----------
+  function acctOptions(list, selectedBlank){
+    var out = '<option value="">— select account —</option>';
+    for(var i=0;i<list.length;i++){
+      out += '<option value="' + list[i] + '">' + list[i] + '</option>';
+    }
+    return out;
+  }
+  function fillAccountSelects(list){
+    var html = acctOptions(list);
+    document.querySelectorAll('select.acctsel').forEach(function(sel){
+      var cur = sel.value;
+      sel.innerHTML = html;
+      if(cur) sel.value = cur;
+    });
+  }
+
+
+
+  function baseline(){
+    return {
+      y1:2027, land:1680000, dev:680000, tons:250000, resale:110000,
+      struct:157500, structLife:10, equip:73000, equipSalv:5500,
+      ext1:58000, tonsRev:274000, ext2:73000
+    };
+  }
+
+  // Every generated scenario keeps all six per-ton rates exact to the cent.
+  // The trick: pick a ratio a/b for (tons remaining before the revision) to
+  // (tons remaining after it), then make every original rate a whole multiple
+  // of b cents. Each revised rate is then rate x a/b — still a whole number of
+  // cents. The textbook figures are the case a/b = 8/9 with a $9.00 mine rate.
+  function randomParams(rand){
+    var ratios = [[8,9],[3,4],[5,6],[7,8],[9,10],[11,12],[5,4],[6,5],[4,3],[7,6]];
+    var r = pick(rand, ratios), a = r[0], b = r[1];
+    var u  = pick(rand,[12000,15000,18000,20000,24000,25000,30000]);
+    // extraction in the first year is set so the mine runs roughly four to six
+    // years, matching the textbook case (250,000 tons at 58,000 per year)
+    var e1 = rTo(a * u / pick(rand,[3.0,3.4,3.8,4.2,4.6]), 1000);
+    var tons    = a * u + e1;
+    var tonsRev = b * u + e1;
+    var rem     = b * u;
+
+    function rateCents(targets){
+      var t = pick(rand, targets);
+      return b * Math.max(1, Math.round(t / b));
+    }
+    var mineC   = rateCents([600,750,900,1050,1200,1350]);
+    var structC = rateCents([40,50,60,70,80]);
+    var equipC  = rateCents([18,24,30,36]);
+
+    var baseMine = mineC / 100 * tons;
+    var resale = pick(rand,[80000,110000,140000,150000]);
+    var dev    = rTo(baseMine * pick(rand,[0.22,0.26,0.30]), 10000);
+    var land   = baseMine + resale - dev;
+
+    var equipSalv = pick(rand,[4000,5500,6500,8000]);
+    var ext2 = rTo(rem * pick(rand,[0.30,0.34,0.38,0.42]), 1000);
+
+    return {
+      y1: pick(rand,[2026,2027,2028]),
+      land: land, dev: dev, tons: tons, resale: resale,
+      struct: structC / 100 * tons,
+      structLife: Math.ceil(tons / e1) + pick(rand,[2,3,4]),
+      equip: equipC / 100 * tons + equipSalv,
+      equipSalv: equipSalv,
+      ext1: e1, tonsRev: tonsRev, ext2: ext2
+    };
+  }
+
+  function solve(p){
+    var d = {};
+    for(var k in p) d[k] = p[k];
+    d.y2 = p.y1 + 1;
+
+    // original bases and rates
+    d.baseMine   = p.land + p.dev - p.resale;
+    d.rateMine   = d.baseMine / p.tons;
+    d.baseStruct = p.struct;
+    d.rateStruct = d.baseStruct / p.tons;
+    d.baseEquip  = p.equip - p.equipSalv;
+    d.rateEquip  = d.baseEquip / p.tons;
+
+    // year 1
+    d.q1 = p.ext1;
+    d.e1mine   = d.rateMine   * p.ext1;
+    d.e1struct = d.rateStruct * p.ext1;
+    d.e1equip  = d.rateEquip  * p.ext1;
+    d.e1tot    = d.e1mine + d.e1struct + d.e1equip;
+
+    // revision
+    d.revTot  = p.tonsRev;
+    d.revUsed = p.ext1;
+    d.revRem  = p.tonsRev - p.ext1;
+
+    d.remMine   = d.baseMine   - d.e1mine;
+    d.remStruct = d.baseStruct - d.e1struct;
+    d.remEquip  = d.baseEquip  - d.e1equip;
+
+    d.rate2Mine   = d.remMine   / d.revRem;
+    d.rate2Struct = d.remStruct / d.revRem;
+    d.rate2Equip  = d.remEquip  / d.revRem;
+
+    // year 2
+    d.q2 = p.ext2;
+    d.e2mine   = d.rate2Mine   * p.ext2;
+    d.e2struct = d.rate2Struct * p.ext2;
+    d.e2equip  = d.rate2Equip  * p.ext2;
+    d.e2tot    = d.e2mine + d.e2struct + d.e2equip;
+
+    // book values
+    d.costMine   = p.land + p.dev;
+    d.accumMine  = d.e1mine + d.e2mine;
+    d.bvMine     = d.costMine - d.accumMine;
+
+    d.costStruct  = p.struct;
+    d.accumStruct = d.e1struct + d.e2struct;
+    d.bvStruct    = d.costStruct - d.accumStruct;
+
+    d.costEquip  = p.equip;
+    d.accumEquip = d.e1equip + d.e2equip;
+    d.bvEquip    = d.costEquip - d.accumEquip;
+
+    d.costTot  = d.costMine + d.costStruct + d.costEquip;
+    d.accumTot = d.accumMine + d.accumStruct + d.accumEquip;
+    d.bvTot    = d.bvMine + d.bvStruct + d.bvEquip;
+
+    d.negResale = -p.resale;
+    d.classAnswer = 'A change in estimate, accounted for prospectively over the remaining reserves';
+    return d;
+  }
+
+  function generateScenario(id){
+    var seed = (id || '').trim();
+    if(seed === '') return solve(baseline());
+    return solve(randomParams(mulberry32(hashSeed(seed.toLowerCase()))));
+  }
+
+  function applyScenario(d){
+    ['yr1','yr1b','yr1c','yr1d','yr1e','yr1f'].forEach(function(i){ setText(i, String(d.y1)); });
+    ['yr2','yr2b','yr2c','yr2d','yr2e','yr2f','yr2g','yr2h','yr2i','yr2j'].forEach(function(i){ setText(i, String(d.y2)); });
+    setText('landDisp', money0(d.land));
+    setText('devDisp', money0(d.dev));
+    setText('tonsDisp', num0(d.tons));
+    setText('tonsDisp2', num0(d.tons));
+    setText('resaleDisp', money0(d.resale));
+    setText('structDisp', money0(d.struct));
+    setText('structLifeDisp', String(d.structLife));
+    setText('equipDisp', money0(d.equip));
+    setText('equipSalvDisp', money0(d.equipSalv));
+    setText('ext1Disp', num0(d.ext1));
+    setText('tonsRevDisp', num0(d.tonsRev));
+    setText('ext2Disp', num0(d.ext2));
+  }
+
+  var R = { type:'rate3' };
+  var Q = { type:'dollar10' };
+
+  var CHECK_GROUPS = [{
+    btn:'checkP3', summary:'p3Summary',
+    fields:[
+      {id:'p3-class', key:'classAnswer', type:'text'},
+
+      {id:'p3-cost-land',   key:'land'},
+      {id:'p3-cost-dev',    key:'dev'},
+      {id:'p3-cost-resale', key:'resale'},
+      {id:'p3-base-mine',   key:'baseMine'},
+      {id:'p3-rate-mine',   key:'rateMine',   type:'rate3'},
+      {id:'p3-base-struct', key:'baseStruct'},
+      {id:'p3-rate-struct', key:'rateStruct', type:'rate3'},
+      {id:'p3-base-equip',  key:'baseEquip'},
+      {id:'p3-rate-equip',  key:'rateEquip',  type:'rate3'},
+
+      {id:'p3-27-r1', key:'rateMine',   type:'rate3'},
+      {id:'p3-27-q1', key:'q1',         type:'dollar10'},
+      {id:'p3-27-e1', key:'e1mine'},
+      {id:'p3-27-r2', key:'rateStruct', type:'rate3'},
+      {id:'p3-27-q2', key:'q1',         type:'dollar10'},
+      {id:'p3-27-e2', key:'e1struct'},
+      {id:'p3-27-r3', key:'rateEquip',  type:'rate3'},
+      {id:'p3-27-q3', key:'q1',         type:'dollar10'},
+      {id:'p3-27-e3', key:'e1equip'},
+      {id:'p3-27-tot', key:'e1tot'},
+
+      {id:'p3-rev-tot',  key:'revTot',  type:'dollar10'},
+      {id:'p3-rev-used', key:'revUsed', type:'dollar10'},
+      {id:'p3-rev-rem',  key:'revRem',  type:'dollar10'},
+      {id:'p3-rem-mine',   key:'remMine'},
+      {id:'p3-rate2-mine', key:'rate2Mine',   type:'rate3'},
+      {id:'p3-rem-struct', key:'remStruct'},
+      {id:'p3-rate2-struct', key:'rate2Struct', type:'rate3'},
+      {id:'p3-rem-equip',  key:'remEquip'},
+      {id:'p3-rate2-equip', key:'rate2Equip',  type:'rate3'},
+
+      {id:'p3-28-r1', key:'rate2Mine',   type:'rate3'},
+      {id:'p3-28-q1', key:'q2',          type:'dollar10'},
+      {id:'p3-28-e1', key:'e2mine'},
+      {id:'p3-28-r2', key:'rate2Struct', type:'rate3'},
+      {id:'p3-28-q2', key:'q2',          type:'dollar10'},
+      {id:'p3-28-e2', key:'e2struct'},
+      {id:'p3-28-r3', key:'rate2Equip',  type:'rate3'},
+      {id:'p3-28-q3', key:'q2',          type:'dollar10'},
+      {id:'p3-28-e3', key:'e2equip'},
+      {id:'p3-28-tot', key:'e2tot'},
+
+      {id:'p3-bv-c1', key:'costMine'},  {id:'p3-bv-a1', key:'accumMine'},  {id:'p3-bv-b1', key:'bvMine'},
+      {id:'p3-bv-c2', key:'costStruct'},{id:'p3-bv-a2', key:'accumStruct'},{id:'p3-bv-b2', key:'bvStruct'},
+      {id:'p3-bv-c3', key:'costEquip'}, {id:'p3-bv-a3', key:'accumEquip'}, {id:'p3-bv-b3', key:'bvEquip'},
+      {id:'p3-bv-cT', key:'costTot'},   {id:'p3-bv-aT', key:'accumTot'},   {id:'p3-bv-bT', key:'bvTot'}
+    ]
+  }];
+
+
+  // ---------------- wiring ----------------
+  var idInput = document.getElementById('studentId');
+  var genBtn = document.getElementById('genBtn');
+  var currentScenario = null;
+
+  function applyAndStore(id){
+    currentScenario = generateScenario(id);
+    applyScenario(currentScenario);
+    clearAllFieldStates();
+    CHECK_GROUPS.forEach(resetScore);
+  }
+  genBtn.addEventListener('click', function(){ applyAndStore(idInput.value); });
+  idInput.addEventListener('keydown', function(e){
+    if(e.key === 'Enter'){ e.preventDefault(); applyAndStore(idInput.value); }
+  });
+  applyAndStore('');
+
+  CHECK_GROUPS.forEach(function(g){
+    var btn = document.getElementById(g.btn);
+    if(!btn) return;
+    renderScore(g);
+
+    var part = btn.closest('.part');
+    if(part){
+      part.addEventListener('input', function(e){
+        if(e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT')) markScoreStale(g);
+      });
+      part.addEventListener('change', function(e){
+        if(e.target && e.target.tagName === 'SELECT') markScoreStale(g);
+      });
+    }
+
+    btn.addEventListener('click', function(){
+      if(!currentScenario) return;
+      var d = currentScenario;
+      var results = g.fields.map(function(f){
+        var correct = (typeof f.key === 'function') ? f.key(d) : d[f.key];
+        var isText = (f.type === 'text');
+        return markField(f.id, correct, f.tol !== undefined ? f.tol : TOL[f.type || 'dollar'], isText);
+      });
+      updateSummary(g.summary, results);
+      var s = scoreState(g);
+      s.graded = results.filter(function(r){ return r !== null; }).length;
+      s.correct = results.filter(function(r){ return r === true; }).length;
+      s.attempts += 1;
+      s.checked = true;
+      s.stale = false;
+      renderScore(g);
+    });
+  });
+
+  // ---------------- Print / Save as PDF ----------------
+  function val(id){
+    var el = document.getElementById(id);
+    return el ? el.value.trim() : '';
+  }
+  document.getElementById('printBtn').addEventListener('click', function(){
+    var name = val('studentName');
+    var id = val('studentId');
+    var line = document.getElementById('printNameLine');
+    line.textContent = 'Name: ' + (name || '_______________________') +
+                       '     Student ID: ' + (id || '_______________________');
+    var oldTitle = document.title;
+    document.title = FILE_SLUG + '-' + (id || 'submission');
+    window.print();
+    document.title = oldTitle;
+  });
+
+  // ---------------- Download as Word (.docx) ----------------
+  var docxLoadPromise = null;
+  function loadDocxLib(){
+    if(window.docx) return Promise.resolve();
+    if(docxLoadPromise) return docxLoadPromise;
+    docxLoadPromise = new Promise(function(resolve, reject){
+      var s = document.createElement('script');
+      s.src = 'https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.umd.js';
+      s.onload = function(){ window.docx ? resolve() : reject(new Error('docx library did not load correctly')); };
+      s.onerror = function(){ reject(new Error('network error loading docx library')); };
+      document.head.appendChild(s);
+    });
+    return docxLoadPromise;
+  }
+  function blankIfEmpty(s){ return s && s.length ? s : '—'; }
+  function cleanText(s){ return (s || '').replace(/\s+/g, ' ').trim(); }
+
+  function buildAnswersDoc(){
+    var D = window.docx;
+    var PURPLE = '592C88', INK = '221B2E', SLATE = '5F5A6B';
+    var name = blankIfEmpty(val('studentName'));
+    var sid = blankIfEmpty(val('studentId'));
+
+    function h(text, size){
+      return new D.Paragraph({ spacing: { before: 260, after: 100 }, children: [new D.TextRun({ text: text, bold: true, color: PURPLE, size: size || 26 })] });
+    }
+    function h4(text){
+      return new D.Paragraph({ spacing: { before: 180, after: 60 }, children: [new D.TextRun({ text: text, bold: true, color: PURPLE, size: 21 })] });
+    }
+    function p(text, opts){
+      opts = opts || {};
+      return new D.Paragraph({ spacing: { before: 60, after: 60 }, children: [new D.TextRun({ text: text, size: opts.size || 20, color: opts.color || INK, bold: !!opts.bold, italics: !!opts.italics })] });
+    }
+    function cell(text, width, opts){
+      opts = opts || {};
+      var borders = {};
+      if (opts.borderTop) borders.top = { style: D.BorderStyle.SINGLE, size: 6, color: PURPLE };
+      return new D.TableCell({
+        width: { size: width, type: D.WidthType.DXA },
+        shading: opts.shading ? { type: D.ShadingType.CLEAR, fill: opts.shading } : undefined,
+        borders: opts.borderTop ? borders : undefined,
+        margins: { top: 60, bottom: 60, left: 90, right: 90 },
+        children: [new D.Paragraph({ children: [new D.TextRun({ text: text, size: 19, bold: !!opts.bold, color: opts.color || INK })] })]
+      });
+    }
+    function row(cells){ return new D.TableRow({ children: cells }); }
+    function table(widths, rows){
+      return new D.Table({ width: { size: widths.reduce(function(a,b){return a+b;},0), type: D.WidthType.DXA }, columnWidths: widths, rows: rows });
+    }
+    function widthsFor(n){
+      var FULL = 9360;
+      if(n <= 1) return [FULL];
+      var first = Math.round(FULL * (n === 2 ? 0.56 : (n === 3 ? 0.46 : 0.34)));
+      var rest = Math.round((FULL - first) / (n - 1));
+      var w = [first];
+      for(var i=1;i<n;i++) w.push(rest);
+      return w;
+    }
+    function fieldText(td){
+      var inp = td.querySelector('input, select');
+      if(!inp) return cleanText(td.textContent);
+      return blankIfEmpty((inp.value || '').trim());
+    }
+    function anyTableDocx(tableEl){
+      var headRow = tableEl.querySelector('thead tr');
+      var headers = headRow ? Array.prototype.map.call(headRow.querySelectorAll('th'), function(th){ return cleanText(th.textContent); }) : null;
+      var bodyRows = Array.prototype.slice.call(tableEl.querySelectorAll('tbody tr'));
+      var ncols = headers ? headers.length : (bodyRows[0] ? bodyRows[0].children.length : 2);
+      var widths = widthsFor(ncols);
+      var out = [];
+      if(headers){
+        out.push(row(headers.map(function(t,i){ return cell(t, widths[i], { bold:true, shading:PURPLE, color:'FFFFFF' }); })));
+      }
+      bodyRows.forEach(function(tr){
+        var isTotal = tr.classList.contains('ws-total') || tr.classList.contains('given-total');
+        var cells = [];
+        Array.prototype.forEach.call(tr.children, function(td, i){
+          var txt = fieldText(td);
+          if(tr.classList.contains('indent') && i === 0) txt = '    ' + txt;
+          cells.push(cell(txt, widths[Math.min(i, widths.length-1)], { bold: isTotal || tr.classList.contains('given-head'), borderTop: isTotal }));
+        });
+        out.push(row(cells));
+      });
+      return table(widths, out);
+    }
+
+    var children = [];
+    children.push(new D.Paragraph({ heading: D.HeadingLevel.TITLE, spacing: { after: 60 }, children: [new D.TextRun({ text: DOC_TITLE, color: PURPLE, size: 32, bold: true })] }));
+    children.push(p('Name: ' + name + '     Student ID: ' + sid, { bold: true }));
+    children.push(p('Score: ' + CHECK_GROUPS.map(function(g){
+      var s = scoreState(g);
+      if(!s.checked) return 'not checked';
+      return s.correct + ' of ' + s.graded + ' correct (' + scorePct(s) + '%)' +
+             (s.stale ? ' — an answer was edited after this score was calculated'
+                      : ', self-checked on attempt ' + s.attempts);
+    }).join('; '), { bold: true, color: PURPLE }));
+    children.push(p(COURSE_LINE, { color: SLATE }));
+
+    document.querySelectorAll('main > .part').forEach(function(partEl){
+      var label = cleanText((partEl.querySelector('.part-label') || {}).textContent || '');
+      var company = cleanText((partEl.querySelector('h2') || {}).textContent || '');
+      children.push(h((label ? label + ' — ' : '') + company));
+
+      Array.prototype.forEach.call(partEl.children, function(el){
+        if (el.classList.contains('part-label') || el.tagName === 'H2' || el.classList.contains('check-bar')) return;
+        if (el.classList.contains('scenario') || el.classList.contains('situation')) {
+          Array.prototype.forEach.call(el.querySelectorAll('p, span.sit-tag'), function(pp){
+            var t = cleanText(pp.textContent);
+            if(t) children.push(p(t, pp.classList && pp.classList.contains('sit-tag') ? { bold:true, color:PURPLE } : {}));
+          });
+          if (!el.querySelector('p')) children.push(p(cleanText(el.textContent)));
+        } else if (el.tagName === 'H4') {
+          children.push(h4(cleanText(el.textContent)));
+        } else if (el.tagName === 'TABLE') {
+          children.push(anyTableDocx(el));
+        } else if (el.classList.contains('footnote') || el.classList.contains('hint') || el.classList.contains('je-sub')) {
+          children.push(p(cleanText(el.textContent), { italics:true, color:SLATE, size:17 }));
+        } else if (el.classList.contains('req') || el.classList.contains('je-cap')) {
+          children.push(p(cleanText(el.textContent), { bold:true }));
+        } else if (el.tagName === 'OL') {
+          Array.prototype.forEach.call(el.querySelectorAll('li'), function(li, i){
+            children.push(p((i+1) + '. ' + cleanText(li.textContent)));
+          });
+        } else if (el.tagName === 'UL') {
+          Array.prototype.forEach.call(el.querySelectorAll('li'), function(li){
+            children.push(p('•  ' + cleanText(li.textContent)));
+          });
+        } else if (el.tagName === 'P') {
+          children.push(p(cleanText(el.textContent)));
+        }
+      });
+    });
+
+    children.push(new D.Paragraph({ spacing: { before: 300 }, alignment: D.AlignmentType.CENTER, children: [new D.TextRun({ text: DOC_TITLE + '  ·  ACCT 615  ·  Western Carolina University', size: 16, italics: true, color: SLATE })] }));
+
+    return new D.Document({
+      sections: [{
+        properties: { page: { size: { width: 12240, height: 15840 }, margin: { top: 1440, bottom: 1440, left: 1440, right: 1440 } } },
+        children: children
+      }]
+    });
+  }
+
+  document.getElementById('downloadDocxBtn').addEventListener('click', function(){
+    var statusEl = document.getElementById('submitStatus');
+    statusEl.classList.remove('error');
+    statusEl.textContent = 'Preparing your Word document…';
+    loadDocxLib().then(function(){
+      var doc = buildAnswersDoc();
+      return window.docx.Packer.toBlob(doc);
+    }).then(function(blob){
+      var idPart = val('studentId') || 'submission';
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = FILE_SLUG + '-' + idPart + '.docx';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      statusEl.textContent = 'Downloaded.';
+      setTimeout(function(){ statusEl.textContent = ''; }, 4000);
+    }).catch(function(err){
+      statusEl.classList.add('error');
+      statusEl.textContent = 'Could not load the Word export tool (needs internet access) — use Print / Save as PDF instead.';
+    });
+  });
+
+})();
+
+</script>
+
+</body>
+</html>
