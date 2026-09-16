@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Assignment 4 &mdash; Education Tax Breaks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+
+  :root{
+    --purple:#592C88;
+    --purple-deep:#38195A;
+    --purple-mid:#6E3FA3;
+    --gold:#B0925C;
+    --gold-soft:#D6C398;
+    --gold-pale:#F1E9D6;
+    --parchment:#F7F4EC;
+    --paper:#FFFEFA;
+    --ink:#221B2E;
+    --slate:#5F5A6B;
+    --line:#DBD3E0;
+    --line-soft:#EAE4EF;
+    --answer:#1E5C34;
+    --answer-bg:#E7F1E9;
+    --danger:#9C3B34;
+    --shadow: 0 1px 2px rgba(56,25,90,0.07), 0 6px 18px rgba(56,25,90,0.08);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--parchment);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ color:inherit; }
+
+  header{
+    background: linear-gradient(180deg, var(--purple) 0%, var(--purple-deep) 100%);
+    color:#F1E9D6;
+    padding: 30px 6vw 24px;
+    position:relative;
+  }
+  header::after{
+    content:"";
+    position:absolute; left:0; right:0; bottom:0; height:4px;
+    background: linear-gradient(90deg, var(--gold-soft), var(--gold) 40%, var(--gold-soft) 70%, var(--gold));
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--gold-soft); margin:0 0 10px;
+  }
+  h1.title{
+    font-family:'Source Serif 4', serif; font-weight:600;
+    font-size:clamp(24px,3.4vw,34px); margin:0 0 8px; letter-spacing:-0.01em;
+  }
+  .subtitle{ font-size:14.5px; color:#D9CDE5; max-width:680px; margin:0; }
+
+  .id-bar{
+    max-width:900px; margin:0 auto; padding:18px 6vw 0;
+    display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+  }
+  .id-bar label{ font-size:13px; font-weight:600; color:var(--slate); }
+  .id-bar input[type="text"]{
+    font-family:'IBM Plex Mono', monospace; font-size:13.5px; padding:8px 11px;
+    border:1px solid var(--line); border-radius:5px; background:var(--paper); color:var(--ink);
+    width:180px;
+  }
+  .id-bar input:focus{ outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); }
+  .id-bar button{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:8px 15px; border:1px solid var(--purple);
+    background:var(--purple); color:#fff; cursor:pointer;
+  }
+  .id-bar button:hover{ background:var(--purple-mid); }
+  .id-bar .id-hint{ font-size:12px; color:var(--slate); }
+  .id-bar input#studentName{ width:220px; font-family:'Inter',sans-serif; }
+
+  .score-area{ max-width:900px; margin:0 auto; padding:14px 6vw 0; }
+
+  .rounding-note{
+    max-width:900px; margin:14px auto 0; padding:12px 6vw;
+    font-size:12.5px; color:var(--slate); line-height:1.5;
+  }
+  .rounding-note strong{ color:var(--purple); font-weight:600; }
+
+  main{ max-width:900px; margin:0 auto; padding:22px 6vw 90px; }
+
+  .part{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    box-shadow:var(--shadow);
+    padding:24px 26px 26px;
+    margin-top:26px;
+  }
+  .part-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; color:var(--gold); background:var(--purple);
+    display:inline-block; padding:3px 9px; border-radius:4px; letter-spacing:.04em;
+    margin-bottom:12px;
+  }
+  .part h2{
+    font-family:'Source Serif 4', serif; font-size:21px; font-weight:600;
+    color:var(--purple); margin:0 0 12px;
+  }
+  .scenario{
+    background:var(--parchment);
+    border-left:3px solid var(--gold);
+    padding:14px 18px;
+    border-radius:0 6px 6px 0;
+    font-size:14.5px;
+    color:var(--ink);
+    margin-bottom:16px;
+  }
+  .scenario p{ margin:0 0 10px; }
+  .scenario p:last-child{ margin-bottom:0; }
+  .scenario span.val{ font-weight:700; color:var(--purple-deep); }
+
+  .req{
+    font-weight:600;
+    font-size:14.5px;
+    color:var(--ink);
+    margin:20px 0 10px;
+  }
+  .req span.reqlabel{ color:var(--purple); }
+
+  h4.subsection{
+    font-family:'Source Serif 4',serif; font-size:15px; color:var(--purple); margin:22px 0 6px;
+    border-bottom:1px solid var(--line-soft); padding-bottom:4px;
+  }
+
+  table.given{ width:100%; border-collapse:collapse; font-size:13px; margin:6px 0 14px; }
+  table.given th{ text-align:left; font-size:10.5px; text-transform:uppercase; letter-spacing:.03em; color:var(--slate); border-bottom:2px solid var(--purple); padding:6px 8px; }
+  table.given td{ border-bottom:1px solid var(--line); padding:5px 8px; font-family:'IBM Plex Mono', monospace; }
+  table.given td.lbl{ font-family:'Inter',sans-serif; }
+  table.given td.num, table.given th.num{ text-align:right; }
+  table.given tr.given-total td{ border-top:1.3px solid var(--purple); font-weight:600; }
+  table.given tr.given-head td{ font-family:'Source Serif 4',serif; font-weight:600; color:var(--purple); text-align:center; }
+  ol.addinfo{ margin:8px 0; padding-left:20px; font-size:13.5px; }
+  ol.addinfo li{ margin:6px 0; }
+  .footnote{ font-size:12px; color:var(--slate); margin:2px 0 14px; font-style:italic; }
+  .hint{ font-size:12.5px; color:var(--slate); margin:4px 0 10px; }
+
+  table.worksheet{
+    width:100%;
+    border-collapse:collapse;
+    font-size:13.5px;
+    margin:10px 0 4px;
+  }
+  table.worksheet th{
+    text-align:left;
+    font-size:11.5px;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+    color:var(--slate);
+    border-bottom:2px solid var(--purple);
+    padding:8px 8px;
+  }
+  table.worksheet th.num{ text-align:right; }
+  table.worksheet td{
+    border-bottom:1px solid var(--line);
+    padding:9px 8px;
+    vertical-align:middle;
+  }
+  table.worksheet td.method{ font-weight:600; }
+  table.worksheet td.sub{ padding-left:24px; font-weight:400; }
+  table.worksheet td.amt{ width:160px; }
+  table.worksheet td.dash{ text-align:center; color:var(--slate); font-family:'IBM Plex Mono',monospace; }
+  table.worksheet tr.ws-total td{ border-top:1.6px solid var(--purple); font-weight:600; }
+  table.worksheet input[type="text"]{
+    width:100%;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13.5px;
+    padding:6px 8px;
+    border:1px solid var(--line);
+    border-radius:5px;
+    background:var(--parchment);
+    color:var(--ink);
+  }
+  table.worksheet input[type="text"]:focus{
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
+  }
+
+  .score-panel{
+    display:flex; align-items:center; gap:18px;
+    margin:0 0 4px; padding:14px 18px;
+    background:var(--parchment);
+    border:1px solid var(--line);
+    border-radius:8px;
+  }
+  .score-panel.scored-good{ background:var(--answer-bg); border-color:#B7D3BE; }
+  .score-panel.scored-bad{ background:#F8F0EF; border-color:#E2C6C2; }
+  .score-pct{
+    font-family:'Source Serif 4', serif;
+    font-size:30px; font-weight:700; line-height:1.05;
+    color:var(--slate); min-width:96px; text-align:center;
+  }
+  .score-panel.scored-good .score-pct{ color:var(--answer); }
+  .score-panel.scored-bad .score-pct{ color:var(--danger); }
+  .score-detail{ flex:1; min-width:0; }
+  .score-meta{ font-size:13.5px; font-weight:600; color:var(--ink); margin:0 0 7px; }
+  .score-bar{ height:8px; border-radius:4px; background:var(--line-soft); overflow:hidden; }
+  .score-bar span{ display:block; height:100%; width:0; background:var(--purple-mid); transition:width .35s ease; }
+  .score-panel.scored-good .score-bar span{ background:var(--answer); }
+  .score-panel.scored-bad .score-bar span{ background:var(--danger); }
+  .score-sub{ font-size:11.5px; color:var(--slate); margin:7px 0 0; }
+
+  .check-bar{
+    margin-top:20px;
+    padding-top:16px;
+    border-top:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .btn-check{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:9px 18px; border:1px solid var(--purple);
+    background:var(--purple); color:#fff; cursor:pointer;
+  }
+  .btn-check:hover{ background:var(--purple-mid); }
+  .check-summary{ font-size:13.5px; font-weight:600; }
+  .check-summary.good{ color:var(--answer); }
+  .check-summary.bad{ color:var(--danger); }
+  .check-disclaimer{ font-size:11.5px; color:var(--slate); width:100%; margin-top:2px; font-style:italic; }
+
+  input.field-correct{
+    border-color:var(--answer) !important;
+    background:var(--answer-bg) !important;
+  }
+  input.field-incorrect{
+    border-color:var(--danger) !important;
+    background:#F3E1DE !important;
+  }
+
+  .submit-bar{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    box-shadow:var(--shadow);
+    padding:22px 26px 24px;
+    margin-top:26px;
+  }
+  .submit-bar h2{
+    font-family:'Source Serif 4', serif; font-size:19px; font-weight:600;
+    color:var(--purple); margin:0 0 14px;
+  }
+  .submit-row{ display:flex; align-items:center; gap:10px; margin-bottom:12px; flex-wrap:wrap; }
+  .submit-row label{ font-size:13px; font-weight:600; color:var(--slate); }
+  .submit-row input[type="text"]{
+    font-family:'Inter',sans-serif; font-size:13.5px; padding:8px 11px;
+    border:1px solid var(--line); border-radius:5px; background:var(--parchment); color:var(--ink);
+    width:240px;
+  }
+  .submit-row input:focus{ outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); }
+  .btn-submit{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:10px 18px; border:1px solid var(--purple);
+    background:var(--purple); color:#fff; cursor:pointer;
+  }
+  .btn-submit:hover{ background:var(--purple-mid); }
+  .btn-submit-outline{ background:var(--paper); color:var(--purple); }
+  .btn-submit-outline:hover{ background:var(--parchment); }
+  .submit-status{ font-size:13px; font-weight:600; min-height:18px; margin:10px 0 0; color:var(--answer); }
+  .submit-status.error{ color:var(--danger); }
+  .submit-hint{ font-size:12px; color:var(--slate); margin:6px 0 0; }
+
+  @media print{
+    .print-hide, .id-bar, .check-bar, .rounding-note{ display:none !important; }
+    header{ background:none !important; color:var(--ink) !important; padding:0 0 14px !important; }
+    header::after{ display:none !important; }
+    .eyebrow{ color:var(--purple) !important; }
+    .subtitle{ color:var(--slate) !important; }
+    body{ background:#fff !important; }
+    .part{ box-shadow:none !important; border:1px solid #999 !important; break-inside:auto; }
+    .score-panel{ background:#fff !important; border:1.5px solid #000 !important; break-inside:avoid; }
+    .score-bar{ display:none !important; }
+    .score-pct, .score-panel.scored-good .score-pct, .score-panel.scored-bad .score-pct{ color:#000 !important; }
+    .part h2, .part-label, .scenario, h4.subsection{ break-after:avoid; break-inside:avoid; }
+    table.given, table.worksheet{ break-inside:auto; }
+    table.given tr, table.worksheet tr{ break-inside:avoid; }
+    ol.addinfo li{ break-inside:avoid; }
+    .submit-bar{ break-before:avoid; }
+    input[type="text"]{
+      border:none !important;
+      border-bottom:1px solid #000 !important;
+      background:transparent !important;
+      border-radius:0 !important;
+      color:#000 !important;
+      -webkit-appearance:none;
+      appearance:none;
+      padding:2px 4px !important;
+    }
+    .print-name-line{ display:block !important; }
+  }
+  .print-name-line{ display:none; font-size:13px; color:var(--ink); padding:0 6vw; margin:0 0 10px; }
+
+  footer{ text-align:center; padding:26px 6vw 40px; font-size:12px; color:var(--slate); }
+
+  @media (max-width:600px){
+    header, main, .id-bar{ padding-left:5vw; padding-right:5vw; }
+    table.worksheet{ font-size:12.5px; }
+  }
+
+
+  /* ---- additions for journal-entry worksheets and dropdown fields ---- */
+  table.worksheet select{
+    width:100%;
+    font-family:'Inter',sans-serif;
+    font-size:13px;
+    padding:6px 6px;
+    border:1px solid var(--line);
+    border-radius:5px;
+    background:var(--parchment);
+    color:var(--ink);
+  }
+  table.worksheet select:focus{
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
+  }
+  select.field-correct{ border-color:var(--answer) !important; background:var(--answer-bg) !important; }
+  select.field-incorrect{ border-color:var(--danger) !important; background:#F3E1DE !important; }
+
+  table.je{ width:100%; border-collapse:collapse; font-size:13.5px; margin:8px 0 6px; }
+  table.je th{
+    text-align:left; font-size:11.5px; text-transform:uppercase; letter-spacing:.03em;
+    color:var(--slate); border-bottom:2px solid var(--purple); padding:8px 8px;
+  }
+  table.je th.num{ text-align:right; }
+  table.je td{ border-bottom:1px solid var(--line); padding:7px 8px; vertical-align:middle; }
+  table.je td.acct{ width:52%; }
+  table.je td.amt{ width:24%; }
+  table.je tr.indent td.acct{ padding-left:30px; }
+  table.je input[type="text"]{
+    width:100%; font-family:'IBM Plex Mono', monospace; font-size:13.5px;
+    padding:6px 8px; border:1px solid var(--line); border-radius:5px;
+    background:var(--parchment); color:var(--ink); text-align:right;
+  }
+  table.je input[type="text"]:focus{
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
+  }
+  table.je select{
+    width:100%; font-family:'Inter',sans-serif; font-size:13px; padding:6px 6px;
+    border:1px solid var(--line); border-radius:5px; background:var(--parchment); color:var(--ink);
+  }
+  table.je select:focus{
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
+  }
+  .je-cap{ font-size:12.5px; font-weight:600; color:var(--purple); margin:16px 0 0; }
+  .je-sub{ font-size:12px; color:var(--slate); margin:2px 0 0; font-style:italic; }
+  .situation{
+    border-left:3px solid var(--purple-mid);
+    background:#FBF9F4;
+    padding:12px 16px;
+    border-radius:0 6px 6px 0;
+    font-size:14px;
+    margin:26px 0 10px;
+  }
+  .situation .sit-tag{
+    font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.06em;
+    text-transform:uppercase; color:var(--purple); display:block; margin-bottom:4px;
+  }
+  .situation p{ margin:0 0 8px; }
+  .situation p:last-child{ margin-bottom:0; }
+  .situation span.val{ font-weight:700; color:var(--purple-deep); }
+  @media print{
+    table.je{ break-inside:auto; }
+    table.je tr{ break-inside:avoid; }
+    .situation{ break-inside:avoid; background:#fff !important; }
+    table.worksheet select, table.je select{
+      border:none !important; border-bottom:1px solid #000 !important;
+      background:transparent !important; border-radius:0 !important;
+      -webkit-appearance:none; appearance:none; padding:2px 4px !important;
+    }
+  }
+
+  table.worksheet td.amt-wide{ width:56%; }
+
+</style>
+
+<style>
+  /* ---- additions for the tax-computation worksheet ---- */
+  table.worksheet td.line{ width:46px; font-family:'IBM Plex Mono',monospace; font-size:12.5px; color:var(--purple); font-weight:600; white-space:nowrap; }
+  table.worksheet td.rate{ width:112px; }
+  table.worksheet td.const{ width:112px; font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--purple-deep); text-align:right; }
+  table.worksheet td.amt5{ width:150px; }
+  table.worksheet td.note{ width:150px; font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--slate); }
+  table.worksheet tr.subhead td{ font-family:'Source Serif 4',serif; font-weight:600; color:var(--purple); background:#FBF9F4; padding-top:7px; padding-bottom:7px; }
+  table.worksheet td.rate input, table.worksheet td.amt5 input{ text-align:right; }
+  .part-tally{ margin-top:14px; font-size:12.5px; font-weight:600; min-height:16px; }
+  .part-tally.good{ color:var(--answer); }
+  .part-tally.bad{ color:var(--danger); }
+
+  details.refbox{
+    background:var(--paper); border:1px solid var(--line); border-radius:10px;
+    box-shadow:var(--shadow); padding:14px 22px; margin-top:26px;
+  }
+  details.refbox summary{
+    cursor:pointer; font-family:'Source Serif 4',serif; font-size:17px; font-weight:600; color:var(--purple);
+  }
+  details.refbox[open] summary{ margin-bottom:8px; }
+  .refgrid{ display:grid; grid-template-columns:1fr 1fr; gap:6px 26px; }
+  .refgrid h5{ font-family:'Source Serif 4',serif; font-size:14px; color:var(--purple); margin:12px 0 2px; }
+  table.sched td.txt{ font-family:'Inter',sans-serif; font-size:12px; }
+  .tablewrap{ overflow-x:auto; }
+  @media (max-width:760px){
+    .refgrid{ grid-template-columns:1fr; }
+    table.worksheet td.note{ display:none; }
+    table.worksheet th.notehead{ display:none; }
+    table.worksheet td.amt5, table.worksheet td.rate, table.worksheet td.const{ width:auto; }
+  }
+  @media print{
+    details.refbox{ display:none !important; }
+    table.worksheet tr.subhead td{ background:#fff !important; }
+    .part-tally{ display:none !important; }
+  }
+</style>
+
+<style>
+  table.worksheet tr.item td.method{ padding-left:24px; font-weight:400; }
+  table.worksheet tr.tot td{ background:var(--answer-bg); }
+  table.worksheet td.kc{ font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--purple-deep); text-align:right; padding-right:14px; }
+  table.grid th{ font-size:10.5px; }
+  table.grid td{ padding:7px 6px; }
+  table.grid td.g{ font-family:'IBM Plex Mono',monospace; font-size:13px; text-align:right; }
+  table.grid td.gin{ width:108px; }
+  table.grid td.gsel{ width:46%; }
+  table.grid td.gsel select{ font-size:12.5px; }
+  table.given.facts td.num{ width:120px; text-align:right; font-family:'IBM Plex Mono',monospace; }
+</style>
+</head>
+
+<body>
+
+<header>
+  <p class="eyebrow">Individual Income Taxation &middot; Education Tax Breaks &middot; 2026</p>
+  <h1 class="title">Assignment 4 &mdash; Education Tax Breaks</h1>
+  <p class="subtitle">Deducting professional education and student loan interest, choosing between the American opportunity and lifetime learning credits, and applying the phase-outs, using the 2026 tax rate schedule.</p>
+</header>
+
+<p class="print-name-line" id="printNameLine"></p>
+
+<div class="id-bar">
+  <label for="studentName">Name</label>
+  <input type="text" id="studentName" placeholder="First and last name">
+  <label for="studentId">Student ID</label>
+  <input type="text" id="studentId" placeholder="e.g. 920410165">
+  <button id="genBtn" type="button">Generate scenario</button>
+  <span class="id-hint">Leave the ID blank and click to restore the original assignment figures.</span>
+</div>
+
+<div class="score-area" id="scoreArea"></div>
+
+<div class="rounding-note">
+  <strong>Rounding convention:</strong> do not round intermediate calculations; enter answers in whole dollars (within $2 of the key is accepted) and percentages with up to two decimals. Enter 0 where an amount is zero &mdash; blank boxes are marked incorrect.
+</div>
+
+<main>
+<div class="part"><span class="part-label">Assignment 4</span><h2>Education tax breaks &mdash; the Browns</h2>
+    <div class="scenario">
+      <p>In <span class="val">2026</span>, Margery and Philip Brown have three children attending college full-time and they claim all three as dependents (all three children are over age 17). They also have education-related expenses for Philip. They paid for the following expenses:</p>
+      <p><strong>1.</strong> Their daughter, Amy, is a Masters student in both Spring 2026 and Fall 2026 at Wake Forest where she received a scholarship for part of her tuition. Her parents paid a total of tuition of <span class="val" id="d-atf">$13,000</span> and room &amp; board of <span class="val" id="d-arb">$12,000</span> (all paid in 2026).</p>
+      <p><strong>2.</strong> Their son, Brad, is a freshman in Spring 2026 and a sophomore in Fall 2026 at Appalachian State University. His parents paid a total of tuition and fees of <span class="val" id="d-btf">$8,400</span> and room &amp; board of <span class="val" id="d-brb">$10,000</span> (all paid in 2026).</p>
+      <p><strong>3.</strong> Their daughter, Elizabeth, started at UNC-CH as a freshman in Fall 2026. She receives a scholarship that covers her tuition, but her parents paid required fees of <span class="val" id="d-etf">$2,000</span>. Her parents also paid room &amp; board of <span class="val" id="d-erb">$7,000</span> and textbooks for <span class="val" id="d-ebk">$1,200</span>.</p>
+      <p><strong>4.</strong> Philip is a self-employed lawyer. He completed continuing education courses (not taken at a qualified higher education institution) that are required to meet the requirements of North Carolina State law and cost <span class="val" id="d-ptf">$4,200</span>. (You can ignore any effects on self-employment tax.)</p>
+      <p><strong>5.</strong> Philip is also paying off student loans from law school. He paid <span class="val" id="d-psl">$3,200</span> of interest in 2026.</p>
+    </div>
+    <table class="given facts">
+      <thead><tr><th>Other information related to their tax return</th><th class="num">Amount</th></tr></thead>
+      <tbody id="factsBody"></tbody>
+    </table>
+    <div class="req"><span class="reqlabel">Required:</span> Compute the Browns&rsquo; 2026 AGI, taxable income, tax, education credits, child tax credit and tax after credits.</div>
+    <p class="hint">Enter whole dollars (answers within $2 of the key are accepted), percentages with up to two decimals (e.g., 9.33), and counts as numbers. Enter 0 where an amount is zero &mdash; blank boxes are marked incorrect.</p>
+<div class="part-tally" id="tally0"></div></div>
+
+  <details class="refbox print-hide">
+    <summary>Reference: 2026 tax rate schedule &mdash; married filing jointly</summary>
+    <h5 style="font-family:'Source Serif 4',serif;font-size:14px;color:var(--purple);margin:10px 0 2px;">Schedule Y-1 &mdash; Married Filing Jointly or Qualifying Surviving Spouse</h5>
+    <table class="given sched"><thead><tr><th class="num">Over</th><th class="num">But not over</th><th>The tax is</th></tr></thead><tbody><tr><td class="num">$0</td><td class="num">$24,800</td><td class="txt">10% of taxable income</td></tr><tr><td class="num">$24,800</td><td class="num">$100,800</td><td class="txt">$2,480 + 12% of excess over $24,800</td></tr><tr><td class="num">$100,800</td><td class="num">$211,400</td><td class="txt">$11,600 + 22% of excess over $100,800</td></tr><tr><td class="num">$211,400</td><td class="num">$403,550</td><td class="txt">$35,932 + 24% of excess over $211,400</td></tr><tr><td class="num">$403,550</td><td class="num">$512,450</td><td class="txt">$82,048 + 32% of excess over $403,550</td></tr><tr><td class="num">$512,450</td><td class="num">$768,700</td><td class="txt">$116,896 + 35% of excess over $512,450</td></tr><tr><td class="num">$768,700</td><td class="num">—</td><td class="txt">$206,583.50 + 37% of excess over $768,700</td></tr></tbody></table>
+  </details>
+
+<div class="part"><span class="part-label">Expenses</span><h2>2026 expenses paid</h2><p class="hint">Total each row and column, decide which credit (if any) each person&rsquo;s expenses qualify for, and enter the expenses that qualify for that credit.</p><div class="tablewrap"><table class="worksheet grid"><thead><tr><th>2026 expenses paid by parents</th><th class="num">Tuition and fees</th><th class="num">Room and board</th><th class="num">Books</th><th class="num">Student loan interest</th><th class="num">Total</th></tr></thead><tbody><tr><td class="method">Amy (Masters)</td><td class="g" id="g-a-tf"></td><td class="g" id="g-a-rb"></td><td class="g" id="g-a-bk"></td><td class="g" id="g-a-sl"></td><td class="gin"><input type="text" id="x-tot-a" placeholder="$"></td></tr><tr><td class="method">Brad (Sophomore)</td><td class="g" id="g-b-tf"></td><td class="g" id="g-b-rb"></td><td class="g" id="g-b-bk"></td><td class="g" id="g-b-sl"></td><td class="gin"><input type="text" id="x-tot-b" placeholder="$"></td></tr><tr><td class="method">Elizabeth (Freshman)</td><td class="g" id="g-e-tf"></td><td class="g" id="g-e-rb"></td><td class="g" id="g-e-bk"></td><td class="g" id="g-e-sl"></td><td class="gin"><input type="text" id="x-tot-e" placeholder="$"></td></tr><tr><td class="method">Philip (self-employed)</td><td class="g" id="g-p-tf"></td><td class="g" id="g-p-rb"></td><td class="g" id="g-p-bk"></td><td class="g" id="g-p-sl"></td><td class="gin"><input type="text" id="x-tot-p" placeholder="$"></td></tr><tr class="ws-total"><td class="method">Total</td><td class="gin"><input type="text" id="x-ct-tf" placeholder="$"></td><td class="gin"><input type="text" id="x-ct-rb" placeholder="$"></td><td class="gin"><input type="text" id="x-ct-bk" placeholder="$"></td><td class="gin"><input type="text" id="x-ct-sl" placeholder="$"></td><td class="gin"><input type="text" id="x-ct-all" placeholder="$"></td></tr></tbody></table></div><h4 class="subsection">Eligibility for education credits</h4><div class="tablewrap"><table class="worksheet grid"><thead><tr><th>Person</th><th>Eligible for tax credit</th><th class="num">Qualified expenses</th></tr></thead><tbody><tr><td class="method">Amy (Masters)</td><td class="gsel"><select id="x-el-a" class="clsel"><option value="">— select —</option><option value="American opportunity credit">American opportunity credit</option><option value="Lifetime learning credit">Lifetime learning credit</option><option value="Neither credit">Neither credit</option></select></td><td class="gin"><input type="text" id="x-q-a" placeholder="$"></td></tr><tr><td class="method">Brad (Sophomore)</td><td class="gsel"><select id="x-el-b" class="clsel"><option value="">— select —</option><option value="American opportunity credit">American opportunity credit</option><option value="Lifetime learning credit">Lifetime learning credit</option><option value="Neither credit">Neither credit</option></select></td><td class="gin"><input type="text" id="x-q-b" placeholder="$"></td></tr><tr><td class="method">Elizabeth (Freshman)</td><td class="gsel"><select id="x-el-e" class="clsel"><option value="">— select —</option><option value="American opportunity credit">American opportunity credit</option><option value="Lifetime learning credit">Lifetime learning credit</option><option value="Neither credit">Neither credit</option></select></td><td class="gin"><input type="text" id="x-q-e" placeholder="$"></td></tr><tr><td class="method">Philip (self-employed)</td><td class="gsel"><select id="x-el-p" class="clsel"><option value="">— select —</option><option value="American opportunity credit">American opportunity credit</option><option value="Lifetime learning credit">Lifetime learning credit</option><option value="Neither credit">Neither credit</option></select></td><td class="gin"><input type="text" id="x-q-p" placeholder="$"></td></tr></tbody></table></div><div class="part-tally" id="tally-g"></div></div><div class="part"><span class="part-label">Tax formula</span><h2>Tax formula</h2><p class="hint">Fill this in last, carrying amounts forward from the supporting sections below.</p><div class="tablewrap"><table class="worksheet"><thead><tr><th>Line</th><th>Item</th><th class="num">Amount</th><th class="num">Total</th><th class="notehead">Computation</th></tr></thead><tbody><tr class=""><td class="line">(1)</td><td class="method">AGI before education deduction</td><td class="amt5"></td><td class="amt5"><input type="text" id="x-agi0" placeholder="$"></td><td class="note"></td></tr><tr class="item"><td class="line"></td><td class="method">Professional education for self-employed individual</td><td class="amt5"><input type="text" id="x-prof" placeholder="$"></td><td class="amt5"></td><td class="note">Deduction for AGI (Schedule C)</td></tr><tr class="ws-total"><td class="line">(2)</td><td class="method">AGI before student loan interest deduction</td><td class="amt5"></td><td class="amt5"><input type="text" id="x-agib" placeholder="$"></td><td class="note"></td></tr><tr class="item"><td class="line"></td><td class="method">Student loan interest deduction</td><td class="amt5"><input type="text" id="x-sli" placeholder="$"></td><td class="amt5"></td><td class="note">From the student loan interest section</td></tr><tr class="ws-total"><td class="line">(3)</td><td class="method">AGI</td><td class="amt5"></td><td class="amt5"><input type="text" id="x-agi" placeholder="$"></td><td class="note">(2) &minus; deduction</td></tr><tr class="item"><td class="line"></td><td class="method">Standard deduction</td><td class="amt5"><input type="text" id="x-sd" placeholder="$"></td><td class="amt5"></td><td class="note"></td></tr><tr class="item"><td class="line"></td><td class="method">Itemized deductions</td><td class="amt5"><input type="text" id="x-idd" placeholder="$"></td><td class="amt5"></td><td class="note">From the itemized deductions section</td></tr><tr class="ws-total"><td class="line">(4)</td><td class="method">Taxable income</td><td class="amt5"></td><td class="amt5"><input type="text" id="x-ti" placeholder="$"></td><td class="note">(3) &minus; greater of the two deductions</td></tr><tr class=""><td class="line">(5)</td><td class="method">Tax</td><td class="amt5"></td><td class="amt5"><input type="text" id="x-tax" placeholder="$"></td><td class="note">From the tax computation section</td></tr><tr class="item"><td class="line"></td><td class="method">Total education credits after phase-out</td><td class="amt5"><input type="text" id="x-edc" placeholder="$"></td><td class="amt5"></td><td class="note">From the education credits section</td></tr><tr class="item"><td class="line"></td><td class="method">Child tax credit</td><td class="amt5"><input type="text" id="x-ctc" placeholder="$"></td><td class="amt5"></td><td class="note">From the child tax credit section</td></tr><tr class="ws-total tot"><td class="line">(6)</td><td class="method">Tax after credits</td><td class="amt5"></td><td class="amt5"><input type="text" id="x-taxac" placeholder="$"></td><td class="note">(5) &minus; credits</td></tr></tbody></table></div><div class="part-tally" id="tally-f"></div></div><div class="part"><span class="part-label">Student loan interest</span><h2>Student loan interest deduction</h2><p class="hint">The deduction is limited, and it phases out over a $30,000 range of AGI (before the deduction) for joint filers.</p><div class="tablewrap"><table class="worksheet"><thead><tr><th>Line</th><th>Item</th><th class="num">Amount</th><th class="num">Total</th><th class="notehead">Computation</th></tr></thead><tbody><tr class="item"><td class="line"></td><td class="method">Actual student loan interest paid</td><td class="amt5"><input type="text" id="x-s-act" placeholder="$"></td><td class="amt5"></td><td class="note"></td></tr><tr class="item"><td class="line"></td><td class="method">Maximum deduction</td><td class="amt5"><input type="text" id="x-s-max" placeholder="$"></td><td class="amt5"></td><td class="note"></td></tr><tr class=""><td class="line"></td><td class="method">Student loan interest before phase-out</td><td class="amt5"></td><td class="amt5"><input type="text" id="x-s-bef" placeholder="$"></td><td class="note">Lesser of the two</td></tr><tr class="item"><td class="line"></td><td class="method">AGI before student loan interest</td><td class="amt5"><input type="text" id="x-s-agib" placeholder="$"></td><td class="amt5"></td><td class="note"></td></tr><tr class="item"><td class="line"></td><td class="method">Phase-out threshold (married filing jointly)</td><td class="amt5"><input type="text" id="x-s-thr" placeholder="$"></td><td class="amt5"></td><td class="note"></td></tr><tr class="item"><td class="line"></td><td class="method">Excess</td><td class="amt5"><input type="text" id="x-s-ex" placeholder="$"></td><td class="amt5"></td><td class="note">Not below 0</td></tr><tr class="item"><td class="line"></td><td class="method">Phase-out percentage</td><td class="amt5"><input type="text" id="x-s-pct" placeholder="%"></td><td class="amt5"></td><td class="note">Excess &divide; $30,000 phase-out range, not over 100%</td></tr><tr class=""><td class="line"></td><td class="method">Phase-out amount</td><td class="amt5"></td><td class="amt5"><input type="text" id="x-s-po" placeholder="$"></td><td class="note"></td></tr><tr class="ws-total tot"><td class="line"></td><td class="method">Allowed student loan interest deduction</td><td class="amt5"></td><td class="amt5"><input type="text" id="x-s-all" placeholder="$"></td><td class="note"></td></tr></tbody></table></div><div class="part-tally" id="tally-s"></div></div><div class="part"><span class="part-label">Itemized deductions</span><h2>Itemized deductions</h2><div class="tablewrap"><table class="worksheet"><thead><tr><th>Line</th><th>Item</th><th class="num">Amount</th><th class="num">Total</th><th class="notehead">Computation</th></tr></thead><tbody><tr class="item"><td class="line"></td><td class="method">State income tax payments</td><td class="amt5"><input type="text" id="x-i-st" placeholder="$"></td><td class="amt5"></td><td class="note"></td></tr><tr class="item"><td class="line"></td><td class="method">Real estate taxes</td><td class="amt5"><input type="text" id="x-i-re" placeholder="$"></td><td class="amt5"></td><td class="note"></td></tr><tr class=""><td class="line"></td><td class="method">Total</td><td class="amt5"></td><td class="amt5"><input type="text" id="x-i-tt" placeholder="$"></td><td class="note"></td></tr><tr class=""><td class="line"></td><td class="method">Limit (SALT cap, married filing jointly)</td><td class="amt5"></td><td class="amt5"><input type="text" id="x-i-lim" placeholder="$"></td><td class="note"></td></tr><tr class="ws-total"><td class="line"></td><td class="method">State and local taxes after limitation</td><td class="amt5"></td><td class="amt5"><input type="text" id="x-i-sta" placeholder="$"></td><td class="note">Lesser of the two</td></tr><tr class=""><td class="line"></td><td class="method">Home mortgage interest</td><td class="amt5"></td><td class="amt5"><input type="text" id="x-i-hmi" placeholder="$"></td><td class="note"></td></tr><tr class="item"><td class="line"></td><td class="method">Charitable contributions</td><td class="amt5"><input type="text" id="x-i-cc" placeholder="$"></td><td class="amt5"></td><td class="note"></td></tr><tr class="item"><td class="line"></td><td class="method">Less: 0.5% of AGI floor (new for 2026)</td><td class="amt5"><input type="text" id="x-i-ccf" placeholder="$"></td><td class="amt5"></td><td class="note">AGI (line 3) &times; 0.5%</td></tr><tr class=""><td class="line"></td><td class="method">Charitable deduction</td><td class="amt5"></td><td class="amt5"><input type="text" id="x-i-ccd" placeholder="$"></td><td class="note"></td></tr><tr class="ws-total tot"><td class="line"></td><td class="method">Total itemized deductions</td><td class="amt5"></td><td class="amt5"><input type="text" id="x-i-tid" placeholder="$"></td><td class="note"></td></tr></tbody></table></div><div class="part-tally" id="tally-i"></div></div><div class="part"><span class="part-label">Tax computation</span><h2>Income tax liability (Schedule Y-1)</h2><p class="hint">Look up taxable income (line 4) in the married filing jointly schedule. Leave &ldquo;But not over&rdquo; blank for the top bracket.</p>
+    <div class="tablewrap">
+    <table class="worksheet">
+      <thead><tr><th class="num">If taxable income is over</th><th class="num">But not over</th><th class="num">The tax is</th><th class="num">Percentage</th><th class="num">Of the amount over</th></tr></thead>
+      <tbody><tr><td><input type="text" id="x-over" placeholder="$"></td><td><input type="text" id="x-notover" placeholder="$ or blank"></td><td><input type="text" id="x-base" placeholder="$"></td><td><input type="text" id="x-pct" placeholder="%"></td><td><input type="text" id="x-amtover" placeholder="$"></td></tr></tbody>
+    </table>
+    </div>
+    <table class="worksheet">
+      <thead><tr><th>Item</th><th class="num">Your answer</th></tr></thead>
+      <tbody><tr><td class="method">Calculate total tax in one step (line 5)</td><td class="amt"><input type="text" id="x-onestep" placeholder="$"></td></tr></tbody>
+    </table>
+<div class="part-tally" id="tally-t"></div></div><div class="part"><span class="part-label">Education credits</span><h2>Education credits</h2><h4 class="subsection">American opportunity credit</h4><div class="tablewrap"><table class="worksheet"><thead><tr><th>Line</th><th>Item</th><th class="num">Qualified expenses</th><th class="num">Credit</th><th class="notehead">Computation</th></tr></thead><tbody><tr class=""><td class="line"></td><td class="method">Maximum allowed credit per student</td><td class="amt5"></td><td class="amt5"><input type="text" id="x-ao-max" placeholder="$"></td><td class="note"></td></tr><tr class=""><td class="line"></td><td class="method">Based on 100% of the first</td><td class="amt5"></td><td class="amt5"><input type="text" id="x-ao-first" placeholder="$"></td><td class="note"></td></tr><tr class=""><td class="line"></td><td class="method">+ 25% of the next $2,000, with a maximum of</td><td class="amt5"></td><td class="amt5"><input type="text" id="x-ao-next" placeholder="$"></td><td class="note"></td></tr><tr class="item"><td class="line"></td><td class="method">Brad</td><td class="amt5"><input type="text" id="x-ao-qb" placeholder="$"></td><td class="amt5"><input type="text" id="x-ao-cb" placeholder="$"></td><td class="note"></td></tr><tr class="item"><td class="line"></td><td class="method">Elizabeth</td><td class="amt5"><input type="text" id="x-ao-qe" placeholder="$"></td><td class="amt5"><input type="text" id="x-ao-ce" placeholder="$"></td><td class="note"></td></tr><tr class="ws-total"><td class="line"></td><td class="method">Total American opportunity credit</td><td class="amt5"></td><td class="amt5"><input type="text" id="x-ao-tot" placeholder="$"></td><td class="note"></td></tr></tbody></table></div><h4 class="subsection">Lifetime learning credit</h4><div class="tablewrap"><table class="worksheet"><thead><tr><th>Line</th><th>Item</th><th class="num">Amount</th><th class="num">Credit</th><th class="notehead">Computation</th></tr></thead><tbody><tr class="item"><td class="line"></td><td class="method">Maximum expenses allowed (per return)</td><td class="amt5"><input type="text" id="x-ll-max" placeholder="$"></td><td class="amt5"></td><td class="note"></td></tr><tr class="item"><td class="line"></td><td class="method">Qualified expenses &mdash; Amy</td><td class="amt5"><input type="text" id="x-ll-q" placeholder="$"></td><td class="amt5"></td><td class="note"></td></tr><tr class="item"><td class="line"></td><td class="method">Credit percentage rate</td><td class="amt5"><input type="text" id="x-ll-rate" placeholder="%"></td><td class="amt5"></td><td class="note"></td></tr><tr class="ws-total"><td class="line"></td><td class="method">Lifetime learning credit</td><td class="amt5"></td><td class="amt5"><input type="text" id="x-ll-c" placeholder="$"></td><td class="note">Lesser of the two &times; rate</td></tr></tbody></table></div><h4 class="subsection">Phase-out of education credits</h4><div class="tablewrap"><table class="worksheet"><thead><tr><th>Line</th><th>Item</th><th class="num">Amount</th><th class="num">Total</th><th class="notehead">Computation</th></tr></thead><tbody><tr class=""><td class="line">(7)</td><td class="method">Total education credits before phase-out</td><td class="amt5"></td><td class="amt5"><input type="text" id="x-ed-tot" placeholder="$"></td><td class="note"></td></tr><tr class="item"><td class="line"></td><td class="method">AGI</td><td class="amt5"><input type="text" id="x-ed-agi" placeholder="$"></td><td class="amt5"></td><td class="note">Line 3</td></tr><tr class="item"><td class="line"></td><td class="method">Phase-out threshold (married filing jointly)</td><td class="amt5"><input type="text" id="x-ed-thr" placeholder="$"></td><td class="amt5"></td><td class="note"></td></tr><tr class="item"><td class="line"></td><td class="method">Excess AGI</td><td class="amt5"><input type="text" id="x-ed-ex" placeholder="$"></td><td class="amt5"></td><td class="note">Not below 0</td></tr><tr class="item"><td class="line"></td><td class="method">Phase-out range</td><td class="amt5"><input type="text" id="x-ed-rng" placeholder="$"></td><td class="amt5"></td><td class="note"></td></tr><tr class="item"><td class="line"></td><td class="method">Phase-out percentage</td><td class="amt5"><input type="text" id="x-ed-pct" placeholder="%"></td><td class="amt5"></td><td class="note">Excess &divide; range, not over 100%</td></tr><tr class=""><td class="line">(8)</td><td class="method">Phase-out amount</td><td class="amt5"></td><td class="amt5"><input type="text" id="x-ed-po" placeholder="$"></td><td class="note">(7) &times; percentage</td></tr><tr class="ws-total tot"><td class="line"></td><td class="method">Education credits after phase-out</td><td class="amt5"></td><td class="amt5"><input type="text" id="x-ed-aft" placeholder="$"></td><td class="note">(7) &minus; (8)</td></tr></tbody></table></div><div class="part-tally" id="tally-e"></div></div><div class="part"><span class="part-label">Child tax credit</span><h2>Child tax credit</h2><div class="tablewrap"><table class="worksheet"><thead><tr><th>Line</th><th>Item</th><th class="num">Number</th><th class="num">Total</th><th class="notehead">Computation</th></tr></thead><tbody><tr class="item"><td class="line"></td><td class="method">Qualifying children under 17 (number)</td><td class="amt5"><input type="text" id="x-c-nq" placeholder="#"></td><td class="amt5"></td><td class="note"></td></tr><tr class="item"><td class="line"></td><td class="method">Credit per qualifying child</td><td class="amt5"><input type="text" id="x-c-cq" placeholder="$"></td><td class="amt5"></td><td class="note"></td></tr><tr class=""><td class="line"></td><td class="method">Credit for qualifying children</td><td class="amt5"></td><td class="amt5"><input type="text" id="x-c-tq" placeholder="$"></td><td class="note">Number &times; credit</td></tr><tr class="item"><td class="line"></td><td class="method">Qualifying dependents other than children (number)</td><td class="amt5"><input type="text" id="x-c-no" placeholder="#"></td><td class="amt5"></td><td class="note"></td></tr><tr class="item"><td class="line"></td><td class="method">Credit per other dependent</td><td class="amt5"><input type="text" id="x-c-co" placeholder="$"></td><td class="amt5"></td><td class="note"></td></tr><tr class=""><td class="line"></td><td class="method">Credit for other dependents</td><td class="amt5"></td><td class="amt5"><input type="text" id="x-c-to" placeholder="$"></td><td class="note">Number &times; credit</td></tr><tr class="ws-total tot"><td class="line"></td><td class="method">Total child tax credit</td><td class="amt5"></td><td class="amt5"><input type="text" id="x-c-tot" placeholder="$"></td><td class="note">AGI is below the $400,000 phase-out</td></tr></tbody></table></div>
+    <div class="check-bar">
+      <button class="btn-check" id="checkP1" type="button">Check my work</button>
+      <span class="check-summary" id="p1Summary"></span>
+      <span class="check-disclaimer">Checks every section on the page. Figures are matched to the key within a small rounding tolerance &mdash; it does not confirm your supporting computations.</span>
+    </div><div class="part-tally" id="tally-c"></div></div>
+
+  <div class="submit-bar print-hide">
+    <h2>Ready to submit?</h2>
+    <p class="submit-hint" style="margin:0 0 12px;">Your name, student ID and score are taken from the top of the page.</p>
+    <div class="submit-row submit-actions">
+      <button class="btn-submit" id="printBtn" type="button">Print / Save as PDF</button>
+      <button class="btn-submit btn-submit-outline" id="downloadDocxBtn" type="button">Download as Word (.docx)</button>
+    </div>
+    <p class="submit-status" id="submitStatus"></p>
+    <p class="submit-hint">Both options capture exactly what&rsquo;s currently filled in above, including your generated scenario numbers. &ldquo;Print / Save as PDF&rdquo; works offline; &ldquo;Download as Word&rdquo; needs an internet connection to load the export tool.</p>
+  </div>
+</main>
+
+<footer>Assignment 4 &middot; Education Tax Breaks &middot; 2026 &middot; Western Carolina University</footer>
+
+<script>
+(function(){
+  // ---------- seeded pseudo-random ----------
+  function hashSeed(str){
+    var h = 2166136261;
+    for(var i=0;i<str.length;i++){
+      h ^= str.charCodeAt(i);
+      h = Math.imul(h, 16777619);
+    }
+    return h >>> 0;
+  }
+  function mulberry32(seed){
+    return function(){
+      seed |= 0; seed = seed + 0x6D2B79F5 | 0;
+      var t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
+  }
+  function pick(rand, arr){ return arr[Math.floor(rand() * arr.length)]; }
+  function rTo(x, m){ return Math.round(x/m)*m; }
+
+  // ---------- formatting ----------
+  function num0(n){ return Math.round(n).toLocaleString('en-US'); }
+  function money0(n){
+    var v = Math.round(n);
+    return (v < 0 ? '$(' + Math.abs(v).toLocaleString('en-US') + ')' : '$' + v.toLocaleString('en-US'));
+  }
+  function num1(n){
+    return Number(n).toLocaleString('en-US', {minimumFractionDigits:0, maximumFractionDigits:1});
+  }
+  function money1(n){
+    var v = Number(n);
+    var s = Math.abs(v).toLocaleString('en-US', {minimumFractionDigits:0, maximumFractionDigits:1});
+    return v < 0 ? '$(' + s + ')' : '$' + s;
+  }
+  function money2(n){
+    var v = Number(n);
+    var s = Math.abs(v).toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
+    return v < 0 ? '$(' + s + ')' : '$' + s;
+  }
+  function eps2(n){ return money2(n); }
+  function pct(n){ return num1(n) + '%'; }
+
+  function setText(id, text){
+    var el = document.getElementById(id);
+    if(el) el.textContent = text;
+  }
+  function setHTML(id, html){
+    var el = document.getElementById(id);
+    if(el) el.innerHTML = html;
+  }
+
+  // ---------- answer checking ----------
+  // tolerances: 'dollar' whole dollars, 'rate' per-unit rates, 'yr' years, 'text' exact match
+  var TOL = { dollar:2, dollar10:10, rate:0.011, rate3:0.0015, yr:0.01, mil:0.6, milsh:0.3, eps:0.011, text:0 };
+
+  function parseMoney(s){
+    if(s === null || s === undefined) return NaN;
+    var raw = String(s).trim();
+    var neg = /^\(.*\)$/.test(raw) || /^-/.test(raw);
+    var cleaned = raw.replace(/[^0-9.]/g, '');
+    if(cleaned === '') return NaN;
+    var v = parseFloat(cleaned);
+    if(isNaN(v)) return NaN;
+    return neg ? -v : v;
+  }
+  function near(a, b, tol){
+    if(isNaN(a) || isNaN(b)) return false;
+    return Math.abs(a - b) <= tol;
+  }
+  function clearFieldState(el){
+    if(!el) return;
+    el.classList.remove('field-correct', 'field-incorrect');
+  }
+  function clearAllFieldStates(){
+    document.querySelectorAll('.field-correct, .field-incorrect').forEach(function(el){
+      el.classList.remove('field-correct', 'field-incorrect');
+    });
+    document.querySelectorAll('.check-summary').forEach(function(el){
+      el.textContent = ''; el.classList.remove('good','bad');
+    });
+  }
+  function markField(id, correct, tol, isText){
+    var el = document.getElementById(id);
+    if(!el) return null;
+    el.classList.remove('field-correct', 'field-incorrect');
+    var ok;
+    if(isText){
+      ok = String(el.value || '').trim() === String(correct == null ? '' : correct).trim();
+    } else {
+      ok = near(parseMoney(el.value), correct, tol);
+    }
+    el.classList.add(ok ? 'field-correct' : 'field-incorrect');
+    if(!el.dataset.clearBound){
+      var ev = (el.tagName === 'SELECT') ? 'change' : 'input';
+      el.addEventListener(ev, function(){ clearFieldState(el); });
+      el.dataset.clearBound = '1';
+    }
+    return ok;
+  }
+  function updateSummary(elId, results){
+    var el = document.getElementById(elId);
+    if(!el) return;
+    var graded = results.filter(function(r){ return r !== null; }).length;
+    var correct = results.filter(function(r){ return r === true; }).length;
+    el.textContent = correct + ' of ' + graded + ' correct';
+    el.classList.remove('good', 'bad');
+    el.classList.add(correct === graded && graded > 0 ? 'good' : 'bad');
+  }
+
+  // ---------- score ----------
+  var SCORES = {};
+
+  function scoreState(g){
+    if(!SCORES[g.btn]) SCORES[g.btn] = { correct:0, graded:0, attempts:0, checked:false, stale:false };
+    return SCORES[g.btn];
+  }
+  function scorePct(s){
+    return s.graded ? Math.round(s.correct / s.graded * 100) : 0;
+  }
+
+  var SCORE_PROMPT = 'Fill in the worksheet below, then choose <strong>Check my work</strong>. Every blank counts as incorrect.';
+
+  function ensureScorePanel(g){
+    var area = document.getElementById('scoreArea');
+    if(!area) return null;
+    var panel = area.querySelector('.score-panel[data-for="' + g.btn + '"]');
+    if(panel) return panel;
+    panel = document.createElement('div');
+    panel.className = 'score-panel';
+    panel.setAttribute('data-for', g.btn);
+    panel.innerHTML =
+      '<div class="score-pct">&mdash;</div>' +
+      '<div class="score-detail">' +
+        '<p class="score-meta">Score</p>' +
+        '<div class="score-bar"><span></span></div>' +
+        '<p class="score-sub">' + SCORE_PROMPT + '</p>' +
+      '</div>';
+    area.appendChild(panel);
+    return panel;
+  }
+
+  function renderScore(g){
+    var panel = ensureScorePanel(g);
+    if(!panel) return;
+    var s = scoreState(g);
+    var pctEl = panel.querySelector('.score-pct');
+    var metaEl = panel.querySelector('.score-meta');
+    var fillEl = panel.querySelector('.score-bar span');
+    var subEl = panel.querySelector('.score-sub');
+    panel.classList.remove('scored-good', 'scored-bad');
+
+    if(!s.checked){
+      pctEl.innerHTML = '&mdash;';
+      metaEl.textContent = 'Score';
+      fillEl.style.width = '0%';
+      subEl.innerHTML = SCORE_PROMPT;
+      return;
+    }
+    var p = scorePct(s);
+    pctEl.textContent = p + '%';
+    metaEl.textContent = 'Score: ' + s.correct + ' of ' + s.graded + ' correct';
+    fillEl.style.width = p + '%';
+    if(s.stale){
+      subEl.textContent = 'You have changed an answer since this score was calculated — check your work again to update it.';
+    } else if(s.correct === s.graded){
+      subEl.textContent = 'All ' + s.graded + ' figures match the key. Attempt ' + s.attempts + '.';
+      panel.classList.add('scored-good');
+    } else {
+      var missing = s.graded - s.correct;
+      subEl.innerHTML = missing + ' figure' + (missing === 1 ? '' : 's') + ' still to fix' +
+                        '<span class="print-hide"> — outlined in red below</span>. Attempt ' + s.attempts + '.';
+      panel.classList.add('scored-bad');
+    }
+  }
+
+  function markScoreStale(g){
+    var s = scoreState(g);
+    if(!s.checked || s.stale) return;
+    s.stale = true;
+    renderScore(g);
+  }
+
+  function resetScore(g){
+    SCORES[g.btn] = { correct:0, graded:0, attempts:0, checked:false, stale:false };
+    renderScore(g);
+  }
+
+  // =================================================================
+  //  Assignment 4 — education tax breaks (2026, married filing jointly)
+  // =================================================================
+  var STD_MFJ = 32200, SALT_CAP = 40400, SALT_PHASE = 505000, SALT_MIN = 10000, CHAR_FLOOR = 0.005;
+  var SLI_MAX = 2500, SLI_THR = 175000, SLI_RANGE = 30000;
+  var ED_THR = 160000, ED_RANGE = 20000;
+  var AOC_MAX = 2500, AOC_FIRST = 2000, AOC_NEXT_MAX = 500;
+  var LLC_MAX_EXP = 10000, LLC_RATE = 20;
+  var CTC_CHILD = 2200, CTC_OTHER = 500;
+  var AOC = "American opportunity credit", LLC = "Lifetime learning credit", NONE = "Neither credit";
+  var MFJ = [[0,24800,0,10],[24800,100800,2480,12],[100800,211400,11600,22],[211400,403550,35932,24],
+             [403550,512450,82048,32],[512450,768700,116896,35],[768700,Infinity,206583.50,37]];
+
+  function bracket(ti){
+    for(var i=0;i<MFJ.length;i++){ if(ti > MFJ[i][0] && ti <= MFJ[i][1]) return MFJ[i]; }
+    return MFJ[0];
+  }
+  function taxOn(ti){ if(ti <= 0) return 0; var b = bracket(ti); return b[2] + (ti - b[0]) * b[3] / 100; }
+  function aocFor(q){ return Math.min(q, AOC_FIRST) + Math.min(Math.max(0, q - AOC_FIRST) * 0.25, AOC_NEXT_MAX); }
+
+  function baseline(){
+    return { agi0:182000, atf:13000, arb:12000, btf:8400, brb:10000, etf:2000, erb:7000, ebk:1200,
+             prof:4200, sl:3200, st:8900, re:5500, hmi:11600, cc:8100 };
+  }
+
+  function rint(rand, lo, hi, step){
+    var n = Math.floor((hi - lo) / step) + 1;
+    return lo + Math.floor(rand() * n) * step;
+  }
+
+  function randomParams(rand){
+    var p, d, tries = 0;
+    do {
+      p = {
+        agi0: rint(rand, 170000, 188000, 100),
+        atf: rint(rand, 7000, 16000, 100), arb: rint(rand, 9000, 14000, 100),
+        btf: rint(rand, 3000, 10000, 100), brb: rint(rand, 8000, 12000, 100),
+        etf: rint(rand, 1000, 3000, 100), erb: rint(rand, 6000, 10000, 100), ebk: rint(rand, 400, 1800, 50),
+        prof: rint(rand, 2000, 6000, 100), sl: rint(rand, 1500, 4500, 50),
+        st: rint(rand, 8000, 13000, 100), re: rint(rand, 4000, 8000, 100),
+        hmi: rint(rand, 9000, 16000, 100), cc: rint(rand, 5000, 10000, 100)
+      };
+      d = solve(p);
+      tries++;
+    } while((d.x.agi <= ED_THR + 1000 || d.x.agi >= ED_THR + ED_RANGE - 1000) && tries < 200);
+    return p;
+  }
+
+  function solve(p){
+    var x = {};
+    // expense grid
+    x['tot-a'] = p.atf + p.arb; x['tot-b'] = p.btf + p.brb; x['tot-e'] = p.etf + p.erb + p.ebk; x['tot-p'] = p.prof + p.sl;
+    x['el-a'] = LLC; x['el-b'] = AOC; x['el-e'] = AOC; x['el-p'] = NONE;
+    x['q-a'] = p.atf; x['q-b'] = p.btf; x['q-e'] = p.etf + p.ebk; x['q-p'] = 0;
+    x['ct-tf'] = p.atf + p.btf + p.etf + p.prof; x['ct-rb'] = p.arb + p.brb + p.erb;
+    x['ct-bk'] = p.ebk; x['ct-sl'] = p.sl;
+    x['ct-all'] = x['ct-tf'] + x['ct-rb'] + x['ct-bk'] + x['ct-sl'];
+    // student loan interest
+    x.agi0 = p.agi0; x.prof = p.prof; x.agib = p.agi0 - p.prof;
+    x['s-act'] = p.sl; x['s-max'] = SLI_MAX; x['s-bef'] = Math.min(p.sl, SLI_MAX);
+    x['s-agib'] = x.agib; x['s-thr'] = SLI_THR; x['s-ex'] = Math.max(0, x.agib - SLI_THR);
+    var sp = Math.min(1, x['s-ex'] / SLI_RANGE);
+    x['s-pct'] = sp * 100;
+    x['s-po'] = x['s-bef'] * sp;
+    x['s-all'] = x['s-bef'] - x['s-po'];
+    x.sli = x['s-all'];
+    x.agi = x.agib - x.sli;
+    // itemized
+    x['i-st'] = p.st; x['i-re'] = p.re; x['i-tt'] = p.st + p.re;
+    x['i-lim'] = Math.max(SALT_MIN, SALT_CAP - Math.max(0, x.agi - SALT_PHASE) * 0.30);
+    x['i-sta'] = Math.min(x['i-tt'], x['i-lim']);
+    x['i-hmi'] = p.hmi;
+    x['i-cc'] = p.cc; x['i-ccf'] = x.agi * CHAR_FLOOR; x['i-ccd'] = Math.max(0, p.cc - x['i-ccf']);
+    x['i-tid'] = x['i-sta'] + x['i-hmi'] + x['i-ccd'];
+    x.sd = STD_MFJ; x.idd = x['i-tid'];
+    x.ti = Math.max(0, x.agi - Math.max(x.sd, x.idd));
+    var b = bracket(x.ti);
+    x.over = b[0]; x.notover = b[1]; x.base = b[2]; x.pct = b[3]; x.amtover = b[0];
+    x.onestep = taxOn(x.ti); x.tax = x.onestep;
+    // education credits
+    x['ao-max'] = AOC_MAX; x['ao-first'] = AOC_FIRST; x['ao-next'] = AOC_NEXT_MAX;
+    x['ao-qb'] = x['q-b']; x['ao-cb'] = aocFor(x['q-b']);
+    x['ao-qe'] = x['q-e']; x['ao-ce'] = aocFor(x['q-e']);
+    x['ao-tot'] = x['ao-cb'] + x['ao-ce'];
+    x['ll-max'] = LLC_MAX_EXP; x['ll-q'] = x['q-a']; x['ll-rate'] = LLC_RATE;
+    x['ll-c'] = Math.min(LLC_MAX_EXP, x['q-a']) * LLC_RATE / 100;
+    x['ed-tot'] = x['ao-tot'] + x['ll-c'];
+    x['ed-agi'] = x.agi; x['ed-thr'] = ED_THR; x['ed-ex'] = Math.max(0, x.agi - ED_THR); x['ed-rng'] = ED_RANGE;
+    var ep = Math.min(1, x['ed-ex'] / ED_RANGE);
+    x['ed-pct'] = ep * 100;
+    x['ed-po'] = x['ed-tot'] * ep;
+    x['ed-aft'] = x['ed-tot'] - x['ed-po'];
+    x.edc = x['ed-aft'];
+    // child tax credit (all three children are over 17)
+    x['c-nq'] = 0; x['c-cq'] = CTC_CHILD; x['c-tq'] = 0;
+    x['c-no'] = 3; x['c-co'] = CTC_OTHER; x['c-to'] = 3 * CTC_OTHER;
+    x['c-tot'] = x['c-tq'] + x['c-to'];
+    x.ctc = x['c-tot'];
+    x.taxac = Math.max(0, x.tax - x.edc - x.ctc);
+    return { raw:p, x:x };
+  }
+
+  function generateScenario(id){
+    var seed = (id || '').trim();
+    if(seed === '') return solve(baseline());
+    return solve(randomParams(mulberry32(hashSeed(seed.toLowerCase()))));
+  }
+
+  function applyScenario(d){
+    var p = d.raw;
+    [['atf','atf'],['arb','arb'],['btf','btf'],['brb','brb'],['etf','etf'],['erb','erb'],['ebk','ebk'],['ptf','prof'],['psl','sl']]
+      .forEach(function(k){ setText('d-' + k[0], money0(p[k[1]])); });
+    var g = { a:[p.atf, p.arb, 0, 0], b:[p.btf, p.brb, 0, 0], e:[p.etf, p.erb, p.ebk, 0], p:[p.prof, 0, 0, p.sl] };
+    Object.keys(g).forEach(function(k){
+      ['tf','rb','bk','sl'].forEach(function(c, i){ setText('g-' + k + '-' + c, g[k][i] ? num0(g[k][i]) : ''); });
+    });
+    function row(lbl, amt){ return '<tr><td class="lbl">' + lbl + '</td><td class="num">' + num0(amt) + '</td></tr>'; }
+    setHTML('factsBody', [
+      row('AGI before the effects of education-related deductions', p.agi0),
+      row('State income tax payments', p.st),
+      row('Real estate taxes', p.re),
+      row('Home mortgage interest', p.hmi),
+      row('Charitable contributions', p.cc)
+    ].join(''));
+  }
+
+  // ---------- grading ----------
+  function F(list){ return list.map(function(k){ return typeof k === 'string' ? [k] : k; }); }
+  var PARTS = [
+    { tally:'tally-g', fields:F(['tot-a',['el-a','text'],'q-a','tot-b',['el-b','text'],'q-b','tot-e',['el-e','text'],'q-e',
+                                 'tot-p',['el-p','text'],'q-p','ct-tf','ct-rb','ct-bk','ct-sl','ct-all']) },
+    { tally:'tally-f', fields:F(['agi0','prof','agib','sli','agi','sd','idd','ti','tax','edc','ctc','taxac']) },
+    { tally:'tally-s', fields:F(['s-act','s-max','s-bef','s-agib','s-thr','s-ex',['s-pct','pct'],'s-po','s-all']) },
+    { tally:'tally-i', fields:F(['i-st','i-re','i-tt','i-lim','i-sta','i-hmi','i-cc','i-ccf','i-ccd','i-tid']) },
+    { tally:'tally-t', fields:F(['over',['notover','ceil'],'base',['pct','pct'],'amtover','onestep']) },
+    { tally:'tally-e', fields:F(['ao-max','ao-first','ao-next','ao-qb','ao-cb','ao-qe','ao-ce','ao-tot',
+                                 'll-max','ll-q',['ll-rate','pct'],'ll-c',
+                                 'ed-tot','ed-agi','ed-thr','ed-ex','ed-rng',['ed-pct','pct'],'ed-po','ed-aft']) },
+    { tally:'tally-c', fields:F(['c-nq','c-cq','c-tq','c-no','c-co','c-to','c-tot']) }
+  ];
+
+  function bindClear(el){
+    if(!el.dataset.clearBound){
+      var ev = (el.tagName === 'SELECT') ? 'change' : 'input';
+      el.addEventListener(ev, function(){ clearFieldState(el); });
+      el.dataset.clearBound = '1';
+    }
+  }
+  function gradeField(id, correct, type){
+    var el = document.getElementById(id);
+    if(!el) return null;
+    var v = String(el.value || '').trim();
+    var ok;
+    if(type === 'text') ok = (v === String(correct));
+    else if(type === 'pct'){
+      var pv = parseMoney(v);
+      ok = near(pv, correct, 0.06) || (!/%/.test(v) && pv > 0 && pv <= 1 && near(pv * 100, correct, 0.06));   // 9.33 or 0.0933
+    }
+    else if(type === 'ceil') ok = (correct === Infinity) ? (v === '' || isNaN(parseMoney(v))) : near(parseMoney(v), correct, TOL.dollar);
+    else ok = near(Math.abs(parseMoney(v)), Math.abs(correct), TOL.dollar);
+    el.classList.remove('field-correct', 'field-incorrect');
+    el.classList.add(ok ? 'field-correct' : 'field-incorrect');
+    bindClear(el);
+    return ok;
+  }
+
+  var CHECK_GROUPS = [{ btn:'checkP1', summary:'p1Summary' }];
+
+  function runCheck(d){
+    var all = [];
+    PARTS.forEach(function(P){
+      var res = P.fields.map(function(f){ return gradeField('x-' + f[0], d.x[f[0]], f[1]); });
+      var el = document.getElementById(P.tally);
+      if(el){
+        var c = res.filter(function(r){ return r === true; }).length;
+        el.textContent = 'This section: ' + c + ' of ' + res.length + ' correct';
+        el.classList.remove('good','bad');
+        el.classList.add(c === res.length ? 'good' : 'bad');
+      }
+      all = all.concat(res);
+    });
+    return all;
+  }
+
+  // ---------------- wiring ----------------
+  var DOC_TITLE = "Assignment 4 — Education Tax Breaks";
+  var COURSE_LINE = "Individual Income Taxation  ·  Education Tax Breaks  ·  2026";
+  var FILE_SLUG = "Assignment4-EducationTaxBreaks";
+  var FOOTER_LINE = "Assignment 4  ·  Education Tax Breaks  ·  Western Carolina University";
+
+  var idInput = document.getElementById('studentId');
+  var genBtn = document.getElementById('genBtn');
+  var currentScenario = null;
+
+  function clearTallies(){
+    document.querySelectorAll('.part-tally').forEach(function(el){ el.textContent=''; el.classList.remove('good','bad'); });
+  }
+  function applyAndStore(id){
+    currentScenario = generateScenario(id);
+    applyScenario(currentScenario);
+    clearAllFieldStates();
+    clearTallies();
+    CHECK_GROUPS.forEach(resetScore);
+  }
+  genBtn.addEventListener('click', function(){ applyAndStore(idInput.value); });
+  idInput.addEventListener('keydown', function(e){
+    if(e.key === 'Enter'){ e.preventDefault(); applyAndStore(idInput.value); }
+  });
+  applyAndStore('');
+
+  CHECK_GROUPS.forEach(function(g){
+    var btn = document.getElementById(g.btn);
+    renderScore(g);
+    var mainEl = document.querySelector('main');
+    mainEl.addEventListener('input', function(e){
+      if(e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT')) markScoreStale(g);
+    });
+    mainEl.addEventListener('change', function(e){
+      if(e.target && e.target.tagName === 'SELECT') markScoreStale(g);
+    });
+    btn.addEventListener('click', function(){
+      if(!currentScenario) return;
+      var results = runCheck(currentScenario);
+      updateSummary(g.summary, results);
+      var s = scoreState(g);
+      s.graded = results.filter(function(r){ return r !== null; }).length;
+      s.correct = results.filter(function(r){ return r === true; }).length;
+      s.attempts += 1;
+      s.checked = true;
+      s.stale = false;
+      renderScore(g);
+    });
+  });
+
+  // test hook (harmless for students)
+  window.__ped = { solve:solve, generateScenario:generateScenario, PARTS:PARTS };
+
+  // ---------------- Print / Save as PDF ----------------
+  function val(id){
+    var el = document.getElementById(id);
+    return el ? el.value.trim() : '';
+  }
+  document.getElementById('printBtn').addEventListener('click', function(){
+    var name = val('studentName');
+    var id = val('studentId');
+    var line = document.getElementById('printNameLine');
+    line.textContent = 'Name: ' + (name || '_______________________') +
+                       '     Student ID: ' + (id || '_______________________');
+    var oldTitle = document.title;
+    document.title = FILE_SLUG + '-' + (id || 'submission');
+    window.print();
+    document.title = oldTitle;
+  });
+
+  // ---------------- Download as Word (.docx) ----------------
+  var docxLoadPromise = null;
+  function loadDocxLib(){
+    if(window.docx) return Promise.resolve();
+    if(docxLoadPromise) return docxLoadPromise;
+    docxLoadPromise = new Promise(function(resolve, reject){
+      var s = document.createElement('script');
+      s.src = 'https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.umd.js';
+      s.onload = function(){ window.docx ? resolve() : reject(new Error('docx library did not load correctly')); };
+      s.onerror = function(){ reject(new Error('network error loading docx library')); };
+      document.head.appendChild(s);
+    });
+    return docxLoadPromise;
+  }
+  function blankIfEmpty(s){ return s && s.length ? s : '—'; }
+  function cleanText(s){ return (s || '').replace(/\s+/g, ' ').trim(); }
+
+  function buildAnswersDoc(){
+    var D = window.docx;
+    var PURPLE = '592C88', INK = '221B2E', SLATE = '5F5A6B';
+    var name = blankIfEmpty(val('studentName'));
+    var sid = blankIfEmpty(val('studentId'));
+
+    function h(text, size){
+      return new D.Paragraph({ spacing: { before: 260, after: 100 }, children: [new D.TextRun({ text: text, bold: true, color: PURPLE, size: size || 26 })] });
+    }
+    function h4(text){
+      return new D.Paragraph({ spacing: { before: 180, after: 60 }, children: [new D.TextRun({ text: text, bold: true, color: PURPLE, size: 21 })] });
+    }
+    function p(text, opts){
+      opts = opts || {};
+      return new D.Paragraph({ spacing: { before: 60, after: 60 }, children: [new D.TextRun({ text: text, size: opts.size || 20, color: opts.color || INK, bold: !!opts.bold, italics: !!opts.italics })] });
+    }
+    function cell(text, width, opts){
+      opts = opts || {};
+      var borders = {};
+      if (opts.borderTop) borders.top = { style: D.BorderStyle.SINGLE, size: 6, color: PURPLE };
+      return new D.TableCell({
+        width: { size: width, type: D.WidthType.DXA },
+        shading: opts.shading ? { type: D.ShadingType.CLEAR, fill: opts.shading } : undefined,
+        borders: opts.borderTop ? borders : undefined,
+        margins: { top: 60, bottom: 60, left: 90, right: 90 },
+        children: [new D.Paragraph({ children: [new D.TextRun({ text: text, size: 19, bold: !!opts.bold, color: opts.color || INK })] })]
+      });
+    }
+    function row(cells){ return new D.TableRow({ children: cells }); }
+    function table(widths, rows){
+      return new D.Table({ width: { size: widths.reduce(function(a,b){return a+b;},0), type: D.WidthType.DXA }, columnWidths: widths, rows: rows });
+    }
+    function widthsFor(n){
+      var FULL = 9360;
+      if(n <= 1) return [FULL];
+      var first = Math.round(FULL * (n === 2 ? 0.56 : (n === 3 ? 0.46 : 0.34)));
+      var rest = Math.round((FULL - first) / (n - 1));
+      var w = [first];
+      for(var i=1;i<n;i++) w.push(rest);
+      return w;
+    }
+    function fieldText(td){
+      var inp = td.querySelector('input, select');
+      if(!inp) return cleanText(td.textContent);
+      return blankIfEmpty((inp.value || '').trim());
+    }
+    function anyTableDocx(tableEl){
+      var headRow = tableEl.querySelector('thead tr');
+      var headers = headRow ? Array.prototype.map.call(headRow.querySelectorAll('th'), function(th){ return cleanText(th.textContent); }) : null;
+      var bodyRows = Array.prototype.slice.call(tableEl.querySelectorAll('tbody tr'));
+      var ncols = headers ? headers.length : (bodyRows[0] ? bodyRows[0].children.length : 2);
+      var widths = (headers && headers[0] === 'Line') ? [700, 3900, 1450, 1510, 1800] : widthsFor(ncols);
+      var out = [];
+      if(headers){
+        out.push(row(headers.map(function(t,i){ return cell(t, widths[i], { bold:true, shading:PURPLE, color:'FFFFFF' }); })));
+      }
+      bodyRows.forEach(function(tr){
+        var isTotal = tr.classList.contains('ws-total') || tr.classList.contains('given-total');
+        var cells = [];
+        Array.prototype.forEach.call(tr.children, function(td, i){
+          var txt = fieldText(td);
+          if(tr.classList.contains('indent') && i === 0) txt = '    ' + txt;
+          cells.push(cell(txt, widths[Math.min(i, widths.length-1)], { bold: isTotal || tr.classList.contains('given-head'), borderTop: isTotal }));
+        });
+        out.push(row(cells));
+      });
+      return table(widths, out);
+    }
+
+    var children = [];
+    children.push(new D.Paragraph({ heading: D.HeadingLevel.TITLE, spacing: { after: 60 }, children: [new D.TextRun({ text: DOC_TITLE, color: PURPLE, size: 32, bold: true })] }));
+    children.push(p('Name: ' + name + '     Student ID: ' + sid, { bold: true }));
+    children.push(p('Score: ' + CHECK_GROUPS.map(function(g){
+      var s = scoreState(g);
+      if(!s.checked) return 'not checked';
+      return s.correct + ' of ' + s.graded + ' correct (' + scorePct(s) + '%)' +
+             (s.stale ? ' — an answer was edited after this score was calculated'
+                      : ', self-checked on attempt ' + s.attempts);
+    }).join('; '), { bold: true, color: PURPLE }));
+    children.push(p(COURSE_LINE, { color: SLATE }));
+
+    document.querySelectorAll('main > .part').forEach(function(partEl){
+      var label = cleanText((partEl.querySelector('.part-label') || {}).textContent || '');
+      var company = cleanText((partEl.querySelector('h2') || {}).textContent || '');
+      children.push(h((label ? label + ' — ' : '') + company));
+
+      Array.prototype.forEach.call(partEl.children, function(el){
+        if (el.classList.contains('part-label') || el.tagName === 'H2' || el.classList.contains('check-bar')) return;
+        if (el.classList.contains('scenario') || el.classList.contains('situation')) {
+          Array.prototype.forEach.call(el.querySelectorAll('p, span.sit-tag'), function(pp){
+            var t = cleanText(pp.textContent);
+            if(t) children.push(p(t, pp.classList && pp.classList.contains('sit-tag') ? { bold:true, color:PURPLE } : {}));
+          });
+          if (!el.querySelector('p')) children.push(p(cleanText(el.textContent)));
+        } else if (el.tagName === 'H4') {
+          children.push(h4(cleanText(el.textContent)));
+        } else if (el.tagName === 'TABLE' || el.classList.contains('tablewrap')) {
+          children.push(anyTableDocx(el.tagName === 'TABLE' ? el : el.querySelector('table')));
+        } else if (el.classList.contains('footnote') || el.classList.contains('hint') || el.classList.contains('je-sub')) {
+          children.push(p(cleanText(el.textContent), { italics:true, color:SLATE, size:17 }));
+        } else if (el.classList.contains('req') || el.classList.contains('je-cap')) {
+          children.push(p(cleanText(el.textContent), { bold:true }));
+        } else if (el.tagName === 'OL') {
+          Array.prototype.forEach.call(el.querySelectorAll('li'), function(li, i){
+            children.push(p((i+1) + '. ' + cleanText(li.textContent)));
+          });
+        } else if (el.tagName === 'UL') {
+          Array.prototype.forEach.call(el.querySelectorAll('li'), function(li){
+            children.push(p('•  ' + cleanText(li.textContent)));
+          });
+        } else if (el.tagName === 'P') {
+          children.push(p(cleanText(el.textContent)));
+        }
+      });
+    });
+
+    children.push(new D.Paragraph({ spacing: { before: 300 }, alignment: D.AlignmentType.CENTER, children: [new D.TextRun({ text: FOOTER_LINE, size: 16, italics: true, color: SLATE })] }));
+
+    return new D.Document({
+      sections: [{
+        properties: { page: { size: { width: 12240, height: 15840 }, margin: { top: 1440, bottom: 1440, left: 1440, right: 1440 } } },
+        children: children
+      }]
+    });
+  }
+
+  document.getElementById('downloadDocxBtn').addEventListener('click', function(){
+    var statusEl = document.getElementById('submitStatus');
+    statusEl.classList.remove('error');
+    statusEl.textContent = 'Preparing your Word document…';
+    loadDocxLib().then(function(){
+      var doc = buildAnswersDoc();
+      return window.docx.Packer.toBlob(doc);
+    }).then(function(blob){
+      var idPart = val('studentId') || 'submission';
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = FILE_SLUG + '-' + idPart + '.docx';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      statusEl.textContent = 'Downloaded.';
+      setTimeout(function(){ statusEl.textContent = ''; }, 4000);
+    }).catch(function(err){
+      statusEl.classList.add('error');
+      statusEl.textContent = 'Could not load the Word export tool (needs internet access) — use Print / Save as PDF instead.';
+    });
+  });
+
+
+})();
+</script>
+
+</body>
+</html>
