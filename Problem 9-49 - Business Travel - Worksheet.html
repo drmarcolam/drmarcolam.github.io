@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Problem 9-49 &mdash; Business Travel Expenses</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+
+  :root{
+    --purple:#592C88;
+    --purple-deep:#38195A;
+    --purple-mid:#6E3FA3;
+    --gold:#B0925C;
+    --gold-soft:#D6C398;
+    --gold-pale:#F1E9D6;
+    --parchment:#F7F4EC;
+    --paper:#FFFEFA;
+    --ink:#221B2E;
+    --slate:#5F5A6B;
+    --line:#DBD3E0;
+    --line-soft:#EAE4EF;
+    --answer:#1E5C34;
+    --answer-bg:#E7F1E9;
+    --danger:#9C3B34;
+    --shadow: 0 1px 2px rgba(56,25,90,0.07), 0 6px 18px rgba(56,25,90,0.08);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--parchment);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ color:inherit; }
+
+  header{
+    background: linear-gradient(180deg, var(--purple) 0%, var(--purple-deep) 100%);
+    color:#F1E9D6;
+    padding: 30px 6vw 24px;
+    position:relative;
+  }
+  header::after{
+    content:"";
+    position:absolute; left:0; right:0; bottom:0; height:4px;
+    background: linear-gradient(90deg, var(--gold-soft), var(--gold) 40%, var(--gold-soft) 70%, var(--gold));
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--gold-soft); margin:0 0 10px;
+  }
+  h1.title{
+    font-family:'Source Serif 4', serif; font-weight:600;
+    font-size:clamp(24px,3.4vw,34px); margin:0 0 8px; letter-spacing:-0.01em;
+  }
+  .subtitle{ font-size:14.5px; color:#D9CDE5; max-width:680px; margin:0; }
+
+  .id-bar{
+    max-width:900px; margin:0 auto; padding:18px 6vw 0;
+    display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+  }
+  .id-bar label{ font-size:13px; font-weight:600; color:var(--slate); }
+  .id-bar input[type="text"]{
+    font-family:'IBM Plex Mono', monospace; font-size:13.5px; padding:8px 11px;
+    border:1px solid var(--line); border-radius:5px; background:var(--paper); color:var(--ink);
+    width:180px;
+  }
+  .id-bar input:focus{ outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); }
+  .id-bar button{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:8px 15px; border:1px solid var(--purple);
+    background:var(--purple); color:#fff; cursor:pointer;
+  }
+  .id-bar button:hover{ background:var(--purple-mid); }
+  .id-bar .id-hint{ font-size:12px; color:var(--slate); }
+  .id-bar input#studentName{ width:220px; font-family:'Inter',sans-serif; }
+
+  .score-area{ max-width:900px; margin:0 auto; padding:14px 6vw 0; }
+
+  .rounding-note{
+    max-width:900px; margin:14px auto 0; padding:12px 6vw;
+    font-size:12.5px; color:var(--slate); line-height:1.5;
+  }
+  .rounding-note strong{ color:var(--purple); font-weight:600; }
+
+  main{ max-width:900px; margin:0 auto; padding:22px 6vw 90px; }
+
+  .part{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    box-shadow:var(--shadow);
+    padding:24px 26px 26px;
+    margin-top:26px;
+  }
+  .part-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; color:var(--gold); background:var(--purple);
+    display:inline-block; padding:3px 9px; border-radius:4px; letter-spacing:.04em;
+    margin-bottom:12px;
+  }
+  .part h2{
+    font-family:'Source Serif 4', serif; font-size:21px; font-weight:600;
+    color:var(--purple); margin:0 0 12px;
+  }
+  .scenario{
+    background:var(--parchment);
+    border-left:3px solid var(--gold);
+    padding:14px 18px;
+    border-radius:0 6px 6px 0;
+    font-size:14.5px;
+    color:var(--ink);
+    margin-bottom:16px;
+  }
+  .scenario p{ margin:0 0 10px; }
+  .scenario p:last-child{ margin-bottom:0; }
+  .scenario span.val{ font-weight:700; color:var(--purple-deep); }
+
+  .req{
+    font-weight:600;
+    font-size:14.5px;
+    color:var(--ink);
+    margin:20px 0 10px;
+  }
+  .req span.reqlabel{ color:var(--purple); }
+
+  h4.subsection{
+    font-family:'Source Serif 4',serif; font-size:15px; color:var(--purple); margin:22px 0 6px;
+    border-bottom:1px solid var(--line-soft); padding-bottom:4px;
+  }
+
+  table.given{ width:100%; border-collapse:collapse; font-size:13px; margin:6px 0 14px; }
+  table.given th{ text-align:left; font-size:10.5px; text-transform:uppercase; letter-spacing:.03em; color:var(--slate); border-bottom:2px solid var(--purple); padding:6px 8px; }
+  table.given td{ border-bottom:1px solid var(--line); padding:5px 8px; font-family:'IBM Plex Mono', monospace; }
+  table.given td.lbl{ font-family:'Inter',sans-serif; }
+  table.given td.num, table.given th.num{ text-align:right; }
+  table.given tr.given-total td{ border-top:1.3px solid var(--purple); font-weight:600; }
+  table.given tr.given-head td{ font-family:'Source Serif 4',serif; font-weight:600; color:var(--purple); text-align:center; }
+  ol.addinfo{ margin:8px 0; padding-left:20px; font-size:13.5px; }
+  ol.addinfo li{ margin:6px 0; }
+  .footnote{ font-size:12px; color:var(--slate); margin:2px 0 14px; font-style:italic; }
+  .hint{ font-size:12.5px; color:var(--slate); margin:4px 0 10px; }
+
+  table.worksheet{
+    width:100%;
+    border-collapse:collapse;
+    font-size:13.5px;
+    margin:10px 0 4px;
+  }
+  table.worksheet th{
+    text-align:left;
+    font-size:11.5px;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+    color:var(--slate);
+    border-bottom:2px solid var(--purple);
+    padding:8px 8px;
+  }
+  table.worksheet th.num{ text-align:right; }
+  table.worksheet td{
+    border-bottom:1px solid var(--line);
+    padding:9px 8px;
+    vertical-align:middle;
+  }
+  table.worksheet td.method{ font-weight:600; }
+  table.worksheet td.sub{ padding-left:24px; font-weight:400; }
+  table.worksheet td.amt{ width:160px; }
+  table.worksheet td.dash{ text-align:center; color:var(--slate); font-family:'IBM Plex Mono',monospace; }
+  table.worksheet tr.ws-total td{ border-top:1.6px solid var(--purple); font-weight:600; }
+  table.worksheet input[type="text"]{
+    width:100%;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13.5px;
+    padding:6px 8px;
+    border:1px solid var(--line);
+    border-radius:5px;
+    background:var(--parchment);
+    color:var(--ink);
+  }
+  table.worksheet input[type="text"]:focus{
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
+  }
+
+  .score-panel{
+    display:flex; align-items:center; gap:18px;
+    margin:0 0 4px; padding:14px 18px;
+    background:var(--parchment);
+    border:1px solid var(--line);
+    border-radius:8px;
+  }
+  .score-panel.scored-good{ background:var(--answer-bg); border-color:#B7D3BE; }
+  .score-panel.scored-bad{ background:#F8F0EF; border-color:#E2C6C2; }
+  .score-pct{
+    font-family:'Source Serif 4', serif;
+    font-size:30px; font-weight:700; line-height:1.05;
+    color:var(--slate); min-width:96px; text-align:center;
+  }
+  .score-panel.scored-good .score-pct{ color:var(--answer); }
+  .score-panel.scored-bad .score-pct{ color:var(--danger); }
+  .score-detail{ flex:1; min-width:0; }
+  .score-meta{ font-size:13.5px; font-weight:600; color:var(--ink); margin:0 0 7px; }
+  .score-bar{ height:8px; border-radius:4px; background:var(--line-soft); overflow:hidden; }
+  .score-bar span{ display:block; height:100%; width:0; background:var(--purple-mid); transition:width .35s ease; }
+  .score-panel.scored-good .score-bar span{ background:var(--answer); }
+  .score-panel.scored-bad .score-bar span{ background:var(--danger); }
+  .score-sub{ font-size:11.5px; color:var(--slate); margin:7px 0 0; }
+
+  .check-bar{
+    margin-top:20px;
+    padding-top:16px;
+    border-top:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .btn-check{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:9px 18px; border:1px solid var(--purple);
+    background:var(--purple); color:#fff; cursor:pointer;
+  }
+  .btn-check:hover{ background:var(--purple-mid); }
+  .check-summary{ font-size:13.5px; font-weight:600; }
+  .check-summary.good{ color:var(--answer); }
+  .check-summary.bad{ color:var(--danger); }
+  .check-disclaimer{ font-size:11.5px; color:var(--slate); width:100%; margin-top:2px; font-style:italic; }
+
+  input.field-correct{
+    border-color:var(--answer) !important;
+    background:var(--answer-bg) !important;
+  }
+  input.field-incorrect{
+    border-color:var(--danger) !important;
+    background:#F3E1DE !important;
+  }
+
+  .submit-bar{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    box-shadow:var(--shadow);
+    padding:22px 26px 24px;
+    margin-top:26px;
+  }
+  .submit-bar h2{
+    font-family:'Source Serif 4', serif; font-size:19px; font-weight:600;
+    color:var(--purple); margin:0 0 14px;
+  }
+  .submit-row{ display:flex; align-items:center; gap:10px; margin-bottom:12px; flex-wrap:wrap; }
+  .submit-row label{ font-size:13px; font-weight:600; color:var(--slate); }
+  .submit-row input[type="text"]{
+    font-family:'Inter',sans-serif; font-size:13.5px; padding:8px 11px;
+    border:1px solid var(--line); border-radius:5px; background:var(--parchment); color:var(--ink);
+    width:240px;
+  }
+  .submit-row input:focus{ outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); }
+  .btn-submit{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:10px 18px; border:1px solid var(--purple);
+    background:var(--purple); color:#fff; cursor:pointer;
+  }
+  .btn-submit:hover{ background:var(--purple-mid); }
+  .btn-submit-outline{ background:var(--paper); color:var(--purple); }
+  .btn-submit-outline:hover{ background:var(--parchment); }
+  .submit-status{ font-size:13px; font-weight:600; min-height:18px; margin:10px 0 0; color:var(--answer); }
+  .submit-status.error{ color:var(--danger); }
+  .submit-hint{ font-size:12px; color:var(--slate); margin:6px 0 0; }
+
+  @media print{
+    .print-hide, .id-bar, .check-bar, .rounding-note{ display:none !important; }
+    header{ background:none !important; color:var(--ink) !important; padding:0 0 14px !important; }
+    header::after{ display:none !important; }
+    .eyebrow{ color:var(--purple) !important; }
+    .subtitle{ color:var(--slate) !important; }
+    body{ background:#fff !important; }
+    .part{ box-shadow:none !important; border:1px solid #999 !important; break-inside:auto; }
+    .score-panel{ background:#fff !important; border:1.5px solid #000 !important; break-inside:avoid; }
+    .score-bar{ display:none !important; }
+    .score-pct, .score-panel.scored-good .score-pct, .score-panel.scored-bad .score-pct{ color:#000 !important; }
+    .part h2, .part-label, .scenario, h4.subsection{ break-after:avoid; break-inside:avoid; }
+    table.given, table.worksheet{ break-inside:auto; }
+    table.given tr, table.worksheet tr{ break-inside:avoid; }
+    ol.addinfo li{ break-inside:avoid; }
+    .submit-bar{ break-before:avoid; }
+    input[type="text"]{
+      border:none !important;
+      border-bottom:1px solid #000 !important;
+      background:transparent !important;
+      border-radius:0 !important;
+      color:#000 !important;
+      -webkit-appearance:none;
+      appearance:none;
+      padding:2px 4px !important;
+    }
+    .print-name-line{ display:block !important; }
+  }
+  .print-name-line{ display:none; font-size:13px; color:var(--ink); padding:0 6vw; margin:0 0 10px; }
+
+  footer{ text-align:center; padding:26px 6vw 40px; font-size:12px; color:var(--slate); }
+
+  @media (max-width:600px){
+    header, main, .id-bar{ padding-left:5vw; padding-right:5vw; }
+    table.worksheet{ font-size:12.5px; }
+  }
+
+
+  /* ---- additions for journal-entry worksheets and dropdown fields ---- */
+  table.worksheet select{
+    width:100%;
+    font-family:'Inter',sans-serif;
+    font-size:13px;
+    padding:6px 6px;
+    border:1px solid var(--line);
+    border-radius:5px;
+    background:var(--parchment);
+    color:var(--ink);
+  }
+  table.worksheet select:focus{
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
+  }
+  select.field-correct{ border-color:var(--answer) !important; background:var(--answer-bg) !important; }
+  select.field-incorrect{ border-color:var(--danger) !important; background:#F3E1DE !important; }
+
+  table.je{ width:100%; border-collapse:collapse; font-size:13.5px; margin:8px 0 6px; }
+  table.je th{
+    text-align:left; font-size:11.5px; text-transform:uppercase; letter-spacing:.03em;
+    color:var(--slate); border-bottom:2px solid var(--purple); padding:8px 8px;
+  }
+  table.je th.num{ text-align:right; }
+  table.je td{ border-bottom:1px solid var(--line); padding:7px 8px; vertical-align:middle; }
+  table.je td.acct{ width:52%; }
+  table.je td.amt{ width:24%; }
+  table.je tr.indent td.acct{ padding-left:30px; }
+  table.je input[type="text"]{
+    width:100%; font-family:'IBM Plex Mono', monospace; font-size:13.5px;
+    padding:6px 8px; border:1px solid var(--line); border-radius:5px;
+    background:var(--parchment); color:var(--ink); text-align:right;
+  }
+  table.je input[type="text"]:focus{
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
+  }
+  table.je select{
+    width:100%; font-family:'Inter',sans-serif; font-size:13px; padding:6px 6px;
+    border:1px solid var(--line); border-radius:5px; background:var(--parchment); color:var(--ink);
+  }
+  table.je select:focus{
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
+  }
+  .je-cap{ font-size:12.5px; font-weight:600; color:var(--purple); margin:16px 0 0; }
+  .je-sub{ font-size:12px; color:var(--slate); margin:2px 0 0; font-style:italic; }
+  .situation{
+    border-left:3px solid var(--purple-mid);
+    background:#FBF9F4;
+    padding:12px 16px;
+    border-radius:0 6px 6px 0;
+    font-size:14px;
+    margin:26px 0 10px;
+  }
+  .situation .sit-tag{
+    font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.06em;
+    text-transform:uppercase; color:var(--purple); display:block; margin-bottom:4px;
+  }
+  .situation p{ margin:0 0 8px; }
+  .situation p:last-child{ margin-bottom:0; }
+  .situation span.val{ font-weight:700; color:var(--purple-deep); }
+  @media print{
+    table.je{ break-inside:auto; }
+    table.je tr{ break-inside:avoid; }
+    .situation{ break-inside:avoid; background:#fff !important; }
+    table.worksheet select, table.je select{
+      border:none !important; border-bottom:1px solid #000 !important;
+      background:transparent !important; border-radius:0 !important;
+      -webkit-appearance:none; appearance:none; padding:2px 4px !important;
+    }
+  }
+
+  table.worksheet td.amt-wide{ width:56%; }
+
+</style>
+
+<style>
+  /* ---- additions for the tax-computation worksheet ---- */
+  table.worksheet td.line{ width:46px; font-family:'IBM Plex Mono',monospace; font-size:12.5px; color:var(--purple); font-weight:600; white-space:nowrap; }
+  table.worksheet td.rate{ width:112px; }
+  table.worksheet td.const{ width:112px; font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--purple-deep); text-align:right; }
+  table.worksheet td.amt5{ width:150px; }
+  table.worksheet td.note{ width:150px; font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--slate); }
+  table.worksheet tr.subhead td{ font-family:'Source Serif 4',serif; font-weight:600; color:var(--purple); background:#FBF9F4; padding-top:7px; padding-bottom:7px; }
+  table.worksheet td.rate input, table.worksheet td.amt5 input{ text-align:right; }
+  .part-tally{ margin-top:14px; font-size:12.5px; font-weight:600; min-height:16px; }
+  .part-tally.good{ color:var(--answer); }
+  .part-tally.bad{ color:var(--danger); }
+
+  details.refbox{
+    background:var(--paper); border:1px solid var(--line); border-radius:10px;
+    box-shadow:var(--shadow); padding:14px 22px; margin-top:26px;
+  }
+  details.refbox summary{
+    cursor:pointer; font-family:'Source Serif 4',serif; font-size:17px; font-weight:600; color:var(--purple);
+  }
+  details.refbox[open] summary{ margin-bottom:8px; }
+  .refgrid{ display:grid; grid-template-columns:1fr 1fr; gap:6px 26px; }
+  .refgrid h5{ font-family:'Source Serif 4',serif; font-size:14px; color:var(--purple); margin:12px 0 2px; }
+  table.sched td.txt{ font-family:'Inter',sans-serif; font-size:12px; }
+  .tablewrap{ overflow-x:auto; }
+  @media (max-width:760px){
+    .refgrid{ grid-template-columns:1fr; }
+    table.worksheet td.note{ display:none; }
+    table.worksheet th.notehead{ display:none; }
+    table.worksheet td.amt5, table.worksheet td.rate, table.worksheet td.const{ width:auto; }
+  }
+  @media print{
+    details.refbox{ display:none !important; }
+    table.worksheet tr.subhead td{ background:#fff !important; }
+    .part-tally{ display:none !important; }
+  }
+</style>
+
+<style>
+  table.worksheet.trav td{ padding:7px 6px; }
+  table.worksheet.trav td.u{ width:92px; }
+  table.worksheet.trav td.a{ width:112px; }
+  table.worksheet.trav td.pc{ width:78px; }
+  table.worksheet.trav td.method{ font-weight:400; }
+  table.worksheet.trav tr.ws-total td.method{ font-weight:600; }
+  table.worksheet.trav tr.tot td{ background:var(--answer-bg); }
+  table.worksheet.trav td.lab{ font-size:11.5px; color:var(--slate); }
+  .scen p{ margin:0 0 8px; }
+  table.worksheet.trav td input[type="text"]{ text-align:right; }
+</style>
+</head>
+
+<body>
+
+<header>
+  <p class="eyebrow">Individual Income Taxation &middot; Chapter 9 &middot; Business Deductions</p>
+  <h1 class="title">Problem 9-49 &mdash; Business Travel Expenses</h1>
+  <p class="subtitle">Deducting travel, lodging, meals and local transportation for a self-employed taxpayer, including mixed business and personal trips, using 2026 rules.</p>
+</header>
+
+<p class="print-name-line" id="printNameLine"></p>
+
+<div class="id-bar">
+  <label for="studentName">Name</label>
+  <input type="text" id="studentName" placeholder="First and last name">
+  <label for="studentId">Student ID</label>
+  <input type="text" id="studentId" placeholder="e.g. 920410165">
+  <button id="genBtn" type="button">Generate scenario</button>
+  <span class="id-hint">Leave the ID blank and click to restore the original textbook figures.</span>
+</div>
+
+<div class="score-area" id="scoreArea"></div>
+
+<div class="rounding-note">
+  <strong>Rounding convention:</strong> do not round intermediate calculations; round final answers to the nearest whole dollar (within $2 of the key is accepted). Leave no answers blank &mdash; enter 0 if applicable.
+</div>
+
+<main>
+<div class="part"><span class="part-label">Problem 9-49</span><h2>Business travel &mdash; Melissa</h2>
+    <div class="scenario">
+      <p>Melissa recently paid <span class="val" id="f-air">$400</span> for round-trip airfare to San Francisco to attend a business conference for <span class="val cdays">three</span> days. Melissa also paid the following expenses: <span class="val" id="f-reg">$250</span> fee to register for the conference, <span class="val" id="f-lpn">$300</span> per night for <span class="val cdays">three</span> nights&rsquo; lodging, <span class="val" id="f-mea">$200</span> for meals, and <span class="val" id="f-cab">$150</span> for cab fare.</p>
+      <p><strong>Note:</strong> Do not round intermediate calculations. Round your final answers to the nearest whole dollar amount. Leave no answers blank. Enter zero if applicable.</p>
+    </div>
+    <div class="scenario scen">
+      <p><strong>a.</strong> What amount of these costs can Melissa deduct as business expenses?</p>
+      <p><strong>b.</strong> Suppose that while Melissa was on the coast, she also spent <span class="val pdays">two</span> <span class="pdayw">days</span> sightseeing the national parks in the area. To do the sightseeing, she paid <span class="val" id="f-ptr">$1,000</span> for transportation, <span class="val" id="f-plo">$800</span> for lodging, and <span class="val" id="f-pme">$450</span> for meals during this part of her trip, which she considers personal in nature. What amount of these costs can Melissa deduct as business expenses?</p>
+      <p><strong>c.</strong> Suppose that Melissa made the trip to San Francisco primarily to visit the national parks and only attended the business conference as an incidental benefit of being present on the coast at that time. What amount of the airfare can Melissa deduct as a business expense?</p>
+      <p><strong>d.</strong> Suppose that San Francisco was Melissa&rsquo;s permanent residence and business location. She attended the conference in San Francisco and paid <span class="val" id="f-dreg">$250</span> for the registration fee. She drove <span class="val" id="f-dmi">100</span> miles over the course of <span class="val cdays">three</span> days and paid <span class="val" id="f-dpar">$90</span> for parking at the conference hotel. In addition, she spent <span class="val" id="f-dmea">$150</span> for breakfast and dinner over the <span class="val cdays">three</span> days of the conference. She bought breakfast on the way to the conference hotel, and she bought dinner on her way home each night from the conference. What amount of these costs can Melissa deduct as business expenses? <strong>Note:</strong> Use the standard mileage rate.</p>
+    </div>
+    <p class="hint">Melissa is self-employed. Enter every amount paid in the &ldquo;Amount paid&rdquo; column and what is deductible in the &ldquo;Deductible&rdquo; column (0 if nothing is deductible). Enter deductible percentages only on the meal lines, as whole percentages (e.g., 50). Use the 2026 standard mileage rate for business use.</p>
+<div class="part-tally" id="tally0"></div></div>
+<div class="part"><span class="part-label">Part a</span><h2>Conference trip</h2><div class="tablewrap"><table class="worksheet trav"><thead><tr><th>Item</th><th class="num">Per unit</th><th class="num">Units</th><th class="num">Amount paid</th><th class="num">Deductible %</th><th class="num">Deductible</th></tr></thead><tbody><tr class="subhead"><td class="method" colspan="6">Business</td></tr><tr class=""><td class="method">Airfare</td><td class="u"></td><td class="u"></td><td class="a"><input type="text" id="x-a-air" placeholder="$"></td><td class="pc"></td><td class="a"><input type="text" id="x-a-aird" placeholder="$"></td></tr><tr class=""><td class="method">Registration</td><td class="u"></td><td class="u"></td><td class="a"><input type="text" id="x-a-reg" placeholder="$"></td><td class="pc"></td><td class="a"><input type="text" id="x-a-regd" placeholder="$"></td></tr><tr class=""><td class="method">Lodging (per night &times; nights)</td><td class="u"><input type="text" id="x-a-lpn" placeholder="$"></td><td class="u"><input type="text" id="x-a-nts" placeholder="#"></td><td class="a"><input type="text" id="x-a-lod" placeholder="$"></td><td class="pc"></td><td class="a"><input type="text" id="x-a-lodd" placeholder="$"></td></tr><tr class=""><td class="method">Meals</td><td class="u"></td><td class="u"></td><td class="a"><input type="text" id="x-a-mea" placeholder="$"></td><td class="pc"><input type="text" id="x-a-meap" placeholder="%"></td><td class="a"><input type="text" id="x-a-mead" placeholder="$"></td></tr><tr class=""><td class="method">Cab fare</td><td class="u"></td><td class="u"></td><td class="a"><input type="text" id="x-a-cab" placeholder="$"></td><td class="pc"></td><td class="a"><input type="text" id="x-a-cabd" placeholder="$"></td></tr><tr class="ws-total tot"><td class="method">Total deductible</td><td class="u"></td><td class="u"></td><td class="a"></td><td class="pc"></td><td class="a"><input type="text" id="x-a-tot" placeholder="$"></td></tr></tbody></table></div><div class="part-tally" id="tally-a"></div></div><div class="part"><span class="part-label">Part b</span><h2>Conference trip plus sightseeing</h2><p class="hint">Decide the primary purpose of the trip by comparing business and personal days. Only the business portion of the costs is deductible.</p><div class="tablewrap"><table class="worksheet"><thead><tr><th>Trip facts</th><th class="num">Your answer</th></tr></thead><tbody><tr><td class="method">Business days</td><td class="amt"><input type="text" id="x-b-bd" placeholder="#"></td></tr><tr><td class="method">Personal days</td><td class="amt"><input type="text" id="x-b-pd" placeholder="#"></td></tr><tr><td class="method">Primary purpose of the trip</td><td class="amt amt-wide"><select id="x-b-pp" class="clsel"><option value="">— select —</option><option value="Business">Business</option><option value="Personal">Personal</option></select></td></tr></tbody></table></div><div class="tablewrap"><table class="worksheet trav"><thead><tr><th>Item</th><th class="num">Per unit</th><th class="num">Units</th><th class="num">Amount paid</th><th class="num">Deductible %</th><th class="num">Deductible</th></tr></thead><tbody><tr class="subhead"><td class="method" colspan="6">Business</td></tr><tr class=""><td class="method">Airfare</td><td class="u"></td><td class="u"></td><td class="a"><input type="text" id="x-b-air" placeholder="$"></td><td class="pc"></td><td class="a"><input type="text" id="x-b-aird" placeholder="$"></td></tr><tr class=""><td class="method">Registration</td><td class="u"></td><td class="u"></td><td class="a"><input type="text" id="x-b-reg" placeholder="$"></td><td class="pc"></td><td class="a"><input type="text" id="x-b-regd" placeholder="$"></td></tr><tr class=""><td class="method">Lodging (per night &times; nights)</td><td class="u"><input type="text" id="x-b-lpn" placeholder="$"></td><td class="u"><input type="text" id="x-b-nts" placeholder="#"></td><td class="a"><input type="text" id="x-b-lod" placeholder="$"></td><td class="pc"></td><td class="a"><input type="text" id="x-b-lodd" placeholder="$"></td></tr><tr class=""><td class="method">Meals</td><td class="u"></td><td class="u"></td><td class="a"><input type="text" id="x-b-mea" placeholder="$"></td><td class="pc"><input type="text" id="x-b-meap" placeholder="%"></td><td class="a"><input type="text" id="x-b-mead" placeholder="$"></td></tr><tr class=""><td class="method">Cab fare</td><td class="u"></td><td class="u"></td><td class="a"><input type="text" id="x-b-cab" placeholder="$"></td><td class="pc"></td><td class="a"><input type="text" id="x-b-cabd" placeholder="$"></td></tr><tr class="subhead"><td class="method" colspan="6">Personal (sightseeing)</td></tr><tr class=""><td class="method">Transportation</td><td class="u"></td><td class="u"></td><td class="a"><input type="text" id="x-b-ptr" placeholder="$"></td><td class="pc"></td><td class="a"><input type="text" id="x-b-ptrd" placeholder="$"></td></tr><tr class=""><td class="method">Lodging</td><td class="u"></td><td class="u"></td><td class="a"><input type="text" id="x-b-plo" placeholder="$"></td><td class="pc"></td><td class="a"><input type="text" id="x-b-plod" placeholder="$"></td></tr><tr class=""><td class="method">Meals</td><td class="u"></td><td class="u"></td><td class="a"><input type="text" id="x-b-pme" placeholder="$"></td><td class="pc"></td><td class="a"><input type="text" id="x-b-pmed" placeholder="$"></td></tr><tr class="ws-total tot"><td class="method">Total deductible</td><td class="u"></td><td class="u"></td><td class="a"></td><td class="pc"></td><td class="a"><input type="text" id="x-b-tot" placeholder="$"></td></tr></tbody></table></div><div class="part-tally" id="tally-b"></div></div><div class="part"><span class="part-label">Part c</span><h2>Trip primarily for personal reasons</h2><p class="hint">The business costs incurred at the destination remain deductible. Decide whether the transportation to and from the destination is deductible.</p><table class="worksheet"><thead><tr><th>Question</th><th>Your answer</th></tr></thead><tbody><tr><td class="method">Primary purpose of the trip</td><td class="amt amt-wide"><select id="x-c-pp" class="clsel"><option value="">— select —</option><option value="Business">Business</option><option value="Personal">Personal</option></select></td></tr></tbody></table><div class="tablewrap"><table class="worksheet trav"><thead><tr><th>Item</th><th class="num">Per unit</th><th class="num">Units</th><th class="num">Amount paid</th><th class="num">Deductible %</th><th class="num">Deductible</th></tr></thead><tbody><tr class="subhead"><td class="method" colspan="6">Business</td></tr><tr class=""><td class="method">Airfare</td><td class="u"></td><td class="u"></td><td class="a"><input type="text" id="x-c-air" placeholder="$"></td><td class="pc"></td><td class="a"><input type="text" id="x-c-aird" placeholder="$"></td></tr><tr class=""><td class="method">Registration</td><td class="u"></td><td class="u"></td><td class="a"><input type="text" id="x-c-reg" placeholder="$"></td><td class="pc"></td><td class="a"><input type="text" id="x-c-regd" placeholder="$"></td></tr><tr class=""><td class="method">Lodging (per night &times; nights)</td><td class="u"><input type="text" id="x-c-lpn" placeholder="$"></td><td class="u"><input type="text" id="x-c-nts" placeholder="#"></td><td class="a"><input type="text" id="x-c-lod" placeholder="$"></td><td class="pc"></td><td class="a"><input type="text" id="x-c-lodd" placeholder="$"></td></tr><tr class=""><td class="method">Meals</td><td class="u"></td><td class="u"></td><td class="a"><input type="text" id="x-c-mea" placeholder="$"></td><td class="pc"><input type="text" id="x-c-meap" placeholder="%"></td><td class="a"><input type="text" id="x-c-mead" placeholder="$"></td></tr><tr class=""><td class="method">Cab fare</td><td class="u"></td><td class="u"></td><td class="a"><input type="text" id="x-c-cab" placeholder="$"></td><td class="pc"></td><td class="a"><input type="text" id="x-c-cabd" placeholder="$"></td></tr><tr class="subhead"><td class="method" colspan="6">Personal (sightseeing)</td></tr><tr class=""><td class="method">Transportation</td><td class="u"></td><td class="u"></td><td class="a"><input type="text" id="x-c-ptr" placeholder="$"></td><td class="pc"></td><td class="a"><input type="text" id="x-c-ptrd" placeholder="$"></td></tr><tr class=""><td class="method">Lodging</td><td class="u"></td><td class="u"></td><td class="a"><input type="text" id="x-c-plo" placeholder="$"></td><td class="pc"></td><td class="a"><input type="text" id="x-c-plod" placeholder="$"></td></tr><tr class=""><td class="method">Meals</td><td class="u"></td><td class="u"></td><td class="a"><input type="text" id="x-c-pme" placeholder="$"></td><td class="pc"></td><td class="a"><input type="text" id="x-c-pmed" placeholder="$"></td></tr><tr class="ws-total tot"><td class="method">Total deductible</td><td class="u"></td><td class="u"></td><td class="a"></td><td class="pc"></td><td class="a"><input type="text" id="x-c-tot" placeholder="$"></td></tr></tbody></table></div><table class="worksheet"><thead><tr><th>Required c</th><th class="num">Your answer</th></tr></thead><tbody><tr class="ws-total tot"><td class="method">Amount of the airfare Melissa can deduct</td><td class="amt"><input type="text" id="x-c-ans" placeholder="$"></td></tr></tbody></table><div class="part-tally" id="tally-c"></div></div><div class="part"><span class="part-label">Part d</span><h2>Local conference</h2><p class="hint">Melissa is not away from home overnight.</p><div class="tablewrap"><table class="worksheet trav"><thead><tr><th>Item</th><th class="num">Per unit</th><th class="num">Units</th><th class="num">Amount paid</th><th class="num">Deductible %</th><th class="num">Deductible</th></tr></thead><tbody><tr class="subhead"><td class="method" colspan="6">Business</td></tr><tr class=""><td class="method">Transportation (miles &times; standard mileage rate)</td><td class="u"><input type="text" id="x-d-rate" placeholder="$/mile"></td><td class="u"><input type="text" id="x-d-mi" placeholder="miles"></td><td class="a"><input type="text" id="x-d-tra" placeholder="$"></td><td class="pc"></td><td class="a"><input type="text" id="x-d-trad" placeholder="$"></td></tr><tr class=""><td class="method">Registration fee</td><td class="u"></td><td class="u"></td><td class="a"><input type="text" id="x-d-reg" placeholder="$"></td><td class="pc"></td><td class="a"><input type="text" id="x-d-regd" placeholder="$"></td></tr><tr class=""><td class="method">Parking</td><td class="u"></td><td class="u"></td><td class="a"><input type="text" id="x-d-par" placeholder="$"></td><td class="pc"></td><td class="a"><input type="text" id="x-d-pard" placeholder="$"></td></tr><tr class=""><td class="method">Meals (breakfast and dinner)</td><td class="u"></td><td class="u"></td><td class="a"><input type="text" id="x-d-mea" placeholder="$"></td><td class="pc"><input type="text" id="x-d-meap" placeholder="%"></td><td class="a"><input type="text" id="x-d-mead" placeholder="$"></td></tr><tr class="ws-total tot"><td class="method">Total deductible</td><td class="u"></td><td class="u"></td><td class="a"></td><td class="pc"></td><td class="a"><input type="text" id="x-d-tot" placeholder="$"></td></tr></tbody></table></div>
+    <div class="check-bar">
+      <button class="btn-check" id="checkP1" type="button">Check my work</button>
+      <span class="check-summary" id="p1Summary"></span>
+      <span class="check-disclaimer">Checks all four parts. Figures are matched to the key within a small rounding tolerance &mdash; it does not confirm your supporting computations.</span>
+    </div><div class="part-tally" id="tally-d"></div></div>
+
+  <div class="submit-bar print-hide">
+    <h2>Ready to submit?</h2>
+    <p class="submit-hint" style="margin:0 0 12px;">Your name, student ID and score are taken from the top of the page.</p>
+    <div class="submit-row submit-actions">
+      <button class="btn-submit" id="printBtn" type="button">Print / Save as PDF</button>
+      <button class="btn-submit btn-submit-outline" id="downloadDocxBtn" type="button">Download as Word (.docx)</button>
+    </div>
+    <p class="submit-status" id="submitStatus"></p>
+    <p class="submit-hint">Both options capture exactly what&rsquo;s currently filled in above, including your generated scenario numbers. &ldquo;Print / Save as PDF&rdquo; works offline; &ldquo;Download as Word&rdquo; needs an internet connection to load the export tool.</p>
+  </div>
+</main>
+
+<footer>Problem 9-49 &middot; Business Travel Expenses &middot; 2026 &middot; Western Carolina University</footer>
+
+<script>
+(function(){
+  // ---------- seeded pseudo-random ----------
+  function hashSeed(str){
+    var h = 2166136261;
+    for(var i=0;i<str.length;i++){
+      h ^= str.charCodeAt(i);
+      h = Math.imul(h, 16777619);
+    }
+    return h >>> 0;
+  }
+  function mulberry32(seed){
+    return function(){
+      seed |= 0; seed = seed + 0x6D2B79F5 | 0;
+      var t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
+  }
+  function pick(rand, arr){ return arr[Math.floor(rand() * arr.length)]; }
+  function rTo(x, m){ return Math.round(x/m)*m; }
+
+  // ---------- formatting ----------
+  function num0(n){ return Math.round(n).toLocaleString('en-US'); }
+  function money0(n){
+    var v = Math.round(n);
+    return (v < 0 ? '$(' + Math.abs(v).toLocaleString('en-US') + ')' : '$' + v.toLocaleString('en-US'));
+  }
+  function num1(n){
+    return Number(n).toLocaleString('en-US', {minimumFractionDigits:0, maximumFractionDigits:1});
+  }
+  function money1(n){
+    var v = Number(n);
+    var s = Math.abs(v).toLocaleString('en-US', {minimumFractionDigits:0, maximumFractionDigits:1});
+    return v < 0 ? '$(' + s + ')' : '$' + s;
+  }
+  function money2(n){
+    var v = Number(n);
+    var s = Math.abs(v).toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
+    return v < 0 ? '$(' + s + ')' : '$' + s;
+  }
+  function eps2(n){ return money2(n); }
+  function pct(n){ return num1(n) + '%'; }
+
+  function setText(id, text){
+    var el = document.getElementById(id);
+    if(el) el.textContent = text;
+  }
+  function setHTML(id, html){
+    var el = document.getElementById(id);
+    if(el) el.innerHTML = html;
+  }
+
+  // ---------- answer checking ----------
+  // tolerances: 'dollar' whole dollars, 'rate' per-unit rates, 'yr' years, 'text' exact match
+  var TOL = { dollar:2, dollar10:10, rate:0.011, rate3:0.0015, yr:0.01, mil:0.6, milsh:0.3, eps:0.011, text:0 };
+
+  function parseMoney(s){
+    if(s === null || s === undefined) return NaN;
+    var raw = String(s).trim();
+    var neg = /^\(.*\)$/.test(raw) || /^-/.test(raw);
+    var cleaned = raw.replace(/[^0-9.]/g, '');
+    if(cleaned === '') return NaN;
+    var v = parseFloat(cleaned);
+    if(isNaN(v)) return NaN;
+    return neg ? -v : v;
+  }
+  function near(a, b, tol){
+    if(isNaN(a) || isNaN(b)) return false;
+    return Math.abs(a - b) <= tol;
+  }
+  function clearFieldState(el){
+    if(!el) return;
+    el.classList.remove('field-correct', 'field-incorrect');
+  }
+  function clearAllFieldStates(){
+    document.querySelectorAll('.field-correct, .field-incorrect').forEach(function(el){
+      el.classList.remove('field-correct', 'field-incorrect');
+    });
+    document.querySelectorAll('.check-summary').forEach(function(el){
+      el.textContent = ''; el.classList.remove('good','bad');
+    });
+  }
+  function markField(id, correct, tol, isText){
+    var el = document.getElementById(id);
+    if(!el) return null;
+    el.classList.remove('field-correct', 'field-incorrect');
+    var ok;
+    if(isText){
+      ok = String(el.value || '').trim() === String(correct == null ? '' : correct).trim();
+    } else {
+      ok = near(parseMoney(el.value), correct, tol);
+    }
+    el.classList.add(ok ? 'field-correct' : 'field-incorrect');
+    if(!el.dataset.clearBound){
+      var ev = (el.tagName === 'SELECT') ? 'change' : 'input';
+      el.addEventListener(ev, function(){ clearFieldState(el); });
+      el.dataset.clearBound = '1';
+    }
+    return ok;
+  }
+  function updateSummary(elId, results){
+    var el = document.getElementById(elId);
+    if(!el) return;
+    var graded = results.filter(function(r){ return r !== null; }).length;
+    var correct = results.filter(function(r){ return r === true; }).length;
+    el.textContent = correct + ' of ' + graded + ' correct';
+    el.classList.remove('good', 'bad');
+    el.classList.add(correct === graded && graded > 0 ? 'good' : 'bad');
+  }
+
+  // ---------- score ----------
+  var SCORES = {};
+
+  function scoreState(g){
+    if(!SCORES[g.btn]) SCORES[g.btn] = { correct:0, graded:0, attempts:0, checked:false, stale:false };
+    return SCORES[g.btn];
+  }
+  function scorePct(s){
+    return s.graded ? Math.round(s.correct / s.graded * 100) : 0;
+  }
+
+  var SCORE_PROMPT = 'Fill in the worksheet below, then choose <strong>Check my work</strong>. Every blank counts as incorrect.';
+
+  function ensureScorePanel(g){
+    var area = document.getElementById('scoreArea');
+    if(!area) return null;
+    var panel = area.querySelector('.score-panel[data-for="' + g.btn + '"]');
+    if(panel) return panel;
+    panel = document.createElement('div');
+    panel.className = 'score-panel';
+    panel.setAttribute('data-for', g.btn);
+    panel.innerHTML =
+      '<div class="score-pct">&mdash;</div>' +
+      '<div class="score-detail">' +
+        '<p class="score-meta">Score</p>' +
+        '<div class="score-bar"><span></span></div>' +
+        '<p class="score-sub">' + SCORE_PROMPT + '</p>' +
+      '</div>';
+    area.appendChild(panel);
+    return panel;
+  }
+
+  function renderScore(g){
+    var panel = ensureScorePanel(g);
+    if(!panel) return;
+    var s = scoreState(g);
+    var pctEl = panel.querySelector('.score-pct');
+    var metaEl = panel.querySelector('.score-meta');
+    var fillEl = panel.querySelector('.score-bar span');
+    var subEl = panel.querySelector('.score-sub');
+    panel.classList.remove('scored-good', 'scored-bad');
+
+    if(!s.checked){
+      pctEl.innerHTML = '&mdash;';
+      metaEl.textContent = 'Score';
+      fillEl.style.width = '0%';
+      subEl.innerHTML = SCORE_PROMPT;
+      return;
+    }
+    var p = scorePct(s);
+    pctEl.textContent = p + '%';
+    metaEl.textContent = 'Score: ' + s.correct + ' of ' + s.graded + ' correct';
+    fillEl.style.width = p + '%';
+    if(s.stale){
+      subEl.textContent = 'You have changed an answer since this score was calculated — check your work again to update it.';
+    } else if(s.correct === s.graded){
+      subEl.textContent = 'All ' + s.graded + ' figures match the key. Attempt ' + s.attempts + '.';
+      panel.classList.add('scored-good');
+    } else {
+      var missing = s.graded - s.correct;
+      subEl.innerHTML = missing + ' figure' + (missing === 1 ? '' : 's') + ' still to fix' +
+                        '<span class="print-hide"> — outlined in red below</span>. Attempt ' + s.attempts + '.';
+      panel.classList.add('scored-bad');
+    }
+  }
+
+  function markScoreStale(g){
+    var s = scoreState(g);
+    if(!s.checked || s.stale) return;
+    s.stale = true;
+    renderScore(g);
+  }
+
+  function resetScore(g){
+    SCORES[g.btn] = { correct:0, graded:0, attempts:0, checked:false, stale:false };
+    renderScore(g);
+  }
+
+  // =================================================================
+  //  Problem 9-49 — business travel (2026)
+  // =================================================================
+  var MILE_RATE = 0.725;     // 2026 business standard mileage rate
+  var MEAL_PCT = 50;
+  var WORDS = { 1:'one', 2:'two', 3:'three', 4:'four', 5:'five', 6:'six', 7:'seven' };
+
+  function baseline(){
+    return { air:400, reg:250, lpn:300, days:3, mea:200, cab:150, pdays:2, ptr:1000, plo:800, pme:450,
+             dreg:250, dmi:100, dpar:90, dmea:150 };
+  }
+
+  function rint(rand, lo, hi, step){
+    var n = Math.floor((hi - lo) / step) + 1;
+    return lo + Math.floor(rand() * n) * step;
+  }
+
+  function randomParams(rand){
+    var p = {};
+    p.days = rint(rand, 2, 5, 1);
+    p.air = rint(rand, 250, 900, 10);
+    p.reg = rint(rand, 100, 600, 10);
+    p.lpn = rint(rand, 150, 450, 5);
+    p.mea = rint(rand, 90, 420, 10);
+    p.cab = rint(rand, 50, 300, 5);
+    var opts = [];
+    for(var k = 1; k <= p.days + 2; k++){ if(k !== p.days) opts.push(k); }
+    p.pdays = rand() < 0.7 ? pick(rand, opts.filter(function(k){ return k < p.days; })) : pick(rand, opts.filter(function(k){ return k > p.days; }));
+    p.ptr = rint(rand, 400, 1500, 10);
+    p.plo = rint(rand, 300, 1500, 10);
+    p.pme = rint(rand, 150, 600, 10);
+    p.dreg = rint(rand, 100, 600, 10);
+    p.dmi = rint(rand, 40, 220, 2);
+    p.dpar = rint(rand, 30, 160, 5);
+    p.dmea = rint(rand, 80, 260, 5);
+    return p;
+  }
+
+  function busRows(x, k, p, airOK){
+    x[k + '-air'] = p.air; x[k + '-aird'] = airOK ? p.air : 0;
+    x[k + '-reg'] = p.reg; x[k + '-regd'] = p.reg;
+    x[k + '-lpn'] = p.lpn; x[k + '-nts'] = p.days; x[k + '-lod'] = p.lpn * p.days; x[k + '-lodd'] = p.lpn * p.days;
+    x[k + '-mea'] = p.mea; x[k + '-meap'] = MEAL_PCT; x[k + '-mead'] = p.mea * MEAL_PCT / 100;
+    x[k + '-cab'] = p.cab; x[k + '-cabd'] = p.cab;
+    return x[k + '-aird'] + x[k + '-regd'] + x[k + '-lodd'] + x[k + '-mead'] + x[k + '-cabd'];
+  }
+  function persRows(x, k, p){
+    x[k + '-ptr'] = p.ptr; x[k + '-ptrd'] = 0;
+    x[k + '-plo'] = p.plo; x[k + '-plod'] = 0;
+    x[k + '-pme'] = p.pme; x[k + '-pmed'] = 0;
+  }
+
+  function solve(p){
+    var x = {};
+    x['a-tot'] = busRows(x, 'a', p, true);
+    x['b-bd'] = p.days; x['b-pd'] = p.pdays;
+    var bBusiness = p.days > p.pdays;
+    x['b-pp'] = bBusiness ? 'Business' : 'Personal';
+    x['b-tot'] = busRows(x, 'b', p, bBusiness); persRows(x, 'b', p);
+    x['c-pp'] = 'Personal';
+    x['c-tot'] = busRows(x, 'c', p, false); persRows(x, 'c', p);
+    x['c-ans'] = 0;
+    x['d-rate'] = MILE_RATE; x['d-mi'] = p.dmi; x['d-tra'] = p.dmi * MILE_RATE; x['d-trad'] = x['d-tra'];
+    x['d-reg'] = p.dreg; x['d-regd'] = p.dreg;
+    x['d-par'] = p.dpar; x['d-pard'] = p.dpar;
+    x['d-mea'] = p.dmea; x['d-meap'] = 0; x['d-mead'] = 0;
+    x['d-tot'] = x['d-trad'] + x['d-regd'] + x['d-pard'];
+    return { raw:p, x:x };
+  }
+
+  function generateScenario(id){
+    var seed = (id || '').trim();
+    if(seed === '') return solve(baseline());
+    return solve(randomParams(mulberry32(hashSeed(seed.toLowerCase()))));
+  }
+
+  function setAll(sel, text){
+    document.querySelectorAll(sel).forEach(function(el){ el.textContent = text; });
+  }
+
+  function applyScenario(d){
+    var p = d.raw;
+    setText('f-air', money0(p.air)); setText('f-reg', money0(p.reg)); setText('f-lpn', money0(p.lpn));
+    setText('f-mea', money0(p.mea)); setText('f-cab', money0(p.cab));
+    setText('f-ptr', money0(p.ptr)); setText('f-plo', money0(p.plo)); setText('f-pme', money0(p.pme));
+    setText('f-dreg', money0(p.dreg)); setText('f-dmi', num0(p.dmi)); setText('f-dpar', money0(p.dpar)); setText('f-dmea', money0(p.dmea));
+    setAll('.cdays', WORDS[p.days]);
+    setAll('.pdays', WORDS[p.pdays]);
+    setAll('.pdayw', p.pdays === 1 ? 'day' : 'days');
+  }
+
+  // ---------- grading ----------
+  function busF(k){ return [k+'-air',k+'-aird',k+'-reg',k+'-regd',k+'-lpn',k+'-nts',k+'-lod',k+'-lodd',k+'-mea',[k+'-meap','pct'],k+'-mead',k+'-cab',k+'-cabd']; }
+  function persF(k){ return [k+'-ptr',k+'-ptrd',k+'-plo',k+'-plod',k+'-pme',k+'-pmed']; }
+  function F(list){ return list.map(function(k){ return typeof k === 'string' ? [k] : k; }); }
+  var PARTS = [
+    { tally:'tally-a', fields:F(busF('a').concat(['a-tot'])) },
+    { tally:'tally-b', fields:F(['b-bd','b-pd',['b-pp','text']].concat(busF('b'), persF('b'), ['b-tot'])) },
+    { tally:'tally-c', fields:F([['c-pp','text']].concat(busF('c'), persF('c'), ['c-tot','c-ans'])) },
+    { tally:'tally-d', fields:F([['d-rate','rate'],'d-mi','d-tra','d-trad','d-reg','d-regd','d-par','d-pard','d-mea',['d-meap','pct'],'d-mead','d-tot']) }
+  ];
+
+  function bindClear(el){
+    if(!el.dataset.clearBound){
+      var ev = (el.tagName === 'SELECT') ? 'change' : 'input';
+      el.addEventListener(ev, function(){ clearFieldState(el); });
+      el.dataset.clearBound = '1';
+    }
+  }
+  function gradeField(id, correct, type){
+    var el = document.getElementById(id);
+    if(!el) return null;
+    var v = String(el.value || '').trim();
+    var pv = parseMoney(v);
+    var ok;
+    if(type === 'text') ok = (v === String(correct));
+    else if(type === 'pct') ok = near(pv, correct, 0.01) || (!/%/.test(v) && pv > 0 && pv <= 1 && near(pv * 100, correct, 0.01));
+    else if(type === 'rate') ok = near(pv, correct, 0.0006) || near(pv / 100, correct, 0.0006);   // $0.725 or 72.5 cents
+    else ok = near(Math.abs(pv), Math.abs(correct), TOL.dollar);
+    el.classList.remove('field-correct', 'field-incorrect');
+    el.classList.add(ok ? 'field-correct' : 'field-incorrect');
+    bindClear(el);
+    return ok;
+  }
+
+  var CHECK_GROUPS = [{ btn:'checkP1', summary:'p1Summary' }];
+
+  function runCheck(d){
+    var all = [];
+    PARTS.forEach(function(P){
+      var res = P.fields.map(function(f){ return gradeField('x-' + f[0], d.x[f[0]], f[1]); });
+      var el = document.getElementById(P.tally);
+      if(el){
+        var c = res.filter(function(r){ return r === true; }).length;
+        el.textContent = 'This part: ' + c + ' of ' + res.length + ' correct';
+        el.classList.remove('good','bad');
+        el.classList.add(c === res.length ? 'good' : 'bad');
+      }
+      all = all.concat(res);
+    });
+    return all;
+  }
+
+  // ---------------- wiring ----------------
+  var DOC_TITLE = "Problem 9-49 — Business Travel Expenses";
+  var COURSE_LINE = "Individual Income Taxation  ·  Chapter 9  ·  Business Deductions  ·  2026";
+  var FILE_SLUG = "Problem9-49-BusinessTravel";
+  var FOOTER_LINE = "Problem 9-49  ·  Business Travel Expenses  ·  Western Carolina University";
+
+  var idInput = document.getElementById('studentId');
+  var genBtn = document.getElementById('genBtn');
+  var currentScenario = null;
+
+  function clearTallies(){
+    document.querySelectorAll('.part-tally').forEach(function(el){ el.textContent=''; el.classList.remove('good','bad'); });
+  }
+  function applyAndStore(id){
+    currentScenario = generateScenario(id);
+    applyScenario(currentScenario);
+    clearAllFieldStates();
+    clearTallies();
+    CHECK_GROUPS.forEach(resetScore);
+  }
+  genBtn.addEventListener('click', function(){ applyAndStore(idInput.value); });
+  idInput.addEventListener('keydown', function(e){
+    if(e.key === 'Enter'){ e.preventDefault(); applyAndStore(idInput.value); }
+  });
+  applyAndStore('');
+
+  CHECK_GROUPS.forEach(function(g){
+    var btn = document.getElementById(g.btn);
+    renderScore(g);
+    var mainEl = document.querySelector('main');
+    mainEl.addEventListener('input', function(e){
+      if(e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT')) markScoreStale(g);
+    });
+    mainEl.addEventListener('change', function(e){
+      if(e.target && e.target.tagName === 'SELECT') markScoreStale(g);
+    });
+    btn.addEventListener('click', function(){
+      if(!currentScenario) return;
+      var results = runCheck(currentScenario);
+      updateSummary(g.summary, results);
+      var s = scoreState(g);
+      s.graded = results.filter(function(r){ return r !== null; }).length;
+      s.correct = results.filter(function(r){ return r === true; }).length;
+      s.attempts += 1;
+      s.checked = true;
+      s.stale = false;
+      renderScore(g);
+    });
+  });
+
+  // test hook (harmless for students)
+  window.__p949 = { solve:solve, generateScenario:generateScenario, PARTS:PARTS };
+
+  // ---------------- Print / Save as PDF ----------------
+  function val(id){
+    var el = document.getElementById(id);
+    return el ? el.value.trim() : '';
+  }
+  document.getElementById('printBtn').addEventListener('click', function(){
+    var name = val('studentName');
+    var id = val('studentId');
+    var line = document.getElementById('printNameLine');
+    line.textContent = 'Name: ' + (name || '_______________________') +
+                       '     Student ID: ' + (id || '_______________________');
+    var oldTitle = document.title;
+    document.title = FILE_SLUG + '-' + (id || 'submission');
+    window.print();
+    document.title = oldTitle;
+  });
+
+  // ---------------- Download as Word (.docx) ----------------
+  var docxLoadPromise = null;
+  function loadDocxLib(){
+    if(window.docx) return Promise.resolve();
+    if(docxLoadPromise) return docxLoadPromise;
+    docxLoadPromise = new Promise(function(resolve, reject){
+      var s = document.createElement('script');
+      s.src = 'https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.umd.js';
+      s.onload = function(){ window.docx ? resolve() : reject(new Error('docx library did not load correctly')); };
+      s.onerror = function(){ reject(new Error('network error loading docx library')); };
+      document.head.appendChild(s);
+    });
+    return docxLoadPromise;
+  }
+  function blankIfEmpty(s){ return s && s.length ? s : '—'; }
+  function cleanText(s){ return (s || '').replace(/\s+/g, ' ').trim(); }
+
+  function buildAnswersDoc(){
+    var D = window.docx;
+    var PURPLE = '592C88', INK = '221B2E', SLATE = '5F5A6B';
+    var name = blankIfEmpty(val('studentName'));
+    var sid = blankIfEmpty(val('studentId'));
+
+    function h(text, size){
+      return new D.Paragraph({ spacing: { before: 260, after: 100 }, children: [new D.TextRun({ text: text, bold: true, color: PURPLE, size: size || 26 })] });
+    }
+    function h4(text){
+      return new D.Paragraph({ spacing: { before: 180, after: 60 }, children: [new D.TextRun({ text: text, bold: true, color: PURPLE, size: 21 })] });
+    }
+    function p(text, opts){
+      opts = opts || {};
+      return new D.Paragraph({ spacing: { before: 60, after: 60 }, children: [new D.TextRun({ text: text, size: opts.size || 20, color: opts.color || INK, bold: !!opts.bold, italics: !!opts.italics })] });
+    }
+    function cell(text, width, opts){
+      opts = opts || {};
+      var borders = {};
+      if (opts.borderTop) borders.top = { style: D.BorderStyle.SINGLE, size: 6, color: PURPLE };
+      return new D.TableCell({
+        width: { size: width, type: D.WidthType.DXA },
+        shading: opts.shading ? { type: D.ShadingType.CLEAR, fill: opts.shading } : undefined,
+        borders: opts.borderTop ? borders : undefined,
+        margins: { top: 60, bottom: 60, left: 90, right: 90 },
+        children: [new D.Paragraph({ children: [new D.TextRun({ text: text, size: 19, bold: !!opts.bold, color: opts.color || INK })] })]
+      });
+    }
+    function row(cells){ return new D.TableRow({ children: cells }); }
+    function table(widths, rows){
+      return new D.Table({ width: { size: widths.reduce(function(a,b){return a+b;},0), type: D.WidthType.DXA }, columnWidths: widths, rows: rows });
+    }
+    function widthsFor(n){
+      var FULL = 9360;
+      if(n <= 1) return [FULL];
+      var first = Math.round(FULL * (n === 2 ? 0.56 : (n === 3 ? 0.46 : 0.34)));
+      var rest = Math.round((FULL - first) / (n - 1));
+      var w = [first];
+      for(var i=1;i<n;i++) w.push(rest);
+      return w;
+    }
+    function fieldText(td){
+      var inp = td.querySelector('input, select');
+      if(!inp) return cleanText(td.textContent);
+      return blankIfEmpty((inp.value || '').trim());
+    }
+    function anyTableDocx(tableEl){
+      var headRow = tableEl.querySelector('thead tr');
+      var headers = headRow ? Array.prototype.map.call(headRow.querySelectorAll('th'), function(th){ return cleanText(th.textContent); }) : null;
+      var bodyRows = Array.prototype.slice.call(tableEl.querySelectorAll('tbody tr'));
+      var ncols = headers ? headers.length : (bodyRows[0] ? bodyRows[0].children.length : 2);
+      var widths = (headers && headers[0] === 'Line') ? [700, 3900, 1450, 1510, 1800] : widthsFor(ncols);
+      var out = [];
+      if(headers){
+        out.push(row(headers.map(function(t,i){ return cell(t, widths[i], { bold:true, shading:PURPLE, color:'FFFFFF' }); })));
+      }
+      bodyRows.forEach(function(tr){
+        var isTotal = tr.classList.contains('ws-total') || tr.classList.contains('given-total');
+        var cells = [];
+        Array.prototype.forEach.call(tr.children, function(td, i){
+          var txt = fieldText(td);
+          if(tr.classList.contains('indent') && i === 0) txt = '    ' + txt;
+          cells.push(cell(txt, widths[Math.min(i, widths.length-1)], { bold: isTotal || tr.classList.contains('given-head'), borderTop: isTotal }));
+        });
+        out.push(row(cells));
+      });
+      return table(widths, out);
+    }
+
+    var children = [];
+    children.push(new D.Paragraph({ heading: D.HeadingLevel.TITLE, spacing: { after: 60 }, children: [new D.TextRun({ text: DOC_TITLE, color: PURPLE, size: 32, bold: true })] }));
+    children.push(p('Name: ' + name + '     Student ID: ' + sid, { bold: true }));
+    children.push(p('Score: ' + CHECK_GROUPS.map(function(g){
+      var s = scoreState(g);
+      if(!s.checked) return 'not checked';
+      return s.correct + ' of ' + s.graded + ' correct (' + scorePct(s) + '%)' +
+             (s.stale ? ' — an answer was edited after this score was calculated'
+                      : ', self-checked on attempt ' + s.attempts);
+    }).join('; '), { bold: true, color: PURPLE }));
+    children.push(p(COURSE_LINE, { color: SLATE }));
+
+    document.querySelectorAll('main > .part').forEach(function(partEl){
+      var label = cleanText((partEl.querySelector('.part-label') || {}).textContent || '');
+      var company = cleanText((partEl.querySelector('h2') || {}).textContent || '');
+      children.push(h((label ? label + ' — ' : '') + company));
+
+      Array.prototype.forEach.call(partEl.children, function(el){
+        if (el.classList.contains('part-label') || el.tagName === 'H2' || el.classList.contains('check-bar')) return;
+        if (el.classList.contains('scenario') || el.classList.contains('situation')) {
+          Array.prototype.forEach.call(el.querySelectorAll('p, span.sit-tag'), function(pp){
+            var t = cleanText(pp.textContent);
+            if(t) children.push(p(t, pp.classList && pp.classList.contains('sit-tag') ? { bold:true, color:PURPLE } : {}));
+          });
+          if (!el.querySelector('p')) children.push(p(cleanText(el.textContent)));
+        } else if (el.tagName === 'H4') {
+          children.push(h4(cleanText(el.textContent)));
+        } else if (el.tagName === 'TABLE' || el.classList.contains('tablewrap')) {
+          children.push(anyTableDocx(el.tagName === 'TABLE' ? el : el.querySelector('table')));
+        } else if (el.classList.contains('footnote') || el.classList.contains('hint') || el.classList.contains('je-sub')) {
+          children.push(p(cleanText(el.textContent), { italics:true, color:SLATE, size:17 }));
+        } else if (el.classList.contains('req') || el.classList.contains('je-cap')) {
+          children.push(p(cleanText(el.textContent), { bold:true }));
+        } else if (el.tagName === 'OL') {
+          Array.prototype.forEach.call(el.querySelectorAll('li'), function(li, i){
+            children.push(p((i+1) + '. ' + cleanText(li.textContent)));
+          });
+        } else if (el.tagName === 'UL') {
+          Array.prototype.forEach.call(el.querySelectorAll('li'), function(li){
+            children.push(p('•  ' + cleanText(li.textContent)));
+          });
+        } else if (el.tagName === 'P') {
+          children.push(p(cleanText(el.textContent)));
+        }
+      });
+    });
+
+    children.push(new D.Paragraph({ spacing: { before: 300 }, alignment: D.AlignmentType.CENTER, children: [new D.TextRun({ text: FOOTER_LINE, size: 16, italics: true, color: SLATE })] }));
+
+    return new D.Document({
+      sections: [{
+        properties: { page: { size: { width: 12240, height: 15840 }, margin: { top: 1440, bottom: 1440, left: 1440, right: 1440 } } },
+        children: children
+      }]
+    });
+  }
+
+  document.getElementById('downloadDocxBtn').addEventListener('click', function(){
+    var statusEl = document.getElementById('submitStatus');
+    statusEl.classList.remove('error');
+    statusEl.textContent = 'Preparing your Word document…';
+    loadDocxLib().then(function(){
+      var doc = buildAnswersDoc();
+      return window.docx.Packer.toBlob(doc);
+    }).then(function(blob){
+      var idPart = val('studentId') || 'submission';
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = FILE_SLUG + '-' + idPart + '.docx';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      statusEl.textContent = 'Downloaded.';
+      setTimeout(function(){ statusEl.textContent = ''; }, 4000);
+    }).catch(function(err){
+      statusEl.classList.add('error');
+      statusEl.textContent = 'Could not load the Word export tool (needs internet access) — use Print / Save as PDF instead.';
+    });
+  });
+
+
+})();
+</script>
+
+</body>
+</html>
