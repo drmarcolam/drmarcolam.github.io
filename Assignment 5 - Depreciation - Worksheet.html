@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Assignment 5 &mdash; Depreciation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+
+  :root{
+    --purple:#592C88;
+    --purple-deep:#38195A;
+    --purple-mid:#6E3FA3;
+    --gold:#B0925C;
+    --gold-soft:#D6C398;
+    --gold-pale:#F1E9D6;
+    --parchment:#F7F4EC;
+    --paper:#FFFEFA;
+    --ink:#221B2E;
+    --slate:#5F5A6B;
+    --line:#DBD3E0;
+    --line-soft:#EAE4EF;
+    --answer:#1E5C34;
+    --answer-bg:#E7F1E9;
+    --danger:#9C3B34;
+    --shadow: 0 1px 2px rgba(56,25,90,0.07), 0 6px 18px rgba(56,25,90,0.08);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--parchment);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ color:inherit; }
+
+  header{
+    background: linear-gradient(180deg, var(--purple) 0%, var(--purple-deep) 100%);
+    color:#F1E9D6;
+    padding: 30px 6vw 24px;
+    position:relative;
+  }
+  header::after{
+    content:"";
+    position:absolute; left:0; right:0; bottom:0; height:4px;
+    background: linear-gradient(90deg, var(--gold-soft), var(--gold) 40%, var(--gold-soft) 70%, var(--gold));
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--gold-soft); margin:0 0 10px;
+  }
+  h1.title{
+    font-family:'Source Serif 4', serif; font-weight:600;
+    font-size:clamp(24px,3.4vw,34px); margin:0 0 8px; letter-spacing:-0.01em;
+  }
+  .subtitle{ font-size:14.5px; color:#D9CDE5; max-width:680px; margin:0; }
+
+  .id-bar{
+    max-width:900px; margin:0 auto; padding:18px 6vw 0;
+    display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+  }
+  .id-bar label{ font-size:13px; font-weight:600; color:var(--slate); }
+  .id-bar input[type="text"]{
+    font-family:'IBM Plex Mono', monospace; font-size:13.5px; padding:8px 11px;
+    border:1px solid var(--line); border-radius:5px; background:var(--paper); color:var(--ink);
+    width:180px;
+  }
+  .id-bar input:focus{ outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); }
+  .id-bar button{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:8px 15px; border:1px solid var(--purple);
+    background:var(--purple); color:#fff; cursor:pointer;
+  }
+  .id-bar button:hover{ background:var(--purple-mid); }
+  .id-bar .id-hint{ font-size:12px; color:var(--slate); }
+  .id-bar input#studentName{ width:220px; font-family:'Inter',sans-serif; }
+
+  .score-area{ max-width:900px; margin:0 auto; padding:14px 6vw 0; }
+
+  .rounding-note{
+    max-width:900px; margin:14px auto 0; padding:12px 6vw;
+    font-size:12.5px; color:var(--slate); line-height:1.5;
+  }
+  .rounding-note strong{ color:var(--purple); font-weight:600; }
+
+  main{ max-width:900px; margin:0 auto; padding:22px 6vw 90px; }
+
+  .part{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    box-shadow:var(--shadow);
+    padding:24px 26px 26px;
+    margin-top:26px;
+  }
+  .part-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; color:var(--gold); background:var(--purple);
+    display:inline-block; padding:3px 9px; border-radius:4px; letter-spacing:.04em;
+    margin-bottom:12px;
+  }
+  .part h2{
+    font-family:'Source Serif 4', serif; font-size:21px; font-weight:600;
+    color:var(--purple); margin:0 0 12px;
+  }
+  .scenario{
+    background:var(--parchment);
+    border-left:3px solid var(--gold);
+    padding:14px 18px;
+    border-radius:0 6px 6px 0;
+    font-size:14.5px;
+    color:var(--ink);
+    margin-bottom:16px;
+  }
+  .scenario p{ margin:0 0 10px; }
+  .scenario p:last-child{ margin-bottom:0; }
+  .scenario span.val{ font-weight:700; color:var(--purple-deep); }
+
+  .req{
+    font-weight:600;
+    font-size:14.5px;
+    color:var(--ink);
+    margin:20px 0 10px;
+  }
+  .req span.reqlabel{ color:var(--purple); }
+
+  h4.subsection{
+    font-family:'Source Serif 4',serif; font-size:15px; color:var(--purple); margin:22px 0 6px;
+    border-bottom:1px solid var(--line-soft); padding-bottom:4px;
+  }
+
+  table.given{ width:100%; border-collapse:collapse; font-size:13px; margin:6px 0 14px; }
+  table.given th{ text-align:left; font-size:10.5px; text-transform:uppercase; letter-spacing:.03em; color:var(--slate); border-bottom:2px solid var(--purple); padding:6px 8px; }
+  table.given td{ border-bottom:1px solid var(--line); padding:5px 8px; font-family:'IBM Plex Mono', monospace; }
+  table.given td.lbl{ font-family:'Inter',sans-serif; }
+  table.given td.num, table.given th.num{ text-align:right; }
+  table.given tr.given-total td{ border-top:1.3px solid var(--purple); font-weight:600; }
+  table.given tr.given-head td{ font-family:'Source Serif 4',serif; font-weight:600; color:var(--purple); text-align:center; }
+  ol.addinfo{ margin:8px 0; padding-left:20px; font-size:13.5px; }
+  ol.addinfo li{ margin:6px 0; }
+  .footnote{ font-size:12px; color:var(--slate); margin:2px 0 14px; font-style:italic; }
+  .hint{ font-size:12.5px; color:var(--slate); margin:4px 0 10px; }
+
+  table.worksheet{
+    width:100%;
+    border-collapse:collapse;
+    font-size:13.5px;
+    margin:10px 0 4px;
+  }
+  table.worksheet th{
+    text-align:left;
+    font-size:11.5px;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+    color:var(--slate);
+    border-bottom:2px solid var(--purple);
+    padding:8px 8px;
+  }
+  table.worksheet th.num{ text-align:right; }
+  table.worksheet td{
+    border-bottom:1px solid var(--line);
+    padding:9px 8px;
+    vertical-align:middle;
+  }
+  table.worksheet td.method{ font-weight:600; }
+  table.worksheet td.sub{ padding-left:24px; font-weight:400; }
+  table.worksheet td.amt{ width:160px; }
+  table.worksheet td.dash{ text-align:center; color:var(--slate); font-family:'IBM Plex Mono',monospace; }
+  table.worksheet tr.ws-total td{ border-top:1.6px solid var(--purple); font-weight:600; }
+  table.worksheet input[type="text"]{
+    width:100%;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13.5px;
+    padding:6px 8px;
+    border:1px solid var(--line);
+    border-radius:5px;
+    background:var(--parchment);
+    color:var(--ink);
+  }
+  table.worksheet input[type="text"]:focus{
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
+  }
+
+  .score-panel{
+    display:flex; align-items:center; gap:18px;
+    margin:0 0 4px; padding:14px 18px;
+    background:var(--parchment);
+    border:1px solid var(--line);
+    border-radius:8px;
+  }
+  .score-panel.scored-good{ background:var(--answer-bg); border-color:#B7D3BE; }
+  .score-panel.scored-bad{ background:#F8F0EF; border-color:#E2C6C2; }
+  .score-pct{
+    font-family:'Source Serif 4', serif;
+    font-size:30px; font-weight:700; line-height:1.05;
+    color:var(--slate); min-width:96px; text-align:center;
+  }
+  .score-panel.scored-good .score-pct{ color:var(--answer); }
+  .score-panel.scored-bad .score-pct{ color:var(--danger); }
+  .score-detail{ flex:1; min-width:0; }
+  .score-meta{ font-size:13.5px; font-weight:600; color:var(--ink); margin:0 0 7px; }
+  .score-bar{ height:8px; border-radius:4px; background:var(--line-soft); overflow:hidden; }
+  .score-bar span{ display:block; height:100%; width:0; background:var(--purple-mid); transition:width .35s ease; }
+  .score-panel.scored-good .score-bar span{ background:var(--answer); }
+  .score-panel.scored-bad .score-bar span{ background:var(--danger); }
+  .score-sub{ font-size:11.5px; color:var(--slate); margin:7px 0 0; }
+
+  .check-bar{
+    margin-top:20px;
+    padding-top:16px;
+    border-top:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .btn-check{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:9px 18px; border:1px solid var(--purple);
+    background:var(--purple); color:#fff; cursor:pointer;
+  }
+  .btn-check:hover{ background:var(--purple-mid); }
+  .check-summary{ font-size:13.5px; font-weight:600; }
+  .check-summary.good{ color:var(--answer); }
+  .check-summary.bad{ color:var(--danger); }
+  .check-disclaimer{ font-size:11.5px; color:var(--slate); width:100%; margin-top:2px; font-style:italic; }
+
+  input.field-correct{
+    border-color:var(--answer) !important;
+    background:var(--answer-bg) !important;
+  }
+  input.field-incorrect{
+    border-color:var(--danger) !important;
+    background:#F3E1DE !important;
+  }
+
+  .submit-bar{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    box-shadow:var(--shadow);
+    padding:22px 26px 24px;
+    margin-top:26px;
+  }
+  .submit-bar h2{
+    font-family:'Source Serif 4', serif; font-size:19px; font-weight:600;
+    color:var(--purple); margin:0 0 14px;
+  }
+  .submit-row{ display:flex; align-items:center; gap:10px; margin-bottom:12px; flex-wrap:wrap; }
+  .submit-row label{ font-size:13px; font-weight:600; color:var(--slate); }
+  .submit-row input[type="text"]{
+    font-family:'Inter',sans-serif; font-size:13.5px; padding:8px 11px;
+    border:1px solid var(--line); border-radius:5px; background:var(--parchment); color:var(--ink);
+    width:240px;
+  }
+  .submit-row input:focus{ outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); }
+  .btn-submit{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:10px 18px; border:1px solid var(--purple);
+    background:var(--purple); color:#fff; cursor:pointer;
+  }
+  .btn-submit:hover{ background:var(--purple-mid); }
+  .btn-submit-outline{ background:var(--paper); color:var(--purple); }
+  .btn-submit-outline:hover{ background:var(--parchment); }
+  .submit-status{ font-size:13px; font-weight:600; min-height:18px; margin:10px 0 0; color:var(--answer); }
+  .submit-status.error{ color:var(--danger); }
+  .submit-hint{ font-size:12px; color:var(--slate); margin:6px 0 0; }
+
+  @media print{
+    .print-hide, .id-bar, .check-bar, .rounding-note{ display:none !important; }
+    header{ background:none !important; color:var(--ink) !important; padding:0 0 14px !important; }
+    header::after{ display:none !important; }
+    .eyebrow{ color:var(--purple) !important; }
+    .subtitle{ color:var(--slate) !important; }
+    body{ background:#fff !important; }
+    .part{ box-shadow:none !important; border:1px solid #999 !important; break-inside:auto; }
+    .score-panel{ background:#fff !important; border:1.5px solid #000 !important; break-inside:avoid; }
+    .score-bar{ display:none !important; }
+    .score-pct, .score-panel.scored-good .score-pct, .score-panel.scored-bad .score-pct{ color:#000 !important; }
+    .part h2, .part-label, .scenario, h4.subsection{ break-after:avoid; break-inside:avoid; }
+    table.given, table.worksheet{ break-inside:auto; }
+    table.given tr, table.worksheet tr{ break-inside:avoid; }
+    ol.addinfo li{ break-inside:avoid; }
+    .submit-bar{ break-before:avoid; }
+    input[type="text"]{
+      border:none !important;
+      border-bottom:1px solid #000 !important;
+      background:transparent !important;
+      border-radius:0 !important;
+      color:#000 !important;
+      -webkit-appearance:none;
+      appearance:none;
+      padding:2px 4px !important;
+    }
+    .print-name-line{ display:block !important; }
+  }
+  .print-name-line{ display:none; font-size:13px; color:var(--ink); padding:0 6vw; margin:0 0 10px; }
+
+  footer{ text-align:center; padding:26px 6vw 40px; font-size:12px; color:var(--slate); }
+
+  @media (max-width:600px){
+    header, main, .id-bar{ padding-left:5vw; padding-right:5vw; }
+    table.worksheet{ font-size:12.5px; }
+  }
+
+
+  /* ---- additions for journal-entry worksheets and dropdown fields ---- */
+  table.worksheet select{
+    width:100%;
+    font-family:'Inter',sans-serif;
+    font-size:13px;
+    padding:6px 6px;
+    border:1px solid var(--line);
+    border-radius:5px;
+    background:var(--parchment);
+    color:var(--ink);
+  }
+  table.worksheet select:focus{
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
+  }
+  select.field-correct{ border-color:var(--answer) !important; background:var(--answer-bg) !important; }
+  select.field-incorrect{ border-color:var(--danger) !important; background:#F3E1DE !important; }
+
+  table.je{ width:100%; border-collapse:collapse; font-size:13.5px; margin:8px 0 6px; }
+  table.je th{
+    text-align:left; font-size:11.5px; text-transform:uppercase; letter-spacing:.03em;
+    color:var(--slate); border-bottom:2px solid var(--purple); padding:8px 8px;
+  }
+  table.je th.num{ text-align:right; }
+  table.je td{ border-bottom:1px solid var(--line); padding:7px 8px; vertical-align:middle; }
+  table.je td.acct{ width:52%; }
+  table.je td.amt{ width:24%; }
+  table.je tr.indent td.acct{ padding-left:30px; }
+  table.je input[type="text"]{
+    width:100%; font-family:'IBM Plex Mono', monospace; font-size:13.5px;
+    padding:6px 8px; border:1px solid var(--line); border-radius:5px;
+    background:var(--parchment); color:var(--ink); text-align:right;
+  }
+  table.je input[type="text"]:focus{
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
+  }
+  table.je select{
+    width:100%; font-family:'Inter',sans-serif; font-size:13px; padding:6px 6px;
+    border:1px solid var(--line); border-radius:5px; background:var(--parchment); color:var(--ink);
+  }
+  table.je select:focus{
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
+  }
+  .je-cap{ font-size:12.5px; font-weight:600; color:var(--purple); margin:16px 0 0; }
+  .je-sub{ font-size:12px; color:var(--slate); margin:2px 0 0; font-style:italic; }
+  .situation{
+    border-left:3px solid var(--purple-mid);
+    background:#FBF9F4;
+    padding:12px 16px;
+    border-radius:0 6px 6px 0;
+    font-size:14px;
+    margin:26px 0 10px;
+  }
+  .situation .sit-tag{
+    font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.06em;
+    text-transform:uppercase; color:var(--purple); display:block; margin-bottom:4px;
+  }
+  .situation p{ margin:0 0 8px; }
+  .situation p:last-child{ margin-bottom:0; }
+  .situation span.val{ font-weight:700; color:var(--purple-deep); }
+  @media print{
+    table.je{ break-inside:auto; }
+    table.je tr{ break-inside:avoid; }
+    .situation{ break-inside:avoid; background:#fff !important; }
+    table.worksheet select, table.je select{
+      border:none !important; border-bottom:1px solid #000 !important;
+      background:transparent !important; border-radius:0 !important;
+      -webkit-appearance:none; appearance:none; padding:2px 4px !important;
+    }
+  }
+
+  table.worksheet td.amt-wide{ width:56%; }
+
+</style>
+
+<style>
+  /* ---- additions for the tax-computation worksheet ---- */
+  table.worksheet td.line{ width:46px; font-family:'IBM Plex Mono',monospace; font-size:12.5px; color:var(--purple); font-weight:600; white-space:nowrap; }
+  table.worksheet td.rate{ width:112px; }
+  table.worksheet td.const{ width:112px; font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--purple-deep); text-align:right; }
+  table.worksheet td.amt5{ width:150px; }
+  table.worksheet td.note{ width:150px; font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--slate); }
+  table.worksheet tr.subhead td{ font-family:'Source Serif 4',serif; font-weight:600; color:var(--purple); background:#FBF9F4; padding-top:7px; padding-bottom:7px; }
+  table.worksheet td.rate input, table.worksheet td.amt5 input{ text-align:right; }
+  .part-tally{ margin-top:14px; font-size:12.5px; font-weight:600; min-height:16px; }
+  .part-tally.good{ color:var(--answer); }
+  .part-tally.bad{ color:var(--danger); }
+
+  details.refbox{
+    background:var(--paper); border:1px solid var(--line); border-radius:10px;
+    box-shadow:var(--shadow); padding:14px 22px; margin-top:26px;
+  }
+  details.refbox summary{
+    cursor:pointer; font-family:'Source Serif 4',serif; font-size:17px; font-weight:600; color:var(--purple);
+  }
+  details.refbox[open] summary{ margin-bottom:8px; }
+  .refgrid{ display:grid; grid-template-columns:1fr 1fr; gap:6px 26px; }
+  .refgrid h5{ font-family:'Source Serif 4',serif; font-size:14px; color:var(--purple); margin:12px 0 2px; }
+  table.sched td.txt{ font-family:'Inter',sans-serif; font-size:12px; }
+  .tablewrap{ overflow-x:auto; }
+  @media (max-width:760px){
+    .refgrid{ grid-template-columns:1fr; }
+    table.worksheet td.note{ display:none; }
+    table.worksheet th.notehead{ display:none; }
+    table.worksheet td.amt5, table.worksheet td.rate, table.worksheet td.const{ width:auto; }
+  }
+  @media print{
+    details.refbox{ display:none !important; }
+    table.worksheet tr.subhead td{ background:#fff !important; }
+    .part-tally{ display:none !important; }
+  }
+</style>
+
+<style>
+  main, .id-bar, .score-area, .rounding-note{ max-width:1180px; }
+  table.worksheet.dep td{ padding:6px 4px; vertical-align:middle; }
+  table.worksheet.dep th{ padding-left:4px; padding-right:4px; }
+  table.worksheet.dep td.no{ width:22px; font-family:'IBM Plex Mono',monospace; font-size:12.5px; color:var(--purple); font-weight:600; }
+  table.worksheet.dep td.desc{ font-weight:400; font-size:13px; min-width:130px; }
+  table.worksheet.dep td.g{ font-family:'IBM Plex Mono',monospace; font-size:12.5px; text-align:right; padding-right:8px; white-space:nowrap; }
+  table.worksheet.dep td.sel{ width:92px; }
+  table.worksheet.dep td.yr{ width:62px; }
+  table.worksheet.dep td.rt{ width:84px; }
+  table.worksheet.dep td.fr{ width:84px; }
+  table.worksheet.dep td.amt6{ width:118px; }
+  table.worksheet.dep select{ min-width:0; width:100%; }
+  table.worksheet td input[type="text"]{ text-align:right; }
+  table.worksheet tr.tot td{ background:var(--answer-bg); }
+  table.given tr.disp td{ font-weight:700; }
+  details.macrs{ margin:10px 0 0; border-top:1px solid var(--line-soft); padding-top:8px; }
+  details.macrs > summary{ cursor:pointer; font-family:'Source Serif 4',serif; font-size:14.5px; font-weight:600; color:var(--purple); }
+  table.mtab{ width:100%; border-collapse:collapse; font-size:12px; margin:8px 0 6px; }
+  table.mtab th{ font-size:10.5px; text-transform:uppercase; letter-spacing:.03em; color:var(--slate); border-bottom:2px solid var(--purple); padding:5px 6px; text-align:right; white-space:nowrap; }
+  table.mtab th:first-child, table.mtab td:first-child{ text-align:left; white-space:nowrap; }
+  table.mtab td{ border-bottom:1px solid var(--line); padding:4px 6px; text-align:right; font-family:'IBM Plex Mono',monospace; }
+  table.mtab caption{ caption-side:top; text-align:left; font-size:11.5px; color:var(--slate); padding:2px 0 4px; }
+  .mref-links{ font-size:13px; margin:6px 0 2px; }
+  .mref-links a{ color:var(--purple); }
+  table.legend{ border-collapse:collapse; font-size:12.5px; margin:10px 0 4px; }
+  table.legend td{ padding:3px 12px 3px 0; border-bottom:1px solid var(--line-soft); }
+  table.legend td:first-child{ font-weight:600; color:var(--purple); white-space:nowrap; }
+  @media print{
+    main, .id-bar, .score-area, .rounding-note{ max-width:none; }
+    .tablewrap{ overflow:visible !important; }
+    table.worksheet.dep{ table-layout:fixed; width:100%; font-size:9.5px; }
+    table.worksheet.dep th{ font-size:7.5px !important; padding:3px 2px !important; letter-spacing:0; }
+    table.worksheet.dep td{ padding:3px 2px !important; width:auto !important; min-width:0 !important; }
+    table.worksheet.dep td.desc, table.worksheet.dep td.g{ font-size:9.5px; }
+    table.worksheet.dep input[type="text"], table.worksheet.dep select{ font-size:9.5px !important; padding:1px 2px !important; min-width:0 !important; width:100% !important; }
+    table.worksheet.dep select{ -webkit-appearance:none; appearance:none; background-image:none !important; }
+    table.dep1 th:nth-child(1){width:4%} table.dep1 th:nth-child(2){width:15%} table.dep1 th:nth-child(3){width:11%}
+    table.dep1 th:nth-child(4){width:12%} table.dep1 th:nth-child(5){width:8%} table.dep1 th:nth-child(6){width:8%}
+    table.dep1 th:nth-child(7){width:8%} table.dep1 th:nth-child(8){width:8%} table.dep1 th:nth-child(9){width:12%}
+    table.dep1 th:nth-child(10){width:14%}
+    table.dep2 th:nth-child(1){width:4%} table.dep2 th:nth-child(2){width:20%} table.dep2 th:nth-child(3){width:12%}
+    table.dep2 th:nth-child(4){width:12%} table.dep2 th:nth-child(5){width:14%} table.dep2 th:nth-child(6){width:12%}
+    table.dep2 th:nth-child(7){width:12%} table.dep2 th:nth-child(8){width:14%}
+  }
+</style>
+</head>
+
+<body>
+
+<header>
+  <p class="eyebrow">Individual Income Taxation &middot; Property Acquisition and Cost Recovery</p>
+  <h1 class="title">Assignment 5 &mdash; Depreciation</h1>
+  <p class="subtitle">Choosing the right MACRS table, recovery life and year of service, applying the half-year, mid-quarter and mid-month conventions, and computing depreciation in the year of disposal.</p>
+</header>
+
+<p class="print-name-line" id="printNameLine"></p>
+
+<div class="id-bar">
+  <label for="studentName">Name</label>
+  <input type="text" id="studentName" placeholder="First and last name">
+  <label for="studentId">Student ID</label>
+  <input type="text" id="studentId" placeholder="e.g. 920410165">
+  <button id="genBtn" type="button">Generate scenario</button>
+  <span class="id-hint">Leave the ID blank and click to restore the original assignment figures.</span>
+</div>
+
+<div class="score-area" id="scoreArea"></div>
+
+<div class="rounding-note">
+  <strong>Rounding convention:</strong> do not round intermediate calculations; enter depreciation in whole dollars (within $2 of the key is accepted) and rates as percentages exactly as shown in the MACRS tables. Leave no answers blank &mdash; enter 0 if applicable.
+</div>
+
+<main>
+<div class="part"><span class="part-label">Assignment 5</span><h2>Depreciation</h2>
+    <div class="scenario">
+      <p><strong>1.</strong> Calculate the MACRS depreciation for the assets listed below. Assume the company does not elect &sect;179 expensing and elects not to use bonus depreciation.</p>
+    </div>
+<p class="mref-links">Use MACRS <a href="#mt1" class="mlink">Table 1</a>, <a href="#mt2a" class="mlink">Table 2</a>, <a href="#mt3" class="mlink">Table 3</a>, <a href="#mt4" class="mlink">Table 4</a>, and <a href="#mt5" class="mlink">Table 5</a> (in the reference panel below).</p>
+    <div class="tablewrap"><table class="given facts">
+      <thead><tr><th>Description</th><th>Acquisition date</th><th class="num">Cost</th></tr></thead>
+      <tbody id="factsBody"></tbody>
+    </table></div>
+    <div class="scenario">
+      <p><strong>2.</strong> Now assume that the following assets are disposed of in 2026. Assume the company does not elect &sect;179 expensing and elects not to use bonus depreciation.</p>
+    </div>
+    <div class="tablewrap"><table class="given facts">
+      <thead><tr><th>Description</th><th>Acquisition date</th><th class="num">Cost</th><th>Disposal date</th></tr></thead>
+      <tbody id="dispBody"></tbody>
+    </table></div>
+    <p class="hint">The assets disposed of are the ones shown in bold in the first table. Enter whole dollars (within $2 of the key is accepted). Leave no answers blank &mdash; enter 0 if applicable.</p>
+<div class="part-tally" id="tally0"></div></div>
+
+  <details class="refbox print-hide" id="macrsRef">
+    <summary>Reference: 2026 MACRS tables (Tables 1&ndash;5)</summary>
+    <p class="hint">Table 1 (half-year convention) and Tables 2a&ndash;2d (mid-quarter convention) apply to personal property. Table 3 applies to residential rental property, Table 4 to nonresidential real property placed in service before May 13, 1993, and Table 5 to nonresidential real property placed in service on or after May 13, 1993.</p>
+    <details class="macrs" id="mt1"><summary>Table 1 MACRS Half-Year Convention</summary><div class="tablewrap"><table class="mtab"><caption>Depreciation Rate for Recovery Period</caption><thead><tr><th></th><th>3-Year</th><th>5-Year</th><th>7-Year</th><th>10-Year</th><th>15-Year</th><th>20-Year</th></tr></thead><tbody><tr><td>Year 1</td><td>33.33%</td><td>20.00%</td><td>14.29%</td><td>10.00%</td><td>5.00%</td><td>3.750%</td></tr><tr><td>Year 2</td><td>44.45</td><td>32.00</td><td>24.49</td><td>18.00</td><td>9.50</td><td>7.219</td></tr><tr><td>Year 3</td><td>14.81</td><td>19.20</td><td>17.49</td><td>14.40</td><td>8.55</td><td>6.677</td></tr><tr><td>Year 4</td><td>7.41</td><td>11.52</td><td>12.49</td><td>11.52</td><td>7.70</td><td>6.177</td></tr><tr><td>Year 5</td><td></td><td>11.52</td><td>8.93</td><td>9.22</td><td>6.93</td><td>5.713</td></tr><tr><td>Year 6</td><td></td><td>5.76</td><td>8.92</td><td>7.37</td><td>6.23</td><td>5.285</td></tr><tr><td>Year 7</td><td></td><td></td><td>8.93</td><td>6.55</td><td>5.90</td><td>4.888</td></tr><tr><td>Year 8</td><td></td><td></td><td>4.46</td><td>6.55</td><td>5.90</td><td>4.522</td></tr><tr><td>Year 9</td><td></td><td></td><td></td><td>6.56</td><td>5.91</td><td>4.462</td></tr><tr><td>Year 10</td><td></td><td></td><td></td><td>6.55</td><td>5.90</td><td>4.461</td></tr><tr><td>Year 11</td><td></td><td></td><td></td><td>3.28</td><td>5.91</td><td>4.462</td></tr><tr><td>Year 12</td><td></td><td></td><td></td><td></td><td>5.90</td><td>4.461</td></tr><tr><td>Year 13</td><td></td><td></td><td></td><td></td><td>5.91</td><td>4.462</td></tr><tr><td>Year 14</td><td></td><td></td><td></td><td></td><td>5.90</td><td>4.461</td></tr><tr><td>Year 15</td><td></td><td></td><td></td><td></td><td>5.91</td><td>4.462</td></tr><tr><td>Year 16</td><td></td><td></td><td></td><td></td><td>2.95</td><td>4.461</td></tr><tr><td>Year 17</td><td></td><td></td><td></td><td></td><td></td><td>4.462</td></tr><tr><td>Year 18</td><td></td><td></td><td></td><td></td><td></td><td>4.461</td></tr><tr><td>Year 19</td><td></td><td></td><td></td><td></td><td></td><td>4.462</td></tr><tr><td>Year 20</td><td></td><td></td><td></td><td></td><td></td><td>4.461</td></tr><tr><td>Year 21</td><td></td><td></td><td></td><td></td><td></td><td>2.231</td></tr></tbody></table></div></details><details class="macrs" id="mt2a"><summary>TABLE 2a MACRS Mid-Quarter Convention: For property placed in service during the first quarter</summary><div class="tablewrap"><table class="mtab"><caption>Depreciation Rate for Recovery Period</caption><thead><tr><th></th><th>5-Year</th><th>7-Year</th></tr></thead><tbody><tr><td>Year 1</td><td>35.00%</td><td>25.00%</td></tr><tr><td>Year 2</td><td>26.00</td><td>21.43</td></tr><tr><td>Year 3</td><td>15.60</td><td>15.31</td></tr><tr><td>Year 4</td><td>11.01</td><td>10.93</td></tr><tr><td>Year 5</td><td>11.01</td><td>8.75</td></tr><tr><td>Year 6</td><td>1.38</td><td>8.74</td></tr><tr><td>Year 7</td><td></td><td>8.75</td></tr><tr><td>Year 8</td><td></td><td>1.09</td></tr></tbody></table></div></details><details class="macrs" id="mt2b"><summary>TABLE 2b MACRS Mid-Quarter Convention: For property placed in service during the second quarter</summary><div class="tablewrap"><table class="mtab"><caption>Depreciation Rate for Recovery Period</caption><thead><tr><th></th><th>5-Year</th><th>7-Year</th></tr></thead><tbody><tr><td>Year 1</td><td>25.00%</td><td>17.85%</td></tr><tr><td>Year 2</td><td>30.00</td><td>23.47</td></tr><tr><td>Year 3</td><td>18.00</td><td>16.76</td></tr><tr><td>Year 4</td><td>11.37</td><td>11.97</td></tr><tr><td>Year 5</td><td>11.37</td><td>8.87</td></tr><tr><td>Year 6</td><td>4.26</td><td>8.87</td></tr><tr><td>Year 7</td><td></td><td>8.87</td></tr><tr><td>Year 8</td><td></td><td>3.34</td></tr></tbody></table></div></details><details class="macrs" id="mt2c"><summary>TABLE 2c MACRS Mid-Quarter Convention: For property placed in service during the third quarter</summary><div class="tablewrap"><table class="mtab"><caption>Depreciation Rate for Recovery Period</caption><thead><tr><th></th><th>5-Year</th><th>7-Year</th></tr></thead><tbody><tr><td>Year 1</td><td>15.00%</td><td>10.71%</td></tr><tr><td>Year 2</td><td>34.00</td><td>25.51</td></tr><tr><td>Year 3</td><td>20.40</td><td>18.22</td></tr><tr><td>Year 4</td><td>12.24</td><td>13.02</td></tr><tr><td>Year 5</td><td>11.30</td><td>9.30</td></tr><tr><td>Year 6</td><td>7.06</td><td>8.85</td></tr><tr><td>Year 7</td><td></td><td>8.86</td></tr><tr><td>Year 8</td><td></td><td>5.53</td></tr></tbody></table></div></details><details class="macrs" id="mt2d"><summary>TABLE 2d MACRS-Mid Quarter Convention: For property placed in service during the fourth quarter</summary><div class="tablewrap"><table class="mtab"><caption>Depreciation Rate for Recovery Period</caption><thead><tr><th></th><th>5-Year</th><th>7-Year</th></tr></thead><tbody><tr><td>Year 1</td><td>5.00%</td><td>3.57%</td></tr><tr><td>Year 2</td><td>38.00</td><td>27.55</td></tr><tr><td>Year 3</td><td>22.80</td><td>19.68</td></tr><tr><td>Year 4</td><td>13.68</td><td>14.06</td></tr><tr><td>Year 5</td><td>10.94</td><td>10.04</td></tr><tr><td>Year 6</td><td>9.58</td><td>8.73</td></tr><tr><td>Year 7</td><td></td><td>8.73</td></tr><tr><td>Year 8</td><td></td><td>7.64</td></tr></tbody></table></div></details><details class="macrs" id="mt3"><summary>TABLE 3 Residential Rental Property Mid-Month Convention Straight Line—27.5 Years</summary><div class="tablewrap"><table class="mtab"><caption>Month Property Placed in Service</caption><thead><tr><th></th><th>Month 1</th><th>Month 2</th><th>Month 3</th><th>Month 4</th><th>Month 5</th><th>Month 6</th><th>Month 7</th><th>Month 8</th><th>Month 9</th><th>Month 10</th><th>Month 11</th><th>Month 12</th></tr></thead><tbody><tr><td>Year 1</td><td>3.485%</td><td>3.182%</td><td>2.879%</td><td>2.576%</td><td>2.273%</td><td>1.970%</td><td>1.667%</td><td>1.364%</td><td>1.061%</td><td>0.758%</td><td>0.455%</td><td>0.152%</td></tr><tr><td>Year 2-9</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td></tr><tr><td>Year 10</td><td>3.637</td><td>3.637</td><td>3.637</td><td>3.637</td><td>3.637</td><td>3.637</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td></tr><tr><td>Year 11</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.637</td><td>3.637</td><td>3.637</td><td>3.637</td><td>3.637</td><td>3.637</td></tr><tr><td>Year 12</td><td>3.637</td><td>3.637</td><td>3.637</td><td>3.637</td><td>3.637</td><td>3.637</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td></tr><tr><td>Year 13</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.637</td><td>3.637</td><td>3.637</td><td>3.637</td><td>3.637</td><td>3.637</td></tr><tr><td>Year 14</td><td>3.637</td><td>3.637</td><td>3.637</td><td>3.637</td><td>3.637</td><td>3.637</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td></tr><tr><td>Year 15</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.637</td><td>3.637</td><td>3.637</td><td>3.637</td><td>3.637</td><td>3.637</td></tr><tr><td>Year 16</td><td>3.637</td><td>3.637</td><td>3.637</td><td>3.637</td><td>3.637</td><td>3.637</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td></tr><tr><td>Year 17</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.637</td><td>3.637</td><td>3.637</td><td>3.637</td><td>3.637</td><td>3.637</td></tr><tr><td>Year 18</td><td>3.637</td><td>3.637</td><td>3.637</td><td>3.637</td><td>3.637</td><td>3.637</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td></tr><tr><td>Year 19</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.637</td><td>3.637</td><td>3.637</td><td>3.637</td><td>3.637</td><td>3.637</td></tr><tr><td>Year 20</td><td>3.637</td><td>3.637</td><td>3.637</td><td>3.637</td><td>3.637</td><td>3.637</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td></tr><tr><td>Year 21</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.637</td><td>3.637</td><td>3.637</td><td>3.637</td><td>3.637</td><td>3.637</td></tr><tr><td>Year 22</td><td>3.637</td><td>3.637</td><td>3.637</td><td>3.637</td><td>3.637</td><td>3.637</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td></tr><tr><td>Year 23</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.637</td><td>3.637</td><td>3.637</td><td>3.637</td><td>3.637</td><td>3.637</td></tr><tr><td>Year 24</td><td>3.637</td><td>3.637</td><td>3.637</td><td>3.637</td><td>3.637</td><td>3.637</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td></tr><tr><td>Year 25</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.637</td><td>3.637</td><td>3.637</td><td>3.637</td><td>3.637</td><td>3.637</td></tr><tr><td>Year 26</td><td>3.637</td><td>3.637</td><td>3.637</td><td>3.637</td><td>3.637</td><td>3.637</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td></tr><tr><td>Year 27</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.637</td><td>3.637</td><td>3.637</td><td>3.637</td><td>3.637</td><td>3.637</td></tr><tr><td>Year 28</td><td>1.97</td><td>2.273</td><td>2.576</td><td>2.879</td><td>3.182</td><td>3.485</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td><td>3.636</td></tr><tr><td>Year 29</td><td></td><td></td><td></td><td></td><td></td><td></td><td>0.152</td><td>0.455</td><td>0.758</td><td>1.061</td><td>1.364</td><td>1.667</td></tr></tbody></table></div></details><details class="macrs" id="mt4"><summary>TABLE 4 Nonresidential Real Property Mid-Month Convention Straight-Line—31.5 Years (for assets placed in service before May 13, 1993)</summary><div class="tablewrap"><table class="mtab"><caption>Month Property Placed in Service</caption><thead><tr><th></th><th>Month 1</th><th>Month 2</th><th>Month 3</th><th>Month 4</th><th>Month 5</th><th>Month 6</th><th>Month 7</th><th>Month 8</th><th>Month 9</th><th>Month 10</th><th>Month 11</th><th>Month 12</th></tr></thead><tbody><tr><td>Year 1</td><td>3.042%</td><td>2.778%</td><td>2.513%</td><td>2.249%</td><td>1.984%</td><td>1.720%</td><td>1.455%</td><td>1.190%</td><td>0.926%</td><td>0.661%</td><td>0.397%</td><td>0.132%</td></tr><tr><td>Year 2-7</td><td>3.175</td><td>3.175</td><td>3.175</td><td>3.175</td><td>3.175</td><td>3.175</td><td>3.175</td><td>3.175</td><td>3.175</td><td>3.175</td><td>3.175</td><td>3.175</td></tr><tr><td>Year 8</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.175</td><td>3.175</td><td>3.175</td><td>3.175</td><td>3.175</td></tr><tr><td>Year 9</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td></tr><tr><td>Year 10</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td></tr><tr><td>Year 11</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td></tr><tr><td>Year 12</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td></tr><tr><td>Year 13</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td></tr><tr><td>Year 14</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td></tr><tr><td>Year 15</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td></tr><tr><td>Year 16</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td></tr><tr><td>Year 17</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td></tr><tr><td>Year 18</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td></tr><tr><td>Year 19</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td></tr><tr><td>Year 20</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td></tr><tr><td>Year 21</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td></tr><tr><td>Year 22</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td></tr><tr><td>Year 23</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.115</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td></tr><tr><td>Year 24</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td></tr><tr><td>Year 25</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td></tr><tr><td>Year 26</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td></tr><tr><td>Year 27</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td></tr><tr><td>Year 28</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td></tr><tr><td>Year 29</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td></tr><tr><td>Year 30</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td></tr><tr><td>Year 31</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td></tr><tr><td>Year 32</td><td>1.720</td><td>1.984</td><td>2.249</td><td>2.513</td><td>2.778</td><td>3.042</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td><td>3.175</td><td>3.174</td></tr><tr><td>Year 33</td><td></td><td></td><td></td><td></td><td></td><td></td><td>0.132</td><td>0.397</td><td>0.661</td><td>0.926</td><td>1.190</td><td>1.455</td></tr></tbody></table></div></details><details class="macrs" id="mt5"><summary>TABLE 5 Nonresidential Real Property Mid-Month Convention Straight-Line—39 Years (for assets placed in service on or after May 13, 1993)</summary><div class="tablewrap"><table class="mtab"><caption>Month Property Placed in Service</caption><thead><tr><th></th><th>Month 1</th><th>Month 2</th><th>Month 3</th><th>Month 4</th><th>Month 5</th><th>Month 6</th><th>Month 7</th><th>Month 8</th><th>Month 9</th><th>Month 10</th><th>Month 11</th><th>Month 12</th></tr></thead><tbody><tr><td>Year 1</td><td>2.461%</td><td>2.247%</td><td>2.033%</td><td>1.819%</td><td>1.605%</td><td>1.391%</td><td>1.177%</td><td>0.963%</td><td>0.749%</td><td>0.535%</td><td>0.321%</td><td>0.107%</td></tr><tr><td>Year 2–39</td><td>2.564</td><td>2.564</td><td>2.564</td><td>2.564</td><td>2.564</td><td>2.564</td><td>2.564</td><td>2.564</td><td>2.564</td><td>2.564</td><td>2.564</td><td>2.564</td></tr><tr><td>Year 40</td><td>0.107</td><td>0.321</td><td>0.535</td><td>0.749</td><td>0.963</td><td>1.177</td><td>1.391</td><td>1.605</td><td>1.819</td><td>2.033</td><td>2.247</td><td>2.461</td></tr></tbody></table></div></details>
+  </details>
+
+<div class="part"><span class="part-label">Question 1</span><h2>MACRS depreciation for 2026</h2><p class="hint">For each asset choose the MACRS table, the recovery life and month placed in service (real property only; choose N/A for personal property), and the 2026 year of service (2026 is year 1 for assets acquired in 2026). Take the applicable percentage from the table and multiply it by cost. Apply the mid-quarter test to personal property placed in service in 2026; assume the half-year convention applied to personal property placed in service in earlier years. Enter rates as percentages exactly as shown in the table (e.g., 32.00 or 2.273); enter 0 for a fully depreciated asset.</p><p class="mref-links">Use MACRS <a href="#mt1" class="mlink">Table 1</a>, <a href="#mt2a" class="mlink">Table 2</a>, <a href="#mt3" class="mlink">Table 3</a>, <a href="#mt4" class="mlink">Table 4</a>, and <a href="#mt5" class="mlink">Table 5</a> (in the reference panel below).</p><table class="legend"><tbody>
+<tr><td>Table 1</td><td>MACRS half-year convention (personal property)</td></tr>
+<tr><td>Tables 2a&ndash;2d</td><td>MACRS mid-quarter convention, property placed in service in quarter 1, 2, 3 or 4</td></tr>
+<tr><td>Table 3</td><td>Residential rental property &mdash; 27.5 years, mid-month convention</td></tr>
+<tr><td>Table 4</td><td>Nonresidential real property &mdash; 31.5 years (placed in service before May 13, 1993)</td></tr>
+<tr><td>Table 5</td><td>Nonresidential real property &mdash; 39 years (placed in service on or after May 13, 1993)</td></tr>
+</tbody></table><div class="tablewrap"><table class="worksheet"><thead><tr><th>Mid-quarter test &mdash; personal property placed in service in 2026</th><th class="num">Your answer</th></tr></thead><tbody><tr><td class="method">Cost of personal property placed in service in the fourth quarter</td><td class="amt"><input type="text" id="x-mq-q4" placeholder="$"></td></tr><tr><td class="method">Total cost of personal property placed in service during 2026</td><td class="amt"><input type="text" id="x-mq-tot" placeholder="$"></td></tr><tr><td class="method">Fourth-quarter percentage</td><td class="amt"><input type="text" id="x-mq-pct" placeholder="%"></td></tr><tr><td class="method">Convention for 2026 personal property</td><td class="amt amt-wide"><select id="x-mq-conv" class="clsel"><option value="">— select —</option><option value="Half-year convention">Half-year convention</option><option value="Mid-quarter convention">Mid-quarter convention</option></select></td></tr></tbody></table></div><div class="tablewrap"><table class="worksheet dep dep1" data-w="300,1400,1000,1050,820,850,850,800,1000,1290" data-fs="16"><thead><tr><th>#</th><th>Description</th><th class="num">Acquisition date</th><th class="num">Cost</th><th>Table used</th><th>Life for real property</th><th>Month placed in service</th><th>Year of service</th><th class="num">Applicable %</th><th class="num">MACRS depreciation</th></tr></thead><tbody><tr><td class="no">1</td><td class="desc" id="g-desc-1"></td><td class="g" id="g-ad-1"></td><td class="g" id="g-c-1"></td><td class="sel"><select id="x-t-1" class="clsel"><option value="">— select —</option><option value="Table 1">Table 1</option><option value="Table 2a">Table 2a</option><option value="Table 2b">Table 2b</option><option value="Table 2c">Table 2c</option><option value="Table 2d">Table 2d</option><option value="Table 3">Table 3</option><option value="Table 4">Table 4</option><option value="Table 5">Table 5</option></select></td><td class="sel"><select id="x-l-1" class="clsel"><option value="">— select —</option><option value="N/A">N/A</option><option value="27.5">27.5</option><option value="31.5">31.5</option><option value="39">39</option></select></td><td class="sel"><select id="x-m-1" class="clsel"><option value="">— select —</option><option value="N/A">N/A</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select></td><td class="yr"><input type="text" id="x-y-1" placeholder="#"></td><td class="rt"><input type="text" id="x-r-1" placeholder="%"></td><td class="amt6"><input type="text" id="x-d-1" placeholder="$"></td></tr><tr><td class="no">2</td><td class="desc" id="g-desc-2"></td><td class="g" id="g-ad-2"></td><td class="g" id="g-c-2"></td><td class="sel"><select id="x-t-2" class="clsel"><option value="">— select —</option><option value="Table 1">Table 1</option><option value="Table 2a">Table 2a</option><option value="Table 2b">Table 2b</option><option value="Table 2c">Table 2c</option><option value="Table 2d">Table 2d</option><option value="Table 3">Table 3</option><option value="Table 4">Table 4</option><option value="Table 5">Table 5</option></select></td><td class="sel"><select id="x-l-2" class="clsel"><option value="">— select —</option><option value="N/A">N/A</option><option value="27.5">27.5</option><option value="31.5">31.5</option><option value="39">39</option></select></td><td class="sel"><select id="x-m-2" class="clsel"><option value="">— select —</option><option value="N/A">N/A</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select></td><td class="yr"><input type="text" id="x-y-2" placeholder="#"></td><td class="rt"><input type="text" id="x-r-2" placeholder="%"></td><td class="amt6"><input type="text" id="x-d-2" placeholder="$"></td></tr><tr><td class="no">3</td><td class="desc" id="g-desc-3"></td><td class="g" id="g-ad-3"></td><td class="g" id="g-c-3"></td><td class="sel"><select id="x-t-3" class="clsel"><option value="">— select —</option><option value="Table 1">Table 1</option><option value="Table 2a">Table 2a</option><option value="Table 2b">Table 2b</option><option value="Table 2c">Table 2c</option><option value="Table 2d">Table 2d</option><option value="Table 3">Table 3</option><option value="Table 4">Table 4</option><option value="Table 5">Table 5</option></select></td><td class="sel"><select id="x-l-3" class="clsel"><option value="">— select —</option><option value="N/A">N/A</option><option value="27.5">27.5</option><option value="31.5">31.5</option><option value="39">39</option></select></td><td class="sel"><select id="x-m-3" class="clsel"><option value="">— select —</option><option value="N/A">N/A</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select></td><td class="yr"><input type="text" id="x-y-3" placeholder="#"></td><td class="rt"><input type="text" id="x-r-3" placeholder="%"></td><td class="amt6"><input type="text" id="x-d-3" placeholder="$"></td></tr><tr><td class="no">4</td><td class="desc" id="g-desc-4"></td><td class="g" id="g-ad-4"></td><td class="g" id="g-c-4"></td><td class="sel"><select id="x-t-4" class="clsel"><option value="">— select —</option><option value="Table 1">Table 1</option><option value="Table 2a">Table 2a</option><option value="Table 2b">Table 2b</option><option value="Table 2c">Table 2c</option><option value="Table 2d">Table 2d</option><option value="Table 3">Table 3</option><option value="Table 4">Table 4</option><option value="Table 5">Table 5</option></select></td><td class="sel"><select id="x-l-4" class="clsel"><option value="">— select —</option><option value="N/A">N/A</option><option value="27.5">27.5</option><option value="31.5">31.5</option><option value="39">39</option></select></td><td class="sel"><select id="x-m-4" class="clsel"><option value="">— select —</option><option value="N/A">N/A</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select></td><td class="yr"><input type="text" id="x-y-4" placeholder="#"></td><td class="rt"><input type="text" id="x-r-4" placeholder="%"></td><td class="amt6"><input type="text" id="x-d-4" placeholder="$"></td></tr><tr><td class="no">5</td><td class="desc" id="g-desc-5"></td><td class="g" id="g-ad-5"></td><td class="g" id="g-c-5"></td><td class="sel"><select id="x-t-5" class="clsel"><option value="">— select —</option><option value="Table 1">Table 1</option><option value="Table 2a">Table 2a</option><option value="Table 2b">Table 2b</option><option value="Table 2c">Table 2c</option><option value="Table 2d">Table 2d</option><option value="Table 3">Table 3</option><option value="Table 4">Table 4</option><option value="Table 5">Table 5</option></select></td><td class="sel"><select id="x-l-5" class="clsel"><option value="">— select —</option><option value="N/A">N/A</option><option value="27.5">27.5</option><option value="31.5">31.5</option><option value="39">39</option></select></td><td class="sel"><select id="x-m-5" class="clsel"><option value="">— select —</option><option value="N/A">N/A</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select></td><td class="yr"><input type="text" id="x-y-5" placeholder="#"></td><td class="rt"><input type="text" id="x-r-5" placeholder="%"></td><td class="amt6"><input type="text" id="x-d-5" placeholder="$"></td></tr><tr><td class="no">6</td><td class="desc" id="g-desc-6"></td><td class="g" id="g-ad-6"></td><td class="g" id="g-c-6"></td><td class="sel"><select id="x-t-6" class="clsel"><option value="">— select —</option><option value="Table 1">Table 1</option><option value="Table 2a">Table 2a</option><option value="Table 2b">Table 2b</option><option value="Table 2c">Table 2c</option><option value="Table 2d">Table 2d</option><option value="Table 3">Table 3</option><option value="Table 4">Table 4</option><option value="Table 5">Table 5</option></select></td><td class="sel"><select id="x-l-6" class="clsel"><option value="">— select —</option><option value="N/A">N/A</option><option value="27.5">27.5</option><option value="31.5">31.5</option><option value="39">39</option></select></td><td class="sel"><select id="x-m-6" class="clsel"><option value="">— select —</option><option value="N/A">N/A</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select></td><td class="yr"><input type="text" id="x-y-6" placeholder="#"></td><td class="rt"><input type="text" id="x-r-6" placeholder="%"></td><td class="amt6"><input type="text" id="x-d-6" placeholder="$"></td></tr><tr><td class="no">7</td><td class="desc" id="g-desc-7"></td><td class="g" id="g-ad-7"></td><td class="g" id="g-c-7"></td><td class="sel"><select id="x-t-7" class="clsel"><option value="">— select —</option><option value="Table 1">Table 1</option><option value="Table 2a">Table 2a</option><option value="Table 2b">Table 2b</option><option value="Table 2c">Table 2c</option><option value="Table 2d">Table 2d</option><option value="Table 3">Table 3</option><option value="Table 4">Table 4</option><option value="Table 5">Table 5</option></select></td><td class="sel"><select id="x-l-7" class="clsel"><option value="">— select —</option><option value="N/A">N/A</option><option value="27.5">27.5</option><option value="31.5">31.5</option><option value="39">39</option></select></td><td class="sel"><select id="x-m-7" class="clsel"><option value="">— select —</option><option value="N/A">N/A</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select></td><td class="yr"><input type="text" id="x-y-7" placeholder="#"></td><td class="rt"><input type="text" id="x-r-7" placeholder="%"></td><td class="amt6"><input type="text" id="x-d-7" placeholder="$"></td></tr><tr><td class="no">8</td><td class="desc" id="g-desc-8"></td><td class="g" id="g-ad-8"></td><td class="g" id="g-c-8"></td><td class="sel"><select id="x-t-8" class="clsel"><option value="">— select —</option><option value="Table 1">Table 1</option><option value="Table 2a">Table 2a</option><option value="Table 2b">Table 2b</option><option value="Table 2c">Table 2c</option><option value="Table 2d">Table 2d</option><option value="Table 3">Table 3</option><option value="Table 4">Table 4</option><option value="Table 5">Table 5</option></select></td><td class="sel"><select id="x-l-8" class="clsel"><option value="">— select —</option><option value="N/A">N/A</option><option value="27.5">27.5</option><option value="31.5">31.5</option><option value="39">39</option></select></td><td class="sel"><select id="x-m-8" class="clsel"><option value="">— select —</option><option value="N/A">N/A</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select></td><td class="yr"><input type="text" id="x-y-8" placeholder="#"></td><td class="rt"><input type="text" id="x-r-8" placeholder="%"></td><td class="amt6"><input type="text" id="x-d-8" placeholder="$"></td></tr><tr><td class="no">9</td><td class="desc" id="g-desc-9"></td><td class="g" id="g-ad-9"></td><td class="g" id="g-c-9"></td><td class="sel"><select id="x-t-9" class="clsel"><option value="">— select —</option><option value="Table 1">Table 1</option><option value="Table 2a">Table 2a</option><option value="Table 2b">Table 2b</option><option value="Table 2c">Table 2c</option><option value="Table 2d">Table 2d</option><option value="Table 3">Table 3</option><option value="Table 4">Table 4</option><option value="Table 5">Table 5</option></select></td><td class="sel"><select id="x-l-9" class="clsel"><option value="">— select —</option><option value="N/A">N/A</option><option value="27.5">27.5</option><option value="31.5">31.5</option><option value="39">39</option></select></td><td class="sel"><select id="x-m-9" class="clsel"><option value="">— select —</option><option value="N/A">N/A</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select></td><td class="yr"><input type="text" id="x-y-9" placeholder="#"></td><td class="rt"><input type="text" id="x-r-9" placeholder="%"></td><td class="amt6"><input type="text" id="x-d-9" placeholder="$"></td></tr><tr class="ws-total tot"><td class="no"></td><td class="desc">Total MACRS depreciation</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="amt6"><input type="text" id="x-dtot" placeholder="$"></td></tr></tbody></table></div><div class="part-tally" id="tally-1"></div></div><div class="part"><span class="part-label">Question 2</span><h2>Calculation for property disposed of in 2026</h2><p class="hint">Full-year depreciation is the 2026 amount from question 1. In the year of disposal, personal property under the half-year convention gets one-half year (enter 1/2). Real property under the mid-month convention is treated as disposed of in the middle of the month, so the fraction is (months before the disposal month + 0.5) &divide; 12 (e.g., enter 2.5/12 for a March disposal). Fractions, decimals or percentages are accepted.</p><p class="mref-links">Use MACRS <a href="#mt1" class="mlink">Table 1</a>, <a href="#mt2a" class="mlink">Table 2</a>, <a href="#mt3" class="mlink">Table 3</a>, <a href="#mt4" class="mlink">Table 4</a>, and <a href="#mt5" class="mlink">Table 5</a> (in the reference panel below).</p><div class="tablewrap"><table class="worksheet dep dep2" data-w="400,2100,1050,1150,1300,1050,1010,1300" data-fs="16"><thead><tr><th>#</th><th>Description</th><th class="num">Acquisition date</th><th class="num">Cost</th><th class="num">Full-year depreciation</th><th class="num">Disposal date</th><th class="num">Fraction of year</th><th class="num">MACRS depreciation</th></tr></thead><tbody><tr><td class="no">10</td><td class="desc" id="g-desc-10"></td><td class="g" id="g-ad-10"></td><td class="g" id="g-c-10"></td><td class="amt6"><input type="text" id="x-fy-10" placeholder="$"></td><td class="g" id="g-dd-10"></td><td class="fr"><input type="text" id="x-fr-10" placeholder="e.g. 1/2"></td><td class="amt6"><input type="text" id="x-dd-10" placeholder="$"></td></tr><tr><td class="no">11</td><td class="desc" id="g-desc-11"></td><td class="g" id="g-ad-11"></td><td class="g" id="g-c-11"></td><td class="amt6"><input type="text" id="x-fy-11" placeholder="$"></td><td class="g" id="g-dd-11"></td><td class="fr"><input type="text" id="x-fr-11" placeholder="e.g. 1/2"></td><td class="amt6"><input type="text" id="x-dd-11" placeholder="$"></td></tr><tr><td class="no">12</td><td class="desc" id="g-desc-12"></td><td class="g" id="g-ad-12"></td><td class="g" id="g-c-12"></td><td class="amt6"><input type="text" id="x-fy-12" placeholder="$"></td><td class="g" id="g-dd-12"></td><td class="fr"><input type="text" id="x-fr-12" placeholder="e.g. 1/2"></td><td class="amt6"><input type="text" id="x-dd-12" placeholder="$"></td></tr><tr class="ws-total tot"><td class="no"></td><td class="desc">Total MACRS depreciation on disposed assets</td><td></td><td></td><td></td><td></td><td></td><td class="amt6"><input type="text" id="x-ddtot" placeholder="$"></td></tr></tbody></table></div>
+    <div class="check-bar">
+      <button class="btn-check" id="checkP1" type="button">Check my work</button>
+      <span class="check-summary" id="p1Summary"></span>
+      <span class="check-disclaimer">Checks both questions. Figures are matched to the key within a small rounding tolerance &mdash; it does not confirm your supporting computations.</span>
+    </div><div class="part-tally" id="tally-2"></div></div>
+
+  <div class="submit-bar print-hide">
+    <h2>Ready to submit?</h2>
+    <p class="submit-hint" style="margin:0 0 12px;">Your name, student ID and score are taken from the top of the page.</p>
+    <div class="submit-row submit-actions">
+      <button class="btn-submit" id="printBtn" type="button">Print / Save as PDF</button>
+      <button class="btn-submit btn-submit-outline" id="downloadDocxBtn" type="button">Download as Word (.docx)</button>
+    </div>
+    <p class="submit-status" id="submitStatus"></p>
+    <p class="submit-hint">Both options capture exactly what&rsquo;s currently filled in above, including your generated scenario numbers. &ldquo;Print / Save as PDF&rdquo; works offline; &ldquo;Download as Word&rdquo; needs an internet connection to load the export tool.</p>
+  </div>
+</main>
+
+<footer>Assignment 5 &middot; Depreciation &middot; 2026 &middot; Western Carolina University</footer>
+
+<script>
+(function(){
+  // ---------- seeded pseudo-random ----------
+  function hashSeed(str){
+    var h = 2166136261;
+    for(var i=0;i<str.length;i++){
+      h ^= str.charCodeAt(i);
+      h = Math.imul(h, 16777619);
+    }
+    return h >>> 0;
+  }
+  function mulberry32(seed){
+    return function(){
+      seed |= 0; seed = seed + 0x6D2B79F5 | 0;
+      var t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
+  }
+  function pick(rand, arr){ return arr[Math.floor(rand() * arr.length)]; }
+  function rTo(x, m){ return Math.round(x/m)*m; }
+
+  // ---------- formatting ----------
+  function num0(n){ return Math.round(n).toLocaleString('en-US'); }
+  function money0(n){
+    var v = Math.round(n);
+    return (v < 0 ? '$(' + Math.abs(v).toLocaleString('en-US') + ')' : '$' + v.toLocaleString('en-US'));
+  }
+  function num1(n){
+    return Number(n).toLocaleString('en-US', {minimumFractionDigits:0, maximumFractionDigits:1});
+  }
+  function money1(n){
+    var v = Number(n);
+    var s = Math.abs(v).toLocaleString('en-US', {minimumFractionDigits:0, maximumFractionDigits:1});
+    return v < 0 ? '$(' + s + ')' : '$' + s;
+  }
+  function money2(n){
+    var v = Number(n);
+    var s = Math.abs(v).toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
+    return v < 0 ? '$(' + s + ')' : '$' + s;
+  }
+  function eps2(n){ return money2(n); }
+  function pct(n){ return num1(n) + '%'; }
+
+  function setText(id, text){
+    var el = document.getElementById(id);
+    if(el) el.textContent = text;
+  }
+  function setHTML(id, html){
+    var el = document.getElementById(id);
+    if(el) el.innerHTML = html;
+  }
+
+  // ---------- answer checking ----------
+  // tolerances: 'dollar' whole dollars, 'rate' per-unit rates, 'yr' years, 'text' exact match
+  var TOL = { dollar:2, dollar10:10, rate:0.011, rate3:0.0015, yr:0.01, mil:0.6, milsh:0.3, eps:0.011, text:0 };
+
+  function parseMoney(s){
+    if(s === null || s === undefined) return NaN;
+    var raw = String(s).trim();
+    var neg = /^\(.*\)$/.test(raw) || /^-/.test(raw);
+    var cleaned = raw.replace(/[^0-9.]/g, '');
+    if(cleaned === '') return NaN;
+    var v = parseFloat(cleaned);
+    if(isNaN(v)) return NaN;
+    return neg ? -v : v;
+  }
+  function near(a, b, tol){
+    if(isNaN(a) || isNaN(b)) return false;
+    return Math.abs(a - b) <= tol;
+  }
+  function clearFieldState(el){
+    if(!el) return;
+    el.classList.remove('field-correct', 'field-incorrect');
+  }
+  function clearAllFieldStates(){
+    document.querySelectorAll('.field-correct, .field-incorrect').forEach(function(el){
+      el.classList.remove('field-correct', 'field-incorrect');
+    });
+    document.querySelectorAll('.check-summary').forEach(function(el){
+      el.textContent = ''; el.classList.remove('good','bad');
+    });
+  }
+  function markField(id, correct, tol, isText){
+    var el = document.getElementById(id);
+    if(!el) return null;
+    el.classList.remove('field-correct', 'field-incorrect');
+    var ok;
+    if(isText){
+      ok = String(el.value || '').trim() === String(correct == null ? '' : correct).trim();
+    } else {
+      ok = near(parseMoney(el.value), correct, tol);
+    }
+    el.classList.add(ok ? 'field-correct' : 'field-incorrect');
+    if(!el.dataset.clearBound){
+      var ev = (el.tagName === 'SELECT') ? 'change' : 'input';
+      el.addEventListener(ev, function(){ clearFieldState(el); });
+      el.dataset.clearBound = '1';
+    }
+    return ok;
+  }
+  function updateSummary(elId, results){
+    var el = document.getElementById(elId);
+    if(!el) return;
+    var graded = results.filter(function(r){ return r !== null; }).length;
+    var correct = results.filter(function(r){ return r === true; }).length;
+    el.textContent = correct + ' of ' + graded + ' correct';
+    el.classList.remove('good', 'bad');
+    el.classList.add(correct === graded && graded > 0 ? 'good' : 'bad');
+  }
+
+  // ---------- score ----------
+  var SCORES = {};
+
+  function scoreState(g){
+    if(!SCORES[g.btn]) SCORES[g.btn] = { correct:0, graded:0, attempts:0, checked:false, stale:false };
+    return SCORES[g.btn];
+  }
+  function scorePct(s){
+    return s.graded ? Math.round(s.correct / s.graded * 100) : 0;
+  }
+
+  var SCORE_PROMPT = 'Fill in the worksheet below, then choose <strong>Check my work</strong>. Every blank counts as incorrect.';
+
+  function ensureScorePanel(g){
+    var area = document.getElementById('scoreArea');
+    if(!area) return null;
+    var panel = area.querySelector('.score-panel[data-for="' + g.btn + '"]');
+    if(panel) return panel;
+    panel = document.createElement('div');
+    panel.className = 'score-panel';
+    panel.setAttribute('data-for', g.btn);
+    panel.innerHTML =
+      '<div class="score-pct">&mdash;</div>' +
+      '<div class="score-detail">' +
+        '<p class="score-meta">Score</p>' +
+        '<div class="score-bar"><span></span></div>' +
+        '<p class="score-sub">' + SCORE_PROMPT + '</p>' +
+      '</div>';
+    area.appendChild(panel);
+    return panel;
+  }
+
+  function renderScore(g){
+    var panel = ensureScorePanel(g);
+    if(!panel) return;
+    var s = scoreState(g);
+    var pctEl = panel.querySelector('.score-pct');
+    var metaEl = panel.querySelector('.score-meta');
+    var fillEl = panel.querySelector('.score-bar span');
+    var subEl = panel.querySelector('.score-sub');
+    panel.classList.remove('scored-good', 'scored-bad');
+
+    if(!s.checked){
+      pctEl.innerHTML = '&mdash;';
+      metaEl.textContent = 'Score';
+      fillEl.style.width = '0%';
+      subEl.innerHTML = SCORE_PROMPT;
+      return;
+    }
+    var p = scorePct(s);
+    pctEl.textContent = p + '%';
+    metaEl.textContent = 'Score: ' + s.correct + ' of ' + s.graded + ' correct';
+    fillEl.style.width = p + '%';
+    if(s.stale){
+      subEl.textContent = 'You have changed an answer since this score was calculated — check your work again to update it.';
+    } else if(s.correct === s.graded){
+      subEl.textContent = 'All ' + s.graded + ' figures match the key. Attempt ' + s.attempts + '.';
+      panel.classList.add('scored-good');
+    } else {
+      var missing = s.graded - s.correct;
+      subEl.innerHTML = missing + ' figure' + (missing === 1 ? '' : 's') + ' still to fix' +
+                        '<span class="print-hide"> — outlined in red below</span>. Attempt ' + s.attempts + '.';
+      panel.classList.add('scored-bad');
+    }
+  }
+
+  function markScoreStale(g){
+    var s = scoreState(g);
+    if(!s.checked || s.stale) return;
+    s.stale = true;
+    renderScore(g);
+  }
+
+  function resetScore(g){
+    SCORES[g.btn] = { correct:0, graded:0, attempts:0, checked:false, stale:false };
+    renderScore(g);
+  }
+
+  // =================================================================
+  //  Assignment 5 — MACRS depreciation and dispositions (2026)
+  // =================================================================
+  var R = {"t1":{"5":[20.0,32.0,19.2,11.52,11.52,5.76],"7":[14.29,24.49,17.49,12.49,8.93,8.92,8.93,4.46]},"mq":{"1":{"5":35.0,"7":25.0},"2":{"5":25.0,"7":17.85},"3":{"5":15.0,"7":10.71},"4":{"5":5.0,"7":3.57}},"t3":[[3.485,3.182,2.879,2.576,2.273,1.97,1.667,1.364,1.061,0.758,0.455,0.152],[3.636,3.636,3.636,3.636,3.636,3.636,3.636,3.636,3.636,3.636,3.636,3.636],[3.636,3.636,3.636,3.636,3.636,3.636,3.636,3.636,3.636,3.636,3.636,3.636],[3.636,3.636,3.636,3.636,3.636,3.636,3.636,3.636,3.636,3.636,3.636,3.636],[3.636,3.636,3.636,3.636,3.636,3.636,3.636,3.636,3.636,3.636,3.636,3.636],[3.636,3.636,3.636,3.636,3.636,3.636,3.636,3.636,3.636,3.636,3.636,3.636],[3.636,3.636,3.636,3.636,3.636,3.636,3.636,3.636,3.636,3.636,3.636,3.636],[3.636,3.636,3.636,3.636,3.636,3.636,3.636,3.636,3.636,3.636,3.636,3.636],[3.636,3.636,3.636,3.636,3.636,3.636,3.636,3.636,3.636,3.636,3.636,3.636],[3.637,3.637,3.637,3.637,3.637,3.637,3.636,3.636,3.636,3.636,3.636,3.636],[3.636,3.636,3.636,3.636,3.636,3.636,3.637,3.637,3.637,3.637,3.637,3.637],[3.637,3.637,3.637,3.637,3.637,3.637,3.636,3.636,3.636,3.636,3.636,3.636],[3.636,3.636,3.636,3.636,3.636,3.636,3.637,3.637,3.637,3.637,3.637,3.637],[3.637,3.637,3.637,3.637,3.637,3.637,3.636,3.636,3.636,3.636,3.636,3.636],[3.636,3.636,3.636,3.636,3.636,3.636,3.637,3.637,3.637,3.637,3.637,3.637],[3.637,3.637,3.637,3.637,3.637,3.637,3.636,3.636,3.636,3.636,3.636,3.636],[3.636,3.636,3.636,3.636,3.636,3.636,3.637,3.637,3.637,3.637,3.637,3.637],[3.637,3.637,3.637,3.637,3.637,3.637,3.636,3.636,3.636,3.636,3.636,3.636],[3.636,3.636,3.636,3.636,3.636,3.636,3.637,3.637,3.637,3.637,3.637,3.637],[3.637,3.637,3.637,3.637,3.637,3.637,3.636,3.636,3.636,3.636,3.636,3.636],[3.636,3.636,3.636,3.636,3.636,3.636,3.637,3.637,3.637,3.637,3.637,3.637],[3.637,3.637,3.637,3.637,3.637,3.637,3.636,3.636,3.636,3.636,3.636,3.636],[3.636,3.636,3.636,3.636,3.636,3.636,3.637,3.637,3.637,3.637,3.637,3.637],[3.637,3.637,3.637,3.637,3.637,3.637,3.636,3.636,3.636,3.636,3.636,3.636],[3.636,3.636,3.636,3.636,3.636,3.636,3.637,3.637,3.637,3.637,3.637,3.637],[3.637,3.637,3.637,3.637,3.637,3.637,3.636,3.636,3.636,3.636,3.636,3.636],[3.636,3.636,3.636,3.636,3.636,3.636,3.637,3.637,3.637,3.637,3.637,3.637],[1.97,2.273,2.576,2.879,3.182,3.485,3.636,3.636,3.636,3.636,3.636,3.636],[0.0,0.0,0.0,0.0,0.0,0.0,0.152,0.455,0.758,1.061,1.364,1.667]],"t4":[[3.042,2.778,2.513,2.249,1.984,1.72,1.455,1.19,0.926,0.661,0.397,0.132],[3.175,3.175,3.175,3.175,3.175,3.175,3.175,3.175,3.175,3.175,3.175,3.175],[3.175,3.175,3.175,3.175,3.175,3.175,3.175,3.175,3.175,3.175,3.175,3.175],[3.175,3.175,3.175,3.175,3.175,3.175,3.175,3.175,3.175,3.175,3.175,3.175],[3.175,3.175,3.175,3.175,3.175,3.175,3.175,3.175,3.175,3.175,3.175,3.175],[3.175,3.175,3.175,3.175,3.175,3.175,3.175,3.175,3.175,3.175,3.175,3.175],[3.175,3.175,3.175,3.175,3.175,3.175,3.175,3.175,3.175,3.175,3.175,3.175],[3.175,3.174,3.175,3.174,3.175,3.174,3.175,3.175,3.175,3.175,3.175,3.175],[3.174,3.175,3.174,3.175,3.174,3.175,3.174,3.175,3.174,3.175,3.174,3.175],[3.175,3.174,3.175,3.174,3.175,3.174,3.175,3.174,3.175,3.174,3.175,3.174],[3.174,3.175,3.174,3.175,3.174,3.175,3.174,3.175,3.174,3.175,3.174,3.175],[3.175,3.174,3.175,3.174,3.175,3.174,3.175,3.174,3.175,3.174,3.175,3.174],[3.174,3.175,3.174,3.175,3.174,3.175,3.174,3.175,3.174,3.175,3.174,3.175],[3.175,3.174,3.175,3.174,3.175,3.174,3.175,3.174,3.175,3.174,3.175,3.174],[3.174,3.175,3.174,3.175,3.174,3.175,3.174,3.175,3.174,3.175,3.174,3.175],[3.175,3.174,3.175,3.174,3.175,3.174,3.175,3.174,3.175,3.174,3.175,3.174],[3.174,3.175,3.174,3.175,3.174,3.175,3.174,3.175,3.174,3.175,3.174,3.175],[3.175,3.174,3.175,3.174,3.175,3.174,3.175,3.174,3.175,3.174,3.175,3.174],[3.174,3.175,3.174,3.175,3.174,3.175,3.174,3.175,3.174,3.175,3.174,3.175],[3.175,3.174,3.175,3.174,3.175,3.174,3.175,3.174,3.175,3.174,3.175,3.174],[3.174,3.175,3.174,3.175,3.174,3.175,3.174,3.175,3.174,3.175,3.174,3.175],[3.175,3.174,3.175,3.174,3.175,3.174,3.175,3.174,3.175,3.174,3.175,3.174],[3.174,3.175,3.174,3.175,3.174,3.175,3.174,3.115,3.174,3.175,3.174,3.175],[3.175,3.174,3.175,3.174,3.175,3.174,3.175,3.174,3.175,3.174,3.175,3.174],[3.174,3.175,3.174,3.175,3.174,3.175,3.174,3.175,3.174,3.175,3.174,3.175],[3.175,3.174,3.175,3.174,3.175,3.174,3.175,3.174,3.175,3.174,3.175,3.174],[3.174,3.175,3.174,3.175,3.174,3.175,3.174,3.175,3.174,3.175,3.174,3.175],[3.175,3.174,3.175,3.174,3.175,3.174,3.175,3.174,3.175,3.174,3.175,3.174],[3.174,3.175,3.174,3.175,3.174,3.175,3.174,3.175,3.174,3.175,3.174,3.175],[3.175,3.174,3.175,3.174,3.175,3.174,3.175,3.174,3.175,3.174,3.175,3.174],[3.174,3.175,3.174,3.175,3.174,3.175,3.174,3.175,3.174,3.175,3.174,3.175],[1.72,1.984,2.249,2.513,2.778,3.042,3.175,3.174,3.175,3.174,3.175,3.174],[0.0,0.0,0.0,0.0,0.0,0.0,0.132,0.397,0.661,0.926,1.19,1.455]],"t5":[[2.461,2.247,2.033,1.819,1.605,1.391,1.177,0.963,0.749,0.535,0.321,0.107],[2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564],[2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564],[2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564],[2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564],[2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564],[2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564],[2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564],[2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564],[2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564],[2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564],[2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564],[2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564],[2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564],[2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564],[2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564],[2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564],[2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564],[2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564],[2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564],[2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564],[2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564],[2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564],[2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564],[2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564],[2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564],[2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564],[2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564],[2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564],[2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564],[2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564],[2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564],[2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564],[2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564],[2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564],[2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564],[2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564],[2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564],[2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564,2.564],[0.107,0.321,0.535,0.749,0.963,1.177,1.391,1.605,1.819,2.033,2.247,2.461]]};          // rates from the five MACRS tables (injected by the build)
+  var TAX_YEAR = 2026;
+  var TBL = ['Table 1','Table 2a','Table 2b','Table 2c','Table 2d','Table 3','Table 4','Table 5'];
+  var NA = 'N/A';
+  var HYC = 'Half-year convention', MQC = 'Mid-quarter convention';
+  var DESC = { p5:'5-year personal property', p7:'7-year personal property',
+               res:'residential real property', non:'nonresidential real property' };
+  var LIFE = { p5:5, p7:7 };
+  var DIM = [31,28,31,30,31,30,31,31,30,31,30,31];
+  var KINDS = ['p5','p5','p5','p7','p7','res','res','non','non'];
+  var DISPOSED = [1, 4, 6];        // rows 2, 5 and 7 (zero-based)
+
+  function baseline(){
+    return {
+      a: [
+        { d:[2026, 9,21], c:460000 },   { d:[2025, 6, 6], c:540000 },   { d:[2020, 2,12], c:450000 },
+        { d:[2026, 7,20], c:380000 },   { d:[2023, 3, 3], c:300000 },
+        { d:[2026, 5,11], c:15000000 }, { d:[2021, 4,26], c:18000000 },
+        { d:[2026, 8, 8], c:24000000 }, { d:[2018, 7, 6], c:27000000 }
+      ],
+      dd: [[2026, 2,20], [2026,10, 5], [2026, 3,14]]
+    };
+  }
+
+  function rint(rand, lo, hi, step){
+    step = step || 1;
+    var n = Math.floor((hi - lo) / step) + 1;
+    return lo + Math.floor(rand() * n) * step;
+  }
+  function rdate(rand, y, m){
+    if(m == null) m = rint(rand, 1, 12);
+    return [y, m, rint(rand, 1, DIM[m - 1])];
+  }
+  function earlyMonth(rand){           // 2026 personal property: mostly quarters 1-3
+    return rand() < 0.8 ? rint(rand, 1, 9) : rint(rand, 10, 12);
+  }
+
+  function randomParams(rand){
+    var r9 = rand(), d9;
+    if(r9 < 0.25) d9 = rdate(rand, 1993);                         // straddles May 13, 1993
+    else if(r9 < 0.45) d9 = rdate(rand, rint(rand, 1985, 1992));  // Table 4, fully depreciated
+    else d9 = rdate(rand, rint(rand, 1994, 2025));                // Table 5
+    return {
+      a: [
+        { d:rdate(rand, 2026, earlyMonth(rand)), c:rint(rand, 300, 700, 10) * 1000 },
+        { d:rdate(rand, rint(rand, 2022, 2025)), c:rint(rand, 400, 700, 10) * 1000 },
+        { d:rdate(rand, rint(rand, 2014, 2020)), c:rint(rand, 300, 600, 10) * 1000 },
+        { d:rdate(rand, 2026, earlyMonth(rand)), c:rint(rand, 200, 600, 10) * 1000 },
+        { d:rdate(rand, rint(rand, 2020, 2025)), c:rint(rand, 200, 500, 10) * 1000 },
+        { d:rdate(rand, 2026), c:rint(rand, 100, 200) * 100000 },
+        { d:rdate(rand, rint(rand, 2000, 2025)), c:rint(rand, 120, 240) * 100000 },
+        { d:rdate(rand, 2026), c:rint(rand, 150, 300) * 100000 },
+        { d:d9, c:rint(rand, 180, 360) * 100000 }
+      ],
+      dd: [rdate(rand, 2026), rdate(rand, 2026), rdate(rand, 2026)]
+    };
+  }
+
+  function quarter(d){ return Math.ceil(d[1] / 3); }
+  function before(d, y, m, day){ return d[0] < y || (d[0] === y && (d[1] < m || (d[1] === m && d[2] < day))); }
+  function lookup(arr, year){ return (year >= 1 && year <= arr.length) ? arr[year - 1] : 0; }
+
+  function solve(p){
+    var x = {}, raw = { p:p, rows:[] };
+    // mid-quarter test on personal property placed in service in 2026
+    var q4 = 0, tot = 0;
+    p.a.forEach(function(a, i){
+      if(KINDS[i].charAt(0) === 'p' && a.d[0] === TAX_YEAR){ tot += a.c; if(quarter(a.d) === 4) q4 += a.c; }
+    });
+    var q4p = tot > 0 ? q4 / tot * 100 : 0, mq = q4p > 40;
+    x['mq-q4'] = q4; x['mq-tot'] = tot; x['mq-pct'] = q4p; x['mq-conv'] = mq ? MQC : HYC;
+
+    var dtot = 0;
+    p.a.forEach(function(a, i){
+      var k = KINDS[i], n = i + 1, yr = TAX_YEAR - a.d[0] + 1, t, life, month, rate;
+      if(k === 'p5' || k === 'p7'){
+        life = NA; month = NA;
+        if(a.d[0] === TAX_YEAR && mq){ t = 'Table 2' + 'abcd'.charAt(quarter(a.d) - 1); rate = R.mq[quarter(a.d)][LIFE[k]]; }
+        else { t = 'Table 1'; rate = lookup(R.t1[LIFE[k]], yr); }
+      } else if(k === 'res'){
+        t = 'Table 3'; life = '27.5'; month = String(a.d[1]); rate = lookup(R.t3, yr)[a.d[1] - 1] || 0;
+      } else if(before(a.d, 1993, 5, 13)){
+        t = 'Table 4'; life = '31.5'; month = String(a.d[1]); rate = (lookup(R.t4, yr) || [])[a.d[1] - 1] || 0;
+      } else {
+        t = 'Table 5'; life = '39'; month = String(a.d[1]); rate = (lookup(R.t5, yr) || [])[a.d[1] - 1] || 0;
+      }
+      if(k === 'res' && !Array.isArray(lookup(R.t3, yr))) rate = 0;
+      x['t-' + n] = t; x['l-' + n] = life; x['m-' + n] = month; x['y-' + n] = yr;
+      x['r-' + n] = rate; x['d-' + n] = a.c * rate / 100;
+      dtot += x['d-' + n];
+    });
+    x['dtot'] = dtot;
+
+    var ddtot = 0;
+    DISPOSED.forEach(function(src, j){
+      var n = 10 + j, k = KINDS[src], dd = p.dd[j];
+      var fr = (k === 'res' || k === 'non') ? (dd[1] - 0.5) / 12 : 0.5;
+      x['fy-' + n] = x['d-' + (src + 1)];
+      x['fr-' + n] = fr;
+      x['dd-' + n] = x['fy-' + n] * fr;
+      ddtot += x['dd-' + n];
+      raw.rows.push({ n:n, src:src, frText: (k === 'res' || k === 'non') ? ((dd[1] - 0.5) + '/12') : '1/2' });
+    });
+    x['ddtot'] = ddtot;
+    return { raw:raw, x:x };
+  }
+
+  function generateScenario(id){
+    var seed = (id || '').trim();
+    if(seed === '') return solve(baseline());
+    return solve(randomParams(mulberry32(hashSeed(seed.toLowerCase()))));
+  }
+
+  function ds(d){ return d[1] + '/' + d[2] + '/' + d[0]; }
+
+  function applyScenario(s){
+    var p = s.raw.p, rows = '';
+    p.a.forEach(function(a, i){
+      var n = i + 1, disp = DISPOSED.indexOf(i) >= 0;
+      rows += '<tr' + (disp ? ' class="disp"' : '') + '><td class="lbl">' + n + '. ' + DESC[KINDS[i]] + '</td><td class="lbl">' + ds(a.d) +
+              '</td><td class="num">' + num0(a.c) + '</td></tr>';
+      setText('g-desc-' + n, DESC[KINDS[i]]);
+      setText('g-ad-' + n, ds(a.d));
+      setText('g-c-' + n, num0(a.c));
+    });
+    setHTML('factsBody', rows);
+    var drows = '';
+    DISPOSED.forEach(function(src, j){
+      var n = 10 + j, a = p.a[src];
+      drows += '<tr><td class="lbl">' + DESC[KINDS[src]] + '</td><td class="lbl">' + ds(a.d) + '</td><td class="num">' +
+               num0(a.c) + '</td><td class="lbl">' + ds(p.dd[j]) + '</td></tr>';
+      setText('g-desc-' + n, DESC[KINDS[src]]);
+      setText('g-ad-' + n, ds(a.d));
+      setText('g-c-' + n, num0(a.c));
+      setText('g-dd-' + n, ds(p.dd[j]));
+    });
+    setHTML('dispBody', drows);
+  }
+
+  // open the MACRS reference when a table link is clicked
+  document.querySelectorAll('a.mlink').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var t = document.querySelector(a.getAttribute('href'));
+      if(!t) return;
+      e.preventDefault();
+      var ref = document.getElementById('macrsRef');
+      if(ref) ref.open = true;
+      t.open = true;
+      t.scrollIntoView({ behavior:'smooth', block:'start' });
+    });
+  });
+
+  // ---------- grading ----------
+  var P1 = [['mq-q4'], ['mq-tot'], ['mq-pct', 'pct'], ['mq-conv', 'text']];
+  for(var n1 = 1; n1 <= 9; n1++){
+    P1.push(['t-' + n1, 'text'], ['l-' + n1, 'text'], ['m-' + n1, 'text'], ['y-' + n1, 'int'],
+            ['r-' + n1, 'rate'], ['d-' + n1]);
+  }
+  P1.push(['dtot']);
+  var P2 = [];
+  for(var n2 = 10; n2 <= 12; n2++) P2.push(['fy-' + n2], ['fr-' + n2, 'frac'], ['dd-' + n2]);
+  P2.push(['ddtot']);
+  var PARTS = [ { tally:'tally-1', fields:P1 }, { tally:'tally-2', fields:P2 } ];
+
+  function parseFrac(v){
+    var s = v.replace(/\s+/g, '');
+    if(s === '') return NaN;
+    var m = s.match(/^([0-9]*\.?[0-9]+)\/([0-9]*\.?[0-9]+)$/);
+    if(m) return parseFloat(m[2]) ? parseFloat(m[1]) / parseFloat(m[2]) : NaN;
+    if(/%$/.test(s)) return parseFloat(s) / 100;
+    var f = parseFloat(s);
+    return isNaN(f) ? NaN : (f > 1 ? f / 100 : f);
+  }
+
+  function bindClear(el){
+    if(!el.dataset.clearBound){
+      var ev = (el.tagName === 'SELECT') ? 'change' : 'input';
+      el.addEventListener(ev, function(){ clearFieldState(el); });
+      el.dataset.clearBound = '1';
+    }
+  }
+  function gradeField(id, correct, type){
+    var el = document.getElementById(id);
+    if(!el) return null;
+    var v = String(el.value || '').trim();
+    var pv = parseMoney(v);
+    var ok;
+    if(type === 'text') ok = (v === String(correct));
+    else if(type === 'int') ok = /^\d+$/.test(v) && parseInt(v, 10) === correct;
+    else if(type === 'rate') ok = v !== '' && (near(pv, correct, 0.0004) || (!/%/.test(v) && pv > 0 && pv < 0.5 && near(pv * 100, correct, 0.0004)));
+    else if(type === 'pct') ok = v !== '' && (near(pv, correct, 0.06) || (!/%/.test(v) && pv > 0 && pv <= 1 && near(pv * 100, correct, 0.06)));
+    else if(type === 'frac') ok = near(parseFrac(v), correct, 0.0015);
+    else ok = v !== '' && near(Math.abs(pv), Math.abs(correct), TOL.dollar);
+    el.classList.remove('field-correct', 'field-incorrect');
+    el.classList.add(ok ? 'field-correct' : 'field-incorrect');
+    bindClear(el);
+    return ok;
+  }
+
+  var CHECK_GROUPS = [{ btn:'checkP1', summary:'p1Summary' }];
+
+  function runCheck(d){
+    var all = [];
+    PARTS.forEach(function(P){
+      var res = P.fields.map(function(f){ return gradeField('x-' + f[0], d.x[f[0]], f[1]); });
+      var el = document.getElementById(P.tally);
+      if(el){
+        var c = res.filter(function(r){ return r === true; }).length;
+        el.textContent = 'This part: ' + c + ' of ' + res.length + ' correct';
+        el.classList.remove('good','bad');
+        el.classList.add(c === res.length ? 'good' : 'bad');
+      }
+      all = all.concat(res);
+    });
+    return all;
+  }
+
+  // ---------------- wiring ----------------
+  var DOC_TITLE = "Assignment 5 — Depreciation";
+  var COURSE_LINE = "Individual Income Taxation  ·  Cost Recovery  ·  2026";
+  var FILE_SLUG = "Assignment5-Depreciation";
+  var FOOTER_LINE = "Assignment 5  ·  Depreciation  ·  Western Carolina University";
+
+  var idInput = document.getElementById('studentId');
+  var genBtn = document.getElementById('genBtn');
+  var currentScenario = null;
+
+  function clearTallies(){
+    document.querySelectorAll('.part-tally').forEach(function(el){ el.textContent=''; el.classList.remove('good','bad'); });
+  }
+  function applyAndStore(id){
+    currentScenario = generateScenario(id);
+    applyScenario(currentScenario);
+    clearAllFieldStates();
+    clearTallies();
+    CHECK_GROUPS.forEach(resetScore);
+  }
+  genBtn.addEventListener('click', function(){ applyAndStore(idInput.value); });
+  idInput.addEventListener('keydown', function(e){
+    if(e.key === 'Enter'){ e.preventDefault(); applyAndStore(idInput.value); }
+  });
+  applyAndStore('');
+
+  CHECK_GROUPS.forEach(function(g){
+    var btn = document.getElementById(g.btn);
+    renderScore(g);
+    var mainEl = document.querySelector('main');
+    mainEl.addEventListener('input', function(e){
+      if(e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT')) markScoreStale(g);
+    });
+    mainEl.addEventListener('change', function(e){
+      if(e.target && e.target.tagName === 'SELECT') markScoreStale(g);
+    });
+    btn.addEventListener('click', function(){
+      if(!currentScenario) return;
+      var results = runCheck(currentScenario);
+      updateSummary(g.summary, results);
+      var s = scoreState(g);
+      s.graded = results.filter(function(r){ return r !== null; }).length;
+      s.correct = results.filter(function(r){ return r === true; }).length;
+      s.attempts += 1;
+      s.checked = true;
+      s.stale = false;
+      renderScore(g);
+    });
+  });
+
+  // test hook (harmless for students)
+  window.__a5 = { solve:solve, generateScenario:generateScenario, PARTS:PARTS };
+
+  // ---------------- Print / Save as PDF ----------------
+  function val(id){
+    var el = document.getElementById(id);
+    return el ? el.value.trim() : '';
+  }
+  document.getElementById('printBtn').addEventListener('click', function(){
+    var name = val('studentName');
+    var id = val('studentId');
+    var line = document.getElementById('printNameLine');
+    line.textContent = 'Name: ' + (name || '_______________________') +
+                       '     Student ID: ' + (id || '_______________________');
+    var oldTitle = document.title;
+    document.title = FILE_SLUG + '-' + (id || 'submission');
+    window.print();
+    document.title = oldTitle;
+  });
+
+  // ---------------- Download as Word (.docx) ----------------
+  var docxLoadPromise = null;
+  function loadDocxLib(){
+    if(window.docx) return Promise.resolve();
+    if(docxLoadPromise) return docxLoadPromise;
+    docxLoadPromise = new Promise(function(resolve, reject){
+      var s = document.createElement('script');
+      s.src = 'https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.umd.js';
+      s.onload = function(){ window.docx ? resolve() : reject(new Error('docx library did not load correctly')); };
+      s.onerror = function(){ reject(new Error('network error loading docx library')); };
+      document.head.appendChild(s);
+    });
+    return docxLoadPromise;
+  }
+  function blankIfEmpty(s){ return s && s.length ? s : '—'; }
+  function cleanText(s){ return (s || '').replace(/\s+/g, ' ').trim(); }
+
+  function buildAnswersDoc(){
+    var D = window.docx;
+    var PURPLE = '592C88', INK = '221B2E', SLATE = '5F5A6B';
+    var name = blankIfEmpty(val('studentName'));
+    var sid = blankIfEmpty(val('studentId'));
+
+    function h(text, size){
+      return new D.Paragraph({ spacing: { before: 260, after: 100 }, children: [new D.TextRun({ text: text, bold: true, color: PURPLE, size: size || 26 })] });
+    }
+    function h4(text){
+      return new D.Paragraph({ spacing: { before: 180, after: 60 }, children: [new D.TextRun({ text: text, bold: true, color: PURPLE, size: 21 })] });
+    }
+    function p(text, opts){
+      opts = opts || {};
+      return new D.Paragraph({ spacing: { before: 60, after: 60 }, children: [new D.TextRun({ text: text, size: opts.size || 20, color: opts.color || INK, bold: !!opts.bold, italics: !!opts.italics })] });
+    }
+    function cell(text, width, opts){
+      opts = opts || {};
+      var borders = {};
+      if (opts.borderTop) borders.top = { style: D.BorderStyle.SINGLE, size: 6, color: PURPLE };
+      return new D.TableCell({
+        width: { size: width, type: D.WidthType.DXA },
+        shading: opts.shading ? { type: D.ShadingType.CLEAR, fill: opts.shading } : undefined,
+        borders: opts.borderTop ? borders : undefined,
+        margins: { top: 60, bottom: 60, left: 90, right: 90 },
+        children: [new D.Paragraph({ children: [new D.TextRun({ text: text, size: CELL_SZ, bold: !!opts.bold, color: opts.color || INK })] })]
+      });
+    }
+    function row(cells){ return new D.TableRow({ children: cells }); }
+    function table(widths, rows){
+      return new D.Table({ width: { size: widths.reduce(function(a,b){return a+b;},0), type: D.WidthType.DXA }, columnWidths: widths, rows: rows });
+    }
+    function widthsFor(n){
+      var FULL = 9360;
+      if(n <= 1) return [FULL];
+      var first = Math.round(FULL * (n === 2 ? 0.56 : (n === 3 ? 0.46 : 0.34)));
+      var rest = Math.round((FULL - first) / (n - 1));
+      var w = [first];
+      for(var i=1;i<n;i++) w.push(rest);
+      return w;
+    }
+    function fieldText(td){
+      var inp = td.querySelector('input, select');
+      if(!inp) return cleanText(td.textContent);
+      return blankIfEmpty((inp.value || '').trim());
+    }
+    var CELL_SZ = 19;
+    function anyTableDocx(tableEl){
+      CELL_SZ = tableEl.getAttribute('data-fs') ? Number(tableEl.getAttribute('data-fs')) : 19;
+      var headRow = tableEl.querySelector('thead tr');
+      var headers = headRow ? Array.prototype.map.call(headRow.querySelectorAll('th'), function(th){ return cleanText(th.textContent); }) : null;
+      var bodyRows = Array.prototype.slice.call(tableEl.querySelectorAll('tbody tr'));
+      var ncols = headers ? headers.length : (bodyRows[0] ? bodyRows[0].children.length : 2);
+      var widths = (headers && headers[0] === 'Line') ? [700, 3900, 1450, 1510, 1800] : (tableEl.getAttribute('data-w') ? tableEl.getAttribute('data-w').split(',').map(Number) : widthsFor(ncols));
+      var out = [];
+      if(headers){
+        out.push(row(headers.map(function(t,i){ return cell(t, widths[i], { bold:true, shading:PURPLE, color:'FFFFFF' }); })));
+      }
+      bodyRows.forEach(function(tr){
+        var isTotal = tr.classList.contains('ws-total') || tr.classList.contains('given-total');
+        var cells = [];
+        Array.prototype.forEach.call(tr.children, function(td, i){
+          var txt = fieldText(td);
+          if(tr.classList.contains('indent') && i === 0) txt = '    ' + txt;
+          cells.push(cell(txt, widths[Math.min(i, widths.length-1)], { bold: isTotal || tr.classList.contains('given-head') || tr.classList.contains('disp'), borderTop: isTotal }));
+        });
+        out.push(row(cells));
+      });
+      return table(widths, out);
+    }
+
+    var children = [];
+    children.push(new D.Paragraph({ heading: D.HeadingLevel.TITLE, spacing: { after: 60 }, children: [new D.TextRun({ text: DOC_TITLE, color: PURPLE, size: 32, bold: true })] }));
+    children.push(p('Name: ' + name + '     Student ID: ' + sid, { bold: true }));
+    children.push(p('Score: ' + CHECK_GROUPS.map(function(g){
+      var s = scoreState(g);
+      if(!s.checked) return 'not checked';
+      return s.correct + ' of ' + s.graded + ' correct (' + scorePct(s) + '%)' +
+             (s.stale ? ' — an answer was edited after this score was calculated'
+                      : ', self-checked on attempt ' + s.attempts);
+    }).join('; '), { bold: true, color: PURPLE }));
+    children.push(p(COURSE_LINE, { color: SLATE }));
+
+    document.querySelectorAll('main > .part').forEach(function(partEl){
+      var label = cleanText((partEl.querySelector('.part-label') || {}).textContent || '');
+      var company = cleanText((partEl.querySelector('h2') || {}).textContent || '');
+      children.push(h((label ? label + ' — ' : '') + company));
+
+      Array.prototype.forEach.call(partEl.children, function(el){
+        if (el.classList.contains('part-label') || el.tagName === 'H2' || el.classList.contains('check-bar')) return;
+        if (el.classList.contains('scenario') || el.classList.contains('situation')) {
+          Array.prototype.forEach.call(el.querySelectorAll('p, span.sit-tag'), function(pp){
+            var t = cleanText(pp.textContent);
+            if(t) children.push(p(t, pp.classList && pp.classList.contains('sit-tag') ? { bold:true, color:PURPLE } : {}));
+          });
+          if (!el.querySelector('p')) children.push(p(cleanText(el.textContent)));
+        } else if (el.tagName === 'H4') {
+          children.push(h4(cleanText(el.textContent)));
+        } else if (el.tagName === 'TABLE' || el.classList.contains('tablewrap')) {
+          children.push(anyTableDocx(el.tagName === 'TABLE' ? el : el.querySelector('table')));
+        } else if (el.classList.contains('footnote') || el.classList.contains('hint') || el.classList.contains('je-sub')) {
+          children.push(p(cleanText(el.textContent), { italics:true, color:SLATE, size:17 }));
+        } else if (el.classList.contains('req') || el.classList.contains('je-cap')) {
+          children.push(p(cleanText(el.textContent), { bold:true }));
+        } else if (el.tagName === 'OL') {
+          Array.prototype.forEach.call(el.querySelectorAll('li'), function(li, i){
+            children.push(p((i+1) + '. ' + cleanText(li.textContent)));
+          });
+        } else if (el.tagName === 'UL') {
+          Array.prototype.forEach.call(el.querySelectorAll('li'), function(li){
+            children.push(p('•  ' + cleanText(li.textContent)));
+          });
+        } else if (el.tagName === 'P') {
+          children.push(p(cleanText(el.textContent)));
+        }
+      });
+    });
+
+    children.push(new D.Paragraph({ spacing: { before: 300 }, alignment: D.AlignmentType.CENTER, children: [new D.TextRun({ text: FOOTER_LINE, size: 16, italics: true, color: SLATE })] }));
+
+    return new D.Document({
+      sections: [{
+        properties: { page: { size: { width: 12240, height: 15840 }, margin: { top: 1440, bottom: 1440, left: 1440, right: 1440 } } },
+        children: children
+      }]
+    });
+  }
+
+  document.getElementById('downloadDocxBtn').addEventListener('click', function(){
+    var statusEl = document.getElementById('submitStatus');
+    statusEl.classList.remove('error');
+    statusEl.textContent = 'Preparing your Word document…';
+    loadDocxLib().then(function(){
+      var doc = buildAnswersDoc();
+      return window.docx.Packer.toBlob(doc);
+    }).then(function(blob){
+      var idPart = val('studentId') || 'submission';
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = FILE_SLUG + '-' + idPart + '.docx';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      statusEl.textContent = 'Downloaded.';
+      setTimeout(function(){ statusEl.textContent = ''; }, 4000);
+    }).catch(function(err){
+      statusEl.classList.add('error');
+      statusEl.textContent = 'Could not load the Word export tool (needs internet access) — use Print / Save as PDF instead.';
+    });
+  });
+
+
+})();
+</script>
+
+</body>
+</html>
