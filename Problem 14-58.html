@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Problem 14-58 &mdash; Rental Use of a Residence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+
+  :root{
+    --purple:#592C88;
+    --purple-deep:#38195A;
+    --purple-mid:#6E3FA3;
+    --gold:#B0925C;
+    --gold-soft:#D6C398;
+    --gold-pale:#F1E9D6;
+    --parchment:#F7F4EC;
+    --paper:#FFFEFA;
+    --ink:#221B2E;
+    --slate:#5F5A6B;
+    --line:#DBD3E0;
+    --line-soft:#EAE4EF;
+    --answer:#1E5C34;
+    --answer-bg:#E7F1E9;
+    --danger:#9C3B34;
+    --shadow: 0 1px 2px rgba(56,25,90,0.07), 0 6px 18px rgba(56,25,90,0.08);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--parchment);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ color:inherit; }
+
+  header{
+    background: linear-gradient(180deg, var(--purple) 0%, var(--purple-deep) 100%);
+    color:#F1E9D6;
+    padding: 30px 6vw 24px;
+    position:relative;
+  }
+  header::after{
+    content:"";
+    position:absolute; left:0; right:0; bottom:0; height:4px;
+    background: linear-gradient(90deg, var(--gold-soft), var(--gold) 40%, var(--gold-soft) 70%, var(--gold));
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--gold-soft); margin:0 0 10px;
+  }
+  h1.title{
+    font-family:'Source Serif 4', serif; font-weight:600;
+    font-size:clamp(24px,3.4vw,34px); margin:0 0 8px; letter-spacing:-0.01em;
+  }
+  .subtitle{ font-size:14.5px; color:#D9CDE5; max-width:680px; margin:0; }
+
+  .id-bar{
+    max-width:900px; margin:0 auto; padding:18px 6vw 0;
+    display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+  }
+  .id-bar label{ font-size:13px; font-weight:600; color:var(--slate); }
+  .id-bar input[type="text"]{
+    font-family:'IBM Plex Mono', monospace; font-size:13.5px; padding:8px 11px;
+    border:1px solid var(--line); border-radius:5px; background:var(--paper); color:var(--ink);
+    width:180px;
+  }
+  .id-bar input:focus{ outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); }
+  .id-bar button{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:8px 15px; border:1px solid var(--purple);
+    background:var(--purple); color:#fff; cursor:pointer;
+  }
+  .id-bar button:hover{ background:var(--purple-mid); }
+  .id-bar .id-hint{ font-size:12px; color:var(--slate); }
+  .id-bar input#studentName{ width:220px; font-family:'Inter',sans-serif; }
+
+  .score-area{ max-width:900px; margin:0 auto; padding:14px 6vw 0; }
+
+  .rounding-note{
+    max-width:900px; margin:14px auto 0; padding:12px 6vw;
+    font-size:12.5px; color:var(--slate); line-height:1.5;
+  }
+  .rounding-note strong{ color:var(--purple); font-weight:600; }
+
+  main{ max-width:900px; margin:0 auto; padding:22px 6vw 90px; }
+
+  .part{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    box-shadow:var(--shadow);
+    padding:24px 26px 26px;
+    margin-top:26px;
+  }
+  .part-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; color:var(--gold); background:var(--purple);
+    display:inline-block; padding:3px 9px; border-radius:4px; letter-spacing:.04em;
+    margin-bottom:12px;
+  }
+  .part h2{
+    font-family:'Source Serif 4', serif; font-size:21px; font-weight:600;
+    color:var(--purple); margin:0 0 12px;
+  }
+  .scenario{
+    background:var(--parchment);
+    border-left:3px solid var(--gold);
+    padding:14px 18px;
+    border-radius:0 6px 6px 0;
+    font-size:14.5px;
+    color:var(--ink);
+    margin-bottom:16px;
+  }
+  .scenario p{ margin:0 0 10px; }
+  .scenario p:last-child{ margin-bottom:0; }
+  .scenario span.val{ font-weight:700; color:var(--purple-deep); }
+
+  .req{
+    font-weight:600;
+    font-size:14.5px;
+    color:var(--ink);
+    margin:20px 0 10px;
+  }
+  .req span.reqlabel{ color:var(--purple); }
+
+  h4.subsection{
+    font-family:'Source Serif 4',serif; font-size:15px; color:var(--purple); margin:22px 0 6px;
+    border-bottom:1px solid var(--line-soft); padding-bottom:4px;
+  }
+
+  table.given{ width:100%; border-collapse:collapse; font-size:13px; margin:6px 0 14px; }
+  table.given th{ text-align:left; font-size:10.5px; text-transform:uppercase; letter-spacing:.03em; color:var(--slate); border-bottom:2px solid var(--purple); padding:6px 8px; }
+  table.given td{ border-bottom:1px solid var(--line); padding:5px 8px; font-family:'IBM Plex Mono', monospace; }
+  table.given td.lbl{ font-family:'Inter',sans-serif; }
+  table.given td.num, table.given th.num{ text-align:right; }
+  table.given tr.given-total td{ border-top:1.3px solid var(--purple); font-weight:600; }
+  table.given tr.given-head td{ font-family:'Source Serif 4',serif; font-weight:600; color:var(--purple); text-align:center; }
+  ol.addinfo{ margin:8px 0; padding-left:20px; font-size:13.5px; }
+  ol.addinfo li{ margin:6px 0; }
+  .footnote{ font-size:12px; color:var(--slate); margin:2px 0 14px; font-style:italic; }
+  .hint{ font-size:12.5px; color:var(--slate); margin:4px 0 10px; }
+
+  table.worksheet{
+    width:100%;
+    border-collapse:collapse;
+    font-size:13.5px;
+    margin:10px 0 4px;
+  }
+  table.worksheet th{
+    text-align:left;
+    font-size:11.5px;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+    color:var(--slate);
+    border-bottom:2px solid var(--purple);
+    padding:8px 8px;
+  }
+  table.worksheet th.num{ text-align:right; }
+  table.worksheet td{
+    border-bottom:1px solid var(--line);
+    padding:9px 8px;
+    vertical-align:middle;
+  }
+  table.worksheet td.method{ font-weight:600; }
+  table.worksheet td.sub{ padding-left:24px; font-weight:400; }
+  table.worksheet td.amt{ width:160px; }
+  table.worksheet td.dash{ text-align:center; color:var(--slate); font-family:'IBM Plex Mono',monospace; }
+  table.worksheet tr.ws-total td{ border-top:1.6px solid var(--purple); font-weight:600; }
+  table.worksheet input[type="text"]{
+    width:100%;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13.5px;
+    padding:6px 8px;
+    border:1px solid var(--line);
+    border-radius:5px;
+    background:var(--parchment);
+    color:var(--ink);
+  }
+  table.worksheet input[type="text"]:focus{
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
+  }
+
+  .score-panel{
+    display:flex; align-items:center; gap:18px;
+    margin:0 0 4px; padding:14px 18px;
+    background:var(--parchment);
+    border:1px solid var(--line);
+    border-radius:8px;
+  }
+  .score-panel.scored-good{ background:var(--answer-bg); border-color:#B7D3BE; }
+  .score-panel.scored-bad{ background:#F8F0EF; border-color:#E2C6C2; }
+  .score-pct{
+    font-family:'Source Serif 4', serif;
+    font-size:30px; font-weight:700; line-height:1.05;
+    color:var(--slate); min-width:96px; text-align:center;
+  }
+  .score-panel.scored-good .score-pct{ color:var(--answer); }
+  .score-panel.scored-bad .score-pct{ color:var(--danger); }
+  .score-detail{ flex:1; min-width:0; }
+  .score-meta{ font-size:13.5px; font-weight:600; color:var(--ink); margin:0 0 7px; }
+  .score-bar{ height:8px; border-radius:4px; background:var(--line-soft); overflow:hidden; }
+  .score-bar span{ display:block; height:100%; width:0; background:var(--purple-mid); transition:width .35s ease; }
+  .score-panel.scored-good .score-bar span{ background:var(--answer); }
+  .score-panel.scored-bad .score-bar span{ background:var(--danger); }
+  .score-sub{ font-size:11.5px; color:var(--slate); margin:7px 0 0; }
+
+  .check-bar{
+    margin-top:20px;
+    padding-top:16px;
+    border-top:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .btn-check{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:9px 18px; border:1px solid var(--purple);
+    background:var(--purple); color:#fff; cursor:pointer;
+  }
+  .btn-check:hover{ background:var(--purple-mid); }
+  .check-summary{ font-size:13.5px; font-weight:600; }
+  .check-summary.good{ color:var(--answer); }
+  .check-summary.bad{ color:var(--danger); }
+  .check-disclaimer{ font-size:11.5px; color:var(--slate); width:100%; margin-top:2px; font-style:italic; }
+
+  input.field-correct{
+    border-color:var(--answer) !important;
+    background:var(--answer-bg) !important;
+  }
+  input.field-incorrect{
+    border-color:var(--danger) !important;
+    background:#F3E1DE !important;
+  }
+
+  .submit-bar{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    box-shadow:var(--shadow);
+    padding:22px 26px 24px;
+    margin-top:26px;
+  }
+  .submit-bar h2{
+    font-family:'Source Serif 4', serif; font-size:19px; font-weight:600;
+    color:var(--purple); margin:0 0 14px;
+  }
+  .submit-row{ display:flex; align-items:center; gap:10px; margin-bottom:12px; flex-wrap:wrap; }
+  .submit-row label{ font-size:13px; font-weight:600; color:var(--slate); }
+  .submit-row input[type="text"]{
+    font-family:'Inter',sans-serif; font-size:13.5px; padding:8px 11px;
+    border:1px solid var(--line); border-radius:5px; background:var(--parchment); color:var(--ink);
+    width:240px;
+  }
+  .submit-row input:focus{ outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); }
+  .btn-submit{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:10px 18px; border:1px solid var(--purple);
+    background:var(--purple); color:#fff; cursor:pointer;
+  }
+  .btn-submit:hover{ background:var(--purple-mid); }
+  .btn-submit-outline{ background:var(--paper); color:var(--purple); }
+  .btn-submit-outline:hover{ background:var(--parchment); }
+  .submit-status{ font-size:13px; font-weight:600; min-height:18px; margin:10px 0 0; color:var(--answer); }
+  .submit-status.error{ color:var(--danger); }
+  .submit-hint{ font-size:12px; color:var(--slate); margin:6px 0 0; }
+
+  @media print{
+    .print-hide, .id-bar, .check-bar, .rounding-note{ display:none !important; }
+    header{ background:none !important; color:var(--ink) !important; padding:0 0 14px !important; }
+    header::after{ display:none !important; }
+    .eyebrow{ color:var(--purple) !important; }
+    .subtitle{ color:var(--slate) !important; }
+    body{ background:#fff !important; }
+    .part{ box-shadow:none !important; border:1px solid #999 !important; break-inside:auto; }
+    .score-panel{ background:#fff !important; border:1.5px solid #000 !important; break-inside:avoid; }
+    .score-bar{ display:none !important; }
+    .score-pct, .score-panel.scored-good .score-pct, .score-panel.scored-bad .score-pct{ color:#000 !important; }
+    .part h2, .part-label, .scenario, h4.subsection{ break-after:avoid; break-inside:avoid; }
+    table.given, table.worksheet{ break-inside:auto; }
+    table.given tr, table.worksheet tr{ break-inside:avoid; }
+    ol.addinfo li{ break-inside:avoid; }
+    .submit-bar{ break-before:avoid; }
+    input[type="text"]{
+      border:none !important;
+      border-bottom:1px solid #000 !important;
+      background:transparent !important;
+      border-radius:0 !important;
+      color:#000 !important;
+      -webkit-appearance:none;
+      appearance:none;
+      padding:2px 4px !important;
+    }
+    .print-name-line{ display:block !important; }
+  }
+  .print-name-line{ display:none; font-size:13px; color:var(--ink); padding:0 6vw; margin:0 0 10px; }
+
+  footer{ text-align:center; padding:26px 6vw 40px; font-size:12px; color:var(--slate); }
+
+  @media (max-width:600px){
+    header, main, .id-bar{ padding-left:5vw; padding-right:5vw; }
+    table.worksheet{ font-size:12.5px; }
+  }
+
+
+  /* ---- additions for journal-entry worksheets and dropdown fields ---- */
+  table.worksheet select{
+    width:100%;
+    font-family:'Inter',sans-serif;
+    font-size:13px;
+    padding:6px 6px;
+    border:1px solid var(--line);
+    border-radius:5px;
+    background:var(--parchment);
+    color:var(--ink);
+  }
+  table.worksheet select:focus{
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
+  }
+  select.field-correct{ border-color:var(--answer) !important; background:var(--answer-bg) !important; }
+  select.field-incorrect{ border-color:var(--danger) !important; background:#F3E1DE !important; }
+
+  table.je{ width:100%; border-collapse:collapse; font-size:13.5px; margin:8px 0 6px; }
+  table.je th{
+    text-align:left; font-size:11.5px; text-transform:uppercase; letter-spacing:.03em;
+    color:var(--slate); border-bottom:2px solid var(--purple); padding:8px 8px;
+  }
+  table.je th.num{ text-align:right; }
+  table.je td{ border-bottom:1px solid var(--line); padding:7px 8px; vertical-align:middle; }
+  table.je td.acct{ width:52%; }
+  table.je td.amt{ width:24%; }
+  table.je tr.indent td.acct{ padding-left:30px; }
+  table.je input[type="text"]{
+    width:100%; font-family:'IBM Plex Mono', monospace; font-size:13.5px;
+    padding:6px 8px; border:1px solid var(--line); border-radius:5px;
+    background:var(--parchment); color:var(--ink); text-align:right;
+  }
+  table.je input[type="text"]:focus{
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
+  }
+  table.je select{
+    width:100%; font-family:'Inter',sans-serif; font-size:13px; padding:6px 6px;
+    border:1px solid var(--line); border-radius:5px; background:var(--parchment); color:var(--ink);
+  }
+  table.je select:focus{
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
+  }
+  .je-cap{ font-size:12.5px; font-weight:600; color:var(--purple); margin:16px 0 0; }
+  .je-sub{ font-size:12px; color:var(--slate); margin:2px 0 0; font-style:italic; }
+  .situation{
+    border-left:3px solid var(--purple-mid);
+    background:#FBF9F4;
+    padding:12px 16px;
+    border-radius:0 6px 6px 0;
+    font-size:14px;
+    margin:26px 0 10px;
+  }
+  .situation .sit-tag{
+    font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.06em;
+    text-transform:uppercase; color:var(--purple); display:block; margin-bottom:4px;
+  }
+  .situation p{ margin:0 0 8px; }
+  .situation p:last-child{ margin-bottom:0; }
+  .situation span.val{ font-weight:700; color:var(--purple-deep); }
+  @media print{
+    table.je{ break-inside:auto; }
+    table.je tr{ break-inside:avoid; }
+    .situation{ break-inside:avoid; background:#fff !important; }
+    table.worksheet select, table.je select{
+      border:none !important; border-bottom:1px solid #000 !important;
+      background:transparent !important; border-radius:0 !important;
+      -webkit-appearance:none; appearance:none; padding:2px 4px !important;
+    }
+  }
+
+  table.worksheet td.amt-wide{ width:56%; }
+
+</style>
+
+<style>
+  /* ---- additions for the tax-computation worksheet ---- */
+  table.worksheet td.line{ width:46px; font-family:'IBM Plex Mono',monospace; font-size:12.5px; color:var(--purple); font-weight:600; white-space:nowrap; }
+  table.worksheet td.rate{ width:112px; }
+  table.worksheet td.const{ width:112px; font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--purple-deep); text-align:right; }
+  table.worksheet td.amt5{ width:150px; }
+  table.worksheet td.note{ width:150px; font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--slate); }
+  table.worksheet tr.subhead td{ font-family:'Source Serif 4',serif; font-weight:600; color:var(--purple); background:#FBF9F4; padding-top:7px; padding-bottom:7px; }
+  table.worksheet td.rate input, table.worksheet td.amt5 input{ text-align:right; }
+  .part-tally{ margin-top:14px; font-size:12.5px; font-weight:600; min-height:16px; }
+  .part-tally.good{ color:var(--answer); }
+  .part-tally.bad{ color:var(--danger); }
+
+  details.refbox{
+    background:var(--paper); border:1px solid var(--line); border-radius:10px;
+    box-shadow:var(--shadow); padding:14px 22px; margin-top:26px;
+  }
+  details.refbox summary{
+    cursor:pointer; font-family:'Source Serif 4',serif; font-size:17px; font-weight:600; color:var(--purple);
+  }
+  details.refbox[open] summary{ margin-bottom:8px; }
+  .refgrid{ display:grid; grid-template-columns:1fr 1fr; gap:6px 26px; }
+  .refgrid h5{ font-family:'Source Serif 4',serif; font-size:14px; color:var(--purple); margin:12px 0 2px; }
+  table.sched td.txt{ font-family:'Inter',sans-serif; font-size:12px; }
+  .tablewrap{ overflow-x:auto; }
+  @media (max-width:760px){
+    .refgrid{ grid-template-columns:1fr; }
+    table.worksheet td.note{ display:none; }
+    table.worksheet th.notehead{ display:none; }
+    table.worksheet td.amt5, table.worksheet td.rate, table.worksheet td.const{ width:auto; }
+  }
+  @media print{
+    details.refbox{ display:none !important; }
+    table.worksheet tr.subhead td{ background:#fff !important; }
+    .part-tally{ display:none !important; }
+  }
+</style>
+
+<style>
+  main, .id-bar, .score-area, .rounding-note{ max-width:1000px; }
+  table.worksheet.dep td{ padding:7px 6px; vertical-align:middle; }
+  table.worksheet.dep td.item{ font-weight:600; }
+  table.worksheet.dep td.sub2{ padding-left:26px; font-weight:400; }
+  table.worksheet.dep td.g{ font-family:'IBM Plex Mono',monospace; font-size:13px; text-align:right; padding-right:10px; white-space:nowrap; }
+  table.worksheet.dep td.amt6{ width:150px; }
+  table.worksheet td input[type="text"]{ text-align:right; }
+  table.worksheet tr.tot td{ background:var(--answer-bg); }
+  table.worksheet tr.tier td{ font-family:'Source Serif 4',serif; font-weight:600; color:var(--purple); background:#FBF9F4; }
+  table.worksheet td.note2{ font-size:11.5px; color:var(--slate); font-style:italic; width:120px; }
+  details.macrs{ margin:10px 0 0; border-top:1px solid var(--line-soft); padding-top:8px; }
+  details.macrs > summary{ cursor:pointer; font-family:'Source Serif 4',serif; font-size:14.5px; font-weight:600; color:var(--purple); }
+  details.macrs p, details.macrs ul{ font-size:13px; margin:6px 0; }
+  details.macrs li{ margin:4px 0; }
+  .mref-links{ font-size:13px; margin:6px 0 2px; }
+  .mref-links a{ color:var(--purple); }
+  ol.reqs{ font-size:14px; margin:8px 0 4px; padding-left:22px; }
+  ol.reqs li{ margin:7px 0; }
+  .formula{ font-family:'IBM Plex Mono',monospace; font-size:12.5px; color:var(--purple-deep); background:var(--parchment); padding:6px 10px; border-radius:5px; display:inline-block; margin:4px 0; }
+  @media print{
+    main, .id-bar, .score-area, .rounding-note{ max-width:none; }
+    .tablewrap{ overflow:visible !important; }
+    table.worksheet.dep{ table-layout:fixed; width:100%; font-size:10.5px; }
+    table.worksheet.dep th{ font-size:8.5px !important; padding:3px 3px !important; }
+    table.worksheet.dep td{ padding:3px 3px !important; width:auto !important; }
+    table.worksheet.dep input[type="text"]{ font-size:10.5px !important; padding:1px 2px !important; width:100% !important; }
+    table.worksheet tr.tier td{ background:#fff !important; }
+  }
+</style>
+</head>
+
+<body>
+
+<header>
+  <p class="eyebrow">Individual Income Taxation &middot; Chapter 14 &middot; Home Ownership</p>
+  <h1 class="title">Problem 14-58 &mdash; Rental Use of a Residence</h1>
+  <p class="subtitle">Allocating the expenses of a vacation home under the IRS method, deducting them in tier order within the gross rental income limit, and sorting the rest into itemized deductions and basis.</p>
+</header>
+
+<p class="print-name-line" id="printNameLine"></p>
+
+<div class="id-bar">
+  <label for="studentName">Name</label>
+  <input type="text" id="studentName" placeholder="First and last name">
+  <label for="studentId">Student ID</label>
+  <input type="text" id="studentId" placeholder="e.g. 920410165">
+  <button id="genBtn" type="button">Generate scenario</button>
+  <span class="id-hint">Leave the ID blank and click to restore the original textbook figures.</span>
+</div>
+
+<div class="score-area" id="scoreArea"></div>
+
+<div class="rounding-note">
+  <strong>Rounding convention:</strong> do not round the apportionment ratio; round each allocated expense and every other dollar amount to the nearest whole dollar (within $2 of the key is accepted). Leave no answers blank &mdash; enter 0 if applicable.
+</div>
+
+<main>
+<div class="part"><span class="part-label">Problem 14-58</span><h2>Rental use of a residence &mdash; Tamar&rsquo;s condo</h2>
+    <div class="scenario">
+      <p>Tamar owns a condominium near Cocoa Beach in Florida. In 2026 she incurs the following expenses in connection with her condo:</p>
+    </div>
+    <div class="tablewrap"><table class="given facts">
+      <thead><tr><th>Expense</th><th class="num">Amount</th></tr></thead>
+      <tbody id="factsBody"></tbody>
+    </table></div>
+    <div class="scenario">
+      <p>During the year, Tamar rented out the condo for <span class="val vRd">75</span> days, receiving <span class="val vGri">$10,000</span> of gross income. She personally used the condo for <span class="val vPd">35</span> days during her vacation. Tamar&rsquo;s itemized deduction for nonrental taxes is less than the <span class="vCap">$40,400</span> state and local tax limit by more than the property taxes allocated to the rental use of the property.</p>
+      <p><strong>Required:</strong></p>
+    </div>
+    <ol class="reqs">
+      <li>What is the total amount of <strong>for AGI</strong> (rental) deductions Tamar may deduct in the current year related to the condo?</li>
+      <li>What is the total amount of <strong>itemized deductions</strong> Tamar may deduct in the current year related to the condo?</li>
+      <li>If Tamar&rsquo;s basis in the condo at the beginning of the year was <span class="val vBasis">$150,000</span>, what is her basis in the condo at the end of the year?</li>
+      <li>Assume that gross rental revenue was <span class="val vGri2">$2,300</span> (rather than <span class="val vGri">$10,000</span>). What amount of for AGI deductions may Tamar deduct in the current year related to the condo (assuming she itemizes deductions before considering deductions associated with the condo)?</li>
+      <li>Assuming that gross rental revenue was <span class="val vGri2">$2,300</span> and that Tamar&rsquo;s itemized deduction for taxes is <span class="val vEtax">$42,000</span> before considering property taxes allocated to rental use of the property, what amount of for AGI deductions may Tamar deduct in the current year related to the condo?</li>
+    </ol>
+<p class="mref-links">See the &sect;280A rules: <a href="#rk1" class="mlink">allocation</a>, <a href="#rk2" class="mlink">the three tiers</a> and <a href="#rk3" class="mlink">Schedule A and basis</a> (in the reference panel below).</p>
+    <p class="hint">Use the IRS method. Do not round the apportionment ratio; round all other dollar values to the nearest whole dollar (within $2 of the key is accepted). Leave no answers blank &mdash; enter 0 if applicable.</p>
+<div class="part-tally" id="tally0"></div></div>
+
+  <details class="refbox print-hide" id="ruleRef">
+    <summary>Reference: rental use of a home (&sect;280A)</summary>
+    <p class="hint">Tamar&rsquo;s personal use is more than 14 days and more than 10% of the rental days, so the condo is a <strong>residence with significant rental use</strong>: expenses are allocated between rental and personal use, and the rental deductions cannot exceed the gross rental income.</p>
+
+    <details class="macrs" id="rk1"><summary>Allocating the expenses &mdash; IRS method</summary>
+      <ul>
+        <li>Expenses that relate to the property as a whole are allocated by <strong>rental days &divide; total days of use</strong> (rental days + personal days). Days the home is vacant do not count.</li>
+        <li>Expenses that relate only to the rental activity (advertising, rental agency fees) are <strong>not allocated</strong> &mdash; they belong 100% to the rental.</li>
+        <li>Under the Tax Court method, mortgage interest and property taxes are instead allocated by rental days &divide; 365. This worksheet uses the IRS method.</li>
+      </ul>
+      <p class="formula">Rental ratio = rental days &divide; (rental days + personal days)</p>
+    </details>
+
+    <details class="macrs" id="rk2"><summary>The three tiers and the gross-income limit</summary>
+      <ul>
+        <li><strong>Tier 1</strong> &mdash; direct rental expenses (advertising) and the rental share of mortgage interest and real property taxes.</li>
+        <li><strong>Tier 2</strong> &mdash; the rental share of the other operating expenses (insurance, repairs and maintenance, utilities), deductible only to the extent of the balance of rental income remaining.</li>
+        <li><strong>Tier 3</strong> &mdash; the rental share of depreciation, deductible only to the extent of the balance remaining after tiers 1 and 2.</li>
+        <li>Deductions are taken in that order and may not exceed the gross rental income; the disallowed amounts carry forward to next year.</li>
+      </ul>
+    </details>
+
+    <details class="macrs" id="rk3"><summary>What goes on Schedule A, and basis</summary>
+      <ul>
+        <li>The <strong>personal share</strong> of the mortgage interest (qualified residence interest) and real property taxes is an itemized deduction, subject to the 2026 state and local tax limit of <span class="vCap">$40,400</span>.</li>
+        <li>Tier 1 interest and taxes that exceed the gross rental income are also deductible on Schedule A, because they are deductible whether or not the home is rented.</li>
+        <li>Only the depreciation actually <em>deducted</em> reduces the basis of the property.</li>
+      </ul>
+    </details>
+  </details>
+
+<div class="part"><span class="part-label">Allocation</span><h2>Rental and personal use</h2><p class="hint">Under the IRS method the apportionment ratio is rental days divided by the total days the condo was <em>used</em> (rental + personal). Enter the ratio as a decimal (e.g., 0.681818) or as a percentage.</p><div class="tablewrap"><table class="worksheet dep" data-w="4000,2680,2680"><thead><tr><th>Use of the condo</th><th class="num">Days</th><th class="num">Ratio</th></tr></thead><tbody><tr><td class="item">Rental use</td><td class="g"><span class="vRd">75</span></td><td class="amt6"><input type="text" id="x-r-rent" placeholder="0.000000"></td></tr><tr><td class="item">Personal use</td><td class="g"><span class="vPd">35</span></td><td class="amt6"><input type="text" id="x-r-pers" placeholder="0.000000"></td></tr><tr class="ws-total"><td class="item">Total use</td><td class="amt6"><input type="text" id="x-days-tot" placeholder="#"></td><td class="amt6"><input type="text" id="x-r-tot" placeholder="0.000000"></td></tr></tbody></table></div><div class="part-tally" id="tally-r"></div></div><div class="part"><span class="part-label">Part a</span><h2>For AGI (rental) deductions &mdash; IRS method</h2><p class="hint">Allocate each expense to the rental use, then deduct in tier order: tier 1 first, then tier 2 and tier 3 only to the extent of the rental income that remains. Advertising relates only to the rental, so it is not allocated.</p><p class="mref-links">See the &sect;280A rules: <a href="#rk1" class="mlink">allocation</a>, <a href="#rk2" class="mlink">the three tiers</a> and <a href="#rk3" class="mlink">Schedule A and basis</a> (in the reference panel below).</p><div class="tablewrap"><table class="worksheet dep" data-w="3100,1350,1500,1210,2200"><thead><tr><th>IRS method</th><th class="num">Total expense</th><th class="num">Allocated to rental use</th><th></th><th class="num">Amount deducted</th></tr></thead><tbody><tr class="ws-total"><td class="method">Gross rental income</td><td></td><td></td><td class="note2"></td><td class="amt6"><input type="text" id="x-a-gri" placeholder="$"></td></tr><tr class="tier"><td colspan="5">Tier 1 expenses</td></tr><tr><td class="method sub2">Advertising expense</td><td class="g" id="g-adv"></td><td class="amt6"><input type="text" id="x-a-al-adv" placeholder="$"></td><td class="note2">100% rental</td><td class="amt6"></td></tr><tr><td class="method sub2">Mortgage interest</td><td class="g" id="g-int"></td><td class="amt6"><input type="text" id="x-a-al-int" placeholder="$"></td><td class="note2"></td><td class="amt6"></td></tr><tr><td class="method sub2">Property taxes</td><td class="g" id="g-tax"></td><td class="amt6"><input type="text" id="x-a-al-tax" placeholder="$"></td><td class="note2"></td><td class="amt6"></td></tr><tr class="ws-total"><td class="method">Total tier 1 expenses</td><td></td><td class="amt6"><input type="text" id="x-a-t1-al" placeholder="$"></td><td class="note2"></td><td class="amt6"><input type="text" id="x-a-t1-d" placeholder="$"></td></tr><tr class=""><td class="method">Balance</td><td></td><td></td><td class="note2"></td><td class="amt6"><input type="text" id="x-a-b1" placeholder="$"></td></tr><tr class="tier"><td colspan="5">Tier 2 expenses</td></tr><tr><td class="method sub2">Insurance</td><td class="g" id="g-ins"></td><td class="amt6"><input type="text" id="x-a-al-ins" placeholder="$"></td><td class="note2"></td><td class="amt6"></td></tr><tr><td class="method sub2">Repairs and maintenance</td><td class="g" id="g-rep"></td><td class="amt6"><input type="text" id="x-a-al-rep" placeholder="$"></td><td class="note2"></td><td class="amt6"></td></tr><tr><td class="method sub2">Utilities</td><td class="g" id="g-uti"></td><td class="amt6"><input type="text" id="x-a-al-uti" placeholder="$"></td><td class="note2"></td><td class="amt6"></td></tr><tr class="ws-total"><td class="method">Total tier 2 expenses</td><td></td><td class="amt6"><input type="text" id="x-a-t2-al" placeholder="$"></td><td class="note2">Limit: balance above</td><td class="amt6"><input type="text" id="x-a-t2-d" placeholder="$"></td></tr><tr class=""><td class="method">Balance</td><td></td><td></td><td class="note2"></td><td class="amt6"><input type="text" id="x-a-b2" placeholder="$"></td></tr><tr class="tier"><td colspan="5">Tier 3 expenses</td></tr><tr><td class="method sub2">Depreciation</td><td class="g" id="g-dep"></td><td class="amt6"><input type="text" id="x-a-al-dep" placeholder="$"></td><td class="note2"></td><td class="amt6"></td></tr><tr class="ws-total"><td class="method">Total tier 3 expenses</td><td></td><td class="amt6"><input type="text" id="x-a-t3-al" placeholder="$"></td><td class="note2">Limit: balance above</td><td class="amt6"><input type="text" id="x-a-t3-d" placeholder="$"></td></tr><tr class=""><td class="method">Balance</td><td></td><td></td><td class="note2"></td><td class="amt6"><input type="text" id="x-a-b3" placeholder="$"></td></tr><tr class="ws-total tot"><td class="method">Total &ldquo;for AGI&rdquo; (rental) deductions</td><td></td><td></td><td class="note2"></td><td class="amt6"><input type="text" id="x-a-tot" placeholder="$"></td></tr></tbody></table></div><div class="part-tally" id="tally-a"></div></div><div class="part"><span class="part-label">Part b</span><h2>Itemized deductions related to the condo</h2><p class="hint">The share of the mortgage interest and real property taxes that was <em>not</em> allocated to the rental use is deductible on Schedule A (the condo is a qualified residence).</p><div class="tablewrap"><table class="worksheet"><thead><tr><th>Itemized (&ldquo;from AGI&rdquo;) deductions</th><th class="num">Amount</th></tr></thead><tbody><tr class=""><td class="method">Mortgage interest &mdash; personal-use share</td><td class="amt"><input type="text" id="x-b-int" placeholder="$"></td></tr><tr class=""><td class="method">Real property taxes &mdash; personal-use share</td><td class="amt"><input type="text" id="x-b-tax" placeholder="$"></td></tr><tr class="ws-total tot"><td class="method">Total &ldquo;from AGI&rdquo; deductions</td><td class="amt"><input type="text" id="x-b-tot" placeholder="$"></td></tr></tbody></table></div><div class="part-tally" id="tally-b"></div></div><div class="part"><span class="part-label">Part c</span><h2>Basis in the condo at the end of the year</h2><div class="tablewrap"><table class="worksheet"><thead><tr><th>Basis in the condo</th><th class="num">Amount</th></tr></thead><tbody><tr class=""><td class="method">Beginning balance</td><td class="amt"><input type="text" id="x-c-beg" placeholder="$"></td></tr><tr class=""><td class="method">Less: depreciation deducted</td><td class="amt"><input type="text" id="x-c-dep" placeholder="$"></td></tr><tr class="ws-total tot"><td class="method">Adjusted basis at the end of the year</td><td class="amt"><input type="text" id="x-c-end" placeholder="$"></td></tr></tbody></table></div><div class="part-tally" id="tally-c"></div></div><div class="part"><span class="part-label">Part d</span><h2>Gross rental revenue of <span class="vGri2">$2,300</span></h2><p class="hint">With the lower revenue the tier 1 expenses alone exceed the gross rental revenue, so nothing is left for tiers 2 and 3. The interest and taxes that cannot be deducted for AGI are still deductible as itemized deductions.</p><div class="tablewrap"><table class="worksheet"><thead><tr><th>Gross rental revenue of <span class="vGri2">$2,300</span></th><th class="num">Amount</th></tr></thead><tbody><tr class=""><td class="method">Gross rental revenue</td><td class="amt"><input type="text" id="x-d-gri" placeholder="$"></td></tr><tr class=""><td class="method">Tier 1 expenses allocated to the rental use</td><td class="amt"><input type="text" id="x-d-t1" placeholder="$"></td></tr><tr class="ws-total"><td class="method">Tier 1 expenses deducted for AGI <span class="hint">(limited to the gross rental revenue)</span></td><td class="amt"><input type="text" id="x-d-forAGI" placeholder="$"></td></tr><tr class=""><td class="method">Tier 2 expenses deducted for AGI</td><td class="amt"><input type="text" id="x-d-t2" placeholder="$"></td></tr><tr class=""><td class="method">Tier 3 expenses (depreciation) deducted for AGI</td><td class="amt"><input type="text" id="x-d-t3" placeholder="$"></td></tr><tr class=""><td class="method">Remaining tier 1 interest and taxes &mdash; deducted as itemized deductions</td><td class="amt"><input type="text" id="x-d-item" placeholder="$"></td></tr><tr class="ws-total tot"><td class="method">Total &ldquo;for AGI&rdquo; deductions</td><td class="amt"><input type="text" id="x-d-tot" placeholder="$"></td></tr></tbody></table></div><div class="part-tally" id="tally-d"></div></div><div class="part"><span class="part-label">Part e</span><h2>Taxes already above the state and local tax limit</h2><p class="hint">Now Tamar&rsquo;s itemized deduction for taxes is already above the <span class="vCap">$40,400</span> limit, so the property taxes that shift to Schedule A produce no additional deduction. Does that change the amount she may deduct for AGI?</p><div class="tablewrap"><table class="worksheet"><thead><tr><th>Itemized deduction for taxes is <span class="vEtax">$42,000</span> before the rental-use property taxes</th><th class="num">Amount</th></tr></thead><tbody><tr class=""><td class="method">Tier 1 expenses allocated to the rental use</td><td class="amt"><input type="text" id="x-e-t1" placeholder="$"></td></tr><tr class="ws-total"><td class="method">Tier 1 expenses deducted for AGI <span class="hint">(limited to the gross rental revenue)</span></td><td class="amt"><input type="text" id="x-e-forAGI" placeholder="$"></td></tr><tr class=""><td class="method">Additional itemized deduction for the leftover rental-use property taxes</td><td class="amt"><input type="text" id="x-e-salt" placeholder="$"></td></tr><tr class="ws-total tot"><td class="method">Total &ldquo;for AGI&rdquo; deductions</td><td class="amt"><input type="text" id="x-e-tot" placeholder="$"></td></tr></tbody></table></div>
+    <div class="check-bar">
+      <button class="btn-check" id="checkP1" type="button">Check my work</button>
+      <span class="check-summary" id="p1Summary"></span>
+      <span class="check-disclaimer">Checks every part. Figures are matched to the key within a small rounding tolerance &mdash; it does not confirm your supporting computations.</span>
+    </div><div class="part-tally" id="tally-e"></div></div>
+
+  <div class="submit-bar print-hide">
+    <h2>Ready to submit?</h2>
+    <p class="submit-hint" style="margin:0 0 12px;">Your name, student ID and score are taken from the top of the page.</p>
+    <div class="submit-row submit-actions">
+      <button class="btn-submit" id="printBtn" type="button">Print / Save as PDF</button>
+      <button class="btn-submit btn-submit-outline" id="downloadDocxBtn" type="button">Download as Word (.docx)</button>
+    </div>
+    <p class="submit-status" id="submitStatus"></p>
+    <p class="submit-hint">Both options capture exactly what&rsquo;s currently filled in above, including your generated scenario numbers. &ldquo;Print / Save as PDF&rdquo; works offline; &ldquo;Download as Word&rdquo; needs an internet connection to load the export tool.</p>
+  </div>
+</main>
+
+<footer>Problem 14-58 &middot; Rental Use of a Residence &middot; 2026 &middot; Western Carolina University</footer>
+
+<script>
+(function(){
+  // ---------- seeded pseudo-random ----------
+  function hashSeed(str){
+    var h = 2166136261;
+    for(var i=0;i<str.length;i++){
+      h ^= str.charCodeAt(i);
+      h = Math.imul(h, 16777619);
+    }
+    return h >>> 0;
+  }
+  function mulberry32(seed){
+    return function(){
+      seed |= 0; seed = seed + 0x6D2B79F5 | 0;
+      var t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
+  }
+  function pick(rand, arr){ return arr[Math.floor(rand() * arr.length)]; }
+  function rTo(x, m){ return Math.round(x/m)*m; }
+
+  // ---------- formatting ----------
+  function num0(n){ return Math.round(n).toLocaleString('en-US'); }
+  function money0(n){
+    var v = Math.round(n);
+    return (v < 0 ? '$(' + Math.abs(v).toLocaleString('en-US') + ')' : '$' + v.toLocaleString('en-US'));
+  }
+  function num1(n){
+    return Number(n).toLocaleString('en-US', {minimumFractionDigits:0, maximumFractionDigits:1});
+  }
+  function money1(n){
+    var v = Number(n);
+    var s = Math.abs(v).toLocaleString('en-US', {minimumFractionDigits:0, maximumFractionDigits:1});
+    return v < 0 ? '$(' + s + ')' : '$' + s;
+  }
+  function money2(n){
+    var v = Number(n);
+    var s = Math.abs(v).toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
+    return v < 0 ? '$(' + s + ')' : '$' + s;
+  }
+  function eps2(n){ return money2(n); }
+  function pct(n){ return num1(n) + '%'; }
+
+  function setText(id, text){
+    var el = document.getElementById(id);
+    if(el) el.textContent = text;
+  }
+  function setHTML(id, html){
+    var el = document.getElementById(id);
+    if(el) el.innerHTML = html;
+  }
+
+  // ---------- answer checking ----------
+  // tolerances: 'dollar' whole dollars, 'rate' per-unit rates, 'yr' years, 'text' exact match
+  var TOL = { dollar:2, dollar10:10, rate:0.011, rate3:0.0015, yr:0.01, mil:0.6, milsh:0.3, eps:0.011, text:0 };
+
+  function parseMoney(s){
+    if(s === null || s === undefined) return NaN;
+    var raw = String(s).trim();
+    var neg = /^\(.*\)$/.test(raw) || /^-/.test(raw);
+    var cleaned = raw.replace(/[^0-9.]/g, '');
+    if(cleaned === '') return NaN;
+    var v = parseFloat(cleaned);
+    if(isNaN(v)) return NaN;
+    return neg ? -v : v;
+  }
+  function near(a, b, tol){
+    if(isNaN(a) || isNaN(b)) return false;
+    return Math.abs(a - b) <= tol;
+  }
+  function clearFieldState(el){
+    if(!el) return;
+    el.classList.remove('field-correct', 'field-incorrect');
+  }
+  function clearAllFieldStates(){
+    document.querySelectorAll('.field-correct, .field-incorrect').forEach(function(el){
+      el.classList.remove('field-correct', 'field-incorrect');
+    });
+    document.querySelectorAll('.check-summary').forEach(function(el){
+      el.textContent = ''; el.classList.remove('good','bad');
+    });
+  }
+  function markField(id, correct, tol, isText){
+    var el = document.getElementById(id);
+    if(!el) return null;
+    el.classList.remove('field-correct', 'field-incorrect');
+    var ok;
+    if(isText){
+      ok = String(el.value || '').trim() === String(correct == null ? '' : correct).trim();
+    } else {
+      ok = near(parseMoney(el.value), correct, tol);
+    }
+    el.classList.add(ok ? 'field-correct' : 'field-incorrect');
+    if(!el.dataset.clearBound){
+      var ev = (el.tagName === 'SELECT') ? 'change' : 'input';
+      el.addEventListener(ev, function(){ clearFieldState(el); });
+      el.dataset.clearBound = '1';
+    }
+    return ok;
+  }
+  function updateSummary(elId, results){
+    var el = document.getElementById(elId);
+    if(!el) return;
+    var graded = results.filter(function(r){ return r !== null; }).length;
+    var correct = results.filter(function(r){ return r === true; }).length;
+    el.textContent = correct + ' of ' + graded + ' correct';
+    el.classList.remove('good', 'bad');
+    el.classList.add(correct === graded && graded > 0 ? 'good' : 'bad');
+  }
+
+  // ---------- score ----------
+  var SCORES = {};
+
+  function scoreState(g){
+    if(!SCORES[g.btn]) SCORES[g.btn] = { correct:0, graded:0, attempts:0, checked:false, stale:false };
+    return SCORES[g.btn];
+  }
+  function scorePct(s){
+    return s.graded ? Math.round(s.correct / s.graded * 100) : 0;
+  }
+
+  var SCORE_PROMPT = 'Fill in the worksheet below, then choose <strong>Check my work</strong>. Every blank counts as incorrect.';
+
+  function ensureScorePanel(g){
+    var area = document.getElementById('scoreArea');
+    if(!area) return null;
+    var panel = area.querySelector('.score-panel[data-for="' + g.btn + '"]');
+    if(panel) return panel;
+    panel = document.createElement('div');
+    panel.className = 'score-panel';
+    panel.setAttribute('data-for', g.btn);
+    panel.innerHTML =
+      '<div class="score-pct">&mdash;</div>' +
+      '<div class="score-detail">' +
+        '<p class="score-meta">Score</p>' +
+        '<div class="score-bar"><span></span></div>' +
+        '<p class="score-sub">' + SCORE_PROMPT + '</p>' +
+      '</div>';
+    area.appendChild(panel);
+    return panel;
+  }
+
+  function renderScore(g){
+    var panel = ensureScorePanel(g);
+    if(!panel) return;
+    var s = scoreState(g);
+    var pctEl = panel.querySelector('.score-pct');
+    var metaEl = panel.querySelector('.score-meta');
+    var fillEl = panel.querySelector('.score-bar span');
+    var subEl = panel.querySelector('.score-sub');
+    panel.classList.remove('scored-good', 'scored-bad');
+
+    if(!s.checked){
+      pctEl.innerHTML = '&mdash;';
+      metaEl.textContent = 'Score';
+      fillEl.style.width = '0%';
+      subEl.innerHTML = SCORE_PROMPT;
+      return;
+    }
+    var p = scorePct(s);
+    pctEl.textContent = p + '%';
+    metaEl.textContent = 'Score: ' + s.correct + ' of ' + s.graded + ' correct';
+    fillEl.style.width = p + '%';
+    if(s.stale){
+      subEl.textContent = 'You have changed an answer since this score was calculated — check your work again to update it.';
+    } else if(s.correct === s.graded){
+      subEl.textContent = 'All ' + s.graded + ' figures match the key. Attempt ' + s.attempts + '.';
+      panel.classList.add('scored-good');
+    } else {
+      var missing = s.graded - s.correct;
+      subEl.innerHTML = missing + ' figure' + (missing === 1 ? '' : 's') + ' still to fix' +
+                        '<span class="print-hide"> — outlined in red below</span>. Attempt ' + s.attempts + '.';
+      panel.classList.add('scored-bad');
+    }
+  }
+
+  function markScoreStale(g){
+    var s = scoreState(g);
+    if(!s.checked || s.stale) return;
+    s.stale = true;
+    renderScore(g);
+  }
+
+  function resetScore(g){
+    SCORES[g.btn] = { correct:0, graded:0, attempts:0, checked:false, stale:false };
+    renderScore(g);
+  }
+
+  // =================================================================
+  //  Problem 14-58 — Rental use of a residence (IRS method), 2026
+  // =================================================================
+  var SALT_CAP = 40400;                        // 2026 state and local tax deduction limit
+  var T1 = ['adv', 'int', 'tax'];              // tier 1: direct rental expense, interest, taxes
+  var T2 = ['ins', 'rep', 'uti'];              // tier 2: operating expenses
+  var NAMES = { adv:'Advertising expense', int:'Mortgage interest', tax:'Property taxes',
+                ins:'Insurance', rep:'Repairs and maintenance', uti:'Utilities', dep:'Depreciation' };
+
+  function baseline(){
+    return {
+      e:{ ins:1120, adv:560, int:3920, tax:954, rep:710, uti:1010, dep:9700 },
+      rd:75, pd:35, gri:10000, basis:150000, gri2:2300, etax:42000
+    };
+  }
+
+  function rint(rand, lo, hi, step){
+    step = step || 1;
+    var n = Math.floor((hi - lo) / step) + 1;
+    return lo + Math.floor(rand() * n) * step;
+  }
+
+  function randomParams(rand){
+    var p, r, t1, t2, t3;
+    do {
+      var rd = rint(rand, 60, 120, 5);
+      var pd = rint(rand, Math.max(16, Math.ceil(rd / 10) + 2), 60);       // keeps it a residence
+      p = {
+        e:{ ins: rint(rand, 8, 20) * 100, adv: rint(rand, 3, 12) * 100, int: rint(rand, 30, 60) * 100,
+            tax: rint(rand, 7, 16) * 100 + rint(rand, 0, 9) * 10, rep: rint(rand, 5, 14) * 100,
+            uti: rint(rand, 7, 16) * 100, dep: rint(rand, 70, 130) * 100 },
+        rd: rd, pd: pd, gri: 0, basis: rint(rand, 120, 260) * 1000,
+        gri2: rint(rand, 15, 30) * 100, etax: rint(rand, 41, 60) * 1000
+      };
+      r = rd / (rd + pd);
+      t1 = p.e.adv + Math.round(p.e.int * r) + Math.round(p.e.tax * r);
+      t2 = Math.round(p.e.ins * r) + Math.round(p.e.rep * r) + Math.round(p.e.uti * r);
+      t3 = Math.round(p.e.dep * r);
+      // gross rental income lands between tier 1 + tier 2 and the full allocated total,
+      // so the depreciation deduction is partly limited, as in the textbook
+      if(t3 >= 1200) p.gri = rint(rand, Math.ceil((t1 + t2 + 500) / 100), Math.floor((t1 + t2 + t3 - 500) / 100)) * 100;
+    } while(t3 < 1200 || p.gri2 >= t1 || p.gri <= t1 + t2 || p.gri >= t1 + t2 + t3);
+    return p;
+  }
+
+  function solve(p){
+    var x = {}, tot = p.rd + p.pd, r = p.rd / tot;
+    x['days-tot'] = tot;
+    x['r-rent'] = r;
+    x['r-pers'] = p.pd / tot;
+    x['r-tot'] = 1;
+
+    var al = {};                                  // amounts allocated to the rental use
+    al.adv = p.e.adv;                             // a direct rental expense — not allocated
+    ['int', 'tax', 'ins', 'rep', 'uti', 'dep'].forEach(function(k){ al[k] = Math.round(p.e[k] * r); });
+    Object.keys(al).forEach(function(k){ x['a-al-' + k] = al[k]; });
+
+    var t1 = T1.reduce(function(a, k){ return a + al[k]; }, 0);
+    var t2 = T2.reduce(function(a, k){ return a + al[k]; }, 0);
+    x['a-gri'] = p.gri;
+    x['a-t1-al'] = t1;
+    x['a-t1-d'] = Math.min(t1, p.gri);
+    var b1 = p.gri - x['a-t1-d'];
+    x['a-b1'] = b1;
+    x['a-t2-al'] = t2;
+    x['a-t2-d'] = Math.min(t2, b1);
+    var b2 = b1 - x['a-t2-d'];
+    x['a-b2'] = b2;
+    x['a-t3-al'] = al.dep;
+    x['a-t3-d'] = Math.min(al.dep, b2);
+    x['a-b3'] = b2 - x['a-t3-d'];
+    x['a-tot'] = x['a-t1-d'] + x['a-t2-d'] + x['a-t3-d'];
+
+    // ---- part b: the personal-use share of interest and taxes goes on Schedule A
+    x['b-int'] = p.e.int - al.int;
+    x['b-tax'] = p.e.tax - al.tax;
+    x['b-tot'] = x['b-int'] + x['b-tax'];
+
+    // ---- part c: only the depreciation actually deducted reduces basis
+    x['c-beg'] = p.basis;
+    x['c-dep'] = x['a-t3-d'];
+    x['c-end'] = p.basis - x['a-t3-d'];
+
+    // ---- part d: low rental revenue — tier 1 alone exceeds it
+    x['d-gri'] = p.gri2;
+    x['d-t1'] = t1;
+    x['d-forAGI'] = Math.min(t1, p.gri2);
+    x['d-t2'] = 0;
+    x['d-t3'] = 0;
+    x['d-item'] = t1 - x['d-forAGI'];             // unused tier 1 interest and taxes → Schedule A
+    x['d-tot'] = x['d-forAGI'];
+
+    // ---- part e: the same limit, but the leftover property taxes give no itemized benefit
+    x['e-t1'] = t1;
+    x['e-forAGI'] = Math.min(t1, p.gri2);
+    x['e-salt'] = 0;
+    x['e-tot'] = x['e-forAGI'];
+    return { raw:p, x:x };
+  }
+
+  function generateScenario(id){
+    var seed = (id || '').trim();
+    if(seed === '') return solve(baseline());
+    return solve(randomParams(mulberry32(hashSeed(seed.toLowerCase()))));
+  }
+
+  function setAll(sel, text){ document.querySelectorAll(sel).forEach(function(el){ el.textContent = text; }); }
+
+  function applyScenario(d){
+    var p = d.raw;
+    setAll('.vRd', num0(p.rd));
+    setAll('.vPd', num0(p.pd));
+    setAll('.vGri', money0(p.gri));
+    setAll('.vBasis', money0(p.basis));
+    setAll('.vGri2', money0(p.gri2));
+    setAll('.vEtax', money0(p.etax));
+    setAll('.vCap', money0(SALT_CAP));
+    var rows = '';
+    ['ins', 'adv', 'int', 'tax', 'rep', 'uti', 'dep'].forEach(function(k, i){
+      rows += '<tr><td class="lbl">' + NAMES[k] + '</td><td class="num">' +
+              (i === 0 ? money0(p.e[k]) : num0(p.e[k])) + '</td></tr>';
+      setText('g-' + k, num0(p.e[k]));
+    });
+    setHTML('factsBody', rows);
+  }
+
+  // open the reference panel when a rule link is clicked
+  document.querySelectorAll('a.mlink').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var t = document.querySelector(a.getAttribute('href'));
+      if(!t) return;
+      e.preventDefault();
+      var ref = document.getElementById('ruleRef');
+      if(ref) ref.open = true;
+      t.open = true;
+      t.scrollIntoView({ behavior:'smooth', block:'start' });
+    });
+  });
+
+  // ---------- grading ----------
+  var PARTS = [
+    { tally:'tally-r', fields:[['days-tot'], ['r-rent', 'ratio'], ['r-pers', 'ratio'], ['r-tot', 'ratio']] },
+    { tally:'tally-a', fields:[['a-gri'],
+        ['a-al-adv'], ['a-al-int'], ['a-al-tax'], ['a-t1-al'], ['a-t1-d'], ['a-b1'],
+        ['a-al-ins'], ['a-al-rep'], ['a-al-uti'], ['a-t2-al'], ['a-t2-d'], ['a-b2'],
+        ['a-al-dep'], ['a-t3-al'], ['a-t3-d'], ['a-b3'], ['a-tot']] },
+    { tally:'tally-b', fields:[['b-int'], ['b-tax'], ['b-tot']] },
+    { tally:'tally-c', fields:[['c-beg'], ['c-dep'], ['c-end']] },
+    { tally:'tally-d', fields:[['d-gri'], ['d-t1'], ['d-forAGI'], ['d-t2'], ['d-t3'], ['d-item'], ['d-tot']] },
+    { tally:'tally-e', fields:[['e-t1'], ['e-forAGI'], ['e-salt'], ['e-tot']] }
+  ];
+
+  function bindClear(el){
+    if(!el.dataset.clearBound){
+      var ev = (el.tagName === 'SELECT') ? 'change' : 'input';
+      el.addEventListener(ev, function(){ clearFieldState(el); });
+      el.dataset.clearBound = '1';
+    }
+  }
+  function gradeField(id, correct, type){
+    var el = document.getElementById(id);
+    if(!el) return null;
+    var v = String(el.value || '').trim();
+    var pv = parseMoney(v);
+    var ok;
+    if(type === 'text') ok = (v === String(correct));
+    else if(type === 'ratio') ok = v !== '' && (near(pv, correct, 0.0006) ||
+        (/%/.test(v) || pv > 1.5) && near(pv, correct * 100, 0.06));
+    else ok = v !== '' && near(Math.abs(pv), Math.abs(correct), TOL.dollar);
+    el.classList.remove('field-correct', 'field-incorrect');
+    el.classList.add(ok ? 'field-correct' : 'field-incorrect');
+    bindClear(el);
+    return ok;
+  }
+
+  var CHECK_GROUPS = [{ btn:'checkP1', summary:'p1Summary' }];
+
+  function runCheck(d){
+    var all = [];
+    PARTS.forEach(function(P){
+      var res = P.fields.map(function(f){ return gradeField('x-' + f[0], d.x[f[0]], f[1]); });
+      var el = document.getElementById(P.tally);
+      if(el){
+        var c = res.filter(function(r){ return r === true; }).length;
+        el.textContent = 'This part: ' + c + ' of ' + res.length + ' correct';
+        el.classList.remove('good','bad');
+        el.classList.add(c === res.length ? 'good' : 'bad');
+      }
+      all = all.concat(res);
+    });
+    return all;
+  }
+
+  // ---------------- wiring ----------------
+  var DOC_TITLE = "Problem 14-58 — Rental Use of a Residence";
+  var COURSE_LINE = "Individual Income Taxation  ·  Chapter 14  ·  Home Ownership  ·  2026";
+  var FILE_SLUG = "Problem14-58-RentalUseOfHome";
+  var FOOTER_LINE = "Problem 14-58  ·  Rental Use of a Residence  ·  Western Carolina University";
+
+  var idInput = document.getElementById('studentId');
+  var genBtn = document.getElementById('genBtn');
+  var currentScenario = null;
+
+  function clearTallies(){
+    document.querySelectorAll('.part-tally').forEach(function(el){ el.textContent=''; el.classList.remove('good','bad'); });
+  }
+  function applyAndStore(id){
+    currentScenario = generateScenario(id);
+    applyScenario(currentScenario);
+    clearAllFieldStates();
+    clearTallies();
+    CHECK_GROUPS.forEach(resetScore);
+  }
+  genBtn.addEventListener('click', function(){ applyAndStore(idInput.value); });
+  idInput.addEventListener('keydown', function(e){
+    if(e.key === 'Enter'){ e.preventDefault(); applyAndStore(idInput.value); }
+  });
+  applyAndStore('');
+
+  CHECK_GROUPS.forEach(function(g){
+    var btn = document.getElementById(g.btn);
+    renderScore(g);
+    var mainEl = document.querySelector('main');
+    mainEl.addEventListener('input', function(e){
+      if(e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT')) markScoreStale(g);
+    });
+    mainEl.addEventListener('change', function(e){
+      if(e.target && e.target.tagName === 'SELECT') markScoreStale(g);
+    });
+    btn.addEventListener('click', function(){
+      if(!currentScenario) return;
+      var results = runCheck(currentScenario);
+      updateSummary(g.summary, results);
+      var s = scoreState(g);
+      s.graded = results.filter(function(r){ return r !== null; }).length;
+      s.correct = results.filter(function(r){ return r === true; }).length;
+      s.attempts += 1;
+      s.checked = true;
+      s.stale = false;
+      renderScore(g);
+    });
+  });
+
+  // test hook (harmless for students)
+  window.__p1458 = { solve:solve, generateScenario:generateScenario, PARTS:PARTS };
+
+  // ---------------- Print / Save as PDF ----------------
+  function val(id){
+    var el = document.getElementById(id);
+    return el ? el.value.trim() : '';
+  }
+  document.getElementById('printBtn').addEventListener('click', function(){
+    var name = val('studentName');
+    var id = val('studentId');
+    var line = document.getElementById('printNameLine');
+    line.textContent = 'Name: ' + (name || '_______________________') +
+                       '     Student ID: ' + (id || '_______________________');
+    var oldTitle = document.title;
+    document.title = FILE_SLUG + '-' + (id || 'submission');
+    window.print();
+    document.title = oldTitle;
+  });
+
+  // ---------------- Download as Word (.docx) ----------------
+  var docxLoadPromise = null;
+  function loadDocxLib(){
+    if(window.docx) return Promise.resolve();
+    if(docxLoadPromise) return docxLoadPromise;
+    docxLoadPromise = new Promise(function(resolve, reject){
+      var s = document.createElement('script');
+      s.src = 'https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.umd.js';
+      s.onload = function(){ window.docx ? resolve() : reject(new Error('docx library did not load correctly')); };
+      s.onerror = function(){ reject(new Error('network error loading docx library')); };
+      document.head.appendChild(s);
+    });
+    return docxLoadPromise;
+  }
+  function blankIfEmpty(s){ return s && s.length ? s : '—'; }
+  function cleanText(s){ return (s || '').replace(/\s+/g, ' ').trim(); }
+
+  function buildAnswersDoc(){
+    var D = window.docx;
+    var PURPLE = '592C88', INK = '221B2E', SLATE = '5F5A6B';
+    var name = blankIfEmpty(val('studentName'));
+    var sid = blankIfEmpty(val('studentId'));
+
+    function h(text, size){
+      return new D.Paragraph({ spacing: { before: 260, after: 100 }, children: [new D.TextRun({ text: text, bold: true, color: PURPLE, size: size || 26 })] });
+    }
+    function h4(text){
+      return new D.Paragraph({ spacing: { before: 180, after: 60 }, children: [new D.TextRun({ text: text, bold: true, color: PURPLE, size: 21 })] });
+    }
+    function p(text, opts){
+      opts = opts || {};
+      return new D.Paragraph({ spacing: { before: 60, after: 60 }, children: [new D.TextRun({ text: text, size: opts.size || 20, color: opts.color || INK, bold: !!opts.bold, italics: !!opts.italics })] });
+    }
+    function cell(text, width, opts){
+      opts = opts || {};
+      var borders = {};
+      if (opts.borderTop) borders.top = { style: D.BorderStyle.SINGLE, size: 6, color: PURPLE };
+      return new D.TableCell({
+        width: { size: width, type: D.WidthType.DXA },
+        shading: opts.shading ? { type: D.ShadingType.CLEAR, fill: opts.shading } : undefined,
+        borders: opts.borderTop ? borders : undefined,
+        margins: { top: 60, bottom: 60, left: 90, right: 90 },
+        children: [new D.Paragraph({ children: [new D.TextRun({ text: text, size: 19, bold: !!opts.bold, color: opts.color || INK })] })]
+      });
+    }
+    function row(cells){ return new D.TableRow({ children: cells }); }
+    function table(widths, rows){
+      return new D.Table({ width: { size: widths.reduce(function(a,b){return a+b;},0), type: D.WidthType.DXA }, columnWidths: widths, rows: rows });
+    }
+    function widthsFor(n){
+      var FULL = 9360;
+      if(n <= 1) return [FULL];
+      var first = Math.round(FULL * (n === 2 ? 0.56 : (n === 3 ? 0.46 : 0.34)));
+      var rest = Math.round((FULL - first) / (n - 1));
+      var w = [first];
+      for(var i=1;i<n;i++) w.push(rest);
+      return w;
+    }
+    function fieldText(td){
+      var inp = td.querySelector('input, select');
+      if(!inp) return cleanText(td.textContent);
+      return blankIfEmpty((inp.value || '').trim());
+    }
+    function anyTableDocx(tableEl){
+      var headRow = tableEl.querySelector('thead tr');
+      var headers = headRow ? Array.prototype.map.call(headRow.querySelectorAll('th'), function(th){ return cleanText(th.textContent); }) : null;
+      var bodyRows = Array.prototype.slice.call(tableEl.querySelectorAll('tbody tr'));
+      var ncols = headers ? headers.length : (bodyRows[0] ? bodyRows[0].children.length : 2);
+      var widths = (headers && headers[0] === 'Line') ? [700, 3900, 1450, 1510, 1800] : (tableEl.getAttribute('data-w') ? tableEl.getAttribute('data-w').split(',').map(Number) : widthsFor(ncols));
+      var out = [];
+      if(headers){
+        out.push(row(headers.map(function(t,i){ return cell(t, widths[i], { bold:true, shading:PURPLE, color:'FFFFFF' }); })));
+      }
+      bodyRows.forEach(function(tr){
+        var isTotal = tr.classList.contains('ws-total') || tr.classList.contains('given-total');
+        var cells = [];
+        Array.prototype.forEach.call(tr.children, function(td, i){
+          var txt = fieldText(td);
+          if(tr.classList.contains('indent') && i === 0) txt = '    ' + txt;
+          cells.push(cell(txt, widths[Math.min(i, widths.length-1)], { bold: isTotal || tr.classList.contains('given-head'), borderTop: isTotal }));
+        });
+        out.push(row(cells));
+      });
+      return table(widths, out);
+    }
+
+    var children = [];
+    children.push(new D.Paragraph({ heading: D.HeadingLevel.TITLE, spacing: { after: 60 }, children: [new D.TextRun({ text: DOC_TITLE, color: PURPLE, size: 32, bold: true })] }));
+    children.push(p('Name: ' + name + '     Student ID: ' + sid, { bold: true }));
+    children.push(p('Score: ' + CHECK_GROUPS.map(function(g){
+      var s = scoreState(g);
+      if(!s.checked) return 'not checked';
+      return s.correct + ' of ' + s.graded + ' correct (' + scorePct(s) + '%)' +
+             (s.stale ? ' — an answer was edited after this score was calculated'
+                      : ', self-checked on attempt ' + s.attempts);
+    }).join('; '), { bold: true, color: PURPLE }));
+    children.push(p(COURSE_LINE, { color: SLATE }));
+
+    document.querySelectorAll('main > .part').forEach(function(partEl){
+      var label = cleanText((partEl.querySelector('.part-label') || {}).textContent || '');
+      var company = cleanText((partEl.querySelector('h2') || {}).textContent || '');
+      children.push(h((label ? label + ' — ' : '') + company));
+
+      Array.prototype.forEach.call(partEl.children, function(el){
+        if (el.classList.contains('part-label') || el.tagName === 'H2' || el.classList.contains('check-bar')) return;
+        if (el.classList.contains('scenario') || el.classList.contains('situation')) {
+          Array.prototype.forEach.call(el.querySelectorAll('p, span.sit-tag'), function(pp){
+            var t = cleanText(pp.textContent);
+            if(t) children.push(p(t, pp.classList && pp.classList.contains('sit-tag') ? { bold:true, color:PURPLE } : {}));
+          });
+          if (!el.querySelector('p')) children.push(p(cleanText(el.textContent)));
+        } else if (el.tagName === 'H4') {
+          children.push(h4(cleanText(el.textContent)));
+        } else if (el.tagName === 'TABLE' || el.classList.contains('tablewrap')) {
+          children.push(anyTableDocx(el.tagName === 'TABLE' ? el : el.querySelector('table')));
+        } else if (el.classList.contains('footnote') || el.classList.contains('hint') || el.classList.contains('je-sub')) {
+          children.push(p(cleanText(el.textContent), { italics:true, color:SLATE, size:17 }));
+        } else if (el.classList.contains('req') || el.classList.contains('je-cap')) {
+          children.push(p(cleanText(el.textContent), { bold:true }));
+        } else if (el.tagName === 'OL') {
+          Array.prototype.forEach.call(el.querySelectorAll('li'), function(li, i){
+            children.push(p((i+1) + '. ' + cleanText(li.textContent)));
+          });
+        } else if (el.tagName === 'UL') {
+          Array.prototype.forEach.call(el.querySelectorAll('li'), function(li){
+            children.push(p('•  ' + cleanText(li.textContent)));
+          });
+        } else if (el.tagName === 'P') {
+          children.push(p(cleanText(el.textContent)));
+        }
+      });
+    });
+
+    children.push(new D.Paragraph({ spacing: { before: 300 }, alignment: D.AlignmentType.CENTER, children: [new D.TextRun({ text: FOOTER_LINE, size: 16, italics: true, color: SLATE })] }));
+
+    return new D.Document({
+      sections: [{
+        properties: { page: { size: { width: 12240, height: 15840 }, margin: { top: 1440, bottom: 1440, left: 1440, right: 1440 } } },
+        children: children
+      }]
+    });
+  }
+
+  document.getElementById('downloadDocxBtn').addEventListener('click', function(){
+    var statusEl = document.getElementById('submitStatus');
+    statusEl.classList.remove('error');
+    statusEl.textContent = 'Preparing your Word document…';
+    loadDocxLib().then(function(){
+      var doc = buildAnswersDoc();
+      return window.docx.Packer.toBlob(doc);
+    }).then(function(blob){
+      var idPart = val('studentId') || 'submission';
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = FILE_SLUG + '-' + idPart + '.docx';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      statusEl.textContent = 'Downloaded.';
+      setTimeout(function(){ statusEl.textContent = ''; }, 4000);
+    }).catch(function(err){
+      statusEl.classList.add('error');
+      statusEl.textContent = 'Could not load the Word export tool (needs internet access) — use Print / Save as PDF instead.';
+    });
+  });
+
+
+})();
+</script>
+
+</body>
+</html>
