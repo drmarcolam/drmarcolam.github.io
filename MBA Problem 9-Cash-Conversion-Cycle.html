@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compute Cash Conversion Cycle for Competing Firms — Cullowhee Foods and Balsam Mills</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --purple:#592C88;
+    --purple-deep:#38195A;
+    --purple-mid:#6E3FA3;
+    --gold:#B0925C;
+    --gold-soft:#D6C398;
+    --gold-pale:#F1E9D6;
+    --parchment:#F7F4EC;
+    --paper:#FFFEFA;
+    --ink:#221B2E;
+    --slate:#5F5A6B;
+    --line:#DBD3E0;
+    --line-soft:#EAE4EF;
+    --answer:#1E5C34;
+    --answer-bg:#E7F1E9;
+    --danger:#9C3B34;
+    --shadow: 0 1px 2px rgba(56,25,90,0.07), 0 6px 18px rgba(56,25,90,0.08);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--parchment);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ color:inherit; }
+
+  header{
+    background: linear-gradient(180deg, var(--purple) 0%, var(--purple-deep) 100%);
+    color:#F1E9D6;
+    padding: 30px 6vw 24px;
+    position:relative;
+  }
+  header::after{
+    content:"";
+    position:absolute; left:0; right:0; bottom:0; height:4px;
+    background: linear-gradient(90deg, var(--gold-soft), var(--gold) 40%, var(--gold-soft) 70%, var(--gold));
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--gold-soft); margin:0 0 10px;
+  }
+  h1.title{
+    font-family:'Source Serif 4', serif; font-weight:600;
+    font-size:clamp(24px,3.4vw,34px); margin:0 0 8px; letter-spacing:-0.01em;
+  }
+  .subtitle{ font-size:14.5px; color:#D9CDE5; max-width:680px; margin:0; }
+
+  .id-bar{
+    max-width:900px; margin:0 auto; padding:18px 6vw 0;
+    display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+  }
+  .id-bar label{ font-size:13px; font-weight:600; color:var(--slate); }
+  .id-bar input[type="text"]{
+    font-family:'IBM Plex Mono', monospace; font-size:13.5px; padding:8px 11px;
+    border:1px solid var(--line); border-radius:5px; background:var(--paper); color:var(--ink);
+    width:180px;
+  }
+  .id-bar input:focus{ outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); }
+  .id-bar button{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:8px 15px; border:1px solid var(--purple);
+    background:var(--purple); color:#fff; cursor:pointer;
+  }
+  .id-bar button:hover{ background:var(--purple-mid); }
+  .id-bar .id-hint{ font-size:12px; color:var(--slate); }
+  .id-bar input#studentName{ width:220px; font-family:'Inter',sans-serif; }
+
+  .score-area{ max-width:900px; margin:0 auto; padding:14px 6vw 0; }
+
+  .rounding-note{
+    max-width:900px; margin:14px auto 0; padding:12px 6vw;
+    font-size:12.5px; color:var(--slate); line-height:1.5;
+  }
+  .rounding-note strong{ color:var(--purple); font-weight:600; }
+
+  main{ max-width:900px; margin:0 auto; padding:22px 6vw 90px; }
+
+  .part{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    box-shadow:var(--shadow);
+    padding:24px 26px 26px;
+    margin-top:26px;
+  }
+  .part-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; color:var(--gold); background:var(--purple);
+    display:inline-block; padding:3px 9px; border-radius:4px; letter-spacing:.04em;
+    margin-bottom:12px;
+  }
+  .part h2{
+    font-family:'Source Serif 4', serif; font-size:21px; font-weight:600;
+    color:var(--purple); margin:0 0 12px;
+  }
+  .scenario{
+    background:var(--parchment);
+    border-left:3px solid var(--gold);
+    padding:14px 18px;
+    border-radius:0 6px 6px 0;
+    font-size:14.5px;
+    color:var(--ink);
+    margin-bottom:16px;
+  }
+  .scenario p{ margin:0 0 10px; }
+  .scenario p:last-child{ margin-bottom:0; }
+  .scenario span.val{ font-weight:700; color:var(--purple-deep); }
+
+  .req{
+    font-weight:600;
+    font-size:14.5px;
+    color:var(--ink);
+    margin:20px 0 10px;
+  }
+  .req span.reqlabel{ color:var(--purple); }
+
+  h4.subsection{
+    font-family:'Source Serif 4',serif; font-size:15px; color:var(--purple); margin:22px 0 6px;
+    border-bottom:1px solid var(--line-soft); padding-bottom:4px;
+  }
+
+  table.given{ width:100%; border-collapse:collapse; font-size:13px; margin:6px 0 14px; }
+  table.given th{ text-align:left; font-size:10.5px; text-transform:uppercase; letter-spacing:.03em; color:var(--slate); border-bottom:2px solid var(--purple); padding:6px 8px; }
+  table.given td{ border-bottom:1px solid var(--line); padding:5px 8px; font-family:'IBM Plex Mono', monospace; }
+  table.given td.lbl{ font-family:'Inter',sans-serif; }
+  table.given td.num, table.given th.num{ text-align:right; }
+  table.given tr.given-total td{ border-top:1.3px solid var(--purple); font-weight:600; }
+  table.given tr.given-head td{ font-family:'Source Serif 4',serif; font-weight:600; color:var(--purple); text-align:center; }
+  ol.addinfo{ margin:8px 0; padding-left:20px; font-size:13.5px; }
+  ol.addinfo li{ margin:6px 0; }
+  .footnote{ font-size:12px; color:var(--slate); margin:2px 0 14px; font-style:italic; }
+  .hint{ font-size:12.5px; color:var(--slate); margin:4px 0 10px; }
+
+  table.worksheet{
+    width:100%;
+    border-collapse:collapse;
+    font-size:13.5px;
+    margin:10px 0 4px;
+  }
+  table.worksheet th{
+    text-align:left;
+    font-size:11.5px;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+    color:var(--slate);
+    border-bottom:2px solid var(--purple);
+    padding:8px 8px;
+  }
+  table.worksheet th.num{ text-align:right; }
+  table.worksheet td{
+    border-bottom:1px solid var(--line);
+    padding:9px 8px;
+    vertical-align:middle;
+  }
+  table.worksheet td.method{ font-weight:600; }
+  table.worksheet td.sub{ padding-left:24px; font-weight:400; }
+  table.worksheet td.amt{ width:170px; }
+  table.worksheet td.dash{ text-align:center; color:var(--slate); font-family:'IBM Plex Mono',monospace; }
+  table.worksheet tr.ws-total td{ border-top:1.6px solid var(--purple); font-weight:600; }
+  table.worksheet tr.ws-sub td{ border-top:1px solid var(--line); font-weight:600; }
+  table.worksheet input[type="text"]{
+    width:100%;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13.5px;
+    padding:6px 8px;
+    border:1px solid var(--line);
+    border-radius:5px;
+    background:var(--parchment);
+    color:var(--ink);
+  }
+  table.worksheet input[type="text"]:focus{
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
+  }
+  table.worksheet select.acct{
+    width:100%;
+    font-family:'Inter',sans-serif;
+    font-size:13.5px;
+    font-weight:400;
+    padding:6px 8px;
+    border:1px solid var(--line);
+    border-radius:5px;
+    background:var(--parchment);
+    color:var(--ink);
+  }
+  table.worksheet select.acct:focus{
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
+  }
+  table.worksheet tr.ws-total select.acct, table.worksheet tr.ws-sub select.acct{ font-weight:600; }
+  table.worksheet td.acctcell{ padding-right:14px; }
+
+  .score-panel{
+    display:flex; align-items:center; gap:18px;
+    margin:0 0 4px; padding:14px 18px;
+    background:var(--parchment);
+    border:1px solid var(--line);
+    border-radius:8px;
+  }
+  .score-panel.scored-good{ background:var(--answer-bg); border-color:#B7D3BE; }
+  .score-panel.scored-bad{ background:#F8F0EF; border-color:#E2C6C2; }
+  .score-pct{
+    font-family:'Source Serif 4', serif;
+    font-size:30px; font-weight:700; line-height:1.05;
+    color:var(--slate); min-width:96px; text-align:center;
+  }
+  .score-panel.scored-good .score-pct{ color:var(--answer); }
+  .score-panel.scored-bad .score-pct{ color:var(--danger); }
+  .score-detail{ flex:1; min-width:0; }
+  .score-meta{ font-size:13.5px; font-weight:600; color:var(--ink); margin:0 0 7px; }
+  .score-bar{ height:8px; border-radius:4px; background:var(--line-soft); overflow:hidden; }
+  .score-bar span{ display:block; height:100%; width:0; background:var(--purple-mid); transition:width .35s ease; }
+  .score-panel.scored-good .score-bar span{ background:var(--answer); }
+  .score-panel.scored-bad .score-bar span{ background:var(--danger); }
+  .score-sub{ font-size:11.5px; color:var(--slate); margin:7px 0 0; }
+
+  .check-bar{
+    margin-top:20px;
+    padding-top:16px;
+    border-top:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .btn-check{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:9px 18px; border:1px solid var(--purple);
+    background:var(--purple); color:#fff; cursor:pointer;
+  }
+  .btn-check:hover{ background:var(--purple-mid); }
+  .check-summary{ font-size:13.5px; font-weight:600; }
+  .check-summary.good{ color:var(--answer); }
+  .check-summary.bad{ color:var(--danger); }
+  .check-disclaimer{ font-size:11.5px; color:var(--slate); width:100%; margin-top:2px; font-style:italic; }
+
+  input.field-correct, select.field-correct{
+    border-color:var(--answer) !important;
+    background:var(--answer-bg) !important;
+  }
+  input.field-incorrect, select.field-incorrect{
+    border-color:var(--danger) !important;
+    background:#F3E1DE !important;
+  }
+
+  .submit-bar{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    box-shadow:var(--shadow);
+    padding:22px 26px 24px;
+    margin-top:26px;
+  }
+  .submit-bar h2{
+    font-family:'Source Serif 4', serif; font-size:19px; font-weight:600;
+    color:var(--purple); margin:0 0 14px;
+  }
+  .submit-row{ display:flex; align-items:center; gap:10px; margin-bottom:12px; flex-wrap:wrap; }
+  .submit-row label{ font-size:13px; font-weight:600; color:var(--slate); }
+  .submit-row input[type="text"]{
+    font-family:'Inter',sans-serif; font-size:13.5px; padding:8px 11px;
+    border:1px solid var(--line); border-radius:5px; background:var(--parchment); color:var(--ink);
+    width:240px;
+  }
+  .submit-row input:focus{ outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); }
+  .btn-submit{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:10px 18px; border:1px solid var(--purple);
+    background:var(--purple); color:#fff; cursor:pointer;
+  }
+  .btn-submit:hover{ background:var(--purple-mid); }
+  .submit-hint{ font-size:12px; color:var(--slate); margin:6px 0 0; }
+
+  @media print{
+    .print-hide, .id-bar, .check-bar, .rounding-note{ display:none !important; }
+    header{ background:none !important; color:var(--ink) !important; padding:0 0 14px !important; }
+    header::after{ display:none !important; }
+    .eyebrow{ color:var(--purple) !important; }
+    .subtitle{ color:var(--slate) !important; }
+    body{ background:#fff !important; }
+    .part{ box-shadow:none !important; border:1px solid #999 !important; break-inside:auto; }
+    .score-panel{ background:#fff !important; border:1.5px solid #000 !important; break-inside:avoid; }
+    .score-bar{ display:none !important; }
+    .score-pct, .score-panel.scored-good .score-pct, .score-panel.scored-bad .score-pct{ color:#000 !important; }
+    .part h2, .part-label, .scenario, h4.subsection{ break-after:avoid; break-inside:avoid; }
+    table.given, table.worksheet{ break-inside:auto; }
+    table.given tr, table.worksheet tr{ break-inside:avoid; }
+    ol.addinfo li{ break-inside:avoid; }
+    .submit-bar{ break-before:avoid; }
+    input[type="text"], select.acct, select.pickco{
+      border:none !important;
+      border-bottom:1px solid #000 !important;
+      background:transparent !important;
+      border-radius:0 !important;
+      color:#000 !important;
+      -webkit-appearance:none;
+      -moz-appearance:none;
+      appearance:none;
+      padding:2px 4px !important;
+    }
+    .print-name-line{ display:block !important; }
+  }
+  .print-name-line{ display:none; font-size:13px; color:var(--ink); padding:0 6vw; margin:0 0 10px; }
+
+  footer{ text-align:center; padding:26px 6vw 40px; font-size:12px; color:var(--slate); }
+
+  @media (max-width:600px){
+    header, main, .id-bar{ padding-left:5vw; padding-right:5vw; }
+    table.worksheet{ font-size:12.5px; }
+  }
+
+  /* ---- two-company comparison worksheet ---- */
+  table.worksheet td.co{ width:150px; }
+  select.pickco{
+    width:100%; font-family:'Inter',sans-serif; font-size:13px;
+    padding:6px 8px; border:1px solid var(--line); border-radius:5px;
+    background:var(--parchment); color:var(--ink);
+  }
+  select.pickco:focus{ outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper); }
+  .formulabox{
+    background:var(--parchment); border-left:3px solid var(--gold);
+    padding:10px 16px; border-radius:0 6px 6px 0; margin:10px 0 14px;
+    font-size:13px; color:var(--ink);
+  }
+  .formulabox p{ margin:4px 0; }
+  .formulabox strong{ color:var(--purple); }
+
+</style>
+</head>
+<body>
+
+<header>
+  <p class="eyebrow">MBA 623 &middot; Accounting &middot; Working Capital Management</p>
+  <h1 class="title">Compute Cash Conversion Cycle for Competing Firms</h1>
+  <p class="subtitle">Measuring how long cash is tied up in inventory and receivables, how long it is financed by suppliers, and what the difference says about two competitors in the same sector.</p>
+</header>
+
+<p class="print-name-line" id="printNameLine"></p>
+
+<div class="id-bar">
+  <label for="studentName">Name</label>
+  <input type="text" id="studentName" placeholder="First and last name">
+  <label for="studentId">Student ID</label>
+  <input type="text" id="studentId" placeholder="e.g. 920410165">
+  <button id="genBtn" type="button">Generate scenario</button>
+  <span class="id-hint">Leave the ID blank and click to restore the original textbook figures.</span>
+</div>
+
+<div class="score-area" id="scoreArea"></div>
+
+<div class="rounding-note">
+  <strong>Rounding convention:</strong> do not round intermediate calculations. Use a <strong>365-day year</strong>. Report every measure <strong>in days to two decimal places</strong> (e.g., 52.70). A negative cash conversion cycle is a real answer, not an error &mdash; enter it as a negative number, either &minus;7.23 or (7.23).
+</div>
+
+<main>
+
+  <div class="part">
+    <span class="part-label">Problem</span>
+    <h2>Cullowhee Foods Company and Balsam Mills, Inc.</h2>
+
+    <div class="scenario">
+      <p><span class="val">Cullowhee Foods Company</span> (CFC) and <span class="val">Balsam Mills, Inc.</span> (BMI) compete in the consumer packaged goods sector, both from the mountains of western North Carolina. Refer to the following financial data for the two companies to answer the requirements.</p>
+    </div>
+
+    <table class="given">
+      <thead><tr><th>$ millions</th><th class="num">CFC</th><th class="num">BMI</th></tr></thead>
+      <tbody id="cc_given"></tbody>
+    </table>
+
+    <div class="req"><span class="reqlabel">Required:</span> (a) Compute days inventory outstanding, days sales outstanding, days payables outstanding and the cash conversion cycle for both companies. (b) Which company uses inventory more efficiently? (c) Which company better manages its accounts receivable? (d) Which company better manages its accounts payable?</div>
+
+    <div class="formulabox">
+      <p><strong>DIO</strong> = average inventory &divide; cost of sales &times; 365</p>
+      <p><strong>DSO</strong> = average accounts receivable &divide; total revenue &times; 365</p>
+      <p><strong>DPO</strong> = average accounts payable &divide; cost of sales &times; 365</p>
+      <p><strong>CCC</strong> = DIO + DSO &minus; DPO</p>
+    </div>
+
+    <p class="hint">Note which denominator each measure takes. Inventory and payables are both measured against cost of sales, because that is the flow they belong to; receivables are measured against revenue, because that is what customers were billed.</p>
+
+    <h4 class="subsection">(a) The four measures</h4>
+    <table class="worksheet">
+      <thead><tr><th>Measure</th><th class="num">CFC (days)</th><th class="num">BMI (days)</th></tr></thead>
+      <tbody>
+        <tr><td class="method">1. Days inventory outstanding (DIO)</td><td class="amt"><input type="text" placeholder="days" id="cc-dio-a"></td><td class="amt"><input type="text" placeholder="days" id="cc-dio-b"></td></tr>
+        <tr><td class="method">2. Days sales outstanding (DSO)</td><td class="amt"><input type="text" placeholder="days" id="cc-dso-a"></td><td class="amt"><input type="text" placeholder="days" id="cc-dso-b"></td></tr>
+        <tr><td class="method">3. Days payables outstanding (DPO)</td><td class="amt"><input type="text" placeholder="days" id="cc-dpo-a"></td><td class="amt"><input type="text" placeholder="days" id="cc-dpo-b"></td></tr>
+        <tr class="ws-total"><td class="method">4. Cash conversion cycle (CCC)</td><td class="amt"><input type="text" placeholder="days" id="cc-ccc-a"></td><td class="amt"><input type="text" placeholder="days" id="cc-ccc-b"></td></tr>
+      </tbody>
+    </table>
+
+    <h4 class="subsection">(b), (c) and (d) Reading the results</h4>
+    <p class="hint">For each question, choose the company from the drop-down. Decide first which direction is better for that measure &mdash; fewer days is not always the answer.</p>
+    <table class="worksheet">
+      <thead><tr><th>Question</th><th class="num">Your answer</th></tr></thead>
+      <tbody>
+        <tr><td class="method acctcell">(b) Which company uses inventory more efficiently?</td><td class="co"><select class="pickco" id="cc-q-b"></select></td></tr>
+        <tr><td class="method acctcell">(c) Which company better manages its accounts receivable?</td><td class="co"><select class="pickco" id="cc-q-c"></select></td></tr>
+        <tr><td class="method acctcell">(d) Which company better manages its accounts payable?</td><td class="co"><select class="pickco" id="cc-q-d"></select></td></tr>
+      </tbody>
+    </table>
+
+    <div class="check-bar">
+      <button class="btn-check" id="checkCC" type="button">Check my work</button>
+      <span class="check-summary" id="ccSummary"></span>
+      <span class="check-disclaimer">This checks whether your figures match the key within a small rounding tolerance &mdash; it does not confirm your supporting computations.</span>
+    </div>
+  </div>
+
+  <div class="submit-bar print-hide">
+    <h2>Ready to submit?</h2>
+    <p class="submit-hint" style="margin:0 0 12px;">Your name, student ID and score are taken from the top of the page.</p>
+    <div class="submit-row submit-actions">
+      <button class="btn-submit" id="printBtn" type="button">Print / Save as PDF</button>
+    </div>
+    <p class="submit-hint">This captures exactly what's currently filled in above, including your generated scenario numbers, and works offline.</p>
+  </div>
+</main>
+
+<footer>Compute Cash Conversion Cycle for Competing Firms &middot; MBA 623 &middot; Western Carolina University</footer>
+
+<script>
+(function(){
+  var DOC_TITLE = "Compute Cash Conversion Cycle for Competing Firms";
+  var COURSE_LINE = "MBA 623  ·  Accounting  ·  Working Capital Management";
+  var FILE_SLUG = "MBA623-Cash-Conversion-Cycle";
+  var CO = { a:'CFC', b:'BMI' };
+  var CONAME = { a:'Cullowhee Foods Company', b:'Balsam Mills, Inc.' };
+
+  // ---------- seeded pseudo-random ----------
+  function hashSeed(str){
+    var h = 2166136261;
+    for(var i=0;i<str.length;i++){
+      h ^= str.charCodeAt(i);
+      h = Math.imul(h, 16777619);
+    }
+    return h >>> 0;
+  }
+  function mulberry32(seed){
+    return function(){
+      seed |= 0; seed = seed + 0x6D2B79F5 | 0;
+      var t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
+  }
+  function pick(rand, arr){ return arr[Math.floor(rand() * arr.length)]; }
+  function rTo(x, m){ return Math.round(x/m)*m; }
+
+  // ---------- formatting ----------
+  function money1(n){
+    var v = Number(n);
+    return '$' + v.toLocaleString('en-US', {minimumFractionDigits:1, maximumFractionDigits:1});
+  }
+  function setHTML(id, h){ var el = document.getElementById(id); if(el) el.innerHTML = h; }
+
+  // ---------- answer checking ----------
+  var TOL = { days:0.06 };
+
+  function parseMoney(s){
+    if(s === null || s === undefined) return NaN;
+    var raw = String(s).trim();
+    var neg = /^\(.*\)$/.test(raw) || /^-/.test(raw) || /^−/.test(raw);
+    var cleaned = raw.replace(/[^0-9.]/g, '');
+    if(cleaned === '') return NaN;
+    var v = parseFloat(cleaned);
+    if(isNaN(v)) return NaN;
+    return neg ? -v : v;
+  }
+  function near(a, b, tol){
+    if(isNaN(a) || isNaN(b)) return false;
+    return Math.abs(a - b) <= tol;
+  }
+  function clearFieldState(el){
+    if(!el) return;
+    el.classList.remove('field-correct', 'field-incorrect');
+  }
+  function clearAllFieldStates(){
+    document.querySelectorAll('.field-correct, .field-incorrect').forEach(function(el){
+      el.classList.remove('field-correct', 'field-incorrect');
+    });
+    document.querySelectorAll('.check-summary').forEach(function(el){
+      el.textContent = ''; el.classList.remove('good','bad');
+    });
+  }
+  function markField(id, correct, tol){
+    var el = document.getElementById(id);
+    if(!el) return null;
+    el.classList.remove('field-correct', 'field-incorrect');
+    var ok = near(parseMoney(el.value), correct, tol);
+    el.classList.add(ok ? 'field-correct' : 'field-incorrect');
+    if(!el.dataset.clearBound){
+      el.addEventListener('input', function(){ clearFieldState(el); });
+      el.dataset.clearBound = '1';
+    }
+    return ok;
+  }
+  function markSelect(id, expected){
+    var el = document.getElementById(id);
+    if(!el) return null;
+    el.classList.remove('field-correct', 'field-incorrect');
+    var ok = el.value === expected;
+    el.classList.add(ok ? 'field-correct' : 'field-incorrect');
+    if(!el.dataset.clearBound){
+      el.addEventListener('change', function(){ clearFieldState(el); });
+      el.dataset.clearBound = '1';
+    }
+    return ok;
+  }
+  function updateSummary(elId, results){
+    var el = document.getElementById(elId);
+    if(!el) return;
+    var graded = results.filter(function(r){ return r !== null; }).length;
+    var correct = results.filter(function(r){ return r === true; }).length;
+    el.textContent = correct + ' of ' + graded + ' correct';
+    el.classList.remove('good', 'bad');
+    el.classList.add(correct === graded && graded > 0 ? 'good' : 'bad');
+  }
+
+  // ---------- score ----------
+  var SCORES = {};
+  function scoreState(g){
+    if(!SCORES[g.btn]) SCORES[g.btn] = { correct:0, graded:0, attempts:0, checked:false, stale:false };
+    return SCORES[g.btn];
+  }
+  function scorePct(s){ return s.graded ? Math.round(s.correct / s.graded * 100) : 0; }
+
+  var SCORE_PROMPT = 'Fill in the worksheet below, then choose <strong>Check my work</strong>. Every blank counts as incorrect.';
+
+  function ensureScorePanel(g){
+    var area = document.getElementById('scoreArea');
+    if(!area) return null;
+    var panel = area.querySelector('.score-panel[data-for="' + g.btn + '"]');
+    if(panel) return panel;
+    panel = document.createElement('div');
+    panel.className = 'score-panel';
+    panel.setAttribute('data-for', g.btn);
+    panel.innerHTML =
+      '<div class="score-pct">&mdash;</div>' +
+      '<div class="score-detail">' +
+        '<p class="score-meta">Score</p>' +
+        '<div class="score-bar"><span></span></div>' +
+        '<p class="score-sub">' + SCORE_PROMPT + '</p>' +
+      '</div>';
+    area.appendChild(panel);
+    return panel;
+  }
+  function renderScore(g){
+    var panel = ensureScorePanel(g);
+    if(!panel) return;
+    var s = scoreState(g);
+    var pctEl = panel.querySelector('.score-pct');
+    var metaEl = panel.querySelector('.score-meta');
+    var fillEl = panel.querySelector('.score-bar span');
+    var subEl = panel.querySelector('.score-sub');
+    panel.classList.remove('scored-good', 'scored-bad');
+
+    if(!s.checked){
+      pctEl.innerHTML = '&mdash;';
+      metaEl.textContent = 'Score';
+      fillEl.style.width = '0%';
+      subEl.innerHTML = SCORE_PROMPT;
+      return;
+    }
+    var pct = scorePct(s);
+    pctEl.textContent = pct + '%';
+    metaEl.textContent = 'Score: ' + s.correct + ' of ' + s.graded + ' correct';
+    fillEl.style.width = pct + '%';
+    if(s.stale){
+      subEl.textContent = 'You have changed an answer since this score was calculated — check your work again to update it.';
+    } else if(s.correct === s.graded){
+      subEl.textContent = 'All ' + s.graded + ' answers match the key. Attempt ' + s.attempts + '.';
+      panel.classList.add('scored-good');
+    } else {
+      var missing = s.graded - s.correct;
+      subEl.innerHTML = missing + ' answer' + (missing === 1 ? '' : 's') + ' still to fix' +
+                        '<span class="print-hide"> — outlined in red below</span>. Attempt ' + s.attempts + '.';
+      panel.classList.add('scored-bad');
+    }
+  }
+  function markScoreStale(g){
+    var s = scoreState(g);
+    if(!s.checked || s.stale) return;
+    s.stale = true;
+    renderScore(g);
+  }
+  function resetScore(g){
+    SCORES[g.btn] = { correct:0, graded:0, attempts:0, checked:false, stale:false };
+    renderScore(g);
+  }
+
+  // ---------- scenario ----------
+  function baseline(){
+    return {
+      a:{ rev:13547.0, cogs:8821.0, ar:1382.0, inv:1273.5, ap:2348.0 },
+      b:{ rev:15740.4, cogs:10312.9, ar:1557.2, inv:1562.9, ap:2433.0 }
+    };
+  }
+
+  // Targets are chosen in days and the balances derived from them, so the two
+  // companies never tie on a measure and each comparison has a clear winner.
+  function randomParams(rand){
+    function gap(lo, hi, minGap){
+      var x = lo + rand() * (hi - lo);
+      var d = minGap + rand() * minGap * 2;
+      if(rand() < 0.5) d = -d;
+      var y = x + d;
+      if(y < lo) y = x + Math.abs(d);
+      if(y > hi) y = x - Math.abs(d);
+      return [x, y];
+    }
+    var dio = gap(44, 66, 2.5);
+    var dso = gap(29, 45, 2.0);
+    var dpo = gap(72, 102, 3.0);
+
+    function firm(dioD, dsoD, dpoD){
+      var rev  = rTo(9000 + rand() * 9000, 0.1);
+      var cogs = rTo(rev * (0.60 + rand() * 0.10), 0.1);
+      return {
+        rev:  rev,
+        cogs: cogs,
+        inv:  rTo(cogs * dioD / 365, 0.1),
+        ar:   rTo(rev  * dsoD / 365, 0.1),
+        ap:   rTo(cogs * dpoD / 365, 0.1)
+      };
+    }
+    return { a: firm(dio[0], dso[0], dpo[0]), b: firm(dio[1], dso[1], dpo[1]) };
+  }
+
+  function solve(p){
+    var d = { raw:p };
+    ['a','b'].forEach(function(k){
+      var c = p[k];
+      d['dio_' + k] = c.inv / c.cogs * 365;
+      d['dso_' + k] = c.ar  / c.rev  * 365;
+      d['dpo_' + k] = c.ap  / c.cogs * 365;
+      d['ccc_' + k] = d['dio_' + k] + d['dso_' + k] - d['dpo_' + k];
+    });
+    // fewer days is better for inventory and receivables; more days is better for payables
+    d.qb = d.dio_a < d.dio_b ? 'a' : 'b';
+    d.qc = d.dso_a < d.dso_b ? 'a' : 'b';
+    d.qd = d.dpo_a > d.dpo_b ? 'a' : 'b';
+    return d;
+  }
+
+  function generateScenario(id){
+    var seed = (id || '').trim();
+    if(seed === '') return solve(baseline());
+    return solve(randomParams(mulberry32(hashSeed(seed.toLowerCase()))));
+  }
+
+  function applyScenario(d){
+    var A = d.raw.a, B = d.raw.b;
+    function r(label, x, y){
+      return '<tr><td class="lbl">' + label + '</td><td class="num">' + money1(x) +
+             '</td><td class="num">' + money1(y) + '</td></tr>';
+    }
+    setHTML('cc_given',
+      r('Total revenue', A.rev, B.rev) +
+      r('Cost of sales and services', A.cogs, B.cogs) +
+      r('Average accounts receivable', A.ar, B.ar) +
+      r('Average inventory', A.inv, B.inv) +
+      r('Average accounts payable', A.ap, B.ap)
+    );
+    var opts = '<option value="">— select a company —</option>' +
+               '<option value="a">' + CONAME.a + ' (' + CO.a + ')</option>' +
+               '<option value="b">' + CONAME.b + ' (' + CO.b + ')</option>';
+    ['cc-q-b','cc-q-c','cc-q-d'].forEach(function(id){
+      var el = document.getElementById(id);
+      if(el) el.innerHTML = opts;
+    });
+  }
+
+  var CHECK_GROUPS = [{
+    btn:'checkCC', summary:'ccSummary',
+    fields:[
+      {id:'cc-dio-a', key:'dio_a', type:'days'},
+      {id:'cc-dio-b', key:'dio_b', type:'days'},
+      {id:'cc-dso-a', key:'dso_a', type:'days'},
+      {id:'cc-dso-b', key:'dso_b', type:'days'},
+      {id:'cc-dpo-a', key:'dpo_a', type:'days'},
+      {id:'cc-dpo-b', key:'dpo_b', type:'days'},
+      {id:'cc-ccc-a', key:'ccc_a', type:'days'},
+      {id:'cc-ccc-b', key:'ccc_b', type:'days'},
+      {id:'cc-q-b',   kind:'pick', key:'qb'},
+      {id:'cc-q-c',   kind:'pick', key:'qc'},
+      {id:'cc-q-d',   kind:'pick', key:'qd'}
+    ]
+  }];
+
+  // ---------------- wiring ----------------
+  var idInput = document.getElementById('studentId');
+  var genBtn = document.getElementById('genBtn');
+  var currentScenario = null;
+
+  function applyAndStore(id){
+    currentScenario = generateScenario(id);
+    applyScenario(currentScenario);
+    clearAllFieldStates();
+    CHECK_GROUPS.forEach(resetScore);
+  }
+  genBtn.addEventListener('click', function(){ applyAndStore(idInput.value); });
+  idInput.addEventListener('keydown', function(e){
+    if(e.key === 'Enter'){ e.preventDefault(); applyAndStore(idInput.value); }
+  });
+  applyAndStore('');
+
+  CHECK_GROUPS.forEach(function(g){
+    var btn = document.getElementById(g.btn);
+    if(!btn) return;
+    renderScore(g);
+
+    var part = btn.closest('.part');
+    if(part){
+      part.addEventListener('input', function(e){
+        if(e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT')) markScoreStale(g);
+      });
+      part.addEventListener('change', function(e){
+        if(e.target && e.target.tagName === 'SELECT') markScoreStale(g);
+      });
+    }
+
+    btn.addEventListener('click', function(){
+      if(!currentScenario) return;
+      var d = currentScenario;
+      var results = g.fields.map(function(f){
+        if(f.kind === 'pick') return markSelect(f.id, d[f.key]);
+        return markField(f.id, d[f.key], f.tol !== undefined ? f.tol : TOL[f.type || 'days']);
+      });
+      updateSummary(g.summary, results);
+      var s = scoreState(g);
+      s.graded = results.filter(function(r){ return r !== null; }).length;
+      s.correct = results.filter(function(r){ return r === true; }).length;
+      s.attempts += 1;
+      s.checked = true;
+      s.stale = false;
+      renderScore(g);
+    });
+  });
+
+  // ---------------- Print / Save as PDF ----------------
+  function val(id){
+    var el = document.getElementById(id);
+    return el ? el.value.trim() : '';
+  }
+  document.getElementById('printBtn').addEventListener('click', function(){
+    var name = val('studentName');
+    var id = val('studentId');
+    var line = document.getElementById('printNameLine');
+    line.textContent = 'Name: ' + (name || '_______________________') +
+                       '     Student ID: ' + (id || '_______________________');
+    var oldTitle = document.title;
+    document.title = FILE_SLUG + '-' + (id || 'submission');
+    window.print();
+    document.title = oldTitle;
+  });
+
+})();
+</script>
+
+</body>
+</html>
