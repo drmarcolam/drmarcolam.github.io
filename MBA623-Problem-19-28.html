@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Traditional Product Costing versus Activity-Based Costing — Nantahala Gear Works, Inc.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --purple:#592C88;
+    --purple-deep:#38195A;
+    --purple-mid:#6E3FA3;
+    --gold:#B0925C;
+    --gold-soft:#D6C398;
+    --gold-pale:#F1E9D6;
+    --parchment:#F7F4EC;
+    --paper:#FFFEFA;
+    --ink:#221B2E;
+    --slate:#5F5A6B;
+    --line:#DBD3E0;
+    --line-soft:#EAE4EF;
+    --answer:#1E5C34;
+    --answer-bg:#E7F1E9;
+    --danger:#9C3B34;
+    --shadow: 0 1px 2px rgba(56,25,90,0.07), 0 6px 18px rgba(56,25,90,0.08);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--parchment);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ color:inherit; }
+
+  header{
+    background: linear-gradient(180deg, var(--purple) 0%, var(--purple-deep) 100%);
+    color:#F1E9D6;
+    padding: 30px 6vw 24px;
+    position:relative;
+  }
+  header::after{
+    content:"";
+    position:absolute; left:0; right:0; bottom:0; height:4px;
+    background: linear-gradient(90deg, var(--gold-soft), var(--gold) 40%, var(--gold-soft) 70%, var(--gold));
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--gold-soft); margin:0 0 10px;
+  }
+  h1.title{
+    font-family:'Source Serif 4', serif; font-weight:600;
+    font-size:clamp(24px,3.4vw,34px); margin:0 0 8px; letter-spacing:-0.01em;
+  }
+  .subtitle{ font-size:14.5px; color:#D9CDE5; max-width:700px; margin:0; }
+
+  .id-bar{
+    max-width:960px; margin:0 auto; padding:18px 6vw 0;
+    display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+  }
+  .id-bar label{ font-size:13px; font-weight:600; color:var(--slate); }
+  .id-bar input[type="text"]{
+    font-family:'IBM Plex Mono', monospace; font-size:13.5px; padding:8px 11px;
+    border:1px solid var(--line); border-radius:5px; background:var(--paper); color:var(--ink);
+    width:180px;
+  }
+  .id-bar input:focus{ outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); }
+  .id-bar button{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:8px 15px; border:1px solid var(--purple);
+    background:var(--purple); color:#fff; cursor:pointer;
+  }
+  .id-bar button:hover{ background:var(--purple-mid); }
+  .id-bar .id-hint{ font-size:12px; color:var(--slate); }
+  .id-bar input#studentName{ width:220px; font-family:'Inter',sans-serif; }
+
+  .score-area{ max-width:960px; margin:0 auto; padding:14px 6vw 0; }
+
+  .rounding-note{
+    max-width:960px; margin:14px auto 0; padding:12px 6vw;
+    font-size:12.5px; color:var(--slate); line-height:1.5;
+  }
+  .rounding-note strong{ color:var(--purple); font-weight:600; }
+
+  main{ max-width:960px; margin:0 auto; padding:22px 6vw 90px; }
+
+  .part{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    box-shadow:var(--shadow);
+    padding:24px 26px 26px;
+    margin-top:26px;
+  }
+  .part-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; color:var(--gold); background:var(--purple);
+    display:inline-block; padding:3px 9px; border-radius:4px; letter-spacing:.04em;
+    margin-bottom:12px;
+  }
+  .part h2{
+    font-family:'Source Serif 4', serif; font-size:21px; font-weight:600;
+    color:var(--purple); margin:0 0 12px;
+  }
+  .scenario{
+    background:var(--parchment);
+    border-left:3px solid var(--gold);
+    padding:14px 18px;
+    border-radius:0 6px 6px 0;
+    font-size:14.5px;
+    color:var(--ink);
+    margin-bottom:16px;
+  }
+  .scenario p{ margin:0 0 10px; }
+  .scenario p:last-child{ margin-bottom:0; }
+  .scenario span.val{ font-weight:700; color:var(--purple-deep); }
+
+  .req{
+    font-weight:600;
+    font-size:14.5px;
+    color:var(--ink);
+    margin:20px 0 10px;
+  }
+  .req span.reqlabel{ color:var(--purple); }
+
+  h4.subsection{
+    font-family:'Source Serif 4',serif; font-size:15px; color:var(--purple); margin:22px 0 6px;
+    border-bottom:1px solid var(--line-soft); padding-bottom:4px;
+  }
+
+  table.given{ width:100%; border-collapse:collapse; font-size:13px; margin:6px 0 14px; }
+  table.given th{ text-align:left; font-size:10.5px; text-transform:uppercase; letter-spacing:.03em; color:var(--slate); border-bottom:2px solid var(--purple); padding:6px 8px; }
+  table.given td{ border-bottom:1px solid var(--line); padding:5px 8px; font-family:'IBM Plex Mono', monospace; }
+  table.given td.lbl{ font-family:'Inter',sans-serif; }
+  table.given td.num, table.given th.num{ text-align:right; }
+  table.given tr.given-total td{ border-top:1.3px solid var(--purple); font-weight:600; }
+  .footnote{ font-size:12px; color:var(--slate); margin:2px 0 14px; font-style:italic; }
+  .hint{ font-size:12.5px; color:var(--slate); margin:4px 0 10px; }
+
+  table.worksheet{
+    width:100%;
+    border-collapse:collapse;
+    font-size:13px;
+    margin:10px 0 4px;
+  }
+  table.worksheet th{
+    text-align:left;
+    font-size:10.5px;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+    color:var(--slate);
+    border-bottom:2px solid var(--purple);
+    padding:8px 6px;
+  }
+  table.worksheet th.num{ text-align:right; }
+  table.worksheet td{
+    border-bottom:1px solid var(--line);
+    padding:8px 6px;
+    vertical-align:middle;
+  }
+  table.worksheet td.method{ font-weight:600; }
+  table.worksheet td.amt{ width:140px; }
+  table.worksheet tr.ws-total td{ border-top:1.6px solid var(--purple); font-weight:600; }
+  table.worksheet input[type="text"]{
+    width:100%;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    padding:6px 7px;
+    border:1px solid var(--line);
+    border-radius:5px;
+    background:var(--parchment);
+    color:var(--ink);
+  }
+  table.worksheet input[type="text"]:focus{
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
+  }
+  table.worksheet tr.ws-total input{ font-weight:600; }
+
+  textarea.discuss{
+    width:100%;
+    min-height:110px;
+    font-family:'Inter',sans-serif;
+    font-size:13.5px;
+    padding:10px 12px;
+    border:1px solid var(--line);
+    border-radius:6px;
+    background:var(--parchment);
+    color:var(--ink);
+    resize:vertical;
+  }
+  textarea.discuss:focus{
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
+  }
+
+  .score-panel{
+    display:flex; align-items:center; gap:18px;
+    margin:0 0 4px; padding:14px 18px;
+    background:var(--parchment);
+    border:1px solid var(--line);
+    border-radius:8px;
+  }
+  .score-panel.scored-good{ background:var(--answer-bg); border-color:#B7D3BE; }
+  .score-panel.scored-bad{ background:#F8F0EF; border-color:#E2C6C2; }
+  .score-pct{
+    font-family:'Source Serif 4', serif;
+    font-size:30px; font-weight:700; line-height:1.05;
+    color:var(--slate); min-width:96px; text-align:center;
+  }
+  .score-panel.scored-good .score-pct{ color:var(--answer); }
+  .score-panel.scored-bad .score-pct{ color:var(--danger); }
+  .score-detail{ flex:1; min-width:0; }
+  .score-meta{ font-size:13.5px; font-weight:600; color:var(--ink); margin:0 0 7px; }
+  .score-bar{ height:8px; border-radius:4px; background:var(--line-soft); overflow:hidden; }
+  .score-bar span{ display:block; height:100%; width:0; background:var(--purple-mid); transition:width .35s ease; }
+  .score-panel.scored-good .score-bar span{ background:var(--answer); }
+  .score-panel.scored-bad .score-bar span{ background:var(--danger); }
+  .score-sub{ font-size:11.5px; color:var(--slate); margin:7px 0 0; }
+
+  .check-bar{
+    margin-top:20px;
+    padding-top:16px;
+    border-top:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .btn-check{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:9px 18px; border:1px solid var(--purple);
+    background:var(--purple); color:#fff; cursor:pointer;
+  }
+  .btn-check:hover{ background:var(--purple-mid); }
+  .check-summary{ font-size:13.5px; font-weight:600; }
+  .check-summary.good{ color:var(--answer); }
+  .check-summary.bad{ color:var(--danger); }
+  .check-disclaimer{ font-size:11.5px; color:var(--slate); width:100%; margin-top:2px; font-style:italic; }
+
+  input.field-correct{
+    border-color:var(--answer) !important;
+    background:var(--answer-bg) !important;
+  }
+  input.field-incorrect{
+    border-color:var(--danger) !important;
+    background:#F3E1DE !important;
+  }
+
+  .submit-bar{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    box-shadow:var(--shadow);
+    padding:22px 26px 24px;
+    margin-top:26px;
+  }
+  .submit-bar h2{
+    font-family:'Source Serif 4', serif; font-size:19px; font-weight:600;
+    color:var(--purple); margin:0 0 14px;
+  }
+  .submit-row{ display:flex; align-items:center; gap:10px; margin-bottom:12px; flex-wrap:wrap; }
+  .submit-row label{ font-size:13px; font-weight:600; color:var(--slate); }
+  .submit-row input[type="text"]{
+    font-family:'Inter',sans-serif; font-size:13.5px; padding:8px 11px;
+    border:1px solid var(--line); border-radius:5px; background:var(--parchment); color:var(--ink);
+    width:240px;
+  }
+  .submit-row input:focus{ outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); }
+  .btn-submit{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:10px 18px; border:1px solid var(--purple);
+    background:var(--purple); color:#fff; cursor:pointer;
+  }
+  .btn-submit:hover{ background:var(--purple-mid); }
+  .submit-hint{ font-size:12px; color:var(--slate); margin:6px 0 0; }
+
+  @media print{
+    .print-hide, .id-bar, .check-bar, .rounding-note{ display:none !important; }
+    header{ background:none !important; color:var(--ink) !important; padding:0 0 14px !important; }
+    header::after{ display:none !important; }
+    .eyebrow{ color:var(--purple) !important; }
+    .subtitle{ color:var(--slate) !important; }
+    body{ background:#fff !important; }
+    .part{ box-shadow:none !important; border:1px solid #999 !important; break-inside:auto; }
+    .score-panel{ background:#fff !important; border:1.5px solid #000 !important; break-inside:avoid; }
+    .score-bar{ display:none !important; }
+    .score-pct, .score-panel.scored-good .score-pct, .score-panel.scored-bad .score-pct{ color:#000 !important; }
+    .part h2, .part-label, .scenario, h4.subsection{ break-after:avoid; break-inside:avoid; }
+    table.given, table.worksheet{ break-inside:auto; }
+    table.given tr, table.worksheet tr{ break-inside:avoid; }
+    .submit-bar{ break-before:avoid; }
+    input[type="text"]{
+      border:none !important;
+      border-bottom:1px solid #000 !important;
+      background:transparent !important;
+      border-radius:0 !important;
+      color:#000 !important;
+      -webkit-appearance:none;
+      -moz-appearance:none;
+      appearance:none;
+      padding:2px 4px !important;
+    }
+    textarea.discuss{ border:1px solid #999 !important; background:#fff !important; }
+    .print-name-line{ display:block !important; }
+  }
+  .print-name-line{ display:none; font-size:13px; color:var(--ink); padding:0 6vw; margin:0 0 10px; }
+
+  footer{ text-align:center; padding:26px 6vw 40px; font-size:12px; color:var(--slate); }
+
+  @media (max-width:700px){
+    header, main, .id-bar{ padding-left:5vw; padding-right:5vw; }
+    table.worksheet{ font-size:12px; }
+    table.given{ font-size:11.5px; }
+  }
+
+</style>
+</head>
+<body>
+
+<header>
+  <p class="eyebrow">MBA 623 &middot; Accounting &middot; Traditional vs. Activity-Based Costing</p>
+  <h1 class="title">Traditional Product Costing versus Activity-Based Costing</h1>
+  <p class="subtitle">Costing two jobs first with a single plantwide overhead rate, then again with activity-based rates for setups, orders, machine hours, and direct labor hours &mdash; and seeing how differently the two methods price the same jobs.</p>
+</header>
+
+<p class="print-name-line" id="printNameLine"></p>
+
+<div class="id-bar">
+  <label for="studentName">Name</label>
+  <input type="text" id="studentName" placeholder="First and last name">
+  <label for="studentId">Student ID</label>
+  <input type="text" id="studentId" placeholder="e.g. 920410165">
+  <button id="genBtn" type="button">Generate scenario</button>
+  <span class="id-hint">Leave the ID blank and click to restore the original textbook figures.</span>
+</div>
+
+<div class="score-area" id="scoreArea"></div>
+
+<div class="rounding-note">
+  <strong>Rounding convention:</strong> carry overhead rates and dollar subtotals to the nearest cent; round each final <strong>unit cost to two decimal places</strong> (e.g., 52.69), as the problem asks. Each job's setups, orders, machine hours, and direct labor hours are the same regardless of your Student ID &mdash; only the overhead pool dollar amounts and each job's direct materials, direct labor, and units completed are randomized.
+</div>
+
+<main>
+
+  <div class="part">
+    <span class="part-label">Problem</span>
+    <h2>Nantahala Gear Works, Inc.</h2>
+
+    <div class="scenario">
+      <p><span class="val">Nantahala Gear Works, Inc.</span>, headquartered in Sylva, North Carolina, makes backpacks for large sporting goods chains that are sold under the customers' store brand names. The Accounting Department has identified the following overhead costs and cost drivers for next year.</p>
+    </div>
+
+    <h4 class="subsection">Overhead costs and cost drivers</h4>
+    <table class="given">
+      <thead><tr><th>Overhead Item</th><th class="num">Expected Costs</th><th>Cost Driver</th><th class="num">Maximum Quantity</th></tr></thead>
+      <tbody id="oh_rows"></tbody>
+    </table>
+
+    <h4 class="subsection">Data for two recently completed jobs</h4>
+    <table class="given">
+      <thead><tr><th></th><th class="num">Job 201</th><th class="num">Job 202</th></tr></thead>
+      <tbody id="job_rows"></tbody>
+    </table>
+
+    <div class="req"><span class="reqlabel">Required (a):</span> Determine the unit cost for each job using a traditional plantwide overhead rate based on machine hours.</div>
+
+    <h4 class="subsection">(a) Traditional plantwide costing</h4>
+    <table class="worksheet">
+      <thead><tr><th>Item</th><th class="num">Amount</th></tr></thead>
+      <tbody>
+        <tr class="ws-total"><td class="method">Plantwide overhead rate (per machine hour)</td><td class="amt"><input type="text" placeholder="$ / MH" id="ta-rate"></td></tr>
+      </tbody>
+    </table>
+    <table class="worksheet">
+      <thead><tr><th>Job</th><th class="num">Overhead Applied</th><th class="num">Total Job Cost</th><th class="num">Unit Cost</th></tr></thead>
+      <tbody>
+        <tr><td class="method">Job 201</td><td class="amt"><input type="text" placeholder="$" id="ta-oh-201"></td><td class="amt"><input type="text" placeholder="$" id="ta-cost-201"></td><td class="amt"><input type="text" placeholder="$" id="ta-unit-201"></td></tr>
+        <tr><td class="method">Job 202</td><td class="amt"><input type="text" placeholder="$" id="ta-oh-202"></td><td class="amt"><input type="text" placeholder="$" id="ta-cost-202"></td><td class="amt"><input type="text" placeholder="$" id="ta-unit-202"></td></tr>
+      </tbody>
+    </table>
+
+    <div class="req"><span class="reqlabel">Required (b):</span> Determine the unit cost for each job using ABC. (Round answers to two decimal places.)</div>
+    <p class="hint">First find each activity's rate (expected cost &divide; maximum quantity), then apply each job's own usage of the four activities.</p>
+
+    <h4 class="subsection">(b) Activity-based costing</h4>
+    <table class="worksheet">
+      <thead><tr><th>Activity</th><th class="num">Rate</th></tr></thead>
+      <tbody>
+        <tr><td class="method">Setup costs (per setup)</td><td class="amt"><input type="text" placeholder="$" id="ab-rate-setup"></td></tr>
+        <tr><td class="method">Ordering costs (per order)</td><td class="amt"><input type="text" placeholder="$" id="ab-rate-order"></td></tr>
+        <tr><td class="method">Assembly (per machine hour)</td><td class="amt"><input type="text" placeholder="$" id="ab-rate-asm"></td></tr>
+        <tr><td class="method">Finishing (per direct labor hour)</td><td class="amt"><input type="text" placeholder="$" id="ab-rate-fin"></td></tr>
+      </tbody>
+    </table>
+
+    <table class="worksheet">
+      <thead><tr><th>Job 201</th><th class="num">Amount</th></tr></thead>
+      <tbody>
+        <tr><td class="method">Setup overhead</td><td class="amt"><input type="text" placeholder="$" id="ab-setup-201"></td></tr>
+        <tr><td class="method">Ordering overhead</td><td class="amt"><input type="text" placeholder="$" id="ab-order-201"></td></tr>
+        <tr><td class="method">Assembly overhead</td><td class="amt"><input type="text" placeholder="$" id="ab-asm-201"></td></tr>
+        <tr><td class="method">Finishing overhead</td><td class="amt"><input type="text" placeholder="$" id="ab-fin-201"></td></tr>
+        <tr class="ws-total"><td class="method">Total overhead</td><td class="amt"><input type="text" placeholder="$" id="ab-oh-201"></td></tr>
+        <tr class="ws-total"><td class="method">Total job cost</td><td class="amt"><input type="text" placeholder="$" id="ab-cost-201"></td></tr>
+        <tr class="ws-total"><td class="method">Unit cost</td><td class="amt"><input type="text" placeholder="$" id="ab-unit-201"></td></tr>
+      </tbody>
+    </table>
+
+    <table class="worksheet">
+      <thead><tr><th>Job 202</th><th class="num">Amount</th></tr></thead>
+      <tbody>
+        <tr><td class="method">Setup overhead</td><td class="amt"><input type="text" placeholder="$" id="ab-setup-202"></td></tr>
+        <tr><td class="method">Ordering overhead</td><td class="amt"><input type="text" placeholder="$" id="ab-order-202"></td></tr>
+        <tr><td class="method">Assembly overhead</td><td class="amt"><input type="text" placeholder="$" id="ab-asm-202"></td></tr>
+        <tr><td class="method">Finishing overhead</td><td class="amt"><input type="text" placeholder="$" id="ab-fin-202"></td></tr>
+        <tr class="ws-total"><td class="method">Total overhead</td><td class="amt"><input type="text" placeholder="$" id="ab-oh-202"></td></tr>
+        <tr class="ws-total"><td class="method">Total job cost</td><td class="amt"><input type="text" placeholder="$" id="ab-cost-202"></td></tr>
+        <tr class="ws-total"><td class="method">Unit cost</td><td class="amt"><input type="text" placeholder="$" id="ab-unit-202"></td></tr>
+      </tbody>
+    </table>
+
+    <div class="req"><span class="reqlabel">Required (c):</span> As the manager of Nantahala Gear Works, is there additional information that you would want to help you evaluate the pricing and profitability of Jobs 201 and 202?</div>
+    <p class="hint">Not graded automatically. Consider what part (a) and part (b) still don't tell you about these two jobs.</p>
+    <textarea class="discuss" id="discussC" placeholder="Type your answer to part (c) here..."></textarea>
+
+    <div class="req"><span class="reqlabel">Required (d):</span> Assuming the company has been using the method required in part (a), how should management react to the findings in part (b)?</div>
+    <p class="hint">Not graded automatically. Compare the unit costs you found in (a) and (b) for each job before you answer.</p>
+    <textarea class="discuss" id="discussD" placeholder="Type your answer to part (d) here..."></textarea>
+
+    <div class="check-bar">
+      <button class="btn-check" id="checkTC" type="button">Check my work</button>
+      <span class="check-summary" id="tcSummary"></span>
+      <span class="check-disclaimer">This checks whether your figures match the key within a small rounding tolerance &mdash; it does not confirm your supporting computations, and it does not grade parts (c) or (d).</span>
+    </div>
+  </div>
+
+  <div class="submit-bar print-hide">
+    <h2>Ready to submit?</h2>
+    <p class="submit-hint" style="margin:0 0 12px;">Your name, student ID and score are taken from the top of the page.</p>
+    <div class="submit-row submit-actions">
+      <button class="btn-submit" id="printBtn" type="button">Print / Save as PDF</button>
+    </div>
+    <p class="submit-hint">This captures exactly what's currently filled in above, including your generated scenario numbers and your written answers, and works offline.</p>
+  </div>
+</main>
+
+<footer>Traditional Product Costing versus Activity-Based Costing &middot; MBA 623 &middot; Western Carolina University</footer>
+
+<script>
+(function(){
+  var FILE_SLUG = "MBA623-Traditional-vs-ABC-Costing";
+
+  // ---------- seeded pseudo-random ----------
+  function hashSeed(str){
+    var h = 2166136261;
+    for(var i=0;i<str.length;i++){
+      h ^= str.charCodeAt(i);
+      h = Math.imul(h, 16777619);
+    }
+    return h >>> 0;
+  }
+  function mulberry32(seed){
+    return function(){
+      seed |= 0; seed = seed + 0x6D2B79F5 | 0;
+      var t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
+  }
+  function pick(rand, arr){ return arr[Math.floor(rand() * arr.length)]; }
+  function rTo(x, m){ return Math.round(x/m)*m; }
+
+  // ---------- formatting ----------
+  function money0(n){
+    var v = Math.round(Number(n));
+    return '$' + Math.abs(v).toLocaleString('en-US');
+  }
+  function money2(n){
+    var v = Number(n);
+    var s = Math.abs(v).toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
+    return v < 0 ? '$(' + s + ')' : '$' + s;
+  }
+  function setHTML(id, html){
+    var el = document.getElementById(id);
+    if(el) el.innerHTML = html;
+  }
+
+  // ---------- answer checking ----------
+  function parseMoney(s){
+    if(s === null || s === undefined) return NaN;
+    var raw = String(s).trim();
+    var neg = /^\(.*\)$/.test(raw) || /^-/.test(raw) || /^−/.test(raw);
+    var cleaned = raw.replace(/[^0-9.]/g, '');
+    if(cleaned === '') return NaN;
+    var v = parseFloat(cleaned);
+    if(isNaN(v)) return NaN;
+    return neg ? -v : v;
+  }
+  function near(a, b, tol){
+    if(isNaN(a) || isNaN(b)) return false;
+    return Math.abs(a - b) <= tol;
+  }
+  function clearFieldState(el){
+    if(!el) return;
+    el.classList.remove('field-correct', 'field-incorrect');
+  }
+  function clearAllFieldStates(){
+    document.querySelectorAll('.field-correct, .field-incorrect').forEach(function(el){
+      el.classList.remove('field-correct', 'field-incorrect');
+    });
+    document.querySelectorAll('.check-summary').forEach(function(el){
+      el.textContent = ''; el.classList.remove('good','bad');
+    });
+  }
+  function markField(id, correct, tol){
+    var el = document.getElementById(id);
+    if(!el) return null;
+    el.classList.remove('field-correct', 'field-incorrect');
+    var ok = near(parseMoney(el.value), correct, tol);
+    el.classList.add(ok ? 'field-correct' : 'field-incorrect');
+    if(!el.dataset.clearBound){
+      el.addEventListener('input', function(){ clearFieldState(el); });
+      el.dataset.clearBound = '1';
+    }
+    return ok;
+  }
+  function updateSummary(elId, results){
+    var el = document.getElementById(elId);
+    if(!el) return;
+    var graded = results.filter(function(r){ return r !== null; }).length;
+    var correct = results.filter(function(r){ return r === true; }).length;
+    el.textContent = correct + ' of ' + graded + ' correct';
+    el.classList.remove('good', 'bad');
+    el.classList.add(correct === graded && graded > 0 ? 'good' : 'bad');
+  }
+
+  // ---------- score ----------
+  var SCORES = {};
+
+  function scoreState(g){
+    if(!SCORES[g.btn]) SCORES[g.btn] = { correct:0, graded:0, attempts:0, checked:false, stale:false };
+    return SCORES[g.btn];
+  }
+  function scorePct(s){
+    return s.graded ? Math.round(s.correct / s.graded * 100) : 0;
+  }
+
+  var SCORE_PROMPT = 'Fill in the worksheet below, then choose <strong>Check my work</strong>. Every blank counts as incorrect.';
+
+  function ensureScorePanel(g){
+    var area = document.getElementById('scoreArea');
+    if(!area) return null;
+    var panel = area.querySelector('.score-panel[data-for="' + g.btn + '"]');
+    if(panel) return panel;
+    panel = document.createElement('div');
+    panel.className = 'score-panel';
+    panel.setAttribute('data-for', g.btn);
+    panel.innerHTML =
+      '<div class="score-pct">&mdash;</div>' +
+      '<div class="score-detail">' +
+        '<p class="score-meta">Score</p>' +
+        '<div class="score-bar"><span></span></div>' +
+        '<p class="score-sub">' + SCORE_PROMPT + '</p>' +
+      '</div>';
+    area.appendChild(panel);
+    return panel;
+  }
+
+  function renderScore(g){
+    var panel = ensureScorePanel(g);
+    if(!panel) return;
+    var s = scoreState(g);
+    var pctEl = panel.querySelector('.score-pct');
+    var metaEl = panel.querySelector('.score-meta');
+    var fillEl = panel.querySelector('.score-bar span');
+    var subEl = panel.querySelector('.score-sub');
+    panel.classList.remove('scored-good', 'scored-bad');
+
+    if(!s.checked){
+      pctEl.innerHTML = '&mdash;';
+      metaEl.textContent = 'Score';
+      fillEl.style.width = '0%';
+      subEl.innerHTML = SCORE_PROMPT;
+      return;
+    }
+    var pct = scorePct(s);
+    pctEl.textContent = pct + '%';
+    metaEl.textContent = 'Score: ' + s.correct + ' of ' + s.graded + ' correct';
+    fillEl.style.width = pct + '%';
+    if(s.stale){
+      subEl.textContent = 'You have changed an answer since this score was calculated — check your work again to update it.';
+    } else if(s.correct === s.graded){
+      subEl.textContent = 'All ' + s.graded + ' answers match the key. Attempt ' + s.attempts + '.';
+      panel.classList.add('scored-good');
+    } else {
+      var missing = s.graded - s.correct;
+      subEl.innerHTML = missing + ' answer' + (missing === 1 ? '' : 's') + ' still to fix' +
+                        '<span class="print-hide"> — outlined in red below</span>. Attempt ' + s.attempts + '.';
+      panel.classList.add('scored-bad');
+    }
+  }
+
+  function markScoreStale(g){
+    var s = scoreState(g);
+    if(!s.checked || s.stale) return;
+    s.stale = true;
+    renderScore(g);
+  }
+
+  function resetScore(g){
+    SCORES[g.btn] = { correct:0, graded:0, attempts:0, checked:false, stale:false };
+    renderScore(g);
+  }
+
+  // ---------- fixed business facts: driver capacities and each job's activity usage ----------
+  // These represent how the plant and the two jobs actually operate -- they do not change
+  // from student to student. Only the overhead pool dollar totals and each job's direct
+  // materials, direct labor, and units completed (below) are randomized.
+  var MAX_SETUPS = 1750, MAX_ORDERS = 15000, MAX_MH = 14000, MAX_DLH = 104000;
+  var JOBS_USAGE = {
+    '201': { setups:15,  orders:200, mh:200, dlh:820  },
+    '202': { setups:18,  orders:100, mh:225, dlh:1600 }
+  };
+
+  // ---------- scenario ----------
+  function baseline(){
+    return {
+      setupCost:175000, orderCost:120000, asmCost:910000, finCost:208000,
+      dm201:12000, dl201:20500, units201:1000,
+      dm202:14000, dl202:40000, units202:850
+    };
+  }
+
+  function randomParams(rand){
+    function jitter(n, spread){ return n * (1 + (rand() - 0.5) * spread); }
+    return {
+      setupCost: rTo(jitter(175000, 0.30), 500),
+      orderCost: rTo(jitter(120000, 0.30), 500),
+      asmCost:   rTo(jitter(910000, 0.20), 1000),
+      finCost:   rTo(jitter(208000, 0.30), 500),
+      dm201: rTo(jitter(12000, 0.25), 100),
+      dl201: rTo(jitter(20500, 0.25), 100),
+      units201: rTo(jitter(1000, 0.15), 10),
+      dm202: rTo(jitter(14000, 0.25), 100),
+      dl202: rTo(jitter(40000, 0.25), 100),
+      units202: rTo(jitter(850, 0.15), 10)
+    };
+  }
+
+  function solve(p){
+    var d = { setupCost:p.setupCost, orderCost:p.orderCost, asmCost:p.asmCost, finCost:p.finCost };
+
+    d.rateSetup = d.setupCost / MAX_SETUPS;
+    d.rateOrder = d.orderCost / MAX_ORDERS;
+    d.rateAsm   = d.asmCost / MAX_MH;
+    d.rateFin   = d.finCost / MAX_DLH;
+    d.totalOH   = d.setupCost + d.orderCost + d.asmCost + d.finCost;
+    d.plantRate = d.totalOH / MAX_MH;
+
+    var jobsIn = { '201': { dm:p.dm201, dl:p.dl201, units:p.units201 },
+                   '202': { dm:p.dm202, dl:p.dl202, units:p.units202 } };
+
+    d.jobs = {};
+    ['201','202'].forEach(function(k){
+      var u = JOBS_USAGE[k];
+      var j = jobsIn[k];
+      var appliedOH = u.mh * d.plantRate;
+      var totalCostTrad = j.dm + j.dl + appliedOH;
+      var unitTrad = totalCostTrad / j.units;
+
+      var ohSetup = u.setups * d.rateSetup;
+      var ohOrder = u.orders * d.rateOrder;
+      var ohAsm   = u.mh * d.rateAsm;
+      var ohFin   = u.dlh * d.rateFin;
+      var ohABC   = ohSetup + ohOrder + ohAsm + ohFin;
+      var totalCostABC = j.dm + j.dl + ohABC;
+      var unitABC = totalCostABC / j.units;
+
+      d.jobs[k] = {
+        dm:j.dm, dl:j.dl, units:j.units,
+        setups:u.setups, orders:u.orders, mh:u.mh, dlh:u.dlh,
+        appliedOH:appliedOH, totalCostTrad:totalCostTrad, unitTrad:unitTrad,
+        ohSetup:ohSetup, ohOrder:ohOrder, ohAsm:ohAsm, ohFin:ohFin,
+        ohABC:ohABC, totalCostABC:totalCostABC, unitABC:unitABC
+      };
+    });
+
+    return d;
+  }
+
+  function generateScenario(id){
+    var seed = (id || '').trim();
+    if(seed === '') return solve(baseline());
+    return solve(randomParams(mulberry32(hashSeed(seed.toLowerCase()))));
+  }
+
+  function applyScenario(d){
+    setHTML('oh_rows', [
+      { name:'Setup costs', cost:d.setupCost, driver:'Number of setups', max:MAX_SETUPS },
+      { name:'Ordering costs', cost:d.orderCost, driver:'Number of orders', max:MAX_ORDERS },
+      { name:'Assembly', cost:d.asmCost, driver:'Number of machine hours', max:MAX_MH },
+      { name:'Finishing', cost:d.finCost, driver:'Number of direct labor hours', max:MAX_DLH }
+    ].map(function(o){
+      return '<tr><td class="lbl">' + o.name + '</td><td class="num">' + money0(o.cost) + '</td><td class="lbl">' + o.driver + '</td><td class="num">' + o.max.toLocaleString() + '</td></tr>';
+    }).join(''));
+
+    var j201 = d.jobs['201'], j202 = d.jobs['202'];
+    setHTML('job_rows', [
+      ['Cost of direct materials', money0(j201.dm), money0(j202.dm)],
+      ['Cost of direct labor', money0(j201.dl), money0(j202.dl)],
+      ['Number of units completed', j201.units.toLocaleString(), j202.units.toLocaleString()],
+      ['Number of setups', j201.setups, j202.setups],
+      ['Number of orders', j201.orders, j202.orders],
+      ['Number of machine hours', j201.mh, j202.mh],
+      ['Number of direct labor hours', j201.dlh, j202.dlh]
+    ].map(function(r){
+      return '<tr><td class="lbl">' + r[0] + '</td><td class="num">' + r[1] + '</td><td class="num">' + r[2] + '</td></tr>';
+    }).join(''));
+  }
+
+  function fieldsFor(d){
+    var j201 = d.jobs['201'], j202 = d.jobs['202'];
+    return [
+      { id:'ta-rate', key:d.plantRate, tol:0.05 },
+      { id:'ta-oh-201', key:j201.appliedOH, tol:1 },
+      { id:'ta-cost-201', key:j201.totalCostTrad, tol:1 },
+      { id:'ta-unit-201', key:j201.unitTrad, tol:0.03 },
+      { id:'ta-oh-202', key:j202.appliedOH, tol:1 },
+      { id:'ta-cost-202', key:j202.totalCostTrad, tol:1 },
+      { id:'ta-unit-202', key:j202.unitTrad, tol:0.03 },
+
+      { id:'ab-rate-setup', key:d.rateSetup, tol:0.05 },
+      { id:'ab-rate-order', key:d.rateOrder, tol:0.05 },
+      { id:'ab-rate-asm', key:d.rateAsm, tol:0.05 },
+      { id:'ab-rate-fin', key:d.rateFin, tol:0.05 },
+
+      { id:'ab-setup-201', key:j201.ohSetup, tol:1 },
+      { id:'ab-order-201', key:j201.ohOrder, tol:1 },
+      { id:'ab-asm-201', key:j201.ohAsm, tol:1 },
+      { id:'ab-fin-201', key:j201.ohFin, tol:1 },
+      { id:'ab-oh-201', key:j201.ohABC, tol:1 },
+      { id:'ab-cost-201', key:j201.totalCostABC, tol:1 },
+      { id:'ab-unit-201', key:j201.unitABC, tol:0.03 },
+
+      { id:'ab-setup-202', key:j202.ohSetup, tol:1 },
+      { id:'ab-order-202', key:j202.ohOrder, tol:1 },
+      { id:'ab-asm-202', key:j202.ohAsm, tol:1 },
+      { id:'ab-fin-202', key:j202.ohFin, tol:1 },
+      { id:'ab-oh-202', key:j202.ohABC, tol:1 },
+      { id:'ab-cost-202', key:j202.totalCostABC, tol:1 },
+      { id:'ab-unit-202', key:j202.unitABC, tol:0.03 }
+    ];
+  }
+
+  var CHECK_GROUPS = [{ btn:'checkTC', summary:'tcSummary' }];
+
+  // ---------------- wiring ----------------
+  var idInput = document.getElementById('studentId');
+  var genBtn = document.getElementById('genBtn');
+  var currentScenario = null;
+
+  function applyAndStore(id){
+    currentScenario = generateScenario(id);
+    applyScenario(currentScenario);
+    clearAllFieldStates();
+    CHECK_GROUPS.forEach(resetScore);
+  }
+  genBtn.addEventListener('click', function(){ applyAndStore(idInput.value); });
+  idInput.addEventListener('keydown', function(e){
+    if(e.key === 'Enter'){ e.preventDefault(); applyAndStore(idInput.value); }
+  });
+  applyAndStore('');
+
+  CHECK_GROUPS.forEach(function(g){
+    var btn = document.getElementById(g.btn);
+    if(!btn) return;
+    renderScore(g);
+
+    var part = btn.closest('.part');
+    if(part){
+      part.addEventListener('input', function(e){
+        if(e.target && e.target.tagName === 'INPUT') markScoreStale(g);
+      });
+    }
+
+    btn.addEventListener('click', function(){
+      if(!currentScenario) return;
+      var fields = fieldsFor(currentScenario);
+      var results = fields.map(function(f){
+        return markField(f.id, f.key, f.tol);
+      });
+      updateSummary(g.summary, results);
+      var s = scoreState(g);
+      s.graded = results.filter(function(r){ return r !== null; }).length;
+      s.correct = results.filter(function(r){ return r === true; }).length;
+      s.attempts += 1;
+      s.checked = true;
+      s.stale = false;
+      renderScore(g);
+    });
+  });
+
+  // ---------------- Print / Save as PDF ----------------
+  function val(id){
+    var el = document.getElementById(id);
+    return el ? el.value.trim() : '';
+  }
+  document.getElementById('printBtn').addEventListener('click', function(){
+    var name = val('studentName');
+    var id = val('studentId');
+    var line = document.getElementById('printNameLine');
+    line.textContent = 'Name: ' + (name || '_______________________') +
+                       '     Student ID: ' + (id || '_______________________');
+    var oldTitle = document.title;
+    document.title = FILE_SLUG + '-' + (id || 'submission');
+    window.print();
+    document.title = oldTitle;
+  });
+
+})();
+</script>
+
+</body>
+</html>

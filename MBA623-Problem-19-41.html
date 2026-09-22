@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Customer Profitability Analysis Using Activity-Based Costing — Blue Ridge Aerosystems, Inc.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --purple:#592C88;
+    --purple-deep:#38195A;
+    --purple-mid:#6E3FA3;
+    --gold:#B0925C;
+    --gold-soft:#D6C398;
+    --gold-pale:#F1E9D6;
+    --parchment:#F7F4EC;
+    --paper:#FFFEFA;
+    --ink:#221B2E;
+    --slate:#5F5A6B;
+    --line:#DBD3E0;
+    --line-soft:#EAE4EF;
+    --answer:#1E5C34;
+    --answer-bg:#E7F1E9;
+    --danger:#9C3B34;
+    --shadow: 0 1px 2px rgba(56,25,90,0.07), 0 6px 18px rgba(56,25,90,0.08);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--parchment);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ color:inherit; }
+
+  header{
+    background: linear-gradient(180deg, var(--purple) 0%, var(--purple-deep) 100%);
+    color:#F1E9D6;
+    padding: 30px 6vw 24px;
+    position:relative;
+  }
+  header::after{
+    content:"";
+    position:absolute; left:0; right:0; bottom:0; height:4px;
+    background: linear-gradient(90deg, var(--gold-soft), var(--gold) 40%, var(--gold-soft) 70%, var(--gold));
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--gold-soft); margin:0 0 10px;
+  }
+  h1.title{
+    font-family:'Source Serif 4', serif; font-weight:600;
+    font-size:clamp(24px,3.4vw,34px); margin:0 0 8px; letter-spacing:-0.01em;
+  }
+  .subtitle{ font-size:14.5px; color:#D9CDE5; max-width:720px; margin:0; }
+
+  .id-bar{
+    max-width:1080px; margin:0 auto; padding:18px 6vw 0;
+    display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+  }
+  .id-bar label{ font-size:13px; font-weight:600; color:var(--slate); }
+  .id-bar input[type="text"]{
+    font-family:'IBM Plex Mono', monospace; font-size:13.5px; padding:8px 11px;
+    border:1px solid var(--line); border-radius:5px; background:var(--paper); color:var(--ink);
+    width:180px;
+  }
+  .id-bar input:focus{ outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); }
+  .id-bar button{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:8px 15px; border:1px solid var(--purple);
+    background:var(--purple); color:#fff; cursor:pointer;
+  }
+  .id-bar button:hover{ background:var(--purple-mid); }
+  .id-bar .id-hint{ font-size:12px; color:var(--slate); }
+  .id-bar input#studentName{ width:220px; font-family:'Inter',sans-serif; }
+
+  .score-area{ max-width:1080px; margin:0 auto; padding:14px 6vw 0; }
+
+  .rounding-note{
+    max-width:1080px; margin:14px auto 0; padding:12px 6vw;
+    font-size:12.5px; color:var(--slate); line-height:1.5;
+  }
+  .rounding-note strong{ color:var(--purple); font-weight:600; }
+
+  main{ max-width:1080px; margin:0 auto; padding:22px 6vw 90px; }
+
+  .part{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    box-shadow:var(--shadow);
+    padding:24px 26px 26px;
+    margin-top:26px;
+  }
+  .part-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; color:var(--gold); background:var(--purple);
+    display:inline-block; padding:3px 9px; border-radius:4px; letter-spacing:.04em;
+    margin-bottom:12px;
+  }
+  .part h2{
+    font-family:'Source Serif 4', serif; font-size:21px; font-weight:600;
+    color:var(--purple); margin:0 0 12px;
+  }
+  .scenario{
+    background:var(--parchment);
+    border-left:3px solid var(--gold);
+    padding:14px 18px;
+    border-radius:0 6px 6px 0;
+    font-size:14.5px;
+    color:var(--ink);
+    margin-bottom:16px;
+  }
+  .scenario p{ margin:0 0 10px; }
+  .scenario p:last-child{ margin-bottom:0; }
+  .scenario span.val{ font-weight:700; color:var(--purple-deep); }
+
+  .req{
+    font-weight:600;
+    font-size:14.5px;
+    color:var(--ink);
+    margin:20px 0 10px;
+  }
+  .req span.reqlabel{ color:var(--purple); }
+
+  h4.subsection{
+    font-family:'Source Serif 4',serif; font-size:15px; color:var(--purple); margin:22px 0 6px;
+    border-bottom:1px solid var(--line-soft); padding-bottom:4px;
+  }
+
+  table.given{ width:100%; border-collapse:collapse; font-size:13px; margin:6px 0 14px; }
+  table.given th{ text-align:left; font-size:10.5px; text-transform:uppercase; letter-spacing:.03em; color:var(--slate); border-bottom:2px solid var(--purple); padding:6px 8px; }
+  table.given td{ border-bottom:1px solid var(--line); padding:5px 8px; font-family:'IBM Plex Mono', monospace; }
+  table.given td.lbl{ font-family:'Inter',sans-serif; }
+  table.given td.num, table.given th.num{ text-align:right; }
+  table.given tr.given-total td{ border-top:1.3px solid var(--purple); font-weight:600; }
+  .footnote{ font-size:12px; color:var(--slate); margin:2px 0 14px; font-style:italic; }
+  .hint{ font-size:12.5px; color:var(--slate); margin:4px 0 10px; }
+
+  table.worksheet{
+    width:100%;
+    border-collapse:collapse;
+    font-size:13px;
+    margin:10px 0 4px;
+  }
+  table.worksheet th{
+    text-align:left;
+    font-size:10.5px;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+    color:var(--slate);
+    border-bottom:2px solid var(--purple);
+    padding:8px 6px;
+  }
+  table.worksheet th.num{ text-align:right; }
+  table.worksheet td{
+    border-bottom:1px solid var(--line);
+    padding:8px 6px;
+    vertical-align:middle;
+  }
+  table.worksheet td.method{ font-weight:600; }
+  table.worksheet td.amt{ width:150px; }
+  table.worksheet tr.ws-total td{ border-top:1.6px solid var(--purple); font-weight:600; }
+  table.worksheet input[type="text"]{
+    width:100%;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    padding:6px 7px;
+    border:1px solid var(--line);
+    border-radius:5px;
+    background:var(--parchment);
+    color:var(--ink);
+  }
+  table.worksheet input[type="text"]:focus{
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
+  }
+  table.worksheet tr.ws-total input{ font-weight:600; }
+
+  textarea.discuss{
+    width:100%;
+    min-height:120px;
+    font-family:'Inter',sans-serif;
+    font-size:13.5px;
+    padding:10px 12px;
+    border:1px solid var(--line);
+    border-radius:6px;
+    background:var(--parchment);
+    color:var(--ink);
+    resize:vertical;
+  }
+  textarea.discuss:focus{
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
+  }
+
+  .score-panel{
+    display:flex; align-items:center; gap:18px;
+    margin:0 0 4px; padding:14px 18px;
+    background:var(--parchment);
+    border:1px solid var(--line);
+    border-radius:8px;
+  }
+  .score-panel.scored-good{ background:var(--answer-bg); border-color:#B7D3BE; }
+  .score-panel.scored-bad{ background:#F8F0EF; border-color:#E2C6C2; }
+  .score-pct{
+    font-family:'Source Serif 4', serif;
+    font-size:30px; font-weight:700; line-height:1.05;
+    color:var(--slate); min-width:96px; text-align:center;
+  }
+  .score-panel.scored-good .score-pct{ color:var(--answer); }
+  .score-panel.scored-bad .score-pct{ color:var(--danger); }
+  .score-detail{ flex:1; min-width:0; }
+  .score-meta{ font-size:13.5px; font-weight:600; color:var(--ink); margin:0 0 7px; }
+  .score-bar{ height:8px; border-radius:4px; background:var(--line-soft); overflow:hidden; }
+  .score-bar span{ display:block; height:100%; width:0; background:var(--purple-mid); transition:width .35s ease; }
+  .score-panel.scored-good .score-bar span{ background:var(--answer); }
+  .score-panel.scored-bad .score-bar span{ background:var(--danger); }
+  .score-sub{ font-size:11.5px; color:var(--slate); margin:7px 0 0; }
+
+  .check-bar{
+    margin-top:20px;
+    padding-top:16px;
+    border-top:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .btn-check{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:9px 18px; border:1px solid var(--purple);
+    background:var(--purple); color:#fff; cursor:pointer;
+  }
+  .btn-check:hover{ background:var(--purple-mid); }
+  .check-summary{ font-size:13.5px; font-weight:600; }
+  .check-summary.good{ color:var(--answer); }
+  .check-summary.bad{ color:var(--danger); }
+  .check-disclaimer{ font-size:11.5px; color:var(--slate); width:100%; margin-top:2px; font-style:italic; }
+
+  input.field-correct{
+    border-color:var(--answer) !important;
+    background:var(--answer-bg) !important;
+  }
+  input.field-incorrect{
+    border-color:var(--danger) !important;
+    background:#F3E1DE !important;
+  }
+
+  .submit-bar{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    box-shadow:var(--shadow);
+    padding:22px 26px 24px;
+    margin-top:26px;
+  }
+  .submit-bar h2{
+    font-family:'Source Serif 4', serif; font-size:19px; font-weight:600;
+    color:var(--purple); margin:0 0 14px;
+  }
+  .submit-row{ display:flex; align-items:center; gap:10px; margin-bottom:12px; flex-wrap:wrap; }
+  .submit-row label{ font-size:13px; font-weight:600; color:var(--slate); }
+  .submit-row input[type="text"]{
+    font-family:'Inter',sans-serif; font-size:13.5px; padding:8px 11px;
+    border:1px solid var(--line); border-radius:5px; background:var(--parchment); color:var(--ink);
+    width:240px;
+  }
+  .submit-row input:focus{ outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); }
+  .btn-submit{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:10px 18px; border:1px solid var(--purple);
+    background:var(--purple); color:#fff; cursor:pointer;
+  }
+  .btn-submit:hover{ background:var(--purple-mid); }
+  .submit-hint{ font-size:12px; color:var(--slate); margin:6px 0 0; }
+
+  @page{ size: landscape; margin: 0.5in; }
+  @media print{
+    .print-hide, .id-bar, .check-bar, .rounding-note{ display:none !important; }
+    header{ background:none !important; color:var(--ink) !important; padding:0 0 14px !important; }
+    header::after{ display:none !important; }
+    .eyebrow{ color:var(--purple) !important; }
+    .subtitle{ color:var(--slate) !important; }
+    body{ background:#fff !important; }
+    .part{ box-shadow:none !important; border:1px solid #999 !important; break-inside:auto; }
+    .score-panel{ background:#fff !important; border:1.5px solid #000 !important; break-inside:avoid; }
+    .score-bar{ display:none !important; }
+    .score-pct, .score-panel.scored-good .score-pct, .score-panel.scored-bad .score-pct{ color:#000 !important; }
+    .part h2, .part-label, .scenario, h4.subsection{ break-after:avoid; break-inside:avoid; }
+    table.given, table.worksheet{ break-inside:auto; }
+    table.given tr, table.worksheet tr{ break-inside:avoid; }
+    .submit-bar{ break-before:avoid; }
+    input[type="text"]{
+      border:none !important;
+      border-bottom:1px solid #000 !important;
+      background:transparent !important;
+      border-radius:0 !important;
+      color:#000 !important;
+      -webkit-appearance:none;
+      -moz-appearance:none;
+      appearance:none;
+      padding:2px 4px !important;
+    }
+    textarea.discuss{ border:1px solid #999 !important; background:#fff !important; }
+    .print-name-line{ display:block !important; }
+  }
+  .print-name-line{ display:none; font-size:13px; color:var(--ink); padding:0 6vw; margin:0 0 10px; }
+
+  footer{ text-align:center; padding:26px 6vw 40px; font-size:12px; color:var(--slate); }
+
+  @media (max-width:700px){
+    header, main, .id-bar{ padding-left:5vw; padding-right:5vw; }
+    table.worksheet{ font-size:12px; }
+    table.given{ font-size:11.5px; }
+  }
+
+</style>
+</head>
+<body>
+
+<header>
+  <p class="eyebrow">MBA 623 &middot; Accounting &middot; Customer Profitability Analysis</p>
+  <h1 class="title">Customer Profitability Analysis Using Activity-Based Costing</h1>
+  <p class="subtitle">Tracing sales commissions, activity-based selling costs, and directly traceable corporate-jet time to five customers &mdash; then comparing that picture to what a simple sales-dollar allocation of the remaining overhead would show.</p>
+</header>
+
+<p class="print-name-line" id="printNameLine"></p>
+
+<div class="id-bar">
+  <label for="studentName">Name</label>
+  <input type="text" id="studentName" placeholder="First and last name">
+  <label for="studentId">Student ID</label>
+  <input type="text" id="studentId" placeholder="e.g. 920410165">
+  <button id="genBtn" type="button">Generate scenario</button>
+  <span class="id-hint">Leave the ID blank and click to restore the original textbook figures.</span>
+</div>
+
+<div class="score-area" id="scoreArea"></div>
+
+<div class="rounding-note">
+  <strong>Rounding convention:</strong> enter every dollar amount as a <strong>whole dollar figure</strong> with no cents (e.g., 950,000). Show a shortfall or reduction with a leading minus sign or parentheses. Each customer's sales, gross profit, and activity/jet usage are the same regardless of your Student ID &mdash; only the cost-per-unit rates, the commission rate, and the remaining G&amp;A dollar amount are randomized.
+</div>
+
+<main>
+
+  <div class="part">
+    <span class="part-label">Problem</span>
+    <h2>Blue Ridge Aerosystems, Inc.</h2>
+
+    <div class="scenario">
+      <p><span class="val">Blue Ridge Aerosystems, Inc.</span>, an aeronautics subcontractor headquartered in Hendersonville, North Carolina, designs and manufactures electronic control systems for commercial airliners. The vast majority of all commercial aircraft are manufactured by Boeing in the U.S. and Airbus in Europe; however, there is a relatively small group of companies that manufacture narrow-body commercial jets. Assume for this exercise that Blue Ridge does contract work for the two major manufacturers plus three companies in the second tier.</p>
+      <p>Because competition is intense in the industry, Blue Ridge has always operated on a fairly thin 20% gross profit margin; hence, it is crucial that it manage nonmanufacturing overhead costs effectively in order to achieve an acceptable net profit margin. With declining profit margins in recent years, Blue Ridge Aerosystems' CEO has become concerned that the cost of obtaining contracts and maintaining relations with its five major customers may be getting out of hand. You have been hired to conduct a customer profitability analysis for fiscal <span class="val" id="yearDisp">2027</span>.</p>
+      <p>Blue Ridge Aerosystems' nonmanufacturing overhead consists of <span class="val" id="gaTotalDisp">$2,000,000</span> of general and administrative (G&amp;A) expense (including, among other expenses, the CEO's salary and bonus and the cost of operating the company's corporate jet) and selling and customer support expenses of <span class="val" id="sellTotalDisp">$3,150,000</span> (including <span class="val" id="commRateDisp">5%</span> sales commissions and <span class="val" id="abcTotalDisp">$750,000</span> of additional costs). The accounting staff determined that the additional selling and customer support expenses related to the following four activity cost pools.</p>
+    </div>
+
+    <h4 class="subsection">Activity cost pools and rates</h4>
+    <table class="given">
+      <thead><tr><th>Activity</th><th>Activity Cost Driver</th><th class="num">Cost per Unit of Activity</th></tr></thead>
+      <tbody id="rate_rows"></tbody>
+    </table>
+
+    <h4 class="subsection">Customer sales, gross profit, and activity usage</h4>
+    <table class="given">
+      <thead><tr><th>Customer</th><th class="num">Sales</th><th class="num">Gross Profit</th><th class="num">Activity 1<br>(visit days)</th><th class="num">Activity 2<br>(adjustments)</th><th class="num">Activity 3<br>(calls/contacts)</th><th class="num">Activity 4<br>(events)</th></tr></thead>
+      <tbody id="cust_rows"></tbody>
+    </table>
+
+    <h4 class="subsection">Corporate jet usage (hours, at the jet's cost per hour above)</h4>
+    <table class="given">
+      <thead><tr><th>Customer</th><th class="num">Hours</th></tr></thead>
+      <tbody id="jet_rows"></tbody>
+    </table>
+    <p class="footnote">The total cost of operating the airplane is included in general and administrative expense; none of it is included in selling and customer support costs.</p>
+
+    <div class="req"><span class="reqlabel">Required (a):</span> Prepare a customer profitability analysis for Blue Ridge Aerosystems that shows gross profit less all expenses that can reasonably be assigned to the five customers &mdash; sales commissions, the activity-based selling and support costs, and the corporate jet time flown for each customer's business (even though the jet is booked to G&amp;A, its cost is directly traceable by hours flown).</p>
+    <p class="hint">The remaining general and administrative costs &mdash; the CEO's salary and bonus and other corporate overhead &mdash; cannot reasonably be traced to any one customer, so they are left out of part (a) entirely.</p>
+
+    <h4 class="subsection">(a) Customer profitability analysis</h4>
+    <table class="worksheet">
+      <thead>
+        <tr>
+          <th>Customer</th>
+          <th class="num">Sales Commission</th>
+          <th class="num">ABC Selling &amp; Support Cost</th>
+          <th class="num">Corporate Jet Cost</th>
+          <th class="num">Net Profit</th>
+        </tr>
+      </thead>
+      <tbody id="cp_rows"></tbody>
+      <tfoot>
+        <tr class="ws-total">
+          <td class="method">Total</td>
+          <td class="amt"><input type="text" placeholder="$" id="cp-comm-tot"></td>
+          <td class="amt"><input type="text" placeholder="$" id="cp-abc-tot"></td>
+          <td class="amt"><input type="text" placeholder="$" id="cp-jet-tot"></td>
+          <td class="amt"><input type="text" placeholder="$" id="cp-neta-tot"></td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <div class="req"><span class="reqlabel">Required (b):</span> Now assume that the remaining general and administrative costs are assigned to the five customers based on relative sales dollars, and calculate net profit for each customer.</div>
+    <p class="hint">Remaining G&amp;A = total G&amp;A shown above, less the corporate jet cost total already assigned in part (a). Allocate that remainder to each customer in proportion to that customer's share of total sales.</p>
+
+    <h4 class="subsection">(b) Full allocation of remaining G&amp;A</h4>
+    <table class="worksheet">
+      <thead>
+        <tr>
+          <th>Customer</th>
+          <th class="num">Allocated G&amp;A</th>
+          <th class="num">Net Profit</th>
+        </tr>
+      </thead>
+      <tbody id="cp_rows_b"></tbody>
+      <tfoot>
+        <tr class="ws-total">
+          <td class="method">Total</td>
+          <td class="amt"><input type="text" placeholder="$" id="cp-alloc-tot"></td>
+          <td class="amt"><input type="text" placeholder="$" id="cp-netb-tot"></td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <div class="req"><span class="reqlabel">Required (c):</span> Discuss the merits of the analysis in part (a) versus part (b).</div>
+    <p class="hint">Not graded automatically &mdash; write your answer for your own notes or to submit alongside the printed worksheet. Consider: which costs in part (b) were actually caused by any particular customer, and what could an allocation based on sales dollars mislead a manager into concluding about the company's largest customers?</p>
+    <textarea class="discuss" id="discussC" placeholder="Type your discussion of part (a) versus part (b) here..."></textarea>
+
+    <div class="check-bar">
+      <button class="btn-check" id="checkCP" type="button">Check my work</button>
+      <span class="check-summary" id="cpSummary"></span>
+      <span class="check-disclaimer">This checks whether your figures match the key within a small rounding tolerance &mdash; it does not confirm your supporting computations, and it does not grade part (c).</span>
+    </div>
+  </div>
+
+  <div class="submit-bar print-hide">
+    <h2>Ready to submit?</h2>
+    <p class="submit-hint" style="margin:0 0 12px;">Your name, student ID and score are taken from the top of the page.</p>
+    <div class="submit-row submit-actions">
+      <button class="btn-submit" id="printBtn" type="button">Print / Save as PDF</button>
+    </div>
+    <p class="submit-hint">This captures exactly what's currently filled in above, including your generated scenario numbers and your part (c) discussion, and works offline.</p>
+  </div>
+</main>
+
+<footer>Customer Profitability Analysis Using Activity-Based Costing &middot; MBA 623 &middot; Western Carolina University</footer>
+
+<script>
+(function(){
+  var FILE_SLUG = "MBA623-Customer-Profitability-ABC";
+
+  // ---------- seeded pseudo-random ----------
+  function hashSeed(str){
+    var h = 2166136261;
+    for(var i=0;i<str.length;i++){
+      h ^= str.charCodeAt(i);
+      h = Math.imul(h, 16777619);
+    }
+    return h >>> 0;
+  }
+  function mulberry32(seed){
+    return function(){
+      seed |= 0; seed = seed + 0x6D2B79F5 | 0;
+      var t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
+  }
+  function pick(rand, arr){ return arr[Math.floor(rand() * arr.length)]; }
+  function rTo(x, m){ return Math.round(x/m)*m; }
+
+  // ---------- formatting ----------
+  function money0(n){
+    var v = Math.round(Number(n));
+    var s = Math.abs(v).toLocaleString('en-US');
+    return v < 0 ? '$(' + s + ')' : '$' + s;
+  }
+  function setText(id, text){
+    var el = document.getElementById(id);
+    if(el) el.textContent = text;
+  }
+  function setHTML(id, html){
+    var el = document.getElementById(id);
+    if(el) el.innerHTML = html;
+  }
+
+  // ---------- answer checking ----------
+  var TOL = 2;
+
+  function parseMoney(s){
+    if(s === null || s === undefined) return NaN;
+    var raw = String(s).trim();
+    var neg = /^\(.*\)$/.test(raw) || /^-/.test(raw) || /^−/.test(raw);
+    var cleaned = raw.replace(/[^0-9.]/g, '');
+    if(cleaned === '') return NaN;
+    var v = parseFloat(cleaned);
+    if(isNaN(v)) return NaN;
+    return neg ? -v : v;
+  }
+  function near(a, b, tol){
+    if(isNaN(a) || isNaN(b)) return false;
+    return Math.abs(a - b) <= tol;
+  }
+  function clearFieldState(el){
+    if(!el) return;
+    el.classList.remove('field-correct', 'field-incorrect');
+  }
+  function clearAllFieldStates(){
+    document.querySelectorAll('.field-correct, .field-incorrect').forEach(function(el){
+      el.classList.remove('field-correct', 'field-incorrect');
+    });
+    document.querySelectorAll('.check-summary').forEach(function(el){
+      el.textContent = ''; el.classList.remove('good','bad');
+    });
+  }
+  function markField(id, correct, tol){
+    var el = document.getElementById(id);
+    if(!el) return null;
+    el.classList.remove('field-correct', 'field-incorrect');
+    var ok = near(parseMoney(el.value), correct, tol);
+    el.classList.add(ok ? 'field-correct' : 'field-incorrect');
+    if(!el.dataset.clearBound){
+      el.addEventListener('input', function(){ clearFieldState(el); });
+      el.dataset.clearBound = '1';
+    }
+    return ok;
+  }
+  function updateSummary(elId, results){
+    var el = document.getElementById(elId);
+    if(!el) return;
+    var graded = results.filter(function(r){ return r !== null; }).length;
+    var correct = results.filter(function(r){ return r === true; }).length;
+    el.textContent = correct + ' of ' + graded + ' correct';
+    el.classList.remove('good', 'bad');
+    el.classList.add(correct === graded && graded > 0 ? 'good' : 'bad');
+  }
+
+  // ---------- score ----------
+  var SCORES = {};
+
+  function scoreState(g){
+    if(!SCORES[g.btn]) SCORES[g.btn] = { correct:0, graded:0, attempts:0, checked:false, stale:false };
+    return SCORES[g.btn];
+  }
+  function scorePct(s){
+    return s.graded ? Math.round(s.correct / s.graded * 100) : 0;
+  }
+
+  var SCORE_PROMPT = 'Fill in the worksheet below, then choose <strong>Check my work</strong>. Every blank counts as incorrect.';
+
+  function ensureScorePanel(g){
+    var area = document.getElementById('scoreArea');
+    if(!area) return null;
+    var panel = area.querySelector('.score-panel[data-for="' + g.btn + '"]');
+    if(panel) return panel;
+    panel = document.createElement('div');
+    panel.className = 'score-panel';
+    panel.setAttribute('data-for', g.btn);
+    panel.innerHTML =
+      '<div class="score-pct">&mdash;</div>' +
+      '<div class="score-detail">' +
+        '<p class="score-meta">Score</p>' +
+        '<div class="score-bar"><span></span></div>' +
+        '<p class="score-sub">' + SCORE_PROMPT + '</p>' +
+      '</div>';
+    area.appendChild(panel);
+    return panel;
+  }
+
+  function renderScore(g){
+    var panel = ensureScorePanel(g);
+    if(!panel) return;
+    var s = scoreState(g);
+    var pctEl = panel.querySelector('.score-pct');
+    var metaEl = panel.querySelector('.score-meta');
+    var fillEl = panel.querySelector('.score-bar span');
+    var subEl = panel.querySelector('.score-sub');
+    panel.classList.remove('scored-good', 'scored-bad');
+
+    if(!s.checked){
+      pctEl.innerHTML = '&mdash;';
+      metaEl.textContent = 'Score';
+      fillEl.style.width = '0%';
+      subEl.innerHTML = SCORE_PROMPT;
+      return;
+    }
+    var pct = scorePct(s);
+    pctEl.textContent = pct + '%';
+    metaEl.textContent = 'Score: ' + s.correct + ' of ' + s.graded + ' correct';
+    fillEl.style.width = pct + '%';
+    if(s.stale){
+      subEl.textContent = 'You have changed an answer since this score was calculated — check your work again to update it.';
+    } else if(s.correct === s.graded){
+      subEl.textContent = 'All ' + s.graded + ' answers match the key. Attempt ' + s.attempts + '.';
+      panel.classList.add('scored-good');
+    } else {
+      var missing = s.graded - s.correct;
+      subEl.innerHTML = missing + ' answer' + (missing === 1 ? '' : 's') + ' still to fix' +
+                        '<span class="print-hide"> — outlined in red below</span>. Attempt ' + s.attempts + '.';
+      panel.classList.add('scored-bad');
+    }
+  }
+
+  function markScoreStale(g){
+    var s = scoreState(g);
+    if(!s.checked || s.stale) return;
+    s.stale = true;
+    renderScore(g);
+  }
+
+  function resetScore(g){
+    SCORES[g.btn] = { correct:0, graded:0, attempts:0, checked:false, stale:false };
+    renderScore(g);
+  }
+
+  // ---------- fixed business facts: sales, gross profit, activity usage, jet hours ----------
+  // These represent how much business each customer actually generates and how much
+  // attention it requires -- they do not change from student to student. Only the
+  // dollar RATES applied to that usage (below) are randomized.
+  var CUSTOMERS = [
+    { label:'A', salesM:19, gpM:3.8, q1:90,  q2:10, q3:160, q4:21, jetHrs:16 },
+    { label:'B', salesM:14, gpM:2.8, q1:105, q2:20, q3:200, q4:20, jetHrs:32 },
+    { label:'C', salesM:5,  gpM:1.0, q1:95,  q2:18, q3:100, q4:17, jetHrs:8  },
+    { label:'D', salesM:6,  gpM:1.2, q1:30,  q2:8,  q3:35,  q4:12, jetHrs:0  },
+    { label:'E', salesM:4,  gpM:0.8, q1:30,  q2:4,  q3:25,  q4:14, jetHrs:5  }
+  ];
+
+  // ---------- scenario ----------
+  function baseline(){
+    return { year:2027, commissionRate:0.05, rate1:1000, rate2:1600, rate3:100, rate4:3000, jetRate:1000, otherGA:1939000 };
+  }
+
+  function randomParams(rand){
+    function jitter(n, spread){ return n * (1 + (rand() - 0.5) * spread); }
+    return {
+      year: pick(rand, [2025,2026,2027,2028]),
+      commissionRate: pick(rand, [0.04, 0.05, 0.06]),
+      rate1: rTo(jitter(1000, 0.40), 50),
+      rate2: rTo(jitter(1600, 0.40), 50),
+      rate3: rTo(jitter(100, 0.40), 5),
+      rate4: rTo(jitter(3000, 0.40), 50),
+      jetRate: rTo(jitter(1000, 0.40), 50),
+      otherGA: rTo(jitter(1939000, 0.30), 1000)
+    };
+  }
+
+  function solve(p){
+    var d = { year:p.year, commissionRate:p.commissionRate, rate1:p.rate1, rate2:p.rate2, rate3:p.rate3, rate4:p.rate4, jetRate:p.jetRate, otherGA:p.otherGA };
+
+    d.customers = CUSTOMERS.map(function(c){
+      var salesD = c.salesM * 1000000;
+      var gpD = c.gpM * 1000000;
+      var commission = salesD * p.commissionRate;
+      var act1 = c.q1 * p.rate1;
+      var act2 = c.q2 * p.rate2;
+      var act3 = c.q3 * p.rate3;
+      var act4 = c.q4 * p.rate4;
+      var abcTotal = act1 + act2 + act3 + act4;
+      var jetCost = c.jetHrs * p.jetRate;
+      var netA = gpD - commission - abcTotal - jetCost;
+      return { label:c.label, salesM:c.salesM, gpM:c.gpM, q1:c.q1, q2:c.q2, q3:c.q3, q4:c.q4, jetHrs:c.jetHrs,
+                salesD:salesD, gpD:gpD, commission:commission, act1:act1, act2:act2, act3:act3, act4:act4,
+                abcTotal:abcTotal, jetCost:jetCost, netA:netA };
+    });
+
+    d.totalSalesD = d.customers.reduce(function(s,c){ return s + c.salesD; }, 0);
+    d.totalGPD    = d.customers.reduce(function(s,c){ return s + c.gpD; }, 0);
+    d.totalCommission = d.customers.reduce(function(s,c){ return s + c.commission; }, 0);
+    d.totalABC    = d.customers.reduce(function(s,c){ return s + c.abcTotal; }, 0);
+    d.totalJet    = d.customers.reduce(function(s,c){ return s + c.jetCost; }, 0);
+    d.totalNetA   = d.customers.reduce(function(s,c){ return s + c.netA; }, 0);
+    d.sellingTotal = d.totalCommission + d.totalABC;
+    d.gaTotal = p.otherGA + d.totalJet;
+
+    d.customers.forEach(function(c){
+      c.allocGA = p.otherGA * (c.salesD / d.totalSalesD);
+      c.netB = c.netA - c.allocGA;
+    });
+    d.totalAllocGA = p.otherGA;
+    d.totalNetB = d.totalNetA - d.totalAllocGA;
+
+    return d;
+  }
+
+  function generateScenario(id){
+    var seed = (id || '').trim();
+    if(seed === '') return solve(baseline());
+    return solve(randomParams(mulberry32(hashSeed(seed.toLowerCase()))));
+  }
+
+  function applyScenario(d){
+    setText('yearDisp', d.year);
+    setText('gaTotalDisp', money0(d.gaTotal));
+    setText('sellTotalDisp', money0(d.sellingTotal));
+    setText('commRateDisp', Math.round(d.commissionRate*100) + '%');
+    setText('abcTotalDisp', money0(d.totalABC));
+
+    setHTML('rate_rows', [
+      { name:'1. Sales visits', driver:'Number of visit days', rate:d.rate1 },
+      { name:'2. Product adjustments', driver:'Number of adjustments', rate:d.rate2 },
+      { name:'3. Phone and email contacts', driver:'Number of calls/contacts', rate:d.rate3 },
+      { name:'4. Promotion and entertainment events', driver:'Number of events', rate:d.rate4 }
+    ].map(function(a){
+      return '<tr><td class="lbl">' + a.name + '</td><td class="lbl">' + a.driver + '</td><td class="num">' + money0(a.rate) + '</td></tr>';
+    }).join(''));
+
+    setHTML('cust_rows', d.customers.map(function(c){
+      return '<tr><td class="lbl">Customer ' + c.label + '</td>' +
+        '<td class="num">' + money0(c.salesM*1000000) + '</td>' +
+        '<td class="num">' + money0(c.gpM*1000000) + '</td>' +
+        '<td class="num">' + c.q1.toLocaleString() + '</td>' +
+        '<td class="num">' + c.q2.toLocaleString() + '</td>' +
+        '<td class="num">' + c.q3.toLocaleString() + '</td>' +
+        '<td class="num">' + c.q4.toLocaleString() + '</td></tr>';
+    }).join('') +
+      '<tr class="given-total"><td class="lbl">Total</td>' +
+      '<td class="num">' + money0(d.totalSalesD) + '</td>' +
+      '<td class="num">' + money0(d.totalGPD) + '</td>' +
+      '<td class="num">' + d.customers.reduce(function(s,c){return s+c.q1;},0).toLocaleString() + '</td>' +
+      '<td class="num">' + d.customers.reduce(function(s,c){return s+c.q2;},0).toLocaleString() + '</td>' +
+      '<td class="num">' + d.customers.reduce(function(s,c){return s+c.q3;},0).toLocaleString() + '</td>' +
+      '<td class="num">' + d.customers.reduce(function(s,c){return s+c.q4;},0).toLocaleString() + '</td></tr>');
+
+    setHTML('jet_rows', d.customers.map(function(c){
+      return '<tr><td class="lbl">Customer ' + c.label + '</td><td class="num">' + c.jetHrs + ' hours</td></tr>';
+    }).join('') +
+      '<tr class="given-total"><td class="lbl">Total</td><td class="num">' + d.customers.reduce(function(s,c){return s+c.jetHrs;},0) + ' hours</td></tr>');
+
+    setHTML('cp_rows', d.customers.map(function(c, i){
+      return '<tr><td class="method">Customer ' + c.label + '</td>' +
+        '<td class="amt"><input type="text" placeholder="$" id="cp-comm-' + i + '"></td>' +
+        '<td class="amt"><input type="text" placeholder="$" id="cp-abc-' + i + '"></td>' +
+        '<td class="amt"><input type="text" placeholder="$" id="cp-jet-' + i + '"></td>' +
+        '<td class="amt"><input type="text" placeholder="$" id="cp-neta-' + i + '"></td></tr>';
+    }).join(''));
+
+    setHTML('cp_rows_b', d.customers.map(function(c, i){
+      return '<tr><td class="method">Customer ' + c.label + '</td>' +
+        '<td class="amt"><input type="text" placeholder="$" id="cp-alloc-' + i + '"></td>' +
+        '<td class="amt"><input type="text" placeholder="$" id="cp-netb-' + i + '"></td></tr>';
+    }).join(''));
+  }
+
+  function fieldsFor(d){
+    var f = [];
+    d.customers.forEach(function(c, i){
+      f.push({ id:'cp-comm-' + i, key:c.commission });
+      f.push({ id:'cp-abc-' + i,  key:c.abcTotal });
+      f.push({ id:'cp-jet-' + i,  key:c.jetCost });
+      f.push({ id:'cp-neta-' + i, key:c.netA });
+    });
+    f.push({ id:'cp-comm-tot', key:d.totalCommission });
+    f.push({ id:'cp-abc-tot',  key:d.totalABC });
+    f.push({ id:'cp-jet-tot',  key:d.totalJet });
+    f.push({ id:'cp-neta-tot', key:d.totalNetA });
+    d.customers.forEach(function(c, i){
+      f.push({ id:'cp-alloc-' + i, key:c.allocGA });
+      f.push({ id:'cp-netb-' + i,  key:c.netB });
+    });
+    f.push({ id:'cp-alloc-tot', key:d.totalAllocGA });
+    f.push({ id:'cp-netb-tot',  key:d.totalNetB });
+    return f;
+  }
+
+  var CHECK_GROUPS = [{ btn:'checkCP', summary:'cpSummary' }];
+
+  // ---------------- wiring ----------------
+  var idInput = document.getElementById('studentId');
+  var genBtn = document.getElementById('genBtn');
+  var currentScenario = null;
+
+  function applyAndStore(id){
+    currentScenario = generateScenario(id);
+    applyScenario(currentScenario);
+    clearAllFieldStates();
+    CHECK_GROUPS.forEach(resetScore);
+  }
+  genBtn.addEventListener('click', function(){ applyAndStore(idInput.value); });
+  idInput.addEventListener('keydown', function(e){
+    if(e.key === 'Enter'){ e.preventDefault(); applyAndStore(idInput.value); }
+  });
+  applyAndStore('');
+
+  CHECK_GROUPS.forEach(function(g){
+    var btn = document.getElementById(g.btn);
+    if(!btn) return;
+    renderScore(g);
+
+    var part = btn.closest('.part');
+    if(part){
+      part.addEventListener('input', function(e){
+        if(e.target && e.target.tagName === 'INPUT') markScoreStale(g);
+      });
+    }
+
+    btn.addEventListener('click', function(){
+      if(!currentScenario) return;
+      var fields = fieldsFor(currentScenario);
+      var results = fields.map(function(f){
+        return markField(f.id, f.key, TOL);
+      });
+      updateSummary(g.summary, results);
+      var s = scoreState(g);
+      s.graded = results.filter(function(r){ return r !== null; }).length;
+      s.correct = results.filter(function(r){ return r === true; }).length;
+      s.attempts += 1;
+      s.checked = true;
+      s.stale = false;
+      renderScore(g);
+    });
+  });
+
+  // ---------------- Print / Save as PDF ----------------
+  function val(id){
+    var el = document.getElementById(id);
+    return el ? el.value.trim() : '';
+  }
+  document.getElementById('printBtn').addEventListener('click', function(){
+    var name = val('studentName');
+    var id = val('studentId');
+    var line = document.getElementById('printNameLine');
+    line.textContent = 'Name: ' + (name || '_______________________') +
+                       '     Student ID: ' + (id || '_______________________');
+    var oldTitle = document.title;
+    document.title = FILE_SLUG + '-' + (id || 'submission');
+    window.print();
+    document.title = oldTitle;
+  });
+
+})();
+</script>
+
+</body>
+</html>
