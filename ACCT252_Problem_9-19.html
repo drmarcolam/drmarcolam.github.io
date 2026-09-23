@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flexible Budget Performance Report — Black Mountain Pizza Co.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --purple:#592C88;
+    --purple-deep:#38195A;
+    --purple-mid:#6E3FA3;
+    --gold:#B0925C;
+    --gold-soft:#D6C398;
+    --gold-pale:#F1E9D6;
+    --parchment:#F7F4EC;
+    --paper:#FFFEFA;
+    --ink:#221B2E;
+    --slate:#5F5A6B;
+    --line:#DBD3E0;
+    --line-soft:#EAE4EF;
+    --answer:#1E5C34;
+    --answer-bg:#E7F1E9;
+    --danger:#9C3B34;
+    --shadow: 0 1px 2px rgba(56,25,90,0.07), 0 6px 18px rgba(56,25,90,0.08);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--parchment);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ color:inherit; }
+
+  header{
+    background: linear-gradient(180deg, var(--purple) 0%, var(--purple-deep) 100%);
+    color:#F1E9D6;
+    padding: 30px 6vw 24px;
+    position:relative;
+  }
+  header::after{
+    content:"";
+    position:absolute; left:0; right:0; bottom:0; height:4px;
+    background: linear-gradient(90deg, var(--gold-soft), var(--gold) 40%, var(--gold-soft) 70%, var(--gold));
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--gold-soft); margin:0 0 10px;
+  }
+  h1.title{
+    font-family:'Source Serif 4', serif; font-weight:600;
+    font-size:clamp(24px,3.4vw,34px); margin:0 0 8px; letter-spacing:-0.01em;
+  }
+  .subtitle{ font-size:14.5px; color:#D9CDE5; max-width:680px; margin:0; }
+
+  .id-bar{
+    max-width:960px; margin:0 auto; padding:18px 6vw 0;
+    display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+  }
+  .id-bar label{ font-size:13px; font-weight:600; color:var(--slate); }
+  .id-bar input[type="text"]{
+    font-family:'Inter',sans-serif; font-size:13.5px; padding:8px 11px;
+    border:1px solid var(--line); border-radius:5px; background:var(--paper); color:var(--ink);
+    width:220px;
+  }
+  .id-bar input:focus{ outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); }
+  .id-bar .id-hint{ font-size:12px; color:var(--slate); }
+
+  .score-area{ max-width:960px; margin:0 auto; padding:14px 6vw 0; }
+
+  .rounding-note{
+    max-width:960px; margin:14px auto 0; padding:12px 6vw;
+    font-size:12.5px; color:var(--slate); line-height:1.5;
+  }
+  .rounding-note strong{ color:var(--purple); font-weight:600; }
+
+  main{ max-width:960px; margin:0 auto; padding:22px 6vw 90px; }
+
+  .part{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    box-shadow:var(--shadow);
+    padding:24px 26px 26px;
+    margin-top:26px;
+  }
+  .part-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; color:var(--gold); background:var(--purple);
+    display:inline-block; padding:3px 9px; border-radius:4px; letter-spacing:.04em;
+    margin-bottom:12px;
+  }
+  .part h2{
+    font-family:'Source Serif 4', serif; font-size:21px; font-weight:600;
+    color:var(--purple); margin:0 0 12px;
+  }
+  .scenario{
+    background:var(--parchment);
+    border-left:3px solid var(--gold);
+    padding:14px 18px;
+    border-radius:0 6px 6px 0;
+    font-size:14.5px;
+    color:var(--ink);
+    margin-bottom:16px;
+  }
+  .scenario p{ margin:0 0 10px; }
+  .scenario p:last-child{ margin-bottom:0; }
+  .scenario span.val{ font-weight:700; color:var(--purple-deep); }
+
+  .req{
+    font-weight:600;
+    font-size:14.5px;
+    color:var(--ink);
+    margin:20px 0 10px;
+  }
+  .req span.reqlabel{ color:var(--purple); }
+  ol.reqlist{ margin:8px 0 0; padding-left:20px; font-size:14.5px; }
+  ol.reqlist li{ margin:6px 0; }
+
+  h4.subsection{
+    font-family:'Source Serif 4',serif; font-size:15px; color:var(--purple); margin:22px 0 6px;
+    border-bottom:1px solid var(--line-soft); padding-bottom:4px;
+  }
+
+  .footnote{ font-size:12px; color:var(--slate); margin:2px 0 14px; font-style:italic; }
+  .hint{ font-size:12.5px; color:var(--slate); margin:4px 0 10px; }
+
+  table.given{ width:100%; border-collapse:collapse; font-size:13px; margin:6px 0 14px; }
+  table.given th{ text-align:left; font-size:10.5px; text-transform:uppercase; letter-spacing:.03em; color:var(--slate); border-bottom:2px solid var(--purple); padding:6px 8px; }
+  table.given td{ border-bottom:1px solid var(--line); padding:6px 8px; font-family:'IBM Plex Mono', monospace; }
+  table.given td.lbl{ font-family:'Inter',sans-serif; }
+  table.given td.num, table.given th.num{ text-align:right; }
+  table.given tr.gd-total td{ border-top:1.6px solid var(--purple); font-weight:600; }
+
+  table.worksheet{
+    width:100%;
+    border-collapse:collapse;
+    font-size:12.5px;
+    margin:10px 0 4px;
+  }
+  table.worksheet th{
+    text-align:left;
+    font-size:10.5px;
+    text-transform:uppercase;
+    letter-spacing:.02em;
+    color:var(--slate);
+    border-bottom:2px solid var(--purple);
+    padding:7px 6px;
+  }
+  table.worksheet th.num{ text-align:right; }
+  table.worksheet td{
+    border-bottom:1px solid var(--line);
+    padding:7px 6px;
+    vertical-align:middle;
+  }
+  table.worksheet td.method{ font-weight:600; }
+  table.worksheet td.given-cell{ text-align:right; font-family:'IBM Plex Mono',monospace; color:var(--slate); }
+  table.worksheet td.amt{ width:105px; text-align:right; font-family:'IBM Plex Mono',monospace; }
+  table.worksheet td.fu{ width:64px; }
+  table.worksheet td.dash{ text-align:center; color:var(--line); }
+  table.worksheet tr.ws-total td{ border-top:1.6px solid var(--purple); font-weight:600; }
+  table.worksheet tr.ws-noi td{ border-top:2px solid var(--purple-deep); font-weight:700; background:var(--gold-pale); }
+  table.worksheet input[type="text"]{
+    width:100%;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    padding:5px 6px;
+    border:1px solid var(--line);
+    border-radius:5px;
+    background:var(--parchment);
+    color:var(--ink);
+    text-align:right;
+  }
+  table.worksheet input[type="text"]:focus{
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
+  }
+  table.worksheet select.acct{
+    width:100%;
+    font-family:'Inter',sans-serif;
+    font-size:12px;
+    font-weight:400;
+    padding:5px 4px;
+    border:1px solid var(--line);
+    border-radius:5px;
+    background:var(--parchment);
+    color:var(--ink);
+  }
+  table.worksheet select.acct:focus{
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
+  }
+  .table-scroll{ overflow-x:auto; }
+  .table-scroll table.worksheet{ min-width:820px; }
+
+  .score-panel{
+    display:flex; align-items:center; gap:18px;
+    margin:0 0 4px; padding:14px 18px;
+    background:var(--parchment);
+    border:1px solid var(--line);
+    border-radius:8px;
+  }
+  .score-panel.scored-good{ background:var(--answer-bg); border-color:#B7D3BE; }
+  .score-panel.scored-bad{ background:#F8F0EF; border-color:#E2C6C2; }
+  .score-pct{
+    font-family:'Source Serif 4', serif;
+    font-size:30px; font-weight:700; line-height:1.05;
+    color:var(--slate); min-width:96px; text-align:center;
+  }
+  .score-panel.scored-good .score-pct{ color:var(--answer); }
+  .score-panel.scored-bad .score-pct{ color:var(--danger); }
+  .score-detail{ flex:1; min-width:0; }
+  .score-meta{ font-size:13.5px; font-weight:600; color:var(--ink); margin:0 0 7px; }
+  .score-bar{ height:8px; border-radius:4px; background:var(--line-soft); overflow:hidden; }
+  .score-bar span{ display:block; height:100%; width:0; background:var(--purple-mid); transition:width .35s ease; }
+  .score-panel.scored-good .score-bar span{ background:var(--answer); }
+  .score-panel.scored-bad .score-bar span{ background:var(--danger); }
+  .score-sub{ font-size:11.5px; color:var(--slate); margin:7px 0 0; }
+
+  .check-bar{
+    margin-top:20px;
+    padding-top:16px;
+    border-top:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .btn-check{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:9px 18px; border:1px solid var(--purple);
+    background:var(--purple); color:#fff; cursor:pointer;
+  }
+  .btn-check:hover{ background:var(--purple-mid); }
+  .check-summary{ font-size:13.5px; font-weight:600; }
+  .check-summary.good{ color:var(--answer); }
+  .check-summary.bad{ color:var(--danger); }
+  .check-disclaimer{ font-size:11.5px; color:var(--slate); width:100%; margin-top:2px; font-style:italic; }
+
+  input.field-correct, select.field-correct{
+    border-color:var(--answer) !important;
+    background:var(--answer-bg) !important;
+  }
+  input.field-incorrect, select.field-incorrect{
+    border-color:var(--danger) !important;
+    background:#F3E1DE !important;
+  }
+
+  .submit-bar{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    box-shadow:var(--shadow);
+    padding:22px 26px 24px;
+    margin-top:26px;
+  }
+  .submit-bar h2{
+    font-family:'Source Serif 4', serif; font-size:19px; font-weight:600;
+    color:var(--purple); margin:0 0 14px;
+  }
+  .submit-row{ display:flex; align-items:center; gap:10px; margin-bottom:12px; flex-wrap:wrap; }
+  .submit-row label{ font-size:13px; font-weight:600; color:var(--slate); }
+  .btn-submit{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:10px 18px; border:1px solid var(--purple);
+    background:var(--purple); color:#fff; cursor:pointer;
+  }
+  .btn-submit:hover{ background:var(--purple-mid); }
+  .submit-hint{ font-size:12px; color:var(--slate); margin:6px 0 0; }
+
+  @media print{
+    .print-hide, .id-bar, .check-bar, .rounding-note{ display:none !important; }
+    header{ background:none !important; color:var(--ink) !important; padding:0 0 14px !important; }
+    header::after{ display:none !important; }
+    .eyebrow{ color:var(--purple) !important; }
+    .subtitle{ color:var(--slate) !important; }
+    body{ background:#fff !important; }
+    .part{ box-shadow:none !important; border:1px solid #999 !important; break-inside:auto; }
+    .score-panel{ background:#fff !important; border:1.5px solid #000 !important; break-inside:avoid; }
+    .score-bar{ display:none !important; }
+    .score-pct, .score-panel.scored-good .score-pct, .score-panel.scored-bad .score-pct{ color:#000 !important; }
+    .part h2, .part-label, .scenario, h4.subsection{ break-after:avoid; break-inside:avoid; }
+    table.given, table.worksheet{ break-inside:auto; }
+    table.given tr, table.worksheet tr{ break-inside:avoid; }
+    .submit-bar{ break-before:avoid; }
+    .table-scroll{ overflow-x:visible; }
+    .table-scroll table.worksheet{ min-width:0; }
+    input[type="text"], select.acct{
+      border:none !important;
+      border-bottom:1px solid #000 !important;
+      background:transparent !important;
+      border-radius:0 !important;
+      color:#000 !important;
+      -webkit-appearance:none;
+      -moz-appearance:none;
+      appearance:none;
+      padding:2px 4px !important;
+      font-size:11px !important;
+    }
+    .print-name-line{ display:block !important; }
+  }
+  .print-name-line{ display:none; font-size:13px; color:var(--ink); padding:0 6vw; margin:0 0 10px; }
+
+  footer{ text-align:center; padding:26px 6vw 40px; font-size:12px; color:var(--slate); }
+
+  @media (max-width:600px){
+    header, main, .id-bar{ padding-left:5vw; padding-right:5vw; }
+  }
+
+</style>
+</head>
+<body>
+
+<header>
+  <p class="eyebrow">ACCT 252 &middot; Using Accounting Information for Management Decisions &middot; Flexible Budgets</p>
+  <h1 class="title">Flexible Budget Performance Report — Black Mountain Pizza Co.</h1>
+  <p class="subtitle">Building a two-driver flexible budget (pizzas and deliveries) and completing a full performance report that separates activity variances from revenue and spending variances.</p>
+</header>
+
+<p class="print-name-line" id="printNameLine"></p>
+
+<div class="id-bar">
+  <label for="studentName">Name</label>
+  <input type="text" id="studentName" placeholder="First and last name">
+  <label for="studentId">Student ID</label>
+  <input type="text" id="studentId" placeholder="e.g. 920410165">
+  <button id="genBtn" type="button">Generate scenario</button>
+  <span class="id-hint">Leave the ID blank and click to restore the original textbook figures.</span>
+</div>
+
+<div class="score-area" id="scoreArea"></div>
+
+<div class="rounding-note">
+  <strong>Before you start:</strong> enter all dollar amounts in whole dollars, as positive values (no parentheses or minus signs). Use the dropdown next to each variance to indicate Favorable (F), Unfavorable (U), or None (a zero variance is "None," not "F" or "U").
+</div>
+
+<main>
+
+  <div class="part">
+    <span class="part-label">Problem</span>
+    <h2>Black Mountain Pizza Co.</h2>
+
+    <div class="scenario">
+      <p><span class="val">Black Mountain Pizza Co.</span> has a small area for in-store dining as well as take-out and free home delivery. The owner has determined the shop has two major cost drivers — the number of pizzas sold and the number of deliveries made.</p>
+    </div>
+
+    <h4 class="subsection">Cost formulas</h4>
+    <table class="given">
+      <thead><tr><th>Cost</th><th class="num">Fixed cost per month</th><th class="num">Cost per pizza</th><th class="num">Cost per delivery</th></tr></thead>
+      <tbody>
+        <tr><td class="lbl">Pizza ingredients</td><td class="num" id="cf-ingredients-fixed">—</td><td class="num" id="cf-ingredients-pp">$4.30</td><td class="num" id="cf-ingredients-pd">—</td></tr>
+        <tr><td class="lbl">Kitchen staff</td><td class="num" id="cf-kitchen-fixed">$6,110</td><td class="num" id="cf-kitchen-pp">—</td><td class="num" id="cf-kitchen-pd">—</td></tr>
+        <tr><td class="lbl">Utilities</td><td class="num" id="cf-utilities-fixed">$710</td><td class="num" id="cf-utilities-pp">$0.30</td><td class="num" id="cf-utilities-pd">—</td></tr>
+        <tr><td class="lbl">Delivery person</td><td class="num" id="cf-deliveryPerson-fixed">—</td><td class="num" id="cf-deliveryPerson-pp">—</td><td class="num" id="cf-deliveryPerson-pd">$3.10</td></tr>
+        <tr><td class="lbl">Delivery vehicle</td><td class="num" id="cf-deliveryVehicle-fixed">$730</td><td class="num" id="cf-deliveryVehicle-pp">—</td><td class="num" id="cf-deliveryVehicle-pd">$1.30</td></tr>
+        <tr><td class="lbl">Equipment depreciation</td><td class="num" id="cf-depreciation-fixed">$480</td><td class="num" id="cf-depreciation-pp">—</td><td class="num" id="cf-depreciation-pd">—</td></tr>
+        <tr><td class="lbl">Rent</td><td class="num" id="cf-rent-fixed">$2,070</td><td class="num" id="cf-rent-pp">—</td><td class="num" id="cf-rent-pd">—</td></tr>
+        <tr><td class="lbl">Miscellaneous</td><td class="num" id="cf-misc-fixed">$830</td><td class="num" id="cf-misc-pp">$0.15</td><td class="num" id="cf-misc-pd">—</td></tr>
+      </tbody>
+    </table>
+
+    <div class="scenario">
+      <p>The pizzeria budgeted for <span class="val" id="disp-plannedPizzas">1,860 pizzas</span> at an average selling price of <span class="val" id="disp-price">$17</span> per pizza, and for <span class="val" id="disp-plannedDeliveries">240 deliveries</span>, for the month.</p>
+    </div>
+
+    <h4 class="subsection">Actual results</h4>
+    <table class="given">
+      <thead><tr><th>Item</th><th class="num">Actual</th></tr></thead>
+      <tbody>
+        <tr><td class="lbl">Pizzas</td><td class="num" id="ar-disp-pizzas">1,960</td></tr>
+        <tr><td class="lbl">Deliveries</td><td class="num" id="ar-disp-deliveries">220</td></tr>
+        <tr><td class="lbl">Revenue</td><td class="num" id="ar-disp-revenue">$33,970</td></tr>
+        <tr><td class="lbl">Pizza ingredients</td><td class="num" id="ar-disp-ingredients">$9,010</td></tr>
+        <tr><td class="lbl">Kitchen staff</td><td class="num" id="ar-disp-kitchen">$6,050</td></tr>
+        <tr><td class="lbl">Utilities</td><td class="num" id="ar-disp-utilities">$935</td></tr>
+        <tr><td class="lbl">Delivery person</td><td class="num" id="ar-disp-deliveryPerson">$682</td></tr>
+        <tr><td class="lbl">Delivery vehicle</td><td class="num" id="ar-disp-deliveryVehicle">$1,006</td></tr>
+        <tr><td class="lbl">Equipment depreciation</td><td class="num" id="ar-disp-depreciation">$480</td></tr>
+        <tr><td class="lbl">Rent</td><td class="num" id="ar-disp-rent">$2,070</td></tr>
+        <tr><td class="lbl">Miscellaneous</td><td class="num" id="ar-disp-misc">$850</td></tr>
+      </tbody>
+    </table>
+
+    <div class="req"><span class="reqlabel">Required:</span>
+      <ol class="reqlist">
+        <li>Complete the flexible budget performance report below. Indicate the effect of each variance by selecting F (favorable), U (unfavorable), or None (no effect). Input all variance amounts as positive values.</li>
+      </ol>
+    </div>
+
+    <h4 class="subsection">Flexible budget performance report</h4>
+    <p class="hint">Planning budget = cost formula applied at the originally planned pizzas/deliveries. Flexible budget = cost formula applied at the actual pizzas/deliveries. Activity variance = flexible budget − planning budget. Revenue and spending variance = actual results − flexible budget.</p>
+    <div class="table-scroll">
+    <table class="worksheet">
+      <thead>
+        <tr>
+          <th style="width:150px;">Line item</th>
+          <th class="num">Actual Results</th>
+          <th class="num">Rev. &amp; Spending Var.</th>
+          <th></th>
+          <th class="num">Flexible Budget</th>
+          <th class="num">Activity Var.</th>
+          <th></th>
+          <th class="num">Planning Budget</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="method">Pizzas</td>
+          <td class="given-cell" id="rep-ar-pizzas">1,960</td>
+          <td class="dash">—</td><td class="dash">—</td>
+          <td class="amt"><input type="text" placeholder="#" id="fx-pizzas"></td>
+          <td class="dash">—</td><td class="dash">—</td>
+          <td class="given-cell" id="rep-pl-pizzas">1,860</td>
+        </tr>
+        <tr>
+          <td class="method">Deliveries</td>
+          <td class="given-cell" id="rep-ar-deliveries">220</td>
+          <td class="dash">—</td><td class="dash">—</td>
+          <td class="amt"><input type="text" placeholder="#" id="fx-deliveries"></td>
+          <td class="dash">—</td><td class="dash">—</td>
+          <td class="given-cell" id="rep-pl-deliveries">240</td>
+        </tr>
+        <tr>
+          <td class="method">Revenue</td>
+          <td class="given-cell" id="rep-ar-revenue">$33,970</td>
+          <td class="amt"><input type="text" placeholder="$" id="sv-revenue"></td>
+          <td class="fu"><select class="acct" id="svfu-revenue"><option value="">—</option><option value="F">F</option><option value="U">U</option><option value="None">None</option></select></td>
+          <td class="amt"><input type="text" placeholder="$" id="fx-revenue"></td>
+          <td class="amt"><input type="text" placeholder="$" id="av-revenue"></td>
+          <td class="fu"><select class="acct" id="avfu-revenue"><option value="">—</option><option value="F">F</option><option value="U">U</option><option value="None">None</option></select></td>
+          <td class="amt"><input type="text" placeholder="$" id="pl-revenue"></td>
+        </tr>
+        <tr>
+          <td class="method">Pizza ingredients</td>
+          <td class="given-cell" id="rep-ar-ingredients">$9,010</td>
+          <td class="amt"><input type="text" placeholder="$" id="sv-ingredients"></td>
+          <td class="fu"><select class="acct" id="svfu-ingredients"><option value="">—</option><option value="F">F</option><option value="U">U</option><option value="None">None</option></select></td>
+          <td class="amt"><input type="text" placeholder="$" id="fx-ingredients"></td>
+          <td class="amt"><input type="text" placeholder="$" id="av-ingredients"></td>
+          <td class="fu"><select class="acct" id="avfu-ingredients"><option value="">—</option><option value="F">F</option><option value="U">U</option><option value="None">None</option></select></td>
+          <td class="amt"><input type="text" placeholder="$" id="pl-ingredients"></td>
+        </tr>
+        <tr>
+          <td class="method">Kitchen staff</td>
+          <td class="given-cell" id="rep-ar-kitchen">$6,050</td>
+          <td class="amt"><input type="text" placeholder="$" id="sv-kitchen"></td>
+          <td class="fu"><select class="acct" id="svfu-kitchen"><option value="">—</option><option value="F">F</option><option value="U">U</option><option value="None">None</option></select></td>
+          <td class="amt"><input type="text" placeholder="$" id="fx-kitchen"></td>
+          <td class="amt"><input type="text" placeholder="$" id="av-kitchen"></td>
+          <td class="fu"><select class="acct" id="avfu-kitchen"><option value="">—</option><option value="F">F</option><option value="U">U</option><option value="None">None</option></select></td>
+          <td class="amt"><input type="text" placeholder="$" id="pl-kitchen"></td>
+        </tr>
+        <tr>
+          <td class="method">Utilities</td>
+          <td class="given-cell" id="rep-ar-utilities">$935</td>
+          <td class="amt"><input type="text" placeholder="$" id="sv-utilities"></td>
+          <td class="fu"><select class="acct" id="svfu-utilities"><option value="">—</option><option value="F">F</option><option value="U">U</option><option value="None">None</option></select></td>
+          <td class="amt"><input type="text" placeholder="$" id="fx-utilities"></td>
+          <td class="amt"><input type="text" placeholder="$" id="av-utilities"></td>
+          <td class="fu"><select class="acct" id="avfu-utilities"><option value="">—</option><option value="F">F</option><option value="U">U</option><option value="None">None</option></select></td>
+          <td class="amt"><input type="text" placeholder="$" id="pl-utilities"></td>
+        </tr>
+        <tr>
+          <td class="method">Delivery person</td>
+          <td class="given-cell" id="rep-ar-deliveryPerson">$682</td>
+          <td class="amt"><input type="text" placeholder="$" id="sv-deliveryPerson"></td>
+          <td class="fu"><select class="acct" id="svfu-deliveryPerson"><option value="">—</option><option value="F">F</option><option value="U">U</option><option value="None">None</option></select></td>
+          <td class="amt"><input type="text" placeholder="$" id="fx-deliveryPerson"></td>
+          <td class="amt"><input type="text" placeholder="$" id="av-deliveryPerson"></td>
+          <td class="fu"><select class="acct" id="avfu-deliveryPerson"><option value="">—</option><option value="F">F</option><option value="U">U</option><option value="None">None</option></select></td>
+          <td class="amt"><input type="text" placeholder="$" id="pl-deliveryPerson"></td>
+        </tr>
+        <tr>
+          <td class="method">Delivery vehicle</td>
+          <td class="given-cell" id="rep-ar-deliveryVehicle">$1,006</td>
+          <td class="amt"><input type="text" placeholder="$" id="sv-deliveryVehicle"></td>
+          <td class="fu"><select class="acct" id="svfu-deliveryVehicle"><option value="">—</option><option value="F">F</option><option value="U">U</option><option value="None">None</option></select></td>
+          <td class="amt"><input type="text" placeholder="$" id="fx-deliveryVehicle"></td>
+          <td class="amt"><input type="text" placeholder="$" id="av-deliveryVehicle"></td>
+          <td class="fu"><select class="acct" id="avfu-deliveryVehicle"><option value="">—</option><option value="F">F</option><option value="U">U</option><option value="None">None</option></select></td>
+          <td class="amt"><input type="text" placeholder="$" id="pl-deliveryVehicle"></td>
+        </tr>
+        <tr>
+          <td class="method">Equipment depreciation</td>
+          <td class="given-cell" id="rep-ar-depreciation">$480</td>
+          <td class="amt"><input type="text" placeholder="$" id="sv-depreciation"></td>
+          <td class="fu"><select class="acct" id="svfu-depreciation"><option value="">—</option><option value="F">F</option><option value="U">U</option><option value="None">None</option></select></td>
+          <td class="amt"><input type="text" placeholder="$" id="fx-depreciation"></td>
+          <td class="amt"><input type="text" placeholder="$" id="av-depreciation"></td>
+          <td class="fu"><select class="acct" id="avfu-depreciation"><option value="">—</option><option value="F">F</option><option value="U">U</option><option value="None">None</option></select></td>
+          <td class="amt"><input type="text" placeholder="$" id="pl-depreciation"></td>
+        </tr>
+        <tr>
+          <td class="method">Rent</td>
+          <td class="given-cell" id="rep-ar-rent">$2,070</td>
+          <td class="amt"><input type="text" placeholder="$" id="sv-rent"></td>
+          <td class="fu"><select class="acct" id="svfu-rent"><option value="">—</option><option value="F">F</option><option value="U">U</option><option value="None">None</option></select></td>
+          <td class="amt"><input type="text" placeholder="$" id="fx-rent"></td>
+          <td class="amt"><input type="text" placeholder="$" id="av-rent"></td>
+          <td class="fu"><select class="acct" id="avfu-rent"><option value="">—</option><option value="F">F</option><option value="U">U</option><option value="None">None</option></select></td>
+          <td class="amt"><input type="text" placeholder="$" id="pl-rent"></td>
+        </tr>
+        <tr>
+          <td class="method">Miscellaneous</td>
+          <td class="given-cell" id="rep-ar-misc">$850</td>
+          <td class="amt"><input type="text" placeholder="$" id="sv-misc"></td>
+          <td class="fu"><select class="acct" id="svfu-misc"><option value="">—</option><option value="F">F</option><option value="U">U</option><option value="None">None</option></select></td>
+          <td class="amt"><input type="text" placeholder="$" id="fx-misc"></td>
+          <td class="amt"><input type="text" placeholder="$" id="av-misc"></td>
+          <td class="fu"><select class="acct" id="avfu-misc"><option value="">—</option><option value="F">F</option><option value="U">U</option><option value="None">None</option></select></td>
+          <td class="amt"><input type="text" placeholder="$" id="pl-misc"></td>
+        </tr>
+        <tr class="ws-total">
+          <td class="method">Total expenses</td>
+          <td class="given-cell" id="rep-ar-totalexp">$21,083</td>
+          <td class="amt"><input type="text" placeholder="$" id="sv-totalexp"></td>
+          <td class="fu"><select class="acct" id="svfu-totalexp"><option value="">—</option><option value="F">F</option><option value="U">U</option><option value="None">None</option></select></td>
+          <td class="amt"><input type="text" placeholder="$" id="fx-totalexp"></td>
+          <td class="amt"><input type="text" placeholder="$" id="av-totalexp"></td>
+          <td class="fu"><select class="acct" id="avfu-totalexp"><option value="">—</option><option value="F">F</option><option value="U">U</option><option value="None">None</option></select></td>
+          <td class="amt"><input type="text" placeholder="$" id="pl-totalexp"></td>
+        </tr>
+        <tr class="ws-noi">
+          <td class="method">Net operating income</td>
+          <td class="given-cell" id="rep-ar-noi">$12,887</td>
+          <td class="amt"><input type="text" placeholder="$" id="sv-noi"></td>
+          <td class="fu"><select class="acct" id="svfu-noi"><option value="">—</option><option value="F">F</option><option value="U">U</option><option value="None">None</option></select></td>
+          <td class="amt"><input type="text" placeholder="$" id="fx-noi"></td>
+          <td class="amt"><input type="text" placeholder="$" id="av-noi"></td>
+          <td class="fu"><select class="acct" id="avfu-noi"><option value="">—</option><option value="F">F</option><option value="U">U</option><option value="None">None</option></select></td>
+          <td class="amt"><input type="text" placeholder="$" id="pl-noi"></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="check-bar">
+      <button class="btn-check" id="checkCL" type="button">Check my work</button>
+      <span class="check-summary" id="clSummary"></span>
+      <span class="check-disclaimer">This checks whether your figures and F/U/None labels match the key within a small tolerance.</span>
+    </div>
+  </div>
+
+  <div class="submit-bar print-hide">
+    <h2>Ready to submit?</h2>
+    <p class="submit-hint" style="margin:0 0 12px;">Your name is taken from the top of the page.</p>
+    <div class="submit-row submit-actions">
+      <button class="btn-submit" id="printBtn" type="button">Print / Save as PDF</button>
+    </div>
+    <p class="submit-hint">This captures exactly what's currently filled in above and works offline.</p>
+  </div>
+</main>
+
+<footer>Flexible Budget Performance Report &middot; ACCT 252 &middot; Western Carolina University</footer>
+
+<script>
+(function(){
+  var FILE_SLUG = "ACCT252-Flexible-Budget-Black-Mountain-Pizza";
+
+  function hashSeed(str){
+    var h = 2166136261;
+    for(var i=0;i<str.length;i++){ h ^= str.charCodeAt(i); h = Math.imul(h, 16777619); }
+    return h >>> 0;
+  }
+  function mulberry32(seed){
+    return function(){
+      seed |= 0; seed = seed + 0x6D2B79F5 | 0;
+      var t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
+  }
+  function pick(rand, arr){ return arr[Math.floor(rand() * arr.length)]; }
+  function rTo(x, m){ return Math.round(x/m)*m; }
+  function r2(x){ return Math.round(x*100)/100; }
+
+  function money0(n){
+    var v = Number(n);
+    var s = Math.abs(v).toLocaleString('en-US', {minimumFractionDigits:0, maximumFractionDigits:0});
+    return v < 0 ? '$(' + s + ')' : '$' + s;
+  }
+  function rate2(n){ return '$' + Number(n).toFixed(2); }
+  function setText(id, text){
+    var el = document.getElementById(id);
+    if(el) el.textContent = text;
+  }
+
+  var TOL = { dollars:1, count:0.5 };
+
+  function parseMoney(s){
+    if(s === null || s === undefined) return NaN;
+    var raw = String(s).trim();
+    var neg = /^\(.*\)$/.test(raw) || /^-/.test(raw) || /^−/.test(raw);
+    var cleaned = raw.replace(/[^0-9.]/g, '');
+    if(cleaned === '') return NaN;
+    var v = parseFloat(cleaned);
+    if(isNaN(v)) return NaN;
+    return neg ? -v : v;
+  }
+  function near(a, b, tol){
+    if(isNaN(a) || isNaN(b)) return false;
+    return Math.abs(a - b) <= tol;
+  }
+  function clearFieldState(el){
+    if(!el) return;
+    el.classList.remove('field-correct', 'field-incorrect');
+  }
+  function clearAllFieldStates(){
+    document.querySelectorAll('.field-correct, .field-incorrect').forEach(function(el){
+      el.classList.remove('field-correct', 'field-incorrect');
+    });
+    document.querySelectorAll('.check-summary').forEach(function(el){
+      el.textContent = ''; el.classList.remove('good','bad');
+    });
+  }
+  function markField(id, correct, tol){
+    var el = document.getElementById(id);
+    if(!el) return null;
+    el.classList.remove('field-correct', 'field-incorrect');
+    var ok = near(parseMoney(el.value), correct, tol);
+    el.classList.add(ok ? 'field-correct' : 'field-incorrect');
+    if(!el.dataset.clearBound){
+      el.addEventListener('input', function(){ clearFieldState(el); });
+      el.dataset.clearBound = '1';
+    }
+    return ok;
+  }
+  function markSelect(id, expected){
+    var el = document.getElementById(id);
+    if(!el) return null;
+    el.classList.remove('field-correct', 'field-incorrect');
+    var ok = el.value === expected;
+    el.classList.add(ok ? 'field-correct' : 'field-incorrect');
+    if(!el.dataset.clearBound){
+      el.addEventListener('change', function(){ clearFieldState(el); });
+      el.dataset.clearBound = '1';
+    }
+    return ok;
+  }
+  function updateSummary(elId, results){
+    var el = document.getElementById(elId);
+    if(!el) return;
+    var graded = results.filter(function(r){ return r !== null; }).length;
+    var correct = results.filter(function(r){ return r === true; }).length;
+    el.textContent = correct + ' of ' + graded + ' correct';
+    el.classList.remove('good', 'bad');
+    el.classList.add(correct === graded && graded > 0 ? 'good' : 'bad');
+  }
+
+  var SCORES = {};
+  function scoreState(g){
+    if(!SCORES[g.btn]) SCORES[g.btn] = { correct:0, graded:0, attempts:0, checked:false, stale:false };
+    return SCORES[g.btn];
+  }
+  function scorePct(s){
+    return s.graded ? Math.round(s.correct / s.graded * 100) : 0;
+  }
+  var SCORE_PROMPT = 'Fill in the report below, then choose <strong>Check my work</strong>. Every blank counts as incorrect.';
+
+  function ensureScorePanel(g){
+    var area = document.getElementById('scoreArea');
+    if(!area) return null;
+    var panel = area.querySelector('.score-panel[data-for="' + g.btn + '"]');
+    if(panel) return panel;
+    panel = document.createElement('div');
+    panel.className = 'score-panel';
+    panel.setAttribute('data-for', g.btn);
+    panel.innerHTML =
+      '<div class="score-pct">&mdash;</div>' +
+      '<div class="score-detail">' +
+        '<p class="score-meta">Score</p>' +
+        '<div class="score-bar"><span></span></div>' +
+        '<p class="score-sub">' + SCORE_PROMPT + '</p>' +
+      '</div>';
+    area.appendChild(panel);
+    return panel;
+  }
+
+  function renderScore(g){
+    var panel = ensureScorePanel(g);
+    if(!panel) return;
+    var s = scoreState(g);
+    var pctEl = panel.querySelector('.score-pct');
+    var metaEl = panel.querySelector('.score-meta');
+    var fillEl = panel.querySelector('.score-bar span');
+    var subEl = panel.querySelector('.score-sub');
+    panel.classList.remove('scored-good', 'scored-bad');
+
+    if(!s.checked){
+      pctEl.innerHTML = '&mdash;';
+      metaEl.textContent = 'Score';
+      fillEl.style.width = '0%';
+      subEl.innerHTML = SCORE_PROMPT;
+      return;
+    }
+    var pct = scorePct(s);
+    pctEl.textContent = pct + '%';
+    metaEl.textContent = 'Score: ' + s.correct + ' of ' + s.graded + ' correct';
+    fillEl.style.width = pct + '%';
+    if(s.stale){
+      subEl.textContent = 'You have changed an answer since this score was calculated — check your work again to update it.';
+    } else if(s.correct === s.graded){
+      subEl.textContent = 'All ' + s.graded + ' answers match the key. Attempt ' + s.attempts + '.';
+      panel.classList.add('scored-good');
+    } else {
+      var missing = s.graded - s.correct;
+      subEl.innerHTML = missing + ' answer' + (missing === 1 ? '' : 's') + ' still to fix' +
+                        '<span class="print-hide"> — outlined in red below</span>. Attempt ' + s.attempts + '.';
+      panel.classList.add('scored-bad');
+    }
+  }
+  function markScoreStale(g){
+    var s = scoreState(g);
+    if(!s.checked || s.stale) return;
+    s.stale = true;
+    renderScore(g);
+  }
+  function resetScore(g){
+    SCORES[g.btn] = { correct:0, graded:0, attempts:0, checked:false, stale:false };
+    renderScore(g);
+  }
+
+  // ---------- scenario ----------
+  function baseline(){
+    return {
+      plannedPizzas:1860, price:17, plannedDeliveries:240,
+      actualPizzas:1960, actualDeliveries:220,
+      items:{
+        ingredients: {fixed:0, perPizza:4.30, perDelivery:0, actual:9010},
+        kitchen:     {fixed:6110, perPizza:0, perDelivery:0, actual:6050},
+        utilities:   {fixed:710, perPizza:0.30, perDelivery:0, actual:935},
+        deliveryPerson:{fixed:0, perPizza:0, perDelivery:3.10, actual:682},
+        deliveryVehicle:{fixed:730, perPizza:0, perDelivery:1.30, actual:1006},
+        depreciation:{fixed:480, perPizza:0, perDelivery:0, actual:480},
+        rent:        {fixed:2070, perPizza:0, perDelivery:0, actual:2070},
+        misc:        {fixed:830, perPizza:0.15, perDelivery:0, actual:850}
+      },
+      actualRevenue:33970
+    };
+  }
+
+  function randomParams(rand){
+    var plannedPizzas = rTo(pick(rand,[1500,1650,1800,1860,2000,2150,2300]) + rand()*100, 10);
+    var price = pick(rand,[14,15,16,17,18,19,20]);
+    var plannedDeliveries = rTo(pick(rand,[180,210,240,270,300]) + rand()*20, 10);
+
+    var pizzaRatio = pick(rand,[0.90,0.95,1.00,1.05,1.10]) + (rand()-0.5)*0.03;
+    var actualPizzas = rTo(plannedPizzas*pizzaRatio, 10);
+    var delivRatio = pick(rand,[0.80,0.85,0.90,0.95,1.00,1.05,1.10]) + (rand()-0.5)*0.03;
+    var actualDeliveries = rTo(plannedDeliveries*delivRatio, 10);
+
+    function mkItem(fixedRange, ppRange, pdRange){
+      var fixed = fixedRange ? rTo(fixedRange[0]+rand()*(fixedRange[1]-fixedRange[0]), 10) : 0;
+      var pp = ppRange ? r2(ppRange[0]+rand()*(ppRange[1]-ppRange[0])) : 0;
+      var pd = pdRange ? r2(pdRange[0]+rand()*(pdRange[1]-pdRange[0])) : 0;
+      return {fixed:fixed, perPizza:pp, perDelivery:pd};
+    }
+    var items = {
+      ingredients: mkItem(null, [3.50,5.50], null),
+      kitchen: mkItem([5000,7500], null, null),
+      utilities: mkItem([500,900], [0.20,0.40], null),
+      deliveryPerson: mkItem(null, null, [2.50,3.70]),
+      deliveryVehicle: mkItem([550,900], null, [1.00,1.60]),
+      depreciation: mkItem([350,650], null, null),
+      rent: mkItem([1600,2600], null, null),
+      misc: mkItem([650,1000], [0.10,0.20], null)
+    };
+
+    Object.keys(items).forEach(function(k){
+      var it = items[k];
+      var flex = it.fixed + it.perPizza*actualPizzas + it.perDelivery*actualDeliveries;
+      var pct = pick(rand,[-0.10,-0.06,-0.03,0.03,0.06,0.10]) + (rand()-0.5)*0.02;
+      var varAmt = rTo(flex*pct, 5);
+      it.actual = Math.max(0, flex + varAmt);
+    });
+
+    var flexRevenue = actualPizzas*price;
+    var revPct = pick(rand,[-0.03,-0.015,0.015,0.03,0.05]) + (rand()-0.5)*0.01;
+    var actualRevenue = rTo(flexRevenue*(1+revPct), 10);
+
+    return { plannedPizzas:plannedPizzas, price:price, plannedDeliveries:plannedDeliveries,
+      actualPizzas:actualPizzas, actualDeliveries:actualDeliveries, items:items, actualRevenue:actualRevenue };
+  }
+
+  function fu(v){
+    // for costs: an increase in cost is Unfavorable, a decrease is Favorable
+    if(v > 0.5) return 'U';
+    if(v < -0.5) return 'F';
+    return 'None';
+  }
+  function fuRev(v){
+    // for revenue and net operating income: an increase is Favorable, a decrease is Unfavorable
+    if(v > 0.5) return 'F';
+    if(v < -0.5) return 'U';
+    return 'None';
+  }
+
+  function solve(p){
+    function itemAt(it, pizzas, deliveries){ return it.fixed + it.perPizza*pizzas + it.perDelivery*deliveries; }
+
+    var planningRevenue = p.plannedPizzas*p.price;
+    var flexRevenue = p.actualPizzas*p.price;
+    var actualRevenue = p.actualRevenue;
+
+    var itemsOut = {};
+    var totalPlanningExp=0, totalFlexExp=0, totalActualExp=0;
+    Object.keys(p.items).forEach(function(k){
+      var it = p.items[k];
+      var planning = itemAt(it, p.plannedPizzas, p.plannedDeliveries);
+      var flex = itemAt(it, p.actualPizzas, p.actualDeliveries);
+      var actual = it.actual;
+      var actVar = flex - planning;
+      var spendVar = actual - flex;
+      totalPlanningExp += planning; totalFlexExp += flex; totalActualExp += actual;
+      itemsOut[k] = {
+        fixed:it.fixed, perPizza:it.perPizza, perDelivery:it.perDelivery,
+        planning:planning, flex:flex, actual:actual,
+        actVarAbs:Math.abs(actVar), actVarFU:fu(actVar),
+        spendVarAbs:Math.abs(spendVar), spendVarFU:fu(spendVar)
+      };
+    });
+
+    var revActVar = flexRevenue - planningRevenue;
+    var revSpendVar = actualRevenue - flexRevenue;
+
+    var totalExpActVar = totalFlexExp - totalPlanningExp;
+    var totalExpSpendVar = totalActualExp - totalFlexExp;
+
+    var planningNOI = planningRevenue - totalPlanningExp;
+    var flexNOI = flexRevenue - totalFlexExp;
+    var actualNOI = actualRevenue - totalActualExp;
+    var noiActVar = flexNOI - planningNOI;
+    var noiSpendVar = actualNOI - flexNOI;
+
+    return {
+      plannedPizzas:p.plannedPizzas, price:p.price, plannedDeliveries:p.plannedDeliveries,
+      actualPizzas:p.actualPizzas, actualDeliveries:p.actualDeliveries,
+      items:itemsOut,
+      revenue:{planning:planningRevenue, flex:flexRevenue, actual:actualRevenue,
+               actVarAbs:Math.abs(revActVar), actVarFU:fuRev(revActVar),
+               spendVarAbs:Math.abs(revSpendVar), spendVarFU:fuRev(revSpendVar)},
+      totalexp:{planning:totalPlanningExp, flex:totalFlexExp, actual:totalActualExp,
+               actVarAbs:Math.abs(totalExpActVar), actVarFU:fu(totalExpActVar),
+               spendVarAbs:Math.abs(totalExpSpendVar), spendVarFU:fu(totalExpSpendVar)},
+      noi:{planning:planningNOI, flex:flexNOI, actual:actualNOI,
+               actVarAbs:Math.abs(noiActVar), actVarFU:fuRev(noiActVar),
+               spendVarAbs:Math.abs(noiSpendVar), spendVarFU:fuRev(noiSpendVar)}
+    };
+  }
+
+  function generateScenario(id){
+    var seed = (id || '').trim();
+    if(seed === '') return solve(baseline());
+    return solve(randomParams(mulberry32(hashSeed(seed.toLowerCase()))));
+  }
+
+  var ITEM_KEYS = ['ingredients','kitchen','utilities','deliveryPerson','deliveryVehicle','depreciation','rent','misc'];
+  var ITEM_HAS_PP = {ingredients:true, kitchen:false, utilities:true, deliveryPerson:false, deliveryVehicle:false, depreciation:false, rent:false, misc:true};
+  var ITEM_HAS_PD = {ingredients:false, kitchen:false, utilities:false, deliveryPerson:true, deliveryVehicle:true, depreciation:false, rent:false, misc:false};
+
+  function applyScenario(d){
+    setText('disp-plannedPizzas', d.plannedPizzas.toLocaleString() + ' pizzas');
+    setText('disp-price', '$' + d.price);
+    setText('disp-plannedDeliveries', d.plannedDeliveries.toLocaleString() + ' deliveries');
+
+    ITEM_KEYS.forEach(function(k){
+      var it = d.items[k];
+      setText('cf-'+k+'-fixed', it.fixed > 0 ? money0(it.fixed) : '—');
+      setText('cf-'+k+'-pp', ITEM_HAS_PP[k] ? rate2(it.perPizza) : '—');
+      setText('cf-'+k+'-pd', ITEM_HAS_PD[k] ? rate2(it.perDelivery) : '—');
+      setText('ar-disp-'+k, money0(it.actual));
+      setText('rep-ar-'+k, money0(it.actual));
+    });
+
+    setText('ar-disp-pizzas', d.actualPizzas.toLocaleString());
+    setText('ar-disp-deliveries', d.actualDeliveries.toLocaleString());
+    setText('ar-disp-revenue', money0(d.revenue.actual));
+
+    setText('rep-ar-pizzas', d.actualPizzas.toLocaleString());
+    setText('rep-pl-pizzas', d.plannedPizzas.toLocaleString());
+    setText('rep-ar-deliveries', d.actualDeliveries.toLocaleString());
+    setText('rep-pl-deliveries', d.plannedDeliveries.toLocaleString());
+    setText('rep-ar-revenue', money0(d.revenue.actual));
+    setText('rep-ar-totalexp', money0(d.totalexp.actual));
+    setText('rep-ar-noi', money0(d.noi.actual));
+  }
+
+  function buildFields(d){
+    var fields = [];
+    fields.push({id:'fx-pizzas', correct:d.actualPizzas, tol:TOL.count});
+    fields.push({id:'fx-deliveries', correct:d.actualDeliveries, tol:TOL.count});
+
+    function pushRow(key, obj){
+      fields.push({id:'pl-'+key, correct:obj.planning});
+      fields.push({id:'fx-'+key, correct:obj.flex});
+      fields.push({id:'av-'+key, correct:obj.actVarAbs});
+      fields.push({id:'avfu-'+key, kind:'select', expected:obj.actVarFU});
+      fields.push({id:'sv-'+key, correct:obj.spendVarAbs});
+      fields.push({id:'svfu-'+key, kind:'select', expected:obj.spendVarFU});
+    }
+
+    pushRow('revenue', d.revenue);
+    ITEM_KEYS.forEach(function(k){ pushRow(k, d.items[k]); });
+    pushRow('totalexp', d.totalexp);
+    pushRow('noi', d.noi);
+
+    return fields;
+  }
+
+  var CHECK_GROUPS = [{ btn:'checkCL', summary:'clSummary', fields: null }];
+
+  var idInput = document.getElementById('studentId');
+  var genBtn = document.getElementById('genBtn');
+  var currentScenario = null;
+
+  function applyAndStore(id){
+    currentScenario = generateScenario(id);
+    applyScenario(currentScenario);
+    CHECK_GROUPS[0].fields = buildFields(currentScenario);
+    clearAllFieldStates();
+    CHECK_GROUPS.forEach(resetScore);
+  }
+  genBtn.addEventListener('click', function(){ applyAndStore(idInput.value); });
+  idInput.addEventListener('keydown', function(e){
+    if(e.key === 'Enter'){ e.preventDefault(); applyAndStore(idInput.value); }
+  });
+  applyAndStore('');
+
+  CHECK_GROUPS.forEach(function(g){
+    var btn = document.getElementById(g.btn);
+    if(!btn) return;
+    renderScore(g);
+
+    var part = btn.closest('.part');
+    if(part){
+      part.addEventListener('input', function(e){
+        if(e.target && e.target.tagName === 'INPUT') markScoreStale(g);
+      });
+      part.addEventListener('change', function(e){
+        if(e.target && e.target.tagName === 'SELECT') markScoreStale(g);
+      });
+    }
+
+    btn.addEventListener('click', function(){
+      if(!currentScenario) return;
+      var results = g.fields.map(function(f){
+        if(f.kind === 'select') return markSelect(f.id, f.expected);
+        return markField(f.id, f.correct, f.tol !== undefined ? f.tol : TOL.dollars);
+      });
+      updateSummary(g.summary, results);
+      var s = scoreState(g);
+      s.graded = results.filter(function(r){ return r !== null; }).length;
+      s.correct = results.filter(function(r){ return r === true; }).length;
+      s.attempts += 1;
+      s.checked = true;
+      s.stale = false;
+      renderScore(g);
+    });
+  });
+
+  // ---------------- Print / Save as PDF ----------------
+  function val(id){
+    var el = document.getElementById(id);
+    return el ? el.value.trim() : '';
+  }
+  document.getElementById('printBtn').addEventListener('click', function(){
+    var name = val('studentName');
+    var id = val('studentId');
+    var line = document.getElementById('printNameLine');
+    line.textContent = 'Name: ' + (name || '_______________________') +
+                       '     Student ID: ' + (id || '_______________________');
+    var oldTitle = document.title;
+    document.title = FILE_SLUG + '-' + (id || 'submission');
+    window.print();
+    document.title = oldTitle;
+  });
+
+})();
+</script>
+
+</body>
+</html>

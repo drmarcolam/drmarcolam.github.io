@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Throughput Time, MCE, and Delivery Cycle Time — Blue Ridge Precision Industries</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --purple:#592C88;
+    --purple-deep:#38195A;
+    --purple-mid:#6E3FA3;
+    --gold:#B0925C;
+    --gold-soft:#D6C398;
+    --gold-pale:#F1E9D6;
+    --parchment:#F7F4EC;
+    --paper:#FFFEFA;
+    --ink:#221B2E;
+    --slate:#5F5A6B;
+    --line:#DBD3E0;
+    --line-soft:#EAE4EF;
+    --answer:#1E5C34;
+    --answer-bg:#E7F1E9;
+    --danger:#9C3B34;
+    --shadow: 0 1px 2px rgba(56,25,90,0.07), 0 6px 18px rgba(56,25,90,0.08);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--parchment);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ color:inherit; }
+
+  header{
+    background: linear-gradient(180deg, var(--purple) 0%, var(--purple-deep) 100%);
+    color:#F1E9D6;
+    padding: 30px 6vw 24px;
+    position:relative;
+  }
+  header::after{
+    content:"";
+    position:absolute; left:0; right:0; bottom:0; height:4px;
+    background: linear-gradient(90deg, var(--gold-soft), var(--gold) 40%, var(--gold-soft) 70%, var(--gold));
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--gold-soft); margin:0 0 10px;
+  }
+  h1.title{
+    font-family:'Source Serif 4', serif; font-weight:600;
+    font-size:clamp(24px,3.4vw,34px); margin:0 0 8px; letter-spacing:-0.01em;
+  }
+  .subtitle{ font-size:14.5px; color:#D9CDE5; max-width:680px; margin:0; }
+
+  .id-bar{
+    max-width:960px; margin:0 auto; padding:18px 6vw 0;
+    display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+  }
+  .id-bar label{ font-size:13px; font-weight:600; color:var(--slate); }
+  .id-bar input[type="text"]{
+    font-family:'Inter',sans-serif; font-size:13.5px; padding:8px 11px;
+    border:1px solid var(--line); border-radius:5px; background:var(--paper); color:var(--ink);
+    width:220px;
+  }
+  .id-bar input:focus{ outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); }
+  .id-bar .id-hint{ font-size:12px; color:var(--slate); }
+
+  .score-area{ max-width:960px; margin:0 auto; padding:14px 6vw 0; }
+
+  .rounding-note{
+    max-width:960px; margin:14px auto 0; padding:12px 6vw;
+    font-size:12.5px; color:var(--slate); line-height:1.5;
+  }
+  .rounding-note strong{ color:var(--purple); font-weight:600; }
+
+  main{ max-width:960px; margin:0 auto; padding:22px 6vw 90px; }
+
+  .part{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    box-shadow:var(--shadow);
+    padding:24px 26px 26px;
+    margin-top:26px;
+  }
+  .part-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; color:var(--gold); background:var(--purple);
+    display:inline-block; padding:3px 9px; border-radius:4px; letter-spacing:.04em;
+    margin-bottom:12px;
+  }
+  .part h2{
+    font-family:'Source Serif 4', serif; font-size:21px; font-weight:600;
+    color:var(--purple); margin:0 0 12px;
+  }
+  .scenario{
+    background:var(--parchment);
+    border-left:3px solid var(--gold);
+    padding:14px 18px;
+    border-radius:0 6px 6px 0;
+    font-size:14.5px;
+    color:var(--ink);
+    margin-bottom:16px;
+  }
+  .scenario p{ margin:0 0 10px; }
+  .scenario p:last-child{ margin-bottom:0; }
+  .scenario span.val{ font-weight:700; color:var(--purple-deep); }
+
+  .req{
+    font-weight:600;
+    font-size:14.5px;
+    color:var(--ink);
+    margin:20px 0 10px;
+  }
+  .req span.reqlabel{ color:var(--purple); }
+  ol.reqlist{ margin:8px 0 0; padding-left:20px; font-size:14.5px; }
+  ol.reqlist li{ margin:6px 0; }
+
+  h4.subsection{
+    font-family:'Source Serif 4',serif; font-size:15px; color:var(--purple); margin:22px 0 6px;
+    border-bottom:1px solid var(--line-soft); padding-bottom:4px;
+  }
+
+  .footnote{ font-size:12px; color:var(--slate); margin:2px 0 14px; font-style:italic; }
+  .hint{ font-size:12.5px; color:var(--slate); margin:4px 0 10px; }
+
+  table.given{ width:100%; border-collapse:collapse; font-size:13px; margin:6px 0 14px; }
+  table.given th{ text-align:left; font-size:10.5px; text-transform:uppercase; letter-spacing:.03em; color:var(--slate); border-bottom:2px solid var(--purple); padding:6px 8px; }
+  table.given td{ border-bottom:1px solid var(--line); padding:5px 8px; font-family:'IBM Plex Mono', monospace; }
+  table.given td.lbl{ font-family:'Inter',sans-serif; }
+  table.given td.num, table.given th.num{ text-align:right; }
+  table.given td.unknown{ color:var(--gold); font-weight:700; }
+
+  table.worksheet{
+    width:100%;
+    border-collapse:collapse;
+    font-size:13.5px;
+    margin:10px 0 4px;
+  }
+  table.worksheet th{
+    text-align:left;
+    font-size:11.5px;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+    color:var(--slate);
+    border-bottom:2px solid var(--purple);
+    padding:8px 8px;
+  }
+  table.worksheet th.num{ text-align:right; }
+  table.worksheet td{
+    border-bottom:1px solid var(--line);
+    padding:9px 8px;
+    vertical-align:middle;
+  }
+  table.worksheet td.method{ font-weight:600; }
+  table.worksheet td.sub{ padding-left:24px; font-weight:400; }
+  table.worksheet td.amt{ width:120px; text-align:right; font-family:'IBM Plex Mono',monospace; }
+  table.worksheet tr.ws-total td{ border-top:1.6px solid var(--purple); font-weight:600; }
+  table.worksheet tr.ws-sub td{ border-top:1px solid var(--line); font-weight:600; }
+  table.worksheet input[type="text"]{
+    width:100%;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13.5px;
+    padding:6px 8px;
+    border:1px solid var(--line);
+    border-radius:5px;
+    background:var(--parchment);
+    color:var(--ink);
+    text-align:right;
+  }
+  table.worksheet input[type="text"]:focus{
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
+  }
+  table.worksheet select.acct{
+    width:100%;
+    font-family:'Inter',sans-serif;
+    font-size:13.5px;
+    font-weight:400;
+    padding:6px 8px;
+    border:1px solid var(--line);
+    border-radius:5px;
+    background:var(--parchment);
+    color:var(--ink);
+  }
+  table.worksheet select.acct:focus{
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
+  }
+  table.worksheet td.acctcell{ padding-right:14px; }
+  table.worksheet.months td, table.worksheet.months th{ text-align:right; }
+  table.worksheet.months td:first-child, table.worksheet.months th:first-child{ text-align:left; }
+  table.worksheet.months td.amt{ width:auto; }
+
+  .score-panel{
+    display:flex; align-items:center; gap:18px;
+    margin:0 0 4px; padding:14px 18px;
+    background:var(--parchment);
+    border:1px solid var(--line);
+    border-radius:8px;
+  }
+  .score-panel.scored-good{ background:var(--answer-bg); border-color:#B7D3BE; }
+  .score-panel.scored-bad{ background:#F8F0EF; border-color:#E2C6C2; }
+  .score-pct{
+    font-family:'Source Serif 4', serif;
+    font-size:30px; font-weight:700; line-height:1.05;
+    color:var(--slate); min-width:96px; text-align:center;
+  }
+  .score-panel.scored-good .score-pct{ color:var(--answer); }
+  .score-panel.scored-bad .score-pct{ color:var(--danger); }
+  .score-detail{ flex:1; min-width:0; }
+  .score-meta{ font-size:13.5px; font-weight:600; color:var(--ink); margin:0 0 7px; }
+  .score-bar{ height:8px; border-radius:4px; background:var(--line-soft); overflow:hidden; }
+  .score-bar span{ display:block; height:100%; width:0; background:var(--purple-mid); transition:width .35s ease; }
+  .score-panel.scored-good .score-bar span{ background:var(--answer); }
+  .score-panel.scored-bad .score-bar span{ background:var(--danger); }
+  .score-sub{ font-size:11.5px; color:var(--slate); margin:7px 0 0; }
+
+  .check-bar{
+    margin-top:20px;
+    padding-top:16px;
+    border-top:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .btn-check{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:9px 18px; border:1px solid var(--purple);
+    background:var(--purple); color:#fff; cursor:pointer;
+  }
+  .btn-check:hover{ background:var(--purple-mid); }
+  .check-summary{ font-size:13.5px; font-weight:600; }
+  .check-summary.good{ color:var(--answer); }
+  .check-summary.bad{ color:var(--danger); }
+  .check-disclaimer{ font-size:11.5px; color:var(--slate); width:100%; margin-top:2px; font-style:italic; }
+
+  input.field-correct, select.field-correct{
+    border-color:var(--answer) !important;
+    background:var(--answer-bg) !important;
+  }
+  input.field-incorrect, select.field-incorrect{
+    border-color:var(--danger) !important;
+    background:#F3E1DE !important;
+  }
+
+  .submit-bar{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    box-shadow:var(--shadow);
+    padding:22px 26px 24px;
+    margin-top:26px;
+  }
+  .submit-bar h2{
+    font-family:'Source Serif 4', serif; font-size:19px; font-weight:600;
+    color:var(--purple); margin:0 0 14px;
+  }
+  .submit-row{ display:flex; align-items:center; gap:10px; margin-bottom:12px; flex-wrap:wrap; }
+  .submit-row label{ font-size:13px; font-weight:600; color:var(--slate); }
+  .btn-submit{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:10px 18px; border:1px solid var(--purple);
+    background:var(--purple); color:#fff; cursor:pointer;
+  }
+  .btn-submit:hover{ background:var(--purple-mid); }
+  .submit-hint{ font-size:12px; color:var(--slate); margin:6px 0 0; }
+
+  textarea.reason{
+    width:100%; min-height:70px; font-family:'Inter',sans-serif; font-size:13.5px;
+    padding:9px 11px; border:1px solid var(--line); border-radius:6px; background:var(--parchment); color:var(--ink);
+    resize:vertical;
+  }
+  textarea.reason:focus{ outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper); }
+
+  @media print{
+    .print-hide, .id-bar, .check-bar, .rounding-note{ display:none !important; }
+    header{ background:none !important; color:var(--ink) !important; padding:0 0 14px !important; }
+    header::after{ display:none !important; }
+    .eyebrow{ color:var(--purple) !important; }
+    .subtitle{ color:var(--slate) !important; }
+    body{ background:#fff !important; }
+    .part{ box-shadow:none !important; border:1px solid #999 !important; break-inside:auto; }
+    .score-panel{ background:#fff !important; border:1.5px solid #000 !important; break-inside:avoid; }
+    .score-bar{ display:none !important; }
+    .score-pct, .score-panel.scored-good .score-pct, .score-panel.scored-bad .score-pct{ color:#000 !important; }
+    .part h2, .part-label, .scenario, h4.subsection{ break-after:avoid; break-inside:avoid; }
+    table.given, table.worksheet{ break-inside:auto; }
+    table.given tr, table.worksheet tr{ break-inside:avoid; }
+    .submit-bar{ break-before:avoid; }
+    input[type="text"], select.acct, textarea.reason{
+      border:none !important;
+      border-bottom:1px solid #000 !important;
+      background:transparent !important;
+      border-radius:0 !important;
+      color:#000 !important;
+      -webkit-appearance:none;
+      -moz-appearance:none;
+      appearance:none;
+      padding:2px 4px !important;
+    }
+    .print-name-line{ display:block !important; }
+  }
+  .print-name-line{ display:none; font-size:13px; color:var(--ink); padding:0 6vw; margin:0 0 10px; }
+
+  footer{ text-align:center; padding:26px 6vw 40px; font-size:12px; color:var(--slate); }
+
+  @media (max-width:600px){
+    header, main, .id-bar{ padding-left:5vw; padding-right:5vw; }
+    table.worksheet{ font-size:12px; }
+  }
+
+</style>
+</head>
+<body>
+
+<header>
+  <p class="eyebrow">ACCT 252 &middot; Using Accounting Information for Management Decisions &middot; Lean Production Performance Measures</p>
+  <h1 class="title">Throughput Time, MCE, and Delivery Cycle Time — Blue Ridge Precision Industries</h1>
+  <p class="subtitle">Working from monthly wait, process, inspection, move, and queue time data to compute throughput time, manufacturing cycle efficiency, and delivery cycle time, then evaluating the effect of eliminating non-value-added time.</p>
+</header>
+
+<p class="print-name-line" id="printNameLine"></p>
+
+<div class="id-bar">
+  <label for="studentName">Name</label>
+  <input type="text" id="studentName" placeholder="First and last name">
+  <label for="studentId">Student ID</label>
+  <input type="text" id="studentId" placeholder="e.g. 920410165">
+  <button id="genBtn" type="button">Generate scenario</button>
+  <span class="id-hint">Leave the ID blank and click to restore the original textbook figures.</span>
+</div>
+
+<div class="score-area" id="scoreArea"></div>
+
+<div class="rounding-note">
+  <strong>Before you start:</strong> do not round intermediate calculations. Round time answers (throughput time and delivery cycle time) to <strong>1 decimal place</strong> (days), and round MCE to <strong>2 decimal places</strong> as a percent (e.g., 35.00).
+</div>
+
+<main>
+
+  <div class="part">
+    <span class="part-label">Problem</span>
+    <h2>Blue Ridge Precision Industries</h2>
+
+    <div class="scenario">
+      <p><span class="val">Blue Ridge Precision Industries</span>, a Hendersonville, North Carolina, machine shop, is automating one of its plants and developing a flexible manufacturing system. In an effort to revise its performance measurement system, the company gathered the following data for the last four months.</p>
+      <p>The president read in industry journals that throughput time, manufacturing cycle efficiency (MCE), and delivery cycle time are important measures of performance, but no one is sure how to compute them. You have been asked to assist the company using the data below.</p>
+    </div>
+
+    <h4 class="subsection">Quality control, material, and machine performance measures</h4>
+    <table class="worksheet months">
+      <thead><tr><th>Measure</th><th>Month 1</th><th>Month 2</th><th>Month 3</th><th>Month 4</th></tr></thead>
+      <tbody>
+        <tr><td class="method">Number of defects</td><td>202</td><td>180</td><td>141</td><td>99</td></tr>
+        <tr><td class="method">Number of warranty claims</td><td>63</td><td>56</td><td>47</td><td>44</td></tr>
+        <tr><td class="method">Number of customer complaints</td><td>119</td><td>113</td><td>96</td><td>75</td></tr>
+        <tr><td class="method">Purchase order lead time (days)</td><td>8</td><td>7</td><td>5</td><td>4</td></tr>
+        <tr><td class="method">Scrap as a percent of total cost</td><td>2%</td><td>2%</td><td>3%</td><td>6%</td></tr>
+        <tr><td class="method">Machine downtime (% of availability)</td><td>3%</td><td>4%</td><td>4%</td><td>6%</td></tr>
+        <tr><td class="method">Machine use (% of availability)</td><td>95%</td><td>92%</td><td>89%</td><td>85%</td></tr>
+        <tr><td class="method">Setup time (hours)</td><td>8</td><td>10</td><td>11</td><td>12</td></tr>
+        <tr><td class="method">Percentage of on-time deliveries</td><td>96%</td><td>95%</td><td>92%</td><td>89%</td></tr>
+      </tbody>
+    </table>
+    <p class="footnote">These measures provide background context and are not part of the graded worksheet below.</p>
+
+    <h4 class="subsection">Given data — average time per unit (in days)</h4>
+    <table class="worksheet months">
+      <thead><tr><th>Time component</th><th>Month 1</th><th>Month 2</th><th>Month 3</th><th>Month 4</th></tr></thead>
+      <tbody>
+        <tr><td class="method">Wait time per order before start of production</td><td id="gd-wait-1">10.0</td><td id="gd-wait-2">12.8</td><td id="gd-wait-3">13.0</td><td id="gd-wait-4">15.0</td></tr>
+        <tr><td class="method">Inspection time per unit</td><td id="gd-insp-1">0.9</td><td id="gd-insp-2">0.8</td><td id="gd-insp-3">0.8</td><td id="gd-insp-4">0.8</td></tr>
+        <tr><td class="method">Process time per unit</td><td id="gd-proc-1">2.8</td><td id="gd-proc-2">2.7</td><td id="gd-proc-3">2.3</td><td id="gd-proc-4">1.8</td></tr>
+        <tr><td class="method">Queue time per unit</td><td id="gd-queue-1">3.9</td><td id="gd-queue-2">5.1</td><td id="gd-queue-3">7.3</td><td id="gd-queue-4">8.6</td></tr>
+        <tr><td class="method">Move time per unit</td><td id="gd-move-1">0.4</td><td id="gd-move-2">0.6</td><td id="gd-move-3">0.6</td><td id="gd-move-4">0.8</td></tr>
+      </tbody>
+    </table>
+    <p class="hint">Throughput time = process time + inspection time + move time + queue time. Manufacturing cycle efficiency (MCE) = process time &divide; throughput time. Delivery cycle time = wait time + throughput time.</p>
+
+    <div class="req"><span class="reqlabel">Required:</span>
+      <ol class="reqlist">
+        <li>Compute the following for each of the four months:
+          <ol type="a" style="margin-top:6px;">
+            <li>Throughput (manufacturing cycle) time</li>
+            <li>Manufacturing cycle efficiency (MCE)</li>
+            <li>Delivery cycle time</li>
+          </ol>
+        </li>
+        <li>Refer to the data for month 4. Assume that in month 5 the inspection time, process time, and so forth, are the same as for month 4, except that the company is able to completely eliminate the queue time using Lean Production. Compute the new throughput time and MCE.</li>
+        <li>Refer to the data for month 4 again. Assume that in month 6 the inspection time, process time, and so forth, are the same as in month 4, except that the company is able to eliminate both the queue time and the inspection time using Lean Production. Compute the new throughput time and MCE.</li>
+      </ol>
+    </div>
+
+    <h4 class="subsection">(1) Throughput time, MCE, and delivery cycle time by month</h4>
+    <table class="worksheet months">
+      <thead><tr><th>Line item</th><th>Month 1</th><th>Month 2</th><th>Month 3</th><th>Month 4</th></tr></thead>
+      <tbody>
+        <tr><td class="method">1-a. Throughput time</td>
+          <td class="amt"><input type="text" placeholder="days" id="tp-1"></td>
+          <td class="amt"><input type="text" placeholder="days" id="tp-2"></td>
+          <td class="amt"><input type="text" placeholder="days" id="tp-3"></td>
+          <td class="amt"><input type="text" placeholder="days" id="tp-4"></td>
+        </tr>
+        <tr><td class="method">1-b. Manufacturing cycle efficiency (MCE)</td>
+          <td class="amt"><input type="text" placeholder="%" id="mce-1"></td>
+          <td class="amt"><input type="text" placeholder="%" id="mce-2"></td>
+          <td class="amt"><input type="text" placeholder="%" id="mce-3"></td>
+          <td class="amt"><input type="text" placeholder="%" id="mce-4"></td>
+        </tr>
+        <tr><td class="method">1-c. Delivery cycle time</td>
+          <td class="amt"><input type="text" placeholder="days" id="dct-1"></td>
+          <td class="amt"><input type="text" placeholder="days" id="dct-2"></td>
+          <td class="amt"><input type="text" placeholder="days" id="dct-3"></td>
+          <td class="amt"><input type="text" placeholder="days" id="dct-4"></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h4 class="subsection">(2) and (3) Lean Production scenarios based on month 4</h4>
+    <table class="worksheet">
+      <thead><tr><th>Line item</th><th class="num">Answer</th></tr></thead>
+      <tbody>
+        <tr><td class="method">2. Month 5 throughput time (queue time eliminated)</td><td class="amt"><input type="text" placeholder="days" id="t5"></td></tr>
+        <tr><td class="method">2. Month 5 MCE (queue time eliminated)</td><td class="amt"><input type="text" placeholder="%" id="mce5"></td></tr>
+        <tr><td class="method">3. Month 6 throughput time (queue and inspection eliminated)</td><td class="amt"><input type="text" placeholder="days" id="t6"></td></tr>
+        <tr><td class="method">3. Month 6 MCE (queue and inspection eliminated)</td><td class="amt"><input type="text" placeholder="%" id="mce6"></td></tr>
+      </tbody>
+    </table>
+
+    <div class="check-bar">
+      <button class="btn-check" id="checkCL" type="button">Check my work</button>
+      <span class="check-summary" id="clSummary"></span>
+      <span class="check-disclaimer">This checks whether your figures match the key within a small tolerance.</span>
+    </div>
+  </div>
+
+  <div class="submit-bar print-hide">
+    <h2>Ready to submit?</h2>
+    <p class="submit-hint" style="margin:0 0 12px;">Your name is taken from the top of the page.</p>
+    <div class="submit-row submit-actions">
+      <button class="btn-submit" id="printBtn" type="button">Print / Save as PDF</button>
+    </div>
+    <p class="submit-hint">This captures exactly what's currently filled in above and works offline.</p>
+  </div>
+</main>
+
+<footer>Throughput Time, MCE, and Delivery Cycle Time &middot; ACCT 252 &middot; Using Accounting Information for Management Decisions</footer>
+
+<script>
+(function(){
+  var FILE_SLUG = "ACCT252-Problem-12-15-Lean-Metrics";
+
+  function hashSeed(str){
+    var h = 2166136261;
+    for(var i=0;i<str.length;i++){
+      h ^= str.charCodeAt(i);
+      h = Math.imul(h, 16777619);
+    }
+    return h >>> 0;
+  }
+  function mulberry32(seed){
+    return function(){
+      seed |= 0; seed = seed + 0x6D2B79F5 | 0;
+      var t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
+  }
+  function pick(rand, arr){ return arr[Math.floor(rand() * arr.length)]; }
+  function rTo(x, m){ return Math.round(x/m)*m; }
+
+  function setText(id, text){
+    var el = document.getElementById(id);
+    if(el) el.textContent = text;
+  }
+
+  var TOL = { days:0.15, pct:0.20 };
+
+  function parseNum(s){
+    if(s === null || s === undefined) return NaN;
+    var raw = String(s).trim();
+    var neg = /^\(.*\)$/.test(raw) || /^-/.test(raw) || /^−/.test(raw);
+    var cleaned = raw.replace(/[^0-9.]/g, '');
+    if(cleaned === '') return NaN;
+    var v = parseFloat(cleaned);
+    if(isNaN(v)) return NaN;
+    return neg ? -v : v;
+  }
+  function near(a, b, tol){
+    if(isNaN(a) || isNaN(b)) return false;
+    return Math.abs(a - b) <= tol;
+  }
+  function clearFieldState(el){
+    if(!el) return;
+    el.classList.remove('field-correct', 'field-incorrect');
+  }
+  function clearAllFieldStates(){
+    document.querySelectorAll('.field-correct, .field-incorrect').forEach(function(el){
+      el.classList.remove('field-correct', 'field-incorrect');
+    });
+    document.querySelectorAll('.check-summary').forEach(function(el){
+      el.textContent = ''; el.classList.remove('good','bad');
+    });
+  }
+  function markField(id, correct, tol){
+    var el = document.getElementById(id);
+    if(!el) return null;
+    el.classList.remove('field-correct', 'field-incorrect');
+    var ok = near(parseNum(el.value), correct, tol);
+    el.classList.add(ok ? 'field-correct' : 'field-incorrect');
+    if(!el.dataset.clearBound){
+      el.addEventListener('input', function(){ clearFieldState(el); });
+      el.dataset.clearBound = '1';
+    }
+    return ok;
+  }
+  function updateSummary(elId, results){
+    var el = document.getElementById(elId);
+    if(!el) return;
+    var graded = results.filter(function(r){ return r !== null; }).length;
+    var correct = results.filter(function(r){ return r === true; }).length;
+    el.textContent = correct + ' of ' + graded + ' correct';
+    el.classList.remove('good', 'bad');
+    el.classList.add(correct === graded && graded > 0 ? 'good' : 'bad');
+  }
+
+  var SCORES = {};
+  function scoreState(g){
+    if(!SCORES[g.btn]) SCORES[g.btn] = { correct:0, graded:0, attempts:0, checked:false, stale:false };
+    return SCORES[g.btn];
+  }
+  function scorePct(s){
+    return s.graded ? Math.round(s.correct / s.graded * 100) : 0;
+  }
+  var SCORE_PROMPT = 'Fill in the worksheet below, then choose <strong>Check my work</strong>. Every blank counts as incorrect.';
+
+  function ensureScorePanel(g){
+    var area = document.getElementById('scoreArea');
+    if(!area) return null;
+    var panel = area.querySelector('.score-panel[data-for="' + g.btn + '"]');
+    if(panel) return panel;
+    panel = document.createElement('div');
+    panel.className = 'score-panel';
+    panel.setAttribute('data-for', g.btn);
+    panel.innerHTML =
+      '<div class="score-pct">&mdash;</div>' +
+      '<div class="score-detail">' +
+        '<p class="score-meta">Score</p>' +
+        '<div class="score-bar"><span></span></div>' +
+        '<p class="score-sub">' + SCORE_PROMPT + '</p>' +
+      '</div>';
+    area.appendChild(panel);
+    return panel;
+  }
+
+  function renderScore(g){
+    var panel = ensureScorePanel(g);
+    if(!panel) return;
+    var s = scoreState(g);
+    var pctEl = panel.querySelector('.score-pct');
+    var metaEl = panel.querySelector('.score-meta');
+    var fillEl = panel.querySelector('.score-bar span');
+    var subEl = panel.querySelector('.score-sub');
+    panel.classList.remove('scored-good', 'scored-bad');
+
+    if(!s.checked){
+      pctEl.innerHTML = '&mdash;';
+      metaEl.textContent = 'Score';
+      fillEl.style.width = '0%';
+      subEl.innerHTML = SCORE_PROMPT;
+      return;
+    }
+    var pct = scorePct(s);
+    pctEl.textContent = pct + '%';
+    metaEl.textContent = 'Score: ' + s.correct + ' of ' + s.graded + ' correct';
+    fillEl.style.width = pct + '%';
+    if(s.stale){
+      subEl.textContent = 'You have changed an answer since this score was calculated — check your work again to update it.';
+    } else if(s.correct === s.graded){
+      subEl.textContent = 'All ' + s.graded + ' answers match the key. Attempt ' + s.attempts + '.';
+      panel.classList.add('scored-good');
+    } else {
+      var missing = s.graded - s.correct;
+      subEl.innerHTML = missing + ' answer' + (missing === 1 ? '' : 's') + ' still to fix' +
+                        '<span class="print-hide"> — outlined in red below</span>. Attempt ' + s.attempts + '.';
+      panel.classList.add('scored-bad');
+    }
+  }
+  function markScoreStale(g){
+    var s = scoreState(g);
+    if(!s.checked || s.stale) return;
+    s.stale = true;
+    renderScore(g);
+  }
+  function resetScore(g){
+    SCORES[g.btn] = { correct:0, graded:0, attempts:0, checked:false, stale:false };
+    renderScore(g);
+  }
+
+  // ---------- scenario ----------
+  function baseline(){
+    return {
+      wait:[10.0,12.8,13.0,15.0],
+      inspection:[0.9,0.8,0.8,0.8],
+      process:[2.8,2.7,2.3,1.8],
+      queue:[3.9,5.1,7.3,8.6],
+      move:[0.4,0.6,0.6,0.8]
+    };
+  }
+
+  function randomParams(rand){
+    var process1 = pick(rand,[2.4,2.6,2.8,3.0,3.2]);
+    var procDec = pick(rand,[0.15,0.2,0.25,0.3,0.35]);
+    var wait1 = pick(rand,[8,9,10,11,12]);
+    var waitInc = pick(rand,[1.0,1.5,2.0,2.5]);
+    var queue1 = pick(rand,[3.0,3.5,4.0,4.5,5.0]);
+    var queueInc = pick(rand,[1.0,1.3,1.6,1.9]);
+    var insp1 = pick(rand,[0.6,0.7,0.8,0.9,1.0]);
+    var move1 = pick(rand,[0.3,0.4,0.5,0.6]);
+    var moveInc = pick(rand,[0.05,0.1,0.15]);
+
+    var process=[], wait=[], queue=[], inspection=[], move=[];
+    for(var m=0;m<4;m++){
+      process.push(Math.max(0.5, rTo(process1 - m*procDec + (rand()-0.5)*0.1, 0.1)));
+      wait.push(Math.max(1, rTo(wait1 + m*waitInc + (rand()-0.5)*0.4, 0.1)));
+      queue.push(Math.max(0.5, rTo(queue1 + m*queueInc + (rand()-0.5)*0.3, 0.1)));
+      inspection.push(Math.max(0.2, rTo(insp1 + (rand()-0.5)*0.2, 0.1)));
+      move.push(Math.max(0.1, rTo(move1 + m*moveInc + (rand()-0.5)*0.1, 0.1)));
+    }
+    return { wait:wait, inspection:inspection, process:process, queue:queue, move:move };
+  }
+
+  function solve(p){
+    var throughput=[], mce=[], dct=[];
+    for(var m=0;m<4;m++){
+      var t = p.process[m] + p.inspection[m] + p.move[m] + p.queue[m];
+      throughput.push(t);
+      mce.push(p.process[m] / t * 100);
+      dct.push(p.wait[m] + t);
+    }
+    var last = 3;
+    var t5 = p.process[last] + p.inspection[last] + p.move[last];
+    var mce5 = p.process[last] / t5 * 100;
+    var t6 = p.process[last] + p.move[last];
+    var mce6 = p.process[last] / t6 * 100;
+
+    return {
+      wait:p.wait, inspection:p.inspection, process:p.process, queue:p.queue, move:p.move,
+      throughput:throughput, mce:mce, dct:dct, t5:t5, mce5:mce5, t6:t6, mce6:mce6
+    };
+  }
+
+  function generateScenario(id){
+    var seed = (id || '').trim();
+    if(seed === '') return solve(baseline());
+    return solve(randomParams(mulberry32(hashSeed(seed.toLowerCase()))));
+  }
+
+  function applyScenario(d){
+    for(var m=0;m<4;m++){
+      setText('gd-wait-'+(m+1), d.wait[m].toFixed(1));
+      setText('gd-insp-'+(m+1), d.inspection[m].toFixed(1));
+      setText('gd-proc-'+(m+1), d.process[m].toFixed(1));
+      setText('gd-queue-'+(m+1), d.queue[m].toFixed(1));
+      setText('gd-move-'+(m+1), d.move[m].toFixed(1));
+    }
+  }
+
+  function buildFields(d){
+    var fields = [];
+    for(var m=0;m<4;m++){
+      fields.push({id:'tp-'+(m+1),  correct:d.throughput[m], tol:TOL.days});
+      fields.push({id:'mce-'+(m+1), correct:d.mce[m],        tol:TOL.pct});
+      fields.push({id:'dct-'+(m+1), correct:d.dct[m],        tol:TOL.days});
+    }
+    fields.push({id:'t5',   correct:d.t5,   tol:TOL.days});
+    fields.push({id:'mce5', correct:d.mce5, tol:TOL.pct});
+    fields.push({id:'t6',   correct:d.t6,   tol:TOL.days});
+    fields.push({id:'mce6', correct:d.mce6, tol:TOL.pct});
+    return fields;
+  }
+
+  var CHECK_GROUPS = [{
+    btn:'checkCL', summary:'clSummary',
+    fields: null
+  }];
+
+  // ---------------- wiring ----------------
+  var idInput = document.getElementById('studentId');
+  var genBtn = document.getElementById('genBtn');
+  var currentScenario = null;
+
+  function applyAndStore(id){
+    currentScenario = generateScenario(id);
+    applyScenario(currentScenario);
+    CHECK_GROUPS[0].fields = buildFields(currentScenario);
+    clearAllFieldStates();
+    CHECK_GROUPS.forEach(resetScore);
+  }
+  genBtn.addEventListener('click', function(){ applyAndStore(idInput.value); });
+  idInput.addEventListener('keydown', function(e){
+    if(e.key === 'Enter'){ e.preventDefault(); applyAndStore(idInput.value); }
+  });
+  applyAndStore('');
+
+  CHECK_GROUPS.forEach(function(g){
+    var btn = document.getElementById(g.btn);
+    if(!btn) return;
+    renderScore(g);
+
+    var part = btn.closest('.part');
+    if(part){
+      part.addEventListener('input', function(e){
+        if(e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT')) markScoreStale(g);
+      });
+      part.addEventListener('change', function(e){
+        if(e.target && e.target.tagName === 'SELECT') markScoreStale(g);
+      });
+    }
+
+    btn.addEventListener('click', function(){
+      if(!currentScenario) return;
+      var results = g.fields.map(function(f){
+        return markField(f.id, f.correct, f.tol !== undefined ? f.tol : TOL.days);
+      });
+      updateSummary(g.summary, results);
+      var s = scoreState(g);
+      s.graded = results.filter(function(r){ return r !== null; }).length;
+      s.correct = results.filter(function(r){ return r === true; }).length;
+      s.attempts += 1;
+      s.checked = true;
+      s.stale = false;
+      renderScore(g);
+    });
+  });
+
+  // ---------------- Print / Save as PDF ----------------
+  function val(id){
+    var el = document.getElementById(id);
+    return el ? el.value.trim() : '';
+  }
+  document.getElementById('printBtn').addEventListener('click', function(){
+    var name = val('studentName');
+    var id = val('studentId');
+    var line = document.getElementById('printNameLine');
+    line.textContent = 'Name: ' + (name || '_______________________') +
+                       '     Student ID: ' + (id || '_______________________');
+    var oldTitle = document.title;
+    document.title = FILE_SLUG + '-' + (id || 'submission');
+    window.print();
+    document.title = oldTitle;
+  });
+
+})();
+</script>
+
+</body>
+</html>

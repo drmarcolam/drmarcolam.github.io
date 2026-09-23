@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Traditional Costing vs. Activity-Based Costing — Blue Ridge Precision Parts, Inc.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --purple:#592C88;
+    --purple-deep:#38195A;
+    --purple-mid:#6E3FA3;
+    --gold:#B0925C;
+    --gold-soft:#D6C398;
+    --gold-pale:#F1E9D6;
+    --parchment:#F7F4EC;
+    --paper:#FFFEFA;
+    --ink:#221B2E;
+    --slate:#5F5A6B;
+    --line:#DBD3E0;
+    --line-soft:#EAE4EF;
+    --answer:#1E5C34;
+    --answer-bg:#E7F1E9;
+    --danger:#9C3B34;
+    --shadow: 0 1px 2px rgba(56,25,90,0.07), 0 6px 18px rgba(56,25,90,0.08);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--parchment);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ color:inherit; }
+
+  header{
+    background: linear-gradient(180deg, var(--purple) 0%, var(--purple-deep) 100%);
+    color:#F1E9D6;
+    padding: 30px 6vw 24px;
+    position:relative;
+  }
+  header::after{
+    content:"";
+    position:absolute; left:0; right:0; bottom:0; height:4px;
+    background: linear-gradient(90deg, var(--gold-soft), var(--gold) 40%, var(--gold-soft) 70%, var(--gold));
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--gold-soft); margin:0 0 10px;
+  }
+  h1.title{
+    font-family:'Source Serif 4', serif; font-weight:600;
+    font-size:clamp(24px,3.4vw,34px); margin:0 0 8px; letter-spacing:-0.01em;
+  }
+  .subtitle{ font-size:14.5px; color:#D9CDE5; max-width:680px; margin:0; }
+
+  .id-bar{
+    max-width:900px; margin:0 auto; padding:18px 6vw 0;
+    display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+  }
+  .id-bar label{ font-size:13px; font-weight:600; color:var(--slate); }
+  .id-bar input[type="text"]{
+    font-family:'Inter',sans-serif; font-size:13.5px; padding:8px 11px;
+    border:1px solid var(--line); border-radius:5px; background:var(--paper); color:var(--ink);
+    width:220px;
+  }
+  .id-bar input:focus{ outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); }
+  .id-bar .id-hint{ font-size:12px; color:var(--slate); }
+
+  .score-area{ max-width:900px; margin:0 auto; padding:14px 6vw 0; }
+
+  .rounding-note{
+    max-width:900px; margin:14px auto 0; padding:12px 6vw;
+    font-size:12.5px; color:var(--slate); line-height:1.5;
+  }
+  .rounding-note strong{ color:var(--purple); font-weight:600; }
+
+  main{ max-width:900px; margin:0 auto; padding:22px 6vw 90px; }
+
+  .part{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    box-shadow:var(--shadow);
+    padding:24px 26px 26px;
+    margin-top:26px;
+  }
+  .part-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; color:var(--gold); background:var(--purple);
+    display:inline-block; padding:3px 9px; border-radius:4px; letter-spacing:.04em;
+    margin-bottom:12px;
+  }
+  .part h2{
+    font-family:'Source Serif 4', serif; font-size:21px; font-weight:600;
+    color:var(--purple); margin:0 0 12px;
+  }
+  .scenario{
+    background:var(--parchment);
+    border-left:3px solid var(--gold);
+    padding:14px 18px;
+    border-radius:0 6px 6px 0;
+    font-size:14.5px;
+    color:var(--ink);
+    margin-bottom:16px;
+  }
+  .scenario p{ margin:0 0 10px; }
+  .scenario p:last-child{ margin-bottom:0; }
+  .scenario span.val{ font-weight:700; color:var(--purple-deep); }
+
+  .req{
+    font-weight:600;
+    font-size:14.5px;
+    color:var(--ink);
+    margin:20px 0 10px;
+  }
+  .req span.reqlabel{ color:var(--purple); }
+  ol.reqlist{ margin:8px 0 0; padding-left:20px; font-size:14.5px; }
+  ol.reqlist li{ margin:6px 0; }
+
+  h4.subsection{
+    font-family:'Source Serif 4',serif; font-size:15px; color:var(--purple); margin:22px 0 6px;
+    border-bottom:1px solid var(--line-soft); padding-bottom:4px;
+  }
+
+  .footnote{ font-size:12px; color:var(--slate); margin:2px 0 14px; font-style:italic; }
+  .hint{ font-size:12.5px; color:var(--slate); margin:4px 0 10px; }
+
+  table.given{ width:100%; border-collapse:collapse; font-size:13px; margin:6px 0 14px; }
+  table.given th{ text-align:left; font-size:10.5px; text-transform:uppercase; letter-spacing:.03em; color:var(--slate); border-bottom:2px solid var(--purple); padding:6px 8px; }
+  table.given td{ border-bottom:1px solid var(--line); padding:5px 8px; font-family:'IBM Plex Mono', monospace; }
+  table.given td.lbl{ font-family:'Inter',sans-serif; }
+  table.given td.num, table.given th.num{ text-align:right; }
+  table.given td.unknown{ color:var(--gold); font-weight:700; }
+
+  table.worksheet{
+    width:100%;
+    border-collapse:collapse;
+    font-size:13.5px;
+    margin:10px 0 4px;
+  }
+  table.worksheet th{
+    text-align:left;
+    font-size:11.5px;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+    color:var(--slate);
+    border-bottom:2px solid var(--purple);
+    padding:8px 8px;
+  }
+  table.worksheet th.num{ text-align:right; }
+  table.worksheet td{
+    border-bottom:1px solid var(--line);
+    padding:9px 8px;
+    vertical-align:middle;
+  }
+  table.worksheet td.method{ font-weight:600; }
+  table.worksheet td.sub{ padding-left:24px; font-weight:400; }
+  table.worksheet td.amt{ width:150px; text-align:right; font-family:'IBM Plex Mono',monospace; }
+  table.worksheet tr.ws-total td{ border-top:1.6px solid var(--purple); font-weight:600; }
+  table.worksheet tr.ws-sub td{ border-top:1px solid var(--line); font-weight:600; }
+  table.worksheet input[type="text"]{
+    width:100%;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13.5px;
+    padding:6px 8px;
+    border:1px solid var(--line);
+    border-radius:5px;
+    background:var(--parchment);
+    color:var(--ink);
+    text-align:right;
+  }
+  table.worksheet input[type="text"]:focus{
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
+  }
+  table.worksheet select.acct{
+    width:100%;
+    font-family:'Inter',sans-serif;
+    font-size:13.5px;
+    font-weight:400;
+    padding:6px 8px;
+    border:1px solid var(--line);
+    border-radius:5px;
+    background:var(--parchment);
+    color:var(--ink);
+  }
+  table.worksheet select.acct:focus{
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
+  }
+  table.worksheet td.acctcell{ padding-right:14px; }
+
+  .score-panel{
+    display:flex; align-items:center; gap:18px;
+    margin:0 0 4px; padding:14px 18px;
+    background:var(--parchment);
+    border:1px solid var(--line);
+    border-radius:8px;
+  }
+  .score-panel.scored-good{ background:var(--answer-bg); border-color:#B7D3BE; }
+  .score-panel.scored-bad{ background:#F8F0EF; border-color:#E2C6C2; }
+  .score-pct{
+    font-family:'Source Serif 4', serif;
+    font-size:30px; font-weight:700; line-height:1.05;
+    color:var(--slate); min-width:96px; text-align:center;
+  }
+  .score-panel.scored-good .score-pct{ color:var(--answer); }
+  .score-panel.scored-bad .score-pct{ color:var(--danger); }
+  .score-detail{ flex:1; min-width:0; }
+  .score-meta{ font-size:13.5px; font-weight:600; color:var(--ink); margin:0 0 7px; }
+  .score-bar{ height:8px; border-radius:4px; background:var(--line-soft); overflow:hidden; }
+  .score-bar span{ display:block; height:100%; width:0; background:var(--purple-mid); transition:width .35s ease; }
+  .score-panel.scored-good .score-bar span{ background:var(--answer); }
+  .score-panel.scored-bad .score-bar span{ background:var(--danger); }
+  .score-sub{ font-size:11.5px; color:var(--slate); margin:7px 0 0; }
+
+  .check-bar{
+    margin-top:20px;
+    padding-top:16px;
+    border-top:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .btn-check{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:9px 18px; border:1px solid var(--purple);
+    background:var(--purple); color:#fff; cursor:pointer;
+  }
+  .btn-check:hover{ background:var(--purple-mid); }
+  .check-summary{ font-size:13.5px; font-weight:600; }
+  .check-summary.good{ color:var(--answer); }
+  .check-summary.bad{ color:var(--danger); }
+  .check-disclaimer{ font-size:11.5px; color:var(--slate); width:100%; margin-top:2px; font-style:italic; }
+
+  input.field-correct, select.field-correct{
+    border-color:var(--answer) !important;
+    background:var(--answer-bg) !important;
+  }
+  input.field-incorrect, select.field-incorrect{
+    border-color:var(--danger) !important;
+    background:#F3E1DE !important;
+  }
+
+  .submit-bar{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    box-shadow:var(--shadow);
+    padding:22px 26px 24px;
+    margin-top:26px;
+  }
+  .submit-bar h2{
+    font-family:'Source Serif 4', serif; font-size:19px; font-weight:600;
+    color:var(--purple); margin:0 0 14px;
+  }
+  .submit-row{ display:flex; align-items:center; gap:10px; margin-bottom:12px; flex-wrap:wrap; }
+  .submit-row label{ font-size:13px; font-weight:600; color:var(--slate); }
+  .btn-submit{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:10px 18px; border:1px solid var(--purple);
+    background:var(--purple); color:#fff; cursor:pointer;
+  }
+  .btn-submit:hover{ background:var(--purple-mid); }
+  .submit-hint{ font-size:12px; color:var(--slate); margin:6px 0 0; }
+
+  textarea.reason{
+    width:100%; min-height:70px; font-family:'Inter',sans-serif; font-size:13.5px;
+    padding:9px 11px; border:1px solid var(--line); border-radius:6px; background:var(--parchment); color:var(--ink);
+    resize:vertical;
+  }
+  textarea.reason:focus{ outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper); }
+
+  @media print{
+    .print-hide, .id-bar, .check-bar, .rounding-note{ display:none !important; }
+    header{ background:none !important; color:var(--ink) !important; padding:0 0 14px !important; }
+    header::after{ display:none !important; }
+    .eyebrow{ color:var(--purple) !important; }
+    .subtitle{ color:var(--slate) !important; }
+    body{ background:#fff !important; }
+    .part{ box-shadow:none !important; border:1px solid #999 !important; break-inside:auto; }
+    .score-panel{ background:#fff !important; border:1.5px solid #000 !important; break-inside:avoid; }
+    .score-bar{ display:none !important; }
+    .score-pct, .score-panel.scored-good .score-pct, .score-panel.scored-bad .score-pct{ color:#000 !important; }
+    .part h2, .part-label, .scenario, h4.subsection{ break-after:avoid; break-inside:avoid; }
+    table.given, table.worksheet{ break-inside:auto; }
+    table.given tr, table.worksheet tr{ break-inside:avoid; }
+    .submit-bar{ break-before:avoid; }
+    input[type="text"], select.acct, textarea.reason{
+      border:none !important;
+      border-bottom:1px solid #000 !important;
+      background:transparent !important;
+      border-radius:0 !important;
+      color:#000 !important;
+      -webkit-appearance:none;
+      -moz-appearance:none;
+      appearance:none;
+      padding:2px 4px !important;
+    }
+    .print-name-line{ display:block !important; }
+  }
+  .print-name-line{ display:none; font-size:13px; color:var(--ink); padding:0 6vw; margin:0 0 10px; }
+
+  footer{ text-align:center; padding:26px 6vw 40px; font-size:12px; color:var(--slate); }
+
+  @media (max-width:600px){
+    header, main, .id-bar{ padding-left:5vw; padding-right:5vw; }
+    table.worksheet{ font-size:12.5px; }
+  }
+
+
+</style>
+</head>
+<body>
+
+<header>
+  <p class="eyebrow">ACCT 252 &middot; Using Accounting Information for Management Decisions &middot; Activity-Based Costing</p>
+  <h1 class="title">Traditional Costing vs. Activity-Based Costing — Blue Ridge Precision Parts, Inc.</h1>
+  <p class="subtitle">Comparing product margins for two component parts under the company's traditional, plantwide-rate costing system and under an activity-based costing system, then explaining why the two systems tell different stories.</p>
+</header>
+
+<p class="print-name-line" id="printNameLine"></p>
+
+<div class="id-bar">
+  <label for="studentName">Name</label>
+  <input type="text" id="studentName" placeholder="First and last name">
+  <label for="studentId">Student ID</label>
+  <input type="text" id="studentId" placeholder="e.g. 920410165">
+  <button id="genBtn" type="button">Generate scenario</button>
+  <span class="id-hint">Leave the ID blank and click to restore the original textbook figures.</span>
+</div>
+
+<div class="score-area" id="scoreArea"></div>
+
+<div class="rounding-note">
+  <strong>Before you start:</strong> enter all dollar amounts <strong>in whole dollars</strong> (e.g., 202,752), overhead rates <strong>rounded to 2 decimal places</strong> (or the nearest cent per unit of the allocation base), and unit-level figures to the nearest cent where applicable.
+</div>
+
+<main>
+
+  <div class="part">
+    <span class="part-label">Problem</span>
+    <h2>Blue Ridge Precision Parts, Inc.</h2>
+
+    <div class="scenario">
+      <p><span class="val">Blue Ridge Precision Parts, Inc.</span>, an Asheville-based manufacturer, makes two industrial component parts — <span class="val" id="prodBName">BR-200</span> and <span class="val" id="prodTName">BR-600</span>. An absorption costing income statement for the most recent period is shown below.</p>
+    </div>
+
+    <h4 class="subsection">Company income statement</h4>
+    <table class="given">
+      <thead><tr><th>Item</th><th class="num">Amount</th></tr></thead>
+      <tbody>
+        <tr><td class="lbl">Sales</td><td class="num" id="gd-sales">$1,714,000</td></tr>
+        <tr><td class="lbl">Cost of goods sold</td><td class="num" id="gd-cogs">$1,222,152</td></tr>
+        <tr><td class="lbl">Gross margin</td><td class="num" id="gd-gm">$491,848</td></tr>
+        <tr><td class="lbl">Selling and administrative expenses</td><td class="num" id="gd-sa">$580,000</td></tr>
+        <tr><td class="lbl">Net operating income (loss)</td><td class="num" id="gd-noi">$(88,152)</td></tr>
+      </tbody>
+    </table>
+
+    <h4 class="subsection">Product line data</h4>
+    <table class="given">
+      <thead><tr><th>Item</th><th class="num" id="hdr-b">BR-200</th><th class="num" id="hdr-t">BR-600</th><th class="num">Total</th></tr></thead>
+      <tbody>
+        <tr><td class="lbl">Units produced and sold</td><td class="num" id="gd-unitsB">60,100</td><td class="num" id="gd-unitsT">12,800</td><td class="num" id="gd-unitsTot">72,900</td></tr>
+        <tr><td class="lbl">Selling price per unit</td><td class="num" id="gd-priceB">$20.00</td><td class="num" id="gd-priceT">$40.00</td><td class="num">&mdash;</td></tr>
+        <tr><td class="lbl">Direct materials</td><td class="num" id="gd-dmB">$400,100</td><td class="num" id="gd-dmT">$162,500</td><td class="num" id="gd-dmTot">$562,600</td></tr>
+        <tr><td class="lbl">Direct labor</td><td class="num" id="gd-dlB">$120,700</td><td class="num" id="gd-dlT">$42,900</td><td class="num" id="gd-dlTot">$163,600</td></tr>
+        <tr><td class="lbl">Manufacturing overhead</td><td class="num">&mdash;</td><td class="num">&mdash;</td><td class="num" id="gd-mohTot">$495,952</td></tr>
+      </tbody>
+    </table>
+    <p class="hint">The company's traditional cost system allocates manufacturing overhead to products using a single plantwide overhead rate based on direct labor dollars.</p>
+
+    <h4 class="subsection">Activity-based costing data</h4>
+    <p class="hint">The company traced advertising expense directly to each product; the remainder of selling and administrative expense is organization-sustaining. Manufacturing overhead was distributed to four activity cost pools:</p>
+    <table class="given">
+      <thead><tr><th>Item</th><th class="num" id="hdr-b2">BR-200</th><th class="num" id="hdr-t2">BR-600</th><th class="num">Total</th></tr></thead>
+      <tbody>
+        <tr><td class="lbl">Advertising expense (traced)</td><td class="num" id="gd-adB">$53,000</td><td class="num" id="gd-adT">$109,000</td><td class="num" id="gd-adTot">$162,000</td></tr>
+      </tbody>
+    </table>
+    <table class="given">
+      <thead><tr><th>Activity cost pool (and activity measure)</th><th class="num">Manufacturing overhead</th><th class="num" id="hdr-b3">BR-200</th><th class="num" id="hdr-t3">BR-600</th><th class="num">Total</th></tr></thead>
+      <tbody>
+        <tr><td class="lbl">Machining (machine-hours)</td><td class="num" id="gd-mohMach">$202,752</td><td class="num" id="gd-mhB">90,800</td><td class="num" id="gd-mhT">62,800</td><td class="num" id="gd-mhTot">153,600</td></tr>
+        <tr><td class="lbl">Setups (setup hours)</td><td class="num" id="gd-mohSetup">$132,300</td><td class="num" id="gd-suB">75</td><td class="num" id="gd-suT">240</td><td class="num" id="gd-suTot">315</td></tr>
+        <tr><td class="lbl">Product-sustaining (number of products)</td><td class="num" id="gd-mohProd">$100,200</td><td class="num">1</td><td class="num">1</td><td class="num">2</td></tr>
+        <tr><td class="lbl">Other (organization-sustaining)</td><td class="num" id="gd-mohOther">$60,700</td><td class="num">NA</td><td class="num">NA</td><td class="num">NA</td></tr>
+      </tbody>
+    </table>
+
+    <div class="req"><span class="reqlabel">Required:</span>
+      <ol class="reqlist">
+        <li>Compute the product margins for BR-200 and BR-600 under the company's traditional costing system.</li>
+        <li>Compute the product margins for BR-200 and BR-600 under the activity-based costing system.</li>
+        <li>Prepare a quantitative comparison of the traditional and activity-based cost assignments (briefly explain, not graded).</li>
+      </ol>
+    </div>
+
+    <h4 class="subsection">(1) Traditional costing system</h4>
+    <table class="worksheet">
+      <thead><tr><th>Line item</th><th class="num">Amount</th></tr></thead>
+      <tbody>
+        <tr><td class="method">Plantwide overhead rate (per direct labor $)</td><td class="amt"><input type="text" placeholder="$ per DL$" id="t-rate"></td></tr>
+        <tr><td class="method sub">Overhead applied — BR-200</td><td class="amt"><input type="text" placeholder="$" id="t-mohB"></td></tr>
+        <tr><td class="method sub">Overhead applied — BR-600</td><td class="amt"><input type="text" placeholder="$" id="t-mohT"></td></tr>
+        <tr><td class="method sub">Cost of goods sold — BR-200</td><td class="amt"><input type="text" placeholder="$" id="t-cogsB"></td></tr>
+        <tr><td class="method sub">Cost of goods sold — BR-600</td><td class="amt"><input type="text" placeholder="$" id="t-cogsT"></td></tr>
+        <tr><td class="method sub">Gross margin — BR-200</td><td class="amt"><input type="text" placeholder="$" id="t-gmB"></td></tr>
+        <tr><td class="method sub">Gross margin — BR-600</td><td class="amt"><input type="text" placeholder="$" id="t-gmT"></td></tr>
+        <tr class="ws-total"><td class="method">Product margin — BR-200</td><td class="amt"><input type="text" placeholder="$" id="t-marginB"></td></tr>
+        <tr class="ws-total"><td class="method">Product margin — BR-600</td><td class="amt"><input type="text" placeholder="$" id="t-marginT"></td></tr>
+      </tbody>
+    </table>
+
+    <h4 class="subsection">(2) Activity-based costing system</h4>
+    <table class="worksheet">
+      <thead><tr><th>Line item</th><th class="num">Amount</th></tr></thead>
+      <tbody>
+        <tr><td class="method">Machining activity rate (per machine-hour)</td><td class="amt"><input type="text" placeholder="$" id="a-machRate"></td></tr>
+        <tr><td class="method">Setup activity rate (per setup hour)</td><td class="amt"><input type="text" placeholder="$" id="a-setupRate"></td></tr>
+        <tr><td class="method">Product-sustaining rate (per product)</td><td class="amt"><input type="text" placeholder="$" id="a-prodRate"></td></tr>
+        <tr><td class="method sub">Overhead assigned — BR-200</td><td class="amt"><input type="text" placeholder="$" id="a-ohB"></td></tr>
+        <tr><td class="method sub">Overhead assigned — BR-600</td><td class="amt"><input type="text" placeholder="$" id="a-ohT"></td></tr>
+        <tr><td class="method sub">Unit product cost — BR-200 (DM + DL + OH)</td><td class="amt"><input type="text" placeholder="$" id="a-costB"></td></tr>
+        <tr><td class="method sub">Unit product cost — BR-600 (DM + DL + OH)</td><td class="amt"><input type="text" placeholder="$" id="a-costT"></td></tr>
+        <tr class="ws-total"><td class="method">Product margin — BR-200 (Sales &minus; DM &minus; DL &minus; OH &minus; advertising)</td><td class="amt"><input type="text" placeholder="$" id="a-marginB"></td></tr>
+        <tr class="ws-total"><td class="method">Product margin — BR-600 (Sales &minus; DM &minus; DL &minus; OH &minus; advertising)</td><td class="amt"><input type="text" placeholder="$" id="a-marginT"></td></tr>
+      </tbody>
+    </table>
+
+    <h4 class="subsection">(3) Quantitative comparison</h4>
+    <p class="hint">Briefly explain why the traditional and ABC product margins differ, and what that implies about how the plantwide rate treats the two products (not graded).</p>
+    <textarea class="reason" id="q3-reason" placeholder="Because..."></textarea>
+
+    <div class="check-bar">
+      <button class="btn-check" id="checkCL" type="button">Check my work</button>
+      <span class="check-summary" id="clSummary"></span>
+      <span class="check-disclaimer">This checks whether your figures match the key within a small tolerance &mdash; it does not grade your written explanation.</span>
+    </div>
+  </div>
+
+  <div class="submit-bar print-hide">
+    <h2>Ready to submit?</h2>
+    <p class="submit-hint" style="margin:0 0 12px;">Your name is taken from the top of the page.</p>
+    <div class="submit-row submit-actions">
+      <button class="btn-submit" id="printBtn" type="button">Print / Save as PDF</button>
+    </div>
+    <p class="submit-hint">This captures exactly what's currently filled in above and works offline.</p>
+  </div>
+</main>
+
+<footer>Traditional Costing vs. Activity-Based Costing &middot; ACCT 252 &middot; Western Carolina University</footer>
+
+<script>
+(function(){
+  var FILE_SLUG = "ACCT252-Traditional-vs-ABC-Hi-Tek";
+
+  function hashSeed(str){
+    var h = 2166136261;
+    for(var i=0;i<str.length;i++){ h ^= str.charCodeAt(i); h = Math.imul(h, 16777619); }
+    return h >>> 0;
+  }
+  function mulberry32(seed){
+    return function(){
+      seed |= 0; seed = seed + 0x6D2B79F5 | 0;
+      var t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
+  }
+  function pick(rand, arr){ return arr[Math.floor(rand() * arr.length)]; }
+  function rTo(x, m){ return Math.round(x/m)*m; }
+  function money0(n){
+    var v = Number(n);
+    var s = Math.abs(v).toLocaleString('en-US', {minimumFractionDigits:0, maximumFractionDigits:0});
+    return v < 0 ? '$(' + s + ')' : '$' + s;
+  }
+  function money2(n){
+    var v = Number(n);
+    var s = Math.abs(v).toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
+    return v < 0 ? '$(' + s + ')' : '$' + s;
+  }
+  function num0(n){ return Number(n).toLocaleString('en-US', {minimumFractionDigits:0, maximumFractionDigits:0}); }
+  function setText(id, text){ var el = document.getElementById(id); if(el) el.textContent = text; }
+
+  var TOL = { dollars:2, rate:0.02 };
+
+  function parseMoney(s){
+    if(s === null || s === undefined) return NaN;
+    var raw = String(s).trim();
+    var neg = /^\(.*\)$/.test(raw) || /^-/.test(raw) || /^\u2212/.test(raw);
+    var cleaned = raw.replace(/[^0-9.]/g, '');
+    if(cleaned === '') return NaN;
+    var v = parseFloat(cleaned);
+    if(isNaN(v)) return NaN;
+    return neg ? -v : v;
+  }
+  function near(a, b, tol){ if(isNaN(a) || isNaN(b)) return false; return Math.abs(a - b) <= tol; }
+  function clearFieldState(el){ if(!el) return; el.classList.remove('field-correct', 'field-incorrect'); }
+  function clearAllFieldStates(){
+    document.querySelectorAll('.field-correct, .field-incorrect').forEach(function(el){ el.classList.remove('field-correct', 'field-incorrect'); });
+    document.querySelectorAll('.check-summary').forEach(function(el){ el.textContent = ''; el.classList.remove('good','bad'); });
+  }
+  function markField(id, correct, tol){
+    var el = document.getElementById(id);
+    if(!el) return null;
+    el.classList.remove('field-correct', 'field-incorrect');
+    var ok = near(parseMoney(el.value), correct, tol);
+    el.classList.add(ok ? 'field-correct' : 'field-incorrect');
+    if(!el.dataset.clearBound){ el.addEventListener('input', function(){ clearFieldState(el); }); el.dataset.clearBound = '1'; }
+    return ok;
+  }
+  function updateSummary(elId, results){
+    var el = document.getElementById(elId);
+    if(!el) return;
+    var graded = results.filter(function(r){ return r !== null; }).length;
+    var correct = results.filter(function(r){ return r === true; }).length;
+    el.textContent = correct + ' of ' + graded + ' correct';
+    el.classList.remove('good', 'bad');
+    el.classList.add(correct === graded && graded > 0 ? 'good' : 'bad');
+  }
+
+  var SCORES = {};
+  function scoreState(g){ if(!SCORES[g.btn]) SCORES[g.btn] = { correct:0, graded:0, attempts:0, checked:false, stale:false }; return SCORES[g.btn]; }
+  function scorePct(s){ return s.graded ? Math.round(s.correct / s.graded * 100) : 0; }
+  var SCORE_PROMPT = 'Fill in the worksheets below, then choose <strong>Check my work</strong>. Every blank counts as incorrect.';
+
+  function ensureScorePanel(g){
+    var area = document.getElementById('scoreArea');
+    if(!area) return null;
+    var panel = area.querySelector('.score-panel[data-for="' + g.btn + '"]');
+    if(panel) return panel;
+    panel = document.createElement('div');
+    panel.className = 'score-panel';
+    panel.setAttribute('data-for', g.btn);
+    panel.innerHTML =
+      '<div class="score-pct">&mdash;</div>' +
+      '<div class="score-detail">' +
+        '<p class="score-meta">Score</p>' +
+        '<div class="score-bar"><span></span></div>' +
+        '<p class="score-sub">' + SCORE_PROMPT + '</p>' +
+      '</div>';
+    area.appendChild(panel);
+    return panel;
+  }
+  function renderScore(g){
+    var panel = ensureScorePanel(g);
+    if(!panel) return;
+    var s = scoreState(g);
+    var pctEl = panel.querySelector('.score-pct');
+    var metaEl = panel.querySelector('.score-meta');
+    var fillEl = panel.querySelector('.score-bar span');
+    var subEl = panel.querySelector('.score-sub');
+    panel.classList.remove('scored-good', 'scored-bad');
+    if(!s.checked){ pctEl.innerHTML = '&mdash;'; metaEl.textContent = 'Score'; fillEl.style.width = '0%'; subEl.innerHTML = SCORE_PROMPT; return; }
+    var pct = scorePct(s);
+    pctEl.textContent = pct + '%';
+    metaEl.textContent = 'Score: ' + s.correct + ' of ' + s.graded + ' correct';
+    fillEl.style.width = pct + '%';
+    if(s.stale){ subEl.textContent = 'You have changed an answer since this score was calculated — check your work again to update it.'; }
+    else if(s.correct === s.graded){ subEl.textContent = 'All ' + s.graded + ' answers match the key. Attempt ' + s.attempts + '.'; panel.classList.add('scored-good'); }
+    else { var missing = s.graded - s.correct; subEl.innerHTML = missing + ' answer' + (missing === 1 ? '' : 's') + ' still to fix' + '<span class="print-hide"> — outlined in red below</span>. Attempt ' + s.attempts + '.'; panel.classList.add('scored-bad'); }
+  }
+  function markScoreStale(g){ var s = scoreState(g); if(!s.checked || s.stale) return; s.stale = true; renderScore(g); }
+  function resetScore(g){ SCORES[g.btn] = { correct:0, graded:0, attempts:0, checked:false, stale:false }; renderScore(g); }
+
+  // ---------- scenario ----------
+  function baseline(){
+    return {
+      unitsB:60100, priceB:20, unitsT:12800, priceT:40,
+      dmB:400100, dmT:162500, dlB:120700, dlT:42900,
+      mohMach:202752, mohSetup:132300, mohProd:100200, mohOther:60700,
+      mhB:90800, mhT:62800, suB:75, suT:240,
+      adB:53000, adT:109000, saTotal:580000
+    };
+  }
+
+  function randomParams(rand){
+    var unitsB = rTo(pick(rand, [40000,50000,60000,70000,80000]) + rand()*8000, 100);
+    var unitsT = rTo(pick(rand, [8000,10000,12000,15000,18000]) + rand()*2000, 100);
+    var priceB = rTo(pick(rand, [15,18,20,22,25,28]) + rand()*4, 1);
+    var priceT = rTo(pick(rand, [30,35,40,45,50]) + rand()*8, 1);
+    var salesB = unitsB*priceB, salesT = unitsT*priceT;
+
+    var dmRatioB = pick(rand,[0.30,0.32,0.34,0.36]) + (rand()-0.5)*0.03;
+    var dlRatioB = pick(rand,[0.09,0.10,0.11,0.12]) + (rand()-0.5)*0.01;
+    var dmRatioT = pick(rand,[0.30,0.32,0.34,0.36]) + (rand()-0.5)*0.03;
+    var dlRatioT = pick(rand,[0.07,0.08,0.09,0.10]) + (rand()-0.5)*0.01;
+    var dmB = rTo(salesB*dmRatioB, 50), dlB = rTo(salesB*dlRatioB, 50);
+    var dmT = rTo(salesT*dmRatioT, 50), dlT = rTo(salesT*dlRatioT, 50);
+
+    var dlTotal = dlB + dlT;
+    var mohRatio = pick(rand,[2.6,2.8,3.0,3.2,3.4]) + (rand()-0.5)*0.3; // moh total as multiple of total DL$
+    var mohTotal = rTo(dlTotal*mohRatio, 100);
+
+    var machShare = pick(rand,[0.38,0.40,0.42,0.44]) + (rand()-0.5)*0.03;
+    var setupShare = pick(rand,[0.24,0.26,0.28,0.30]) + (rand()-0.5)*0.03;
+    var prodShare = pick(rand,[0.18,0.20,0.22]) + (rand()-0.5)*0.02;
+    var otherShare = 1 - machShare - setupShare - prodShare;
+    if(otherShare < 0.08) otherShare = 0.08;
+    var scaleSum = machShare + setupShare + prodShare + otherShare;
+    machShare/=scaleSum; setupShare/=scaleSum; prodShare/=scaleSum; otherShare/=scaleSum;
+
+    var mohMach = rTo(mohTotal*machShare, 50);
+    var mohSetup = rTo(mohTotal*setupShare, 50);
+    var mohProd = rTo(mohTotal*prodShare, 50);
+    var mohOther = mohTotal - mohMach - mohSetup - mohProd;
+
+    var mhPerUnitB = pick(rand,[1.2,1.4,1.6,1.8]) + rand()*0.3;
+    var mhPerUnitT = pick(rand,[3.5,4.0,4.5,5.0]) + rand()*0.6; // low-volume product uses more MH/unit
+    var mhB = rTo(unitsB*mhPerUnitB, 100);
+    var mhT = rTo(unitsT*mhPerUnitT, 100);
+
+    var suB = rTo(pick(rand,[50,60,75,90]) + rand()*30, 5);
+    var suT = rTo(pick(rand,[180,210,240,270]) + rand()*40, 5); // low-volume product needs many more setups
+
+    var adRatioB = pick(rand,[0.03,0.04,0.05]) + (rand()-0.5)*0.01;
+    var adRatioT = pick(rand,[0.18,0.20,0.22]) + (rand()-0.5)*0.02;
+    var adB = rTo(salesB*adRatioB, 500);
+    var adT = rTo(salesT*adRatioT, 500);
+
+    var saRatio = pick(rand,[1.5,1.7,1.9,2.1]) + (rand()-0.5)*0.2; // total S&A as multiple of traced advertising
+    var saTotal = rTo((adB+adT)*saRatio, 500);
+    if(saTotal < adB+adT+5000) saTotal = adB+adT+5000;
+
+    return { unitsB:unitsB, priceB:priceB, unitsT:unitsT, priceT:priceT, dmB:dmB, dmT:dmT, dlB:dlB, dlT:dlT,
+      mohMach:mohMach, mohSetup:mohSetup, mohProd:mohProd, mohOther:mohOther,
+      mhB:mhB, mhT:mhT, suB:suB, suT:suT, adB:adB, adT:adT, saTotal:saTotal };
+  }
+
+  function solve(p){
+    var salesB = p.unitsB*p.priceB, salesT = p.unitsT*p.priceT, salesTot = salesB+salesT;
+    var dlTotal = p.dlB + p.dlT;
+    var mohTotal = p.mohMach + p.mohSetup + p.mohProd + p.mohOther;
+    var rate = mohTotal / dlTotal;
+    var mohAllocB = p.dlB * rate, mohAllocT = p.dlT * rate;
+    var cogsB = p.dmB + p.dlB + mohAllocB, cogsT = p.dmT + p.dlT + mohAllocT;
+    var cogsTotal = cogsB + cogsT;
+    var gmB = salesB - cogsB, gmT = salesT - cogsT;
+    var tradMarginB = gmB - p.adB, tradMarginT = gmT - p.adT;
+
+    var machRate = p.mohMach / (p.mhB + p.mhT);
+    var setupRate = p.mohSetup / (p.suB + p.suT);
+    var prodRate = p.mohProd / 2;
+    var ohAbcB = p.mhB*machRate + p.suB*setupRate + prodRate;
+    var ohAbcT = p.mhT*machRate + p.suT*setupRate + prodRate;
+    var abcCostB = p.dmB + p.dlB + ohAbcB, abcCostT = p.dmT + p.dlT + ohAbcT;
+    var abcMarginB = salesB - abcCostB - p.adB, abcMarginT = salesT - abcCostT - p.adT;
+
+    var noi = salesTot - cogsTotal - p.saTotal;
+
+    return Object.assign({}, p, {
+      salesB:salesB, salesT:salesT, salesTot:salesTot, dlTotal:dlTotal, mohTotal:mohTotal, rate:rate,
+      mohAllocB:mohAllocB, mohAllocT:mohAllocT, cogsB:cogsB, cogsT:cogsT, cogsTotal:cogsTotal,
+      gmB:gmB, gmT:gmT, tradMarginB:tradMarginB, tradMarginT:tradMarginT,
+      machRate:machRate, setupRate:setupRate, prodRate:prodRate, ohAbcB:ohAbcB, ohAbcT:ohAbcT,
+      abcCostB:abcCostB, abcCostT:abcCostT, abcMarginB:abcMarginB, abcMarginT:abcMarginT,
+      mhTot:p.mhB+p.mhT, suTot:p.suB+p.suT, adTot:p.adB+p.adT, unitsTot:p.unitsB+p.unitsT, noi:noi
+    });
+  }
+
+  function generateScenario(id){
+    var seed = (id || '').trim();
+    if(seed === '') return solve(baseline());
+    return solve(randomParams(mulberry32(hashSeed(seed.toLowerCase()))));
+  }
+
+  function applyScenario(d){
+    setText('gd-sales', money0(d.salesTot));
+    setText('gd-cogs', money0(d.cogsTotal));
+    setText('gd-gm', money0(d.salesTot - d.cogsTotal));
+    setText('gd-sa', money0(d.saTotal));
+    setText('gd-noi', money0(d.noi));
+
+    setText('gd-unitsB', num0(d.unitsB)); setText('gd-unitsT', num0(d.unitsT)); setText('gd-unitsTot', num0(d.unitsTot));
+    setText('gd-priceB', money2(d.priceB)); setText('gd-priceT', money2(d.priceT));
+    setText('gd-dmB', money0(d.dmB)); setText('gd-dmT', money0(d.dmT)); setText('gd-dmTot', money0(d.dmB+d.dmT));
+    setText('gd-dlB', money0(d.dlB)); setText('gd-dlT', money0(d.dlT)); setText('gd-dlTot', money0(d.dlTotal));
+    setText('gd-mohTot', money0(d.mohTotal));
+
+    setText('gd-adB', money0(d.adB)); setText('gd-adT', money0(d.adT)); setText('gd-adTot', money0(d.adTot));
+
+    setText('gd-mohMach', money0(d.mohMach)); setText('gd-mhB', num0(d.mhB)); setText('gd-mhT', num0(d.mhT)); setText('gd-mhTot', num0(d.mhTot));
+    setText('gd-mohSetup', money0(d.mohSetup)); setText('gd-suB', num0(d.suB)); setText('gd-suT', num0(d.suT)); setText('gd-suTot', num0(d.suTot));
+    setText('gd-mohProd', money0(d.mohProd));
+    setText('gd-mohOther', money0(d.mohOther));
+  }
+
+  function buildFields(d){
+    return [
+      {id:'t-rate', correct:d.rate, tol:TOL.rate},
+      {id:'t-mohB', correct:d.mohAllocB},
+      {id:'t-mohT', correct:d.mohAllocT},
+      {id:'t-cogsB', correct:d.cogsB},
+      {id:'t-cogsT', correct:d.cogsT},
+      {id:'t-gmB', correct:d.gmB},
+      {id:'t-gmT', correct:d.gmT},
+      {id:'t-marginB', correct:d.tradMarginB},
+      {id:'t-marginT', correct:d.tradMarginT},
+
+      {id:'a-machRate', correct:d.machRate, tol:TOL.rate},
+      {id:'a-setupRate', correct:d.setupRate, tol:TOL.rate},
+      {id:'a-prodRate', correct:d.prodRate},
+      {id:'a-ohB', correct:d.ohAbcB},
+      {id:'a-ohT', correct:d.ohAbcT},
+      {id:'a-costB', correct:d.abcCostB},
+      {id:'a-costT', correct:d.abcCostT},
+      {id:'a-marginB', correct:d.abcMarginB},
+      {id:'a-marginT', correct:d.abcMarginT}
+    ];
+  }
+
+  var CHECK_GROUPS = [{ btn:'checkCL', summary:'clSummary', fields: null }];
+
+  var idInput = document.getElementById('studentId');
+  var genBtn = document.getElementById('genBtn');
+  var currentScenario = null;
+
+  function applyAndStore(id){
+    currentScenario = generateScenario(id);
+    applyScenario(currentScenario);
+    CHECK_GROUPS[0].fields = buildFields(currentScenario);
+    clearAllFieldStates();
+    CHECK_GROUPS.forEach(resetScore);
+  }
+  genBtn.addEventListener('click', function(){ applyAndStore(idInput.value); });
+  idInput.addEventListener('keydown', function(e){ if(e.key === 'Enter'){ e.preventDefault(); applyAndStore(idInput.value); } });
+  applyAndStore('');
+
+  CHECK_GROUPS.forEach(function(g){
+    var btn = document.getElementById(g.btn);
+    if(!btn) return;
+    renderScore(g);
+    var part = btn.closest('.part');
+    if(part){
+      part.addEventListener('input', function(e){ if(e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT')) markScoreStale(g); });
+      part.addEventListener('change', function(e){ if(e.target && e.target.tagName === 'SELECT') markScoreStale(g); });
+    }
+    btn.addEventListener('click', function(){
+      if(!currentScenario) return;
+      var results = g.fields.map(function(f){ return markField(f.id, f.correct, f.tol !== undefined ? f.tol : TOL.dollars); });
+      updateSummary(g.summary, results);
+      var s = scoreState(g);
+      s.graded = results.filter(function(r){ return r !== null; }).length;
+      s.correct = results.filter(function(r){ return r === true; }).length;
+      s.attempts += 1; s.checked = true; s.stale = false;
+      renderScore(g);
+    });
+  });
+
+  function val(id){ var el = document.getElementById(id); return el ? el.value.trim() : ''; }
+  document.getElementById('printBtn').addEventListener('click', function(){
+    var name = val('studentName'); var id = val('studentId');
+    var line = document.getElementById('printNameLine');
+    line.textContent = 'Name: ' + (name || '_______________________') + '     Student ID: ' + (id || '_______________________');
+    var oldTitle = document.title;
+    document.title = FILE_SLUG + '-' + (id || 'submission');
+    window.print();
+    document.title = oldTitle;
+  });
+})();
+</script>
+
+</body>
+</html>

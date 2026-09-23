@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Segment Reporting and Break-Even Analysis — Toxaway Trading Company</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --purple:#592C88;
+    --purple-deep:#38195A;
+    --purple-mid:#6E3FA3;
+    --gold:#B0925C;
+    --gold-soft:#D6C398;
+    --gold-pale:#F1E9D6;
+    --parchment:#F7F4EC;
+    --paper:#FFFEFA;
+    --ink:#221B2E;
+    --slate:#5F5A6B;
+    --line:#DBD3E0;
+    --line-soft:#EAE4EF;
+    --answer:#1E5C34;
+    --answer-bg:#E7F1E9;
+    --danger:#9C3B34;
+    --shadow: 0 1px 2px rgba(56,25,90,0.07), 0 6px 18px rgba(56,25,90,0.08);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--parchment);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ color:inherit; }
+
+  header{
+    background: linear-gradient(180deg, var(--purple) 0%, var(--purple-deep) 100%);
+    color:#F1E9D6;
+    padding: 30px 6vw 24px;
+    position:relative;
+  }
+  header::after{
+    content:"";
+    position:absolute; left:0; right:0; bottom:0; height:4px;
+    background: linear-gradient(90deg, var(--gold-soft), var(--gold) 40%, var(--gold-soft) 70%, var(--gold));
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--gold-soft); margin:0 0 10px;
+  }
+  h1.title{
+    font-family:'Source Serif 4', serif; font-weight:600;
+    font-size:clamp(24px,3.4vw,34px); margin:0 0 8px; letter-spacing:-0.01em;
+  }
+  .subtitle{ font-size:14.5px; color:#D9CDE5; max-width:680px; margin:0; }
+
+  .id-bar{
+    max-width:900px; margin:0 auto; padding:18px 6vw 0;
+    display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+  }
+  .id-bar label{ font-size:13px; font-weight:600; color:var(--slate); }
+  .id-bar input[type="text"]{
+    font-family:'Inter',sans-serif; font-size:13.5px; padding:8px 11px;
+    border:1px solid var(--line); border-radius:5px; background:var(--paper); color:var(--ink);
+    width:220px;
+  }
+  .id-bar input:focus{ outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); }
+  .id-bar .id-hint{ font-size:12px; color:var(--slate); }
+
+  .score-area{ max-width:900px; margin:0 auto; padding:14px 6vw 0; }
+
+  .rounding-note{
+    max-width:900px; margin:14px auto 0; padding:12px 6vw;
+    font-size:12.5px; color:var(--slate); line-height:1.5;
+  }
+  .rounding-note strong{ color:var(--purple); font-weight:600; }
+
+  main{ max-width:900px; margin:0 auto; padding:22px 6vw 90px; }
+
+  .part{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    box-shadow:var(--shadow);
+    padding:24px 26px 26px;
+    margin-top:26px;
+  }
+  .part-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; color:var(--gold); background:var(--purple);
+    display:inline-block; padding:3px 9px; border-radius:4px; letter-spacing:.04em;
+    margin-bottom:12px;
+  }
+  .part h2{
+    font-family:'Source Serif 4', serif; font-size:21px; font-weight:600;
+    color:var(--purple); margin:0 0 12px;
+  }
+  .scenario{
+    background:var(--parchment);
+    border-left:3px solid var(--gold);
+    padding:14px 18px;
+    border-radius:0 6px 6px 0;
+    font-size:14.5px;
+    color:var(--ink);
+    margin-bottom:16px;
+  }
+  .scenario p{ margin:0 0 10px; }
+  .scenario p:last-child{ margin-bottom:0; }
+  .scenario span.val{ font-weight:700; color:var(--purple-deep); }
+
+  .req{
+    font-weight:600;
+    font-size:14.5px;
+    color:var(--ink);
+    margin:20px 0 10px;
+  }
+  .req span.reqlabel{ color:var(--purple); }
+  ol.reqlist{ margin:8px 0 0; padding-left:20px; font-size:14.5px; }
+  ol.reqlist li{ margin:6px 0; }
+
+  h4.subsection{
+    font-family:'Source Serif 4',serif; font-size:15px; color:var(--purple); margin:22px 0 6px;
+    border-bottom:1px solid var(--line-soft); padding-bottom:4px;
+  }
+
+  .footnote{ font-size:12px; color:var(--slate); margin:2px 0 14px; font-style:italic; }
+  .hint{ font-size:12.5px; color:var(--slate); margin:4px 0 10px; }
+
+  table.given{ width:100%; border-collapse:collapse; font-size:13px; margin:6px 0 14px; }
+  table.given th{ text-align:left; font-size:10.5px; text-transform:uppercase; letter-spacing:.03em; color:var(--slate); border-bottom:2px solid var(--purple); padding:6px 8px; }
+  table.given td{ border-bottom:1px solid var(--line); padding:5px 8px; font-family:'IBM Plex Mono', monospace; }
+  table.given td.lbl{ font-family:'Inter',sans-serif; }
+  table.given td.num, table.given th.num{ text-align:right; }
+  table.given td.unknown{ color:var(--gold); font-weight:700; }
+
+  table.worksheet{
+    width:100%;
+    border-collapse:collapse;
+    font-size:13.5px;
+    margin:10px 0 4px;
+  }
+  table.worksheet th{
+    text-align:left;
+    font-size:11.5px;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+    color:var(--slate);
+    border-bottom:2px solid var(--purple);
+    padding:8px 8px;
+  }
+  table.worksheet th.num{ text-align:right; }
+  table.worksheet td{
+    border-bottom:1px solid var(--line);
+    padding:9px 8px;
+    vertical-align:middle;
+  }
+  table.worksheet td.method{ font-weight:600; }
+  table.worksheet td.sub{ padding-left:24px; font-weight:400; }
+  table.worksheet td.amt{ width:150px; text-align:right; font-family:'IBM Plex Mono',monospace; }
+  table.worksheet tr.ws-total td{ border-top:1.6px solid var(--purple); font-weight:600; }
+  table.worksheet tr.ws-sub td{ border-top:1px solid var(--line); font-weight:600; }
+  table.worksheet input[type="text"]{
+    width:100%;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13.5px;
+    padding:6px 8px;
+    border:1px solid var(--line);
+    border-radius:5px;
+    background:var(--parchment);
+    color:var(--ink);
+    text-align:right;
+  }
+  table.worksheet input[type="text"]:focus{
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
+  }
+  table.worksheet select.acct{
+    width:100%;
+    font-family:'Inter',sans-serif;
+    font-size:13.5px;
+    font-weight:400;
+    padding:6px 8px;
+    border:1px solid var(--line);
+    border-radius:5px;
+    background:var(--parchment);
+    color:var(--ink);
+  }
+  table.worksheet select.acct:focus{
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
+  }
+  table.worksheet td.acctcell{ padding-right:14px; }
+
+  .score-panel{
+    display:flex; align-items:center; gap:18px;
+    margin:0 0 4px; padding:14px 18px;
+    background:var(--parchment);
+    border:1px solid var(--line);
+    border-radius:8px;
+  }
+  .score-panel.scored-good{ background:var(--answer-bg); border-color:#B7D3BE; }
+  .score-panel.scored-bad{ background:#F8F0EF; border-color:#E2C6C2; }
+  .score-pct{
+    font-family:'Source Serif 4', serif;
+    font-size:30px; font-weight:700; line-height:1.05;
+    color:var(--slate); min-width:96px; text-align:center;
+  }
+  .score-panel.scored-good .score-pct{ color:var(--answer); }
+  .score-panel.scored-bad .score-pct{ color:var(--danger); }
+  .score-detail{ flex:1; min-width:0; }
+  .score-meta{ font-size:13.5px; font-weight:600; color:var(--ink); margin:0 0 7px; }
+  .score-bar{ height:8px; border-radius:4px; background:var(--line-soft); overflow:hidden; }
+  .score-bar span{ display:block; height:100%; width:0; background:var(--purple-mid); transition:width .35s ease; }
+  .score-panel.scored-good .score-bar span{ background:var(--answer); }
+  .score-panel.scored-bad .score-bar span{ background:var(--danger); }
+  .score-sub{ font-size:11.5px; color:var(--slate); margin:7px 0 0; }
+
+  .check-bar{
+    margin-top:20px;
+    padding-top:16px;
+    border-top:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .btn-check{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:9px 18px; border:1px solid var(--purple);
+    background:var(--purple); color:#fff; cursor:pointer;
+  }
+  .btn-check:hover{ background:var(--purple-mid); }
+  .check-summary{ font-size:13.5px; font-weight:600; }
+  .check-summary.good{ color:var(--answer); }
+  .check-summary.bad{ color:var(--danger); }
+  .check-disclaimer{ font-size:11.5px; color:var(--slate); width:100%; margin-top:2px; font-style:italic; }
+
+  input.field-correct, select.field-correct{
+    border-color:var(--answer) !important;
+    background:var(--answer-bg) !important;
+  }
+  input.field-incorrect, select.field-incorrect{
+    border-color:var(--danger) !important;
+    background:#F3E1DE !important;
+  }
+
+  .submit-bar{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    box-shadow:var(--shadow);
+    padding:22px 26px 24px;
+    margin-top:26px;
+  }
+  .submit-bar h2{
+    font-family:'Source Serif 4', serif; font-size:19px; font-weight:600;
+    color:var(--purple); margin:0 0 14px;
+  }
+  .submit-row{ display:flex; align-items:center; gap:10px; margin-bottom:12px; flex-wrap:wrap; }
+  .submit-row label{ font-size:13px; font-weight:600; color:var(--slate); }
+  .btn-submit{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:10px 18px; border:1px solid var(--purple);
+    background:var(--purple); color:#fff; cursor:pointer;
+  }
+  .btn-submit:hover{ background:var(--purple-mid); }
+  .submit-hint{ font-size:12px; color:var(--slate); margin:6px 0 0; }
+
+  textarea.reason{
+    width:100%; min-height:70px; font-family:'Inter',sans-serif; font-size:13.5px;
+    padding:9px 11px; border:1px solid var(--line); border-radius:6px; background:var(--parchment); color:var(--ink);
+    resize:vertical;
+  }
+  textarea.reason:focus{ outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper); }
+
+  @media print{
+    .print-hide, .id-bar, .check-bar, .rounding-note{ display:none !important; }
+    header{ background:none !important; color:var(--ink) !important; padding:0 0 14px !important; }
+    header::after{ display:none !important; }
+    .eyebrow{ color:var(--purple) !important; }
+    .subtitle{ color:var(--slate) !important; }
+    body{ background:#fff !important; }
+    .part{ box-shadow:none !important; border:1px solid #999 !important; break-inside:auto; }
+    .score-panel{ background:#fff !important; border:1.5px solid #000 !important; break-inside:avoid; }
+    .score-bar{ display:none !important; }
+    .score-pct, .score-panel.scored-good .score-pct, .score-panel.scored-bad .score-pct{ color:#000 !important; }
+    .part h2, .part-label, .scenario, h4.subsection{ break-after:avoid; break-inside:avoid; }
+    table.given, table.worksheet{ break-inside:auto; }
+    table.given tr, table.worksheet tr{ break-inside:avoid; }
+    .submit-bar{ break-before:avoid; }
+    input[type="text"], select.acct, textarea.reason{
+      border:none !important;
+      border-bottom:1px solid #000 !important;
+      background:transparent !important;
+      border-radius:0 !important;
+      color:#000 !important;
+      -webkit-appearance:none;
+      -moz-appearance:none;
+      appearance:none;
+      padding:2px 4px !important;
+    }
+    .print-name-line{ display:block !important; }
+  }
+  .print-name-line{ display:none; font-size:13px; color:var(--ink); padding:0 6vw; margin:0 0 10px; }
+
+  footer{ text-align:center; padding:26px 6vw 40px; font-size:12px; color:var(--slate); }
+
+  @media (max-width:600px){
+    header, main, .id-bar{ padding-left:5vw; padding-right:5vw; }
+    table.worksheet{ font-size:12.5px; }
+  }
+
+</style>
+</head>
+<body>
+
+<header>
+  <p class="eyebrow">ACCT 252 &middot; Using Accounting Information for Management Decisions &middot; Segment Reporting</p>
+  <h1 class="title">Segment Reporting and Break-Even Analysis — Toxaway Trading Company</h1>
+  <p class="subtitle">An accounting intern segmented a merchandiser's income statement using the absorption format and allocated common fixed expenses down to two divisions. Work out what she did, redo the statement in contribution format, and use it to find break-even points for the company and each division &mdash; before and after a change in how sales staff are paid.</p>
+</header>
+
+<p class="print-name-line" id="printNameLine"></p>
+
+<div class="id-bar">
+  <label for="studentName">Name</label>
+  <input type="text" id="studentName" placeholder="First and last name">
+  <label for="studentId">Student ID</label>
+  <input type="text" id="studentId" placeholder="e.g. 920410165">
+  <button id="genBtn" type="button">Generate scenario</button>
+  <span class="id-hint">Leave the ID blank and click to restore the original textbook figures.</span>
+</div>
+
+<div class="score-area" id="scoreArea"></div>
+
+<div class="rounding-note"><strong>Before you start:</strong> Toxaway's only variable selling and administrative expense is a sales commission. A <strong>traceable</strong> fixed expense would disappear if its division were dropped; a <strong>common</strong> fixed expense would not, and allocating it to divisions can make a segment look less profitable than it really is. When you compute a division's break-even point in dollar sales, use only that division's own traceable fixed expenses in the numerator &mdash; not any allocated common cost. Enter dollar amounts <strong>in whole dollars</strong> and round break-even dollar sales to the nearest dollar.</div>
+
+<main>
+  <div class="part">
+    <span class="part-label">Problem</span>
+    <h2>Toxaway Trading Company</h2>
+
+    <div class="scenario">
+      <p><span class="val">Toxaway Trading Company</span> is a merchandiser with two divisions &mdash; Commercial and Residential. An accounting intern prepared the absorption format segmented income statement below for divisional managers to use.</p>
+    </div>
+
+    <h4 class="subsection">Given — the intern's absorption format segmented income statement</h4>
+    <table class="given">
+      <thead><tr><th>Item</th><th class="num">Total Company</th><th class="num">Commercial</th><th class="num">Residential</th></tr></thead>
+      <tbody>
+        <tr><td class="lbl">Sales</td><td class="num" id="gd-sales-t">$870,000</td><td class="num" id="gd-sales-c">$290,000</td><td class="num" id="gd-sales-r">$580,000</td></tr>
+        <tr><td class="lbl">Cost of goods sold</td><td class="num" id="gd-cogs-t">$571,300</td><td class="num" id="gd-cogs-c">$153,700</td><td class="num" id="gd-cogs-r">$417,600</td></tr>
+        <tr><td class="lbl">Gross margin</td><td class="num" id="gd-gm-t">$298,700</td><td class="num" id="gd-gm-c">$136,300</td><td class="num" id="gd-gm-r">$162,400</td></tr>
+        <tr><td class="lbl">Selling and administrative expenses</td><td class="num" id="gd-sa-t">$272,000</td><td class="num" id="gd-sa-c">$120,000</td><td class="num" id="gd-sa-r">$152,000</td></tr>
+        <tr><td class="lbl">Net operating income</td><td class="num" id="gd-noi-t">$26,700</td><td class="num" id="gd-noi-c">$16,300</td><td class="num" id="gd-noi-r">$10,400</td></tr>
+      </tbody>
+    </table>
+    <p class="hint">Toxaway's only variable selling and administrative expense is a <strong id="gd-commrate">10%</strong> sales commission on all sales. Of the company's total fixed expenses, <strong id="gd-common">$75,000</strong> is common and would continue even if either division were dropped; <strong id="gd-trac-c">$66,000</strong> is traceable to Commercial and would disappear if Commercial were dropped; <strong id="gd-trac-r">$44,000</strong> is traceable to Residential and would disappear if Residential were dropped.</p>
+
+    <div class="req"><span class="reqlabel">Required:</span>
+      <ol class="reqlist">
+        <li>How much of the company's common fixed expenses did the intern allocate to Commercial and to Residential? Which allocation base did she most likely use? Do you agree with using the absorption format, and with allocating common fixed expenses to the divisions?</li>
+        <li>Redo the intern's segmented income statement using the contribution format.</li>
+        <li>Compute the companywide break-even point in dollar sales, and the break-even point in dollar sales for each division.</li>
+        <li>Suppose the company instead pays its Commercial and Residential sales representatives fixed monthly salaries (given below) and lowers the companywide commission rate to 5%. Recompute the break-even point in dollar sales for each division.</li>
+      </ol>
+    </div>
+
+    <h4 class="subsection">(1) The intern's allocation</h4>
+    <table class="worksheet">
+      <tbody>
+        <tr><td class="method">Common fixed expenses allocated to Commercial</td><td class="amt"><input type="text" placeholder="$" id="q1-alloc-c"></td></tr>
+        <tr><td class="method">Common fixed expenses allocated to Residential</td><td class="amt"><input type="text" placeholder="$" id="q1-alloc-r"></td></tr>
+        <tr>
+          <td class="method" style="width:300px;">Allocation base most likely used</td>
+          <td class="acctcell">
+            <select class="acct" id="q1-base">
+              <option value="">— select an answer —</option>
+              <option value="sales">Sales</option>
+              <option value="cogs">Cost of goods sold</option>
+              <option value="gm">Gross margin</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td class="method" style="width:300px;">Agree with using the absorption format here?</td>
+          <td class="acctcell">
+            <select class="acct" id="q1-agree-format">
+              <option value="">— select an answer —</option>
+              <option value="no">No — a contribution format would serve managers better</option>
+              <option value="yes">Yes — absorption format is appropriate</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td class="method" style="width:300px;">Agree with allocating common fixed expenses to the divisions?</td>
+          <td class="acctcell">
+            <select class="acct" id="q1-agree-allocate">
+              <option value="">— select an answer —</option>
+              <option value="no">No — common fixed expenses should not be allocated</option>
+              <option value="yes">Yes — allocating common costs is appropriate</option>
+            </select>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="hint" style="margin-top:10px;">Briefly explain your reasoning (not graded):</p>
+    <textarea class="reason" id="q1-reason" placeholder="Because..."></textarea>
+
+    <h4 class="subsection">(2) Contribution format segmented income statement</h4>
+    <table class="worksheet">
+      <thead><tr><th>Line item</th><th class="num">Total Company</th><th class="num">Commercial</th><th class="num">Residential</th></tr></thead>
+      <tbody>
+        <tr><td class="method">Sales</td><td class="amt"><input type="text" placeholder="$" id="cf-sales-t"></td><td class="amt"><input type="text" placeholder="$" id="cf-sales-c"></td><td class="amt"><input type="text" placeholder="$" id="cf-sales-r"></td></tr>
+        <tr><td class="method sub">Variable expenses</td><td class="amt"><input type="text" placeholder="$" id="cf-var-t"></td><td class="amt"><input type="text" placeholder="$" id="cf-var-c"></td><td class="amt"><input type="text" placeholder="$" id="cf-var-r"></td></tr>
+        <tr class="ws-sub"><td class="method">Contribution margin</td><td class="amt"><input type="text" placeholder="$" id="cf-cm-t"></td><td class="amt"><input type="text" placeholder="$" id="cf-cm-c"></td><td class="amt"><input type="text" placeholder="$" id="cf-cm-r"></td></tr>
+        <tr><td class="method sub">Traceable fixed expenses</td><td class="amt"><input type="text" placeholder="$" id="cf-tfixed-t"></td><td class="amt"><input type="text" placeholder="$" id="cf-tfixed-c"></td><td class="amt"><input type="text" placeholder="$" id="cf-tfixed-r"></td></tr>
+        <tr class="ws-sub"><td class="method">Segment margin</td><td class="amt"><input type="text" placeholder="$" id="cf-segmargin-t"></td><td class="amt"><input type="text" placeholder="$" id="cf-segmargin-c"></td><td class="amt"><input type="text" placeholder="$" id="cf-segmargin-r"></td></tr>
+        <tr><td class="method">Common fixed expenses</td><td class="amt"><input type="text" placeholder="$" id="cf-common"></td><td class="amt" style="color:var(--slate);text-align:right;">&mdash;</td><td class="amt" style="color:var(--slate);text-align:right;">&mdash;</td></tr>
+        <tr class="ws-total"><td class="method">Net operating income</td><td class="amt"><input type="text" placeholder="$" id="cf-noi"></td><td class="amt" style="color:var(--slate);text-align:right;">&mdash;</td><td class="amt" style="color:var(--slate);text-align:right;">&mdash;</td></tr>
+      </tbody>
+    </table>
+
+    <h4 class="subsection">(3) Break-even point in dollar sales</h4>
+    <table class="worksheet">
+      <tbody>
+        <tr class="ws-total"><td class="method">Companywide break-even point</td><td class="amt"><input type="text" placeholder="$" id="be-total"></td></tr>
+        <tr class="ws-total"><td class="method">Commercial Division break-even point</td><td class="amt"><input type="text" placeholder="$" id="be-c"></td></tr>
+        <tr class="ws-total"><td class="method">Residential Division break-even point</td><td class="amt"><input type="text" placeholder="$" id="be-r"></td></tr>
+      </tbody>
+    </table>
+
+    <h4 class="subsection">(4) New sales-compensation structure</h4>
+    <table class="given">
+      <thead><tr><th>Item</th><th class="num">Commercial</th><th class="num">Residential</th></tr></thead>
+      <tbody>
+        <tr><td class="lbl">Monthly sales salaries</td><td class="num" id="gd-salary-c">$19,000</td><td class="num" id="gd-salary-r">$38,000</td></tr>
+        <tr><td class="lbl">New companywide commission rate</td><td class="num" colspan="2" style="text-align:center;" id="gd-newrate">5%</td></tr>
+      </tbody>
+    </table>
+    <table class="worksheet">
+      <tbody>
+        <tr class="ws-total"><td class="method">New Commercial Division break-even point</td><td class="amt"><input type="text" placeholder="$" id="be2-c"></td></tr>
+        <tr class="ws-total"><td class="method">New Residential Division break-even point</td><td class="amt"><input type="text" placeholder="$" id="be2-r"></td></tr>
+      </tbody>
+    </table>
+
+    <div class="check-bar">
+      <button class="btn-check" id="checkCL" type="button">Check my work</button>
+      <span class="check-summary" id="clSummary"></span>
+      <span class="check-disclaimer">This checks whether your figures and multiple-choice answers match the key within a small tolerance &mdash; it does not grade your written explanation.</span>
+    </div>
+  </div>
+
+  <div class="submit-bar print-hide">
+    <h2>Ready to submit?</h2>
+    <p class="submit-hint" style="margin:0 0 12px;">Your name is taken from the top of the page.</p>
+    <div class="submit-row submit-actions">
+      <button class="btn-submit" id="printBtn" type="button">Print / Save as PDF</button>
+    </div>
+    <p class="submit-hint">This captures exactly what's currently filled in above and works offline.</p>
+  </div>
+
+</main>
+
+<footer>Segment Reporting and Break-Even Analysis &middot; ACCT 252 &middot; Western Carolina University</footer>
+
+<script>
+(function(){
+  var FILE_SLUG = "ACCT252-Segment-Reporting-Breakeven";
+
+  // ---------- seeded pseudo-random ----------
+  function hashSeed(str){
+    var h = 2166136261;
+    for(var i=0;i<str.length;i++){
+      h ^= str.charCodeAt(i);
+      h = Math.imul(h, 16777619);
+    }
+    return h >>> 0;
+  }
+  function mulberry32(seed){
+    return function(){
+      seed |= 0; seed = seed + 0x6D2B79F5 | 0;
+      var t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
+  }
+  function pick(rand, arr){ return arr[Math.floor(rand() * arr.length)]; }
+  function rTo(x, m){ return Math.round(x/m)*m; }
+
+  function money0(n){
+    var v = Number(n);
+    var s = Math.abs(v).toLocaleString('en-US', {minimumFractionDigits:0, maximumFractionDigits:0});
+    return v < 0 ? '$(' + s + ')' : '$' + s;
+  }
+  function setText(id, text){
+    var el = document.getElementById(id);
+    if(el) el.textContent = text;
+  }
+
+  var TOL = { dollars:1, unit:0.02 };
+
+  function parseMoney(s){
+    if(s === null || s === undefined) return NaN;
+    var raw = String(s).trim();
+    var neg = /^\(.*\)$/.test(raw) || /^-/.test(raw) || /^−/.test(raw);
+    var cleaned = raw.replace(/[^0-9.]/g, '');
+    if(cleaned === '') return NaN;
+    var v = parseFloat(cleaned);
+    if(isNaN(v)) return NaN;
+    return neg ? -v : v;
+  }
+  function near(a, b, tol){
+    if(isNaN(a) || isNaN(b)) return false;
+    return Math.abs(a - b) <= tol;
+  }
+  function clearFieldState(el){
+    if(!el) return;
+    el.classList.remove('field-correct', 'field-incorrect');
+  }
+  function clearAllFieldStates(){
+    document.querySelectorAll('.field-correct, .field-incorrect').forEach(function(el){
+      el.classList.remove('field-correct', 'field-incorrect');
+    });
+    document.querySelectorAll('.check-summary').forEach(function(el){
+      el.textContent = ''; el.classList.remove('good','bad');
+    });
+  }
+  function markField(id, correct, tol){
+    var el = document.getElementById(id);
+    if(!el) return null;
+    el.classList.remove('field-correct', 'field-incorrect');
+    var ok = near(parseMoney(el.value), correct, tol);
+    el.classList.add(ok ? 'field-correct' : 'field-incorrect');
+    if(!el.dataset.clearBound){
+      el.addEventListener('input', function(){ clearFieldState(el); });
+      el.dataset.clearBound = '1';
+    }
+    return ok;
+  }
+  function markSelect(id, expected){
+    var el = document.getElementById(id);
+    if(!el) return null;
+    el.classList.remove('field-correct', 'field-incorrect');
+    var ok = el.value === expected;
+    el.classList.add(ok ? 'field-correct' : 'field-incorrect');
+    if(!el.dataset.clearBound){
+      el.addEventListener('change', function(){ clearFieldState(el); });
+      el.dataset.clearBound = '1';
+    }
+    return ok;
+  }
+  function updateSummary(elId, results){
+    var el = document.getElementById(elId);
+    if(!el) return;
+    var graded = results.filter(function(r){ return r !== null; }).length;
+    var correct = results.filter(function(r){ return r === true; }).length;
+    el.textContent = correct + ' of ' + graded + ' correct';
+    el.classList.remove('good', 'bad');
+    el.classList.add(correct === graded && graded > 0 ? 'good' : 'bad');
+  }
+
+  var SCORES = {};
+  function scoreState(g){
+    if(!SCORES[g.btn]) SCORES[g.btn] = { correct:0, graded:0, attempts:0, checked:false, stale:false };
+    return SCORES[g.btn];
+  }
+  function scorePct(s){
+    return s.graded ? Math.round(s.correct / s.graded * 100) : 0;
+  }
+  var SCORE_PROMPT = 'Fill in the worksheet below, then choose <strong>Check my work</strong>. Every blank counts as incorrect.';
+
+  function ensureScorePanel(g){
+    var area = document.getElementById('scoreArea');
+    if(!area) return null;
+    var panel = area.querySelector('.score-panel[data-for="' + g.btn + '"]');
+    if(panel) return panel;
+    panel = document.createElement('div');
+    panel.className = 'score-panel';
+    panel.setAttribute('data-for', g.btn);
+    panel.innerHTML =
+      '<div class="score-pct">&mdash;</div>' +
+      '<div class="score-detail">' +
+        '<p class="score-meta">Score</p>' +
+        '<div class="score-bar"><span></span></div>' +
+        '<p class="score-sub">' + SCORE_PROMPT + '</p>' +
+      '</div>';
+    area.appendChild(panel);
+    return panel;
+  }
+
+  function renderScore(g){
+    var panel = ensureScorePanel(g);
+    if(!panel) return;
+    var s = scoreState(g);
+    var pctEl = panel.querySelector('.score-pct');
+    var metaEl = panel.querySelector('.score-meta');
+    var fillEl = panel.querySelector('.score-bar span');
+    var subEl = panel.querySelector('.score-sub');
+    panel.classList.remove('scored-good', 'scored-bad');
+
+    if(!s.checked){
+      pctEl.innerHTML = '&mdash;';
+      metaEl.textContent = 'Score';
+      fillEl.style.width = '0%';
+      subEl.innerHTML = SCORE_PROMPT;
+      return;
+    }
+    var pct = scorePct(s);
+    pctEl.textContent = pct + '%';
+    metaEl.textContent = 'Score: ' + s.correct + ' of ' + s.graded + ' correct';
+    fillEl.style.width = pct + '%';
+    if(s.stale){
+      subEl.textContent = 'You have changed an answer since this score was calculated — check your work again to update it.';
+    } else if(s.correct === s.graded){
+      subEl.textContent = 'All ' + s.graded + ' answers match the key. Attempt ' + s.attempts + '.';
+      panel.classList.add('scored-good');
+    } else {
+      var missing = s.graded - s.correct;
+      subEl.innerHTML = missing + ' answer' + (missing === 1 ? '' : 's') + ' still to fix' +
+                        '<span class="print-hide"> — outlined in red below</span>. Attempt ' + s.attempts + '.';
+      panel.classList.add('scored-bad');
+    }
+  }
+  function markScoreStale(g){
+    var s = scoreState(g);
+    if(!s.checked || s.stale) return;
+    s.stale = true;
+    renderScore(g);
+  }
+  function resetScore(g){
+    SCORES[g.btn] = { correct:0, graded:0, attempts:0, checked:false, stale:false };
+    renderScore(g);
+  }
+
+
+  // ---------- scenario ----------
+  function baseline(){
+    return {
+      sales_c:290000, cogsRatio_c:153700/290000, tfixed_c:66000, salaryFrac_c:19000/290000,
+      sales_r:580000, cogsRatio_r:417600/580000, tfixed_r:44000, salaryFrac_r:38000/580000,
+      commonFrac: 75000/110000,
+      commRate:0.10, newCommRate:0.05
+    };
+  }
+
+  function randomParams(rand){
+    var sales_c = rTo(pick(rand, [180000,220000,260000,290000,330000,380000]) + rand()*40000, 1000);
+    var cogsRatio_c = pick(rand, [0.48,0.51,0.53,0.55,0.58]) + (rand()-0.5)*0.02;
+    var tfixedFrac_c = pick(rand, [0.18,0.20,0.23,0.25,0.28]) + (rand()-0.5)*0.02;
+    var tfixed_c = rTo(sales_c * tfixedFrac_c, 500);
+    var salaryFrac_c = pick(rand, [0.05,0.06,0.065,0.07,0.08]) + (rand()-0.5)*0.01;
+
+    var sales_r = rTo(pick(rand, [400000,480000,550000,620000,700000]) + rand()*60000, 1000);
+    var cogsRatio_r = pick(rand, [0.66,0.69,0.72,0.74,0.76]) + (rand()-0.5)*0.02;
+    var tfixedFrac_r = pick(rand, [0.05,0.06,0.07,0.08,0.09]) + (rand()-0.5)*0.01;
+    var tfixed_r = rTo(sales_r * tfixedFrac_r, 500);
+    var salaryFrac_r = pick(rand, [0.05,0.06,0.065,0.07,0.08]) + (rand()-0.5)*0.01;
+
+    var commonFrac = pick(rand, [0.55,0.62,0.68,0.75,0.82]) + (rand()-0.5)*0.05;
+
+    return {
+      sales_c:sales_c, cogsRatio_c:cogsRatio_c, tfixed_c:tfixed_c, salaryFrac_c:salaryFrac_c,
+      sales_r:sales_r, cogsRatio_r:cogsRatio_r, tfixed_r:tfixed_r, salaryFrac_r:salaryFrac_r,
+      commonFrac:commonFrac, commRate:0.10, newCommRate:0.05
+    };
+  }
+
+  function solve(p){
+    function div(sales, cogsRatio, tfixed){
+      var cogs = rTo(sales * cogsRatio, 1);
+      var gm = sales - cogs;
+      var varSA = rTo(sales * p.commRate, 1);
+      var cm = sales - cogs - varSA;
+      return { sales:sales, cogs:cogs, gm:gm, varSA:varSA, cm:cm, tfixed:tfixed };
+    }
+    var c = div(p.sales_c, p.cogsRatio_c, p.tfixed_c);
+    var r = div(p.sales_r, p.cogsRatio_r, p.tfixed_r);
+
+    var totalTraceable = c.tfixed + r.tfixed;
+    var common = rTo(totalTraceable * p.commonFrac, 500);
+    var allocC = rTo(common * c.sales / (c.sales + r.sales), 1);
+    var allocR = common - allocC;
+
+    // intern's absorption-format numbers (S&A lumps variable commission + traceable fixed + allocated common)
+    var saC = c.varSA + c.tfixed + allocC;
+    var saR = r.varSA + r.tfixed + allocR;
+    var noiC = c.gm - saC;
+    var noiR = r.gm - saR;
+
+    var salesT = c.sales + r.sales;
+    var cogsT = c.cogs + r.cogs;
+    var gmT = c.gm + r.gm;
+    var saT = saC + saR;
+    var noiT = noiC + noiR;
+
+    // contribution format
+    var cmT = c.cm + r.cm;
+    var tfixedT = c.tfixed + r.tfixed;
+    var segC = c.cm - c.tfixed, segR = r.cm - r.tfixed;
+    var segT = segC + segR;
+    var cfNoi = segT - common;
+
+    var beTotal = tfixedT / (cmT / salesT) + common / (cmT / salesT);
+    // equivalent: (common+tfixedT) / overall CM ratio
+    var beC = c.tfixed / (c.cm / c.sales);
+    var beR = r.tfixed / (r.cm / r.sales);
+
+    // new compensation structure
+    var salary_c = rTo(p.salaryFrac_c * c.sales, 100);
+    var salary_r = rTo(p.salaryFrac_r * r.sales, 100);
+    var newVarSA_c = c.sales * p.newCommRate;
+    var newVarSA_r = r.sales * p.newCommRate;
+    var newCm_c = c.sales - c.cogs - newVarSA_c;
+    var newCm_r = r.sales - r.cogs - newVarSA_r;
+    var newTfixed_c = c.tfixed + salary_c;
+    var newTfixed_r = r.tfixed + salary_r;
+    var newBeC = newTfixed_c / (newCm_c / c.sales);
+    var newBeR = newTfixed_r / (newCm_r / r.sales);
+
+    return {
+      c:c, r:r, common:common, allocC:allocC, allocR:allocR,
+      saC:saC, saR:saR, noiC:noiC, noiR:noiR,
+      t:{sales:salesT, cogs:cogsT, gm:gmT, sa:saT, noi:noiT},
+      cmT:cmT, tfixedT:tfixedT, segC:segC, segR:segR, segT:segT, cfNoi:cfNoi,
+      beTotal:beTotal, beC:beC, beR:beR,
+      salary_c:salary_c, salary_r:salary_r, newBeC:newBeC, newBeR:newBeR,
+      commRate:p.commRate, newCommRate:p.newCommRate
+    };
+  }
+
+  function generateScenario(id){
+    var seed = (id || '').trim();
+    if(seed === '') return solve(baseline());
+    return solve(randomParams(mulberry32(hashSeed(seed.toLowerCase()))));
+  }
+
+  function applyScenario(d){
+    setText('gd-sales-t', money0(d.t.sales));
+    setText('gd-sales-c', money0(d.c.sales));
+    setText('gd-sales-r', money0(d.r.sales));
+    setText('gd-cogs-t', money0(d.t.cogs));
+    setText('gd-cogs-c', money0(d.c.cogs));
+    setText('gd-cogs-r', money0(d.r.cogs));
+    setText('gd-gm-t', money0(d.t.gm));
+    setText('gd-gm-c', money0(d.c.gm));
+    setText('gd-gm-r', money0(d.r.gm));
+    setText('gd-sa-t', money0(d.t.sa));
+    setText('gd-sa-c', money0(d.saC));
+    setText('gd-sa-r', money0(d.saR));
+    setText('gd-noi-t', money0(d.t.noi));
+    setText('gd-noi-c', money0(d.noiC));
+    setText('gd-noi-r', money0(d.noiR));
+    setText('gd-commrate', Math.round(d.commRate*100) + '%');
+    setText('gd-common', money0(d.common));
+    setText('gd-trac-c', money0(d.c.tfixed));
+    setText('gd-trac-r', money0(d.r.tfixed));
+    setText('gd-salary-c', money0(d.salary_c));
+    setText('gd-salary-r', money0(d.salary_r));
+    setText('gd-newrate', Math.round(d.newCommRate*100) + '%');
+  }
+
+  function buildFields(d){
+    var fields = [];
+    fields.push({id:'q1-alloc-c', correct:d.allocC});
+    fields.push({id:'q1-alloc-r', correct:d.allocR});
+    fields.push({id:'q1-base', kind:'acct', acct:'sales'});
+    fields.push({id:'q1-agree-format', kind:'acct', acct:'no'});
+    fields.push({id:'q1-agree-allocate', kind:'acct', acct:'no'});
+
+    fields.push({id:'cf-sales-t', correct:d.t.sales}, {id:'cf-sales-c', correct:d.c.sales}, {id:'cf-sales-r', correct:d.r.sales});
+    fields.push({id:'cf-var-t', correct:(d.t.cogs + d.c.varSA + d.r.varSA)}, {id:'cf-var-c', correct:(d.c.cogs + d.c.varSA)}, {id:'cf-var-r', correct:(d.r.cogs + d.r.varSA)});
+    fields.push({id:'cf-cm-t', correct:d.cmT}, {id:'cf-cm-c', correct:d.c.cm}, {id:'cf-cm-r', correct:d.r.cm});
+    fields.push({id:'cf-tfixed-t', correct:d.tfixedT}, {id:'cf-tfixed-c', correct:d.c.tfixed}, {id:'cf-tfixed-r', correct:d.r.tfixed});
+    fields.push({id:'cf-segmargin-t', correct:d.segT}, {id:'cf-segmargin-c', correct:d.segC}, {id:'cf-segmargin-r', correct:d.segR});
+    fields.push({id:'cf-common', correct:d.common});
+    fields.push({id:'cf-noi', correct:d.cfNoi});
+
+    fields.push({id:'be-total', correct:d.beTotal, tol:5});
+    fields.push({id:'be-c', correct:d.beC, tol:5});
+    fields.push({id:'be-r', correct:d.beR, tol:5});
+    fields.push({id:'be2-c', correct:d.newBeC, tol:5});
+    fields.push({id:'be2-r', correct:d.newBeR, tol:5});
+
+    fields.forEach(function(f){ if(f.tol === undefined) f.tol = TOL.dollars; });
+    return { checkCL: fields };
+  }
+
+  var CHECK_GROUPS = [{ btn:'checkCL', summary:'clSummary', fields: null }];
+
+
+  // ---------------- wiring ----------------
+  var idInput = document.getElementById('studentId');
+  var genBtn = document.getElementById('genBtn');
+  var currentScenario = null;
+
+  function applyAndStore(id){
+    currentScenario = generateScenario(id);
+    applyScenario(currentScenario);
+    var fieldsByGroup = buildFields(currentScenario);
+    CHECK_GROUPS.forEach(function(g){ g.fields = fieldsByGroup[g.btn]; });
+    clearAllFieldStates();
+    CHECK_GROUPS.forEach(resetScore);
+  }
+  genBtn.addEventListener('click', function(){ applyAndStore(idInput.value); });
+  idInput.addEventListener('keydown', function(e){
+    if(e.key === 'Enter'){ e.preventDefault(); applyAndStore(idInput.value); }
+  });
+  applyAndStore('');
+
+  CHECK_GROUPS.forEach(function(g){
+    var btn = document.getElementById(g.btn);
+    if(!btn) return;
+    renderScore(g);
+
+    var part = btn.closest('.part');
+    if(part){
+      part.addEventListener('input', function(e){
+        if(e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT')) markScoreStale(g);
+      });
+      part.addEventListener('change', function(e){
+        if(e.target && e.target.tagName === 'SELECT') markScoreStale(g);
+      });
+    }
+
+    btn.addEventListener('click', function(){
+      if(!currentScenario) return;
+      var results = g.fields.map(function(f){
+        if(f.kind === 'acct'){
+          return markSelect(f.id, f.acct);
+        }
+        return markField(f.id, f.correct, f.tol !== undefined ? f.tol : TOL.dollars);
+      });
+      updateSummary(g.summary, results);
+      var s = scoreState(g);
+      s.graded = results.filter(function(r){ return r !== null; }).length;
+      s.correct = results.filter(function(r){ return r === true; }).length;
+      s.attempts += 1;
+      s.checked = true;
+      s.stale = false;
+      renderScore(g);
+    });
+  });
+
+
+  // ---------------- Print / Save as PDF ----------------
+  function val(id){
+    var el = document.getElementById(id);
+    return el ? el.value.trim() : '';
+  }
+  document.getElementById('printBtn').addEventListener('click', function(){
+    var name = val('studentName');
+    var id = val('studentId');
+    var line = document.getElementById('printNameLine');
+    line.textContent = 'Name: ' + (name || '_______________________') +
+                       '     Student ID: ' + (id || '_______________________');
+    var oldTitle = document.title;
+    document.title = FILE_SLUG + '-' + (id || 'submission');
+    window.print();
+    document.title = oldTitle;
+  });
+
+
+})();
+
+</script>
+
+</body>
+</html>

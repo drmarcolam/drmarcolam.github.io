@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reconciling Variable and Absorption Costing — Boone Ridge Industries</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --purple:#592C88;
+    --purple-deep:#38195A;
+    --purple-mid:#6E3FA3;
+    --gold:#B0925C;
+    --gold-soft:#D6C398;
+    --gold-pale:#F1E9D6;
+    --parchment:#F7F4EC;
+    --paper:#FFFEFA;
+    --ink:#221B2E;
+    --slate:#5F5A6B;
+    --line:#DBD3E0;
+    --line-soft:#EAE4EF;
+    --answer:#1E5C34;
+    --answer-bg:#E7F1E9;
+    --danger:#9C3B34;
+    --shadow: 0 1px 2px rgba(56,25,90,0.07), 0 6px 18px rgba(56,25,90,0.08);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--parchment);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ color:inherit; }
+
+  header{
+    background: linear-gradient(180deg, var(--purple) 0%, var(--purple-deep) 100%);
+    color:#F1E9D6;
+    padding: 30px 6vw 24px;
+    position:relative;
+  }
+  header::after{
+    content:"";
+    position:absolute; left:0; right:0; bottom:0; height:4px;
+    background: linear-gradient(90deg, var(--gold-soft), var(--gold) 40%, var(--gold-soft) 70%, var(--gold));
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--gold-soft); margin:0 0 10px;
+  }
+  h1.title{
+    font-family:'Source Serif 4', serif; font-weight:600;
+    font-size:clamp(24px,3.4vw,34px); margin:0 0 8px; letter-spacing:-0.01em;
+  }
+  .subtitle{ font-size:14.5px; color:#D9CDE5; max-width:680px; margin:0; }
+
+  .id-bar{
+    max-width:900px; margin:0 auto; padding:18px 6vw 0;
+    display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+  }
+  .id-bar label{ font-size:13px; font-weight:600; color:var(--slate); }
+  .id-bar input[type="text"]{
+    font-family:'Inter',sans-serif; font-size:13.5px; padding:8px 11px;
+    border:1px solid var(--line); border-radius:5px; background:var(--paper); color:var(--ink);
+    width:220px;
+  }
+  .id-bar input:focus{ outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); }
+  .id-bar .id-hint{ font-size:12px; color:var(--slate); }
+
+  .score-area{ max-width:900px; margin:0 auto; padding:14px 6vw 0; }
+
+  .rounding-note{
+    max-width:900px; margin:14px auto 0; padding:12px 6vw;
+    font-size:12.5px; color:var(--slate); line-height:1.5;
+  }
+  .rounding-note strong{ color:var(--purple); font-weight:600; }
+
+  main{ max-width:900px; margin:0 auto; padding:22px 6vw 90px; }
+
+  .part{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    box-shadow:var(--shadow);
+    padding:24px 26px 26px;
+    margin-top:26px;
+  }
+  .part-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; color:var(--gold); background:var(--purple);
+    display:inline-block; padding:3px 9px; border-radius:4px; letter-spacing:.04em;
+    margin-bottom:12px;
+  }
+  .part h2{
+    font-family:'Source Serif 4', serif; font-size:21px; font-weight:600;
+    color:var(--purple); margin:0 0 12px;
+  }
+  .scenario{
+    background:var(--parchment);
+    border-left:3px solid var(--gold);
+    padding:14px 18px;
+    border-radius:0 6px 6px 0;
+    font-size:14.5px;
+    color:var(--ink);
+    margin-bottom:16px;
+  }
+  .scenario p{ margin:0 0 10px; }
+  .scenario p:last-child{ margin-bottom:0; }
+  .scenario span.val{ font-weight:700; color:var(--purple-deep); }
+
+  .req{
+    font-weight:600;
+    font-size:14.5px;
+    color:var(--ink);
+    margin:20px 0 10px;
+  }
+  .req span.reqlabel{ color:var(--purple); }
+  ol.reqlist{ margin:8px 0 0; padding-left:20px; font-size:14.5px; }
+  ol.reqlist li{ margin:6px 0; }
+
+  h4.subsection{
+    font-family:'Source Serif 4',serif; font-size:15px; color:var(--purple); margin:22px 0 6px;
+    border-bottom:1px solid var(--line-soft); padding-bottom:4px;
+  }
+
+  .footnote{ font-size:12px; color:var(--slate); margin:2px 0 14px; font-style:italic; }
+  .hint{ font-size:12.5px; color:var(--slate); margin:4px 0 10px; }
+
+  table.given{ width:100%; border-collapse:collapse; font-size:13px; margin:6px 0 14px; }
+  table.given th{ text-align:left; font-size:10.5px; text-transform:uppercase; letter-spacing:.03em; color:var(--slate); border-bottom:2px solid var(--purple); padding:6px 8px; }
+  table.given td{ border-bottom:1px solid var(--line); padding:5px 8px; font-family:'IBM Plex Mono', monospace; }
+  table.given td.lbl{ font-family:'Inter',sans-serif; }
+  table.given td.num, table.given th.num{ text-align:right; }
+  table.given td.unknown{ color:var(--gold); font-weight:700; }
+
+  table.worksheet{
+    width:100%;
+    border-collapse:collapse;
+    font-size:13.5px;
+    margin:10px 0 4px;
+  }
+  table.worksheet th{
+    text-align:left;
+    font-size:11.5px;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+    color:var(--slate);
+    border-bottom:2px solid var(--purple);
+    padding:8px 8px;
+  }
+  table.worksheet th.num{ text-align:right; }
+  table.worksheet td{
+    border-bottom:1px solid var(--line);
+    padding:9px 8px;
+    vertical-align:middle;
+  }
+  table.worksheet td.method{ font-weight:600; }
+  table.worksheet td.sub{ padding-left:24px; font-weight:400; }
+  table.worksheet td.amt{ width:150px; text-align:right; font-family:'IBM Plex Mono',monospace; }
+  table.worksheet tr.ws-total td{ border-top:1.6px solid var(--purple); font-weight:600; }
+  table.worksheet tr.ws-sub td{ border-top:1px solid var(--line); font-weight:600; }
+  table.worksheet input[type="text"]{
+    width:100%;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13.5px;
+    padding:6px 8px;
+    border:1px solid var(--line);
+    border-radius:5px;
+    background:var(--parchment);
+    color:var(--ink);
+    text-align:right;
+  }
+  table.worksheet input[type="text"]:focus{
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
+  }
+  table.worksheet select.acct{
+    width:100%;
+    font-family:'Inter',sans-serif;
+    font-size:13.5px;
+    font-weight:400;
+    padding:6px 8px;
+    border:1px solid var(--line);
+    border-radius:5px;
+    background:var(--parchment);
+    color:var(--ink);
+  }
+  table.worksheet select.acct:focus{
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
+  }
+  table.worksheet td.acctcell{ padding-right:14px; }
+
+  .score-panel{
+    display:flex; align-items:center; gap:18px;
+    margin:0 0 4px; padding:14px 18px;
+    background:var(--parchment);
+    border:1px solid var(--line);
+    border-radius:8px;
+  }
+  .score-panel.scored-good{ background:var(--answer-bg); border-color:#B7D3BE; }
+  .score-panel.scored-bad{ background:#F8F0EF; border-color:#E2C6C2; }
+  .score-pct{
+    font-family:'Source Serif 4', serif;
+    font-size:30px; font-weight:700; line-height:1.05;
+    color:var(--slate); min-width:96px; text-align:center;
+  }
+  .score-panel.scored-good .score-pct{ color:var(--answer); }
+  .score-panel.scored-bad .score-pct{ color:var(--danger); }
+  .score-detail{ flex:1; min-width:0; }
+  .score-meta{ font-size:13.5px; font-weight:600; color:var(--ink); margin:0 0 7px; }
+  .score-bar{ height:8px; border-radius:4px; background:var(--line-soft); overflow:hidden; }
+  .score-bar span{ display:block; height:100%; width:0; background:var(--purple-mid); transition:width .35s ease; }
+  .score-panel.scored-good .score-bar span{ background:var(--answer); }
+  .score-panel.scored-bad .score-bar span{ background:var(--danger); }
+  .score-sub{ font-size:11.5px; color:var(--slate); margin:7px 0 0; }
+
+  .check-bar{
+    margin-top:20px;
+    padding-top:16px;
+    border-top:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .btn-check{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:9px 18px; border:1px solid var(--purple);
+    background:var(--purple); color:#fff; cursor:pointer;
+  }
+  .btn-check:hover{ background:var(--purple-mid); }
+  .check-summary{ font-size:13.5px; font-weight:600; }
+  .check-summary.good{ color:var(--answer); }
+  .check-summary.bad{ color:var(--danger); }
+  .check-disclaimer{ font-size:11.5px; color:var(--slate); width:100%; margin-top:2px; font-style:italic; }
+
+  input.field-correct, select.field-correct{
+    border-color:var(--answer) !important;
+    background:var(--answer-bg) !important;
+  }
+  input.field-incorrect, select.field-incorrect{
+    border-color:var(--danger) !important;
+    background:#F3E1DE !important;
+  }
+
+  .submit-bar{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    box-shadow:var(--shadow);
+    padding:22px 26px 24px;
+    margin-top:26px;
+  }
+  .submit-bar h2{
+    font-family:'Source Serif 4', serif; font-size:19px; font-weight:600;
+    color:var(--purple); margin:0 0 14px;
+  }
+  .submit-row{ display:flex; align-items:center; gap:10px; margin-bottom:12px; flex-wrap:wrap; }
+  .submit-row label{ font-size:13px; font-weight:600; color:var(--slate); }
+  .btn-submit{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:10px 18px; border:1px solid var(--purple);
+    background:var(--purple); color:#fff; cursor:pointer;
+  }
+  .btn-submit:hover{ background:var(--purple-mid); }
+  .submit-hint{ font-size:12px; color:var(--slate); margin:6px 0 0; }
+
+  textarea.reason{
+    width:100%; min-height:70px; font-family:'Inter',sans-serif; font-size:13.5px;
+    padding:9px 11px; border:1px solid var(--line); border-radius:6px; background:var(--parchment); color:var(--ink);
+    resize:vertical;
+  }
+  textarea.reason:focus{ outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper); }
+
+  @media print{
+    .print-hide, .id-bar, .check-bar, .rounding-note{ display:none !important; }
+    header{ background:none !important; color:var(--ink) !important; padding:0 0 14px !important; }
+    header::after{ display:none !important; }
+    .eyebrow{ color:var(--purple) !important; }
+    .subtitle{ color:var(--slate) !important; }
+    body{ background:#fff !important; }
+    .part{ box-shadow:none !important; border:1px solid #999 !important; break-inside:auto; }
+    .score-panel{ background:#fff !important; border:1.5px solid #000 !important; break-inside:avoid; }
+    .score-bar{ display:none !important; }
+    .score-pct, .score-panel.scored-good .score-pct, .score-panel.scored-bad .score-pct{ color:#000 !important; }
+    .part h2, .part-label, .scenario, h4.subsection{ break-after:avoid; break-inside:avoid; }
+    table.given, table.worksheet{ break-inside:auto; }
+    table.given tr, table.worksheet tr{ break-inside:avoid; }
+    .submit-bar{ break-before:avoid; }
+    input[type="text"], select.acct, textarea.reason{
+      border:none !important;
+      border-bottom:1px solid #000 !important;
+      background:transparent !important;
+      border-radius:0 !important;
+      color:#000 !important;
+      -webkit-appearance:none;
+      -moz-appearance:none;
+      appearance:none;
+      padding:2px 4px !important;
+    }
+    .print-name-line{ display:block !important; }
+  }
+  .print-name-line{ display:none; font-size:13px; color:var(--ink); padding:0 6vw; margin:0 0 10px; }
+
+  footer{ text-align:center; padding:26px 6vw 40px; font-size:12px; color:var(--slate); }
+
+  @media (max-width:600px){
+    header, main, .id-bar{ padding-left:5vw; padding-right:5vw; }
+    table.worksheet{ font-size:12.5px; }
+  }
+
+</style>
+</head>
+<body>
+
+<header>
+  <p class="eyebrow">ACCT 252 &middot; Using Accounting Information for Management Decisions &middot; Variable vs. Absorption Costing</p>
+  <h1 class="title">Reconciling Variable and Absorption Costing Net Operating Income — Boone Ridge Industries</h1>
+  <p class="subtitle">Starting from a given absorption costing income statement for two years, work back to the variable costing unit product cost and net operating income, then reconcile the two methods' net operating income figures.</p>
+</header>
+
+<p class="print-name-line" id="printNameLine"></p>
+
+<div class="id-bar">
+  <label for="studentName">Name</label>
+  <input type="text" id="studentName" placeholder="First and last name">
+  <label for="studentId">Student ID</label>
+  <input type="text" id="studentId" placeholder="e.g. 920410165">
+  <button id="genBtn" type="button">Generate scenario</button>
+  <span class="id-hint">Leave the ID blank and click to restore the original textbook figures.</span>
+</div>
+
+<div class="score-area" id="scoreArea"></div>
+
+<div class="rounding-note"><strong>Before you start:</strong> Boone Ridge Industries produced the same number of units in both years, so its absorption costing unit product cost (given below) is the same in Year 1 and Year 2. Inventory built up in Year 1 (because production exceeded sales) is entirely sold off in Year 2 (because sales exceeded production by that same amount), so ending inventory is back to zero at the end of Year 2. Enter all dollar amounts <strong>in whole dollars</strong> and per-unit amounts to the nearest cent.</div>
+
+<main>
+  <div class="part">
+    <span class="part-label">Problem</span>
+    <h2>Boone Ridge Industries</h2>
+
+    <div class="scenario">
+      <p><span class="val">Boone Ridge Industries</span> manufactures and sells one product. During its first two years of operations, it reported <strong>absorption costing</strong> net operating income as shown below.</p>
+    </div>
+
+    <h4 class="subsection">Given — absorption costing income statements</h4>
+    <table class="given">
+      <thead><tr><th>Item</th><th class="num">Year 1</th><th class="num">Year 2</th></tr></thead>
+      <tbody>
+        <tr><td class="lbl">Sales</td><td class="num" id="gd-sales-y1">$1,020,000</td><td class="num" id="gd-sales-y2">$1,620,000</td></tr>
+        <tr><td class="lbl">Cost of goods sold</td><td class="num" id="gd-cogs-y1">$680,000</td><td class="num" id="gd-cogs-y2">$1,080,000</td></tr>
+        <tr><td class="lbl">Gross margin</td><td class="num" id="gd-gm-y1">$340,000</td><td class="num" id="gd-gm-y2">$540,000</td></tr>
+        <tr><td class="lbl">Selling and administrative expenses</td><td class="num" id="gd-sa-y1">$303,000</td><td class="num" id="gd-sa-y2">$333,000</td></tr>
+        <tr><td class="lbl">Net operating income</td><td class="num" id="gd-noi-y1">$37,000</td><td class="num" id="gd-noi-y2">$207,000</td></tr>
+      </tbody>
+    </table>
+
+    <h4 class="subsection">Given — cost and production data</h4>
+    <table class="given">
+      <thead><tr><th>Item</th><th class="num">Amount</th></tr></thead>
+      <tbody>
+        <tr><td class="lbl">Selling price per unit</td><td class="num" id="gd-price">$60</td></tr>
+        <tr><td class="lbl">Direct materials per unit</td><td class="num" id="gd-dm">$8</td></tr>
+        <tr><td class="lbl">Direct labor per unit</td><td class="num" id="gd-dl">$13</td></tr>
+        <tr><td class="lbl">Variable manufacturing overhead per unit</td><td class="num" id="gd-voh">$3</td></tr>
+        <tr><td class="lbl">Fixed manufacturing overhead per year</td><td class="num" id="gd-fmoh">$352,000</td></tr>
+        <tr><td class="lbl">Absorption costing unit product cost</td><td class="num" id="gd-acu">$40</td></tr>
+        <tr><td class="lbl">Variable selling and administrative expense per unit</td><td class="num" id="gd-vsell">$3</td></tr>
+        <tr><td class="lbl">Fixed selling and administrative expense per year</td><td class="num" id="gd-fsell">$252,000</td></tr>
+      </tbody>
+    </table>
+    <table class="given">
+      <thead><tr><th>Item</th><th class="num">Year 1</th><th class="num">Year 2</th></tr></thead>
+      <tbody>
+        <tr><td class="lbl">Units produced</td><td class="num" id="gd-py1">22,000</td><td class="num" id="gd-py2">22,000</td></tr>
+        <tr><td class="lbl">Units sold</td><td class="num" id="gd-sy1">17,000</td><td class="num" id="gd-sy2">27,000</td></tr>
+      </tbody>
+    </table>
+
+    <div class="req"><span class="reqlabel">Required:</span>
+      <ol class="reqlist">
+        <li>Using variable costing, what is the unit product cost for both years?</li>
+        <li>What is the variable costing net operating income in Year 1 and in Year 2?</li>
+        <li>Reconcile the absorption costing and variable costing net operating income figures for each year.</li>
+      </ol>
+    </div>
+
+    <h4 class="subsection">(1) Variable costing unit product cost</h4>
+    <table class="worksheet">
+      <tbody>
+        <tr class="ws-total"><td class="method">Unit product cost (same both years)</td><td class="amt"><input type="text" placeholder="$ per unit" id="vcu"></td></tr>
+      </tbody>
+    </table>
+
+    <h4 class="subsection">(2) Variable costing income statements</h4>
+    <table class="worksheet">
+      <thead><tr><th>Line item</th><th class="num">Year 1</th><th class="num">Year 2</th></tr></thead>
+      <tbody>
+        <tr><td class="method">Sales</td><td class="amt"><input type="text" placeholder="$" id="vc-sales-y1"></td><td class="amt"><input type="text" placeholder="$" id="vc-sales-y2"></td></tr>
+        <tr><td class="method sub">Variable cost of goods sold</td><td class="amt"><input type="text" placeholder="$" id="vc-vcogs-y1"></td><td class="amt"><input type="text" placeholder="$" id="vc-vcogs-y2"></td></tr>
+        <tr><td class="method sub">Variable selling and administrative expense</td><td class="amt"><input type="text" placeholder="$" id="vc-vsell-y1"></td><td class="amt"><input type="text" placeholder="$" id="vc-vsell-y2"></td></tr>
+        <tr class="ws-sub"><td class="method">Total variable expenses</td><td class="amt"><input type="text" placeholder="$" id="vc-vtotal-y1"></td><td class="amt"><input type="text" placeholder="$" id="vc-vtotal-y2"></td></tr>
+        <tr class="ws-sub"><td class="method">Contribution margin</td><td class="amt"><input type="text" placeholder="$" id="vc-cm-y1"></td><td class="amt"><input type="text" placeholder="$" id="vc-cm-y2"></td></tr>
+        <tr><td class="method sub">Fixed manufacturing overhead</td><td class="amt"><input type="text" placeholder="$" id="vc-fmoh-y1"></td><td class="amt"><input type="text" placeholder="$" id="vc-fmoh-y2"></td></tr>
+        <tr><td class="method sub">Fixed selling and administrative expense</td><td class="amt"><input type="text" placeholder="$" id="vc-fsell-y1"></td><td class="amt"><input type="text" placeholder="$" id="vc-fsell-y2"></td></tr>
+        <tr class="ws-sub"><td class="method">Total fixed expenses</td><td class="amt"><input type="text" placeholder="$" id="vc-ftotal-y1"></td><td class="amt"><input type="text" placeholder="$" id="vc-ftotal-y2"></td></tr>
+        <tr class="ws-total"><td class="method">Net operating income</td><td class="amt"><input type="text" placeholder="$" id="vc-noi-y1"></td><td class="amt"><input type="text" placeholder="$" id="vc-noi-y2"></td></tr>
+      </tbody>
+    </table>
+
+    <h4 class="subsection">(3) Reconciliation</h4>
+    <p class="hint">Add fixed manufacturing overhead <em>deferred in</em> ending inventory (when production exceeds sales), or subtract fixed manufacturing overhead <em>released from</em> beginning inventory (when sales exceed production), to move from variable costing net operating income to absorption costing net operating income.</p>
+    <table class="worksheet">
+      <thead><tr><th>Line item</th><th class="num">Year 1</th><th class="num">Year 2</th></tr></thead>
+      <tbody>
+        <tr><td class="method">Variable costing net operating income</td><td class="amt"><input type="text" placeholder="$" id="rc-vcnoi-y1"></td><td class="amt"><input type="text" placeholder="$" id="rc-vcnoi-y2"></td></tr>
+        <tr><td class="method sub">Fixed manufacturing overhead deferred in (released from) inventory</td><td class="amt"><input type="text" placeholder="$" id="rc-adj-y1"></td><td class="amt"><input type="text" placeholder="$" id="rc-adj-y2"></td></tr>
+        <tr class="ws-total"><td class="method">Absorption costing net operating income</td><td class="amt"><input type="text" placeholder="$" id="rc-acnoi-y1"></td><td class="amt"><input type="text" placeholder="$" id="rc-acnoi-y2"></td></tr>
+      </tbody>
+    </table>
+
+    <div class="check-bar">
+      <button class="btn-check" id="checkCL" type="button">Check my work</button>
+      <span class="check-summary" id="clSummary"></span>
+      <span class="check-disclaimer">This checks whether your figures match the key within a small tolerance.</span>
+    </div>
+  </div>
+
+  <div class="submit-bar print-hide">
+    <h2>Ready to submit?</h2>
+    <p class="submit-hint" style="margin:0 0 12px;">Your name is taken from the top of the page.</p>
+    <div class="submit-row submit-actions">
+      <button class="btn-submit" id="printBtn" type="button">Print / Save as PDF</button>
+    </div>
+    <p class="submit-hint">This captures exactly what's currently filled in above and works offline.</p>
+  </div>
+
+</main>
+
+<footer>Reconciling Variable and Absorption Costing &middot; ACCT 252 &middot; Western Carolina University</footer>
+
+<script>
+(function(){
+  var FILE_SLUG = "ACCT252-Reconcile-Variable-Absorption";
+
+  // ---------- seeded pseudo-random ----------
+  function hashSeed(str){
+    var h = 2166136261;
+    for(var i=0;i<str.length;i++){
+      h ^= str.charCodeAt(i);
+      h = Math.imul(h, 16777619);
+    }
+    return h >>> 0;
+  }
+  function mulberry32(seed){
+    return function(){
+      seed |= 0; seed = seed + 0x6D2B79F5 | 0;
+      var t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
+  }
+  function pick(rand, arr){ return arr[Math.floor(rand() * arr.length)]; }
+  function rTo(x, m){ return Math.round(x/m)*m; }
+
+  function money0(n){
+    var v = Number(n);
+    var s = Math.abs(v).toLocaleString('en-US', {minimumFractionDigits:0, maximumFractionDigits:0});
+    return v < 0 ? '$(' + s + ')' : '$' + s;
+  }
+  function setText(id, text){
+    var el = document.getElementById(id);
+    if(el) el.textContent = text;
+  }
+
+  var TOL = { dollars:1, unit:0.02 };
+
+  function parseMoney(s){
+    if(s === null || s === undefined) return NaN;
+    var raw = String(s).trim();
+    var neg = /^\(.*\)$/.test(raw) || /^-/.test(raw) || /^−/.test(raw);
+    var cleaned = raw.replace(/[^0-9.]/g, '');
+    if(cleaned === '') return NaN;
+    var v = parseFloat(cleaned);
+    if(isNaN(v)) return NaN;
+    return neg ? -v : v;
+  }
+  function near(a, b, tol){
+    if(isNaN(a) || isNaN(b)) return false;
+    return Math.abs(a - b) <= tol;
+  }
+  function clearFieldState(el){
+    if(!el) return;
+    el.classList.remove('field-correct', 'field-incorrect');
+  }
+  function clearAllFieldStates(){
+    document.querySelectorAll('.field-correct, .field-incorrect').forEach(function(el){
+      el.classList.remove('field-correct', 'field-incorrect');
+    });
+    document.querySelectorAll('.check-summary').forEach(function(el){
+      el.textContent = ''; el.classList.remove('good','bad');
+    });
+  }
+  function markField(id, correct, tol){
+    var el = document.getElementById(id);
+    if(!el) return null;
+    el.classList.remove('field-correct', 'field-incorrect');
+    var ok = near(parseMoney(el.value), correct, tol);
+    el.classList.add(ok ? 'field-correct' : 'field-incorrect');
+    if(!el.dataset.clearBound){
+      el.addEventListener('input', function(){ clearFieldState(el); });
+      el.dataset.clearBound = '1';
+    }
+    return ok;
+  }
+  function markSelect(id, expected){
+    var el = document.getElementById(id);
+    if(!el) return null;
+    el.classList.remove('field-correct', 'field-incorrect');
+    var ok = el.value === expected;
+    el.classList.add(ok ? 'field-correct' : 'field-incorrect');
+    if(!el.dataset.clearBound){
+      el.addEventListener('change', function(){ clearFieldState(el); });
+      el.dataset.clearBound = '1';
+    }
+    return ok;
+  }
+  function updateSummary(elId, results){
+    var el = document.getElementById(elId);
+    if(!el) return;
+    var graded = results.filter(function(r){ return r !== null; }).length;
+    var correct = results.filter(function(r){ return r === true; }).length;
+    el.textContent = correct + ' of ' + graded + ' correct';
+    el.classList.remove('good', 'bad');
+    el.classList.add(correct === graded && graded > 0 ? 'good' : 'bad');
+  }
+
+  var SCORES = {};
+  function scoreState(g){
+    if(!SCORES[g.btn]) SCORES[g.btn] = { correct:0, graded:0, attempts:0, checked:false, stale:false };
+    return SCORES[g.btn];
+  }
+  function scorePct(s){
+    return s.graded ? Math.round(s.correct / s.graded * 100) : 0;
+  }
+  var SCORE_PROMPT = 'Fill in the worksheet below, then choose <strong>Check my work</strong>. Every blank counts as incorrect.';
+
+  function ensureScorePanel(g){
+    var area = document.getElementById('scoreArea');
+    if(!area) return null;
+    var panel = area.querySelector('.score-panel[data-for="' + g.btn + '"]');
+    if(panel) return panel;
+    panel = document.createElement('div');
+    panel.className = 'score-panel';
+    panel.setAttribute('data-for', g.btn);
+    panel.innerHTML =
+      '<div class="score-pct">&mdash;</div>' +
+      '<div class="score-detail">' +
+        '<p class="score-meta">Score</p>' +
+        '<div class="score-bar"><span></span></div>' +
+        '<p class="score-sub">' + SCORE_PROMPT + '</p>' +
+      '</div>';
+    area.appendChild(panel);
+    return panel;
+  }
+
+  function renderScore(g){
+    var panel = ensureScorePanel(g);
+    if(!panel) return;
+    var s = scoreState(g);
+    var pctEl = panel.querySelector('.score-pct');
+    var metaEl = panel.querySelector('.score-meta');
+    var fillEl = panel.querySelector('.score-bar span');
+    var subEl = panel.querySelector('.score-sub');
+    panel.classList.remove('scored-good', 'scored-bad');
+
+    if(!s.checked){
+      pctEl.innerHTML = '&mdash;';
+      metaEl.textContent = 'Score';
+      fillEl.style.width = '0%';
+      subEl.innerHTML = SCORE_PROMPT;
+      return;
+    }
+    var pct = scorePct(s);
+    pctEl.textContent = pct + '%';
+    metaEl.textContent = 'Score: ' + s.correct + ' of ' + s.graded + ' correct';
+    fillEl.style.width = pct + '%';
+    if(s.stale){
+      subEl.textContent = 'You have changed an answer since this score was calculated — check your work again to update it.';
+    } else if(s.correct === s.graded){
+      subEl.textContent = 'All ' + s.graded + ' answers match the key. Attempt ' + s.attempts + '.';
+      panel.classList.add('scored-good');
+    } else {
+      var missing = s.graded - s.correct;
+      subEl.innerHTML = missing + ' answer' + (missing === 1 ? '' : 's') + ' still to fix' +
+                        '<span class="print-hide"> — outlined in red below</span>. Attempt ' + s.attempts + '.';
+      panel.classList.add('scored-bad');
+    }
+  }
+  function markScoreStale(g){
+    var s = scoreState(g);
+    if(!s.checked || s.stale) return;
+    s.stale = true;
+    renderScore(g);
+  }
+  function resetScore(g){
+    SCORES[g.btn] = { correct:0, graded:0, attempts:0, checked:false, stale:false };
+    renderScore(g);
+  }
+
+
+  // ---------- scenario ----------
+  function baseline(){
+    return {
+      produced:22000, sy1:17000, sy2:27000,
+      price:60, dm:8, dl:13, voh:3, fmoh:352000, vsell:3, fsell:252000
+    };
+  }
+
+  function randomParams(rand){
+    var produced = pick(rand, [14000,16000,18000,20000,22000,25000,28000,30000]);
+    var sellFrac1 = pick(rand, [0.65,0.70,0.75,0.78,0.80]) + (rand()-0.5)*0.03;
+    var sy1 = rTo(produced * sellFrac1, 500);
+    if(sy1 >= produced) sy1 = produced - 1000;
+    var sy2 = 2*produced - sy1;   // draws down all of the inventory built in Year 1
+
+    var price = rTo(pick(rand, [35,40,45,50,55,60,65,70,75]) + rand()*10, 1);
+    var varRatio = pick(rand, [0.38,0.40,0.42,0.45,0.48]) + (rand()-0.5)*0.03;
+    var varMfgTotal = price * varRatio;
+    var dmShare = pick(rand, [0.32,0.34,0.36,0.38]) + (rand()-0.5)*0.02;
+    var dlShare = pick(rand, [0.44,0.46,0.48,0.50]) + (rand()-0.5)*0.02;
+    var dm = rTo(varMfgTotal * dmShare, 1);
+    var dl = rTo(varMfgTotal * dlShare, 1);
+    var voh = rTo(varMfgTotal - dm - dl, 1);
+    if(voh < 1) voh = 1;
+
+    var vsell = rTo(price * (pick(rand, [0.03,0.04,0.05,0.06]) + rand()*0.01), 1);
+
+    var fmoh = rTo(produced * pick(rand, [10,12,14,16,18]), 1000);
+    var fsell = rTo(fmoh * (pick(rand, [0.55,0.65,0.75,0.85]) + (rand()-0.5)*0.05), 1000);
+
+    return { produced:produced, sy1:sy1, sy2:sy2, price:price, dm:dm, dl:dl, voh:voh, fmoh:fmoh, vsell:vsell, fsell:fsell };
+  }
+
+  function solve(p){
+    var varMfg = p.dm + p.dl + p.voh;
+    var fmohRate = p.fmoh / p.produced;
+    var acu = varMfg + fmohRate;
+
+    var beginInv1 = 0, endInv1 = p.produced - p.sy1;
+    var beginInv2 = endInv1, endInv2 = p.produced + beginInv2 - p.sy2; // should compute to 0 by construction
+
+    function acYear(sold, cogs){
+      var sales = sold * p.price;
+      var gm = sales - cogs;
+      var sa = sold * p.vsell + p.fsell;
+      var noi = gm - sa;
+      return { sales:sales, cogs:cogs, gm:gm, sa:sa, noi:noi };
+    }
+    var ac1 = acYear(p.sy1, p.sy1 * acu);
+    var ac2 = acYear(p.sy2, p.sy2 * acu);
+
+    function vcYear(sold){
+      var sales = sold * p.price;
+      var vcogs = sold * varMfg;
+      var vsellTotal = sold * p.vsell;
+      var vtotal = vcogs + vsellTotal;
+      var cm = sales - vtotal;
+      var ftotal = p.fmoh + p.fsell;
+      var noi = cm - ftotal;
+      return { sales:sales, vcogs:vcogs, vsell:vsellTotal, vtotal:vtotal, cm:cm, fmoh:p.fmoh, fsell:p.fsell, ftotal:ftotal, noi:noi };
+    }
+    var vc1 = vcYear(p.sy1), vc2 = vcYear(p.sy2);
+
+    var deltaInv1 = endInv1 - beginInv1;
+    var deltaInv2 = endInv2 - beginInv2;
+    var adj1 = deltaInv1 * fmohRate;
+    var adj2 = deltaInv2 * fmohRate;
+
+    return {
+      produced:p.produced, sy1:p.sy1, sy2:p.sy2, price:p.price, dm:p.dm, dl:p.dl, voh:p.voh,
+      fmoh:p.fmoh, vsell:p.vsell, fsell:p.fsell, acu:acu, vcu:varMfg,
+      ac:[ac1,ac2], vc:[vc1,vc2], adj:[adj1,adj2]
+    };
+  }
+
+  function generateScenario(id){
+    var seed = (id || '').trim();
+    if(seed === '') return solve(baseline());
+    return solve(randomParams(mulberry32(hashSeed(seed.toLowerCase()))));
+  }
+
+  function applyScenario(d){
+    setText('gd-sales-y1', money0(d.ac[0].sales));
+    setText('gd-sales-y2', money0(d.ac[1].sales));
+    setText('gd-cogs-y1', money0(d.ac[0].cogs));
+    setText('gd-cogs-y2', money0(d.ac[1].cogs));
+    setText('gd-gm-y1', money0(d.ac[0].gm));
+    setText('gd-gm-y2', money0(d.ac[1].gm));
+    setText('gd-sa-y1', money0(d.ac[0].sa));
+    setText('gd-sa-y2', money0(d.ac[1].sa));
+    setText('gd-noi-y1', money0(d.ac[0].noi));
+    setText('gd-noi-y2', money0(d.ac[1].noi));
+
+    setText('gd-price', money0(d.price));
+    setText('gd-dm', money0(d.dm));
+    setText('gd-dl', money0(d.dl));
+    setText('gd-voh', money0(d.voh));
+    setText('gd-fmoh', money0(d.fmoh));
+    setText('gd-acu', money0(Math.round(d.acu*100)/100));
+    setText('gd-vsell', money0(d.vsell));
+    setText('gd-fsell', money0(d.fsell));
+    setText('gd-py1', d.produced.toLocaleString());
+    setText('gd-py2', d.produced.toLocaleString());
+    setText('gd-sy1', d.sy1.toLocaleString());
+    setText('gd-sy2', d.sy2.toLocaleString());
+  }
+
+  function buildFields(d){
+    var fields = [];
+    fields.push({id:'vcu', correct:d.vcu, tol:TOL.unit});
+    ['sales','vcogs','vsell','vtotal','cm','fmoh','fsell','ftotal','noi'].forEach(function(k){
+      fields.push({id:'vc-'+k+'-y1', correct:d.vc[0][k], tol:TOL.dollars});
+      fields.push({id:'vc-'+k+'-y2', correct:d.vc[1][k], tol:TOL.dollars});
+    });
+    fields.push({id:'rc-vcnoi-y1', correct:d.vc[0].noi, tol:TOL.dollars});
+    fields.push({id:'rc-vcnoi-y2', correct:d.vc[1].noi, tol:TOL.dollars});
+    fields.push({id:'rc-adj-y1', correct:d.adj[0], tol:TOL.dollars});
+    fields.push({id:'rc-adj-y2', correct:d.adj[1], tol:TOL.dollars});
+    fields.push({id:'rc-acnoi-y1', correct:d.ac[0].noi, tol:TOL.dollars});
+    fields.push({id:'rc-acnoi-y2', correct:d.ac[1].noi, tol:TOL.dollars});
+    return { checkCL: fields };
+  }
+
+  var CHECK_GROUPS = [{ btn:'checkCL', summary:'clSummary', fields: null }];
+
+
+  // ---------------- wiring ----------------
+  var idInput = document.getElementById('studentId');
+  var genBtn = document.getElementById('genBtn');
+  var currentScenario = null;
+
+  function applyAndStore(id){
+    currentScenario = generateScenario(id);
+    applyScenario(currentScenario);
+    var fieldsByGroup = buildFields(currentScenario);
+    CHECK_GROUPS.forEach(function(g){ g.fields = fieldsByGroup[g.btn]; });
+    clearAllFieldStates();
+    CHECK_GROUPS.forEach(resetScore);
+  }
+  genBtn.addEventListener('click', function(){ applyAndStore(idInput.value); });
+  idInput.addEventListener('keydown', function(e){
+    if(e.key === 'Enter'){ e.preventDefault(); applyAndStore(idInput.value); }
+  });
+  applyAndStore('');
+
+  CHECK_GROUPS.forEach(function(g){
+    var btn = document.getElementById(g.btn);
+    if(!btn) return;
+    renderScore(g);
+
+    var part = btn.closest('.part');
+    if(part){
+      part.addEventListener('input', function(e){
+        if(e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT')) markScoreStale(g);
+      });
+      part.addEventListener('change', function(e){
+        if(e.target && e.target.tagName === 'SELECT') markScoreStale(g);
+      });
+    }
+
+    btn.addEventListener('click', function(){
+      if(!currentScenario) return;
+      var results = g.fields.map(function(f){
+        if(f.kind === 'acct'){
+          return markSelect(f.id, f.acct);
+        }
+        return markField(f.id, f.correct, f.tol !== undefined ? f.tol : TOL.dollars);
+      });
+      updateSummary(g.summary, results);
+      var s = scoreState(g);
+      s.graded = results.filter(function(r){ return r !== null; }).length;
+      s.correct = results.filter(function(r){ return r === true; }).length;
+      s.attempts += 1;
+      s.checked = true;
+      s.stale = false;
+      renderScore(g);
+    });
+  });
+
+
+  // ---------------- Print / Save as PDF ----------------
+  function val(id){
+    var el = document.getElementById(id);
+    return el ? el.value.trim() : '';
+  }
+  document.getElementById('printBtn').addEventListener('click', function(){
+    var name = val('studentName');
+    var id = val('studentId');
+    var line = document.getElementById('printNameLine');
+    line.textContent = 'Name: ' + (name || '_______________________') +
+                       '     Student ID: ' + (id || '_______________________');
+    var oldTitle = document.title;
+    document.title = FILE_SLUG + '-' + (id || 'submission');
+    window.print();
+    document.title = oldTitle;
+  });
+
+
+})();
+
+</script>
+
+</body>
+</html>
