@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Constructing and Assessing Income Statements Using the Cost-to-Cost Method — Watauga Construction</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --purple:#592C88;
+    --purple-deep:#38195A;
+    --purple-mid:#6E3FA3;
+    --gold:#B0925C;
+    --gold-soft:#D6C398;
+    --gold-pale:#F1E9D6;
+    --parchment:#F7F4EC;
+    --paper:#FFFEFA;
+    --ink:#221B2E;
+    --slate:#5F5A6B;
+    --line:#DBD3E0;
+    --line-soft:#EAE4EF;
+    --answer:#1E5C34;
+    --answer-bg:#E7F1E9;
+    --danger:#9C3B34;
+    --shadow: 0 1px 2px rgba(56,25,90,0.07), 0 6px 18px rgba(56,25,90,0.08);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--parchment);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ color:inherit; }
+
+  header{
+    background: linear-gradient(180deg, var(--purple) 0%, var(--purple-deep) 100%);
+    color:#F1E9D6;
+    padding: 30px 6vw 24px;
+    position:relative;
+  }
+  header::after{
+    content:"";
+    position:absolute; left:0; right:0; bottom:0; height:4px;
+    background: linear-gradient(90deg, var(--gold-soft), var(--gold) 40%, var(--gold-soft) 70%, var(--gold));
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--gold-soft); margin:0 0 10px;
+  }
+  h1.title{
+    font-family:'Source Serif 4', serif; font-weight:600;
+    font-size:clamp(24px,3.4vw,34px); margin:0 0 8px; letter-spacing:-0.01em;
+  }
+  .subtitle{ font-size:14.5px; color:#D9CDE5; max-width:680px; margin:0; }
+
+  .id-bar{
+    max-width:900px; margin:0 auto; padding:18px 6vw 0;
+    display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+  }
+  .id-bar label{ font-size:13px; font-weight:600; color:var(--slate); }
+  .id-bar input[type="text"]{
+    font-family:'IBM Plex Mono', monospace; font-size:13.5px; padding:8px 11px;
+    border:1px solid var(--line); border-radius:5px; background:var(--paper); color:var(--ink);
+    width:180px;
+  }
+  .id-bar input:focus{ outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); }
+  .id-bar button{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:8px 15px; border:1px solid var(--purple);
+    background:var(--purple); color:#fff; cursor:pointer;
+  }
+  .id-bar button:hover{ background:var(--purple-mid); }
+  .id-bar .id-hint{ font-size:12px; color:var(--slate); }
+  .id-bar input#studentName{ width:220px; font-family:'Inter',sans-serif; }
+
+  .score-area{ max-width:900px; margin:0 auto; padding:14px 6vw 0; }
+
+  .rounding-note{
+    max-width:900px; margin:14px auto 0; padding:12px 6vw;
+    font-size:12.5px; color:var(--slate); line-height:1.5;
+  }
+  .rounding-note strong{ color:var(--purple); font-weight:600; }
+
+  main{ max-width:900px; margin:0 auto; padding:22px 6vw 90px; }
+
+  .part{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    box-shadow:var(--shadow);
+    padding:24px 26px 26px;
+    margin-top:26px;
+  }
+  .part-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; color:var(--gold); background:var(--purple);
+    display:inline-block; padding:3px 9px; border-radius:4px; letter-spacing:.04em;
+    margin-bottom:12px;
+  }
+  .part h2{
+    font-family:'Source Serif 4', serif; font-size:21px; font-weight:600;
+    color:var(--purple); margin:0 0 12px;
+  }
+  .scenario{
+    background:var(--parchment);
+    border-left:3px solid var(--gold);
+    padding:14px 18px;
+    border-radius:0 6px 6px 0;
+    font-size:14.5px;
+    color:var(--ink);
+    margin-bottom:16px;
+  }
+  .scenario p{ margin:0 0 10px; }
+  .scenario p:last-child{ margin-bottom:0; }
+  .scenario span.val{ font-weight:700; color:var(--purple-deep); }
+
+  .req{
+    font-weight:600;
+    font-size:14.5px;
+    color:var(--ink);
+    margin:20px 0 10px;
+  }
+  .req span.reqlabel{ color:var(--purple); }
+
+  h4.subsection{
+    font-family:'Source Serif 4',serif; font-size:15px; color:var(--purple); margin:22px 0 6px;
+    border-bottom:1px solid var(--line-soft); padding-bottom:4px;
+  }
+
+  table.given{ width:100%; border-collapse:collapse; font-size:13px; margin:6px 0 14px; }
+  table.given th{ text-align:left; font-size:10.5px; text-transform:uppercase; letter-spacing:.03em; color:var(--slate); border-bottom:2px solid var(--purple); padding:6px 8px; }
+  table.given td{ border-bottom:1px solid var(--line); padding:5px 8px; font-family:'IBM Plex Mono', monospace; }
+  table.given td.lbl{ font-family:'Inter',sans-serif; }
+  table.given td.num, table.given th.num{ text-align:right; }
+  table.given tr.given-total td{ border-top:1.3px solid var(--purple); font-weight:600; }
+  table.given tr.given-head td{ font-family:'Source Serif 4',serif; font-weight:600; color:var(--purple); text-align:center; }
+  ol.addinfo{ margin:8px 0; padding-left:20px; font-size:13.5px; }
+  ol.addinfo li{ margin:6px 0; }
+  .footnote{ font-size:12px; color:var(--slate); margin:2px 0 14px; font-style:italic; }
+  .hint{ font-size:12.5px; color:var(--slate); margin:4px 0 10px; }
+
+  table.worksheet{
+    width:100%;
+    border-collapse:collapse;
+    font-size:13.5px;
+    margin:10px 0 4px;
+  }
+  table.worksheet th{
+    text-align:left;
+    font-size:11.5px;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+    color:var(--slate);
+    border-bottom:2px solid var(--purple);
+    padding:8px 8px;
+  }
+  table.worksheet th.num{ text-align:right; }
+  table.worksheet td{
+    border-bottom:1px solid var(--line);
+    padding:9px 8px;
+    vertical-align:middle;
+  }
+  table.worksheet td.method{ font-weight:600; }
+  table.worksheet td.sub{ padding-left:24px; font-weight:400; }
+  table.worksheet td.amt{ width:170px; }
+  table.worksheet td.dash{ text-align:center; color:var(--slate); font-family:'IBM Plex Mono',monospace; }
+  table.worksheet tr.ws-total td{ border-top:1.6px solid var(--purple); font-weight:600; }
+  table.worksheet tr.ws-sub td{ border-top:1px solid var(--line); font-weight:600; }
+  table.worksheet input[type="text"]{
+    width:100%;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13.5px;
+    padding:6px 8px;
+    border:1px solid var(--line);
+    border-radius:5px;
+    background:var(--parchment);
+    color:var(--ink);
+  }
+  table.worksheet input[type="text"]:focus{
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
+  }
+  table.worksheet select.acct{
+    width:100%;
+    font-family:'Inter',sans-serif;
+    font-size:13.5px;
+    font-weight:400;
+    padding:6px 8px;
+    border:1px solid var(--line);
+    border-radius:5px;
+    background:var(--parchment);
+    color:var(--ink);
+  }
+  table.worksheet select.acct:focus{
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
+  }
+  table.worksheet tr.ws-total select.acct, table.worksheet tr.ws-sub select.acct{ font-weight:600; }
+  table.worksheet td.acctcell{ padding-right:14px; }
+
+  .score-panel{
+    display:flex; align-items:center; gap:18px;
+    margin:0 0 4px; padding:14px 18px;
+    background:var(--parchment);
+    border:1px solid var(--line);
+    border-radius:8px;
+  }
+  .score-panel.scored-good{ background:var(--answer-bg); border-color:#B7D3BE; }
+  .score-panel.scored-bad{ background:#F8F0EF; border-color:#E2C6C2; }
+  .score-pct{
+    font-family:'Source Serif 4', serif;
+    font-size:30px; font-weight:700; line-height:1.05;
+    color:var(--slate); min-width:96px; text-align:center;
+  }
+  .score-panel.scored-good .score-pct{ color:var(--answer); }
+  .score-panel.scored-bad .score-pct{ color:var(--danger); }
+  .score-detail{ flex:1; min-width:0; }
+  .score-meta{ font-size:13.5px; font-weight:600; color:var(--ink); margin:0 0 7px; }
+  .score-bar{ height:8px; border-radius:4px; background:var(--line-soft); overflow:hidden; }
+  .score-bar span{ display:block; height:100%; width:0; background:var(--purple-mid); transition:width .35s ease; }
+  .score-panel.scored-good .score-bar span{ background:var(--answer); }
+  .score-panel.scored-bad .score-bar span{ background:var(--danger); }
+  .score-sub{ font-size:11.5px; color:var(--slate); margin:7px 0 0; }
+
+  .check-bar{
+    margin-top:20px;
+    padding-top:16px;
+    border-top:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .btn-check{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:9px 18px; border:1px solid var(--purple);
+    background:var(--purple); color:#fff; cursor:pointer;
+  }
+  .btn-check:hover{ background:var(--purple-mid); }
+  .check-summary{ font-size:13.5px; font-weight:600; }
+  .check-summary.good{ color:var(--answer); }
+  .check-summary.bad{ color:var(--danger); }
+  .check-disclaimer{ font-size:11.5px; color:var(--slate); width:100%; margin-top:2px; font-style:italic; }
+
+  input.field-correct, select.field-correct{
+    border-color:var(--answer) !important;
+    background:var(--answer-bg) !important;
+  }
+  input.field-incorrect, select.field-incorrect{
+    border-color:var(--danger) !important;
+    background:#F3E1DE !important;
+  }
+
+  .submit-bar{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    box-shadow:var(--shadow);
+    padding:22px 26px 24px;
+    margin-top:26px;
+  }
+  .submit-bar h2{
+    font-family:'Source Serif 4', serif; font-size:19px; font-weight:600;
+    color:var(--purple); margin:0 0 14px;
+  }
+  .submit-row{ display:flex; align-items:center; gap:10px; margin-bottom:12px; flex-wrap:wrap; }
+  .submit-row label{ font-size:13px; font-weight:600; color:var(--slate); }
+  .submit-row input[type="text"]{
+    font-family:'Inter',sans-serif; font-size:13.5px; padding:8px 11px;
+    border:1px solid var(--line); border-radius:5px; background:var(--parchment); color:var(--ink);
+    width:240px;
+  }
+  .submit-row input:focus{ outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); }
+  .btn-submit{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:10px 18px; border:1px solid var(--purple);
+    background:var(--purple); color:#fff; cursor:pointer;
+  }
+  .btn-submit:hover{ background:var(--purple-mid); }
+  .submit-hint{ font-size:12px; color:var(--slate); margin:6px 0 0; }
+
+  @media print{
+    .print-hide, .id-bar, .check-bar, .rounding-note{ display:none !important; }
+    header{ background:none !important; color:var(--ink) !important; padding:0 0 14px !important; }
+    header::after{ display:none !important; }
+    .eyebrow{ color:var(--purple) !important; }
+    .subtitle{ color:var(--slate) !important; }
+    body{ background:#fff !important; }
+    .part{ box-shadow:none !important; border:1px solid #999 !important; break-inside:auto; }
+    .score-panel{ background:#fff !important; border:1.5px solid #000 !important; break-inside:avoid; }
+    .score-bar{ display:none !important; }
+    .score-pct, .score-panel.scored-good .score-pct, .score-panel.scored-bad .score-pct{ color:#000 !important; }
+    .part h2, .part-label, .scenario, h4.subsection{ break-after:avoid; break-inside:avoid; }
+    table.given, table.worksheet{ break-inside:auto; }
+    table.given tr, table.worksheet tr{ break-inside:avoid; }
+    ol.addinfo li{ break-inside:avoid; }
+    .submit-bar{ break-before:avoid; }
+    input[type="text"], select.acct, select.pickco{
+      border:none !important;
+      border-bottom:1px solid #000 !important;
+      background:transparent !important;
+      border-radius:0 !important;
+      color:#000 !important;
+      -webkit-appearance:none;
+      -moz-appearance:none;
+      appearance:none;
+      padding:2px 4px !important;
+    }
+    .print-name-line{ display:block !important; }
+  }
+  .print-name-line{ display:none; font-size:13px; color:var(--ink); padding:0 6vw; margin:0 0 10px; }
+
+  footer{ text-align:center; padding:26px 6vw 40px; font-size:12px; color:var(--slate); }
+
+  @media (max-width:600px){
+    header, main, .id-bar{ padding-left:5vw; padding-right:5vw; }
+    table.worksheet{ font-size:12.5px; }
+  }
+
+  /* ---- two-company comparison worksheet ---- */
+  table.worksheet td.co{ width:150px; }
+  select.pickco{
+    width:100%; font-family:'Inter',sans-serif; font-size:13px;
+    padding:6px 8px; border:1px solid var(--line); border-radius:5px;
+    background:var(--parchment); color:var(--ink);
+  }
+  select.pickco:focus{ outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper); }
+  .formulabox{
+    background:var(--parchment); border-left:3px solid var(--gold);
+    padding:10px 16px; border-radius:0 6px 6px 0; margin:10px 0 14px;
+    font-size:13px; color:var(--ink);
+  }
+  .formulabox p{ margin:4px 0; }
+  .formulabox strong{ color:var(--purple); }
+
+
+.back-bar{max-width:900px;margin:0 auto;padding:14px 20px 0;}
+.back-bar a{display:inline-flex;align-items:center;gap:6px;color:var(--purple, #592C88);text-decoration:none;font-family:'Inter',sans-serif;font-size:.92rem;font-weight:600;}
+.back-bar a:hover{text-decoration:underline;}
+@media print{.back-bar{display:none;}}
+</style>
+</head>
+<body>
+<div class="back-bar print-hide"><a href="../../mba-623.html">&larr; Back to MBA 623</a></div>
+
+
+<header>
+  <p class="eyebrow">MBA 623 &middot; Accounting &middot; Revenue Recognition</p>
+  <h1 class="title">Constructing and Assessing Income Statements Using the Cost-to-Cost Method</h1>
+  <p class="subtitle">Spreading the revenue and profit of a multi-year construction contract across the years the work is done &mdash; and asking whether costs incurred are a fair measure of the work.</p>
+</header>
+
+<p class="print-name-line" id="printNameLine"></p>
+
+<div class="id-bar">
+  <label for="studentName">Name</label>
+  <input type="text" id="studentName" placeholder="First and last name">
+  <label for="studentId">Student ID</label>
+  <input type="text" id="studentId" placeholder="e.g. 920410165">
+  <button id="genBtn" type="button">Generate scenario</button>
+  <span class="id-hint">Leave the ID blank and click to restore the original textbook figures.</span>
+</div>
+
+<div class="score-area" id="scoreArea"></div>
+
+<div class="rounding-note">
+  <strong>Rounding convention:</strong> do not round intermediate calculations. Enter dollar amounts <strong>in millions to two decimal places</strong> (e.g., 44.00) and percentage of completion <strong>as a percentage to two decimal places</strong> (e.g., 20.00). The percentage of completion is cumulative &mdash; costs incurred to date over total expected costs &mdash; while revenue, expense and net income are the amounts for that year alone.
+</div>
+
+<main>
+
+  <div class="part">
+    <span class="part-label">Problem</span>
+    <h2>Watauga Construction Company</h2>
+
+    <div class="scenario">
+      <p><span class="val">Watauga Construction Company</span> of Boone contracted to build a shopping center at a contract price of <span class="val" id="priceDisp">$220 million</span>. The schedule of expected (which equals actual) cash collections and contract costs follows.</p>
+    </div>
+
+    <table class="given">
+      <thead><tr><th>Year</th><th class="num">Cash collections</th><th class="num">Cost incurred</th></tr></thead>
+      <tbody id="cc_given"></tbody>
+    </table>
+
+    <div class="req"><span class="reqlabel">Required:</span> (a) Calculate the amount of revenue, expense and net income for each of the three years, and for all three years combined, using the cost-to-cost revenue recognition method. (b) Discuss whether or not the cost-to-cost method provides a good measure of this construction company&rsquo;s performance under the contract.</div>
+
+    <div class="formulabox">
+      <p><strong>Percentage complete</strong> (cumulative) = costs incurred to date &divide; total expected costs</p>
+      <p><strong>Revenue to date</strong> = percentage complete &times; contract price</p>
+      <p><strong>Revenue for the year</strong> = revenue to date &minus; revenue recognized in prior years</p>
+      <p><strong>Expense for the year</strong> = the cost actually incurred that year</p>
+    </div>
+
+    <p class="hint">Cash collections play no part in the calculation. They follow the billing schedule in the contract, which is negotiated separately from the work; the whole point of the method is to report income when the work is done rather than when the customer pays.</p>
+
+    <h4 class="subsection">(a) Revenue, expense and net income by year</h4>
+    <table class="worksheet">
+      <thead><tr><th>Year</th><th class="num">% complete (cumulative)</th><th class="num">Revenue</th><th class="num">Expense</th><th class="num">Net income</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="method">Year 1</td>
+          <td class="amt"><input type="text" placeholder="% to 2 dec" id="cc-pct-1"></td>
+          <td class="amt"><input type="text" placeholder="$ millions" id="cc-rev-1"></td>
+          <td class="amt"><input type="text" placeholder="$ millions" id="cc-exp-1"></td>
+          <td class="amt"><input type="text" placeholder="$ millions" id="cc-ni-1"></td>
+        </tr>
+        <tr>
+          <td class="method">Year 2</td>
+          <td class="amt"><input type="text" placeholder="% to 2 dec" id="cc-pct-2"></td>
+          <td class="amt"><input type="text" placeholder="$ millions" id="cc-rev-2"></td>
+          <td class="amt"><input type="text" placeholder="$ millions" id="cc-exp-2"></td>
+          <td class="amt"><input type="text" placeholder="$ millions" id="cc-ni-2"></td>
+        </tr>
+        <tr>
+          <td class="method">Year 3</td>
+          <td class="amt"><input type="text" placeholder="% to 2 dec" id="cc-pct-3"></td>
+          <td class="amt"><input type="text" placeholder="$ millions" id="cc-rev-3"></td>
+          <td class="amt"><input type="text" placeholder="$ millions" id="cc-exp-3"></td>
+          <td class="amt"><input type="text" placeholder="$ millions" id="cc-ni-3"></td>
+        </tr>
+        <tr class="ws-total">
+          <td class="method">All three years combined</td>
+          <td class="dash">&mdash;</td>
+          <td class="amt"><input type="text" placeholder="$ millions" id="cc-rev-t"></td>
+          <td class="amt"><input type="text" placeholder="$ millions" id="cc-exp-t"></td>
+          <td class="amt"><input type="text" placeholder="$ millions" id="cc-ni-t"></td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="hint">Two checks on the combined row: total revenue must equal the contract price, and total net income must equal the contract price less total costs. The method decides <em>when</em> the profit is reported, never <em>how much</em> of it there is.</p>
+
+    <h4 class="subsection">(b) Does the method measure performance well?</h4>
+    <p class="hint">Choose the statement that best assesses the cost-to-cost method for this contract.</p>
+    <ol class="addinfo">
+      <li>Yes. Revenue is recognized as the work is performed, with costs incurred serving as the measure of progress, so income follows the effort expended rather than the timing of cash collections. Its weakness is its dependence on the estimate of total cost: if that estimate is wrong, the pattern of reported income is wrong with it.</li>
+      <li>No. Revenue should be recognized only as cash is collected, since the collections schedule is the one objectively verifiable measure of what the customer has accepted.</li>
+      <li>No. The method recognizes the entire profit on the contract as soon as the contract is signed, which overstates income in the earliest year.</li>
+      <li>Yes. The method assigns an equal share of the contract profit to each year of the contract regardless of the activity in that year, which smooths income and makes the years comparable.</li>
+    </ol>
+    <table class="worksheet">
+      <thead><tr><th>Item</th><th class="num">Your answer</th></tr></thead>
+      <tbody>
+        <tr><td class="method acctcell">Best assessment of the cost-to-cost method</td><td class="co"><select class="pickco" id="cc-q-b">
+          <option value="">&mdash; select a statement &mdash;</option>
+          <option value="1">Statement 1</option>
+          <option value="2">Statement 2</option>
+          <option value="3">Statement 3</option>
+          <option value="4">Statement 4</option>
+        </select></td></tr>
+      </tbody>
+    </table>
+
+    <div class="check-bar">
+      <button class="btn-check" id="checkCC" type="button">Check my work</button>
+      <span class="check-summary" id="ccSummary"></span>
+      <span class="check-disclaimer">This checks whether your figures match the key within a small rounding tolerance &mdash; it does not confirm your supporting computations.</span>
+    </div>
+  </div>
+
+  <div class="submit-bar print-hide">
+    <h2>Ready to submit?</h2>
+    <p class="submit-hint" style="margin:0 0 12px;">Your name, student ID and score are taken from the top of the page.</p>
+    <div class="submit-row submit-actions">
+      <button class="btn-submit" id="printBtn" type="button">Print / Save as PDF</button>
+    </div>
+    <p class="submit-hint">This captures exactly what's currently filled in above, including your generated scenario numbers, and works offline.</p>
+  </div>
+</main>
+
+<footer>Constructing and Assessing Income Statements Using the Cost-to-Cost Method &middot; MBA 623 &middot; Western Carolina University</footer>
+
+<script>
+(function(){
+  var DOC_TITLE = "Constructing and Assessing Income Statements Using the Cost-to-Cost Method";
+  var COURSE_LINE = "MBA 623  ·  Accounting  ·  Revenue Recognition";
+  var FILE_SLUG = "MBA623-Cost-to-Cost-Method";
+
+  // ---------- seeded pseudo-random ----------
+  function hashSeed(str){
+    var h = 2166136261;
+    for(var i=0;i<str.length;i++){
+      h ^= str.charCodeAt(i);
+      h = Math.imul(h, 16777619);
+    }
+    return h >>> 0;
+  }
+  function mulberry32(seed){
+    return function(){
+      seed |= 0; seed = seed + 0x6D2B79F5 | 0;
+      var t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
+  }
+  function pick(rand, arr){ return arr[Math.floor(rand() * arr.length)]; }
+
+  // ---------- formatting ----------
+  function m0(n){ return '$' + Math.round(Number(n)).toLocaleString('en-US') + ' million'; }
+  function n0(n){ return Math.round(Number(n)).toLocaleString('en-US'); }
+  function setText(id, t){ var el = document.getElementById(id); if(el) el.textContent = t; }
+  function setHTML(id, h){ var el = document.getElementById(id); if(el) el.innerHTML = h; }
+
+  // ---------- answer checking ----------
+  var TOL = { mil:0.06, pct:0.06 };
+
+  function parseMoney(s){
+    if(s === null || s === undefined) return NaN;
+    var raw = String(s).trim();
+    var neg = /^\(.*\)$/.test(raw) || /^-/.test(raw) || /^−/.test(raw);
+    var cleaned = raw.replace(/[^0-9.]/g, '');
+    if(cleaned === '') return NaN;
+    var v = parseFloat(cleaned);
+    if(isNaN(v)) return NaN;
+    return neg ? -v : v;
+  }
+  function near(a, b, tol){
+    if(isNaN(a) || isNaN(b)) return false;
+    return Math.abs(a - b) <= tol;
+  }
+  function clearFieldState(el){
+    if(!el) return;
+    el.classList.remove('field-correct', 'field-incorrect');
+  }
+  function clearAllFieldStates(){
+    document.querySelectorAll('.field-correct, .field-incorrect').forEach(function(el){
+      el.classList.remove('field-correct', 'field-incorrect');
+    });
+    document.querySelectorAll('.check-summary').forEach(function(el){
+      el.textContent = ''; el.classList.remove('good','bad');
+    });
+  }
+  function markField(id, correct, tol, flexPct){
+    var el = document.getElementById(id);
+    if(!el) return null;
+    el.classList.remove('field-correct', 'field-incorrect');
+    var val = parseMoney(el.value);
+    var ok = near(val, correct, tol);
+    // a percentage typed in decimal form (0.20 for 20%) is accepted
+    if(!ok && flexPct) ok = near(val * 100, correct, tol);
+    el.classList.add(ok ? 'field-correct' : 'field-incorrect');
+    if(!el.dataset.clearBound){
+      el.addEventListener('input', function(){ clearFieldState(el); });
+      el.dataset.clearBound = '1';
+    }
+    return ok;
+  }
+  function markSelect(id, expected){
+    var el = document.getElementById(id);
+    if(!el) return null;
+    el.classList.remove('field-correct', 'field-incorrect');
+    var ok = el.value === expected;
+    el.classList.add(ok ? 'field-correct' : 'field-incorrect');
+    if(!el.dataset.clearBound){
+      el.addEventListener('change', function(){ clearFieldState(el); });
+      el.dataset.clearBound = '1';
+    }
+    return ok;
+  }
+  function updateSummary(elId, results){
+    var el = document.getElementById(elId);
+    if(!el) return;
+    var graded = results.filter(function(r){ return r !== null; }).length;
+    var correct = results.filter(function(r){ return r === true; }).length;
+    el.textContent = correct + ' of ' + graded + ' correct';
+    el.classList.remove('good', 'bad');
+    el.classList.add(correct === graded && graded > 0 ? 'good' : 'bad');
+  }
+
+  // ---------- score ----------
+  var SCORES = {};
+  function scoreState(g){
+    if(!SCORES[g.btn]) SCORES[g.btn] = { correct:0, graded:0, attempts:0, checked:false, stale:false };
+    return SCORES[g.btn];
+  }
+  function scorePct(s){ return s.graded ? Math.round(s.correct / s.graded * 100) : 0; }
+
+  var SCORE_PROMPT = 'Fill in the worksheet below, then choose <strong>Check my work</strong>. Every blank counts as incorrect.';
+
+  function ensureScorePanel(g){
+    var area = document.getElementById('scoreArea');
+    if(!area) return null;
+    var panel = area.querySelector('.score-panel[data-for="' + g.btn + '"]');
+    if(panel) return panel;
+    panel = document.createElement('div');
+    panel.className = 'score-panel';
+    panel.setAttribute('data-for', g.btn);
+    panel.innerHTML =
+      '<div class="score-pct">&mdash;</div>' +
+      '<div class="score-detail">' +
+        '<p class="score-meta">Score</p>' +
+        '<div class="score-bar"><span></span></div>' +
+        '<p class="score-sub">' + SCORE_PROMPT + '</p>' +
+      '</div>';
+    area.appendChild(panel);
+    return panel;
+  }
+  function renderScore(g){
+    var panel = ensureScorePanel(g);
+    if(!panel) return;
+    var s = scoreState(g);
+    var pctEl = panel.querySelector('.score-pct');
+    var metaEl = panel.querySelector('.score-meta');
+    var fillEl = panel.querySelector('.score-bar span');
+    var subEl = panel.querySelector('.score-sub');
+    panel.classList.remove('scored-good', 'scored-bad');
+
+    if(!s.checked){
+      pctEl.innerHTML = '&mdash;';
+      metaEl.textContent = 'Score';
+      fillEl.style.width = '0%';
+      subEl.innerHTML = SCORE_PROMPT;
+      return;
+    }
+    var pct = scorePct(s);
+    pctEl.textContent = pct + '%';
+    metaEl.textContent = 'Score: ' + s.correct + ' of ' + s.graded + ' correct';
+    fillEl.style.width = pct + '%';
+    if(s.stale){
+      subEl.textContent = 'You have changed an answer since this score was calculated — check your work again to update it.';
+    } else if(s.correct === s.graded){
+      subEl.textContent = 'All ' + s.graded + ' answers match the key. Attempt ' + s.attempts + '.';
+      panel.classList.add('scored-good');
+    } else {
+      var missing = s.graded - s.correct;
+      subEl.innerHTML = missing + ' answer' + (missing === 1 ? '' : 's') + ' still to fix' +
+                        '<span class="print-hide"> — outlined in red below</span>. Attempt ' + s.attempts + '.';
+      panel.classList.add('scored-bad');
+    }
+  }
+  function markScoreStale(g){
+    var s = scoreState(g);
+    if(!s.checked || s.stale) return;
+    s.stale = true;
+    renderScore(g);
+  }
+  function resetScore(g){
+    SCORES[g.btn] = { correct:0, graded:0, attempts:0, checked:false, stale:false };
+    renderScore(g);
+  }
+
+  // ---------- scenario ----------
+  function baseline(){
+    return { price:220, costs:[36,81,63], collections:[55,88,77] };
+  }
+
+  // Costs and collections are set as whole percentages of round totals, so every
+  // figure in the problem and in the answer comes out in whole millions.
+  function randomParams(rand){
+    var price  = pick(rand,[180,200,220,240,260,300]);
+    var profit = pick(rand,[20,40,60]);
+    // keep the contract margin between about 10% and 25%
+    while(profit / price < 0.10 || profit / price > 0.25){
+      profit = pick(rand,[20,40,60]);
+    }
+    var totalCost = price - profit;
+
+    var costSplit = pick(rand,[[20,45,35],[25,40,35],[15,50,35],[30,35,35],[20,40,40],[25,45,30]]);
+    var collSplit = pick(rand,[[25,40,35],[20,45,35],[30,30,40],[25,35,40],[35,30,35]]);
+
+    return {
+      price: price,
+      costs: costSplit.map(function(pc){ return Math.round(totalCost * pc / 100); }),
+      collections: collSplit.map(function(pc){ return Math.round(price * pc / 100); })
+    };
+  }
+
+  function solve(p){
+    var d = { price:p.price, costs:p.costs, collections:p.collections };
+    d.totalCost = p.costs.reduce(function(a,b){ return a+b; }, 0);
+    d.totalColl = p.collections.reduce(function(a,b){ return a+b; }, 0);
+
+    var cum = 0, prevRev = 0;
+    d.pct = []; d.rev = []; d.exp = []; d.ni = [];
+    for(var i=0;i<3;i++){
+      cum += p.costs[i];
+      var pctComplete = cum / d.totalCost;
+      var revToDate = pctComplete * p.price;
+      var rev = revToDate - prevRev;
+      prevRev = revToDate;
+      d.pct.push(pctComplete * 100);
+      d.rev.push(rev);
+      d.exp.push(p.costs[i]);
+      d.ni.push(rev - p.costs[i]);
+    }
+    d.revT = d.rev.reduce(function(a,b){ return a+b; }, 0);
+    d.expT = d.totalCost;
+    d.niT  = d.revT - d.expT;
+    d.answerB = '1';   // the nuanced "yes, with a caveat about the cost estimate"
+    return d;
+  }
+
+  function generateScenario(id){
+    var seed = (id || '').trim();
+    if(seed === '') return solve(baseline());
+    return solve(randomParams(mulberry32(hashSeed(seed.toLowerCase()))));
+  }
+
+  function applyScenario(d){
+    setText('priceDisp', m0(d.price));
+    var rows = '';
+    for(var i=0;i<3;i++){
+      rows += '<tr><td class="lbl">Year ' + (i+1) + '</td>' +
+              '<td class="num">' + m0(d.collections[i]) + '</td>' +
+              '<td class="num">' + m0(d.costs[i]) + '</td></tr>';
+    }
+    rows += '<tr class="given-total"><td class="lbl">Total</td>' +
+            '<td class="num">' + m0(d.totalColl) + '</td>' +
+            '<td class="num">' + m0(d.totalCost) + '</td></tr>';
+    setHTML('cc_given', rows);
+  }
+
+  var CHECK_GROUPS = [{
+    btn:'checkCC', summary:'ccSummary',
+    fields:[
+      {id:'cc-pct-1', key:function(d){ return d.pct[0]; }, type:'pct', flexPct:true},
+      {id:'cc-rev-1', key:function(d){ return d.rev[0]; }, type:'mil'},
+      {id:'cc-exp-1', key:function(d){ return d.exp[0]; }, type:'mil'},
+      {id:'cc-ni-1',  key:function(d){ return d.ni[0];  }, type:'mil'},
+
+      {id:'cc-pct-2', key:function(d){ return d.pct[1]; }, type:'pct', flexPct:true},
+      {id:'cc-rev-2', key:function(d){ return d.rev[1]; }, type:'mil'},
+      {id:'cc-exp-2', key:function(d){ return d.exp[1]; }, type:'mil'},
+      {id:'cc-ni-2',  key:function(d){ return d.ni[1];  }, type:'mil'},
+
+      {id:'cc-pct-3', key:function(d){ return d.pct[2]; }, type:'pct', flexPct:true},
+      {id:'cc-rev-3', key:function(d){ return d.rev[2]; }, type:'mil'},
+      {id:'cc-exp-3', key:function(d){ return d.exp[2]; }, type:'mil'},
+      {id:'cc-ni-3',  key:function(d){ return d.ni[2];  }, type:'mil'},
+
+      {id:'cc-rev-t', key:'revT', type:'mil'},
+      {id:'cc-exp-t', key:'expT', type:'mil'},
+      {id:'cc-ni-t',  key:'niT',  type:'mil'},
+
+      {id:'cc-q-b',   kind:'pick', key:'answerB'}
+    ]
+  }];
+
+  // ---------------- wiring ----------------
+  var idInput = document.getElementById('studentId');
+  var genBtn = document.getElementById('genBtn');
+  var currentScenario = null;
+
+  function applyAndStore(id){
+    currentScenario = generateScenario(id);
+    applyScenario(currentScenario);
+    clearAllFieldStates();
+    CHECK_GROUPS.forEach(resetScore);
+  }
+  genBtn.addEventListener('click', function(){ applyAndStore(idInput.value); });
+  idInput.addEventListener('keydown', function(e){
+    if(e.key === 'Enter'){ e.preventDefault(); applyAndStore(idInput.value); }
+  });
+  applyAndStore('');
+
+  CHECK_GROUPS.forEach(function(g){
+    var btn = document.getElementById(g.btn);
+    if(!btn) return;
+    renderScore(g);
+
+    var part = btn.closest('.part');
+    if(part){
+      part.addEventListener('input', function(e){
+        if(e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT')) markScoreStale(g);
+      });
+      part.addEventListener('change', function(e){
+        if(e.target && e.target.tagName === 'SELECT') markScoreStale(g);
+      });
+    }
+
+    btn.addEventListener('click', function(){
+      if(!currentScenario) return;
+      var d = currentScenario;
+      var results = g.fields.map(function(f){
+        if(f.kind === 'pick') return markSelect(f.id, d[f.key]);
+        var correct = (typeof f.key === 'function') ? f.key(d) : d[f.key];
+        return markField(f.id, correct, f.tol !== undefined ? f.tol : TOL[f.type || 'mil'], f.flexPct);
+      });
+      updateSummary(g.summary, results);
+      var s = scoreState(g);
+      s.graded = results.filter(function(r){ return r !== null; }).length;
+      s.correct = results.filter(function(r){ return r === true; }).length;
+      s.attempts += 1;
+      s.checked = true;
+      s.stale = false;
+      renderScore(g);
+    });
+  });
+
+  // ---------------- Print / Save as PDF ----------------
+  function val(id){
+    var el = document.getElementById(id);
+    return el ? el.value.trim() : '';
+  }
+  document.getElementById('printBtn').addEventListener('click', function(){
+    var name = val('studentName');
+    var id = val('studentId');
+    var line = document.getElementById('printNameLine');
+    line.textContent = 'Name: ' + (name || '_______________________') +
+                       '     Student ID: ' + (id || '_______________________');
+    var oldTitle = document.title;
+    document.title = FILE_SLUG + '-' + (id || 'submission');
+    window.print();
+    document.title = oldTitle;
+  });
+
+})();
+</script>
+
+</body>
+</html>
