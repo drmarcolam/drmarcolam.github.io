@@ -327,6 +327,7 @@
 .back-bar a{display:inline-flex;align-items:center;gap:6px;color:var(--purple, #592C88);text-decoration:none;font-family:'Inter',sans-serif;font-size:.92rem;font-weight:600;}
 .back-bar a:hover{text-decoration:underline;}
 @media print{.back-bar{display:none;}}
+
 </style>
 </head>
 <body>
@@ -612,9 +613,11 @@
 
   // ---------- scenario ----------
   // Each account carries its own classification, so shuffling the list keeps the key intact.
+  var CURRENT_YEAR = new Date().getFullYear();
+
   function baseline(){
     return {
-      year: 'December 31, 2027',
+      year: 'December 31, ' + CURRENT_YEAR,
       accounts: [
         { name:'Total revenues',                            amount:5125.0, cls:'I' },
         { name:'Accrued compensation and benefits',          amount:152.2,  cls:'B' },
@@ -657,7 +660,7 @@
     ];
 
     return {
-      year: 'December 31, ' + pick(rand,[2025,2026,2027,2028]),
+      year: 'December 31, ' + CURRENT_YEAR,
       accounts: shuffle(rand, accounts)
     };
   }

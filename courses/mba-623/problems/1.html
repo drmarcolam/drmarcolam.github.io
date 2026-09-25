@@ -327,6 +327,7 @@
 .back-bar a{display:inline-flex;align-items:center;gap:6px;color:var(--purple, #592C88);text-decoration:none;font-family:'Inter',sans-serif;font-size:.92rem;font-weight:600;}
 .back-bar a:hover{text-decoration:underline;}
 @media print{.back-bar{display:none;}}
+
 </style>
 </head>
 <body>
@@ -687,9 +688,11 @@
   }
 
   // ---------- scenario ----------
+  var CURRENT_YEAR = new Date().getFullYear();
+
   function baseline(){
     return {
-      year:'December 31, 2027',
+      year:'December 31, ' + CURRENT_YEAR,
       rev:18992.8, cogs:12590.6, otherExp:3080.9, tax:586.3,
       cashEnd:569.4, noncash:30520.7, liabEnd:20302.1, equityEnd:10788.0,
       taBeg:31841.9,
@@ -722,7 +725,7 @@
     var taBeg = rTo(taEnd * pick(rand,[0.94,0.97,1.00,1.03,1.06]), 0.1);
 
     return {
-      year: 'December 31, ' + pick(rand,[2025,2026,2027,2028]),
+      year: 'December 31, ' + CURRENT_YEAR,
       rev:rev, cogs:cogs, otherExp:otherExp, tax:tax,
       cashEnd:cashEnd, noncash:noncash, liabEnd:liabEnd, equityEnd:equityEnd,
       taBeg:taBeg,

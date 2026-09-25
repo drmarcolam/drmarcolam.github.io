@@ -348,6 +348,7 @@
 .back-bar a{display:inline-flex;align-items:center;gap:6px;color:var(--purple, #592C88);text-decoration:none;font-family:'Inter',sans-serif;font-size:.92rem;font-weight:600;}
 .back-bar a:hover{text-decoration:underline;}
 @media print{.back-bar{display:none;}}
+
 </style>
 </head>
 <body>
@@ -632,9 +633,11 @@
   }
 
   // ---------- scenario ----------
+  var CURRENT_YEAR = new Date().getFullYear();
+
   function baseline(){
     return {
-      yr1:2028, yr2:2027,
+      yr1:CURRENT_YEAR, yr2:CURRENT_YEAR - 1,
       bs:{
         cash:[10019,8079], sec:[31095,33632], ar:[7587,5832], prepaid:[1779,1020],
         ppe:[24683,13721], intang:[1294,1884], goodwill:[18301,18221], other:[2576,2135],
@@ -650,7 +653,7 @@
     function r0(n){ return Math.round(n); }
     function j(n, spread){ return n * (1 + (rand() - 0.5) * spread); }
 
-    var yr1 = pick(rand,[2026,2027,2028,2029]);
+    var yr1 = CURRENT_YEAR;
 
     // ----- income statement -----
     var rev   = r0(pick(rand,[38000,44000,50000,58000,66000]) + rand()*4000);

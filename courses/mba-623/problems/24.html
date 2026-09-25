@@ -345,6 +345,7 @@
 .back-bar a{display:inline-flex;align-items:center;gap:6px;color:var(--purple, #592C88);text-decoration:none;font-family:'Inter',sans-serif;font-size:.92rem;font-weight:600;}
 .back-bar a:hover{text-decoration:underline;}
 @media print{.back-bar{display:none;}}
+
 </style>
 </head>
 <body>
@@ -681,8 +682,10 @@
 
   // ---------- scenario ----------
   // Share counts and par values stay fixed; only the per-share cash prices vary by student.
+  var CURRENT_YEAR = new Date().getFullYear();
+
   function baseline(){
-    return { year: 2027, price1:27, price2:88, price3:30, price4:38, price5:29 };
+    return { year: CURRENT_YEAR, price1:27, price2:88, price3:30, price4:38, price5:29 };
   }
 
   function randomParams(rand){
@@ -692,7 +695,7 @@
     var price4 = price3 + randInt(rand, 5, 15);
     var price5 = price3 + randInt(rand, -5, 3);
     return {
-      year: pick(rand, [2025,2026,2027,2028]),
+      year: CURRENT_YEAR,
       price1: price1, price2: price2, price3: price3, price4: price4, price5: price5
     };
   }

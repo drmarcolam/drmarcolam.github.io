@@ -324,6 +324,7 @@
 .back-bar a{display:inline-flex;align-items:center;gap:6px;color:var(--purple, #592C88);text-decoration:none;font-family:'Inter',sans-serif;font-size:.92rem;font-weight:600;}
 .back-bar a:hover{text-decoration:underline;}
 @media print{.back-bar{display:none;}}
+
 </style>
 </head>
 <body>
@@ -636,14 +637,16 @@
   ];
 
   // ---------- scenario ----------
+  var CURRENT_YEAR = new Date().getFullYear();
+
   function baseline(){
-    return { year:2027, commissionRate:0.05, rate1:1000, rate2:1600, rate3:100, rate4:3000, jetRate:1000, otherGA:1939000 };
+    return { year:CURRENT_YEAR, commissionRate:0.05, rate1:1000, rate2:1600, rate3:100, rate4:3000, jetRate:1000, otherGA:1939000 };
   }
 
   function randomParams(rand){
     function jitter(n, spread){ return n * (1 + (rand() - 0.5) * spread); }
     return {
-      year: pick(rand, [2025,2026,2027,2028]),
+      year: CURRENT_YEAR,
       commissionRate: pick(rand, [0.04, 0.05, 0.06]),
       rate1: rTo(jitter(1000, 0.40), 50),
       rate2: rTo(jitter(1600, 0.40), 50),

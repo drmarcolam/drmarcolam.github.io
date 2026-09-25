@@ -327,6 +327,7 @@
 .back-bar a{display:inline-flex;align-items:center;gap:6px;color:var(--purple, #592C88);text-decoration:none;font-family:'Inter',sans-serif;font-size:.92rem;font-weight:600;}
 .back-bar a:hover{text-decoration:underline;}
 @media print{.back-bar{display:none;}}
+
 </style>
 </head>
 <body>
@@ -658,9 +659,11 @@
   // The generator always keeps L's gross margin well above S's and L's
   // liabilities share of total assets above S's, so the two interpretation
   // answers (statements 2 and 1) hold for every student.
+  var CURRENT_YEAR = new Date().getFullYear();
+
   function baseline(){
     return {
-      year:'December 31, 2027',
+      year:'December 31, ' + CURRENT_YEAR,
       lSales:53647, lCogs:11248, lNi:11188,
       lCa:49926, lLta:109496, lCl:31858, lLtl:63806,
       sSales:2181,  sCogs:1009,  sNi:151,
@@ -697,7 +700,7 @@
     var sLtl   = sTl - sCl;
 
     return {
-      year: 'December 31, ' + pick(rand,[2025,2026,2027,2028]),
+      year: 'December 31, ' + CURRENT_YEAR,
       lSales:lSales, lCogs:lCogs, lNi:lNi, lCa:lCa, lLta:lLta, lCl:lCl, lLtl:lLtl,
       sSales:sSales, sCogs:sCogs, sNi:sNi, sCa:sCa, sLta:sLta, sCl:sCl, sLtl:sLtl
     };
