@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>ACCT 635 Course Page</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --purple:#592C88;
+    --purple-deep:#38195A;
+    --purple-mid:#6E3FA3;
+    --gold:#B0925C;
+    --gold-soft:#D6C398;
+    --gold-pale:#F1E9D6;
+    --parchment:#F7F4EC;
+    --paper:#FFFEFA;
+    --ink:#221B2E;
+    --slate:#5F5A6B;
+    --line:#DBD3E0;
+    --line-soft:#EAE4EF;
+    --shadow: 0 1px 2px rgba(56,25,90,0.07), 0 6px 18px rgba(56,25,90,0.08);
+    color-scheme: light;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--parchment);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ color:inherit; }
+
+  .crumbs{
+    max-width:1100px; margin:0 auto; padding:16px 6vw 0;
+    font-size:12.5px; color:var(--slate);
+  }
+  .crumbs a{ color:var(--purple); text-decoration:none; font-weight:600; }
+  .crumbs a:hover{ text-decoration:underline; }
+
+  header.banner{
+    max-width:1100px; margin:14px auto 0; padding:0 6vw;
+  }
+  .banner-inner{
+    background: linear-gradient(120deg, var(--purple) 0%, var(--purple-deep) 100%);
+    color:#F1E9D6;
+    border-radius:14px;
+    display:grid; grid-template-columns:1.3fr 1fr;
+    align-items:stretch;
+    position:relative;
+    overflow:hidden;
+    min-height:220px;
+  }
+  .banner-inner::after{
+    content:"";
+    position:absolute; left:0; right:0; bottom:0; height:4px;
+    background: linear-gradient(90deg, var(--gold-soft), var(--gold) 40%, var(--gold-soft) 70%, var(--gold));
+  }
+  .banner-text{ padding:38px 6vw 34px 6vw; position:relative; z-index:1; }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--gold-soft); margin:0 0 10px;
+  }
+  h1.title{
+    font-family:'Source Serif 4', serif; font-weight:600;
+    font-size:clamp(24px,3.2vw,34px); margin:0 0 12px; letter-spacing:-0.01em;
+    max-width:520px; text-wrap:balance;
+  }
+  .subtitle{ font-size:14px; color:#D9CDE5; max-width:460px; margin:0; }
+
+  .banner-art{
+    position:relative;
+    clip-path: polygon(14% 0, 100% 0, 100% 100%, 0% 100%);
+    background: linear-gradient(160deg, #6E3FA3 0%, #38195A 100%);
+    overflow:hidden;
+  }
+  .banner-art svg{ position:absolute; inset:0; width:100%; height:100%; }
+
+  main{ max-width:1100px; margin:0 auto; padding:30px 6vw 90px; }
+
+  .instructor-card{
+    background:var(--paper); border:1px solid var(--line); border-radius:10px;
+    box-shadow:var(--shadow); padding:18px 22px;
+    display:flex; align-items:center; gap:22px; flex-wrap:wrap;
+    margin-bottom:8px;
+  }
+  .instructor-label{
+    font-family:'IBM Plex Mono', monospace; font-size:10.5px; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--gold); margin:0;
+  }
+  .instructor-row{ display:flex; align-items:center; gap:10px; }
+  .instructor-avatar{
+    width:38px; height:38px; border-radius:50%;
+    background:linear-gradient(135deg, var(--purple), var(--purple-mid));
+    display:flex; align-items:center; justify-content:center;
+    color:#F1E9D6; font-family:'Source Serif 4',serif; font-weight:600; font-size:14px;
+    flex-shrink:0;
+  }
+  .instructor-name{ font-family:'Source Serif 4',serif; font-size:15px; font-weight:600; color:var(--purple-deep); }
+  .instructor-detail{ font-size:12.5px; color:var(--slate); margin:0; display:flex; gap:8px; }
+
+  .welcome{
+    background:var(--paper); border:1px solid var(--line); border-radius:10px;
+    box-shadow:var(--shadow); padding:26px 28px; margin-top:22px;
+    display:grid; grid-template-columns:1.1fr 1.4fr; gap:28px;
+  }
+  .welcome h2{
+    font-family:'Source Serif 4',serif; font-size:23px; font-weight:600;
+    color:var(--purple-deep); margin:0 0 12px;
+    border-left:3px solid var(--gold); padding-left:14px;
+  }
+  .welcome p{ font-size:13.5px; color:var(--ink); margin:0; padding-left:17px; }
+  .pillars{ display:grid; grid-template-columns:repeat(4, 1fr); gap:14px; }
+  .pillar{ text-align:center; }
+  .pillar-icon{
+    width:44px; height:44px; border-radius:50%; margin:0 auto 10px;
+    background:var(--gold-pale); color:var(--purple);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .pillar-icon svg{ width:20px; height:20px; }
+  .pillar h4{ font-family:'Source Serif 4',serif; font-size:13.5px; color:var(--purple); margin:0 0 5px; }
+  .pillar p{ font-size:11.5px; color:var(--slate); margin:0; padding:0; }
+
+  .problems-section{ margin-top:40px; }
+  .section-label{
+    font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--gold); margin:0 0 6px;
+  }
+  h2.section-title{
+    font-family:'Source Serif 4', serif; font-size:24px; font-weight:600;
+    color:var(--purple-deep); margin:0 0 6px;
+  }
+  .section-sub{ font-size:13.5px; color:var(--slate); margin:0 0 24px; max-width:640px; }
+
+  .problem-list{ display:flex; flex-direction:column; gap:12px; }
+  .problem-row{
+    display:flex; align-items:center; gap:16px;
+    background:var(--paper); border:1px solid var(--line); border-radius:10px;
+    box-shadow:var(--shadow); padding:16px 20px; text-decoration:none; color:inherit;
+    transition:transform .12s ease, box-shadow .12s ease;
+  }
+  .problem-row:hover{
+    transform:translateX(3px);
+    box-shadow:0 4px 8px rgba(56,25,90,0.10), 0 14px 24px rgba(56,25,90,0.12);
+  }
+  .problem-num{
+    font-family:'IBM Plex Mono', monospace; font-size:12.5px; font-weight:600;
+    color:var(--purple); background:var(--gold-pale);
+    border-radius:6px; padding:6px 10px; flex-shrink:0; min-width:52px; text-align:center;
+  }
+  .problem-info{ flex:1; min-width:0; }
+  .problem-title{ font-family:'Source Serif 4',serif; font-size:15.5px; font-weight:600; color:var(--purple-deep); margin:0 0 3px; }
+  .problem-topic{ font-size:12px; color:var(--slate); margin:0; }
+  .problem-go{ font-size:13px; font-weight:600; color:var(--purple); flex-shrink:0; }
+
+  .empty-problem{
+    border:1.5px dashed var(--line); border-radius:10px; padding:18px 20px;
+    color:var(--slate); font-size:13px; text-align:center;
+  }
+
+  .brand-band{
+    max-width:1100px; margin:40px auto 0; padding:0 6vw;
+  }
+  .brand-band-inner{
+    background: linear-gradient(120deg, var(--purple) 0%, var(--purple-deep) 100%);
+    border-radius:14px;
+    padding:20px 28px;
+    display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap;
+    position:relative; overflow:hidden;
+  }
+  .brand-mountains{
+    position:absolute; left:0; bottom:0; width:220px; height:100%; opacity:.35; pointer-events:none;
+  }
+  .brand-tagline{
+    display:flex; align-items:center; gap:14px; flex-wrap:wrap;
+    font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.08em;
+    text-transform:uppercase; color:var(--gold-soft); position:relative; z-index:1;
+  }
+  .brand-tagline span:not(.sep){ color:#F1E9D6; }
+  .brand-tagline .sep{ color:var(--gold); }
+  .brand-wordmark{
+    font-family:'Source Serif 4',serif; font-weight:600; font-size:20px; color:#F1E9D6;
+    line-height:1.05; text-align:right; position:relative; z-index:1;
+  }
+  .brand-wordmark small{
+    display:block; font-family:'IBM Plex Mono',monospace; font-size:9.5px;
+    letter-spacing:.14em; font-weight:400; color:var(--gold-soft); margin-top:2px;
+  }
+
+  footer{ text-align:center; padding:34px 6vw 46px; font-size:12px; color:var(--slate); }
+
+  @media (max-width:860px){
+    .welcome{ grid-template-columns:1fr; }
+    .pillars{ grid-template-columns:repeat(2, 1fr); }
+    .banner-inner{ grid-template-columns:1fr; }
+    .banner-art{ display:none; }
+  }
+  @media (max-width:560px){
+    .banner-text{ padding:32px 5vw 28px; }
+    main{ padding:24px 5vw 70px; }
+    .brand-tagline{ justify-content:center; width:100%; }
+    .brand-wordmark{ text-align:center; width:100%; }
+    .instructor-card{ gap:6px 22px; }
+  }
+
+
+.wcu-gate{position:fixed;inset:0;z-index:99999;background:var(--parchment,#F7F4EC);display:flex;align-items:center;justify-content:center;padding:20px;}
+html.wcu-unlocked .wcu-gate{display:none !important;}
+.wcu-gate-card{background:var(--paper,#FFFEFA);border:1px solid var(--line,#DBD3E0);border-radius:12px;box-shadow:0 10px 30px rgba(56,25,90,.18);padding:34px 32px;max-width:380px;width:100%;text-align:center;font-family:'Inter',sans-serif;}
+.wcu-gate-card .wcu-gate-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold,#B0925C);margin:0 0 8px;}
+.wcu-gate-card h2{font-family:'Source Serif 4',serif;color:var(--purple-deep,#38195A);font-size:20px;margin:0 0 8px;}
+.wcu-gate-card p.wcu-gate-sub{font-size:13px;color:var(--slate,#5F5A6B);margin:0 0 20px;}
+.wcu-gate-card input{width:100%;font-family:'IBM Plex Mono',monospace;font-size:15px;letter-spacing:.06em;text-align:center;text-transform:uppercase;padding:11px 12px;border:1px solid var(--line,#DBD3E0);border-radius:6px;margin-bottom:12px;background:var(--parchment,#F7F4EC);color:var(--ink,#221B2E);box-sizing:border-box;}
+.wcu-gate-card input:focus{outline:none;border-color:var(--purple-mid,#6E3FA3);box-shadow:0 0 0 3px rgba(89,44,136,.12);}
+.wcu-gate-card button{width:100%;font-family:'Inter',sans-serif;font-size:14px;font-weight:600;padding:11px 12px;border:1px solid var(--purple,#592C88);border-radius:6px;background:var(--purple,#592C88);color:#fff;cursor:pointer;}
+.wcu-gate-card button:hover{background:var(--purple-mid,#6E3FA3);}
+.wcu-gate-error{display:none;color:#9C3B34;font-size:12.5px;margin-top:12px;}
+@media print{ .wcu-gate{ display:none !important; } }
+</style>
+</head>
+<body>
+<script>(function(){try{if(localStorage.getItem('wcu_unlock_acct635')==='1'){document.documentElement.classList.add('wcu-unlocked');}}catch(e){}})();</script>
+<div class="wcu-gate" id="wcu-gate">
+  <div class="wcu-gate-card">
+    <p class="wcu-gate-eyebrow">ACCT 635</p>
+    <h2>Access Code Required</h2>
+    <p class="wcu-gate-sub">Enter the course access code to view this page.</p>
+    <form id="wcu-gate-form" autocomplete="off">
+      <input type="text" id="wcu-gate-input" placeholder="Access code" autocapitalize="characters" autocomplete="off">
+      <button type="submit">Unlock</button>
+      <p class="wcu-gate-error" id="wcu-gate-error">That code isn&rsquo;t correct. Please try again.</p>
+    </form>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY='wcu_unlock_acct635', CODE='ACCT635DOR';
+  function unlock(){
+    try{ localStorage.setItem(KEY,'1'); }catch(e){}
+    document.documentElement.classList.add('wcu-unlocked');
+  }
+  var form = document.getElementById('wcu-gate-form');
+  if(form){
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var input = document.getElementById('wcu-gate-input');
+      var err = document.getElementById('wcu-gate-error');
+      var val = (input.value || '').trim().toUpperCase();
+      if(val === CODE){ unlock(); } else { err.style.display='block'; input.value=''; input.focus(); }
+    });
+  }
+})();
+</script>
+
+
+<p class="crumbs"><a href="../index.html">Courses</a> &nbsp;/&nbsp; ACCT 635</p>
+
+<header class="banner">
+  <div class="banner-inner">
+    <div class="banner-text">
+      <p class="eyebrow">ACCT 635</p>
+      <h1 class="title">Governmental and Nonprofit Accounting</h1>
+      <p class="subtitle">Understand how governments and nonprofit organizations account for and report on public resources, using fund accounting principles distinct from for-profit reporting.</p>
+    </div>
+    <div class="banner-art">
+      <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <rect width="400" height="300" fill="none"/>
+        <path d="M0 300 L40 220 L80 260 L130 170 L180 240 L230 150 L280 210 L320 140 L400 200 L400 300 Z" fill="#4A2470" opacity="0.7"/>
+        <path d="M0 300 L60 250 L110 280 L160 210 L220 260 L270 190 L400 240 L400 300 Z" fill="#38195A" opacity="0.85"/>
+        <rect x="182" y="95" width="10" height="60" fill="#D6C398" opacity="0.9"/>
+        <rect x="178" y="86" width="18" height="10" fill="#D6C398" opacity="0.9"/>
+        <polygon points="187,60 178,86 196,86" fill="#D6C398" opacity="0.9"/>
+        <circle cx="330" cy="70" r="26" fill="none" stroke="#D6C398" stroke-width="1.5" opacity="0.5"/>
+        <circle cx="330" cy="70" r="26" fill="none" stroke="#B0925C" stroke-width="8" stroke-dasharray="40 300" opacity="0.9"/>
+        <circle cx="330" cy="70" r="26" fill="none" stroke="#D6C398" stroke-width="8" stroke-dasharray="30 300" stroke-dashoffset="-40" opacity="0.9"/>
+        <g transform="translate(60,190)" opacity="0.92">
+          <rect x="0" y="0" width="70" height="56" rx="4" fill="#221B2E" opacity="0.55"/>
+          <rect x="6" y="8" width="58" height="14" rx="2" fill="#D6C398" opacity="0.8"/>
+          <rect x="6" y="28" width="12" height="10" rx="1" fill="#D6C398" opacity="0.6"/>
+          <rect x="22" y="28" width="12" height="10" rx="1" fill="#D6C398" opacity="0.6"/>
+          <rect x="38" y="28" width="12" height="10" rx="1" fill="#D6C398" opacity="0.6"/>
+          <rect x="54" y="28" width="10" height="10" rx="1" fill="#B0925C" opacity="0.7"/>
+          <rect x="6" y="42" width="12" height="10" rx="1" fill="#D6C398" opacity="0.6"/>
+          <rect x="22" y="42" width="12" height="10" rx="1" fill="#D6C398" opacity="0.6"/>
+          <rect x="38" y="42" width="12" height="10" rx="1" fill="#D6C398" opacity="0.6"/>
+          <rect x="54" y="42" width="10" height="10" rx="1" fill="#B0925C" opacity="0.7"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="instructor-card">
+    <p class="instructor-label">Course Instructor</p>
+    <div class="instructor-row">
+      <div class="instructor-avatar">ML</div>
+      <div class="instructor-name">Marco Lam, Ph.D.</div>
+    </div>
+    <p class="instructor-detail">Office &middot; Forsyth 327</p>
+    <p class="instructor-detail">Email &middot; mlam@wcu.edu</p>
+  </div>
+
+  <div class="welcome">
+    <div>
+      <h2>Welcome to Your Course</h2>
+      <p>In ACCT 635, you will learn the fund accounting principles governments and nonprofit organizations use to demonstrate accountability for public resources. Through real-world scenarios, you'll develop the skills to classify funds, record transactions, and prepare fund-level financial statements.</p>
+    </div>
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 20V12"/><path d="M11 20V8"/><path d="M18 20V4"/></svg></div>
+        <h4>Business Ready</h4>
+        <p>Build the financial foundation for your leadership journey.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 20v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"/><circle cx="10" cy="7" r="4"/><path d="M22 20v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h4>Ready to Engage</h4>
+        <p>Learn through real-world examples and collaboration.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1" fill="currentColor"/></svg></div>
+        <h4>Ready to Succeed.</h4>
+        <p>Apply your knowledge to make data-driven decisions.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V4"/><path d="M4 4h14l-2.5 4L18 12H4"/></svg></div>
+        <h4>Ready to Work!</h4>
+        <p>Gain the skills and confidence to create meaningful impact.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="problems-section">
+    <p class="section-label">Practice</p>
+    <h2 class="section-title">Problem Sets</h2>
+    <p class="section-sub">Each worksheet generates a personalized scenario from your student ID, checks your work, and lets you print or save a PDF when you're finished.</p>
+    <div class="problem-list" id="problemList"></div>
+  </div>
+
+  <div class="brand-band">
+    <div class="brand-band-inner">
+      <svg class="brand-mountains" viewBox="0 0 220 100" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+        <path d="M0 100 L30 60 L55 85 L85 40 L115 75 L150 45 L220 80 L220 100 Z" fill="#D6C398"/>
+      </svg>
+      <div class="brand-tagline">
+        <span>Business Ready.</span><span class="sep">|</span>
+        <span>Ready to Engage.</span><span class="sep">|</span>
+        <span>Ready to Succeed.</span><span class="sep">|</span>
+        <span>Ready to Work!</span>
+      </div>
+      <div class="brand-wordmark">Western Carolina<small>UNIVERSITY</small></div>
+    </div>
+  </div>
+</main>
+
+<footer>ACCT 635 &middot; Western Carolina University</footer>
+
+<script>
+(function(){
+  // Add a new problem by adding an entry here — the list renders itself.
+  var PROBLEMS = [
+    { num: '2-31', title: 'Classifying Funds by Category', topic: 'State government activities — governmental, proprietary, and fiduciary fund categories', href: 'acct-635/problems/2-31.html' },
+    { num: '2-35', title: 'Identifying Funds for Specific City Transactions', topic: 'City transactions — determining which fund(s) would report each activity', href: 'acct-635/problems/2-35.html' },
+    { num: '2-45', title: 'Classifying Transactions and Events by Fund Type', topic: 'Governmental and proprietary fund events — identifying the specific fund type(s) used', href: 'acct-635/problems/2-45.html' },
+    { num: '2-47', title: 'Statement of Revenues, Expenditures, and Changes in Fund Balance', topic: 'Town of Waynesville — preparing the General Fund statement from raw data', href: 'acct-635/problems/2-47.html' },
+    { num: '3-30', title: 'Determining the Property Tax Rate', topic: 'Jackson County — computing the tax rate per $1,000 of assessed value and the levy on a specific property', href: 'acct-635/problems/3-30.html' },
+    { num: '3-37', title: 'Budgetary Fund Balance vs. Actual Fund Balance', topic: 'Town of Bryson City — relating changes in budgetary fund balance to changes in actual fund balance', href: 'acct-635/problems/3-37.html' },
+    { num: '3-44', title: 'Budgetary Transactions and Events', topic: 'Town of Sylva — budget adoption, cash collections and payments, encumbrances, and a budget amendment', href: 'acct-635/problems/3-44.html' },
+    { num: '4-42', title: 'Special Revenue Fund Accounting', topic: 'Scotts Creek Park — journal entries, financial statements, and a budgetary comparison schedule', href: 'acct-635/problems/4-42.html' },
+    { num: '4-47', title: 'Complete Accounting Cycle', topic: 'City of Hendersonville General Fund — a full year of transactions through the closing entries and financial statements', href: 'acct-635/problems/4-47.html' },
+    { num: '5-46', title: 'Accounting for Property Taxes', topic: 'City of Brevard — levy, collections, deferrals, foreclosure, and year-end reclassification', href: 'acct-635/problems/5-46.html' },
+    { num: '5-48', title: 'Revenue Accruals and Other Adjustments', topic: 'Watauga County — delinquent property taxes, state-collected sales taxes, and a reimbursement grant', href: 'acct-635/problems/5-48.html' },
+    { num: '5-49', title: 'Year-End Expenditure Accruals', topic: 'Haywood County — payroll accrual, a contingent legal claim, and pay-as-you-go retiree health benefits', href: 'acct-635/problems/5-49.html' },
+    { num: '5-50', title: 'Interfund Transactions', topic: 'Town of Boone — interfund loans, transfers, internal service fund billings, and reimbursements', href: 'acct-635/problems/5-50.html' },
+    { num: '6-53', title: 'Capital Projects Fund', topic: 'City of Hendersonville — a city hall complex financed with bonds and a federal grant, through closing and reestablishing the budget', href: 'acct-635/problems/6-53.html' },
+    { num: '6-56', title: 'Debt Service Fund', topic: 'Town of Waynesville — journal entries, financial statements, and closing entries for a bond fund', href: 'acct-635/problems/6-56.html' },
+    { num: '6-61', title: 'Lease Accounting', topic: 'Town of Waynesville — GASB 87 lease commencement and payments, with interest/principal split', href: 'acct-635/problems/6-61.html' },
+    { num: '7-40', title: 'Internal Service Fund', topic: 'City of Hendersonville Data Processing Fund — journal entries and financial statements', href: 'acct-635/problems/7-40.html' },
+    { num: '7-44', title: 'Enterprise Fund', topic: 'Black Mountain Metro Parking Fund — journal entries and financial statements over two years', href: 'acct-635/problems/7-44.html' },
+    { num: '8-50', title: 'Pension Trust Fund', topic: "Town of Waynesville Employees' Retirement Fund — journal entries and fiduciary fund statements", href: 'acct-635/problems/8-50.html' },
+    { num: '8-52', title: 'Investment Trust Fund', topic: 'Jackson County — journal entries and fiduciary fund statements', href: 'acct-635/problems/8-52.html' },
+    { num: '8-55', title: 'Private-Purpose Trust Fund', topic: 'City of Brevard College Scholarship Fund — journal entries, fiduciary statements, and closing entry', href: 'acct-635/problems/8-55.html' },
+    { num: '8-56', title: 'Custodial Fund', topic: 'Macon County Jail Custodial Fund — journal entries and fiduciary fund statements for inmate accounts', href: 'acct-635/problems/8-56.html' },
+    { num: '10-42', title: 'Capital Assets and Long-Term Debt', topic: 'Jackson County — a bond-financed capital project across three funds, with government-wide conversion and Net Investment in Capital Assets', href: 'acct-635/problems/10-42.html' },
+    { num: '10-43', title: 'Government-Wide Statement of Activities', topic: 'Town of Waynesville — classifying revenues and expenses and preparing the statement of activities', href: 'acct-635/problems/10-43.html' },
+    { num: '10-45', title: 'Conversion to Government-Wide Statements', topic: 'City of Brevard — adjusting fund balances to a government-wide statement of net position, with reconciliation', href: 'acct-635/problems/10-45.html' },
+    { num: '10-47', title: 'Modified Approach for Infrastructure Assets', topic: 'City of Hendersonville — fund-level and government-wide entries for roads and bridges under the modified approach', href: 'acct-635/problems/10-47.html' },
+    { num: '13-41', title: 'Contributions to a VHWO', topic: 'Feed the Needy — pledges, donated services and food, conditional promises, and exchange transactions', href: 'acct-635/problems/13-41.html' },
+    { num: '13-42', title: 'Statement of Activities & Functional Expenses', topic: 'Sing Sing Singers — journal entries, statement of activities, and statement of functional expenses', href: 'acct-635/problems/13-42.html' },
+    { num: '13-48', title: 'Journal Entries for a Nonprofit Museum', topic: 'Highlands Fine Arts Center — collection items, restricted investment income, donated services, and endowment fair-value changes', href: 'acct-635/problems/13-48.html' }
+  ];
+
+  function rowHTML(p){
+    return '<a class="problem-row" href="' + p.href + '">' +
+      '<span class="problem-num">' + p.num + '</span>' +
+      '<span class="problem-info">' +
+        '<p class="problem-title">' + p.title + '</p>' +
+        '<p class="problem-topic">' + p.topic + '</p>' +
+      '</span>' +
+      '<span class="problem-go">Open &rarr;</span>' +
+    '</a>';
+  }
+
+  var list = document.getElementById('problemList');
+  if(PROBLEMS.length === 0){
+    list.innerHTML = '<div class="empty-problem">Problem sets will appear here as they\'re added.</div>';
+  } else {
+    list.innerHTML = PROBLEMS.map(rowHTML).join('');
+  }
+})();
+</script>
+
+</body>
+</html>
