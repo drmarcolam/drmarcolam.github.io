@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modified Approach for Infrastructure Assets — City of Hendersonville</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --purple:#592C88;
+    --purple-deep:#38195A;
+    --purple-mid:#6E3FA3;
+    --gold:#B0925C;
+    --gold-soft:#D6C398;
+    --gold-pale:#F1E9D6;
+    --parchment:#F7F4EC;
+    --paper:#FFFEFA;
+    --ink:#221B2E;
+    --slate:#5F5A6B;
+    --line:#DBD3E0;
+    --line-soft:#EAE4EF;
+    --answer:#1E5C34;
+    --answer-bg:#E7F1E9;
+    --danger:#9C3B34;
+    --shadow: 0 1px 2px rgba(56,25,90,0.07), 0 6px 18px rgba(56,25,90,0.08);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--parchment);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ color:inherit; }
+
+  header{
+    background: linear-gradient(180deg, var(--purple) 0%, var(--purple-deep) 100%);
+    color:#F1E9D6;
+    padding: 30px 6vw 24px;
+    position:relative;
+  }
+  header::after{
+    content:"";
+    position:absolute; left:0; right:0; bottom:0; height:4px;
+    background: linear-gradient(90deg, var(--gold-soft), var(--gold) 40%, var(--gold-soft) 70%, var(--gold));
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--gold-soft); margin:0 0 10px;
+  }
+  h1.title{
+    font-family:'Source Serif 4', serif; font-weight:600;
+    font-size:clamp(24px,3.4vw,34px); margin:0 0 8px; letter-spacing:-0.01em;
+  }
+  .subtitle{ font-size:14.5px; color:#D9CDE5; max-width:680px; margin:0; }
+
+  .id-bar{
+    max-width:960px; margin:0 auto; padding:18px 6vw 0;
+    display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+  }
+  .id-bar label{ font-size:13px; font-weight:600; color:var(--slate); }
+  .id-bar input[type="text"]{
+    font-family:'Inter',sans-serif; font-size:13.5px; padding:8px 11px;
+    border:1px solid var(--line); border-radius:5px; background:var(--paper); color:var(--ink);
+    width:220px;
+  }
+  .id-bar input:focus{ outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); }
+  .id-bar .id-hint{ font-size:12px; color:var(--slate); }
+
+  .score-area{ max-width:960px; margin:0 auto; padding:14px 6vw 0; }
+
+  .rounding-note{
+    max-width:960px; margin:14px auto 0; padding:12px 6vw;
+    font-size:12.5px; color:var(--slate); line-height:1.5;
+  }
+  .rounding-note strong{ color:var(--purple); font-weight:600; }
+
+  main{ max-width:960px; margin:0 auto; padding:22px 6vw 90px; }
+
+  .part{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    box-shadow:var(--shadow);
+    padding:24px 26px 26px;
+    margin-top:26px;
+  }
+  .part-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; color:var(--gold); background:var(--purple);
+    display:inline-block; padding:3px 9px; border-radius:4px; letter-spacing:.04em;
+    margin-bottom:12px;
+  }
+  .part h2{
+    font-family:'Source Serif 4', serif; font-size:21px; font-weight:600;
+    color:var(--purple); margin:0 0 12px;
+  }
+  .scenario{
+    background:var(--parchment);
+    border-left:3px solid var(--gold);
+    padding:14px 18px;
+    border-radius:0 6px 6px 0;
+    font-size:14.5px;
+    color:var(--ink);
+    margin-bottom:16px;
+  }
+  .scenario p{ margin:0 0 10px; }
+  .scenario p:last-child{ margin-bottom:0; }
+  .scenario span.val{ font-weight:700; color:var(--purple-deep); }
+
+  .req{
+    font-weight:600;
+    font-size:14.5px;
+    color:var(--ink);
+    margin:20px 0 10px;
+  }
+  .req span.reqlabel{ color:var(--purple); }
+
+  h4.subsection{
+    font-family:'Source Serif 4',serif; font-size:15px; color:var(--purple); margin:22px 0 6px;
+    border-bottom:1px solid var(--line-soft); padding-bottom:4px;
+  }
+
+  .footnote{ font-size:12px; color:var(--slate); margin:2px 0 14px; font-style:italic; }
+  .hint{ font-size:12.5px; color:var(--slate); margin:4px 0 10px; }
+
+  table.given{ width:100%; border-collapse:collapse; font-size:13px; margin:6px 0 14px; }
+  table.given th{ text-align:left; font-size:10.5px; text-transform:uppercase; letter-spacing:.03em; color:var(--slate); border-bottom:2px solid var(--purple); padding:6px 8px; }
+  table.given td{ border-bottom:1px solid var(--line); padding:5px 8px; font-family:'IBM Plex Mono', monospace; }
+  table.given td.lbl{ font-family:'Inter',sans-serif; }
+  table.given td.num, table.given th.num{ text-align:right; }
+  table.given tr.given-total td{ border-top:1.6px solid var(--purple); font-weight:600; }
+  table.given tr.given-sub td{ font-family:'Inter',sans-serif; padding-left:22px; }
+
+  table.worksheet{
+    width:100%;
+    border-collapse:collapse;
+    font-size:13.5px;
+    margin:10px 0 4px;
+  }
+  table.worksheet th{
+    text-align:left;
+    font-size:11.5px;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+    color:var(--slate);
+    border-bottom:2px solid var(--purple);
+    padding:8px 8px;
+  }
+  table.worksheet th.num{ text-align:right; }
+  table.worksheet td{
+    border-bottom:1px solid var(--line);
+    padding:9px 8px;
+    vertical-align:middle;
+  }
+  table.worksheet td.sub{ padding-left:24px; }
+  table.worksheet td.amt{ width:130px; text-align:right; font-family:'IBM Plex Mono',monospace; }
+  table.worksheet tr.ws-group + tr.ws-group-start td{ border-top:1.4px solid var(--purple-mid); }
+  table.worksheet tr.ws-entrystart td{ padding-top:16px; }
+  table.worksheet input[type="text"]{
+    width:100%;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13.5px;
+    padding:6px 8px;
+    border:1px solid var(--line);
+    border-radius:5px;
+    background:var(--parchment);
+    color:var(--ink);
+    text-align:right;
+  }
+  table.worksheet input[type="text"]:focus{
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
+  }
+  table.worksheet select.acct{
+    width:100%;
+    font-family:'Inter',sans-serif;
+    font-size:13.5px;
+    font-weight:400;
+    padding:6px 8px;
+    border:1px solid var(--line);
+    border-radius:5px;
+    background:var(--parchment);
+    color:var(--ink);
+  }
+  table.worksheet select.acct:focus{
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
+  }
+  table.worksheet td.acctcell{ padding-right:14px; }
+  table.worksheet td.entrytag{ font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--gold); background:var(--purple); border-radius:4px; padding:2px 7px; display:inline-block; }
+
+  .score-panel{
+    display:flex; align-items:center; gap:18px;
+    margin:0 0 4px; padding:14px 18px;
+    background:var(--parchment);
+    border:1px solid var(--line);
+    border-radius:8px;
+  }
+  .score-panel.scored-good{ background:var(--answer-bg); border-color:#B7D3BE; }
+  .score-panel.scored-bad{ background:#F8F0EF; border-color:#E2C6C2; }
+  .score-pct{
+    font-family:'Source Serif 4', serif;
+    font-size:30px; font-weight:700; line-height:1.05;
+    color:var(--slate); min-width:96px; text-align:center;
+  }
+  .score-panel.scored-good .score-pct{ color:var(--answer); }
+  .score-panel.scored-bad .score-pct{ color:var(--danger); }
+  .score-detail{ flex:1; min-width:0; }
+  .score-meta{ font-size:13.5px; font-weight:600; color:var(--ink); margin:0 0 7px; }
+  .score-bar{ height:8px; border-radius:4px; background:var(--line-soft); overflow:hidden; }
+  .score-bar span{ display:block; height:100%; width:0; background:var(--purple-mid); transition:width .35s ease; }
+  .score-panel.scored-good .score-bar span{ background:var(--answer); }
+  .score-panel.scored-bad .score-bar span{ background:var(--danger); }
+  .score-sub{ font-size:11.5px; color:var(--slate); margin:7px 0 0; }
+
+  .check-bar{
+    margin-top:20px;
+    padding-top:16px;
+    border-top:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .btn-check{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:9px 18px; border:1px solid var(--purple);
+    background:var(--purple); color:#fff; cursor:pointer;
+  }
+  .btn-check:hover{ background:var(--purple-mid); }
+  .check-summary{ font-size:13.5px; font-weight:600; }
+  .check-summary.good{ color:var(--answer); }
+  .check-summary.bad{ color:var(--danger); }
+  .check-disclaimer{ font-size:11.5px; color:var(--slate); width:100%; margin-top:2px; font-style:italic; }
+
+  input.field-correct, select.field-correct{
+    border-color:var(--answer) !important;
+    background:var(--answer-bg) !important;
+  }
+  input.field-incorrect, select.field-incorrect{
+    border-color:var(--danger) !important;
+    background:#F3E1DE !important;
+  }
+
+  .submit-bar{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    box-shadow:var(--shadow);
+    padding:22px 26px 24px;
+    margin-top:26px;
+  }
+  .submit-bar h2{
+    font-family:'Source Serif 4', serif; font-size:19px; font-weight:600;
+    color:var(--purple); margin:0 0 14px;
+  }
+  .submit-row{ display:flex; align-items:center; gap:10px; margin-bottom:12px; flex-wrap:wrap; }
+  .submit-row label{ font-size:13px; font-weight:600; color:var(--slate); }
+  .btn-submit{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:10px 18px; border:1px solid var(--purple);
+    background:var(--purple); color:#fff; cursor:pointer;
+  }
+  .btn-submit:hover{ background:var(--purple-mid); }
+  .submit-hint{ font-size:12px; color:var(--slate); margin:6px 0 0; }
+
+  @media print{
+    .print-hide, .id-bar, .check-bar, .rounding-note{ display:none !important; }
+    header{ background:none !important; color:var(--ink) !important; padding:0 0 14px !important; }
+    header::after{ display:none !important; }
+    .eyebrow{ color:var(--purple) !important; }
+    .subtitle{ color:var(--slate) !important; }
+    body{ background:#fff !important; }
+    .part{ box-shadow:none !important; border:1px solid #999 !important; break-inside:auto; }
+    .score-panel{ background:#fff !important; border:1.5px solid #000 !important; break-inside:avoid; }
+    .score-bar{ display:none !important; }
+    .score-pct, .score-panel.scored-good .score-pct, .score-panel.scored-bad .score-pct{ color:#000 !important; }
+    .part h2, .part-label, .scenario, h4.subsection{ break-after:avoid; break-inside:avoid; }
+    table.given, table.worksheet{ break-inside:auto; }
+    table.given tr, table.worksheet tr{ break-inside:avoid; }
+    .submit-bar{ break-before:avoid; }
+    input[type="text"], select.acct{
+      border:none !important;
+      border-bottom:1px solid #000 !important;
+      background:transparent !important;
+      border-radius:0 !important;
+      color:#000 !important;
+      -webkit-appearance:none;
+      -moz-appearance:none;
+      appearance:none;
+      padding:2px 4px !important;
+    }
+    .print-name-line{ display:block !important; }
+  }
+  .print-name-line{ display:none; font-size:13px; color:var(--ink); padding:0 6vw; margin:0 0 10px; }
+
+  footer{ text-align:center; padding:26px 6vw 40px; font-size:12px; color:var(--slate); }
+
+  @media (max-width:600px){
+    header, main, .id-bar{ padding-left:5vw; padding-right:5vw; }
+    table.worksheet{ font-size:12.5px; }
+  }
+
+
+  html:not(.wcu-unlocked) body > *:not(#wcu-gate){ display:none !important; }
+  #wcu-gate{
+    position:fixed; inset:0; z-index:9999;
+    background: linear-gradient(180deg, #38195A 0%, #221B2E 100%);
+    display:flex; align-items:center; justify-content:center;
+    padding:24px;
+    font-family:'Inter',sans-serif;
+  }
+  html.wcu-unlocked .wcu-gate{ display:none !important; }
+  .wcu-gate-card{
+    background:#FFFEFA; border-radius:12px; max-width:380px; width:100%;
+    padding:32px 30px 28px; text-align:center;
+    box-shadow:0 10px 40px rgba(0,0,0,0.35);
+  }
+  .wcu-gate-eyebrow{
+    font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.12em;
+    text-transform:uppercase; color:#B0925C; margin:0 0 10px;
+  }
+  .wcu-gate-card h2{
+    font-family:'Source Serif 4', serif; font-size:20px; color:#38195A; margin:0 0 14px;
+  }
+  .wcu-gate-card input[type="text"]{
+    width:100%; font-family:'Inter',sans-serif; font-size:14px; padding:10px 12px;
+    border:1px solid #DBD3E0; border-radius:6px; margin-bottom:12px; box-sizing:border-box;
+    text-align:center; letter-spacing:.05em;
+  }
+  .wcu-gate-card button{
+    width:100%; font-family:'Inter',sans-serif; font-size:14px; font-weight:600;
+    border-radius:6px; padding:10px 18px; border:1px solid #592C88;
+    background:#592C88; color:#fff; cursor:pointer;
+  }
+  .wcu-gate-card button:hover{ background:#6E3FA3; }
+  .wcu-gate-error{ color:#9C3B34; font-size:12.5px; margin:10px 0 0; min-height:16px; }
+
+  .back-bar{ max-width:960px; margin:0 auto; padding:14px 6vw 0; }
+  .back-bar a{
+    font-family:'Inter',sans-serif; font-size:13px; font-weight:600;
+    color:#592C88; text-decoration:none;
+  }
+  .back-bar a:hover{ text-decoration:underline; }
+</style>
+</head>
+<body>
+<div id="wcu-gate">
+  <div class="wcu-gate-card">
+    <p class="wcu-gate-eyebrow">ACCT 635 &middot; Governmental &amp; Nonprofit Accounting</p>
+    <h2>Access Code Required</h2>
+    <input type="text" id="wcu-gate-input" placeholder="Enter access code" autocomplete="off">
+    <button type="button" id="wcu-gate-btn">Unlock</button>
+    <p class="wcu-gate-error" id="wcu-gate-error"></p>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY = 'wcu_unlock_acct635';
+  var CODE = 'ACCT635DOR';
+  try{
+    if(localStorage.getItem(KEY) === '1'){
+      document.documentElement.classList.add('wcu-unlocked');
+    }
+  }catch(e){}
+  function tryUnlock(){
+    var val = document.getElementById('wcu-gate-input').value.trim().toUpperCase();
+    if(val === CODE){
+      try{ localStorage.setItem(KEY, '1'); }catch(e){}
+      document.documentElement.classList.add('wcu-unlocked');
+    } else {
+      document.getElementById('wcu-gate-error').textContent = 'Incorrect code. Please try again.';
+    }
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    var btn = document.getElementById('wcu-gate-btn');
+    var input = document.getElementById('wcu-gate-input');
+    if(btn) btn.addEventListener('click', tryUnlock);
+    if(input) input.addEventListener('keydown', function(e){ if(e.key === 'Enter') tryUnlock(); });
+  });
+})();
+</script>
+<div class="back-bar print-hide"><a href="../../acct-635.html">&larr; Back to ACCT 635</a></div>
+
+
+<header>
+  <p class="eyebrow">ACCT 635 &middot; Governmental and Nonprofit Accounting &middot; Modified Approach for Infrastructure Assets</p>
+  <h1 class="title">Modified Approach for Infrastructure Asset Reporting — City of Hendersonville</h1>
+  <p class="subtitle">The city of Hendersonville adopted the modified approach for reporting its roads and bridges. The city met the GAAP requirements for having an asset management system, making periodic condition assessments, and estimating the annual amount needed to preserve the roads and bridges. Based on the data below, (1) prepare journal entries to record the transactions in the city's governmental funds, and (2) prepare the adjusting entries needed to report roads and bridges in the city's government-wide statements for the year ending December 31, <span id="yr-sub">2026</span>. All amounts are in thousands.</p>
+</header>
+
+<p class="print-name-line" id="printNameLine"></p>
+
+<div class="id-bar">
+  <label for="studentName">Name</label>
+  <input type="text" id="studentName" placeholder="First and last name">
+  <label for="studentId">Student ID</label>
+  <input type="text" id="studentId" placeholder="e.g. 920410165">
+  <button id="genBtn" type="button">Generate scenario</button>
+  <span class="id-hint">Leave the ID blank and click to restore the original textbook figures.</span>
+</div>
+
+<div class="score-area" id="scoreArea"></div>
+
+<div class="rounding-note">
+  <strong>Before you start:</strong> record fund-level entries using budgetary-fund accounts (Expenditures, Cash, Vouchers Payable) and record the government-wide adjusting entries using government-wide accounts (Infrastructure Assets, Expenses, Net Position). Enter all dollar amounts <strong>in whole thousands</strong> (e.g., 725, not 725,000), and use the account dropdown to select the exact account title for each line.
+</div>
+
+<main>
+
+  <!-- ITEM A -->
+  <div class="part">
+    <span class="part-label">Item a</span>
+    <h2>Adoption of the modified approach</h2>
+    <div class="scenario">
+      <p>At December 31, <span class="val" id="yr-prior">2025</span>, the city's infrastructure assets (roads and bridges) had an acquisition value of <span class="val" id="sc-acqValue">$11,600</span>. Because the city retroactively adopted the modified approach, no accumulated depreciation is reported for these assets, and no expenditure or expense is recognized for maintaining the physical condition of the network at or above the established condition level.</p>
+    </div>
+    <table class="given">
+      <thead><tr><th>Beginning balance, government-wide statements</th><th class="num">Amount</th></tr></thead>
+      <tbody>
+        <tr class="given-sub"><td class="lbl">Infrastructure Assets&mdash;Roads and Bridges (acquisition value)</td><td class="num" id="gd-acqValue">$11,600</td></tr>
+        <tr class="given-sub"><td class="lbl">Accumulated depreciation&mdash;Infrastructure Assets</td><td class="num">$0 (not applicable under the modified approach)</td></tr>
+      </tbody>
+    </table>
+    <div class="req"><span class="reqlabel">Required:</span> No journal entry is needed for item (a) &mdash; this balance was already established in the city's accounting records as of the prior year-end and simply carries forward. It is shown here because you will need it to answer the questions your instructor may ask about the infrastructure assets' carrying amount at the end of <span id="yr-note-a">2026</span>.</div>
+  </div>
+
+  <!-- ITEM B -->
+  <div class="part">
+    <span class="part-label">Item b</span>
+    <h2>Preservation expenditures</h2>
+    <div class="scenario">
+      <p>During <span class="val" id="yr-b">2026</span>, the city incurred <span class="val" id="sc-preservation">$1,845</span> of preservation expenditures on its roads and bridges, paid in cash. Preservation costs that only maintain the infrastructure network at (rather than above) the condition level the city has established are expensed as incurred under the modified approach&mdash;at both the fund level and the government-wide level&mdash;rather than capitalized.</p>
+    </div>
+    <div class="req"><span class="reqlabel">Required:</span> Prepare (1) the fund-level journal entry to record the cash payment and (2) the government-wide adjusting/conversion entry needed to convert the fund-level expenditure into a government-wide expense.</div>
+    <table class="worksheet">
+      <thead><tr><th>Account</th><th class="num">Debit</th><th class="num">Credit</th></tr></thead>
+      <tbody id="jeB-body"></tbody>
+    </table>
+    <div class="check-bar">
+      <button class="btn-check" id="check-jeB" type="button">Check my work</button>
+      <span class="check-summary" id="sum-jeB"></span>
+      <span class="check-disclaimer">This checks your account selections and amounts against the key within a small tolerance.</span>
+    </div>
+  </div>
+
+  <!-- ITEM C -->
+  <div class="part">
+    <span class="part-label">Item c</span>
+    <h2>Capacity-adding improvement</h2>
+    <div class="scenario">
+      <p>During <span class="val" id="yr-c">2026</span>, the city paid <span class="val" id="sc-addition">$725</span> to contractors to add two additional lanes to its <span class="val" id="sc-bridgeName">49th Street</span> bridge. Unlike ordinary preservation costs, an addition that increases the capacity or efficiency of an infrastructure asset is capitalized&mdash;even under the modified approach&mdash;because it is not merely maintaining the network at its established condition level.</p>
+    </div>
+    <div class="req"><span class="reqlabel">Required:</span> Prepare (1) the fund-level journal entry to record the cash payment and (2) the government-wide adjusting/conversion entry needed to capitalize the addition as an infrastructure asset.</div>
+    <table class="worksheet">
+      <thead><tr><th>Account</th><th class="num">Debit</th><th class="num">Credit</th></tr></thead>
+      <tbody id="jeC-body"></tbody>
+    </table>
+    <div class="check-bar">
+      <button class="btn-check" id="check-jeC" type="button">Check my work</button>
+      <span class="check-summary" id="sum-jeC"></span>
+      <span class="check-disclaimer">This checks your account selections and amounts against the key within a small tolerance.</span>
+    </div>
+  </div>
+
+  <div class="submit-bar print-hide">
+    <h2>Ready to submit?</h2>
+    <p class="submit-hint" style="margin:0 0 12px;">Your name is taken from the top of the page.</p>
+    <div class="submit-row submit-actions">
+      <button class="btn-submit" id="printBtn" type="button">Print / Save as PDF</button>
+    </div>
+    <p class="submit-hint">This captures exactly what's currently filled in above and works offline.</p>
+  </div>
+</main>
+
+<footer>Modified Approach for Infrastructure Asset Reporting &middot; ACCT 635 &middot; Western Carolina University</footer>
+
+<script>
+(function(){
+  var FILE_SLUG = "ACCT635-Modified-Approach-Infrastructure-P10-47";
+  var CURRENT_YEAR = new Date().getFullYear();
+  var PRIOR_YEAR = CURRENT_YEAR - 1;
+
+  // ---------- seeded pseudo-random ----------
+  function hashSeed(str){
+    var h = 2166136261;
+    for(var i=0;i<str.length;i++){
+      h ^= str.charCodeAt(i);
+      h = Math.imul(h, 16777619);
+    }
+    return h >>> 0;
+  }
+  function mulberry32(seed){
+    return function(){
+      seed |= 0; seed = seed + 0x6D2B79F5 | 0;
+      var t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
+  }
+  function pick(rand, arr){ return arr[Math.floor(rand() * arr.length)]; }
+  function rTo(x, m){ return Math.round(x/m)*m; }
+
+  function money0(n){
+    var v = Number(n);
+    var s = Math.abs(v).toLocaleString('en-US', {minimumFractionDigits:0, maximumFractionDigits:0});
+    return v < 0 ? '$(' + s + ')' : '$' + s;
+  }
+  function setText(id, text){
+    var el = document.getElementById(id);
+    if(el) el.textContent = text;
+  }
+
+  var TOL = { dollars:1 };
+
+  function parseMoney(s){
+    if(s === null || s === undefined) return NaN;
+    var raw = String(s).trim();
+    var neg = /^\(.*\)$/.test(raw) || /^-/.test(raw) || /^−/.test(raw);
+    var cleaned = raw.replace(/[^0-9.]/g, '');
+    if(cleaned === '') return NaN;
+    var v = parseFloat(cleaned);
+    if(isNaN(v)) return NaN;
+    return neg ? -v : v;
+  }
+  function near(a, b, tol){
+    if(isNaN(a) || isNaN(b)) return false;
+    return Math.abs(a - b) <= tol;
+  }
+  function clearFieldState(el){
+    if(!el) return;
+    el.classList.remove('field-correct', 'field-incorrect');
+  }
+  function clearAllFieldStates(){
+    document.querySelectorAll('.field-correct, .field-incorrect').forEach(function(el){
+      el.classList.remove('field-correct', 'field-incorrect');
+    });
+    document.querySelectorAll('.check-summary').forEach(function(el){
+      el.textContent = ''; el.classList.remove('good','bad');
+    });
+  }
+  function markField(id, correct, tol){
+    var el = document.getElementById(id);
+    if(!el) return null;
+    el.classList.remove('field-correct', 'field-incorrect');
+    var ok = near(parseMoney(el.value), correct, tol);
+    el.classList.add(ok ? 'field-correct' : 'field-incorrect');
+    if(!el.dataset.clearBound){
+      el.addEventListener('input', function(){ clearFieldState(el); });
+      el.dataset.clearBound = '1';
+    }
+    return ok;
+  }
+  function markSelect(id, expected){
+    var el = document.getElementById(id);
+    if(!el) return null;
+    el.classList.remove('field-correct', 'field-incorrect');
+    var ok = el.value === expected;
+    el.classList.add(ok ? 'field-correct' : 'field-incorrect');
+    if(!el.dataset.clearBound){
+      el.addEventListener('change', function(){ clearFieldState(el); });
+      el.dataset.clearBound = '1';
+    }
+    return ok;
+  }
+  function bindClear(el){
+    if(!el || el.dataset.clearBound) return;
+    el.addEventListener('input', function(){ clearFieldState(el); });
+    el.dataset.clearBound = '1';
+  }
+  // A journal-entry row's amount belongs in exactly one of the two columns (Debit or
+  // Credit, per `side`). The other column should be left blank. This grades the pair as
+  // a single result: the active column must hold the right amount, and the other column
+  // must be empty; an amount typed into the wrong column is flagged there too.
+  function markAmountPair(rowId, side, correct, tol){
+    var debitEl = document.getElementById(rowId + '-debit');
+    var creditEl = document.getElementById(rowId + '-credit');
+    if(!debitEl || !creditEl) return null;
+    clearFieldState(debitEl);
+    clearFieldState(creditEl);
+    bindClear(debitEl);
+    bindClear(creditEl);
+
+    var debitBlank = debitEl.value.trim() === '';
+    var creditBlank = creditEl.value.trim() === '';
+    var ok;
+    if(side === 'Dr'){
+      var debitOk = near(parseMoney(debitEl.value), correct, tol);
+      debitEl.classList.add(debitOk ? 'field-correct' : 'field-incorrect');
+      if(!creditBlank) creditEl.classList.add('field-incorrect');
+      ok = debitOk && creditBlank;
+    } else {
+      var creditOk = near(parseMoney(creditEl.value), correct, tol);
+      creditEl.classList.add(creditOk ? 'field-correct' : 'field-incorrect');
+      if(!debitBlank) debitEl.classList.add('field-incorrect');
+      ok = creditOk && debitBlank;
+    }
+    return ok;
+  }
+  function updateSummary(elId, results){
+    var el = document.getElementById(elId);
+    if(!el) return;
+    var graded = results.filter(function(r){ return r !== null; }).length;
+    var correct = results.filter(function(r){ return r === true; }).length;
+    el.textContent = correct + ' of ' + graded + ' correct';
+    el.classList.remove('good', 'bad');
+    el.classList.add(correct === graded && graded > 0 ? 'good' : 'bad');
+  }
+
+  var SCORES = {};
+  function scoreState(g){
+    if(!SCORES[g.btn]) SCORES[g.btn] = { correct:0, graded:0, attempts:0, checked:false, stale:false };
+    return SCORES[g.btn];
+  }
+  function scorePct(s){
+    return s.graded ? Math.round(s.correct / s.graded * 100) : 0;
+  }
+  var SCORE_PROMPT = 'Fill in the journal entry below, then choose <strong>Check my work</strong>. Every blank counts as incorrect.';
+
+  function ensureScorePanel(g){
+    var area = document.getElementById('scoreArea');
+    if(!area) return null;
+    var panel = area.querySelector('.score-panel[data-for="' + g.btn + '"]');
+    if(panel) return panel;
+    panel = document.createElement('div');
+    panel.className = 'score-panel';
+    panel.style.display = 'none';
+    panel.setAttribute('data-for', g.btn);
+    panel.innerHTML =
+      '<div class="score-pct">&mdash;</div>' +
+      '<div class="score-detail">' +
+        '<p class="score-meta">Score</p>' +
+        '<div class="score-bar"><span></span></div>' +
+        '<p class="score-sub">' + SCORE_PROMPT + '</p>' +
+      '</div>';
+    area.appendChild(panel);
+    return panel;
+  }
+
+  // We keep the per-item score summaries inline (near each check button) rather than
+  // stacking score panels above the fold; the scoreArea only shows an overall rollup.
+  function renderOverall(){
+    var area = document.getElementById('scoreArea');
+    if(!area) return;
+    var panel = area.querySelector('.score-panel[data-for="overall"]');
+    if(!panel){
+      panel = document.createElement('div');
+      panel.className = 'score-panel';
+      panel.setAttribute('data-for', 'overall');
+      panel.innerHTML =
+        '<div class="score-pct">&mdash;</div>' +
+        '<div class="score-detail">' +
+          '<p class="score-meta">Overall score</p>' +
+          '<div class="score-bar"><span></span></div>' +
+          '<p class="score-sub">Check each item below; this rolls up every item you have checked so far.</p>' +
+        '</div>';
+      area.appendChild(panel);
+    }
+    var totalCorrect = 0, totalGraded = 0, anyChecked = false;
+    Object.keys(SCORES).forEach(function(k){
+      var s = SCORES[k];
+      if(s.checked){ anyChecked = true; totalCorrect += s.correct; totalGraded += s.graded; }
+    });
+    var pctEl = panel.querySelector('.score-pct');
+    var metaEl = panel.querySelector('.score-meta');
+    var fillEl = panel.querySelector('.score-bar span');
+    var subEl = panel.querySelector('.score-sub');
+    panel.classList.remove('scored-good','scored-bad');
+    if(!anyChecked){
+      pctEl.innerHTML = '&mdash;';
+      metaEl.textContent = 'Overall score';
+      fillEl.style.width = '0%';
+      subEl.textContent = 'Check each item below; this rolls up every item you have checked so far.';
+      return;
+    }
+    var pct = totalGraded ? Math.round(totalCorrect/totalGraded*100) : 0;
+    pctEl.textContent = pct + '%';
+    metaEl.textContent = 'Overall: ' + totalCorrect + ' of ' + totalGraded + ' correct (checked items only)';
+    fillEl.style.width = pct + '%';
+    if(totalCorrect === totalGraded){
+      subEl.textContent = 'All checked items match the key.';
+      panel.classList.add('scored-good');
+    } else {
+      subEl.textContent = (totalGraded-totalCorrect) + ' line(s) still to fix across the items you have checked.';
+      panel.classList.add('scored-bad');
+    }
+  }
+
+  function resetScore(g){
+    SCORES[g.btn] = { correct:0, graded:0, attempts:0, checked:false, stale:false };
+    renderOverall();
+  }
+
+  // ---------- scenario generation ----------
+  var BRIDGE_NAMES = ["49th Street", "Mill Creek", "Main Street", "Riverbend", "Depot Street"];
+
+  function baseline(){
+    return {
+      acqValue:11600, preservation:1845, addition:725, bridgeName:"49th Street"
+    };
+  }
+
+  function randomParams(rand){
+    var acqValue = rTo(pick(rand,[9600,10200,10800,11200,11600,12000,12600,13200]),100);
+    var preservation = rTo(pick(rand,[1200,1450,1650,1845,2000,2150,2300,2450]),5);
+    var addition = rTo(pick(rand,[450,525,600,675,725,800,875,950]),5);
+    var bridgeName = pick(rand, BRIDGE_NAMES);
+
+    return {
+      acqValue:acqValue, preservation:preservation, addition:addition, bridgeName:bridgeName
+    };
+  }
+
+  function solve(p){
+    var out = {};
+    for(var k in p) out[k] = p[k];
+    out.endingAcqValue = p.acqValue + p.addition;
+    return out;
+  }
+
+  function generateScenario(id){
+    var seed = (id || '').trim();
+    if(seed === '') return solve(baseline());
+    // Folding the current year into the seed means the scenario stays fixed for a given
+    // student ID all year, then refreshes automatically once the calendar turns over.
+    return solve(randomParams(mulberry32(hashSeed(seed.toLowerCase() + '-' + CURRENT_YEAR))));
+  }
+
+  function applyYearLabels(){
+    var cy = String(CURRENT_YEAR);
+    var py = String(PRIOR_YEAR);
+    setText('yr-sub', cy);
+    setText('yr-prior', py);
+    setText('yr-note-a', cy);
+    setText('yr-b', cy);
+    setText('yr-c', cy);
+  }
+
+  function applyScenario(d){
+    setText('sc-acqValue', money0(d.acqValue));
+    setText('gd-acqValue', money0(d.acqValue));
+    setText('sc-preservation', money0(d.preservation));
+    setText('sc-addition', money0(d.addition));
+    setText('sc-bridgeName', d.bridgeName);
+  }
+
+  // ---------- account options ----------
+  var ACCOUNTS = [
+    'Cash',
+    'Vouchers Payable',
+    'Expenditures—Capital Outlay',
+    'Expenditures—Public Works (Preservation)',
+    'Infrastructure Assets—Roads and Bridges',
+    'Expenses—Public Works',
+    'Net Position'
+  ];
+
+  function acctOptionsHtml(){
+    var html = '<option value="">— select account —</option>';
+    ACCOUNTS.forEach(function(a){
+      html += '<option value="' + a.replace(/"/g,'&quot;') + '">' + a + '</option>';
+    });
+    return html;
+  }
+
+  // Each JE definition: array of rows {side:'Dr'|'Cr', acct: function(d), amt: function(d), tag: optional label}
+  var JE_DEFS = {
+    jeB: [
+      { side:'Dr', acct:function(){ return 'Expenditures—Public Works (Preservation)'; }, amt:function(d){ return d.preservation; }, tag:'(1) Fund-level entry' },
+      { side:'Cr', acct:function(){ return 'Cash'; }, amt:function(d){ return d.preservation; } },
+      { side:'Dr', acct:function(){ return 'Expenses—Public Works'; }, amt:function(d){ return d.preservation; }, tag:'(2) Government-wide adjusting entry' },
+      { side:'Cr', acct:function(){ return 'Expenditures—Public Works (Preservation)'; }, amt:function(d){ return d.preservation; } }
+    ],
+    jeC: [
+      { side:'Dr', acct:function(){ return 'Expenditures—Capital Outlay'; }, amt:function(d){ return d.addition; }, tag:'(1) Fund-level entry' },
+      { side:'Cr', acct:function(){ return 'Cash'; }, amt:function(d){ return d.addition; } },
+      { side:'Dr', acct:function(){ return 'Infrastructure Assets—Roads and Bridges'; }, amt:function(d){ return d.addition; }, tag:'(2) Government-wide adjusting entry' },
+      { side:'Cr', acct:function(){ return 'Expenditures—Capital Outlay'; }, amt:function(d){ return d.addition; } }
+    ]
+  };
+
+  function buildJeTable(jeKey){
+    var body = document.getElementById(jeKey + '-body');
+    if(!body) return;
+    body.innerHTML = '';
+    JE_DEFS[jeKey].forEach(function(row, idx){
+      var tr = document.createElement('tr');
+      var rowId = jeKey + '-r' + idx;
+      var tagHtml = row.tag ? ('<div class="hint" style="margin:0 0 4px;"><span class="entrytag">' + row.tag + '</span></div>') : '';
+      tr.innerHTML =
+        '<td class="acctcell">' + tagHtml + '<select class="acct" id="' + rowId + '-acct">' + acctOptionsHtml() + '</select></td>' +
+        '<td class="amt"><input type="text" placeholder="$" id="' + rowId + '-debit"></td>' +
+        '<td class="amt"><input type="text" placeholder="$" id="' + rowId + '-credit"></td>';
+      body.appendChild(tr);
+    });
+  }
+
+  Object.keys(JE_DEFS).forEach(buildJeTable);
+  applyYearLabels();
+
+  // ---------------- wiring ----------------
+  var idInput = document.getElementById('studentId');
+  var genBtn = document.getElementById('genBtn');
+  var currentScenario = null;
+
+  function applyAndStore(id){
+    currentScenario = generateScenario(id);
+    applyScenario(currentScenario);
+    clearAllFieldStates();
+    Object.keys(JE_DEFS).forEach(function(k){
+      resetScore({ btn:'check-' + k });
+    });
+  }
+  genBtn.addEventListener('click', function(){ applyAndStore(idInput.value); });
+  idInput.addEventListener('keydown', function(e){
+    if(e.key === 'Enter'){ e.preventDefault(); applyAndStore(idInput.value); }
+  });
+  applyAndStore('');
+
+  Object.keys(JE_DEFS).forEach(function(jeKey){
+    var btnId = 'check-' + jeKey;
+    var summaryId = 'sum-' + jeKey;
+    var btn = document.getElementById(btnId);
+    if(!btn) return;
+    var g = { btn: btnId };
+
+    var part = btn.closest('.part');
+    if(part){
+      part.addEventListener('input', function(e){
+        if(e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT')){
+          var s = scoreState(g);
+          if(s.checked) s.stale = true;
+        }
+      });
+      part.addEventListener('change', function(e){
+        if(e.target && e.target.tagName === 'SELECT'){
+          var s = scoreState(g);
+          if(s.checked) s.stale = true;
+        }
+      });
+    }
+
+    btn.addEventListener('click', function(){
+      if(!currentScenario) return;
+      var rows = JE_DEFS[jeKey];
+      var results = [];
+      rows.forEach(function(row, idx){
+        var rowId = jeKey + '-r' + idx;
+        var expectedAcct = row.acct(currentScenario);
+        var expectedAmt = row.amt(currentScenario);
+        results.push(markSelect(rowId + '-acct', expectedAcct));
+        results.push(markAmountPair(rowId, row.side, expectedAmt, TOL.dollars));
+      });
+      updateSummary(summaryId, results);
+      var s = scoreState(g);
+      s.graded = results.filter(function(r){ return r !== null; }).length;
+      s.correct = results.filter(function(r){ return r === true; }).length;
+      s.attempts += 1;
+      s.checked = true;
+      s.stale = false;
+      renderOverall();
+    });
+  });
+
+  // ---------------- Print / Save as PDF ----------------
+  function val(id){
+    var el = document.getElementById(id);
+    return el ? el.value.trim() : '';
+  }
+  document.getElementById('printBtn').addEventListener('click', function(){
+    var name = val('studentName');
+    var id = val('studentId');
+    var line = document.getElementById('printNameLine');
+    line.textContent = 'Name: ' + (name || '_______________________') +
+                       '     Student ID: ' + (id || '_______________________');
+    var oldTitle = document.title;
+    document.title = FILE_SLUG + '-' + (id || 'submission');
+    window.print();
+    document.title = oldTitle;
+  });
+
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Journal Entries, Statement of Activities &amp; Statement of Functional Expenses — Sing Sing Singers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --purple:#592C88;
+    --purple-deep:#38195A;
+    --purple-mid:#6E3FA3;
+    --gold:#B0925C;
+    --gold-soft:#D6C398;
+    --gold-pale:#F1E9D6;
+    --parchment:#F7F4EC;
+    --paper:#FFFEFA;
+    --ink:#221B2E;
+    --slate:#5F5A6B;
+    --line:#DBD3E0;
+    --line-soft:#EAE4EF;
+    --answer:#1E5C34;
+    --answer-bg:#E7F1E9;
+    --danger:#9C3B34;
+    --shadow: 0 1px 2px rgba(56,25,90,0.07), 0 6px 18px rgba(56,25,90,0.08);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--parchment);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ color:inherit; }
+
+  header{
+    background: linear-gradient(180deg, var(--purple) 0%, var(--purple-deep) 100%);
+    color:#F1E9D6;
+    padding: 30px 6vw 24px;
+    position:relative;
+  }
+  header::after{
+    content:"";
+    position:absolute; left:0; right:0; bottom:0; height:4px;
+    background: linear-gradient(90deg, var(--gold-soft), var(--gold) 40%, var(--gold-soft) 70%, var(--gold));
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--gold-soft); margin:0 0 10px;
+  }
+  h1.title{
+    font-family:'Source Serif 4', serif; font-weight:600;
+    font-size:clamp(24px,3.4vw,34px); margin:0 0 8px; letter-spacing:-0.01em;
+  }
+  .subtitle{ font-size:14.5px; color:#D9CDE5; max-width:700px; margin:0; }
+
+  .id-bar{
+    max-width:980px; margin:0 auto; padding:18px 6vw 0;
+    display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+  }
+  .id-bar label{ font-size:13px; font-weight:600; color:var(--slate); }
+  .id-bar input[type="text"]{
+    font-family:'Inter',sans-serif; font-size:13.5px; padding:8px 11px;
+    border:1px solid var(--line); border-radius:5px; background:var(--paper); color:var(--ink);
+    width:220px;
+  }
+  .id-bar input:focus{ outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); }
+  .id-bar .id-hint{ font-size:12px; color:var(--slate); }
+
+  .score-area{ max-width:980px; margin:0 auto; padding:14px 6vw 0; }
+
+  .rounding-note{
+    max-width:980px; margin:14px auto 0; padding:12px 6vw;
+    font-size:12.5px; color:var(--slate); line-height:1.5;
+  }
+  .rounding-note strong{ color:var(--purple); font-weight:600; }
+
+  main{ max-width:980px; margin:0 auto; padding:22px 6vw 90px; }
+
+  .part{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    box-shadow:var(--shadow);
+    padding:24px 26px 26px;
+    margin-top:26px;
+  }
+  .part-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; color:var(--gold); background:var(--purple);
+    display:inline-block; padding:3px 9px; border-radius:4px; letter-spacing:.04em;
+    margin-bottom:12px;
+  }
+  .part h2{
+    font-family:'Source Serif 4', serif; font-size:21px; font-weight:600;
+    color:var(--purple); margin:0 0 12px;
+  }
+  .scenario{
+    background:var(--parchment);
+    border-left:3px solid var(--gold);
+    padding:14px 18px;
+    border-radius:0 6px 6px 0;
+    font-size:14.5px;
+    color:var(--ink);
+    margin-bottom:16px;
+  }
+  .scenario p{ margin:0 0 10px; }
+  .scenario p:last-child{ margin-bottom:0; }
+  .scenario span.val{ font-weight:700; color:var(--purple-deep); }
+  .scenario ul{ margin:6px 0 10px 20px; padding:0; }
+  .scenario li{ margin:0 0 6px; }
+
+  .req{
+    font-weight:600;
+    font-size:14.5px;
+    color:var(--ink);
+    margin:20px 0 10px;
+  }
+  .req span.reqlabel{ color:var(--purple); }
+
+  h4.subsection{
+    font-family:'Source Serif 4',serif; font-size:15px; color:var(--purple); margin:22px 0 6px;
+    border-bottom:1px solid var(--line-soft); padding-bottom:4px;
+  }
+
+  .footnote{ font-size:12px; color:var(--slate); margin:2px 0 14px; font-style:italic; }
+  .hint{ font-size:12.5px; color:var(--slate); margin:4px 0 10px; }
+
+  table.given{ width:100%; border-collapse:collapse; font-size:13px; margin:6px 0 14px; }
+  table.given th{ text-align:left; font-size:10.5px; text-transform:uppercase; letter-spacing:.03em; color:var(--slate); border-bottom:2px solid var(--purple); padding:6px 8px; }
+  table.given td{ border-bottom:1px solid var(--line); padding:5px 8px; font-family:'IBM Plex Mono', monospace; }
+  table.given td.lbl{ font-family:'Inter',sans-serif; }
+  table.given td.num, table.given th.num{ text-align:right; }
+  table.given tr.given-total td{ border-top:1.6px solid var(--purple); font-weight:600; }
+  table.given tr.given-sub td{ font-family:'Inter',sans-serif; padding-left:22px; }
+
+  table.worksheet{
+    width:100%;
+    border-collapse:collapse;
+    font-size:13.5px;
+    margin:10px 0 4px;
+  }
+  table.worksheet th{
+    text-align:left;
+    font-size:11.5px;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+    color:var(--slate);
+    border-bottom:2px solid var(--purple);
+    padding:8px 8px;
+  }
+  table.worksheet th.num{ text-align:right; }
+  table.worksheet td{
+    border-bottom:1px solid var(--line);
+    padding:9px 8px;
+    vertical-align:middle;
+  }
+  table.worksheet td.sub{ padding-left:24px; }
+  table.worksheet td.amt{ width:130px; text-align:right; font-family:'IBM Plex Mono',monospace; }
+  table.worksheet input[type="text"]{
+    width:100%;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13.5px;
+    padding:6px 8px;
+    border:1px solid var(--line);
+    border-radius:5px;
+    background:var(--parchment);
+    color:var(--ink);
+    text-align:right;
+  }
+  table.worksheet input[type="text"]:focus{
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
+  }
+  table.worksheet select.acct{
+    width:100%;
+    font-family:'Inter',sans-serif;
+    font-size:13.5px;
+    font-weight:400;
+    padding:6px 8px;
+    border:1px solid var(--line);
+    border-radius:5px;
+    background:var(--parchment);
+    color:var(--ink);
+  }
+  table.worksheet select.acct:focus{
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
+  }
+  table.worksheet td.acctcell{ padding-right:14px; }
+  table.worksheet td.entrytag{ font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--gold); background:var(--purple); border-radius:4px; padding:2px 7px; display:inline-block; }
+
+  table.stmt{
+    width:100%;
+    border-collapse:collapse;
+    font-size:13.5px;
+    margin:10px 0 4px;
+  }
+  table.stmt th{
+    text-align:right;
+    font-size:11.5px;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+    color:var(--slate);
+    border-bottom:2px solid var(--purple);
+    padding:8px 8px;
+  }
+  table.stmt th.rowhead{ text-align:left; }
+  table.stmt td{
+    border-bottom:1px solid var(--line);
+    padding:8px 8px;
+    vertical-align:middle;
+  }
+  table.stmt td.rowlabel{ font-family:'Inter',sans-serif; font-size:13.5px; }
+  table.stmt tr.stmt-total td{ border-top:1.6px solid var(--purple); font-weight:600; }
+  table.stmt input[type="text"]{
+    width:100%;
+    max-width:140px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13.5px;
+    padding:6px 8px;
+    border:1px solid var(--line);
+    border-radius:5px;
+    background:var(--parchment);
+    color:var(--ink);
+    text-align:right;
+  }
+  table.stmt input[type="text"]:focus{
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
+  }
+
+  .score-panel{
+    display:flex; align-items:center; gap:18px;
+    margin:0 0 4px; padding:14px 18px;
+    background:var(--parchment);
+    border:1px solid var(--line);
+    border-radius:8px;
+  }
+  .score-panel.scored-good{ background:var(--answer-bg); border-color:#B7D3BE; }
+  .score-panel.scored-bad{ background:#F8F0EF; border-color:#E2C6C2; }
+  .score-pct{
+    font-family:'Source Serif 4', serif;
+    font-size:30px; font-weight:700; line-height:1.05;
+    color:var(--slate); min-width:96px; text-align:center;
+  }
+  .score-panel.scored-good .score-pct{ color:var(--answer); }
+  .score-panel.scored-bad .score-pct{ color:var(--danger); }
+  .score-detail{ flex:1; min-width:0; }
+  .score-meta{ font-size:13.5px; font-weight:600; color:var(--ink); margin:0 0 7px; }
+  .score-bar{ height:8px; border-radius:4px; background:var(--line-soft); overflow:hidden; }
+  .score-bar span{ display:block; height:100%; width:0; background:var(--purple-mid); transition:width .35s ease; }
+  .score-panel.scored-good .score-bar span{ background:var(--answer); }
+  .score-panel.scored-bad .score-bar span{ background:var(--danger); }
+  .score-sub{ font-size:11.5px; color:var(--slate); margin:7px 0 0; }
+
+  .check-bar{
+    margin-top:20px;
+    padding-top:16px;
+    border-top:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .btn-check{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:9px 18px; border:1px solid var(--purple);
+    background:var(--purple); color:#fff; cursor:pointer;
+  }
+  .btn-check:hover{ background:var(--purple-mid); }
+  .check-summary{ font-size:13.5px; font-weight:600; }
+  .check-summary.good{ color:var(--answer); }
+  .check-summary.bad{ color:var(--danger); }
+  .check-disclaimer{ font-size:11.5px; color:var(--slate); width:100%; margin-top:2px; font-style:italic; }
+
+  input.field-correct, select.field-correct{
+    border-color:var(--answer) !important;
+    background:var(--answer-bg) !important;
+  }
+  input.field-incorrect, select.field-incorrect{
+    border-color:var(--danger) !important;
+    background:#F3E1DE !important;
+  }
+
+  .no-entry-box{
+    background:var(--gold-pale);
+    border:1px dashed var(--gold);
+    border-radius:6px;
+    padding:12px 16px;
+    font-size:13.5px;
+    color:var(--ink);
+    margin-top:14px;
+  }
+  .no-entry-box strong{ color:var(--purple); }
+
+  .submit-bar{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    box-shadow:var(--shadow);
+    padding:22px 26px 24px;
+    margin-top:26px;
+  }
+  .submit-bar h2{
+    font-family:'Source Serif 4', serif; font-size:19px; font-weight:600;
+    color:var(--purple); margin:0 0 14px;
+  }
+  .submit-row{ display:flex; align-items:center; gap:10px; margin-bottom:12px; flex-wrap:wrap; }
+  .submit-row label{ font-size:13px; font-weight:600; color:var(--slate); }
+  .btn-submit{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:10px 18px; border:1px solid var(--purple);
+    background:var(--purple); color:#fff; cursor:pointer;
+  }
+  .btn-submit:hover{ background:var(--purple-mid); }
+  .submit-hint{ font-size:12px; color:var(--slate); margin:6px 0 0; }
+
+  @media print{
+    .print-hide, .id-bar, .check-bar, .rounding-note{ display:none !important; }
+    header{ background:none !important; color:var(--ink) !important; padding:0 0 14px !important; }
+    header::after{ display:none !important; }
+    .eyebrow{ color:var(--purple) !important; }
+    .subtitle{ color:var(--slate) !important; }
+    body{ background:#fff !important; }
+    .part{ box-shadow:none !important; border:1px solid #999 !important; break-inside:auto; }
+    .score-panel{ background:#fff !important; border:1.5px solid #000 !important; break-inside:avoid; }
+    .score-bar{ display:none !important; }
+    .score-pct, .score-panel.scored-good .score-pct, .score-panel.scored-bad .score-pct{ color:#000 !important; }
+    .part h2, .part-label, .scenario, h4.subsection{ break-after:avoid; break-inside:avoid; }
+    table.given, table.worksheet, table.stmt{ break-inside:auto; }
+    table.given tr, table.worksheet tr, table.stmt tr{ break-inside:avoid; }
+    .submit-bar{ break-before:avoid; }
+    input[type="text"], select.acct{
+      border:none !important;
+      border-bottom:1px solid #000 !important;
+      background:transparent !important;
+      border-radius:0 !important;
+      color:#000 !important;
+      -webkit-appearance:none;
+      -moz-appearance:none;
+      appearance:none;
+      padding:2px 4px !important;
+    }
+    .print-name-line{ display:block !important; }
+  }
+  .print-name-line{ display:none; font-size:13px; color:var(--ink); padding:0 6vw; margin:0 0 10px; }
+
+  footer{ text-align:center; padding:26px 6vw 40px; font-size:12px; color:var(--slate); }
+
+  @media (max-width:600px){
+    header, main, .id-bar{ padding-left:5vw; padding-right:5vw; }
+    table.worksheet, table.stmt{ font-size:12.5px; }
+  }
+
+
+  html:not(.wcu-unlocked) body > *:not(#wcu-gate){ display:none !important; }
+  #wcu-gate{
+    position:fixed; inset:0; z-index:9999;
+    background: linear-gradient(180deg, #38195A 0%, #221B2E 100%);
+    display:flex; align-items:center; justify-content:center;
+    padding:24px;
+    font-family:'Inter',sans-serif;
+  }
+  html.wcu-unlocked .wcu-gate{ display:none !important; }
+  .wcu-gate-card{
+    background:#FFFEFA; border-radius:12px; max-width:380px; width:100%;
+    padding:32px 30px 28px; text-align:center;
+    box-shadow:0 10px 40px rgba(0,0,0,0.35);
+  }
+  .wcu-gate-eyebrow{
+    font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.12em;
+    text-transform:uppercase; color:#B0925C; margin:0 0 10px;
+  }
+  .wcu-gate-card h2{
+    font-family:'Source Serif 4', serif; font-size:20px; color:#38195A; margin:0 0 14px;
+  }
+  .wcu-gate-card input[type="text"]{
+    width:100%; font-family:'Inter',sans-serif; font-size:14px; padding:10px 12px;
+    border:1px solid #DBD3E0; border-radius:6px; margin-bottom:12px; box-sizing:border-box;
+    text-align:center; letter-spacing:.05em;
+  }
+  .wcu-gate-card button{
+    width:100%; font-family:'Inter',sans-serif; font-size:14px; font-weight:600;
+    border-radius:6px; padding:10px 18px; border:1px solid #592C88;
+    background:#592C88; color:#fff; cursor:pointer;
+  }
+  .wcu-gate-card button:hover{ background:#6E3FA3; }
+  .wcu-gate-error{ color:#9C3B34; font-size:12.5px; margin:10px 0 0; min-height:16px; }
+
+  .back-bar{ max-width:960px; margin:0 auto; padding:14px 6vw 0; }
+  .back-bar a{
+    font-family:'Inter',sans-serif; font-size:13px; font-weight:600;
+    color:#592C88; text-decoration:none;
+  }
+  .back-bar a:hover{ text-decoration:underline; }
+</style>
+</head>
+<body>
+<div id="wcu-gate">
+  <div class="wcu-gate-card">
+    <p class="wcu-gate-eyebrow">ACCT 635 &middot; Governmental &amp; Nonprofit Accounting</p>
+    <h2>Access Code Required</h2>
+    <input type="text" id="wcu-gate-input" placeholder="Enter access code" autocomplete="off">
+    <button type="button" id="wcu-gate-btn">Unlock</button>
+    <p class="wcu-gate-error" id="wcu-gate-error"></p>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY = 'wcu_unlock_acct635';
+  var CODE = 'ACCT635DOR';
+  try{
+    if(localStorage.getItem(KEY) === '1'){
+      document.documentElement.classList.add('wcu-unlocked');
+    }
+  }catch(e){}
+  function tryUnlock(){
+    var val = document.getElementById('wcu-gate-input').value.trim().toUpperCase();
+    if(val === CODE){
+      try{ localStorage.setItem(KEY, '1'); }catch(e){}
+      document.documentElement.classList.add('wcu-unlocked');
+    } else {
+      document.getElementById('wcu-gate-error').textContent = 'Incorrect code. Please try again.';
+    }
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    var btn = document.getElementById('wcu-gate-btn');
+    var input = document.getElementById('wcu-gate-input');
+    if(btn) btn.addEventListener('click', tryUnlock);
+    if(input) input.addEventListener('keydown', function(e){ if(e.key === 'Enter') tryUnlock(); });
+  });
+})();
+</script>
+<div class="back-bar print-hide"><a href="../../acct-635.html">&larr; Back to ACCT 635</a></div>
+
+
+<header>
+  <p class="eyebrow">ACCT 635 &middot; Governmental and Nonprofit Accounting &middot; Nonprofit Journal Entries, Statement of Activities &amp; Statement of Functional Expenses</p>
+  <h1 class="title">Journal Entries, Statement of Activities, and Statement of Functional Expenses — Sing Sing Singers</h1>
+  <p class="subtitle">Preparing the journal entries to record a year's activity for a nonprofit opera company based in Jackson County, North Carolina, and then rolling that activity forward into a statement of activities and a statement of functional expenses.</p>
+</header>
+
+<p class="print-name-line" id="printNameLine"></p>
+
+<div class="id-bar">
+  <label for="studentName">Name</label>
+  <input type="text" id="studentName" placeholder="First and last name">
+  <label for="studentId">Student ID</label>
+  <input type="text" id="studentId" placeholder="e.g. 920410165">
+  <button id="genBtn" type="button">Generate scenario</button>
+  <span class="id-hint">Leave the ID blank and click to restore the original textbook figures.</span>
+</div>
+
+<div class="score-area" id="scoreArea"></div>
+
+<div class="rounding-note">
+  <strong>Before you start:</strong> record every entry using control accounts only, in whole dollars (e.g., 285,000). Use the account dropdown to select the exact account title for each line of a journal entry, and use the plain amount boxes for the statement of activities and the statement of functional expenses. Not every transaction requires a journal entry — read each item carefully.
+</div>
+
+<main>
+
+  <div class="part">
+    <span class="part-label">Background</span>
+    <h2>Sing Sing Singers (SSS)</h2>
+    <div class="scenario">
+      <p>Sing Sing Singers (SSS) is a local opera company based in Sylva, Jackson County, North Carolina. As a nonprofit, it finances its activities through contributions and admissions fees. It accounts for its expenses through three major functions: <span class="val">regular events</span>, <span class="val">special events</span>, and <span class="val">administration</span>. For each function, it maintains three accounts by nature of expense: salaries, supplies and other, and occupancy.</p>
+      <p>On July 1, the start of its fiscal year <span class="val" id="yr-start">2025</span>, SSS had cash on hand amounting to <span class="val" id="gd-cashTotal">$12,000</span>, of which <span class="val" id="gd-cashWithout">$7,000</span> represented net assets without donor restrictions and <span class="val" id="gd-cashWith">$5,000</span> represented net assets with donor restrictions. The following transactions and events occurred during the year. Prepare journal entries to record these transactions; also prepare a statement of activities and a statement of expenses by function and nature for the fiscal year ended June 30, <span class="val" id="yr-end">2026</span>.</p>
+    </div>
+  </div>
+
+  <!-- ITEM 1 -->
+  <div class="part">
+    <span class="part-label">Item 1</span>
+    <h2>Restriction satisfied by passage of time</h2>
+    <div class="scenario">
+      <p>The <span class="val" id="sc-cashWith1">$5,000</span> of net assets with donor restrictions resulted from a donation made during the previous fiscal year that could be used only during the current fiscal year. On July 1 of the current fiscal year, the net assets became available for spending.</p>
+    </div>
+    <div class="req"><span class="reqlabel">Required:</span> Prepare the journal entry to reclassify the net assets.</div>
+    <table class="worksheet">
+      <thead><tr><th>Account</th><th class="num">Debit</th><th class="num">Credit</th></tr></thead>
+      <tbody id="je1-body"></tbody>
+    </table>
+    <div class="check-bar">
+      <button class="btn-check" id="check-je1" type="button">Check my work</button>
+      <span class="check-summary" id="sum-je1"></span>
+      <span class="check-disclaimer">This checks your account selections and amounts against the key within a small tolerance.</span>
+    </div>
+  </div>
+
+  <!-- ITEM 2 -->
+  <div class="part">
+    <span class="part-label">Item 2</span>
+    <h2>Fundraising dinner — cost</h2>
+    <div class="scenario">
+      <p>SSS held its annual fundraising dinner (classified as a special event) at a cost of <span class="val" id="sc-dinnerCost">$3,000</span>, paid in cash and charged to the expense account Supplies and other.</p>
+    </div>
+    <div class="req"><span class="reqlabel">Required:</span> Prepare the journal entry to record the cost of the dinner.</div>
+    <table class="worksheet">
+      <thead><tr><th>Account</th><th class="num">Debit</th><th class="num">Credit</th></tr></thead>
+      <tbody id="je2-body"></tbody>
+    </table>
+    <div class="check-bar">
+      <button class="btn-check" id="check-je2" type="button">Check my work</button>
+      <span class="check-summary" id="sum-je2"></span>
+      <span class="check-disclaimer">This checks your account selections and amounts against the key within a small tolerance.</span>
+    </div>
+  </div>
+
+  <!-- ITEM 3 -->
+  <div class="part">
+    <span class="part-label">Item 3</span>
+    <h2>Fundraising dinner — contributions and pledges</h2>
+    <div class="scenario">
+      <p>As a result of the dinner, SSS received cash contributions of <span class="val" id="sc-dinnerCash">$10,000</span> and pledges totaling <span class="val" id="sc-pledgesTotal">$40,000</span>. Based on prior experience, SSS estimated it would collect <span class="val" id="sc-collectRate">90%</span> of the pledges. Neither the cash contributions nor the pledges carry any donor restriction.</p>
+    </div>
+    <div class="req"><span class="reqlabel">Required:</span> Prepare the journal entry to record the cash contributions and the pledges (net of the allowance for uncollectible pledges).</div>
+    <table class="worksheet">
+      <thead><tr><th>Account</th><th class="num">Debit</th><th class="num">Credit</th></tr></thead>
+      <tbody id="je3-body"></tbody>
+    </table>
+    <div class="check-bar">
+      <button class="btn-check" id="check-je3" type="button">Check my work</button>
+      <span class="check-summary" id="sum-je3"></span>
+      <span class="check-disclaimer">This checks your account selections and amounts against the key within a small tolerance.</span>
+    </div>
+  </div>
+
+  <!-- ITEM 4 -->
+  <div class="part">
+    <span class="part-label">Item 4</span>
+    <h2>Collection and write-off of pledges</h2>
+    <div class="scenario">
+      <p>SSS collected <span class="val" id="sc-pledgesCash">$37,000</span> in cash on the pledges received in item 3 and wrote off the remaining pledges as uncollectible.</p>
+    </div>
+    <div class="req"><span class="reqlabel">Required:</span> Prepare the journal entries to (a) record the cash collected and (b) write off the uncollectible balance.</div>
+    <table class="worksheet">
+      <thead><tr><th>Account</th><th class="num">Debit</th><th class="num">Credit</th></tr></thead>
+      <tbody id="je4-body"></tbody>
+    </table>
+    <div class="check-bar">
+      <button class="btn-check" id="check-je4" type="button">Check my work</button>
+      <span class="check-summary" id="sum-je4"></span>
+      <span class="check-disclaimer">This checks your account selections and amounts against the key within a small tolerance.</span>
+    </div>
+  </div>
+
+  <!-- ITEM 5 -->
+  <div class="part">
+    <span class="part-label">Item 5</span>
+    <h2>Restricted and unrestricted cash donations</h2>
+    <div class="scenario">
+      <p>SSS trustees received the following cash donations:</p>
+      <ul>
+        <li><strong>(a)</strong> <span class="val" id="sc-donA">$15,000</span> from a local donor, to be used solely for the purpose of a special presentation of <em>The Marriage of Figaro</em> at the <span id="facility-name-1">Tuckasegee Correctional Center</span> in Jackson County.</li>
+        <li><strong>(b)</strong> <span class="val" id="sc-donB">$25,000</span> from the <span id="council-name-1">Jackson County Council on the Arts</span>, to be used for any purpose deemed appropriate by the trustees.</li>
+      </ul>
+    </div>
+    <div class="req"><span class="reqlabel">Required:</span> Prepare the journal entry to record the two donations.</div>
+    <table class="worksheet">
+      <thead><tr><th>Account</th><th class="num">Debit</th><th class="num">Credit</th></tr></thead>
+      <tbody id="je5-body"></tbody>
+    </table>
+    <div class="check-bar">
+      <button class="btn-check" id="check-je5" type="button">Check my work</button>
+      <span class="check-summary" id="sum-je5"></span>
+      <span class="check-disclaimer">This checks your account selections and amounts against the key within a small tolerance.</span>
+    </div>
+  </div>
+
+  <!-- ITEM 6 -->
+  <div class="part">
+    <span class="part-label">Item 6</span>
+    <h2>Performance and release of the purpose restriction</h2>
+    <div class="scenario">
+      <p>SSS performed <em>The Marriage of Figaro</em> at the <span id="facility-name-2">Tuckasegee Correctional Center</span>, spending the entire <span class="val" id="sc-donA2">$15,000</span> donation on salaries for the performers. Expenses were charged to the special events function.</p>
+    </div>
+    <div class="req"><span class="reqlabel">Required:</span> Prepare the journal entries to (a) record the expenditure and (b) release the satisfied donor restriction.</div>
+    <table class="worksheet">
+      <thead><tr><th>Account</th><th class="num">Debit</th><th class="num">Credit</th></tr></thead>
+      <tbody id="je6-body"></tbody>
+    </table>
+    <div class="check-bar">
+      <button class="btn-check" id="check-je6" type="button">Check my work</button>
+      <span class="check-summary" id="sum-je6"></span>
+      <span class="check-disclaimer">This checks your account selections and amounts against the key within a small tolerance.</span>
+    </div>
+  </div>
+
+  <!-- ITEM 7 -->
+  <div class="part">
+    <span class="part-label">Item 7</span>
+    <h2>Admissions revenue</h2>
+    <div class="scenario">
+      <p>SSS collected <span class="val" id="sc-admissions">$162,000</span> in admissions fees from its opera performances during the year, in cash. None of this revenue carries a donor restriction.</p>
+    </div>
+    <div class="req"><span class="reqlabel">Required:</span> Prepare the journal entry to record the admissions revenue.</div>
+    <table class="worksheet">
+      <thead><tr><th>Account</th><th class="num">Debit</th><th class="num">Credit</th></tr></thead>
+      <tbody id="je7-body"></tbody>
+    </table>
+    <div class="check-bar">
+      <button class="btn-check" id="check-je7" type="button">Check my work</button>
+      <span class="check-summary" id="sum-je7"></span>
+      <span class="check-disclaimer">This checks your account selections and amounts against the key within a small tolerance.</span>
+    </div>
+  </div>
+
+  <!-- ITEM 8 -->
+  <div class="part">
+    <span class="part-label">Item 8</span>
+    <h2>Functional expenses paid in cash</h2>
+    <div class="scenario">
+      <p>SSS also had the following expenses, all of which it paid in cash:</p>
+    </div>
+    <table class="given">
+      <thead><tr><th>&nbsp;</th><th class="num">Regular Events</th><th class="num">Special Events</th><th class="num">Administration</th></tr></thead>
+      <tbody>
+        <tr class="given-sub"><td class="lbl">Salaries</td><td class="num" id="gd-RegSal">$150,000</td><td class="num" id="gd-SpecSal">$15,000</td><td class="num" id="gd-AdminSal">$12,000</td></tr>
+        <tr class="given-sub"><td class="lbl">Supplies and other</td><td class="num" id="gd-RegSupp">$30,000</td><td class="num" id="gd-SpecSupp">$3,000</td><td class="num" id="gd-AdminSupp">$1,000</td></tr>
+        <tr class="given-sub"><td class="lbl">Occupancy</td><td class="num" id="gd-RegOcc">$20,000</td><td class="num" id="gd-SpecOcc">$2,000</td><td class="num" id="gd-AdminOcc">&mdash;</td></tr>
+        <tr class="given-total"><td class="lbl">Total</td><td class="num" id="gd-RegTotal">$200,000</td><td class="num" id="gd-SpecTotal">$20,000</td><td class="num" id="gd-AdminTotal">$13,000</td></tr>
+      </tbody>
+    </table>
+    <div class="req"><span class="reqlabel">Required:</span> Prepare the (single, compound) journal entry to record these cash expenses.</div>
+    <table class="worksheet">
+      <thead><tr><th>Account</th><th class="num">Debit</th><th class="num">Credit</th></tr></thead>
+      <tbody id="je8-body"></tbody>
+    </table>
+    <div class="check-bar">
+      <button class="btn-check" id="check-je8" type="button">Check my work</button>
+      <span class="check-summary" id="sum-je8"></span>
+      <span class="check-disclaimer">This checks your account selections and amounts against the key within a small tolerance.</span>
+    </div>
+  </div>
+
+  <!-- ITEM 9 -->
+  <div class="part">
+    <span class="part-label">Item 9</span>
+    <h2>Donated services</h2>
+    <div class="scenario">
+      <p>SSS received the benefit of the following donated services during the year:</p>
+      <ul>
+        <li><strong>(a)</strong> A local attorney prepared contracts with the performers. Had the attorney charged for this work, the cost to SSS would have been <span class="val" id="sc-legal">$4,000</span>. Charge this to the administration function.</li>
+        <li><strong>(b)</strong> A local carpenter constructed sets for the regular events. Had the carpenter charged for this work, the cost to SSS would have been <span class="val" id="sc-carpenter">$8,000</span>. Charge this to the regular events function, supplies and other.</li>
+        <li><strong>(c)</strong> Two local bankers served as ushers for all performances. Had SSS paid for this work, the cost would have been <span class="val" id="sc-ushers">$1,000</span>.</li>
+      </ul>
+    </div>
+    <div class="req"><span class="reqlabel">Required:</span> Prepare the journal entries needed to record these donated services, if any.</div>
+    <table class="worksheet">
+      <thead><tr><th>Account</th><th class="num">Debit</th><th class="num">Credit</th></tr></thead>
+      <tbody id="je9-body"></tbody>
+    </table>
+    <div class="check-bar">
+      <button class="btn-check" id="check-je9" type="button">Check my work</button>
+      <span class="check-summary" id="sum-je9"></span>
+      <span class="check-disclaimer">This checks your account selections and amounts against the key within a small tolerance.</span>
+    </div>
+    <div class="no-entry-box">
+      <strong>Note:</strong> a donated service is recognized only if it creates or enhances a nonfinancial asset, or requires a specialized skill, is provided by someone who possesses that skill, and would otherwise have been purchased. The attorney's and carpenter's services meet that test; the ushers' service does not, so <strong>no entry</strong> is made for item (c).
+    </div>
+  </div>
+
+  <!-- ITEM 10 -->
+  <div class="part">
+    <span class="part-label">Item 10</span>
+    <h2>Statement of Activities</h2>
+    <div class="scenario">
+      <p>Prepare a statement of activities for SSS for the fiscal year ended June 30, <span class="val" id="yr-end-2">2026</span>, showing net assets without donor restrictions, net assets with donor restrictions, and total net assets.</p>
+    </div>
+    <div class="req"><span class="reqlabel">Required:</span> Complete the statement below (whole dollars; use parentheses for negative amounts).</div>
+    <table class="stmt">
+      <thead><tr><th class="rowhead">&nbsp;</th><th>Without Donor Restr.</th><th>With Donor Restr.</th><th>Total</th></tr></thead>
+      <tbody id="stmtA-body"></tbody>
+    </table>
+    <div class="check-bar">
+      <button class="btn-check" id="check-stmtA" type="button">Check my work</button>
+      <span class="check-summary" id="sum-stmtA"></span>
+      <span class="check-disclaimer">This checks each cell against the key within a small tolerance.</span>
+    </div>
+  </div>
+
+  <!-- ITEM 11 -->
+  <div class="part">
+    <span class="part-label">Item 11</span>
+    <h2>Statement of Functional Expenses</h2>
+    <div class="scenario">
+      <p>Prepare a statement of expenses by function and nature for the fiscal year ended June 30, <span class="val" id="yr-end-3">2026</span>. Include the donated services recognized in item 9 in the appropriate function and nature line.</p>
+    </div>
+    <div class="req"><span class="reqlabel">Required:</span> Complete the statement below (whole dollars).</div>
+    <table class="stmt">
+      <thead><tr><th class="rowhead">&nbsp;</th><th>Regular Events</th><th>Special Events</th><th>Administration</th><th>Total</th></tr></thead>
+      <tbody id="stmtF-body"></tbody>
+    </table>
+    <div class="check-bar">
+      <button class="btn-check" id="check-stmtF" type="button">Check my work</button>
+      <span class="check-summary" id="sum-stmtF"></span>
+      <span class="check-disclaimer">This checks each cell against the key within a small tolerance.</span>
+    </div>
+  </div>
+
+  <div class="submit-bar print-hide">
+    <h2>Ready to submit?</h2>
+    <p class="submit-hint" style="margin:0 0 12px;">Your name is taken from the top of the page.</p>
+    <div class="submit-row submit-actions">
+      <button class="btn-submit" id="printBtn" type="button">Print / Save as PDF</button>
+    </div>
+    <p class="submit-hint">This captures exactly what's currently filled in above and works offline.</p>
+  </div>
+</main>
+
+<footer>Journal Entries, Statement of Activities &amp; Statement of Functional Expenses &middot; ACCT 635 &middot; Western Carolina University</footer>
+
+<script>
+(function(){
+  var FILE_SLUG = "ACCT635-Nonprofit-JE-Statements-P13-42";
+  var CURRENT_YEAR = new Date().getFullYear();
+  var PRIOR_YEAR = CURRENT_YEAR - 1;
+
+  // ---------- seeded pseudo-random ----------
+  function hashSeed(str){
+    var h = 2166136261;
+    for(var i=0;i<str.length;i++){
+      h ^= str.charCodeAt(i);
+      h = Math.imul(h, 16777619);
+    }
+    return h >>> 0;
+  }
+  function mulberry32(seed){
+    return function(){
+      seed |= 0; seed = seed + 0x6D2B79F5 | 0;
+      var t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
+  }
+  function pick(rand, arr){ return arr[Math.floor(rand() * arr.length)]; }
+  function rTo(x, m){ return Math.round(x/m)*m; }
+
+  function money0(n){
+    var v = Number(n);
+    var s = Math.abs(v).toLocaleString('en-US', {minimumFractionDigits:0, maximumFractionDigits:0});
+    return v < 0 ? '$(' + s + ')' : '$' + s;
+  }
+  function setText(id, text){
+    var el = document.getElementById(id);
+    if(el) el.textContent = text;
+  }
+
+  var TOL = { dollars:1 };
+
+  function parseMoney(s){
+    if(s === null || s === undefined) return NaN;
+    var raw = String(s).trim();
+    var neg = /^\(.*\)$/.test(raw) || /^-/.test(raw) || /^−/.test(raw);
+    var cleaned = raw.replace(/[^0-9.]/g, '');
+    if(cleaned === '') return NaN;
+    var v = parseFloat(cleaned);
+    if(isNaN(v)) return NaN;
+    return neg ? -v : v;
+  }
+  function near(a, b, tol){
+    if(isNaN(a) || isNaN(b)) return false;
+    return Math.abs(a - b) <= tol;
+  }
+  function clearFieldState(el){
+    if(!el) return;
+    el.classList.remove('field-correct', 'field-incorrect');
+  }
+  function clearAllFieldStates(){
+    document.querySelectorAll('.field-correct, .field-incorrect').forEach(function(el){
+      el.classList.remove('field-correct', 'field-incorrect');
+    });
+    document.querySelectorAll('.check-summary').forEach(function(el){
+      el.textContent = ''; el.classList.remove('good','bad');
+    });
+  }
+  function bindClear(el){
+    if(!el || el.dataset.clearBound) return;
+    el.addEventListener('input', function(){ clearFieldState(el); });
+    el.dataset.clearBound = '1';
+  }
+  function markSelect(id, expected){
+    var el = document.getElementById(id);
+    if(!el) return null;
+    el.classList.remove('field-correct', 'field-incorrect');
+    var ok = el.value === expected;
+    el.classList.add(ok ? 'field-correct' : 'field-incorrect');
+    if(!el.dataset.clearBound){
+      el.addEventListener('change', function(){ clearFieldState(el); });
+      el.dataset.clearBound = '1';
+    }
+    return ok;
+  }
+  // A journal-entry row's amount belongs in exactly one of the two columns (Debit or
+  // Credit, per `side`). The other column should be left blank.
+  function markAmountPair(rowId, side, correct, tol){
+    var debitEl = document.getElementById(rowId + '-debit');
+    var creditEl = document.getElementById(rowId + '-credit');
+    if(!debitEl || !creditEl) return null;
+    clearFieldState(debitEl);
+    clearFieldState(creditEl);
+    bindClear(debitEl);
+    bindClear(creditEl);
+
+    var debitBlank = debitEl.value.trim() === '';
+    var creditBlank = creditEl.value.trim() === '';
+    var ok;
+    if(side === 'Dr'){
+      var debitOk = near(parseMoney(debitEl.value), correct, tol);
+      debitEl.classList.add(debitOk ? 'field-correct' : 'field-incorrect');
+      if(!creditBlank) creditEl.classList.add('field-incorrect');
+      ok = debitOk && creditBlank;
+    } else {
+      var creditOk = near(parseMoney(creditEl.value), correct, tol);
+      creditEl.classList.add(creditOk ? 'field-correct' : 'field-incorrect');
+      if(!debitBlank) debitEl.classList.add('field-incorrect');
+      ok = creditOk && debitBlank;
+    }
+    return ok;
+  }
+  function markCell(id, correct, tol){
+    var el = document.getElementById(id);
+    if(!el) return null;
+    clearFieldState(el);
+    bindClear(el);
+    var ok = near(parseMoney(el.value), correct, tol);
+    el.classList.add(ok ? 'field-correct' : 'field-incorrect');
+    return ok;
+  }
+  function updateSummary(elId, results){
+    var el = document.getElementById(elId);
+    if(!el) return;
+    var graded = results.filter(function(r){ return r !== null; }).length;
+    var correct = results.filter(function(r){ return r === true; }).length;
+    el.textContent = correct + ' of ' + graded + ' correct';
+    el.classList.remove('good', 'bad');
+    el.classList.add(correct === graded && graded > 0 ? 'good' : 'bad');
+  }
+
+  var SCORES = {};
+  function scoreState(g){
+    if(!SCORES[g.btn]) SCORES[g.btn] = { correct:0, graded:0, attempts:0, checked:false, stale:false };
+    return SCORES[g.btn];
+  }
+  var SCORE_PROMPT = 'Fill in the entry or statement below, then choose <strong>Check my work</strong>. Every blank counts as incorrect.';
+
+  function renderOverall(){
+    var area = document.getElementById('scoreArea');
+    if(!area) return;
+    var panel = area.querySelector('.score-panel[data-for="overall"]');
+    if(!panel){
+      panel = document.createElement('div');
+      panel.className = 'score-panel';
+      panel.setAttribute('data-for', 'overall');
+      panel.innerHTML =
+        '<div class="score-pct">&mdash;</div>' +
+        '<div class="score-detail">' +
+          '<p class="score-meta">Overall score</p>' +
+          '<div class="score-bar"><span></span></div>' +
+          '<p class="score-sub">' + SCORE_PROMPT + '</p>' +
+        '</div>';
+      area.appendChild(panel);
+    }
+    var totalCorrect = 0, totalGraded = 0, anyChecked = false;
+    Object.keys(SCORES).forEach(function(k){
+      var s = SCORES[k];
+      if(s.checked){ anyChecked = true; totalCorrect += s.correct; totalGraded += s.graded; }
+    });
+    var pctEl = panel.querySelector('.score-pct');
+    var metaEl = panel.querySelector('.score-meta');
+    var fillEl = panel.querySelector('.score-bar span');
+    var subEl = panel.querySelector('.score-sub');
+    panel.classList.remove('scored-good','scored-bad');
+    if(!anyChecked){
+      pctEl.innerHTML = '&mdash;';
+      metaEl.textContent = 'Overall score';
+      fillEl.style.width = '0%';
+      subEl.textContent = 'Check each item below; this rolls up every item you have checked so far.';
+      return;
+    }
+    var pct = totalGraded ? Math.round(totalCorrect/totalGraded*100) : 0;
+    pctEl.textContent = pct + '%';
+    metaEl.textContent = 'Overall: ' + totalCorrect + ' of ' + totalGraded + ' correct (checked items only)';
+    fillEl.style.width = pct + '%';
+    if(totalCorrect === totalGraded){
+      subEl.textContent = 'All checked items match the key.';
+      panel.classList.add('scored-good');
+    } else {
+      subEl.textContent = (totalGraded-totalCorrect) + ' cell(s) still to fix across the items you have checked.';
+      panel.classList.add('scored-bad');
+    }
+  }
+  function resetScore(g){
+    SCORES[g.btn] = { correct:0, graded:0, attempts:0, checked:false, stale:false };
+    renderOverall();
+  }
+
+  // ---------- scenario generation ----------
+  function baseline(){
+    return {
+      cashWithoutRestr:7000, cashWithDonor:5000,
+      dinnerCost:3000, dinnerCashContrib:10000, pledgesTotal:40000, collectRatePct:90,
+      pledgesCollectedCash:37000,
+      donationA:15000, donationB:25000,
+      admissionsFees:162000,
+      RegSal:150000, RegSupp:30000, RegOcc:20000,
+      SpecSal:15000, SpecSupp:3000, SpecOcc:2000,
+      AdminSal:12000, AdminSupp:1000,
+      donatedLegal:4000, donatedCarpenter:8000, donatedUshers:1000
+    };
+  }
+
+  function randomParams(rand){
+    var cashWithoutRestr = rTo(pick(rand,[6000,7000,8000,9000,10000]),500);
+    var cashWithDonor = rTo(pick(rand,[4000,5000,6000,7000]),500);
+
+    var dinnerCost = rTo(pick(rand,[2000,2500,3000,3500,4000]),500);
+    var dinnerCashContrib = rTo(pick(rand,[8000,9000,10000,11000,12000]),500);
+    var pledgesTotal = rTo(pick(rand,[30000,35000,40000,45000,50000]),1000);
+    var collectRatePct = pick(rand,[85,88,90,92,95]);
+
+    var collectedCashPct = pick(rand,[82,85,88,90,92]);
+    var pledgesCollectedCash = rTo(pledgesTotal * (collectedCashPct/100), 500);
+    if(pledgesCollectedCash >= pledgesTotal) pledgesCollectedCash = pledgesTotal - 1000;
+
+    var donationA = rTo(pick(rand,[12000,15000,18000,20000]),1000);
+    var donationB = rTo(pick(rand,[20000,25000,30000,35000]),1000);
+
+    var admissionsFees = rTo(pick(rand,[140000,150000,162000,170000,180000]),1000);
+
+    var RegSal = rTo(pick(rand,[130000,140000,150000,160000,170000]),1000);
+    var RegSupp = rTo(pick(rand,[25000,28000,30000,32000,35000]),1000);
+    var RegOcc = rTo(pick(rand,[15000,18000,20000,22000]),1000);
+
+    var SpecSal = rTo(pick(rand,[10000,12000,15000,18000]),1000);
+    var SpecSupp = rTo(pick(rand,[2000,2500,3000,3500]),500);
+    var SpecOcc = rTo(pick(rand,[1000,1500,2000,2500]),500);
+
+    var AdminSal = rTo(pick(rand,[10000,11000,12000,13000,14000]),1000);
+    var AdminSupp = rTo(pick(rand,[800,1000,1200,1500]),100);
+
+    var donatedLegal = rTo(pick(rand,[3000,3500,4000,4500,5000]),500);
+    var donatedCarpenter = rTo(pick(rand,[6000,7000,8000,9000,10000]),500);
+    var donatedUshers = rTo(pick(rand,[800,1000,1200]),100);
+
+    return {
+      cashWithoutRestr:cashWithoutRestr, cashWithDonor:cashWithDonor,
+      dinnerCost:dinnerCost, dinnerCashContrib:dinnerCashContrib, pledgesTotal:pledgesTotal, collectRatePct:collectRatePct,
+      pledgesCollectedCash:pledgesCollectedCash,
+      donationA:donationA, donationB:donationB,
+      admissionsFees:admissionsFees,
+      RegSal:RegSal, RegSupp:RegSupp, RegOcc:RegOcc,
+      SpecSal:SpecSal, SpecSupp:SpecSupp, SpecOcc:SpecOcc,
+      AdminSal:AdminSal, AdminSupp:AdminSupp,
+      donatedLegal:donatedLegal, donatedCarpenter:donatedCarpenter, donatedUshers:donatedUshers
+    };
+  }
+
+  function solve(p){
+    var out = {};
+    for(var k in p) out[k] = p[k];
+
+    var collectRate = p.collectRatePct/100;
+    out.pledgeAllowance = Math.round(p.pledgesTotal * (1 - collectRate));
+    out.pledgeNet = p.pledgesTotal - out.pledgeAllowance;
+    out.writeOff = p.pledgesTotal - p.pledgesCollectedCash;
+
+    out.performanceExpense = p.donationA;
+
+    out.RegTotalCash = p.RegSal + p.RegSupp + p.RegOcc;
+    out.SpecTotalCash = p.SpecSal + p.SpecSupp + p.SpecOcc;
+    out.AdminTotalCash = p.AdminSal + p.AdminSupp;
+    out.totalCashExpenses = out.RegTotalCash + out.SpecTotalCash + out.AdminTotalCash;
+
+    // Statement of functional expenses (includes donated services)
+    out.fx_RegSal = p.RegSal;
+    out.fx_RegSupp = p.RegSupp + p.donatedCarpenter;
+    out.fx_RegOcc = p.RegOcc;
+    out.fx_RegTotal = out.fx_RegSal + out.fx_RegSupp + out.fx_RegOcc;
+
+    out.fx_SpecSal = p.SpecSal + out.performanceExpense;
+    out.fx_SpecSupp = p.SpecSupp + p.dinnerCost;
+    out.fx_SpecOcc = p.SpecOcc;
+    out.fx_SpecTotal = out.fx_SpecSal + out.fx_SpecSupp + out.fx_SpecOcc;
+
+    out.fx_AdminSal = p.AdminSal;
+    out.fx_AdminSupp = p.AdminSupp + p.donatedLegal;
+    out.fx_AdminOcc = 0;
+    out.fx_AdminTotal = out.fx_AdminSal + out.fx_AdminSupp + out.fx_AdminOcc;
+
+    out.fx_SalTotal = out.fx_RegSal + out.fx_SpecSal + out.fx_AdminSal;
+    out.fx_SuppTotal = out.fx_RegSupp + out.fx_SpecSupp + out.fx_AdminSupp;
+    out.fx_OccTotal = out.fx_RegOcc + out.fx_SpecOcc + out.fx_AdminOcc;
+    out.fx_GrandTotal = out.fx_RegTotal + out.fx_SpecTotal + out.fx_AdminTotal;
+
+    // Statement of activities
+    out.unrestrictedContrib = p.dinnerCashContrib + out.pledgeNet + p.donationB + p.donatedLegal + p.donatedCarpenter;
+    out.releaseAmount = p.cashWithDonor + out.performanceExpense;
+
+    out.without_totalSupport = out.unrestrictedContrib + p.admissionsFees + out.releaseAmount;
+    out.without_totalExpenses = out.fx_GrandTotal;
+    out.without_change = out.without_totalSupport - out.without_totalExpenses;
+    out.without_beg = p.cashWithoutRestr;
+    out.without_end = out.without_beg + out.without_change;
+
+    out.with_contrib = p.donationA;
+    out.with_release = -out.releaseAmount;
+    out.with_totalSupport = out.with_contrib + out.with_release;
+    out.with_change = out.with_totalSupport;
+    out.with_beg = p.cashWithDonor;
+    out.with_end = out.with_beg + out.with_change;
+
+    out.total_contrib = out.unrestrictedContrib + out.with_contrib;
+    out.total_admissions = p.admissionsFees;
+    out.total_release = out.releaseAmount + out.with_release;
+    out.total_support = out.without_totalSupport + out.with_totalSupport;
+    out.total_expenses = out.without_totalExpenses;
+    out.total_change = out.without_change + out.with_change;
+    out.total_beg = out.without_beg + out.with_beg;
+    out.total_end = out.without_end + out.with_end;
+
+    return out;
+  }
+
+  function generateScenario(id){
+    var seed = (id || '').trim();
+    if(seed === '') return solve(baseline());
+    // Folding the current fiscal year into the seed means the scenario stays fixed for a
+    // given student ID all year, then refreshes automatically once the calendar turns over.
+    return solve(randomParams(mulberry32(hashSeed(seed.toLowerCase() + '-' + CURRENT_YEAR))));
+  }
+
+  function applyYearLabels(){
+    setText('yr-start', String(PRIOR_YEAR));
+    setText('yr-end', String(CURRENT_YEAR));
+    setText('yr-end-2', String(CURRENT_YEAR));
+    setText('yr-end-3', String(CURRENT_YEAR));
+  }
+
+  function applyScenario(d){
+    setText('gd-cashTotal', money0(d.cashWithoutRestr + d.cashWithDonor));
+    setText('gd-cashWithout', money0(d.cashWithoutRestr));
+    setText('gd-cashWith', money0(d.cashWithDonor));
+    setText('sc-cashWith1', money0(d.cashWithDonor));
+
+    setText('sc-dinnerCost', money0(d.dinnerCost));
+    setText('sc-dinnerCash', money0(d.dinnerCashContrib));
+    setText('sc-pledgesTotal', money0(d.pledgesTotal));
+    setText('sc-collectRate', d.collectRatePct + '%');
+
+    setText('sc-pledgesCash', money0(d.pledgesCollectedCash));
+
+    setText('sc-donA', money0(d.donationA));
+    setText('sc-donB', money0(d.donationB));
+    setText('sc-donA2', money0(d.donationA));
+
+    setText('sc-admissions', money0(d.admissionsFees));
+
+    setText('gd-RegSal', money0(d.RegSal));
+    setText('gd-SpecSal', money0(d.SpecSal));
+    setText('gd-AdminSal', money0(d.AdminSal));
+    setText('gd-RegSupp', money0(d.RegSupp));
+    setText('gd-SpecSupp', money0(d.SpecSupp));
+    setText('gd-AdminSupp', money0(d.AdminSupp));
+    setText('gd-RegOcc', money0(d.RegOcc));
+    setText('gd-SpecOcc', money0(d.SpecOcc));
+    setText('gd-RegTotal', money0(d.RegTotalCash));
+    setText('gd-SpecTotal', money0(d.SpecTotalCash));
+    setText('gd-AdminTotal', money0(d.AdminTotalCash));
+
+    setText('sc-legal', money0(d.donatedLegal));
+    setText('sc-carpenter', money0(d.donatedCarpenter));
+    setText('sc-ushers', money0(d.donatedUshers));
+  }
+
+  // ---------- account options ----------
+  var ACCOUNTS = [
+    'Cash',
+    'Pledges Receivable',
+    'Allowance for Uncollectible Pledges',
+    'Contributions Revenue—Without Donor Restrictions',
+    'Contributions Revenue—With Donor Restrictions',
+    'Net Assets Released from Restriction—With Donor Restrictions',
+    'Net Assets Released from Restriction—Without Donor Restrictions',
+    'Admissions Revenue',
+    'Regular Events Expense—Salaries',
+    'Regular Events Expense—Supplies and Other',
+    'Regular Events Expense—Occupancy',
+    'Special Events Expense—Salaries',
+    'Special Events Expense—Supplies and Other',
+    'Special Events Expense—Occupancy',
+    'Administration Expense—Salaries',
+    'Administration Expense—Supplies and Other'
+  ];
+
+  function acctOptionsHtml(){
+    var html = '<option value="">— select account —</option>';
+    ACCOUNTS.forEach(function(a){
+      html += '<option value="' + a.replace(/"/g,'&quot;') + '">' + a + '</option>';
+    });
+    return html;
+  }
+
+  var JE_DEFS = {
+    je1: [
+      { side:'Dr', acct:function(){ return 'Net Assets Released from Restriction—With Donor Restrictions'; }, amt:function(d){ return d.cashWithDonor; } },
+      { side:'Cr', acct:function(){ return 'Net Assets Released from Restriction—Without Donor Restrictions'; }, amt:function(d){ return d.cashWithDonor; } }
+    ],
+    je2: [
+      { side:'Dr', acct:function(){ return 'Special Events Expense—Supplies and Other'; }, amt:function(d){ return d.dinnerCost; } },
+      { side:'Cr', acct:function(){ return 'Cash'; }, amt:function(d){ return d.dinnerCost; } }
+    ],
+    je3: [
+      { side:'Dr', acct:function(){ return 'Cash'; }, amt:function(d){ return d.dinnerCashContrib; }, tag:'Cash contributions' },
+      { side:'Cr', acct:function(){ return 'Contributions Revenue—Without Donor Restrictions'; }, amt:function(d){ return d.dinnerCashContrib; } },
+      { side:'Dr', acct:function(){ return 'Pledges Receivable'; }, amt:function(d){ return d.pledgesTotal; }, tag:'Pledges' },
+      { side:'Cr', acct:function(){ return 'Allowance for Uncollectible Pledges'; }, amt:function(d){ return d.pledgeAllowance; } },
+      { side:'Cr', acct:function(){ return 'Contributions Revenue—Without Donor Restrictions'; }, amt:function(d){ return d.pledgeNet; } }
+    ],
+    je4: [
+      { side:'Dr', acct:function(){ return 'Cash'; }, amt:function(d){ return d.pledgesCollectedCash; }, tag:'(a) Collect cash' },
+      { side:'Cr', acct:function(){ return 'Pledges Receivable'; }, amt:function(d){ return d.pledgesCollectedCash; } },
+      { side:'Dr', acct:function(){ return 'Allowance for Uncollectible Pledges'; }, amt:function(d){ return d.writeOff; }, tag:'(b) Write off' },
+      { side:'Cr', acct:function(){ return 'Pledges Receivable'; }, amt:function(d){ return d.writeOff; } }
+    ],
+    je5: [
+      { side:'Dr', acct:function(){ return 'Cash'; }, amt:function(d){ return d.donationA + d.donationB; } },
+      { side:'Cr', acct:function(){ return 'Contributions Revenue—With Donor Restrictions'; }, amt:function(d){ return d.donationA; } },
+      { side:'Cr', acct:function(){ return 'Contributions Revenue—Without Donor Restrictions'; }, amt:function(d){ return d.donationB; } }
+    ],
+    je6: [
+      { side:'Dr', acct:function(){ return 'Special Events Expense—Salaries'; }, amt:function(d){ return d.performanceExpense; }, tag:'(a) Record expenditure' },
+      { side:'Cr', acct:function(){ return 'Cash'; }, amt:function(d){ return d.performanceExpense; } },
+      { side:'Dr', acct:function(){ return 'Net Assets Released from Restriction—With Donor Restrictions'; }, amt:function(d){ return d.performanceExpense; }, tag:'(b) Release restriction' },
+      { side:'Cr', acct:function(){ return 'Net Assets Released from Restriction—Without Donor Restrictions'; }, amt:function(d){ return d.performanceExpense; } }
+    ],
+    je7: [
+      { side:'Dr', acct:function(){ return 'Cash'; }, amt:function(d){ return d.admissionsFees; } },
+      { side:'Cr', acct:function(){ return 'Admissions Revenue'; }, amt:function(d){ return d.admissionsFees; } }
+    ],
+    je8: [
+      { side:'Dr', acct:function(){ return 'Regular Events Expense—Salaries'; }, amt:function(d){ return d.RegSal; } },
+      { side:'Dr', acct:function(){ return 'Regular Events Expense—Supplies and Other'; }, amt:function(d){ return d.RegSupp; } },
+      { side:'Dr', acct:function(){ return 'Regular Events Expense—Occupancy'; }, amt:function(d){ return d.RegOcc; } },
+      { side:'Dr', acct:function(){ return 'Special Events Expense—Salaries'; }, amt:function(d){ return d.SpecSal; } },
+      { side:'Dr', acct:function(){ return 'Special Events Expense—Supplies and Other'; }, amt:function(d){ return d.SpecSupp; } },
+      { side:'Dr', acct:function(){ return 'Special Events Expense—Occupancy'; }, amt:function(d){ return d.SpecOcc; } },
+      { side:'Dr', acct:function(){ return 'Administration Expense—Salaries'; }, amt:function(d){ return d.AdminSal; } },
+      { side:'Dr', acct:function(){ return 'Administration Expense—Supplies and Other'; }, amt:function(d){ return d.AdminSupp; } },
+      { side:'Cr', acct:function(){ return 'Cash'; }, amt:function(d){ return d.totalCashExpenses; } }
+    ],
+    je9: [
+      { side:'Dr', acct:function(){ return 'Administration Expense—Supplies and Other'; }, amt:function(d){ return d.donatedLegal; }, tag:'(a) Legal services' },
+      { side:'Cr', acct:function(){ return 'Contributions Revenue—Without Donor Restrictions'; }, amt:function(d){ return d.donatedLegal; } },
+      { side:'Dr', acct:function(){ return 'Regular Events Expense—Supplies and Other'; }, amt:function(d){ return d.donatedCarpenter; }, tag:'(b) Carpentry services' },
+      { side:'Cr', acct:function(){ return 'Contributions Revenue—Without Donor Restrictions'; }, amt:function(d){ return d.donatedCarpenter; } }
+    ]
+  };
+
+  function buildJeTable(jeKey){
+    var body = document.getElementById(jeKey + '-body');
+    if(!body) return;
+    body.innerHTML = '';
+    JE_DEFS[jeKey].forEach(function(row, idx){
+      var tr = document.createElement('tr');
+      var rowId = jeKey + '-r' + idx;
+      var tagHtml = row.tag ? ('<div class="hint" style="margin:0 0 4px;"><span class="entrytag">' + row.tag + '</span></div>') : '';
+      tr.innerHTML =
+        '<td class="acctcell">' + tagHtml + '<select class="acct" id="' + rowId + '-acct">' + acctOptionsHtml() + '</select></td>' +
+        '<td class="amt"><input type="text" placeholder="$" id="' + rowId + '-debit"></td>' +
+        '<td class="amt"><input type="text" placeholder="$" id="' + rowId + '-credit"></td>';
+      body.appendChild(tr);
+    });
+  }
+
+  // ---------- statement definitions ----------
+  var STMT_A_ROWS = [
+    { label:'Contributions', without:function(d){ return d.unrestrictedContrib; }, withCol:function(d){ return d.with_contrib; }, total:function(d){ return d.total_contrib; } },
+    { label:'Admissions revenue', without:function(d){ return d.admissionsFees; }, withCol:function(d){ return 0; }, total:function(d){ return d.total_admissions; } },
+    { label:'Net assets released from restrictions', without:function(d){ return d.releaseAmount; }, withCol:function(d){ return d.with_release; }, total:function(d){ return d.total_release; } },
+    { label:'Total revenues and other support', without:function(d){ return d.without_totalSupport; }, withCol:function(d){ return d.with_totalSupport; }, total:function(d){ return d.total_support; }, cls:'stmt-total' },
+    { label:'Regular events expense', without:function(d){ return d.fx_RegTotal; }, withCol:function(d){ return 0; }, total:function(d){ return d.fx_RegTotal; } },
+    { label:'Special events expense', without:function(d){ return d.fx_SpecTotal; }, withCol:function(d){ return 0; }, total:function(d){ return d.fx_SpecTotal; } },
+    { label:'Administration expense', without:function(d){ return d.fx_AdminTotal; }, withCol:function(d){ return 0; }, total:function(d){ return d.fx_AdminTotal; } },
+    { label:'Total expenses', without:function(d){ return d.without_totalExpenses; }, withCol:function(d){ return 0; }, total:function(d){ return d.total_expenses; }, cls:'stmt-total' },
+    { label:'Change in net assets', without:function(d){ return d.without_change; }, withCol:function(d){ return d.with_change; }, total:function(d){ return d.total_change; }, cls:'stmt-total' },
+    { label:'Net assets, beginning of year', without:function(d){ return d.without_beg; }, withCol:function(d){ return d.with_beg; }, total:function(d){ return d.total_beg; } },
+    { label:'Net assets, end of year', without:function(d){ return d.without_end; }, withCol:function(d){ return d.with_end; }, total:function(d){ return d.total_end; }, cls:'stmt-total' }
+  ];
+
+  var STMT_F_ROWS = [
+    { label:'Salaries', reg:function(d){ return d.fx_RegSal; }, spec:function(d){ return d.fx_SpecSal; }, admin:function(d){ return d.fx_AdminSal; }, total:function(d){ return d.fx_SalTotal; } },
+    { label:'Supplies and other', reg:function(d){ return d.fx_RegSupp; }, spec:function(d){ return d.fx_SpecSupp; }, admin:function(d){ return d.fx_AdminSupp; }, total:function(d){ return d.fx_SuppTotal; } },
+    { label:'Occupancy', reg:function(d){ return d.fx_RegOcc; }, spec:function(d){ return d.fx_SpecOcc; }, admin:function(d){ return d.fx_AdminOcc; }, total:function(d){ return d.fx_OccTotal; } },
+    { label:'Total', reg:function(d){ return d.fx_RegTotal; }, spec:function(d){ return d.fx_SpecTotal; }, admin:function(d){ return d.fx_AdminTotal; }, total:function(d){ return d.fx_GrandTotal; }, cls:'stmt-total' }
+  ];
+
+  function buildStmtA(){
+    var body = document.getElementById('stmtA-body');
+    if(!body) return;
+    body.innerHTML = '';
+    STMT_A_ROWS.forEach(function(row, idx){
+      var tr = document.createElement('tr');
+      if(row.cls) tr.className = row.cls;
+      tr.innerHTML =
+        '<td class="rowlabel">' + row.label + '</td>' +
+        '<td><input type="text" placeholder="$" id="stmtA-r' + idx + '-without"></td>' +
+        '<td><input type="text" placeholder="$" id="stmtA-r' + idx + '-with"></td>' +
+        '<td><input type="text" placeholder="$" id="stmtA-r' + idx + '-total"></td>';
+      body.appendChild(tr);
+    });
+  }
+  function buildStmtF(){
+    var body = document.getElementById('stmtF-body');
+    if(!body) return;
+    body.innerHTML = '';
+    STMT_F_ROWS.forEach(function(row, idx){
+      var tr = document.createElement('tr');
+      if(row.cls) tr.className = row.cls;
+      tr.innerHTML =
+        '<td class="rowlabel">' + row.label + '</td>' +
+        '<td><input type="text" placeholder="$" id="stmtF-r' + idx + '-reg"></td>' +
+        '<td><input type="text" placeholder="$" id="stmtF-r' + idx + '-spec"></td>' +
+        '<td><input type="text" placeholder="$" id="stmtF-r' + idx + '-admin"></td>' +
+        '<td><input type="text" placeholder="$" id="stmtF-r' + idx + '-total"></td>';
+      body.appendChild(tr);
+    });
+  }
+
+  Object.keys(JE_DEFS).forEach(buildJeTable);
+  buildStmtA();
+  buildStmtF();
+  applyYearLabels();
+
+  // ---------------- wiring ----------------
+  var idInput = document.getElementById('studentId');
+  var genBtn = document.getElementById('genBtn');
+  var currentScenario = null;
+
+  function applyAndStore(id){
+    currentScenario = generateScenario(id);
+    applyScenario(currentScenario);
+    clearAllFieldStates();
+    Object.keys(JE_DEFS).forEach(function(k){ resetScore({ btn:'check-' + k }); });
+    resetScore({ btn:'check-stmtA' });
+    resetScore({ btn:'check-stmtF' });
+  }
+  genBtn.addEventListener('click', function(){ applyAndStore(idInput.value); });
+  idInput.addEventListener('keydown', function(e){
+    if(e.key === 'Enter'){ e.preventDefault(); applyAndStore(idInput.value); }
+  });
+  applyAndStore('');
+
+  Object.keys(JE_DEFS).forEach(function(jeKey){
+    var btnId = 'check-' + jeKey;
+    var summaryId = 'sum-' + jeKey;
+    var btn = document.getElementById(btnId);
+    if(!btn) return;
+    var g = { btn: btnId };
+
+    var part = btn.closest('.part');
+    if(part){
+      part.addEventListener('input', function(e){
+        if(e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT')){
+          var s = scoreState(g);
+          if(s.checked) s.stale = true;
+        }
+      });
+      part.addEventListener('change', function(e){
+        if(e.target && e.target.tagName === 'SELECT'){
+          var s = scoreState(g);
+          if(s.checked) s.stale = true;
+        }
+      });
+    }
+
+    btn.addEventListener('click', function(){
+      if(!currentScenario) return;
+      var rows = JE_DEFS[jeKey];
+      var results = [];
+      rows.forEach(function(row, idx){
+        var rowId = jeKey + '-r' + idx;
+        var expectedAcct = row.acct(currentScenario);
+        var expectedAmt = row.amt(currentScenario);
+        results.push(markSelect(rowId + '-acct', expectedAcct));
+        results.push(markAmountPair(rowId, row.side, expectedAmt, TOL.dollars));
+      });
+      updateSummary(summaryId, results);
+      var s = scoreState(g);
+      s.graded = results.filter(function(r){ return r !== null; }).length;
+      s.correct = results.filter(function(r){ return r === true; }).length;
+      s.attempts += 1;
+      s.checked = true;
+      s.stale = false;
+      renderOverall();
+    });
+  });
+
+  function wireStmt(btnId, summaryId, rows, cols){
+    var btn = document.getElementById(btnId);
+    if(!btn) return;
+    var g = { btn: btnId };
+    var part = btn.closest('.part');
+    if(part){
+      part.addEventListener('input', function(e){
+        if(e.target && e.target.tagName === 'INPUT'){
+          var s = scoreState(g);
+          if(s.checked) s.stale = true;
+        }
+      });
+    }
+    btn.addEventListener('click', function(){
+      if(!currentScenario) return;
+      var results = [];
+      rows.forEach(function(row, idx){
+        cols.forEach(function(col){
+          var id = btnId.replace('check-','') + '-r' + idx + '-' + col.key;
+          var expected = col.fn(row)(currentScenario);
+          results.push(markCell(id, expected, TOL.dollars));
+        });
+      });
+      updateSummary(summaryId, results);
+      var s = scoreState(g);
+      s.graded = results.filter(function(r){ return r !== null; }).length;
+      s.correct = results.filter(function(r){ return r === true; }).length;
+      s.attempts += 1;
+      s.checked = true;
+      s.stale = false;
+      renderOverall();
+    });
+  }
+
+  wireStmt('check-stmtA', 'sum-stmtA', STMT_A_ROWS, [
+    { key:'without', fn:function(row){ return row.without; } },
+    { key:'with', fn:function(row){ return row.withCol; } },
+    { key:'total', fn:function(row){ return row.total; } }
+  ]);
+  wireStmt('check-stmtF', 'sum-stmtF', STMT_F_ROWS, [
+    { key:'reg', fn:function(row){ return row.reg; } },
+    { key:'spec', fn:function(row){ return row.spec; } },
+    { key:'admin', fn:function(row){ return row.admin; } },
+    { key:'total', fn:function(row){ return row.total; } }
+  ]);
+
+  // ---------------- Print / Save as PDF ----------------
+  function val(id){
+    var el = document.getElementById(id);
+    return el ? el.value.trim() : '';
+  }
+  document.getElementById('printBtn').addEventListener('click', function(){
+    var name = val('studentName');
+    var id = val('studentId');
+    var line = document.getElementById('printNameLine');
+    line.textContent = 'Name: ' + (name || '_______________________') +
+                       '     Student ID: ' + (id || '_______________________');
+    var oldTitle = document.title;
+    document.title = FILE_SLUG + '-' + (id || 'submission');
+    window.print();
+    document.title = oldTitle;
+  });
+
+})();
+</script>
+
+</body>
+</html>

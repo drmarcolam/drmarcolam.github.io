@@ -1,0 +1,1275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Journal Entries and Statements for a Pension Trust Fund — Town of Waynesville</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --purple:#592C88;
+    --purple-deep:#38195A;
+    --purple-mid:#6E3FA3;
+    --gold:#B0925C;
+    --gold-soft:#D6C398;
+    --gold-pale:#F1E9D6;
+    --parchment:#F7F4EC;
+    --paper:#FFFEFA;
+    --ink:#221B2E;
+    --slate:#5F5A6B;
+    --line:#DBD3E0;
+    --line-soft:#EAE4EF;
+    --answer:#1E5C34;
+    --answer-bg:#E7F1E9;
+    --danger:#9C3B34;
+    --shadow: 0 1px 2px rgba(56,25,90,0.07), 0 6px 18px rgba(56,25,90,0.08);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--parchment);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ color:inherit; }
+
+  header{
+    background: linear-gradient(180deg, var(--purple) 0%, var(--purple-deep) 100%);
+    color:#F1E9D6;
+    padding: 30px 6vw 24px;
+    position:relative;
+  }
+  header::after{
+    content:"";
+    position:absolute; left:0; right:0; bottom:0; height:4px;
+    background: linear-gradient(90deg, var(--gold-soft), var(--gold) 40%, var(--gold-soft) 70%, var(--gold));
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--gold-soft); margin:0 0 10px;
+  }
+  h1.title{
+    font-family:'Source Serif 4', serif; font-weight:600;
+    font-size:clamp(22px,3.2vw,32px); margin:0 0 8px; letter-spacing:-0.01em;
+  }
+  .subtitle{ font-size:14.5px; color:#D9CDE5; max-width:700px; margin:0; }
+
+  .id-bar{
+    max-width:980px; margin:0 auto; padding:18px 6vw 0;
+    display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+  }
+  .id-bar label{ font-size:13px; font-weight:600; color:var(--slate); }
+  .id-bar input[type="text"]{
+    font-family:'Inter',sans-serif; font-size:13.5px; padding:8px 11px;
+    border:1px solid var(--line); border-radius:5px; background:var(--paper); color:var(--ink);
+    width:220px;
+  }
+  .id-bar input:focus{ outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); }
+  .id-bar .id-hint{ font-size:12px; color:var(--slate); }
+
+  .score-area{ max-width:980px; margin:0 auto; padding:14px 6vw 0; }
+
+  .rounding-note{
+    max-width:980px; margin:14px auto 0; padding:12px 6vw;
+    font-size:12.5px; color:var(--slate); line-height:1.5;
+  }
+  .rounding-note strong{ color:var(--purple); font-weight:600; }
+
+  main{ max-width:980px; margin:0 auto; padding:22px 6vw 90px; }
+
+  .part{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    box-shadow:var(--shadow);
+    padding:24px 26px 26px;
+    margin-top:26px;
+  }
+  .part-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; color:var(--gold); background:var(--purple);
+    display:inline-block; padding:3px 9px; border-radius:4px; letter-spacing:.04em;
+    margin-bottom:12px;
+  }
+  .part h2{
+    font-family:'Source Serif 4', serif; font-size:21px; font-weight:600;
+    color:var(--purple); margin:0 0 12px;
+  }
+  .part h3.stmt-heading{
+    font-family:'Source Serif 4', serif; font-size:16px; font-weight:600;
+    color:var(--purple-deep); text-align:center; margin:0 0 2px;
+  }
+  .stmt-subheading{ text-align:center; font-size:13px; color:var(--slate); margin:0 0 4px; }
+  .scenario{
+    background:var(--parchment);
+    border-left:3px solid var(--gold);
+    padding:14px 18px;
+    border-radius:0 6px 6px 0;
+    font-size:14.5px;
+    color:var(--ink);
+    margin-bottom:16px;
+  }
+  .scenario p{ margin:0 0 10px; }
+  .scenario p:last-child{ margin-bottom:0; }
+  .scenario span.val{ font-weight:700; color:var(--purple-deep); }
+
+  .req{
+    font-weight:600;
+    font-size:14.5px;
+    color:var(--ink);
+    margin:20px 0 10px;
+  }
+  .req span.reqlabel{ color:var(--purple); }
+
+  h4.subsection{
+    font-family:'Source Serif 4',serif; font-size:15px; color:var(--purple); margin:22px 0 6px;
+    border-bottom:1px solid var(--line-soft); padding-bottom:4px;
+  }
+
+  .footnote{ font-size:12px; color:var(--slate); margin:2px 0 14px; font-style:italic; }
+  .hint{ font-size:12.5px; color:var(--slate); margin:4px 0 10px; }
+
+  table.given{ width:100%; border-collapse:collapse; font-size:13px; margin:6px 0 14px; }
+  table.given th{ text-align:left; font-size:10.5px; text-transform:uppercase; letter-spacing:.03em; color:var(--slate); border-bottom:2px solid var(--purple); padding:6px 8px; }
+  table.given td{ border-bottom:1px solid var(--line); padding:5px 8px; font-family:'IBM Plex Mono', monospace; }
+  table.given td.lbl{ font-family:'Inter',sans-serif; }
+  table.given td.num, table.given th.num{ text-align:right; }
+  table.given tr.given-total td{ border-top:1.6px solid var(--purple); font-weight:600; }
+  table.given tr.given-sub td{ font-family:'Inter',sans-serif; padding-left:22px; }
+
+  table.worksheet{
+    width:100%;
+    border-collapse:collapse;
+    font-size:13.5px;
+    margin:10px 0 4px;
+  }
+  table.worksheet th{
+    text-align:left;
+    font-size:11.5px;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+    color:var(--slate);
+    border-bottom:2px solid var(--purple);
+    padding:8px 8px;
+  }
+  table.worksheet th.num{ text-align:right; }
+  table.worksheet td{
+    border-bottom:1px solid var(--line);
+    padding:9px 8px;
+    vertical-align:middle;
+  }
+  table.worksheet td.sub{ padding-left:24px; }
+  table.worksheet td.amt{ width:130px; text-align:right; font-family:'IBM Plex Mono',monospace; }
+  table.worksheet tr.ws-entrystart td{ padding-top:16px; }
+
+  table.statement{ width:100%; border-collapse:collapse; font-size:13.5px; margin:10px 0 4px; }
+  table.statement td{ padding:8px 8px; vertical-align:middle; border-bottom:1px solid var(--line-soft); }
+  table.statement td.label{ font-family:'Inter',sans-serif; }
+  table.statement td.label.indent1{ padding-left:26px; }
+  table.statement td.label.indent2{ padding-left:46px; }
+  table.statement td.label.strong{ font-weight:700; color:var(--purple-deep); }
+  table.statement td.amt{ width:150px; text-align:right; font-family:'IBM Plex Mono',monospace; }
+  table.statement tr.subtotal td{ border-top:1.4px solid var(--purple-mid); padding-top:11px; }
+  table.statement tr.grandtotal td{ border-top:1.8px solid var(--purple); border-bottom:1.8px double var(--purple); font-weight:700; }
+  table.statement tr.spacer td{ border-bottom:none; padding:3px 0; }
+
+  table.worksheet input[type="text"], table.statement input[type="text"]{
+    width:100%;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13.5px;
+    padding:6px 8px;
+    border:1px solid var(--line);
+    border-radius:5px;
+    background:var(--parchment);
+    color:var(--ink);
+    text-align:right;
+  }
+  table.worksheet input[type="text"]:focus, table.statement input[type="text"]:focus{
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
+  }
+  table.worksheet select.acct{
+    width:100%;
+    font-family:'Inter',sans-serif;
+    font-size:13.5px;
+    font-weight:400;
+    padding:6px 8px;
+    border:1px solid var(--line);
+    border-radius:5px;
+    background:var(--parchment);
+    color:var(--ink);
+  }
+  table.worksheet select.acct:focus{
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
+  }
+  table.worksheet td.acctcell{ padding-right:14px; }
+  table.worksheet td.entrytag{ font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--gold); background:var(--purple); border-radius:4px; padding:2px 7px; display:inline-block; }
+
+  .score-panel{
+    display:flex; align-items:center; gap:18px;
+    margin:0 0 4px; padding:14px 18px;
+    background:var(--parchment);
+    border:1px solid var(--line);
+    border-radius:8px;
+  }
+  .score-panel.scored-good{ background:var(--answer-bg); border-color:#B7D3BE; }
+  .score-panel.scored-bad{ background:#F8F0EF; border-color:#E2C6C2; }
+  .score-pct{
+    font-family:'Source Serif 4', serif;
+    font-size:30px; font-weight:700; line-height:1.05;
+    color:var(--slate); min-width:96px; text-align:center;
+  }
+  .score-panel.scored-good .score-pct{ color:var(--answer); }
+  .score-panel.scored-bad .score-pct{ color:var(--danger); }
+  .score-detail{ flex:1; min-width:0; }
+  .score-meta{ font-size:13.5px; font-weight:600; color:var(--ink); margin:0 0 7px; }
+  .score-bar{ height:8px; border-radius:4px; background:var(--line-soft); overflow:hidden; }
+  .score-bar span{ display:block; height:100%; width:0; background:var(--purple-mid); transition:width .35s ease; }
+  .score-panel.scored-good .score-bar span{ background:var(--answer); }
+  .score-panel.scored-bad .score-bar span{ background:var(--danger); }
+  .score-sub{ font-size:11.5px; color:var(--slate); margin:7px 0 0; }
+
+  .check-bar{
+    margin-top:20px;
+    padding-top:16px;
+    border-top:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .btn-check{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:9px 18px; border:1px solid var(--purple);
+    background:var(--purple); color:#fff; cursor:pointer;
+  }
+  .btn-check:hover{ background:var(--purple-mid); }
+  .check-summary{ font-size:13.5px; font-weight:600; }
+  .check-summary.good{ color:var(--answer); }
+  .check-summary.bad{ color:var(--danger); }
+  .check-disclaimer{ font-size:11.5px; color:var(--slate); width:100%; margin-top:2px; font-style:italic; }
+
+  input.field-correct, select.field-correct{
+    border-color:var(--answer) !important;
+    background:var(--answer-bg) !important;
+  }
+  input.field-incorrect, select.field-incorrect{
+    border-color:var(--danger) !important;
+    background:#F3E1DE !important;
+  }
+
+  .submit-bar{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    box-shadow:var(--shadow);
+    padding:22px 26px 24px;
+    margin-top:26px;
+  }
+  .submit-bar h2{
+    font-family:'Source Serif 4', serif; font-size:19px; font-weight:600;
+    color:var(--purple); margin:0 0 14px;
+  }
+  .submit-row{ display:flex; align-items:center; gap:10px; margin-bottom:12px; flex-wrap:wrap; }
+  .submit-row label{ font-size:13px; font-weight:600; color:var(--slate); }
+  .btn-submit{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:10px 18px; border:1px solid var(--purple);
+    background:var(--purple); color:#fff; cursor:pointer;
+  }
+  .btn-submit:hover{ background:var(--purple-mid); }
+  .submit-hint{ font-size:12px; color:var(--slate); margin:6px 0 0; }
+
+  @media print{
+    .print-hide, .id-bar, .check-bar, .rounding-note{ display:none !important; }
+    header{ background:none !important; color:var(--ink) !important; padding:0 0 14px !important; }
+    header::after{ display:none !important; }
+    .eyebrow{ color:var(--purple) !important; }
+    .subtitle{ color:var(--slate) !important; }
+    body{ background:#fff !important; }
+    .part{ box-shadow:none !important; border:1px solid #999 !important; break-inside:auto; }
+    .score-panel{ background:#fff !important; border:1.5px solid #000 !important; break-inside:avoid; }
+    .score-bar{ display:none !important; }
+    .score-pct, .score-panel.scored-good .score-pct, .score-panel.scored-bad .score-pct{ color:#000 !important; }
+    .part h2, .part-label, .scenario, h4.subsection{ break-after:avoid; break-inside:avoid; }
+    table.given, table.worksheet, table.statement{ break-inside:auto; }
+    table.given tr, table.worksheet tr, table.statement tr{ break-inside:avoid; }
+    .submit-bar{ break-before:avoid; }
+    input[type="text"], select.acct{
+      border:none !important;
+      border-bottom:1px solid #000 !important;
+      background:transparent !important;
+      border-radius:0 !important;
+      color:#000 !important;
+      -webkit-appearance:none;
+      -moz-appearance:none;
+      appearance:none;
+      padding:2px 4px !important;
+    }
+    .print-name-line{ display:block !important; }
+  }
+  .print-name-line{ display:none; font-size:13px; color:var(--ink); padding:0 6vw; margin:0 0 10px; }
+
+  footer{ text-align:center; padding:26px 6vw 40px; font-size:12px; color:var(--slate); }
+
+  @media (max-width:600px){
+    header, main, .id-bar{ padding-left:5vw; padding-right:5vw; }
+    table.worksheet, table.statement{ font-size:12.5px; }
+  }
+
+
+  html:not(.wcu-unlocked) body > *:not(#wcu-gate){ display:none !important; }
+  #wcu-gate{
+    position:fixed; inset:0; z-index:9999;
+    background: linear-gradient(180deg, #38195A 0%, #221B2E 100%);
+    display:flex; align-items:center; justify-content:center;
+    padding:24px;
+    font-family:'Inter',sans-serif;
+  }
+  html.wcu-unlocked .wcu-gate{ display:none !important; }
+  .wcu-gate-card{
+    background:#FFFEFA; border-radius:12px; max-width:380px; width:100%;
+    padding:32px 30px 28px; text-align:center;
+    box-shadow:0 10px 40px rgba(0,0,0,0.35);
+  }
+  .wcu-gate-eyebrow{
+    font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.12em;
+    text-transform:uppercase; color:#B0925C; margin:0 0 10px;
+  }
+  .wcu-gate-card h2{
+    font-family:'Source Serif 4', serif; font-size:20px; color:#38195A; margin:0 0 14px;
+  }
+  .wcu-gate-card input[type="text"]{
+    width:100%; font-family:'Inter',sans-serif; font-size:14px; padding:10px 12px;
+    border:1px solid #DBD3E0; border-radius:6px; margin-bottom:12px; box-sizing:border-box;
+    text-align:center; letter-spacing:.05em;
+  }
+  .wcu-gate-card button{
+    width:100%; font-family:'Inter',sans-serif; font-size:14px; font-weight:600;
+    border-radius:6px; padding:10px 18px; border:1px solid #592C88;
+    background:#592C88; color:#fff; cursor:pointer;
+  }
+  .wcu-gate-card button:hover{ background:#6E3FA3; }
+  .wcu-gate-error{ color:#9C3B34; font-size:12.5px; margin:10px 0 0; min-height:16px; }
+
+  .back-bar{ max-width:960px; margin:0 auto; padding:14px 6vw 0; }
+  .back-bar a{
+    font-family:'Inter',sans-serif; font-size:13px; font-weight:600;
+    color:#592C88; text-decoration:none;
+  }
+  .back-bar a:hover{ text-decoration:underline; }
+</style>
+</head>
+<body>
+<div id="wcu-gate">
+  <div class="wcu-gate-card">
+    <p class="wcu-gate-eyebrow">ACCT 635 &middot; Governmental &amp; Nonprofit Accounting</p>
+    <h2>Access Code Required</h2>
+    <input type="text" id="wcu-gate-input" placeholder="Enter access code" autocomplete="off">
+    <button type="button" id="wcu-gate-btn">Unlock</button>
+    <p class="wcu-gate-error" id="wcu-gate-error"></p>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY = 'wcu_unlock_acct635';
+  var CODE = 'ACCT635DOR';
+  try{
+    if(localStorage.getItem(KEY) === '1'){
+      document.documentElement.classList.add('wcu-unlocked');
+    }
+  }catch(e){}
+  function tryUnlock(){
+    var val = document.getElementById('wcu-gate-input').value.trim().toUpperCase();
+    if(val === CODE){
+      try{ localStorage.setItem(KEY, '1'); }catch(e){}
+      document.documentElement.classList.add('wcu-unlocked');
+    } else {
+      document.getElementById('wcu-gate-error').textContent = 'Incorrect code. Please try again.';
+    }
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    var btn = document.getElementById('wcu-gate-btn');
+    var input = document.getElementById('wcu-gate-input');
+    if(btn) btn.addEventListener('click', tryUnlock);
+    if(input) input.addEventListener('keydown', function(e){ if(e.key === 'Enter') tryUnlock(); });
+  });
+})();
+</script>
+<div class="back-bar print-hide"><a href="../../acct-635.html">&larr; Back to ACCT 635</a></div>
+
+
+<header>
+  <p class="eyebrow">ACCT 635 &middot; Governmental and Nonprofit Accounting &middot; Fiduciary Funds: Pension Trust Fund</p>
+  <h1 class="title">Journal Entries and Statements for a Pension Trust Fund — Town of Waynesville</h1>
+  <p class="subtitle">Preparing the journal entries needed to record a year's activity for a municipal employee pension trust fund, together with a statement of changes in fiduciary net position and a statement of fiduciary net position, for a local government in western North Carolina.</p>
+</header>
+
+<p class="print-name-line" id="printNameLine"></p>
+
+<div class="id-bar">
+  <label for="studentName">Name</label>
+  <input type="text" id="studentName" placeholder="First and last name">
+  <label for="studentId">Student ID</label>
+  <input type="text" id="studentId" placeholder="e.g. 920410165">
+  <button id="genBtn" type="button">Generate scenario</button>
+  <span class="id-hint">Leave the ID blank and click to restore the original textbook figures.</span>
+</div>
+
+<div class="score-area" id="scoreArea"></div>
+
+<div class="rounding-note">
+  <strong>Before you start:</strong> record every journal entry in the Employees' Retirement Fund's general journal, using control accounts only, and complete the two financial statements below by entering every line amount — including subtotals — in whole dollars (e.g., 285,000). Use the account dropdown to select the exact account title for each journal entry line. Some items below require more than one journal entry.
+</div>
+
+<main>
+
+  <!-- BACKGROUND -->
+  <div class="part">
+    <span class="part-label">Background</span>
+    <h2>Town of Waynesville &mdash; Employees' Retirement Fund</h2>
+    <div class="scenario">
+      <p>The <span class="val">Town of Waynesville</span>, North Carolina, has had an employee pension fund for several years. The following is a trial balance for the fund at December 31, <span class="val yr-py">2025</span>, and several transactions that occurred during <span class="val yr-cy">2026</span>. Prepare (a) the journal entries necessary to record the <span class="val yr-cy">2026</span> transactions, (b) a statement of changes in fiduciary net position for the fund for <span class="val yr-cy">2026</span>, and (c) a statement of fiduciary net position as of December 31, <span class="val yr-cy">2026</span>.</p>
+    </div>
+    <h4 class="subsection">Town of Waynesville &middot; Pension Trust Fund &middot; Employees' Retirement Fund</h4>
+    <div class="footnote" style="margin:-4px 0 8px;">Trial Balance &middot; December 31, <span class="yr-py">2025</span></div>
+    <table class="given">
+      <thead><tr><th></th><th class="num">Debits</th><th class="num">Credits</th></tr></thead>
+      <tbody>
+        <tr class="given-sub"><td class="lbl">Cash</td><td class="num" id="tb-cash">$52,500</td><td class="num"></td></tr>
+        <tr class="given-sub"><td class="lbl">Investment income receivable</td><td class="num" id="tb-invIncRec">$210,000</td><td class="num"></td></tr>
+        <tr class="given-sub"><td class="lbl">Investments&mdash;corporate stocks</td><td class="num" id="tb-stocks">$20,000,000</td><td class="num"></td></tr>
+        <tr class="given-sub"><td class="lbl">Investments&mdash;U.S. government securities</td><td class="num" id="tb-govSec">$30,575,000</td><td class="num"></td></tr>
+        <tr class="given-sub"><td class="lbl">Accrued expenses</td><td class="num"></td><td class="num" id="tb-accrExp">$12,000</td></tr>
+        <tr class="given-sub"><td class="lbl">Net position restricted for pension benefits</td><td class="num"></td><td class="num" id="tb-netPos">$50,825,500</td></tr>
+        <tr class="given-total"><td class="lbl">Total</td><td class="num" id="tb-totalDr">$50,837,500</td><td class="num" id="tb-totalCr">$50,837,500</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ITEM 1 -->
+  <div class="part">
+    <span class="part-label">Item 1</span>
+    <h2>Contributions</h2>
+    <div class="scenario">
+      <p>Contributions from the General Fund totaled <span class="val" id="sc-contribTotal">$750,000</span>; included in this amount was <span class="val" id="sc-contribEmployee">$258,750</span> from the employees and <span class="val" id="sc-contribEmployer">$491,250</span> from the city.</p>
+    </div>
+    <div class="req"><span class="reqlabel">Required:</span> Prepare the journal entry to record the contributions.</div>
+    <table class="worksheet">
+      <thead><tr><th>Account</th><th class="num">Debit</th><th class="num">Credit</th></tr></thead>
+      <tbody id="je1-body"></tbody>
+    </table>
+    <div class="check-bar">
+      <button class="btn-check" id="check-je1" type="button">Check my work</button>
+      <span class="check-summary" id="sum-je1"></span>
+      <span class="check-disclaimer">This checks your account selections and amounts against the key within a small tolerance.</span>
+    </div>
+  </div>
+
+  <!-- ITEM 2 -->
+  <div class="part">
+    <span class="part-label">Item 2</span>
+    <h2>Purchase of corporate stocks</h2>
+    <div class="scenario">
+      <p>Corporate stocks costing <span class="val" id="sc-stockPurchase">$500,000</span> were purchased.</p>
+    </div>
+    <div class="req"><span class="reqlabel">Required:</span> Prepare the journal entry to record the purchase.</div>
+    <table class="worksheet">
+      <thead><tr><th>Account</th><th class="num">Debit</th><th class="num">Credit</th></tr></thead>
+      <tbody id="je2-body"></tbody>
+    </table>
+    <div class="check-bar">
+      <button class="btn-check" id="check-je2" type="button">Check my work</button>
+      <span class="check-summary" id="sum-je2"></span>
+      <span class="check-disclaimer">This checks your account selections and amounts against the key within a small tolerance.</span>
+    </div>
+  </div>
+
+  <!-- ITEM 3 -->
+  <div class="part">
+    <span class="part-label">Item 3</span>
+    <h2>Investment income</h2>
+    <div class="scenario">
+      <p>The fund collected the interest accrued as of December 31, <span class="val yr-py">2025</span> (shown above as investment income receivable of <span class="val" id="sc-invIncRecTB">$210,000</span>). Investment income for <span class="val yr-cy">2026</span> totaled <span class="val" id="sc-investIncomeTotal">$4,800,000</span>, of which <span class="val" id="sc-investIncomeCash">$4,290,000</span> was collected in cash. Investment income earned in <span class="val yr-cy">2026</span> included dividends of <span class="val" id="sc-dividends">$850,000</span>, and the remainder was interest.</p>
+    </div>
+    <div class="req"><span class="reqlabel">Required:</span> Prepare the journal entries to (a) collect the receivable from the prior year and (b) record investment income earned during the year.</div>
+    <table class="worksheet">
+      <thead><tr><th>Account</th><th class="num">Debit</th><th class="num">Credit</th></tr></thead>
+      <tbody id="je3-body"></tbody>
+    </table>
+    <div class="check-bar">
+      <button class="btn-check" id="check-je3" type="button">Check my work</button>
+      <span class="check-summary" id="sum-je3"></span>
+      <span class="check-disclaimer">This checks your account selections and amounts against the key within a small tolerance.</span>
+    </div>
+  </div>
+
+  <!-- ITEM 4 -->
+  <div class="part">
+    <span class="part-label">Item 4</span>
+    <h2>Benefits paid</h2>
+    <div class="scenario">
+      <p>Employee retirement benefits of <span class="val" id="sc-benefitsPaid">$3,500,000</span> were paid.</p>
+    </div>
+    <div class="req"><span class="reqlabel">Required:</span> Prepare the journal entry to record the payment.</div>
+    <table class="worksheet">
+      <thead><tr><th>Account</th><th class="num">Debit</th><th class="num">Credit</th></tr></thead>
+      <tbody id="je4-body"></tbody>
+    </table>
+    <div class="check-bar">
+      <button class="btn-check" id="check-je4" type="button">Check my work</button>
+      <span class="check-summary" id="sum-je4"></span>
+      <span class="check-disclaimer">This checks your account selections and amounts against the key within a small tolerance.</span>
+    </div>
+  </div>
+
+  <!-- ITEM 5 -->
+  <div class="part">
+    <span class="part-label">Item 5</span>
+    <h2>Purchase of U.S. government securities</h2>
+    <div class="scenario">
+      <p>Additional U.S. government securities totaling <span class="val" id="sc-govSecPurchase">$1,100,000</span> were acquired.</p>
+    </div>
+    <div class="req"><span class="reqlabel">Required:</span> Prepare the journal entry to record the purchase.</div>
+    <table class="worksheet">
+      <thead><tr><th>Account</th><th class="num">Debit</th><th class="num">Credit</th></tr></thead>
+      <tbody id="je5-body"></tbody>
+    </table>
+    <div class="check-bar">
+      <button class="btn-check" id="check-je5" type="button">Check my work</button>
+      <span class="check-summary" id="sum-je5"></span>
+      <span class="check-disclaimer">This checks your account selections and amounts against the key within a small tolerance.</span>
+    </div>
+  </div>
+
+  <!-- ITEM 6 -->
+  <div class="part">
+    <span class="part-label">Item 6</span>
+    <h2>Administrative costs</h2>
+    <div class="scenario">
+      <p>Costs of operating the plan were <span class="val" id="sc-opCosts">$175,000</span>; of this amount <span class="val" id="sc-opCostsCash">$150,000</span> was paid in cash, and the remainder was accrued. The accrued expenses at the beginning of the year (<span class="val" id="sc-accrExpTB">$12,000</span>) were also paid. These expenses are administrative in nature.</p>
+    </div>
+    <div class="req"><span class="reqlabel">Required:</span> Prepare the journal entries to (a) pay the accrued expenses outstanding at the beginning of the year and (b) record the current year's administrative expenses.</div>
+    <table class="worksheet">
+      <thead><tr><th>Account</th><th class="num">Debit</th><th class="num">Credit</th></tr></thead>
+      <tbody id="je6-body"></tbody>
+    </table>
+    <div class="check-bar">
+      <button class="btn-check" id="check-je6" type="button">Check my work</button>
+      <span class="check-summary" id="sum-je6"></span>
+      <span class="check-disclaimer">This checks your account selections and amounts against the key within a small tolerance.</span>
+    </div>
+  </div>
+
+  <!-- ITEM 7 -->
+  <div class="part">
+    <span class="part-label">Item 7</span>
+    <h2>Redemption of U.S. government securities</h2>
+    <div class="scenario">
+      <p>U.S. government securities that had a book value of <span class="val" id="sc-govSecBookValue">$500,000</span> were redeemed for <span class="val" id="sc-govSecProceeds">$600,000</span>.</p>
+    </div>
+    <div class="req"><span class="reqlabel">Required:</span> Prepare the journal entry to record the redemption.</div>
+    <table class="worksheet">
+      <thead><tr><th>Account</th><th class="num">Debit</th><th class="num">Credit</th></tr></thead>
+      <tbody id="je7-body"></tbody>
+    </table>
+    <div class="check-bar">
+      <button class="btn-check" id="check-je7" type="button">Check my work</button>
+      <span class="check-summary" id="sum-je7"></span>
+      <span class="check-disclaimer">This checks your account selections and amounts against the key within a small tolerance.</span>
+    </div>
+  </div>
+
+  <!-- ITEM 8 -->
+  <div class="part">
+    <span class="part-label">Item 8</span>
+    <h2>Change in fair value of corporate stocks</h2>
+    <div class="scenario">
+      <p>The market value of the corporate stocks at the end of the year increased by <span class="val" id="sc-stockFVIncrease">$1,000,000</span>.</p>
+    </div>
+    <div class="req"><span class="reqlabel">Required:</span> Prepare the journal entry to record the increase in fair value.</div>
+    <table class="worksheet">
+      <thead><tr><th>Account</th><th class="num">Debit</th><th class="num">Credit</th></tr></thead>
+      <tbody id="je8-body"></tbody>
+    </table>
+    <div class="check-bar">
+      <button class="btn-check" id="check-je8" type="button">Check my work</button>
+      <span class="check-summary" id="sum-je8"></span>
+      <span class="check-disclaimer">This checks your account selections and amounts against the key within a small tolerance.</span>
+    </div>
+  </div>
+
+  <!-- STATEMENT 1: CHANGES IN FIDUCIARY NET POSITION -->
+  <div class="part">
+    <span class="part-label">Requirement (b)</span>
+    <h2>Statement of changes in fiduciary net position</h2>
+    <h3 class="stmt-heading">Town of Waynesville &middot; Employees' Retirement Fund</h3>
+    <p class="stmt-subheading">Statement of Changes in Fiduciary Net Position &middot; For the Year Ended December 31, <span class="yr-cy">2026</span></p>
+    <div class="req" style="margin-top:16px;"><span class="reqlabel">Required:</span> Fill in every additions, deductions, and net position line, including each subtotal.</div>
+    <table class="statement">
+      <tbody id="stmt1-body"></tbody>
+    </table>
+    <div class="check-bar">
+      <button class="btn-check" id="check-stmt1" type="button">Check my work</button>
+      <span class="check-summary" id="sum-stmt1"></span>
+      <span class="check-disclaimer">This checks each line, including subtotals, against the key within a small tolerance.</span>
+    </div>
+  </div>
+
+  <!-- STATEMENT 2: FIDUCIARY NET POSITION -->
+  <div class="part">
+    <span class="part-label">Requirement (c)</span>
+    <h2>Statement of fiduciary net position</h2>
+    <h3 class="stmt-heading">Town of Waynesville &middot; Employees' Retirement Fund</h3>
+    <p class="stmt-subheading">Statement of Fiduciary Net Position &middot; December 31, <span class="yr-cy">2026</span></p>
+    <div class="req" style="margin-top:16px;"><span class="reqlabel">Required:</span> Fill in every asset, liability, and net position line, including each subtotal.</div>
+    <table class="statement">
+      <tbody id="stmt2-body"></tbody>
+    </table>
+    <div class="check-bar">
+      <button class="btn-check" id="check-stmt2" type="button">Check my work</button>
+      <span class="check-summary" id="sum-stmt2"></span>
+      <span class="check-disclaimer">This checks each line, including subtotals, against the key within a small tolerance.</span>
+    </div>
+  </div>
+
+  <div class="submit-bar print-hide">
+    <h2>Ready to submit?</h2>
+    <p class="submit-hint" style="margin:0 0 12px;">Your name is taken from the top of the page.</p>
+    <div class="submit-row submit-actions">
+      <button class="btn-submit" id="printBtn" type="button">Print / Save as PDF</button>
+    </div>
+    <p class="submit-hint">This captures exactly what's currently filled in above and works offline.</p>
+  </div>
+</main>
+
+<footer>Journal Entries and Statements for a Pension Trust Fund &middot; ACCT 635 &middot; Western Carolina University</footer>
+
+<script>
+(function(){
+  var FILE_SLUG = "ACCT635-Pension-Trust-Fund-P8-50";
+  var CURRENT_YEAR = new Date().getFullYear();
+  var PY = CURRENT_YEAR - 1;
+
+  // ---------- seeded pseudo-random ----------
+  function hashSeed(str){
+    var h = 2166136261;
+    for(var i=0;i<str.length;i++){
+      h ^= str.charCodeAt(i);
+      h = Math.imul(h, 16777619);
+    }
+    return h >>> 0;
+  }
+  function mulberry32(seed){
+    return function(){
+      seed |= 0; seed = seed + 0x6D2B79F5 | 0;
+      var t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
+  }
+  function pick(rand, arr){ return arr[Math.floor(rand() * arr.length)]; }
+  function rTo(x, m){ return Math.round(x/m)*m; }
+
+  function money0(n){
+    var v = Number(n);
+    var s = Math.abs(v).toLocaleString('en-US', {minimumFractionDigits:0, maximumFractionDigits:0});
+    return v < 0 ? '$(' + s + ')' : '$' + s;
+  }
+  function setText(id, text){
+    var el = document.getElementById(id);
+    if(el) el.textContent = text;
+  }
+
+  var TOL = { dollars:1 };
+
+  function parseMoney(s){
+    if(s === null || s === undefined) return NaN;
+    var raw = String(s).trim();
+    var neg = /^\(.*\)$/.test(raw) || /^-/.test(raw) || /^−/.test(raw);
+    var cleaned = raw.replace(/[^0-9.]/g, '');
+    if(cleaned === '') return NaN;
+    var v = parseFloat(cleaned);
+    if(isNaN(v)) return NaN;
+    return neg ? -v : v;
+  }
+  function near(a, b, tol){
+    if(isNaN(a) || isNaN(b)) return false;
+    return Math.abs(a - b) <= tol;
+  }
+  function clearFieldState(el){
+    if(!el) return;
+    el.classList.remove('field-correct', 'field-incorrect');
+  }
+  function clearAllFieldStates(){
+    document.querySelectorAll('.field-correct, .field-incorrect').forEach(function(el){
+      el.classList.remove('field-correct', 'field-incorrect');
+    });
+    document.querySelectorAll('.check-summary').forEach(function(el){
+      el.textContent = ''; el.classList.remove('good','bad');
+    });
+  }
+  function bindClear(el){
+    if(!el || el.dataset.clearBound) return;
+    el.addEventListener('input', function(){ clearFieldState(el); });
+    el.dataset.clearBound = '1';
+  }
+  function markField(id, correct, tol){
+    var el = document.getElementById(id);
+    if(!el) return null;
+    el.classList.remove('field-correct', 'field-incorrect');
+    var ok = near(parseMoney(el.value), correct, tol);
+    el.classList.add(ok ? 'field-correct' : 'field-incorrect');
+    bindClear(el);
+    return ok;
+  }
+  function markSelect(id, expected){
+    var el = document.getElementById(id);
+    if(!el) return null;
+    el.classList.remove('field-correct', 'field-incorrect');
+    var ok = el.value === expected;
+    el.classList.add(ok ? 'field-correct' : 'field-incorrect');
+    if(!el.dataset.clearBound){
+      el.addEventListener('change', function(){ clearFieldState(el); });
+      el.dataset.clearBound = '1';
+    }
+    return ok;
+  }
+  // A journal-entry row's amount belongs in exactly one of the two columns (Debit or
+  // Credit, per `side`). The other column should be left blank.
+  function markAmountPair(rowId, side, correct, tol){
+    var debitEl = document.getElementById(rowId + '-debit');
+    var creditEl = document.getElementById(rowId + '-credit');
+    if(!debitEl || !creditEl) return null;
+    clearFieldState(debitEl);
+    clearFieldState(creditEl);
+    bindClear(debitEl);
+    bindClear(creditEl);
+
+    var debitBlank = debitEl.value.trim() === '';
+    var creditBlank = creditEl.value.trim() === '';
+    var ok;
+    if(side === 'Dr'){
+      var debitOk = near(parseMoney(debitEl.value), correct, tol);
+      debitEl.classList.add(debitOk ? 'field-correct' : 'field-incorrect');
+      if(!creditBlank) creditEl.classList.add('field-incorrect');
+      ok = debitOk && creditBlank;
+    } else {
+      var creditOk = near(parseMoney(creditEl.value), correct, tol);
+      creditEl.classList.add(creditOk ? 'field-correct' : 'field-incorrect');
+      if(!debitBlank) debitEl.classList.add('field-incorrect');
+      ok = creditOk && debitBlank;
+    }
+    return ok;
+  }
+  function updateSummary(elId, results){
+    var el = document.getElementById(elId);
+    if(!el) return;
+    var graded = results.filter(function(r){ return r !== null; }).length;
+    var correct = results.filter(function(r){ return r === true; }).length;
+    el.textContent = correct + ' of ' + graded + ' correct';
+    el.classList.remove('good', 'bad');
+    el.classList.add(correct === graded && graded > 0 ? 'good' : 'bad');
+  }
+
+  var SCORES = {};
+  function scoreState(g){
+    if(!SCORES[g.btn]) SCORES[g.btn] = { correct:0, graded:0, attempts:0, checked:false, stale:false };
+    return SCORES[g.btn];
+  }
+  var SCORE_PROMPT = 'Fill in the journal entries and statements below, then choose <strong>Check my work</strong>. Every blank counts as incorrect.';
+
+  function renderOverall(){
+    var area = document.getElementById('scoreArea');
+    if(!area) return;
+    var panel = area.querySelector('.score-panel[data-for="overall"]');
+    if(!panel){
+      panel = document.createElement('div');
+      panel.className = 'score-panel';
+      panel.setAttribute('data-for', 'overall');
+      panel.innerHTML =
+        '<div class="score-pct">&mdash;</div>' +
+        '<div class="score-detail">' +
+          '<p class="score-meta">Overall score</p>' +
+          '<div class="score-bar"><span></span></div>' +
+          '<p class="score-sub">' + SCORE_PROMPT + '</p>' +
+        '</div>';
+      area.appendChild(panel);
+    }
+    var totalCorrect = 0, totalGraded = 0, anyChecked = false;
+    Object.keys(SCORES).forEach(function(k){
+      var s = SCORES[k];
+      if(s.checked){ anyChecked = true; totalCorrect += s.correct; totalGraded += s.graded; }
+    });
+    var pctEl = panel.querySelector('.score-pct');
+    var metaEl = panel.querySelector('.score-meta');
+    var fillEl = panel.querySelector('.score-bar span');
+    var subEl = panel.querySelector('.score-sub');
+    panel.classList.remove('scored-good','scored-bad');
+    if(!anyChecked){
+      pctEl.innerHTML = '&mdash;';
+      metaEl.textContent = 'Overall score';
+      fillEl.style.width = '0%';
+      subEl.textContent = SCORE_PROMPT.replace(/<[^>]+>/g,'');
+      return;
+    }
+    var pct = totalGraded ? Math.round(totalCorrect/totalGraded*100) : 0;
+    pctEl.textContent = pct + '%';
+    metaEl.textContent = 'Overall: ' + totalCorrect + ' of ' + totalGraded + ' correct (checked items only)';
+    fillEl.style.width = pct + '%';
+    if(totalCorrect === totalGraded){
+      subEl.textContent = 'All checked items match the key.';
+      panel.classList.add('scored-good');
+    } else {
+      subEl.textContent = (totalGraded-totalCorrect) + ' line(s) still to fix across the items you have checked.';
+      panel.classList.add('scored-bad');
+    }
+  }
+
+  function resetScore(g){
+    SCORES[g.btn] = { correct:0, graded:0, attempts:0, checked:false, stale:false };
+    renderOverall();
+  }
+
+  // ---------- scenario generation ----------
+  function baseline(){
+    return {
+      cash0:52500, invIncRec0:210000, stocks0:20000000, govSec0:30575000, accrExp0:12000,
+      contrib_employee:258750, contrib_employer:491250,
+      stockPurchase:500000,
+      dividends:850000, interest:3950000, investIncomeCash:4290000,
+      benefitsPaid:3500000,
+      govSecPurchase:1100000,
+      opCosts:175000, opCostsCash:150000,
+      govSecBookValue:500000, govSecProceeds:600000,
+      stockFVIncrease:1000000
+    };
+  }
+
+  function randomParams(rand){
+    var cash0 = rTo(pick(rand,[40000,45000,50000,52500,55000,60000,65000]), 2500);
+    var invIncRec0 = rTo(pick(rand,[150000,175000,190000,210000,225000,240000]), 5000);
+    var stocks0 = rTo(pick(rand,[15000000,17000000,18000000,19000000,20000000,21000000,22000000]), 500000);
+    var govSec0 = rTo(pick(rand,[25000000,27000000,28000000,30000000,30575000,32000000,33000000]), 500000);
+    var accrExp0 = rTo(pick(rand,[8000,10000,12000,14000,16000]), 2000);
+
+    var contrib_employee = rTo(pick(rand,[200000,225000,250000,258750,275000,300000]), 2500);
+    var contrib_employer = rTo(pick(rand,[400000,450000,475000,491250,500000,525000]), 2500);
+
+    var stockPurchase = rTo(pick(rand,[400000,450000,500000,550000,600000]), 25000);
+
+    var dividends = rTo(pick(rand,[700000,750000,800000,850000,900000,950000]), 25000);
+    var interest = rTo(pick(rand,[3000000,3300000,3500000,3800000,3950000,4200000]), 50000);
+    var investIncomeTotal0 = dividends + interest;
+    var investIncomeCash = rTo(investIncomeTotal0 * pick(rand,[0.82,0.85,0.88,0.90,0.92]), 10000);
+    if(investIncomeCash >= investIncomeTotal0) investIncomeCash = investIncomeTotal0 - 100000;
+    if(investIncomeCash < 0) investIncomeCash = 0;
+
+    var benefitsPaid = rTo(pick(rand,[3000000,3200000,3500000,3700000,4000000]), 50000);
+
+    var govSecPurchase = rTo(pick(rand,[900000,1000000,1100000,1200000,1300000]), 50000);
+
+    var opCosts = rTo(pick(rand,[140000,150000,160000,175000,190000,200000]), 5000);
+    var opCostsCash = rTo(opCosts * pick(rand,[0.75,0.80,0.85,0.90]), 5000);
+    if(opCostsCash >= opCosts) opCostsCash = opCosts - 10000;
+    if(opCostsCash < 0) opCostsCash = 0;
+
+    var govSecBookValue = Math.min(govSec0 - 1000000, rTo(pick(rand,[400000,450000,500000,550000,600000]), 25000));
+    if(govSecBookValue < 100000) govSecBookValue = 100000;
+    var gain = rTo(pick(rand,[50000,75000,100000,125000,150000]), 5000);
+    var govSecProceeds = govSecBookValue + gain;
+
+    var stockFVIncrease = rTo(pick(rand,[600000,800000,1000000,1200000,1400000]), 50000);
+
+    // Keep ending cash non-negative: cap the two discretionary purchases (stocks and
+    // government securities) against cash actually available during the year.
+    var contrib_total0 = contrib_employee + contrib_employer;
+    var cashAvailable = cash0 + contrib_total0 + invIncRec0 + investIncomeCash
+      - benefitsPaid - accrExp0 - opCostsCash + govSecProceeds;
+    var purchaseTotal = stockPurchase + govSecPurchase;
+    var purchaseCap = cashAvailable - 75000;
+    if(purchaseTotal > purchaseCap && purchaseCap > 0){
+      var scale = purchaseCap / purchaseTotal;
+      stockPurchase = rTo(stockPurchase * scale, 25000);
+      govSecPurchase = rTo(govSecPurchase * scale, 50000);
+      if(stockPurchase < 0) stockPurchase = 0;
+      if(govSecPurchase < 0) govSecPurchase = 0;
+    } else if(purchaseCap <= 0){
+      stockPurchase = 0;
+      govSecPurchase = 0;
+    }
+
+    return {
+      cash0:cash0, invIncRec0:invIncRec0, stocks0:stocks0, govSec0:govSec0, accrExp0:accrExp0,
+      contrib_employee:contrib_employee, contrib_employer:contrib_employer,
+      stockPurchase:stockPurchase,
+      dividends:dividends, interest:interest, investIncomeCash:investIncomeCash,
+      benefitsPaid:benefitsPaid,
+      govSecPurchase:govSecPurchase,
+      opCosts:opCosts, opCostsCash:opCostsCash,
+      govSecBookValue:govSecBookValue, govSecProceeds:govSecProceeds,
+      stockFVIncrease:stockFVIncrease
+    };
+  }
+
+  function solve(p){
+    var d = {};
+    for(var k in p) d[k] = p[k];
+
+    d.contrib_total = d.contrib_employee + d.contrib_employer;
+    d.investIncomeTotal = d.dividends + d.interest;
+    d.investIncomeAccrued = d.investIncomeTotal - d.investIncomeCash;
+    d.opCostsAccrued = d.opCosts - d.opCostsCash;
+    d.gain = d.govSecProceeds - d.govSecBookValue;
+
+    d.netPos0 = d.cash0 + d.invIncRec0 + d.stocks0 + d.govSec0 - d.accrExp0;
+    d.tb_totalDebits = d.cash0 + d.invIncRec0 + d.stocks0 + d.govSec0;
+    d.tb_totalCredits = d.accrExp0 + d.netPos0;
+
+    // Ending balance-sheet figures, built from the same transaction amounts as the JEs.
+    d.cash_end = d.cash0
+      + d.contrib_total
+      - d.stockPurchase
+      + d.invIncRec0
+      + d.investIncomeCash
+      - d.benefitsPaid
+      - d.govSecPurchase
+      - d.accrExp0
+      - d.opCostsCash
+      + d.govSecProceeds;
+    d.invIncRec_end = d.investIncomeAccrued;
+    d.stocks_end = d.stocks0 + d.stockPurchase + d.stockFVIncrease;
+    d.govSec_end = d.govSec0 + d.govSecPurchase - d.govSecBookValue;
+    d.accrExp_end = d.opCostsAccrued;
+
+    d.total_investments_end = d.stocks_end + d.govSec_end;
+    d.total_assets_end = d.cash_end + d.invIncRec_end + d.total_investments_end;
+    d.net_pos_end = d.total_assets_end - d.accrExp_end;
+
+    // Statement of changes in fiduciary net position.
+    d.total_contrib = d.contrib_total;
+    d.fv_increase = d.gain + d.stockFVIncrease;
+    d.total_invest_income = d.fv_increase + d.interest + d.dividends;
+    d.total_additions = d.total_contrib + d.total_invest_income;
+    d.total_deductions = d.benefitsPaid + d.opCosts;
+    d.net_increase = d.total_additions - d.total_deductions;
+    d.net_pos_beg = d.netPos0;
+
+    return d;
+  }
+
+  function generateScenario(id){
+    var seed = (id || '').trim();
+    if(seed === '') return solve(baseline());
+    // Folding the current year into the seed means the scenario stays fixed for a given
+    // student ID all year, then refreshes automatically once the calendar turns over.
+    return solve(randomParams(mulberry32(hashSeed(seed.toLowerCase() + '-' + CURRENT_YEAR))));
+  }
+
+  function applyYearLabels(){
+    var py = String(PY), cy = String(CURRENT_YEAR);
+    document.querySelectorAll('.yr-py').forEach(function(el){ el.textContent = py; });
+    document.querySelectorAll('.yr-cy').forEach(function(el){ el.textContent = cy; });
+  }
+
+  function applyScenario(d){
+    setText('tb-cash', money0(d.cash0));
+    setText('tb-invIncRec', money0(d.invIncRec0));
+    setText('tb-stocks', money0(d.stocks0));
+    setText('tb-govSec', money0(d.govSec0));
+    setText('tb-accrExp', money0(d.accrExp0));
+    setText('tb-netPos', money0(d.netPos0));
+    setText('tb-totalDr', money0(d.tb_totalDebits));
+    setText('tb-totalCr', money0(d.tb_totalCredits));
+
+    setText('sc-contribTotal', money0(d.contrib_total));
+    setText('sc-contribEmployee', money0(d.contrib_employee));
+    setText('sc-contribEmployer', money0(d.contrib_employer));
+
+    setText('sc-stockPurchase', money0(d.stockPurchase));
+
+    setText('sc-invIncRecTB', money0(d.invIncRec0));
+    setText('sc-investIncomeTotal', money0(d.investIncomeTotal));
+    setText('sc-investIncomeCash', money0(d.investIncomeCash));
+    setText('sc-dividends', money0(d.dividends));
+
+    setText('sc-benefitsPaid', money0(d.benefitsPaid));
+
+    setText('sc-govSecPurchase', money0(d.govSecPurchase));
+
+    setText('sc-opCosts', money0(d.opCosts));
+    setText('sc-opCostsCash', money0(d.opCostsCash));
+    setText('sc-accrExpTB', money0(d.accrExp0));
+
+    setText('sc-govSecBookValue', money0(d.govSecBookValue));
+    setText('sc-govSecProceeds', money0(d.govSecProceeds));
+
+    setText('sc-stockFVIncrease', money0(d.stockFVIncrease));
+  }
+
+  // ---------- account options ----------
+  var ACCOUNTS = [
+    'Cash',
+    'Investment Income Receivable',
+    'Investments—Corporate Stocks',
+    'Investments—U.S. Government Securities',
+    'Accrued Expenses',
+    'Additions—Contributions—Employer',
+    'Additions—Contributions—Employee',
+    'Additions—Investment Income—Dividends',
+    'Additions—Investment Income—Interest',
+    'Additions—Net Increase in Fair Value of Investments',
+    'Deductions—Annuity Benefits',
+    'Deductions—Administrative Expenses'
+  ];
+
+  function acctOptionsHtml(){
+    var html = '<option value="">— select account —</option>';
+    ACCOUNTS.forEach(function(a){
+      html += '<option value="' + a.replace(/"/g,'&quot;') + '">' + a + '</option>';
+    });
+    return html;
+  }
+
+  // Each JE definition: array of rows {side:'Dr'|'Cr', acct: function(d), amt: function(d), tag: optional label}
+  var JE_DEFS = {
+    je1: [
+      { side:'Dr', acct:function(){ return 'Cash'; }, amt:function(d){ return d.contrib_total; } },
+      { side:'Cr', acct:function(){ return 'Additions—Contributions—Employer'; }, amt:function(d){ return d.contrib_employer; } },
+      { side:'Cr', acct:function(){ return 'Additions—Contributions—Employee'; }, amt:function(d){ return d.contrib_employee; } }
+    ],
+    je2: [
+      { side:'Dr', acct:function(){ return 'Investments—Corporate Stocks'; }, amt:function(d){ return d.stockPurchase; } },
+      { side:'Cr', acct:function(){ return 'Cash'; }, amt:function(d){ return d.stockPurchase; } }
+    ],
+    je3: [
+      { side:'Dr', acct:function(){ return 'Cash'; }, amt:function(d){ return d.invIncRec0; }, tag:'(a) Collect receivable from prior year' },
+      { side:'Cr', acct:function(){ return 'Investment Income Receivable'; }, amt:function(d){ return d.invIncRec0; } },
+      { side:'Dr', acct:function(){ return 'Cash'; }, amt:function(d){ return d.investIncomeCash; }, tag:'(b) Record investment income earned this year' },
+      { side:'Dr', acct:function(){ return 'Investment Income Receivable'; }, amt:function(d){ return d.investIncomeAccrued; } },
+      { side:'Cr', acct:function(){ return 'Additions—Investment Income—Dividends'; }, amt:function(d){ return d.dividends; } },
+      { side:'Cr', acct:function(){ return 'Additions—Investment Income—Interest'; }, amt:function(d){ return d.interest; } }
+    ],
+    je4: [
+      { side:'Dr', acct:function(){ return 'Deductions—Annuity Benefits'; }, amt:function(d){ return d.benefitsPaid; } },
+      { side:'Cr', acct:function(){ return 'Cash'; }, amt:function(d){ return d.benefitsPaid; } }
+    ],
+    je5: [
+      { side:'Dr', acct:function(){ return 'Investments—U.S. Government Securities'; }, amt:function(d){ return d.govSecPurchase; } },
+      { side:'Cr', acct:function(){ return 'Cash'; }, amt:function(d){ return d.govSecPurchase; } }
+    ],
+    je6: [
+      { side:'Dr', acct:function(){ return 'Accrued Expenses'; }, amt:function(d){ return d.accrExp0; }, tag:'(a) Pay expenses accrued at beginning of year' },
+      { side:'Cr', acct:function(){ return 'Cash'; }, amt:function(d){ return d.accrExp0; } },
+      { side:'Dr', acct:function(){ return 'Deductions—Administrative Expenses'; }, amt:function(d){ return d.opCosts; }, tag:'(b) Record current-year administrative expenses' },
+      { side:'Cr', acct:function(){ return 'Cash'; }, amt:function(d){ return d.opCostsCash; } },
+      { side:'Cr', acct:function(){ return 'Accrued Expenses'; }, amt:function(d){ return d.opCostsAccrued; } }
+    ],
+    je7: [
+      { side:'Dr', acct:function(){ return 'Cash'; }, amt:function(d){ return d.govSecProceeds; } },
+      { side:'Cr', acct:function(){ return 'Investments—U.S. Government Securities'; }, amt:function(d){ return d.govSecBookValue; } },
+      { side:'Cr', acct:function(){ return 'Additions—Net Increase in Fair Value of Investments'; }, amt:function(d){ return d.gain; } }
+    ],
+    je8: [
+      { side:'Dr', acct:function(){ return 'Investments—Corporate Stocks'; }, amt:function(d){ return d.stockFVIncrease; } },
+      { side:'Cr', acct:function(){ return 'Additions—Net Increase in Fair Value of Investments'; }, amt:function(d){ return d.stockFVIncrease; } }
+    ]
+  };
+
+  function buildJeTable(jeKey){
+    var body = document.getElementById(jeKey + '-body');
+    if(!body) return;
+    body.innerHTML = '';
+    JE_DEFS[jeKey].forEach(function(row, idx){
+      var tr = document.createElement('tr');
+      var rowId = jeKey + '-r' + idx;
+      var tagHtml = row.tag ? ('<div class="hint" style="margin:0 0 4px;"><span class="entrytag">' + row.tag + '</span></div>') : '';
+      tr.innerHTML =
+        '<td class="acctcell">' + tagHtml + '<select class="acct" id="' + rowId + '-acct">' + acctOptionsHtml() + '</select></td>' +
+        '<td class="amt"><input type="text" placeholder="$" id="' + rowId + '-debit"></td>' +
+        '<td class="amt"><input type="text" placeholder="$" id="' + rowId + '-credit"></td>';
+      body.appendChild(tr);
+    });
+  }
+
+  // ---------- statement definitions ----------
+  var STMT_DEFS = {
+    stmt1: [
+      { id:'add-emp', label:'Employer', indent:1, amt:function(d){ return d.contrib_employer; } },
+      { id:'add-eee', label:'Employee', indent:1, amt:function(d){ return d.contrib_employee; } },
+      { id:'add-totcontrib', label:'Total contributions', indent:1, amt:function(d){ return d.total_contrib; }, subtotal:true },
+      { id:'add-fv', label:'Net increase in fair value of investments', indent:1, amt:function(d){ return d.fv_increase; } },
+      { id:'add-int', label:'Interest', indent:1, amt:function(d){ return d.interest; } },
+      { id:'add-div', label:'Dividends', indent:1, amt:function(d){ return d.dividends; } },
+      { id:'add-totinv', label:'Total investment income', indent:1, amt:function(d){ return d.total_invest_income; }, subtotal:true },
+      { id:'add-total', label:'Total additions', indent:0, amt:function(d){ return d.total_additions; }, subtotal:true, strong:true },
+      { id:'ded-annuity', label:'Annuity benefits', indent:1, amt:function(d){ return d.benefitsPaid; } },
+      { id:'ded-admin', label:'Administrative expenses', indent:1, amt:function(d){ return d.opCosts; } },
+      { id:'ded-total', label:'Total deductions', indent:0, amt:function(d){ return d.total_deductions; }, subtotal:true, strong:true },
+      { id:'net-inc', label:'Net increase', indent:0, amt:function(d){ return d.net_increase; }, subtotal:true, strong:true },
+      { id:'net-beg', label:'Net position restricted for pension benefits, beginning of year', indent:0, amt:function(d){ return d.net_pos_beg; } },
+      { id:'net-end', label:'Net position restricted for pension benefits, end of year', indent:0, amt:function(d){ return d.net_pos_end; }, subtotal:true, strong:true, grandtotal:true }
+    ],
+    stmt2: [
+      { id:'a-cash', label:'Cash', indent:1, amt:function(d){ return d.cash_end; } },
+      { id:'a-rec', label:'Investment income receivable', indent:1, amt:function(d){ return d.invIncRec_end; } },
+      { id:'a-stock', label:'Corporate stocks', indent:2, amt:function(d){ return d.stocks_end; } },
+      { id:'a-gov', label:'U.S. government securities', indent:2, amt:function(d){ return d.govSec_end; } },
+      { id:'a-totinv', label:'Total investments', indent:1, amt:function(d){ return d.total_investments_end; }, subtotal:true },
+      { id:'a-total', label:'Total assets', indent:0, amt:function(d){ return d.total_assets_end; }, subtotal:true, strong:true },
+      { id:'l-accr', label:'Accrued expenses (liability)', indent:1, amt:function(d){ return d.accrExp_end; } },
+      { id:'np-end', label:'Net position restricted for pension benefits', indent:0, amt:function(d){ return d.net_pos_end; }, subtotal:true, strong:true, grandtotal:true }
+    ]
+  };
+
+  function buildStmtTable(stmtKey){
+    var body = document.getElementById(stmtKey + '-body');
+    if(!body) return;
+    body.innerHTML = '';
+    STMT_DEFS[stmtKey].forEach(function(row){
+      var tr = document.createElement('tr');
+      var cls = [];
+      if(row.subtotal) cls.push('subtotal');
+      if(row.grandtotal) cls.push('grandtotal');
+      tr.className = cls.join(' ');
+      var labelCls = 'label indent' + (row.indent || 0);
+      if(row.strong) labelCls += ' strong';
+      var rowId = stmtKey + '-' + row.id;
+      tr.innerHTML =
+        '<td class="' + labelCls + '">' + row.label + '</td>' +
+        '<td class="amt"><input type="text" placeholder="$" id="' + rowId + '"></td>';
+      body.appendChild(tr);
+    });
+  }
+
+  Object.keys(JE_DEFS).forEach(buildJeTable);
+  Object.keys(STMT_DEFS).forEach(buildStmtTable);
+  applyYearLabels();
+
+  // ---------------- wiring ----------------
+  var idInput = document.getElementById('studentId');
+  var genBtn = document.getElementById('genBtn');
+  var currentScenario = null;
+
+  function applyAndStore(id){
+    currentScenario = generateScenario(id);
+    applyScenario(currentScenario);
+    clearAllFieldStates();
+    Object.keys(JE_DEFS).forEach(function(k){ resetScore({ btn:'check-' + k }); });
+    Object.keys(STMT_DEFS).forEach(function(k){ resetScore({ btn:'check-' + k }); });
+  }
+  genBtn.addEventListener('click', function(){ applyAndStore(idInput.value); });
+  idInput.addEventListener('keydown', function(e){
+    if(e.key === 'Enter'){ e.preventDefault(); applyAndStore(idInput.value); }
+  });
+  applyAndStore('');
+
+  Object.keys(JE_DEFS).forEach(function(jeKey){
+    var btnId = 'check-' + jeKey;
+    var summaryId = 'sum-' + jeKey;
+    var btn = document.getElementById(btnId);
+    if(!btn) return;
+    var g = { btn: btnId };
+
+    var part = btn.closest('.part');
+    if(part){
+      part.addEventListener('input', function(e){
+        if(e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT')){
+          var s = scoreState(g);
+          if(s.checked) s.stale = true;
+        }
+      });
+      part.addEventListener('change', function(e){
+        if(e.target && e.target.tagName === 'SELECT'){
+          var s = scoreState(g);
+          if(s.checked) s.stale = true;
+        }
+      });
+    }
+
+    btn.addEventListener('click', function(){
+      if(!currentScenario) return;
+      var rows = JE_DEFS[jeKey];
+      var results = [];
+      rows.forEach(function(row, idx){
+        var rowId = jeKey + '-r' + idx;
+        var expectedAcct = row.acct(currentScenario);
+        var expectedAmt = row.amt(currentScenario);
+        results.push(markSelect(rowId + '-acct', expectedAcct));
+        results.push(markAmountPair(rowId, row.side, expectedAmt, TOL.dollars));
+      });
+      updateSummary(summaryId, results);
+      var s = scoreState(g);
+      s.graded = results.filter(function(r){ return r !== null; }).length;
+      s.correct = results.filter(function(r){ return r === true; }).length;
+      s.attempts += 1;
+      s.checked = true;
+      s.stale = false;
+      renderOverall();
+    });
+  });
+
+  Object.keys(STMT_DEFS).forEach(function(stmtKey){
+    var btnId = 'check-' + stmtKey;
+    var summaryId = 'sum-' + stmtKey;
+    var btn = document.getElementById(btnId);
+    if(!btn) return;
+    var g = { btn: btnId };
+
+    var part = btn.closest('.part');
+    if(part){
+      part.addEventListener('input', function(e){
+        if(e.target && e.target.tagName === 'INPUT'){
+          var s = scoreState(g);
+          if(s.checked) s.stale = true;
+        }
+      });
+    }
+
+    btn.addEventListener('click', function(){
+      if(!currentScenario) return;
+      var rows = STMT_DEFS[stmtKey];
+      var results = [];
+      rows.forEach(function(row){
+        var rowId = stmtKey + '-' + row.id;
+        var expectedAmt = row.amt(currentScenario);
+        results.push(markField(rowId, expectedAmt, TOL.dollars));
+      });
+      updateSummary(summaryId, results);
+      var s = scoreState(g);
+      s.graded = results.filter(function(r){ return r !== null; }).length;
+      s.correct = results.filter(function(r){ return r === true; }).length;
+      s.attempts += 1;
+      s.checked = true;
+      s.stale = false;
+      renderOverall();
+    });
+  });
+
+  // ---------------- Print / Save as PDF ----------------
+  function val(id){
+    var el = document.getElementById(id);
+    return el ? el.value.trim() : '';
+  }
+  document.getElementById('printBtn').addEventListener('click', function(){
+    var name = val('studentName');
+    var id = val('studentId');
+    var line = document.getElementById('printNameLine');
+    line.textContent = 'Name: ' + (name || '_______________________') +
+                       '     Student ID: ' + (id || '_______________________');
+    var oldTitle = document.title;
+    document.title = FILE_SLUG + '-' + (id || 'submission');
+    window.print();
+    document.title = oldTitle;
+  });
+
+})();
+</script>
+
+</body>
+</html>

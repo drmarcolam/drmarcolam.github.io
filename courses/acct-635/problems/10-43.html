@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Government-Wide Statement of Activities — Town of Waynesville</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --purple:#592C88;
+    --purple-deep:#38195A;
+    --purple-mid:#6E3FA3;
+    --gold:#B0925C;
+    --gold-soft:#D6C398;
+    --gold-pale:#F1E9D6;
+    --parchment:#F7F4EC;
+    --paper:#FFFEFA;
+    --ink:#221B2E;
+    --slate:#5F5A6B;
+    --line:#DBD3E0;
+    --line-soft:#EAE4EF;
+    --answer:#1E5C34;
+    --answer-bg:#E7F1E9;
+    --danger:#9C3B34;
+    --shadow: 0 1px 2px rgba(56,25,90,0.07), 0 6px 18px rgba(56,25,90,0.08);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--parchment);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ color:inherit; }
+
+  header{
+    background: linear-gradient(180deg, var(--purple) 0%, var(--purple-deep) 100%);
+    color:#F1E9D6;
+    padding: 30px 6vw 24px;
+    position:relative;
+  }
+  header::after{
+    content:"";
+    position:absolute; left:0; right:0; bottom:0; height:4px;
+    background: linear-gradient(90deg, var(--gold-soft), var(--gold) 40%, var(--gold-soft) 70%, var(--gold));
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--gold-soft); margin:0 0 10px;
+  }
+  h1.title{
+    font-family:'Source Serif 4', serif; font-weight:600;
+    font-size:clamp(24px,3.4vw,34px); margin:0 0 8px; letter-spacing:-0.01em;
+  }
+  .subtitle{ font-size:14.5px; color:#D9CDE5; max-width:680px; margin:0; }
+
+  .id-bar{
+    max-width:1040px; margin:0 auto; padding:18px 6vw 0;
+    display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+  }
+  .id-bar label{ font-size:13px; font-weight:600; color:var(--slate); }
+  .id-bar input[type="text"]{
+    font-family:'Inter',sans-serif; font-size:13.5px; padding:8px 11px;
+    border:1px solid var(--line); border-radius:5px; background:var(--paper); color:var(--ink);
+    width:220px;
+  }
+  .id-bar input:focus{ outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); }
+  .id-bar .id-hint{ font-size:12px; color:var(--slate); }
+
+  .score-area{ max-width:1040px; margin:0 auto; padding:14px 6vw 0; }
+
+  .rounding-note{
+    max-width:1040px; margin:14px auto 0; padding:12px 6vw;
+    font-size:12.5px; color:var(--slate); line-height:1.5;
+  }
+  .rounding-note strong{ color:var(--purple); font-weight:600; }
+
+  main{ max-width:1040px; margin:0 auto; padding:22px 6vw 90px; }
+
+  .part{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    box-shadow:var(--shadow);
+    padding:24px 26px 26px;
+    margin-top:26px;
+  }
+  .part-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; color:var(--gold); background:var(--purple);
+    display:inline-block; padding:3px 9px; border-radius:4px; letter-spacing:.04em;
+    margin-bottom:12px;
+  }
+  .part h2{
+    font-family:'Source Serif 4', serif; font-size:21px; font-weight:600;
+    color:var(--purple); margin:0 0 12px;
+  }
+  .scenario{
+    background:var(--parchment);
+    border-left:3px solid var(--gold);
+    padding:14px 18px;
+    border-radius:0 6px 6px 0;
+    font-size:14.5px;
+    color:var(--ink);
+    margin-bottom:16px;
+  }
+  .scenario p{ margin:0 0 10px; }
+  .scenario p:last-child{ margin-bottom:0; }
+  .scenario span.val{ font-weight:700; color:var(--purple-deep); }
+
+  .req{
+    font-weight:600;
+    font-size:14.5px;
+    color:var(--ink);
+    margin:20px 0 10px;
+  }
+  .req span.reqlabel{ color:var(--purple); }
+
+  h4.subsection{
+    font-family:'Source Serif 4',serif; font-size:15px; color:var(--purple); margin:22px 0 6px;
+    border-bottom:1px solid var(--line-soft); padding-bottom:4px;
+  }
+
+  .footnote{ font-size:12px; color:var(--slate); margin:2px 0 14px; font-style:italic; }
+  .hint{ font-size:12.5px; color:var(--slate); margin:4px 0 10px; }
+
+  table.given{ width:100%; border-collapse:collapse; font-size:13px; margin:6px 0 14px; }
+  table.given th{ text-align:left; font-size:10.5px; text-transform:uppercase; letter-spacing:.03em; color:var(--slate); border-bottom:2px solid var(--purple); padding:6px 8px; }
+  table.given td{ border-bottom:1px solid var(--line); padding:5px 8px; font-family:'IBM Plex Mono', monospace; }
+  table.given td.lbl{ font-family:'Inter',sans-serif; }
+  table.given td.num, table.given th.num{ text-align:right; }
+  table.given tr.given-total td{ border-top:1.6px solid var(--purple); font-weight:600; }
+  table.given tr.given-sub td{ font-family:'Inter',sans-serif; padding-left:22px; }
+  table.given td.note{ font-family:'Inter',sans-serif; font-size:11.5px; font-style:italic; color:var(--slate); padding-left:22px; border-bottom:1px solid var(--line); }
+
+  table.worksheet{
+    width:100%;
+    border-collapse:collapse;
+    font-size:13px;
+    margin:10px 0 4px;
+  }
+  table.worksheet th{
+    text-align:left;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+    color:var(--slate);
+    border-bottom:2px solid var(--purple);
+    padding:8px 6px;
+  }
+  table.worksheet th.num{ text-align:right; }
+  table.worksheet td{
+    border-bottom:1px solid var(--line);
+    padding:8px 6px;
+    vertical-align:middle;
+  }
+  table.worksheet td.lbl{ font-family:'Inter',sans-serif; font-weight:500; }
+  table.worksheet tr.ws-total td{ border-top:1.6px solid var(--purple); font-weight:600; background:var(--parchment); }
+  table.worksheet td.amt{ width:118px; text-align:right; font-family:'IBM Plex Mono',monospace; }
+  table.worksheet input[type="text"]{
+    width:100%;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    padding:6px 7px;
+    border:1px solid var(--line);
+    border-radius:5px;
+    background:var(--parchment);
+    color:var(--ink);
+    text-align:right;
+  }
+  table.worksheet input[type="text"]:focus{
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
+  }
+
+  .score-panel{
+    display:flex; align-items:center; gap:18px;
+    margin:0 0 4px; padding:14px 18px;
+    background:var(--parchment);
+    border:1px solid var(--line);
+    border-radius:8px;
+  }
+  .score-panel.scored-good{ background:var(--answer-bg); border-color:#B7D3BE; }
+  .score-panel.scored-bad{ background:#F8F0EF; border-color:#E2C6C2; }
+  .score-pct{
+    font-family:'Source Serif 4', serif;
+    font-size:30px; font-weight:700; line-height:1.05;
+    color:var(--slate); min-width:96px; text-align:center;
+  }
+  .score-panel.scored-good .score-pct{ color:var(--answer); }
+  .score-panel.scored-bad .score-pct{ color:var(--danger); }
+  .score-detail{ flex:1; min-width:0; }
+  .score-meta{ font-size:13.5px; font-weight:600; color:var(--ink); margin:0 0 7px; }
+  .score-bar{ height:8px; border-radius:4px; background:var(--line-soft); overflow:hidden; }
+  .score-bar span{ display:block; height:100%; width:0; background:var(--purple-mid); transition:width .35s ease; }
+  .score-panel.scored-good .score-bar span{ background:var(--answer); }
+  .score-panel.scored-bad .score-bar span{ background:var(--danger); }
+  .score-sub{ font-size:11.5px; color:var(--slate); margin:7px 0 0; }
+
+  .check-bar{
+    margin-top:20px;
+    padding-top:16px;
+    border-top:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .btn-check{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:9px 18px; border:1px solid var(--purple);
+    background:var(--purple); color:#fff; cursor:pointer;
+  }
+  .btn-check:hover{ background:var(--purple-mid); }
+  .check-summary{ font-size:13.5px; font-weight:600; }
+  .check-summary.good{ color:var(--answer); }
+  .check-summary.bad{ color:var(--danger); }
+  .check-disclaimer{ font-size:11.5px; color:var(--slate); width:100%; margin-top:2px; font-style:italic; }
+
+  input.field-correct{
+    border-color:var(--answer) !important;
+    background:var(--answer-bg) !important;
+  }
+  input.field-incorrect{
+    border-color:var(--danger) !important;
+    background:#F3E1DE !important;
+  }
+
+  .submit-bar{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    box-shadow:var(--shadow);
+    padding:22px 26px 24px;
+    margin-top:26px;
+  }
+  .submit-bar h2{
+    font-family:'Source Serif 4', serif; font-size:19px; font-weight:600;
+    color:var(--purple); margin:0 0 14px;
+  }
+  .submit-row{ display:flex; align-items:center; gap:10px; margin-bottom:12px; flex-wrap:wrap; }
+  .submit-row label{ font-size:13px; font-weight:600; color:var(--slate); }
+  .btn-submit{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:10px 18px; border:1px solid var(--purple);
+    background:var(--purple); color:#fff; cursor:pointer;
+  }
+  .btn-submit:hover{ background:var(--purple-mid); }
+  .submit-hint{ font-size:12px; color:var(--slate); margin:6px 0 0; }
+
+  @media print{
+    .print-hide, .id-bar, .check-bar, .rounding-note{ display:none !important; }
+    header{ background:none !important; color:var(--ink) !important; padding:0 0 14px !important; }
+    header::after{ display:none !important; }
+    .eyebrow{ color:var(--purple) !important; }
+    .subtitle{ color:var(--slate) !important; }
+    body{ background:#fff !important; }
+    .part{ box-shadow:none !important; border:1px solid #999 !important; break-inside:auto; }
+    .score-panel{ background:#fff !important; border:1.5px solid #000 !important; break-inside:avoid; }
+    .score-bar{ display:none !important; }
+    .score-pct, .score-panel.scored-good .score-pct, .score-panel.scored-bad .score-pct{ color:#000 !important; }
+    .part h2, .part-label, .scenario, h4.subsection{ break-after:avoid; break-inside:avoid; }
+    table.given, table.worksheet{ break-inside:auto; }
+    table.given tr, table.worksheet tr{ break-inside:avoid; }
+    .submit-bar{ break-before:avoid; }
+    input[type="text"]{
+      border:none !important;
+      border-bottom:1px solid #000 !important;
+      background:transparent !important;
+      border-radius:0 !important;
+      color:#000 !important;
+      -webkit-appearance:none;
+      -moz-appearance:none;
+      appearance:none;
+      padding:2px 4px !important;
+    }
+    .print-name-line{ display:block !important; }
+  }
+  .print-name-line{ display:none; font-size:13px; color:var(--ink); padding:0 6vw; margin:0 0 10px; }
+
+  footer{ text-align:center; padding:26px 6vw 40px; font-size:12px; color:var(--slate); }
+
+  @media (max-width:700px){
+    header, main, .id-bar{ padding-left:5vw; padding-right:5vw; }
+    table.worksheet{ font-size:11.5px; }
+    table.worksheet td.amt{ width:88px; }
+  }
+
+
+  html:not(.wcu-unlocked) body > *:not(#wcu-gate){ display:none !important; }
+  #wcu-gate{
+    position:fixed; inset:0; z-index:9999;
+    background: linear-gradient(180deg, #38195A 0%, #221B2E 100%);
+    display:flex; align-items:center; justify-content:center;
+    padding:24px;
+    font-family:'Inter',sans-serif;
+  }
+  html.wcu-unlocked .wcu-gate{ display:none !important; }
+  .wcu-gate-card{
+    background:#FFFEFA; border-radius:12px; max-width:380px; width:100%;
+    padding:32px 30px 28px; text-align:center;
+    box-shadow:0 10px 40px rgba(0,0,0,0.35);
+  }
+  .wcu-gate-eyebrow{
+    font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.12em;
+    text-transform:uppercase; color:#B0925C; margin:0 0 10px;
+  }
+  .wcu-gate-card h2{
+    font-family:'Source Serif 4', serif; font-size:20px; color:#38195A; margin:0 0 14px;
+  }
+  .wcu-gate-card input[type="text"]{
+    width:100%; font-family:'Inter',sans-serif; font-size:14px; padding:10px 12px;
+    border:1px solid #DBD3E0; border-radius:6px; margin-bottom:12px; box-sizing:border-box;
+    text-align:center; letter-spacing:.05em;
+  }
+  .wcu-gate-card button{
+    width:100%; font-family:'Inter',sans-serif; font-size:14px; font-weight:600;
+    border-radius:6px; padding:10px 18px; border:1px solid #592C88;
+    background:#592C88; color:#fff; cursor:pointer;
+  }
+  .wcu-gate-card button:hover{ background:#6E3FA3; }
+  .wcu-gate-error{ color:#9C3B34; font-size:12.5px; margin:10px 0 0; min-height:16px; }
+
+  .back-bar{ max-width:960px; margin:0 auto; padding:14px 6vw 0; }
+  .back-bar a{
+    font-family:'Inter',sans-serif; font-size:13px; font-weight:600;
+    color:#592C88; text-decoration:none;
+  }
+  .back-bar a:hover{ text-decoration:underline; }
+</style>
+</head>
+<body>
+<div id="wcu-gate">
+  <div class="wcu-gate-card">
+    <p class="wcu-gate-eyebrow">ACCT 635 &middot; Governmental &amp; Nonprofit Accounting</p>
+    <h2>Access Code Required</h2>
+    <input type="text" id="wcu-gate-input" placeholder="Enter access code" autocomplete="off">
+    <button type="button" id="wcu-gate-btn">Unlock</button>
+    <p class="wcu-gate-error" id="wcu-gate-error"></p>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY = 'wcu_unlock_acct635';
+  var CODE = 'ACCT635DOR';
+  try{
+    if(localStorage.getItem(KEY) === '1'){
+      document.documentElement.classList.add('wcu-unlocked');
+    }
+  }catch(e){}
+  function tryUnlock(){
+    var val = document.getElementById('wcu-gate-input').value.trim().toUpperCase();
+    if(val === CODE){
+      try{ localStorage.setItem(KEY, '1'); }catch(e){}
+      document.documentElement.classList.add('wcu-unlocked');
+    } else {
+      document.getElementById('wcu-gate-error').textContent = 'Incorrect code. Please try again.';
+    }
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    var btn = document.getElementById('wcu-gate-btn');
+    var input = document.getElementById('wcu-gate-input');
+    if(btn) btn.addEventListener('click', tryUnlock);
+    if(input) input.addEventListener('keydown', function(e){ if(e.key === 'Enter') tryUnlock(); });
+  });
+})();
+</script>
+<div class="back-bar print-hide"><a href="../../acct-635.html">&larr; Back to ACCT 635</a></div>
+
+
+<header>
+  <p class="eyebrow">ACCT 635 &middot; Governmental and Nonprofit Accounting &middot; Government-Wide Financial Statements</p>
+  <h1 class="title">Preparation of the Government-Wide Statement of Activities — Town of Waynesville</h1>
+  <p class="subtitle">Using post-closing trial balance data for a small North Carolina municipality, classify each revenue and expense item and prepare a government-wide statement of activities in good form, following the net (expense)/revenue format required by GASB Statement No. 34.</p>
+</header>
+
+<p class="print-name-line" id="printNameLine"></p>
+
+<div class="id-bar">
+  <label for="studentName">Name</label>
+  <input type="text" id="studentName" placeholder="First and last name">
+  <label for="studentId">Student ID</label>
+  <input type="text" id="studentId" placeholder="e.g. 920410165">
+  <button id="genBtn" type="button">Generate scenario</button>
+  <span class="id-hint">Leave the ID blank and click to restore the original textbook figures.</span>
+</div>
+
+<div class="score-area" id="scoreArea"></div>
+
+<div class="rounding-note">
+  <strong>Before you start:</strong> enter every amount <strong>in whole dollars</strong> (e.g., 625,000), with no dollar sign required. If a function or program has no amount for a column (for example, most functions have no capital grants), enter <strong>0</strong> rather than leaving the cell blank — blank cells are graded as incorrect. Enter reductions to net position (an expense that exceeds its revenues, or the special item) using a minus sign or parentheses, e.g., <strong>-2,205,000</strong> or <strong>(2,205,000)</strong>.
+</div>
+
+<main>
+
+  <div class="part">
+    <span class="part-label">Background</span>
+    <h2>Town of Waynesville, North Carolina</h2>
+    <div class="scenario">
+      <p>The following information is taken from the <span class="val">Town of Waynesville's</span> December 31, <span class="val" id="yr-0">2026</span>, trial balance after all adjustments were made for preparation of the government-wide financial statements. The Town of Waynesville has governmental activities but no business-type activities. Using the appropriate format, prepare a statement of activities for the Town of Waynesville for the year ended December 31, <span class="val" id="yr-1">2026</span>.</p>
+    </div>
+    <table class="given">
+      <thead><tr><th>Trial balance item</th><th class="num">Amount</th></tr></thead>
+      <tbody>
+        <tr class="given-sub"><td class="lbl">Revenues&mdash;property taxes</td><td class="num" id="gd-P">$4,100,000</td></tr>
+        <tr class="given-sub"><td class="lbl">Revenues&mdash;sales taxes</td><td class="num" id="gd-S">$2,175,000</td></tr>
+        <tr class="given-sub"><td class="lbl">State operating aid&mdash;police program</td><td class="num" id="gd-SOP">$410,000</td></tr>
+        <tr class="given-sub"><td class="lbl">State operating aid&mdash;town road maintenance</td><td class="num" id="gd-SOR">$250,000</td></tr>
+        <tr class="given-sub"><td class="lbl">State capital aid&mdash;town road maintenance</td><td class="num" id="gd-SCR">$50,000</td></tr>
+        <tr class="given-sub"><td class="lbl">Fees&mdash;sanitation</td><td class="num" id="gd-FS">$75,000</td></tr>
+        <tr class="given-sub"><td class="lbl">Fees&mdash;programs for youth and seniors</td><td class="num" id="gd-FY">$65,000</td></tr>
+        <tr class="given-sub"><td class="lbl">Fees&mdash;parks admissions</td><td class="num" id="gd-FP">$85,000</td></tr>
+        <tr class="given-sub"><td class="lbl">Cleanup costs from a tornado</td><td class="num" id="gd-TC">$425,000</td></tr>
+        <tr><td class="note" colspan="2">(assume this transaction is reported as an unusual or infrequent item)</td></tr>
+        <tr class="given-sub"><td class="lbl">General government expenses</td><td class="num" id="gd-GGE">$625,000</td></tr>
+        <tr class="given-sub"><td class="lbl">Police program expenses</td><td class="num" id="gd-PE">$2,615,000</td></tr>
+        <tr class="given-sub"><td class="lbl">Road maintenance program expenses</td><td class="num" id="gd-RE">$975,000</td></tr>
+        <tr class="given-sub"><td class="lbl">Sanitation program expenses</td><td class="num" id="gd-SE">$1,410,000</td></tr>
+        <tr class="given-sub"><td class="lbl">Parks and recreation program expenses</td><td class="num" id="gd-PKE">$525,000</td></tr>
+        <tr class="given-sub"><td class="lbl">Youth and senior program expenses</td><td class="num" id="gd-YE">$325,000</td></tr>
+        <tr class="given-total"><td class="lbl">Net position&mdash;beginning of year</td><td class="num" id="gd-BNP">$3,125,000</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ITEM 1 -->
+  <div class="part">
+    <span class="part-label">Item 1</span>
+    <h2>Expenses and program revenues, by function</h2>
+    <div class="scenario">
+      <p>Classify each expense by function and each program revenue as charges for services, operating grants and contributions, or capital grants and contributions.</p>
+    </div>
+    <div class="req"><span class="reqlabel">Required:</span> Complete the expenses and program-revenues portion of the statement of activities, including the net (expense)/revenue for each function and the governmental activities total.</div>
+    <table class="worksheet">
+      <thead>
+        <tr>
+          <th>Functions/Programs</th>
+          <th class="num">Expenses</th>
+          <th class="num">Charges for Services</th>
+          <th class="num">Operating Grants &amp; Contributions</th>
+          <th class="num">Capital Grants &amp; Contributions</th>
+          <th class="num">Net (Expense) Revenue</th>
+        </tr>
+      </thead>
+      <tbody id="je1-body"></tbody>
+    </table>
+    <div class="check-bar">
+      <button class="btn-check" id="check-je1" type="button">Check my work</button>
+      <span class="check-summary" id="sum-je1"></span>
+      <span class="check-disclaimer">This checks your figures against the key within a small tolerance.</span>
+    </div>
+  </div>
+
+  <!-- ITEM 2 -->
+  <div class="part">
+    <span class="part-label">Item 2</span>
+    <h2>General revenues, special item, and change in net position</h2>
+    <div class="scenario">
+      <p>Property taxes and sales taxes are not tied to a specific program, so they are reported as general revenues, below the net expense of governmental activities. The tornado cleanup cost is reported as a separate special item, after general revenues and before the change in net position.</p>
+    </div>
+    <div class="req"><span class="reqlabel">Required:</span> Complete the general revenues, special item, and net position sections of the statement.</div>
+    <table class="worksheet">
+      <thead>
+        <tr><th style="width:60%;">Line item</th><th class="num">Amount</th></tr>
+      </thead>
+      <tbody id="je2-body"></tbody>
+    </table>
+    <div class="check-bar">
+      <button class="btn-check" id="check-je2" type="button">Check my work</button>
+      <span class="check-summary" id="sum-je2"></span>
+      <span class="check-disclaimer">This checks your figures against the key within a small tolerance.</span>
+    </div>
+  </div>
+
+  <div class="submit-bar print-hide">
+    <h2>Ready to submit?</h2>
+    <p class="submit-hint" style="margin:0 0 12px;">Your name is taken from the top of the page.</p>
+    <div class="submit-row submit-actions">
+      <button class="btn-submit" id="printBtn" type="button">Print / Save as PDF</button>
+    </div>
+    <p class="submit-hint">This captures exactly what's currently filled in above and works offline.</p>
+  </div>
+</main>
+
+<footer>Government-Wide Statement of Activities &middot; ACCT 635 &middot; Western Carolina University</footer>
+
+<script>
+(function(){
+  var FILE_SLUG = "ACCT635-Statement-of-Activities-P10-43";
+  var CURRENT_YEAR = new Date().getFullYear();
+
+  // ---------- seeded pseudo-random ----------
+  function hashSeed(str){
+    var h = 2166136261;
+    for(var i=0;i<str.length;i++){
+      h ^= str.charCodeAt(i);
+      h = Math.imul(h, 16777619);
+    }
+    return h >>> 0;
+  }
+  function mulberry32(seed){
+    return function(){
+      seed |= 0; seed = seed + 0x6D2B79F5 | 0;
+      var t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
+  }
+  function pick(rand, arr){ return arr[Math.floor(rand() * arr.length)]; }
+  function rTo(x, m){ return Math.round(x/m)*m; }
+
+  function money0(n){
+    var v = Number(n);
+    var s = Math.abs(v).toLocaleString('en-US', {minimumFractionDigits:0, maximumFractionDigits:0});
+    return v < 0 ? '$(' + s + ')' : '$' + s;
+  }
+  function setText(id, text){
+    var el = document.getElementById(id);
+    if(el) el.textContent = text;
+  }
+
+  var TOL = { dollars:1 };
+
+  function parseMoney(s){
+    if(s === null || s === undefined) return NaN;
+    var raw = String(s).trim();
+    var neg = /^\(.*\)$/.test(raw) || /^-/.test(raw) || /^−/.test(raw);
+    var cleaned = raw.replace(/[^0-9.]/g, '');
+    if(cleaned === '') return NaN;
+    var v = parseFloat(cleaned);
+    if(isNaN(v)) return NaN;
+    return neg ? -v : v;
+  }
+  function near(a, b, tol){
+    if(isNaN(a) || isNaN(b)) return false;
+    return Math.abs(a - b) <= tol;
+  }
+  function clearFieldState(el){
+    if(!el) return;
+    el.classList.remove('field-correct', 'field-incorrect');
+  }
+  function clearAllFieldStates(){
+    document.querySelectorAll('.field-correct, .field-incorrect').forEach(function(el){
+      el.classList.remove('field-correct', 'field-incorrect');
+    });
+    document.querySelectorAll('.check-summary').forEach(function(el){
+      el.textContent = ''; el.classList.remove('good','bad');
+    });
+  }
+  function bindClear(el){
+    if(!el || el.dataset.clearBound) return;
+    el.addEventListener('input', function(){ clearFieldState(el); });
+    el.dataset.clearBound = '1';
+  }
+  function markAmount(id, correct, tol){
+    var el = document.getElementById(id);
+    if(!el) return null;
+    clearFieldState(el);
+    bindClear(el);
+    var ok = near(parseMoney(el.value), correct, tol);
+    el.classList.add(ok ? 'field-correct' : 'field-incorrect');
+    return ok;
+  }
+  function updateSummary(elId, results){
+    var el = document.getElementById(elId);
+    if(!el) return;
+    var graded = results.filter(function(r){ return r !== null; }).length;
+    var correct = results.filter(function(r){ return r === true; }).length;
+    el.textContent = correct + ' of ' + graded + ' correct';
+    el.classList.remove('good', 'bad');
+    el.classList.add(correct === graded && graded > 0 ? 'good' : 'bad');
+  }
+
+  var SCORES = {};
+  function scoreState(g){
+    if(!SCORES[g.btn]) SCORES[g.btn] = { correct:0, graded:0, attempts:0, checked:false, stale:false };
+    return SCORES[g.btn];
+  }
+  var SCORE_PROMPT = 'Fill in the statement below, then choose <strong>Check my work</strong>. Every blank counts as incorrect.';
+
+  function renderOverall(){
+    var area = document.getElementById('scoreArea');
+    if(!area) return;
+    var panel = area.querySelector('.score-panel[data-for="overall"]');
+    if(!panel){
+      panel = document.createElement('div');
+      panel.className = 'score-panel';
+      panel.setAttribute('data-for', 'overall');
+      panel.innerHTML =
+        '<div class="score-pct">&mdash;</div>' +
+        '<div class="score-detail">' +
+          '<p class="score-meta">Overall score</p>' +
+          '<div class="score-bar"><span></span></div>' +
+          '<p class="score-sub">' + SCORE_PROMPT + '</p>' +
+        '</div>';
+      area.appendChild(panel);
+    }
+    var totalCorrect = 0, totalGraded = 0, anyChecked = false;
+    Object.keys(SCORES).forEach(function(k){
+      var s = SCORES[k];
+      if(s.checked){ anyChecked = true; totalCorrect += s.correct; totalGraded += s.graded; }
+    });
+    var pctEl = panel.querySelector('.score-pct');
+    var metaEl = panel.querySelector('.score-meta');
+    var fillEl = panel.querySelector('.score-bar span');
+    var subEl = panel.querySelector('.score-sub');
+    panel.classList.remove('scored-good','scored-bad');
+    if(!anyChecked){
+      pctEl.innerHTML = '&mdash;';
+      metaEl.textContent = 'Overall score';
+      fillEl.style.width = '0%';
+      subEl.textContent = SCORE_PROMPT.replace(/<\/?strong>/g,'');
+      return;
+    }
+    var pct = totalGraded ? Math.round(totalCorrect/totalGraded*100) : 0;
+    pctEl.textContent = pct + '%';
+    metaEl.textContent = 'Overall: ' + totalCorrect + ' of ' + totalGraded + ' correct (checked items only)';
+    fillEl.style.width = pct + '%';
+    if(totalCorrect === totalGraded){
+      subEl.textContent = 'All checked items match the key.';
+      panel.classList.add('scored-good');
+    } else {
+      subEl.textContent = (totalGraded-totalCorrect) + ' line(s) still to fix across the items you have checked.';
+      panel.classList.add('scored-bad');
+    }
+  }
+
+  function resetScore(g){
+    SCORES[g.btn] = { correct:0, graded:0, attempts:0, checked:false, stale:false };
+    renderOverall();
+  }
+
+  // ---------- scenario generation ----------
+  function baseline(){
+    return {
+      P:4100000, S:2175000, SOP:410000, SOR:250000, SCR:50000,
+      FS:75000, FY:65000, FP:85000, TC:425000,
+      GGE:625000, PE:2615000, RE:975000, SE:1410000, PKE:525000, YE:325000,
+      BNP:3125000
+    };
+  }
+
+  function randomParams(rand){
+    var P   = rTo(pick(rand,[3600000,3800000,4000000,4100000,4200000,4400000,4600000]), 25000);
+    var S   = rTo(pick(rand,[1800000,1950000,2100000,2175000,2300000,2450000]), 25000);
+    var SOP = rTo(pick(rand,[350000,380000,410000,440000,470000,500000]), 10000);
+    var SOR = rTo(pick(rand,[200000,225000,250000,275000,300000,325000]), 5000);
+    var SCR = rTo(pick(rand,[30000,40000,50000,60000,70000,80000]), 5000);
+    var FS  = rTo(pick(rand,[55000,65000,75000,80000,90000,100000]), 5000);
+    var FY  = rTo(pick(rand,[45000,55000,65000,70000,80000,90000]), 5000);
+    var FP  = rTo(pick(rand,[65000,75000,85000,90000,100000,110000]), 5000);
+    var TC  = rTo(pick(rand,[300000,350000,400000,425000,450000,500000,550000]), 25000);
+    var GGE = rTo(pick(rand,[525000,575000,625000,650000,700000,750000]), 25000);
+    var PE  = rTo(pick(rand,[2350000,2500000,2615000,2700000,2800000,2950000]), 25000);
+    var RE  = rTo(pick(rand,[825000,900000,975000,1050000,1125000]), 25000);
+    var SE  = rTo(pick(rand,[1250000,1350000,1410000,1500000,1600000,1700000]), 25000);
+    var PKE = rTo(pick(rand,[450000,500000,525000,575000,625000,675000]), 25000);
+    var YE  = rTo(pick(rand,[275000,300000,325000,350000,375000,400000]), 25000);
+    var BNP = rTo(pick(rand,[2600000,2800000,3000000,3125000,3300000,3500000,3700000]), 25000);
+
+    return { P:P, S:S, SOP:SOP, SOR:SOR, SCR:SCR, FS:FS, FY:FY, FP:FP, TC:TC,
+             GGE:GGE, PE:PE, RE:RE, SE:SE, PKE:PKE, YE:YE, BNP:BNP };
+  }
+
+  function solve(p){
+    var out = {};
+    for(var k in p) out[k] = p[k];
+
+    // Net (expense)/revenue by function
+    out.net_gg   = -p.GGE;
+    out.net_pol  = (p.SOP) - p.PE;
+    out.net_road = (p.SOR + p.SCR) - p.RE;
+    out.net_san  = (p.FS) - p.SE;
+    out.net_park = (p.FP) - p.PKE;
+    out.net_ys   = (p.FY) - p.YE;
+
+    out.totalExpenses = p.GGE + p.PE + p.RE + p.SE + p.PKE + p.YE;
+    out.totalCharges = p.FS + p.FP + p.FY;
+    out.totalOpGrants = p.SOP + p.SOR;
+    out.totalCapGrants = p.SCR;
+    out.totalProgramRevenue = out.totalCharges + out.totalOpGrants + out.totalCapGrants;
+    out.totalNetExpense = out.totalProgramRevenue - out.totalExpenses;
+
+    out.totalGeneralRevenue = p.P + p.S;
+    out.specialItem = -p.TC;
+    out.changeInNetPosition = out.totalNetExpense + out.totalGeneralRevenue + out.specialItem;
+    out.endingNetPosition = p.BNP + out.changeInNetPosition;
+
+    return out;
+  }
+
+  function generateScenario(id){
+    var seed = (id || '').trim();
+    if(seed === '') return solve(baseline());
+    // Folding the current year into the seed means the scenario stays fixed for a given
+    // student ID all year, then refreshes automatically once the calendar turns over.
+    return solve(randomParams(mulberry32(hashSeed(seed.toLowerCase() + '-' + CURRENT_YEAR))));
+  }
+
+  function applyYearLabels(){
+    var y = String(CURRENT_YEAR);
+    setText('yr-0', y);
+    setText('yr-1', y);
+  }
+
+  function applyScenario(d){
+    setText('gd-P', money0(d.P));
+    setText('gd-S', money0(d.S));
+    setText('gd-SOP', money0(d.SOP));
+    setText('gd-SOR', money0(d.SOR));
+    setText('gd-SCR', money0(d.SCR));
+    setText('gd-FS', money0(d.FS));
+    setText('gd-FY', money0(d.FY));
+    setText('gd-FP', money0(d.FP));
+    setText('gd-TC', money0(d.TC));
+    setText('gd-GGE', money0(d.GGE));
+    setText('gd-PE', money0(d.PE));
+    setText('gd-RE', money0(d.RE));
+    setText('gd-SE', money0(d.SE));
+    setText('gd-PKE', money0(d.PKE));
+    setText('gd-YE', money0(d.YE));
+    setText('gd-BNP', money0(d.BNP));
+  }
+
+  // ---------- worksheet definitions ----------
+  var FUNCTIONS = [
+    { key:'gg',   label:'General government',             exp:function(d){return d.GGE;},  chg:function(){return 0;},      opg:function(){return 0;},  capg:function(){return 0;}, net:function(d){return d.net_gg;} },
+    { key:'pol',  label:'Police',                          exp:function(d){return d.PE;},   chg:function(){return 0;},      opg:function(d){return d.SOP;}, capg:function(){return 0;}, net:function(d){return d.net_pol;} },
+    { key:'road', label:'Road maintenance and construction', exp:function(d){return d.RE;}, chg:function(){return 0;},      opg:function(d){return d.SOR;}, capg:function(d){return d.SCR;}, net:function(d){return d.net_road;} },
+    { key:'san',  label:'Sanitation',                      exp:function(d){return d.SE;},   chg:function(d){return d.FS;},  opg:function(){return 0;},  capg:function(){return 0;}, net:function(d){return d.net_san;} },
+    { key:'park', label:'Parks and recreation',             exp:function(d){return d.PKE;},  chg:function(d){return d.FP;},  opg:function(){return 0;},  capg:function(){return 0;}, net:function(d){return d.net_park;} },
+    { key:'ys',   label:'Youth and senior programs',        exp:function(d){return d.YE;},   chg:function(d){return d.FY;},  opg:function(){return 0;},  capg:function(){return 0;}, net:function(d){return d.net_ys;} }
+  ];
+
+  function buildJe1Table(){
+    var body = document.getElementById('je1-body');
+    body.innerHTML = '';
+    FUNCTIONS.forEach(function(f){
+      var tr = document.createElement('tr');
+      tr.innerHTML =
+        '<td class="lbl">' + f.label + '</td>' +
+        '<td class="amt"><input type="text" placeholder="$" id="f1-' + f.key + '-exp"></td>' +
+        '<td class="amt"><input type="text" placeholder="$" id="f1-' + f.key + '-chg"></td>' +
+        '<td class="amt"><input type="text" placeholder="$" id="f1-' + f.key + '-opg"></td>' +
+        '<td class="amt"><input type="text" placeholder="$" id="f1-' + f.key + '-capg"></td>' +
+        '<td class="amt"><input type="text" placeholder="$" id="f1-' + f.key + '-net"></td>';
+      body.appendChild(tr);
+    });
+    var trTotal = document.createElement('tr');
+    trTotal.className = 'ws-total';
+    trTotal.innerHTML =
+      '<td class="lbl">Total governmental activities</td>' +
+      '<td class="amt"><input type="text" placeholder="$" id="f1-total-exp"></td>' +
+      '<td class="amt"><input type="text" placeholder="$" id="f1-total-chg"></td>' +
+      '<td class="amt"><input type="text" placeholder="$" id="f1-total-opg"></td>' +
+      '<td class="amt"><input type="text" placeholder="$" id="f1-total-capg"></td>' +
+      '<td class="amt"><input type="text" placeholder="$" id="f1-total-net"></td>';
+    body.appendChild(trTotal);
+  }
+
+  var PART2_ROWS = [
+    { key:'gr-prop',  label:'General revenues—property taxes', val:function(d){return d.P;} },
+    { key:'gr-sales', label:'General revenues—sales taxes', val:function(d){return d.S;} },
+    { key:'gr-total', label:'Total general revenues', val:function(d){return d.totalGeneralRevenue;}, strong:true },
+    { key:'sp-item',  label:'Special item—cleanup costs from tornado', val:function(d){return d.specialItem;} },
+    { key:'cnp',      label:'Change in net position', val:function(d){return d.changeInNetPosition;}, strong:true },
+    { key:'np-end',   label:'Net position—end of year', val:function(d){return d.endingNetPosition;}, strong:true }
+  ];
+
+  function buildJe2Table(){
+    var body = document.getElementById('je2-body');
+    body.innerHTML = '';
+    PART2_ROWS.forEach(function(r){
+      var tr = document.createElement('tr');
+      if(r.strong) tr.className = 'ws-total';
+      tr.innerHTML =
+        '<td class="lbl">' + r.label + '</td>' +
+        '<td class="amt"><input type="text" placeholder="$" id="p2-' + r.key + '"></td>';
+      body.appendChild(tr);
+    });
+  }
+
+  buildJe1Table();
+  buildJe2Table();
+  applyYearLabels();
+
+  // ---------------- wiring ----------------
+  var idInput = document.getElementById('studentId');
+  var genBtn = document.getElementById('genBtn');
+  var currentScenario = null;
+
+  function applyAndStore(id){
+    currentScenario = generateScenario(id);
+    applyScenario(currentScenario);
+    clearAllFieldStates();
+    resetScore({ btn:'check-je1' });
+    resetScore({ btn:'check-je2' });
+  }
+  genBtn.addEventListener('click', function(){ applyAndStore(idInput.value); });
+  idInput.addEventListener('keydown', function(e){
+    if(e.key === 'Enter'){ e.preventDefault(); applyAndStore(idInput.value); }
+  });
+  applyAndStore('');
+
+  // ---- Item 1 check ----
+  (function(){
+    var btn = document.getElementById('check-je1');
+    var g = { btn:'check-je1' };
+    var part = btn.closest('.part');
+    part.addEventListener('input', function(e){
+      if(e.target && e.target.tagName === 'INPUT'){
+        var s = scoreState(g);
+        if(s.checked) s.stale = true;
+      }
+    });
+    btn.addEventListener('click', function(){
+      if(!currentScenario) return;
+      var d = currentScenario;
+      var results = [];
+      FUNCTIONS.forEach(function(f){
+        results.push(markAmount('f1-' + f.key + '-exp', f.exp(d), TOL.dollars));
+        results.push(markAmount('f1-' + f.key + '-chg', f.chg(d), TOL.dollars));
+        results.push(markAmount('f1-' + f.key + '-opg', f.opg(d), TOL.dollars));
+        results.push(markAmount('f1-' + f.key + '-capg', f.capg(d), TOL.dollars));
+        results.push(markAmount('f1-' + f.key + '-net', f.net(d), TOL.dollars));
+      });
+      results.push(markAmount('f1-total-exp', d.totalExpenses, TOL.dollars));
+      results.push(markAmount('f1-total-chg', d.totalCharges, TOL.dollars));
+      results.push(markAmount('f1-total-opg', d.totalOpGrants, TOL.dollars));
+      results.push(markAmount('f1-total-capg', d.totalCapGrants, TOL.dollars));
+      results.push(markAmount('f1-total-net', d.totalNetExpense, TOL.dollars));
+
+      updateSummary('sum-je1', results);
+      var s = scoreState(g);
+      s.graded = results.filter(function(r){ return r !== null; }).length;
+      s.correct = results.filter(function(r){ return r === true; }).length;
+      s.attempts += 1;
+      s.checked = true;
+      s.stale = false;
+      renderOverall();
+    });
+  })();
+
+  // ---- Item 2 check ----
+  (function(){
+    var btn = document.getElementById('check-je2');
+    var g = { btn:'check-je2' };
+    var part = btn.closest('.part');
+    part.addEventListener('input', function(e){
+      if(e.target && e.target.tagName === 'INPUT'){
+        var s = scoreState(g);
+        if(s.checked) s.stale = true;
+      }
+    });
+    btn.addEventListener('click', function(){
+      if(!currentScenario) return;
+      var d = currentScenario;
+      var results = [];
+      PART2_ROWS.forEach(function(r){
+        results.push(markAmount('p2-' + r.key, r.val(d), TOL.dollars));
+      });
+      updateSummary('sum-je2', results);
+      var s = scoreState(g);
+      s.graded = results.filter(function(r){ return r !== null; }).length;
+      s.correct = results.filter(function(r){ return r === true; }).length;
+      s.attempts += 1;
+      s.checked = true;
+      s.stale = false;
+      renderOverall();
+    });
+  })();
+
+  // ---------------- Print / Save as PDF ----------------
+  function val(id){
+    var el = document.getElementById(id);
+    return el ? el.value.trim() : '';
+  }
+  document.getElementById('printBtn').addEventListener('click', function(){
+    var name = val('studentName');
+    var id = val('studentId');
+    var line = document.getElementById('printNameLine');
+    line.textContent = 'Name: ' + (name || '_______________________') +
+                       '     Student ID: ' + (id || '_______________________');
+    var oldTitle = document.title;
+    document.title = FILE_SLUG + '-' + (id || 'submission');
+    window.print();
+    document.title = oldTitle;
+  });
+
+})();
+</script>
+
+</body>
+</html>

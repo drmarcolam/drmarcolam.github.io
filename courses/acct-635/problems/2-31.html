@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Classification of Funds by Category</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --purple:#592C88;
+    --purple-deep:#38195A;
+    --purple-mid:#6E3FA3;
+    --gold:#B0925C;
+    --gold-soft:#D6C398;
+    --gold-pale:#F1E9D6;
+    --parchment:#F7F4EC;
+    --paper:#FFFEFA;
+    --ink:#221B2E;
+    --slate:#5F5A6B;
+    --line:#DBD3E0;
+    --line-soft:#EAE4EF;
+    --answer:#1E5C34;
+    --answer-bg:#E7F1E9;
+    --danger:#9C3B34;
+    --shadow: 0 1px 2px rgba(56,25,90,0.07), 0 6px 18px rgba(56,25,90,0.08);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--parchment);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ color:inherit; }
+
+  header{
+    background: linear-gradient(180deg, var(--purple) 0%, var(--purple-deep) 100%);
+    color:#F1E9D6;
+    padding: 30px 6vw 24px;
+    position:relative;
+  }
+  header::after{
+    content:"";
+    position:absolute; left:0; right:0; bottom:0; height:4px;
+    background: linear-gradient(90deg, var(--gold-soft), var(--gold) 40%, var(--gold-soft) 70%, var(--gold));
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--gold-soft); margin:0 0 10px;
+  }
+  h1.title{
+    font-family:'Source Serif 4', serif; font-weight:600;
+    font-size:clamp(24px,3.4vw,34px); margin:0 0 8px; letter-spacing:-0.01em;
+  }
+  .subtitle{ font-size:14.5px; color:#D9CDE5; max-width:680px; margin:0; }
+
+  .id-bar{
+    max-width:960px; margin:0 auto; padding:18px 6vw 0;
+    display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+  }
+  .id-bar label{ font-size:13px; font-weight:600; color:var(--slate); }
+  .id-bar input[type="text"]{
+    font-family:'Inter',sans-serif; font-size:13.5px; padding:8px 11px;
+    border:1px solid var(--line); border-radius:5px; background:var(--paper); color:var(--ink);
+    width:220px;
+  }
+  .id-bar input:focus{ outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); }
+
+  .score-area{ max-width:960px; margin:0 auto; padding:14px 6vw 0; }
+
+  .rounding-note{
+    max-width:960px; margin:14px auto 0; padding:12px 6vw;
+    font-size:12.5px; color:var(--slate); line-height:1.5;
+  }
+  .rounding-note strong{ color:var(--purple); font-weight:600; }
+
+  main{ max-width:960px; margin:0 auto; padding:22px 6vw 90px; }
+
+  .part{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    box-shadow:var(--shadow);
+    padding:24px 26px 26px;
+    margin-top:26px;
+  }
+  .part-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; color:var(--gold); background:var(--purple);
+    display:inline-block; padding:3px 9px; border-radius:4px; letter-spacing:.04em;
+    margin-bottom:12px;
+  }
+  .part h2{
+    font-family:'Source Serif 4', serif; font-size:21px; font-weight:600;
+    color:var(--purple); margin:0 0 12px;
+  }
+  .scenario{
+    background:var(--parchment);
+    border-left:3px solid var(--gold);
+    padding:14px 18px;
+    border-radius:0 6px 6px 0;
+    font-size:14.5px;
+    color:var(--ink);
+    margin-bottom:16px;
+  }
+  .scenario p{ margin:0 0 10px; }
+  .scenario p:last-child{ margin-bottom:0; }
+  .scenario ul{ margin:0; padding-left:20px; }
+  .scenario li{ margin-bottom:6px; }
+  .scenario li:last-child{ margin-bottom:0; }
+
+  .req{
+    font-weight:600;
+    font-size:14.5px;
+    color:var(--ink);
+    margin:20px 0 10px;
+  }
+  .req span.reqlabel{ color:var(--purple); }
+
+  .footnote{ font-size:12px; color:var(--slate); margin:2px 0 14px; font-style:italic; }
+  .hint{ font-size:12.5px; color:var(--slate); margin:4px 0 10px; }
+
+  table.worksheet{
+    width:100%;
+    border-collapse:collapse;
+    font-size:13.5px;
+    margin:10px 0 4px;
+  }
+  table.worksheet th{
+    text-align:left;
+    font-size:11.5px;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+    color:var(--slate);
+    border-bottom:2px solid var(--purple);
+    padding:8px 8px;
+  }
+  table.worksheet td{
+    border-bottom:1px solid var(--line);
+    padding:11px 8px;
+    vertical-align:top;
+  }
+  table.worksheet td.itemnum{
+    font-family:'IBM Plex Mono',monospace; font-weight:600; color:var(--purple);
+    width:30px; padding-top:14px;
+  }
+  table.worksheet td.itemtext{ font-size:13.5px; padding-top:13px; }
+  table.worksheet td.itemanswer{ width:230px; }
+  table.worksheet select.acct{
+    width:100%;
+    font-family:'Inter',sans-serif;
+    font-size:13.5px;
+    font-weight:400;
+    padding:7px 8px;
+    border:1px solid var(--line);
+    border-radius:5px;
+    background:var(--parchment);
+    color:var(--ink);
+  }
+  table.worksheet select.acct:focus{
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
+  }
+
+  .score-panel{
+    display:flex; align-items:center; gap:18px;
+    margin:0 0 4px; padding:14px 18px;
+    background:var(--parchment);
+    border:1px solid var(--line);
+    border-radius:8px;
+  }
+  .score-panel.scored-good{ background:var(--answer-bg); border-color:#B7D3BE; }
+  .score-panel.scored-bad{ background:#F8F0EF; border-color:#E2C6C2; }
+  .score-pct{
+    font-family:'Source Serif 4', serif;
+    font-size:30px; font-weight:700; line-height:1.05;
+    color:var(--slate); min-width:96px; text-align:center;
+  }
+  .score-panel.scored-good .score-pct{ color:var(--answer); }
+  .score-panel.scored-bad .score-pct{ color:var(--danger); }
+  .score-detail{ flex:1; min-width:0; }
+  .score-meta{ font-size:13.5px; font-weight:600; color:var(--ink); margin:0 0 7px; }
+  .score-bar{ height:8px; border-radius:4px; background:var(--line-soft); overflow:hidden; }
+  .score-bar span{ display:block; height:100%; width:0; background:var(--purple-mid); transition:width .35s ease; }
+  .score-panel.scored-good .score-bar span{ background:var(--answer); }
+  .score-panel.scored-bad .score-bar span{ background:var(--danger); }
+  .score-sub{ font-size:11.5px; color:var(--slate); margin:7px 0 0; }
+
+  .check-bar{
+    margin-top:20px;
+    padding-top:16px;
+    border-top:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .btn-check{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:9px 18px; border:1px solid var(--purple);
+    background:var(--purple); color:#fff; cursor:pointer;
+  }
+  .btn-check:hover{ background:var(--purple-mid); }
+  .check-summary{ font-size:13.5px; font-weight:600; }
+  .check-summary.good{ color:var(--answer); }
+  .check-summary.bad{ color:var(--danger); }
+  .check-disclaimer{ font-size:11.5px; color:var(--slate); width:100%; margin-top:2px; font-style:italic; }
+
+  select.field-correct{
+    border-color:var(--answer) !important;
+    background:var(--answer-bg) !important;
+  }
+  select.field-incorrect{
+    border-color:var(--danger) !important;
+    background:#F3E1DE !important;
+  }
+
+  .submit-bar{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    box-shadow:var(--shadow);
+    padding:22px 26px 24px;
+    margin-top:26px;
+  }
+  .submit-bar h2{
+    font-family:'Source Serif 4', serif; font-size:19px; font-weight:600;
+    color:var(--purple); margin:0 0 14px;
+  }
+  .submit-row{ display:flex; align-items:center; gap:10px; margin-bottom:12px; flex-wrap:wrap; }
+  .submit-row label{ font-size:13px; font-weight:600; color:var(--slate); }
+  .btn-submit{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:10px 18px; border:1px solid var(--purple);
+    background:var(--purple); color:#fff; cursor:pointer;
+  }
+  .btn-submit:hover{ background:var(--purple-mid); }
+  .submit-hint{ font-size:12px; color:var(--slate); margin:6px 0 0; }
+
+  @media print{
+    .print-hide, .id-bar, .check-bar, .rounding-note{ display:none !important; }
+    header{ background:none !important; color:var(--ink) !important; padding:0 0 14px !important; }
+    header::after{ display:none !important; }
+    .eyebrow{ color:var(--purple) !important; }
+    .subtitle{ color:var(--slate) !important; }
+    body{ background:#fff !important; }
+    .part{ box-shadow:none !important; border:1px solid #999 !important; break-inside:auto; }
+    .score-panel{ background:#fff !important; border:1.5px solid #000 !important; break-inside:avoid; }
+    .score-bar{ display:none !important; }
+    .score-pct, .score-panel.scored-good .score-pct, .score-panel.scored-bad .score-pct{ color:#000 !important; }
+    .part h2, .part-label, .scenario{ break-after:avoid; break-inside:avoid; }
+    table.worksheet{ break-inside:auto; }
+    table.worksheet tr{ break-inside:avoid; }
+    .submit-bar{ break-before:avoid; }
+    select.acct{
+      border:none !important;
+      border-bottom:1px solid #000 !important;
+      background:transparent !important;
+      border-radius:0 !important;
+      color:#000 !important;
+      -webkit-appearance:none;
+      -moz-appearance:none;
+      appearance:none;
+      padding:2px 4px !important;
+    }
+    .print-name-line{ display:block !important; }
+  }
+  .print-name-line{ display:none; font-size:13px; color:var(--ink); padding:0 6vw; margin:0 0 10px; }
+
+  footer{ text-align:center; padding:26px 6vw 40px; font-size:12px; color:var(--slate); }
+
+  @media (max-width:600px){
+    header, main, .id-bar{ padding-left:5vw; padding-right:5vw; }
+    table.worksheet{ font-size:12.5px; }
+  }
+
+
+.back-bar{max-width:960px;margin:0 auto;padding:14px 6vw 0;}
+.back-bar a{display:inline-flex;align-items:center;gap:6px;color:var(--purple, #592C88);text-decoration:none;font-family:'Inter',sans-serif;font-size:.92rem;font-weight:600;}
+.back-bar a:hover{text-decoration:underline;}
+@media print{.back-bar{display:none;}}
+
+.wcu-gate{position:fixed;inset:0;z-index:99999;background:var(--parchment,#F7F4EC);display:flex;align-items:center;justify-content:center;padding:20px;}
+html.wcu-unlocked .wcu-gate{display:none !important;}
+.wcu-gate-card{background:var(--paper,#FFFEFA);border:1px solid var(--line,#DBD3E0);border-radius:12px;box-shadow:0 10px 30px rgba(56,25,90,.18);padding:34px 32px;max-width:380px;width:100%;text-align:center;font-family:'Inter',sans-serif;}
+.wcu-gate-card .wcu-gate-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold,#B0925C);margin:0 0 8px;}
+.wcu-gate-card h2{font-family:'Source Serif 4',serif;color:var(--purple-deep,#38195A);font-size:20px;margin:0 0 8px;}
+.wcu-gate-card p.wcu-gate-sub{font-size:13px;color:var(--slate,#5F5A6B);margin:0 0 20px;}
+.wcu-gate-card input{width:100%;font-family:'IBM Plex Mono',monospace;font-size:15px;letter-spacing:.06em;text-align:center;text-transform:uppercase;padding:11px 12px;border:1px solid var(--line,#DBD3E0);border-radius:6px;margin-bottom:12px;background:var(--parchment,#F7F4EC);color:var(--ink,#221B2E);box-sizing:border-box;}
+.wcu-gate-card input:focus{outline:none;border-color:var(--purple-mid,#6E3FA3);box-shadow:0 0 0 3px rgba(89,44,136,.12);}
+.wcu-gate-card button{width:100%;font-family:'Inter',sans-serif;font-size:14px;font-weight:600;padding:11px 12px;border:1px solid var(--purple,#592C88);border-radius:6px;background:var(--purple,#592C88);color:#fff;cursor:pointer;}
+.wcu-gate-card button:hover{background:var(--purple-mid,#6E3FA3);}
+.wcu-gate-error{display:none;color:#9C3B34;font-size:12.5px;margin-top:12px;}
+@media print{ .wcu-gate{ display:none !important; } }
+</style>
+</head>
+<body>
+<script>(function(){try{if(localStorage.getItem('wcu_unlock_acct635')==='1'){document.documentElement.classList.add('wcu-unlocked');}}catch(e){}})();</script>
+<div class="wcu-gate" id="wcu-gate">
+  <div class="wcu-gate-card">
+    <p class="wcu-gate-eyebrow">ACCT 635</p>
+    <h2>Access Code Required</h2>
+    <p class="wcu-gate-sub">Enter the course access code to view this page.</p>
+    <form id="wcu-gate-form" autocomplete="off">
+      <input type="text" id="wcu-gate-input" placeholder="Access code" autocapitalize="characters" autocomplete="off">
+      <button type="submit">Unlock</button>
+      <p class="wcu-gate-error" id="wcu-gate-error">That code isn&rsquo;t correct. Please try again.</p>
+    </form>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY='wcu_unlock_acct635', CODE='ACCT635DOR';
+  function unlock(){
+    try{ localStorage.setItem(KEY,'1'); }catch(e){}
+    document.documentElement.classList.add('wcu-unlocked');
+  }
+  var form = document.getElementById('wcu-gate-form');
+  if(form){
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var input = document.getElementById('wcu-gate-input');
+      var err = document.getElementById('wcu-gate-error');
+      var val = (input.value || '').trim().toUpperCase();
+      if(val === CODE){ unlock(); } else { err.style.display='block'; input.value=''; input.focus(); }
+    });
+  }
+})();
+</script>
+
+<div class="back-bar print-hide"><a href="../../acct-635.html">&larr; Back to ACCT 635</a></div>
+
+
+<header>
+  <p class="eyebrow">ACCT 635 &middot; Governmental and Nonprofit Accounting &middot; Fund Structure</p>
+  <h1 class="title">Classifying Funds by Category — Governmental, Proprietary, and Fiduciary</h1>
+  <p class="subtitle">Deciding which of the three fund categories a state government would use to account for each of the following activities.</p>
+</header>
+
+<p class="print-name-line" id="printNameLine"></p>
+
+<div class="id-bar">
+  <label for="studentName">Name</label>
+  <input type="text" id="studentName" placeholder="First and last name">
+</div>
+
+<div class="score-area" id="scoreArea"></div>
+
+<div class="rounding-note">
+  <strong>Before you start:</strong> for each purpose below, select the <strong>category</strong> of fund a state government would use — Governmental, Proprietary, or Fiduciary. Recall that governmental funds account for most tax-supported activities, proprietary funds account for business-type activities financed largely by user charges, and fiduciary funds account for resources held by the government in a trustee or agency capacity for parties outside the government.
+</div>
+
+<main>
+
+  <div class="part">
+    <span class="part-label">Problem 2-31</span>
+    <h2>Identify Transactions to a Fund Category</h2>
+    <div class="scenario">
+      <p>State which category of funds (governmental, proprietary, or fiduciary) would be used by a state government for each of the following purposes:</p>
+    </div>
+
+    <div class="req"><span class="reqlabel">Required:</span> Select the fund category for each purpose below.</div>
+
+    <table class="worksheet">
+      <thead>
+        <tr><th style="width:30px;">#</th><th>Purpose</th><th style="width:230px;">Fund Category</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="itemnum">1</td>
+          <td class="itemtext">To construct a new office building for use by various departments</td>
+          <td class="itemanswer">
+            <select class="acct" id="q1-select">
+              <option value="">— select category —</option>
+              <option value="Governmental">Governmental</option>
+              <option value="Proprietary">Proprietary</option>
+              <option value="Fiduciary">Fiduciary</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td class="itemnum">2</td>
+          <td class="itemtext">To pay salaries of personnel who maintain state parks</td>
+          <td class="itemanswer">
+            <select class="acct" id="q2-select">
+              <option value="">— select category —</option>
+              <option value="Governmental">Governmental</option>
+              <option value="Proprietary">Proprietary</option>
+              <option value="Fiduciary">Fiduciary</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td class="itemnum">3</td>
+          <td class="itemtext">To accumulate resources in a trust fund to pay pension benefits for its employees</td>
+          <td class="itemanswer">
+            <select class="acct" id="q3-select">
+              <option value="">— select category —</option>
+              <option value="Governmental">Governmental</option>
+              <option value="Proprietary">Proprietary</option>
+              <option value="Fiduciary">Fiduciary</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td class="itemnum">4</td>
+          <td class="itemtext">To collect sales taxes for local governments who &ldquo;piggy-back&rdquo; their sales taxes on top of the state sales tax</td>
+          <td class="itemanswer">
+            <select class="acct" id="q4-select">
+              <option value="">— select category —</option>
+              <option value="Governmental">Governmental</option>
+              <option value="Proprietary">Proprietary</option>
+              <option value="Fiduciary">Fiduciary</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td class="itemnum">5</td>
+          <td class="itemtext">To operate a central printing department that prints forms and reports for all state departments</td>
+          <td class="itemanswer">
+            <select class="acct" id="q5-select">
+              <option value="">— select category —</option>
+              <option value="Governmental">Governmental</option>
+              <option value="Proprietary">Proprietary</option>
+              <option value="Fiduciary">Fiduciary</option>
+            </select>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="check-bar">
+      <button class="btn-check" id="check-all" type="button">Check my work</button>
+      <span class="check-summary" id="sum-all"></span>
+      <span class="check-disclaimer">This checks your fund-category selections against the key.</span>
+    </div>
+  </div>
+
+  <div class="submit-bar print-hide">
+    <h2>Ready to submit?</h2>
+    <p class="submit-hint" style="margin:0 0 12px;">Your name is taken from the top of the page.</p>
+    <div class="submit-row submit-actions">
+      <button class="btn-submit" id="printBtn" type="button">Print / Save as PDF</button>
+    </div>
+    <p class="submit-hint">This captures exactly what's currently filled in above and works offline.</p>
+  </div>
+</main>
+
+<footer>Classification of Funds by Category &middot; ACCT 635 &middot; Western Carolina University</footer>
+
+<script>
+(function(){
+  var FILE_SLUG = "ACCT635-Fund-Categories-P2-31";
+
+  var ANSWERS = {
+    q1:'Governmental',
+    q2:'Governmental',
+    q3:'Fiduciary',
+    q4:'Fiduciary',
+    q5:'Proprietary'
+  };
+
+  function clearFieldState(el){
+    if(!el) return;
+    el.classList.remove('field-correct', 'field-incorrect');
+  }
+  function markSelect(id, expected){
+    var el = document.getElementById(id);
+    if(!el) return null;
+    el.classList.remove('field-correct', 'field-incorrect');
+    var ok = el.value === expected;
+    el.classList.add(ok ? 'field-correct' : 'field-incorrect');
+    if(!el.dataset.clearBound){
+      el.addEventListener('change', function(){ clearFieldState(el); });
+      el.dataset.clearBound = '1';
+    }
+    return ok;
+  }
+  function updateSummary(elId, results){
+    var el = document.getElementById(elId);
+    if(!el) return;
+    var graded = results.filter(function(r){ return r !== null; }).length;
+    var correct = results.filter(function(r){ return r === true; }).length;
+    el.textContent = correct + ' of ' + graded + ' correct';
+    el.classList.remove('good', 'bad');
+    el.classList.add(correct === graded && graded > 0 ? 'good' : 'bad');
+  }
+
+  var SCORE_PROMPT = 'Select a fund category for every item above, then choose <strong>Check my work</strong>. Every blank counts as incorrect.';
+
+  function renderScore(correct, graded){
+    var area = document.getElementById('scoreArea');
+    if(!area) return;
+    var panel = area.querySelector('.score-panel');
+    if(!panel){
+      panel = document.createElement('div');
+      panel.className = 'score-panel';
+      panel.innerHTML =
+        '<div class="score-pct">&mdash;</div>' +
+        '<div class="score-detail">' +
+          '<p class="score-meta">Score</p>' +
+          '<div class="score-bar"><span></span></div>' +
+          '<p class="score-sub">' + SCORE_PROMPT + '</p>' +
+        '</div>';
+      area.appendChild(panel);
+    }
+    var pctEl = panel.querySelector('.score-pct');
+    var metaEl = panel.querySelector('.score-meta');
+    var fillEl = panel.querySelector('.score-bar span');
+    var subEl = panel.querySelector('.score-sub');
+    panel.classList.remove('scored-good','scored-bad');
+    if(graded === null){
+      pctEl.innerHTML = '&mdash;';
+      metaEl.textContent = 'Score';
+      fillEl.style.width = '0%';
+      subEl.innerHTML = SCORE_PROMPT;
+      return;
+    }
+    var pct = graded ? Math.round(correct/graded*100) : 0;
+    pctEl.textContent = pct + '%';
+    metaEl.textContent = correct + ' of ' + graded + ' correct';
+    fillEl.style.width = pct + '%';
+    if(correct === graded){
+      subEl.textContent = 'All selections match the key.';
+      panel.classList.add('scored-good');
+    } else {
+      subEl.textContent = (graded-correct) + ' item(s) still to fix.';
+      panel.classList.add('scored-bad');
+    }
+  }
+  renderScore(0, null);
+
+  document.getElementById('check-all').addEventListener('click', function(){
+    var results = [];
+    Object.keys(ANSWERS).forEach(function(k){
+      results.push(markSelect(k + '-select', ANSWERS[k]));
+    });
+    updateSummary('sum-all', results);
+    var graded = results.filter(function(r){ return r !== null; }).length;
+    var correct = results.filter(function(r){ return r === true; }).length;
+    renderScore(correct, graded);
+  });
+
+  // ---------------- Print / Save as PDF ----------------
+  function val(id){
+    var el = document.getElementById(id);
+    return el ? el.value.trim() : '';
+  }
+  document.getElementById('printBtn').addEventListener('click', function(){
+    var name = val('studentName');
+    var line = document.getElementById('printNameLine');
+    line.textContent = 'Name: ' + (name || '_______________________');
+    var oldTitle = document.title;
+    document.title = FILE_SLUG + '-' + (name || 'submission');
+    window.print();
+    document.title = oldTitle;
+  });
+
+})();
+</script>
+
+</body>
+</html>

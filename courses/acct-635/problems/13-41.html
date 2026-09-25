@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Journal Entries for Contributions to a VHWO — Feed the Needy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --purple:#592C88;
+    --purple-deep:#38195A;
+    --purple-mid:#6E3FA3;
+    --gold:#B0925C;
+    --gold-soft:#D6C398;
+    --gold-pale:#F1E9D6;
+    --parchment:#F7F4EC;
+    --paper:#FFFEFA;
+    --ink:#221B2E;
+    --slate:#5F5A6B;
+    --line:#DBD3E0;
+    --line-soft:#EAE4EF;
+    --answer:#1E5C34;
+    --answer-bg:#E7F1E9;
+    --danger:#9C3B34;
+    --shadow: 0 1px 2px rgba(56,25,90,0.07), 0 6px 18px rgba(56,25,90,0.08);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--parchment);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ color:inherit; }
+
+  header{
+    background: linear-gradient(180deg, var(--purple) 0%, var(--purple-deep) 100%);
+    color:#F1E9D6;
+    padding: 30px 6vw 24px;
+    position:relative;
+  }
+  header::after{
+    content:"";
+    position:absolute; left:0; right:0; bottom:0; height:4px;
+    background: linear-gradient(90deg, var(--gold-soft), var(--gold) 40%, var(--gold-soft) 70%, var(--gold));
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--gold-soft); margin:0 0 10px;
+  }
+  h1.title{
+    font-family:'Source Serif 4', serif; font-weight:600;
+    font-size:clamp(24px,3.4vw,34px); margin:0 0 8px; letter-spacing:-0.01em;
+  }
+  .subtitle{ font-size:14.5px; color:#D9CDE5; max-width:680px; margin:0; }
+
+  .id-bar{
+    max-width:960px; margin:0 auto; padding:18px 6vw 0;
+    display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+  }
+  .id-bar label{ font-size:13px; font-weight:600; color:var(--slate); }
+  .id-bar input[type="text"]{
+    font-family:'Inter',sans-serif; font-size:13.5px; padding:8px 11px;
+    border:1px solid var(--line); border-radius:5px; background:var(--paper); color:var(--ink);
+    width:220px;
+  }
+  .id-bar input:focus{ outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); }
+  .id-bar .id-hint{ font-size:12px; color:var(--slate); }
+
+  .score-area{ max-width:960px; margin:0 auto; padding:14px 6vw 0; }
+
+  .rounding-note{
+    max-width:960px; margin:14px auto 0; padding:12px 6vw;
+    font-size:12.5px; color:var(--slate); line-height:1.5;
+  }
+  .rounding-note strong{ color:var(--purple); font-weight:600; }
+
+  main{ max-width:960px; margin:0 auto; padding:22px 6vw 90px; }
+
+  .part{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    box-shadow:var(--shadow);
+    padding:24px 26px 26px;
+    margin-top:26px;
+  }
+  .part-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; color:var(--gold); background:var(--purple);
+    display:inline-block; padding:3px 9px; border-radius:4px; letter-spacing:.04em;
+    margin-bottom:12px;
+  }
+  .part h2{
+    font-family:'Source Serif 4', serif; font-size:21px; font-weight:600;
+    color:var(--purple); margin:0 0 12px;
+  }
+  .scenario{
+    background:var(--parchment);
+    border-left:3px solid var(--gold);
+    padding:14px 18px;
+    border-radius:0 6px 6px 0;
+    font-size:14.5px;
+    color:var(--ink);
+    margin-bottom:16px;
+  }
+  .scenario p{ margin:0 0 10px; }
+  .scenario p:last-child{ margin-bottom:0; }
+  .scenario span.val{ font-weight:700; color:var(--purple-deep); }
+
+  .req{
+    font-weight:600;
+    font-size:14.5px;
+    color:var(--ink);
+    margin:20px 0 10px;
+  }
+  .req span.reqlabel{ color:var(--purple); }
+
+  .noentry{
+    background:var(--gold-pale);
+    border-left:3px solid var(--purple);
+    padding:14px 18px;
+    border-radius:0 6px 6px 0;
+    font-size:14px;
+    color:var(--purple-deep);
+    margin-top:10px;
+  }
+  .noentry strong{ color:var(--purple); }
+
+  h4.subsection{
+    font-family:'Source Serif 4',serif; font-size:15px; color:var(--purple); margin:22px 0 6px;
+    border-bottom:1px solid var(--line-soft); padding-bottom:4px;
+  }
+
+  .footnote{ font-size:12px; color:var(--slate); margin:2px 0 14px; font-style:italic; }
+  .hint{ font-size:12.5px; color:var(--slate); margin:4px 0 10px; }
+
+  table.given{ width:100%; border-collapse:collapse; font-size:13px; margin:6px 0 14px; }
+  table.given th{ text-align:left; font-size:10.5px; text-transform:uppercase; letter-spacing:.03em; color:var(--slate); border-bottom:2px solid var(--purple); padding:6px 8px; }
+  table.given td{ border-bottom:1px solid var(--line); padding:5px 8px; font-family:'IBM Plex Mono', monospace; }
+  table.given td.lbl{ font-family:'Inter',sans-serif; }
+  table.given td.num, table.given th.num{ text-align:right; }
+  table.given tr.given-total td{ border-top:1.6px solid var(--purple); font-weight:600; }
+  table.given tr.given-sub td{ font-family:'Inter',sans-serif; padding-left:22px; }
+
+  table.worksheet{
+    width:100%;
+    border-collapse:collapse;
+    font-size:13.5px;
+    margin:10px 0 4px;
+  }
+  table.worksheet th{
+    text-align:left;
+    font-size:11.5px;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+    color:var(--slate);
+    border-bottom:2px solid var(--purple);
+    padding:8px 8px;
+  }
+  table.worksheet th.num{ text-align:right; }
+  table.worksheet td{
+    border-bottom:1px solid var(--line);
+    padding:9px 8px;
+    vertical-align:middle;
+  }
+  table.worksheet td.sub{ padding-left:24px; }
+  table.worksheet td.amt{ width:130px; text-align:right; font-family:'IBM Plex Mono',monospace; }
+  table.worksheet tr.ws-group + tr.ws-group-start td{ border-top:1.4px solid var(--purple-mid); }
+  table.worksheet tr.ws-entrystart td{ padding-top:16px; }
+  table.worksheet input[type="text"]{
+    width:100%;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13.5px;
+    padding:6px 8px;
+    border:1px solid var(--line);
+    border-radius:5px;
+    background:var(--parchment);
+    color:var(--ink);
+    text-align:right;
+  }
+  table.worksheet input[type="text"]:focus{
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
+  }
+  table.worksheet select.acct{
+    width:100%;
+    font-family:'Inter',sans-serif;
+    font-size:13.5px;
+    font-weight:400;
+    padding:6px 8px;
+    border:1px solid var(--line);
+    border-radius:5px;
+    background:var(--parchment);
+    color:var(--ink);
+  }
+  table.worksheet select.acct:focus{
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
+  }
+  table.worksheet td.acctcell{ padding-right:14px; }
+  table.worksheet td.entrytag{ font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--gold); background:var(--purple); border-radius:4px; padding:2px 7px; display:inline-block; }
+
+  .score-panel{
+    display:flex; align-items:center; gap:18px;
+    margin:0 0 4px; padding:14px 18px;
+    background:var(--parchment);
+    border:1px solid var(--line);
+    border-radius:8px;
+  }
+  .score-panel.scored-good{ background:var(--answer-bg); border-color:#B7D3BE; }
+  .score-panel.scored-bad{ background:#F8F0EF; border-color:#E2C6C2; }
+  .score-pct{
+    font-family:'Source Serif 4', serif;
+    font-size:30px; font-weight:700; line-height:1.05;
+    color:var(--slate); min-width:96px; text-align:center;
+  }
+  .score-panel.scored-good .score-pct{ color:var(--answer); }
+  .score-panel.scored-bad .score-pct{ color:var(--danger); }
+  .score-detail{ flex:1; min-width:0; }
+  .score-meta{ font-size:13.5px; font-weight:600; color:var(--ink); margin:0 0 7px; }
+  .score-bar{ height:8px; border-radius:4px; background:var(--line-soft); overflow:hidden; }
+  .score-bar span{ display:block; height:100%; width:0; background:var(--purple-mid); transition:width .35s ease; }
+  .score-panel.scored-good .score-bar span{ background:var(--answer); }
+  .score-panel.scored-bad .score-bar span{ background:var(--danger); }
+  .score-sub{ font-size:11.5px; color:var(--slate); margin:7px 0 0; }
+
+  .check-bar{
+    margin-top:20px;
+    padding-top:16px;
+    border-top:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .btn-check{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:9px 18px; border:1px solid var(--purple);
+    background:var(--purple); color:#fff; cursor:pointer;
+  }
+  .btn-check:hover{ background:var(--purple-mid); }
+  .check-summary{ font-size:13.5px; font-weight:600; }
+  .check-summary.good{ color:var(--answer); }
+  .check-summary.bad{ color:var(--danger); }
+  .check-disclaimer{ font-size:11.5px; color:var(--slate); width:100%; margin-top:2px; font-style:italic; }
+
+  input.field-correct, select.field-correct{
+    border-color:var(--answer) !important;
+    background:var(--answer-bg) !important;
+  }
+  input.field-incorrect, select.field-incorrect{
+    border-color:var(--danger) !important;
+    background:#F3E1DE !important;
+  }
+
+  .submit-bar{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    box-shadow:var(--shadow);
+    padding:22px 26px 24px;
+    margin-top:26px;
+  }
+  .submit-bar h2{
+    font-family:'Source Serif 4', serif; font-size:19px; font-weight:600;
+    color:var(--purple); margin:0 0 14px;
+  }
+  .submit-row{ display:flex; align-items:center; gap:10px; margin-bottom:12px; flex-wrap:wrap; }
+  .submit-row label{ font-size:13px; font-weight:600; color:var(--slate); }
+  .btn-submit{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:10px 18px; border:1px solid var(--purple);
+    background:var(--purple); color:#fff; cursor:pointer;
+  }
+  .btn-submit:hover{ background:var(--purple-mid); }
+  .submit-hint{ font-size:12px; color:var(--slate); margin:6px 0 0; }
+
+  @media print{
+    .print-hide, .id-bar, .check-bar, .rounding-note{ display:none !important; }
+    header{ background:none !important; color:var(--ink) !important; padding:0 0 14px !important; }
+    header::after{ display:none !important; }
+    .eyebrow{ color:var(--purple) !important; }
+    .subtitle{ color:var(--slate) !important; }
+    body{ background:#fff !important; }
+    .part{ box-shadow:none !important; border:1px solid #999 !important; break-inside:auto; }
+    .score-panel{ background:#fff !important; border:1.5px solid #000 !important; break-inside:avoid; }
+    .score-bar{ display:none !important; }
+    .score-pct, .score-panel.scored-good .score-pct, .score-panel.scored-bad .score-pct{ color:#000 !important; }
+    .part h2, .part-label, .scenario, h4.subsection{ break-after:avoid; break-inside:avoid; }
+    table.given, table.worksheet{ break-inside:auto; }
+    table.given tr, table.worksheet tr{ break-inside:avoid; }
+    .submit-bar{ break-before:avoid; }
+    input[type="text"], select.acct{
+      border:none !important;
+      border-bottom:1px solid #000 !important;
+      background:transparent !important;
+      border-radius:0 !important;
+      color:#000 !important;
+      -webkit-appearance:none;
+      -moz-appearance:none;
+      appearance:none;
+      padding:2px 4px !important;
+    }
+    .print-name-line{ display:block !important; }
+  }
+  .print-name-line{ display:none; font-size:13px; color:var(--ink); padding:0 6vw; margin:0 0 10px; }
+
+  footer{ text-align:center; padding:26px 6vw 40px; font-size:12px; color:var(--slate); }
+
+  @media (max-width:600px){
+    header, main, .id-bar{ padding-left:5vw; padding-right:5vw; }
+    table.worksheet{ font-size:12.5px; }
+  }
+
+
+  html:not(.wcu-unlocked) body > *:not(#wcu-gate){ display:none !important; }
+  #wcu-gate{
+    position:fixed; inset:0; z-index:9999;
+    background: linear-gradient(180deg, #38195A 0%, #221B2E 100%);
+    display:flex; align-items:center; justify-content:center;
+    padding:24px;
+    font-family:'Inter',sans-serif;
+  }
+  html.wcu-unlocked .wcu-gate{ display:none !important; }
+  .wcu-gate-card{
+    background:#FFFEFA; border-radius:12px; max-width:380px; width:100%;
+    padding:32px 30px 28px; text-align:center;
+    box-shadow:0 10px 40px rgba(0,0,0,0.35);
+  }
+  .wcu-gate-eyebrow{
+    font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.12em;
+    text-transform:uppercase; color:#B0925C; margin:0 0 10px;
+  }
+  .wcu-gate-card h2{
+    font-family:'Source Serif 4', serif; font-size:20px; color:#38195A; margin:0 0 14px;
+  }
+  .wcu-gate-card input[type="text"]{
+    width:100%; font-family:'Inter',sans-serif; font-size:14px; padding:10px 12px;
+    border:1px solid #DBD3E0; border-radius:6px; margin-bottom:12px; box-sizing:border-box;
+    text-align:center; letter-spacing:.05em;
+  }
+  .wcu-gate-card button{
+    width:100%; font-family:'Inter',sans-serif; font-size:14px; font-weight:600;
+    border-radius:6px; padding:10px 18px; border:1px solid #592C88;
+    background:#592C88; color:#fff; cursor:pointer;
+  }
+  .wcu-gate-card button:hover{ background:#6E3FA3; }
+  .wcu-gate-error{ color:#9C3B34; font-size:12.5px; margin:10px 0 0; min-height:16px; }
+
+  .back-bar{ max-width:960px; margin:0 auto; padding:14px 6vw 0; }
+  .back-bar a{
+    font-family:'Inter',sans-serif; font-size:13px; font-weight:600;
+    color:#592C88; text-decoration:none;
+  }
+  .back-bar a:hover{ text-decoration:underline; }
+</style>
+</head>
+<body>
+<div id="wcu-gate">
+  <div class="wcu-gate-card">
+    <p class="wcu-gate-eyebrow">ACCT 635 &middot; Governmental &amp; Nonprofit Accounting</p>
+    <h2>Access Code Required</h2>
+    <input type="text" id="wcu-gate-input" placeholder="Enter access code" autocomplete="off">
+    <button type="button" id="wcu-gate-btn">Unlock</button>
+    <p class="wcu-gate-error" id="wcu-gate-error"></p>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY = 'wcu_unlock_acct635';
+  var CODE = 'ACCT635DOR';
+  try{
+    if(localStorage.getItem(KEY) === '1'){
+      document.documentElement.classList.add('wcu-unlocked');
+    }
+  }catch(e){}
+  function tryUnlock(){
+    var val = document.getElementById('wcu-gate-input').value.trim().toUpperCase();
+    if(val === CODE){
+      try{ localStorage.setItem(KEY, '1'); }catch(e){}
+      document.documentElement.classList.add('wcu-unlocked');
+    } else {
+      document.getElementById('wcu-gate-error').textContent = 'Incorrect code. Please try again.';
+    }
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    var btn = document.getElementById('wcu-gate-btn');
+    var input = document.getElementById('wcu-gate-input');
+    if(btn) btn.addEventListener('click', tryUnlock);
+    if(input) input.addEventListener('keydown', function(e){ if(e.key === 'Enter') tryUnlock(); });
+  });
+})();
+</script>
+<div class="back-bar print-hide"><a href="../../acct-635.html">&larr; Back to ACCT 635</a></div>
+
+
+<header>
+  <p class="eyebrow">ACCT 635 &middot; Governmental and Nonprofit Accounting &middot; Contribution Accounting for a Voluntary Health and Welfare Organization</p>
+  <h1 class="title">Journal Entries for Contributions to a VHWO — Feed the Needy</h1>
+  <p class="subtitle">Feed the Needy (FTN), a voluntary health and welfare organization based in Sylva, North Carolina, has three programs: (a) providing meals for the needy in its own facility (Service to Needy program); (b) providing meals for senior citizens through a contract with the Jackson County Department on Aging (Service to Seniors program); and (c) distributing food to other facilities in the area that serve the needy (Food Distribution program). FTN maintains a warehouse to store donated food and has cooking and serving facilities. It does not use fund accounting. Prepare journal entries to record the following transactions and events, which occurred during its fiscal year <span id="yr-0">2026</span> (which was the calendar year).</p>
+</header>
+
+<p class="print-name-line" id="printNameLine"></p>
+
+<div class="id-bar">
+  <label for="studentName">Name</label>
+  <input type="text" id="studentName" placeholder="First and last name">
+  <label for="studentId">Student ID</label>
+  <input type="text" id="studentId" placeholder="e.g. 920410165">
+  <button id="genBtn" type="button">Generate scenario</button>
+  <span class="id-hint">Leave the ID blank and click to restore the original textbook figures.</span>
+</div>
+
+<div class="score-area" id="scoreArea"></div>
+
+<div class="rounding-note">
+  <strong>Before you start:</strong> FTN reports under the not-for-profit (accrual) model using two net asset classes &mdash; <em>Without Donor Restrictions</em> and <em>With Donor Restrictions</em> &mdash; rather than fund accounting. Enter all dollar amounts <strong>in whole dollars</strong> (e.g., 150,000), and use the account dropdown to select the exact account title for each line. Some transactions require no journal entry at all &mdash; read each item's requirement carefully. Where a transaction requires more than one journal entry, each is labeled.
+</div>
+
+<main>
+
+  <!-- ITEM 1 -->
+  <div class="part">
+    <span class="part-label">Item 1</span>
+    <h2>Annual fundraising drive</h2>
+    <div class="scenario">
+      <p>On January 10, <span id="yr-1">2026</span>, in response to its annual fundraising drive to finance day-to-day operations, FTN received <span class="val" id="sc-cashDonations">$150,000</span> of cash donations and <span class="val" id="sc-promisesTotal">$400,000</span> of promises to donate cash. Based on experience, FTN expected to collect <span class="val" id="sc-collectRate">80</span> percent of the promises made to donate cash, all of which are to be used to finance its activities during the current fiscal year.</p>
+    </div>
+    <div class="req"><span class="reqlabel">Required:</span> Prepare (1) the entry to record the cash donations and (2) the entry to record the promises to give, at their net realizable value.</div>
+    <table class="worksheet">
+      <thead><tr><th>Account</th><th class="num">Debit</th><th class="num">Credit</th></tr></thead>
+      <tbody id="je1-body"></tbody>
+    </table>
+    <div class="check-bar">
+      <button class="btn-check" id="check-je1" type="button">Check my work</button>
+      <span class="check-summary" id="sum-je1"></span>
+      <span class="check-disclaimer">This checks your account selections and amounts against the key within a small tolerance.</span>
+    </div>
+  </div>
+
+  <!-- ITEM 2 -->
+  <div class="part">
+    <span class="part-label">Item 2</span>
+    <h2>Collection and write-off of pledges</h2>
+    <div class="scenario">
+      <p>During the year, FTN received cash of <span class="val" id="sc-cashCollected">$310,000</span> from the promises to give (see Item 1) and wrote off the remaining receivable as uncollectible.</p>
+    </div>
+    <div class="req"><span class="reqlabel">Required:</span> Prepare (1) the entry to record the cash collected and (2) the entry to write off the remaining receivable.</div>
+    <table class="worksheet">
+      <thead><tr><th>Account</th><th class="num">Debit</th><th class="num">Credit</th></tr></thead>
+      <tbody id="je2-body"></tbody>
+    </table>
+    <div class="check-bar">
+      <button class="btn-check" id="check-je2" type="button">Check my work</button>
+      <span class="check-summary" id="sum-je2"></span>
+      <span class="check-disclaimer">This checks your account selections and amounts against the key within a small tolerance.</span>
+    </div>
+  </div>
+
+  <!-- ITEM 3 -->
+  <div class="part">
+    <span class="part-label">Item 3</span>
+    <h2>Conditional promise to give</h2>
+    <div class="scenario">
+      <p>To meet its expanding operations, FTN determined that it needed to add storage facilities at an estimated cost of <span class="val" id="sc-storageCost">$400,000</span>. Dr. Ted Golfit, a noted research engineer, advised FTN that he would contribute <span class="val" id="sc-golfitMatch">$200,000</span>, provided FTN raised an equal amount from other contributions.</p>
+    </div>
+    <div class="noentry"><strong>No journal entry is required.</strong> Dr. Golfit's promise is a <em>conditional</em> promise to give &mdash; it depends on FTN satisfying a barrier (raising a matching amount) that has not yet occurred. Conditional promises are not recognized as contribution revenue (or as a receivable) until the condition is substantially met; until then, FTN only discloses the conditional promise in the notes to its financial statements.</div>
+  </div>
+
+  <!-- ITEM 4 -->
+  <div class="part">
+    <span class="part-label">Item 4</span>
+    <h2>Donated professional services</h2>
+    <div class="scenario">
+      <p>Attorneys A. and E. Gorman provided free legal services to FTN during the year. FTN would have purchased the services for <span class="val" id="sc-legalValue">$10,000</span> if they had not been donated.</p>
+    </div>
+    <div class="req"><span class="reqlabel">Required:</span> Prepare the entry to record the donated legal services. (Legal work requires a specialized skill that the attorneys possess and that FTN would otherwise have had to purchase, so it meets the criteria for recognizing donated services.)</div>
+    <table class="worksheet">
+      <thead><tr><th>Account</th><th class="num">Debit</th><th class="num">Credit</th></tr></thead>
+      <tbody id="je4-body"></tbody>
+    </table>
+    <div class="check-bar">
+      <button class="btn-check" id="check-je4" type="button">Check my work</button>
+      <span class="check-summary" id="sum-je4"></span>
+      <span class="check-disclaimer">This checks your account selections and amounts against the key within a small tolerance.</span>
+    </div>
+  </div>
+
+  <!-- ITEM 5 -->
+  <div class="part">
+    <span class="part-label">Item 5</span>
+    <h2>Matching condition satisfied</h2>
+    <div class="scenario">
+      <p>FTN raised <span class="val" id="sc-raisedAmount">$220,000</span> in cash as a result of its fundraising campaign to add to its storage facilities (see Item 3). FTN contacted Dr. Golfit, who gave FTN a check for <span class="val" id="sc-golfitMatch2">$200,000</span>.</p>
+    </div>
+    <div class="req"><span class="reqlabel">Required:</span> Prepare the entry to record the cash received, all of which is restricted by the donors to constructing the storage facilities. (Because FTN has now raised the matching amount, Dr. Golfit's condition has been satisfied and his promise is recognized.)</div>
+    <table class="worksheet">
+      <thead><tr><th>Account</th><th class="num">Debit</th><th class="num">Credit</th></tr></thead>
+      <tbody id="je5-body"></tbody>
+    </table>
+    <div class="check-bar">
+      <button class="btn-check" id="check-je5" type="button">Check my work</button>
+      <span class="check-summary" id="sum-je5"></span>
+      <span class="check-disclaimer">This checks your account selections and amounts against the key within a small tolerance.</span>
+    </div>
+  </div>
+
+  <!-- ITEM 6 -->
+  <div class="part">
+    <span class="part-label">Item 6</span>
+    <h2>Construction of storage facilities</h2>
+    <div class="scenario">
+      <p>FTN constructed additional storage facilities at a cost of <span class="val" id="sc-constructionCost">$425,000</span>. It paid for the facilities by using <span class="val" id="sc-totalRestricted">$420,000</span> it had raised for that purpose (see Item 5) and by using <span class="val" id="sc-unrestrictedPortion">$5,000</span> of its available cash without donor restrictions.</p>
+    </div>
+    <div class="req"><span class="reqlabel">Required:</span> Prepare (1) the entry to record the completed facilities and (2) the entry to reclassify net assets because the purpose restriction on the funds raised in Item 5 has now been satisfied.</div>
+    <table class="worksheet">
+      <thead><tr><th>Account</th><th class="num">Debit</th><th class="num">Credit</th></tr></thead>
+      <tbody id="je6-body"></tbody>
+    </table>
+    <div class="check-bar">
+      <button class="btn-check" id="check-je6" type="button">Check my work</button>
+      <span class="check-summary" id="sum-je6"></span>
+      <span class="check-disclaimer">This checks your account selections and amounts against the key within a small tolerance.</span>
+    </div>
+  </div>
+
+  <!-- ITEM 7 -->
+  <div class="part">
+    <span class="part-label">Item 7</span>
+    <h2>County advance payment</h2>
+    <div class="scenario">
+      <p>FTN's contract with the Jackson County Department on Aging called for the county to make quarterly advance payments to FTN. The contract required FTN to report to the county after the end of each quarter, showing actual costs to provide food during the quarter and billing for any difference between actual costs and the advance. FTN received a <span class="val" id="sc-countyAdvance">$20,000</span> advance payment from the county.</p>
+    </div>
+    <div class="req"><span class="reqlabel">Required:</span> Prepare the entry to record the advance. (This is an exchange transaction, not a contribution, so the advance is recorded as a liability until FTN performs the related services.)</div>
+    <table class="worksheet">
+      <thead><tr><th>Account</th><th class="num">Debit</th><th class="num">Credit</th></tr></thead>
+      <tbody id="je7-body"></tbody>
+    </table>
+    <div class="check-bar">
+      <button class="btn-check" id="check-je7" type="button">Check my work</button>
+      <span class="check-summary" id="sum-je7"></span>
+      <span class="check-disclaimer">This checks your account selections and amounts against the key within a small tolerance.</span>
+    </div>
+  </div>
+
+  <!-- ITEM 8 -->
+  <div class="part">
+    <span class="part-label">Item 8</span>
+    <h2>Services provided under the county contract</h2>
+    <div class="scenario">
+      <p>Between January and March, FTN spent <span class="val" id="sc-countyActualCost">$23,000</span> in cash providing services through its contract with the county (see Item 7). On April 4, FTN sent an invoice to the county, showing it had spent <span class="val" id="sc-countyActualCost2">$23,000</span> on the program, deducting the <span class="val" id="sc-countyAdvance2">$20,000</span> advance, and requesting an additional <span class="val" id="sc-countyAdditional">$3,000</span>.</p>
+    </div>
+    <div class="req"><span class="reqlabel">Required:</span> Prepare (1) the entry to record the cash spent providing the services and (2) the entry to recognize exchange revenue at quarter-end, relieving the advance liability and recording the additional amount billed.</div>
+    <table class="worksheet">
+      <thead><tr><th>Account</th><th class="num">Debit</th><th class="num">Credit</th></tr></thead>
+      <tbody id="je8-body"></tbody>
+    </table>
+    <div class="check-bar">
+      <button class="btn-check" id="check-je8" type="button">Check my work</button>
+      <span class="check-summary" id="sum-je8"></span>
+      <span class="check-disclaimer">This checks your account selections and amounts against the key within a small tolerance.</span>
+    </div>
+  </div>
+
+  <!-- ITEM 9 -->
+  <div class="part">
+    <span class="part-label">Item 9</span>
+    <h2>Donated food inventory</h2>
+    <div class="scenario">
+      <p>FTN received donations of <span class="val" id="sc-donatedPounds">600,000</span> pounds of food from supermarkets, bakeries, and food wholesalers. FTN valued the food at <span class="val" id="sc-pricePerLb">$1.50</span> per pound, based on a national study. All donated food is initially recorded in inventory.</p>
+    </div>
+    <div class="req"><span class="reqlabel">Required:</span> Prepare the entry to record the donated food.</div>
+    <table class="worksheet">
+      <thead><tr><th>Account</th><th class="num">Debit</th><th class="num">Credit</th></tr></thead>
+      <tbody id="je9-body"></tbody>
+    </table>
+    <div class="check-bar">
+      <button class="btn-check" id="check-je9" type="button">Check my work</button>
+      <span class="check-summary" id="sum-je9"></span>
+      <span class="check-disclaimer">This checks your account selections and amounts against the key within a small tolerance.</span>
+    </div>
+  </div>
+
+  <!-- ITEM 10 -->
+  <div class="part">
+    <span class="part-label">Item 10</span>
+    <h2>Distribution of donated food</h2>
+    <div class="scenario">
+      <p>FTN distributed <span class="val" id="sc-fdPounds">540,000</span> pounds of food to other facilities under its Food Distribution program and used <span class="val" id="sc-needyPounds">30,000</span> pounds of food in its Service to Needy program (see Item 9).</p>
+    </div>
+    <div class="req"><span class="reqlabel">Required:</span> Prepare the entry to record the food used, valued at the same per-pound cost used in Item 9.</div>
+    <table class="worksheet">
+      <thead><tr><th>Account</th><th class="num">Debit</th><th class="num">Credit</th></tr></thead>
+      <tbody id="je10-body"></tbody>
+    </table>
+    <div class="check-bar">
+      <button class="btn-check" id="check-je10" type="button">Check my work</button>
+      <span class="check-summary" id="sum-je10"></span>
+      <span class="check-disclaimer">This checks your account selections and amounts against the key within a small tolerance.</span>
+    </div>
+  </div>
+
+  <!-- ITEM 11 -->
+  <div class="part">
+    <span class="part-label">Item 11</span>
+    <h2>Donated volunteer time</h2>
+    <div class="scenario">
+      <p>Local residents donated <span class="val" id="sc-volHours">1,000</span> hours of their time serving food at FTN's facility. If the residents had not donated their time, FTN would have paid <span class="val" id="sc-volRate">$8</span> an hour for the services.</p>
+    </div>
+    <div class="noentry"><strong>No journal entry is required.</strong> Serving food does not require the kind of specialized skill (like law, medicine, accounting, or carpentry) that GAAP requires before donated services can be recognized. Because this general volunteer labor does not meet the recognition criteria, it is not recorded &mdash; it would only be disclosed, if material, in the notes to the financial statements.</div>
+  </div>
+
+  <!-- ITEM 12 -->
+  <div class="part">
+    <span class="part-label">Item 12</span>
+    <h2>Handling, packaging, and cooking costs</h2>
+    <div class="scenario">
+      <p>FTN paid <span class="val" id="sc-paymentTotal">$200,000</span> to store food in its warehouse, to package and deliver food to other facilities, and to cook food at its own facility. The <span class="val" id="sc-paymentTotal2">$200,000</span> was charged to the following programs: Food Distribution&mdash;<span class="val" id="sc-paymentFD">$175,000</span>; Service to Needy&mdash;<span class="val" id="sc-paymentNeedy">$25,000</span>.</p>
+    </div>
+    <div class="req"><span class="reqlabel">Required:</span> Prepare the entry to record the cash paid, charged to the two programs as indicated.</div>
+    <table class="worksheet">
+      <thead><tr><th>Account</th><th class="num">Debit</th><th class="num">Credit</th></tr></thead>
+      <tbody id="je12-body"></tbody>
+    </table>
+    <div class="check-bar">
+      <button class="btn-check" id="check-je12" type="button">Check my work</button>
+      <span class="check-summary" id="sum-je12"></span>
+      <span class="check-disclaimer">This checks your account selections and amounts against the key within a small tolerance.</span>
+    </div>
+  </div>
+
+  <div class="submit-bar print-hide">
+    <h2>Ready to submit?</h2>
+    <p class="submit-hint" style="margin:0 0 12px;">Your name is taken from the top of the page.</p>
+    <div class="submit-row submit-actions">
+      <button class="btn-submit" id="printBtn" type="button">Print / Save as PDF</button>
+    </div>
+    <p class="submit-hint">This captures exactly what's currently filled in above and works offline.</p>
+  </div>
+</main>
+
+<footer>Journal Entries for Contributions to a VHWO &middot; ACCT 635 &middot; Western Carolina University</footer>
+
+<script>
+(function(){
+  var FILE_SLUG = "ACCT635-Contributions-to-a-VHWO-P13-41";
+  var CURRENT_YEAR = new Date().getFullYear();
+
+  // ---------- seeded pseudo-random ----------
+  function hashSeed(str){
+    var h = 2166136261;
+    for(var i=0;i<str.length;i++){
+      h ^= str.charCodeAt(i);
+      h = Math.imul(h, 16777619);
+    }
+    return h >>> 0;
+  }
+  function mulberry32(seed){
+    return function(){
+      seed |= 0; seed = seed + 0x6D2B79F5 | 0;
+      var t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
+  }
+  function pick(rand, arr){ return arr[Math.floor(rand() * arr.length)]; }
+  function rTo(x, m){ return Math.round(x/m)*m; }
+
+  function money0(n){
+    var v = Number(n);
+    var s = Math.abs(v).toLocaleString('en-US', {minimumFractionDigits:0, maximumFractionDigits:0});
+    return v < 0 ? '$(' + s + ')' : '$' + s;
+  }
+  function money2(n){
+    var v = Number(n);
+    var s = Math.abs(v).toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
+    return v < 0 ? '$(' + s + ')' : '$' + s;
+  }
+  function num0(n){
+    return Number(n).toLocaleString('en-US', {minimumFractionDigits:0, maximumFractionDigits:0});
+  }
+  function setText(id, text){
+    var el = document.getElementById(id);
+    if(el) el.textContent = text;
+  }
+
+  var TOL = { dollars:1 };
+
+  function parseMoney(s){
+    if(s === null || s === undefined) return NaN;
+    var raw = String(s).trim();
+    var neg = /^\(.*\)$/.test(raw) || /^-/.test(raw) || /^−/.test(raw);
+    var cleaned = raw.replace(/[^0-9.]/g, '');
+    if(cleaned === '') return NaN;
+    var v = parseFloat(cleaned);
+    if(isNaN(v)) return NaN;
+    return neg ? -v : v;
+  }
+  function near(a, b, tol){
+    if(isNaN(a) || isNaN(b)) return false;
+    return Math.abs(a - b) <= tol;
+  }
+  function clearFieldState(el){
+    if(!el) return;
+    el.classList.remove('field-correct', 'field-incorrect');
+  }
+  function clearAllFieldStates(){
+    document.querySelectorAll('.field-correct, .field-incorrect').forEach(function(el){
+      el.classList.remove('field-correct', 'field-incorrect');
+    });
+    document.querySelectorAll('.check-summary').forEach(function(el){
+      el.textContent = ''; el.classList.remove('good','bad');
+    });
+  }
+  function markField(id, correct, tol){
+    var el = document.getElementById(id);
+    if(!el) return null;
+    el.classList.remove('field-correct', 'field-incorrect');
+    var ok = near(parseMoney(el.value), correct, tol);
+    el.classList.add(ok ? 'field-correct' : 'field-incorrect');
+    if(!el.dataset.clearBound){
+      el.addEventListener('input', function(){ clearFieldState(el); });
+      el.dataset.clearBound = '1';
+    }
+    return ok;
+  }
+  function markSelect(id, expected){
+    var el = document.getElementById(id);
+    if(!el) return null;
+    el.classList.remove('field-correct', 'field-incorrect');
+    var ok = el.value === expected;
+    el.classList.add(ok ? 'field-correct' : 'field-incorrect');
+    if(!el.dataset.clearBound){
+      el.addEventListener('change', function(){ clearFieldState(el); });
+      el.dataset.clearBound = '1';
+    }
+    return ok;
+  }
+  function bindClear(el){
+    if(!el || el.dataset.clearBound) return;
+    el.addEventListener('input', function(){ clearFieldState(el); });
+    el.dataset.clearBound = '1';
+  }
+  // A journal-entry row's amount belongs in exactly one of the two columns (Debit or
+  // Credit, per `side`). The other column should be left blank. This grades the pair as
+  // a single result: the active column must hold the right amount, and the other column
+  // must be empty; an amount typed into the wrong column is flagged there too.
+  function markAmountPair(rowId, side, correct, tol){
+    var debitEl = document.getElementById(rowId + '-debit');
+    var creditEl = document.getElementById(rowId + '-credit');
+    if(!debitEl || !creditEl) return null;
+    clearFieldState(debitEl);
+    clearFieldState(creditEl);
+    bindClear(debitEl);
+    bindClear(creditEl);
+
+    var debitBlank = debitEl.value.trim() === '';
+    var creditBlank = creditEl.value.trim() === '';
+    var ok;
+    if(side === 'Dr'){
+      var debitOk = near(parseMoney(debitEl.value), correct, tol);
+      debitEl.classList.add(debitOk ? 'field-correct' : 'field-incorrect');
+      if(!creditBlank) creditEl.classList.add('field-incorrect');
+      ok = debitOk && creditBlank;
+    } else {
+      var creditOk = near(parseMoney(creditEl.value), correct, tol);
+      creditEl.classList.add(creditOk ? 'field-correct' : 'field-incorrect');
+      if(!debitBlank) debitEl.classList.add('field-incorrect');
+      ok = creditOk && debitBlank;
+    }
+    return ok;
+  }
+  function updateSummary(elId, results){
+    var el = document.getElementById(elId);
+    if(!el) return;
+    var graded = results.filter(function(r){ return r !== null; }).length;
+    var correct = results.filter(function(r){ return r === true; }).length;
+    el.textContent = correct + ' of ' + graded + ' correct';
+    el.classList.remove('good', 'bad');
+    el.classList.add(correct === graded && graded > 0 ? 'good' : 'bad');
+  }
+
+  var SCORES = {};
+  function scoreState(g){
+    if(!SCORES[g.btn]) SCORES[g.btn] = { correct:0, graded:0, attempts:0, checked:false, stale:false };
+    return SCORES[g.btn];
+  }
+  function scorePct(s){
+    return s.graded ? Math.round(s.correct / s.graded * 100) : 0;
+  }
+  var SCORE_PROMPT = 'Fill in the journal entry below, then choose <strong>Check my work</strong>. Every blank counts as incorrect.';
+
+  function ensureScorePanel(g){
+    var area = document.getElementById('scoreArea');
+    if(!area) return null;
+    var panel = area.querySelector('.score-panel[data-for="' + g.btn + '"]');
+    if(panel) return panel;
+    panel = document.createElement('div');
+    panel.className = 'score-panel';
+    panel.style.display = 'none';
+    panel.setAttribute('data-for', g.btn);
+    panel.innerHTML =
+      '<div class="score-pct">&mdash;</div>' +
+      '<div class="score-detail">' +
+        '<p class="score-meta">Score</p>' +
+        '<div class="score-bar"><span></span></div>' +
+        '<p class="score-sub">' + SCORE_PROMPT + '</p>' +
+      '</div>';
+    area.appendChild(panel);
+    return panel;
+  }
+
+  // We keep the per-item score summaries inline (near each check button) rather than
+  // stacking score panels above the fold; the scoreArea only shows an overall rollup.
+  function renderOverall(){
+    var area = document.getElementById('scoreArea');
+    if(!area) return;
+    var panel = area.querySelector('.score-panel[data-for="overall"]');
+    if(!panel){
+      panel = document.createElement('div');
+      panel.className = 'score-panel';
+      panel.setAttribute('data-for', 'overall');
+      panel.innerHTML =
+        '<div class="score-pct">&mdash;</div>' +
+        '<div class="score-detail">' +
+          '<p class="score-meta">Overall score</p>' +
+          '<div class="score-bar"><span></span></div>' +
+          '<p class="score-sub">Check each item below; this rolls up every item you have checked so far.</p>' +
+        '</div>';
+      area.appendChild(panel);
+    }
+    var totalCorrect = 0, totalGraded = 0, anyChecked = false;
+    Object.keys(SCORES).forEach(function(k){
+      var s = SCORES[k];
+      if(s.checked){ anyChecked = true; totalCorrect += s.correct; totalGraded += s.graded; }
+    });
+    var pctEl = panel.querySelector('.score-pct');
+    var metaEl = panel.querySelector('.score-meta');
+    var fillEl = panel.querySelector('.score-bar span');
+    var subEl = panel.querySelector('.score-sub');
+    panel.classList.remove('scored-good','scored-bad');
+    if(!anyChecked){
+      pctEl.innerHTML = '&mdash;';
+      metaEl.textContent = 'Overall score';
+      fillEl.style.width = '0%';
+      subEl.textContent = 'Check each item below; this rolls up every item you have checked so far.';
+      return;
+    }
+    var pct = totalGraded ? Math.round(totalCorrect/totalGraded*100) : 0;
+    pctEl.textContent = pct + '%';
+    metaEl.textContent = 'Overall: ' + totalCorrect + ' of ' + totalGraded + ' correct (checked items only)';
+    fillEl.style.width = pct + '%';
+    if(totalCorrect === totalGraded){
+      subEl.textContent = 'All checked items match the key.';
+      panel.classList.add('scored-good');
+    } else {
+      subEl.textContent = (totalGraded-totalCorrect) + ' line(s) still to fix across the items you have checked.';
+      panel.classList.add('scored-bad');
+    }
+  }
+
+  function resetScore(g){
+    SCORES[g.btn] = { correct:0, graded:0, attempts:0, checked:false, stale:false };
+    renderOverall();
+  }
+
+  // ---------- scenario generation ----------
+  function baseline(){
+    return {
+      cashDonations:150000, promisesTotal:400000, collectRate:0.80, cashCollected:310000,
+      legalValue:10000,
+      storageCost:400000, raisedExtra:20000, unrestrictedPortion:5000,
+      countyAdvance:20000, countyExtraBilled:3000,
+      donatedPounds:600000, pricePerLb:1.50,
+      volHours:1000, volRate:8,
+      paymentTotal:200000
+    };
+  }
+
+  function randomParams(rand){
+    var cashDonations = rTo(pick(rand,[100000,125000,150000,175000,200000]),5000);
+    var promisesTotal = rTo(pick(rand,[300000,350000,400000,450000,500000]),10000);
+    var collectRate = pick(rand,[0.70,0.75,0.80,0.85,0.90]);
+    var collectFrac = pick(rand,[0.72,0.75,0.775,0.80,0.825]);
+    var cashCollected = rTo(promisesTotal * collectFrac, 5000);
+
+    var legalValue = rTo(pick(rand,[8000,10000,12000,15000,18000]),1000);
+
+    var storageCost = rTo(pick(rand,[350000,375000,400000,425000,450000]),5000);
+    var raisedExtra = rTo(pick(rand,[10000,15000,20000,25000,30000]),1000);
+    var unrestrictedPortion = rTo(pick(rand,[3000,4000,5000,6000,8000]),1000);
+
+    var countyAdvance = rTo(pick(rand,[15000,18000,20000,22000,25000]),1000);
+    var countyExtraBilled = rTo(pick(rand,[2000,2500,3000,3500,4000]),500);
+
+    var donatedPounds = rTo(pick(rand,[500000,550000,600000,650000,700000]),10000);
+    var pricePerLb = pick(rand,[1.25,1.50,1.75]);
+
+    var volHours = rTo(pick(rand,[800,1000,1200,1500]),100);
+    var volRate = pick(rand,[7,8,9,10]);
+
+    var paymentTotal = rTo(pick(rand,[150000,175000,200000,225000,250000]),5000);
+
+    return {
+      cashDonations:cashDonations, promisesTotal:promisesTotal, collectRate:collectRate, cashCollected:cashCollected,
+      legalValue:legalValue,
+      storageCost:storageCost, raisedExtra:raisedExtra, unrestrictedPortion:unrestrictedPortion,
+      countyAdvance:countyAdvance, countyExtraBilled:countyExtraBilled,
+      donatedPounds:donatedPounds, pricePerLb:pricePerLb,
+      volHours:volHours, volRate:volRate,
+      paymentTotal:paymentTotal
+    };
+  }
+
+  function solve(p){
+    var out = {};
+    for(var k in p) out[k] = p[k];
+
+    out.uncollectible = Math.round(p.promisesTotal * (1 - p.collectRate));
+    out.netPromises = p.promisesTotal - out.uncollectible;
+    out.writeOff = p.promisesTotal - p.cashCollected;
+
+    out.golfitMatch = rTo(p.storageCost / 2, 1000);
+    out.raisedAmount = out.golfitMatch + p.raisedExtra;
+    out.totalRestricted = out.golfitMatch + out.raisedAmount;
+    out.constructionCost = out.totalRestricted + p.unrestrictedPortion;
+
+    out.countyActualCost = p.countyAdvance + p.countyExtraBilled;
+    out.countyAdditional = out.countyActualCost - p.countyAdvance;
+
+    out.donatedFoodValue = p.donatedPounds * p.pricePerLb;
+    out.fdPounds = rTo(p.donatedPounds * 0.90, 1000);
+    out.needyPounds = rTo(p.donatedPounds * 0.05, 1000);
+    out.fdValue = out.fdPounds * p.pricePerLb;
+    out.needyValue = out.needyPounds * p.pricePerLb;
+
+    out.paymentFD = rTo(p.paymentTotal * 0.875, 1000);
+    out.paymentNeedy = p.paymentTotal - out.paymentFD;
+
+    return out;
+  }
+
+  function generateScenario(id){
+    var seed = (id || '').trim();
+    if(seed === '') return solve(baseline());
+    // Folding the current year into the seed means the scenario stays fixed for a given
+    // student ID all year, then refreshes automatically once the calendar turns over.
+    return solve(randomParams(mulberry32(hashSeed(seed.toLowerCase() + '-' + CURRENT_YEAR))));
+  }
+
+  function applyYearLabels(){
+    var y = String(CURRENT_YEAR);
+    setText('yr-0', y);
+    setText('yr-1', y);
+  }
+
+  function applyScenario(d){
+    setText('sc-cashDonations', money0(d.cashDonations));
+    setText('sc-promisesTotal', money0(d.promisesTotal));
+    setText('sc-collectRate', String(Math.round(d.collectRate*100)));
+
+    setText('sc-cashCollected', money0(d.cashCollected));
+
+    setText('sc-storageCost', money0(d.storageCost));
+    setText('sc-golfitMatch', money0(d.golfitMatch));
+
+    setText('sc-legalValue', money0(d.legalValue));
+
+    setText('sc-raisedAmount', money0(d.raisedAmount));
+    setText('sc-golfitMatch2', money0(d.golfitMatch));
+
+    setText('sc-constructionCost', money0(d.constructionCost));
+    setText('sc-totalRestricted', money0(d.totalRestricted));
+    setText('sc-unrestrictedPortion', money0(d.unrestrictedPortion));
+
+    setText('sc-countyAdvance', money0(d.countyAdvance));
+    setText('sc-countyActualCost', money0(d.countyActualCost));
+    setText('sc-countyActualCost2', money0(d.countyActualCost));
+    setText('sc-countyAdvance2', money0(d.countyAdvance));
+    setText('sc-countyAdditional', money0(d.countyAdditional));
+
+    setText('sc-donatedPounds', num0(d.donatedPounds));
+    setText('sc-pricePerLb', money2(d.pricePerLb));
+
+    setText('sc-fdPounds', num0(d.fdPounds));
+    setText('sc-needyPounds', num0(d.needyPounds));
+
+    setText('sc-volHours', num0(d.volHours));
+    setText('sc-volRate', money0(d.volRate));
+
+    setText('sc-paymentTotal', money0(d.paymentTotal));
+    setText('sc-paymentTotal2', money0(d.paymentTotal));
+    setText('sc-paymentFD', money0(d.paymentFD));
+    setText('sc-paymentNeedy', money0(d.paymentNeedy));
+  }
+
+  // ---------- account options ----------
+  var ACCOUNTS = [
+    'Cash',
+    'Contributions Receivable',
+    'Allowance for Uncollectible Pledges',
+    'Accounts Receivable',
+    'Inventory—Donated Food',
+    'Property and Equipment—Storage Facilities',
+    'Refundable Advance—County Contract',
+    'Contribution Revenue—Without Donor Restrictions',
+    'Contribution Revenue—With Donor Restrictions',
+    'Exchange Revenue—Government Contracts',
+    'Net Assets Released from Restriction—With Donor Restrictions',
+    'Net Assets Released from Restriction—Without Donor Restrictions',
+    'Program Expense—Service to Needy',
+    'Program Expense—Service to Seniors',
+    'Program Expense—Food Distribution',
+    'Supporting Services Expense—Management and General'
+  ];
+
+  function acctOptionsHtml(){
+    var html = '<option value="">— select account —</option>';
+    ACCOUNTS.forEach(function(a){
+      html += '<option value="' + a.replace(/"/g,'&quot;') + '">' + a + '</option>';
+    });
+    return html;
+  }
+
+  // Each JE definition: array of rows {side:'Dr'|'Cr', acct: function(d), amt: function(d), tag: optional label}
+  var JE_DEFS = {
+    je1: [
+      { side:'Dr', acct:function(){ return 'Cash'; }, amt:function(d){ return d.cashDonations; }, tag:'(1) Cash donations received' },
+      { side:'Cr', acct:function(){ return 'Contribution Revenue—Without Donor Restrictions'; }, amt:function(d){ return d.cashDonations; } },
+      { side:'Dr', acct:function(){ return 'Contributions Receivable'; }, amt:function(d){ return d.promisesTotal; }, tag:'(2) Promises to give' },
+      { side:'Cr', acct:function(){ return 'Allowance for Uncollectible Pledges'; }, amt:function(d){ return d.uncollectible; } },
+      { side:'Cr', acct:function(){ return 'Contribution Revenue—Without Donor Restrictions'; }, amt:function(d){ return d.netPromises; } }
+    ],
+    je2: [
+      { side:'Dr', acct:function(){ return 'Cash'; }, amt:function(d){ return d.cashCollected; }, tag:'(1) Cash collected on pledges' },
+      { side:'Cr', acct:function(){ return 'Contributions Receivable'; }, amt:function(d){ return d.cashCollected; } },
+      { side:'Dr', acct:function(){ return 'Allowance for Uncollectible Pledges'; }, amt:function(d){ return d.writeOff; }, tag:'(2) Write off uncollectible pledges' },
+      { side:'Cr', acct:function(){ return 'Contributions Receivable'; }, amt:function(d){ return d.writeOff; } }
+    ],
+    je4: [
+      { side:'Dr', acct:function(){ return 'Supporting Services Expense—Management and General'; }, amt:function(d){ return d.legalValue; } },
+      { side:'Cr', acct:function(){ return 'Contribution Revenue—Without Donor Restrictions'; }, amt:function(d){ return d.legalValue; } }
+    ],
+    je5: [
+      { side:'Dr', acct:function(){ return 'Cash'; }, amt:function(d){ return d.totalRestricted; } },
+      { side:'Cr', acct:function(){ return 'Contribution Revenue—With Donor Restrictions'; }, amt:function(d){ return d.totalRestricted; } }
+    ],
+    je6: [
+      { side:'Dr', acct:function(){ return 'Property and Equipment—Storage Facilities'; }, amt:function(d){ return d.constructionCost; }, tag:'(1) Record completed facilities' },
+      { side:'Cr', acct:function(){ return 'Cash'; }, amt:function(d){ return d.constructionCost; } },
+      { side:'Dr', acct:function(){ return 'Net Assets Released from Restriction—With Donor Restrictions'; }, amt:function(d){ return d.totalRestricted; }, tag:'(2) Reclassify net assets — restriction satisfied' },
+      { side:'Cr', acct:function(){ return 'Net Assets Released from Restriction—Without Donor Restrictions'; }, amt:function(d){ return d.totalRestricted; } }
+    ],
+    je7: [
+      { side:'Dr', acct:function(){ return 'Cash'; }, amt:function(d){ return d.countyAdvance; } },
+      { side:'Cr', acct:function(){ return 'Refundable Advance—County Contract'; }, amt:function(d){ return d.countyAdvance; } }
+    ],
+    je8: [
+      { side:'Dr', acct:function(){ return 'Program Expense—Service to Seniors'; }, amt:function(d){ return d.countyActualCost; }, tag:'(1) Record cost of services provided' },
+      { side:'Cr', acct:function(){ return 'Cash'; }, amt:function(d){ return d.countyActualCost; } },
+      { side:'Dr', acct:function(){ return 'Refundable Advance—County Contract'; }, amt:function(d){ return d.countyAdvance; }, tag:'(2) Recognize exchange revenue at quarter-end' },
+      { side:'Dr', acct:function(){ return 'Accounts Receivable'; }, amt:function(d){ return d.countyAdditional; } },
+      { side:'Cr', acct:function(){ return 'Exchange Revenue—Government Contracts'; }, amt:function(d){ return d.countyActualCost; } }
+    ],
+    je9: [
+      { side:'Dr', acct:function(){ return 'Inventory—Donated Food'; }, amt:function(d){ return d.donatedFoodValue; } },
+      { side:'Cr', acct:function(){ return 'Contribution Revenue—Without Donor Restrictions'; }, amt:function(d){ return d.donatedFoodValue; } }
+    ],
+    je10: [
+      { side:'Dr', acct:function(){ return 'Program Expense—Food Distribution'; }, amt:function(d){ return d.fdValue; } },
+      { side:'Dr', acct:function(){ return 'Program Expense—Service to Needy'; }, amt:function(d){ return d.needyValue; } },
+      { side:'Cr', acct:function(){ return 'Inventory—Donated Food'; }, amt:function(d){ return d.fdValue + d.needyValue; } }
+    ],
+    je12: [
+      { side:'Dr', acct:function(){ return 'Program Expense—Food Distribution'; }, amt:function(d){ return d.paymentFD; } },
+      { side:'Dr', acct:function(){ return 'Program Expense—Service to Needy'; }, amt:function(d){ return d.paymentNeedy; } },
+      { side:'Cr', acct:function(){ return 'Cash'; }, amt:function(d){ return d.paymentFD + d.paymentNeedy; } }
+    ]
+  };
+
+  function buildJeTable(jeKey){
+    var body = document.getElementById(jeKey + '-body');
+    if(!body) return;
+    body.innerHTML = '';
+    JE_DEFS[jeKey].forEach(function(row, idx){
+      var tr = document.createElement('tr');
+      var rowId = jeKey + '-r' + idx;
+      var tagHtml = row.tag ? ('<div class="hint" style="margin:0 0 4px;"><span class="entrytag">' + row.tag + '</span></div>') : '';
+      tr.innerHTML =
+        '<td class="acctcell">' + tagHtml + '<select class="acct" id="' + rowId + '-acct">' + acctOptionsHtml() + '</select></td>' +
+        '<td class="amt"><input type="text" placeholder="$" id="' + rowId + '-debit"></td>' +
+        '<td class="amt"><input type="text" placeholder="$" id="' + rowId + '-credit"></td>';
+      body.appendChild(tr);
+    });
+  }
+
+  Object.keys(JE_DEFS).forEach(buildJeTable);
+  applyYearLabels();
+
+  // ---------------- wiring ----------------
+  var idInput = document.getElementById('studentId');
+  var genBtn = document.getElementById('genBtn');
+  var currentScenario = null;
+
+  function applyAndStore(id){
+    currentScenario = generateScenario(id);
+    applyScenario(currentScenario);
+    clearAllFieldStates();
+    Object.keys(JE_DEFS).forEach(function(k){
+      resetScore({ btn:'check-' + k });
+    });
+  }
+  genBtn.addEventListener('click', function(){ applyAndStore(idInput.value); });
+  idInput.addEventListener('keydown', function(e){
+    if(e.key === 'Enter'){ e.preventDefault(); applyAndStore(idInput.value); }
+  });
+  applyAndStore('');
+
+  Object.keys(JE_DEFS).forEach(function(jeKey){
+    var btnId = 'check-' + jeKey;
+    var summaryId = 'sum-' + jeKey;
+    var btn = document.getElementById(btnId);
+    if(!btn) return;
+    var g = { btn: btnId };
+
+    var part = btn.closest('.part');
+    if(part){
+      part.addEventListener('input', function(e){
+        if(e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT')){
+          var s = scoreState(g);
+          if(s.checked) s.stale = true;
+        }
+      });
+      part.addEventListener('change', function(e){
+        if(e.target && e.target.tagName === 'SELECT'){
+          var s = scoreState(g);
+          if(s.checked) s.stale = true;
+        }
+      });
+    }
+
+    btn.addEventListener('click', function(){
+      if(!currentScenario) return;
+      var rows = JE_DEFS[jeKey];
+      var results = [];
+      rows.forEach(function(row, idx){
+        var rowId = jeKey + '-r' + idx;
+        var expectedAcct = row.acct(currentScenario);
+        var expectedAmt = row.amt(currentScenario);
+        results.push(markSelect(rowId + '-acct', expectedAcct));
+        results.push(markAmountPair(rowId, row.side, expectedAmt, TOL.dollars));
+      });
+      updateSummary(summaryId, results);
+      var s = scoreState(g);
+      s.graded = results.filter(function(r){ return r !== null; }).length;
+      s.correct = results.filter(function(r){ return r === true; }).length;
+      s.attempts += 1;
+      s.checked = true;
+      s.stale = false;
+      renderOverall();
+    });
+  });
+
+  // ---------------- Print / Save as PDF ----------------
+  function val(id){
+    var el = document.getElementById(id);
+    return el ? el.value.trim() : '';
+  }
+  document.getElementById('printBtn').addEventListener('click', function(){
+    var name = val('studentName');
+    var id = val('studentId');
+    var line = document.getElementById('printNameLine');
+    line.textContent = 'Name: ' + (name || '_______________________') +
+                       '     Student ID: ' + (id || '_______________________');
+    var oldTitle = document.title;
+    document.title = FILE_SLUG + '-' + (id || 'submission');
+    window.print();
+    document.title = oldTitle;
+  });
+
+})();
+</script>
+
+</body>
+</html>

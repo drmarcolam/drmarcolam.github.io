@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Internal Service Fund — City of Hendersonville</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --purple:#592C88;
+    --purple-deep:#38195A;
+    --purple-mid:#6E3FA3;
+    --gold:#B0925C;
+    --gold-soft:#D6C398;
+    --gold-pale:#F1E9D6;
+    --parchment:#F7F4EC;
+    --paper:#FFFEFA;
+    --ink:#221B2E;
+    --slate:#5F5A6B;
+    --line:#DBD3E0;
+    --line-soft:#EAE4EF;
+    --answer:#1E5C34;
+    --answer-bg:#E7F1E9;
+    --danger:#9C3B34;
+    --shadow: 0 1px 2px rgba(56,25,90,0.07), 0 6px 18px rgba(56,25,90,0.08);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--parchment);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ color:inherit; }
+
+  header{
+    background: linear-gradient(180deg, var(--purple) 0%, var(--purple-deep) 100%);
+    color:#F1E9D6;
+    padding: 30px 6vw 24px;
+    position:relative;
+  }
+  header::after{
+    content:"";
+    position:absolute; left:0; right:0; bottom:0; height:4px;
+    background: linear-gradient(90deg, var(--gold-soft), var(--gold) 40%, var(--gold-soft) 70%, var(--gold));
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--gold-soft); margin:0 0 10px;
+  }
+  h1.title{
+    font-family:'Source Serif 4', serif; font-weight:600;
+    font-size:clamp(24px,3.4vw,34px); margin:0 0 8px; letter-spacing:-0.01em;
+  }
+  .subtitle{ font-size:14.5px; color:#D9CDE5; max-width:680px; margin:0; }
+
+  .id-bar{
+    max-width:960px; margin:0 auto; padding:18px 6vw 0;
+    display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+  }
+  .id-bar label{ font-size:13px; font-weight:600; color:var(--slate); }
+  .id-bar input[type="text"]{
+    font-family:'Inter',sans-serif; font-size:13.5px; padding:8px 11px;
+    border:1px solid var(--line); border-radius:5px; background:var(--paper); color:var(--ink);
+    width:220px;
+  }
+  .id-bar input:focus{ outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); }
+  .id-bar .id-hint{ font-size:12px; color:var(--slate); }
+
+  .score-area{ max-width:960px; margin:0 auto; padding:14px 6vw 0; }
+
+  .rounding-note{
+    max-width:960px; margin:14px auto 0; padding:12px 6vw;
+    font-size:12.5px; color:var(--slate); line-height:1.5;
+  }
+  .rounding-note strong{ color:var(--purple); font-weight:600; }
+
+  main{ max-width:960px; margin:0 auto; padding:22px 6vw 90px; }
+
+  .part{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    box-shadow:var(--shadow);
+    padding:24px 26px 26px;
+    margin-top:26px;
+  }
+  .part-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; color:var(--gold); background:var(--purple);
+    display:inline-block; padding:3px 9px; border-radius:4px; letter-spacing:.04em;
+    margin-bottom:12px;
+  }
+  .part h2{
+    font-family:'Source Serif 4', serif; font-size:21px; font-weight:600;
+    color:var(--purple); margin:0 0 12px;
+  }
+  .scenario{
+    background:var(--parchment);
+    border-left:3px solid var(--gold);
+    padding:14px 18px;
+    border-radius:0 6px 6px 0;
+    font-size:14.5px;
+    color:var(--ink);
+    margin-bottom:16px;
+  }
+  .scenario p{ margin:0 0 10px; }
+  .scenario p:last-child{ margin-bottom:0; }
+  .scenario span.val{ font-weight:700; color:var(--purple-deep); }
+
+  .req{
+    font-weight:600;
+    font-size:14.5px;
+    color:var(--ink);
+    margin:20px 0 10px;
+  }
+  .req span.reqlabel{ color:var(--purple); }
+
+  h4.subsection{
+    font-family:'Source Serif 4',serif; font-size:15px; color:var(--purple); margin:22px 0 6px;
+    border-bottom:1px solid var(--line-soft); padding-bottom:4px;
+  }
+
+  .footnote{ font-size:12px; color:var(--slate); margin:2px 0 14px; font-style:italic; }
+  .hint{ font-size:12.5px; color:var(--slate); margin:4px 0 10px; }
+
+  table.given{ width:100%; border-collapse:collapse; font-size:13px; margin:6px 0 14px; }
+  table.given th{ text-align:left; font-size:10.5px; text-transform:uppercase; letter-spacing:.03em; color:var(--slate); border-bottom:2px solid var(--purple); padding:6px 8px; }
+  table.given td{ border-bottom:1px solid var(--line); padding:5px 8px; font-family:'IBM Plex Mono', monospace; }
+  table.given td.lbl{ font-family:'Inter',sans-serif; }
+  table.given td.num, table.given th.num{ text-align:right; }
+  table.given tr.given-total td{ border-top:1.6px solid var(--purple); font-weight:600; }
+  table.given tr.given-sub td{ font-family:'Inter',sans-serif; padding-left:22px; }
+
+  table.worksheet{
+    width:100%;
+    border-collapse:collapse;
+    font-size:13.5px;
+    margin:10px 0 4px;
+  }
+  table.worksheet th{
+    text-align:left;
+    font-size:11.5px;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+    color:var(--slate);
+    border-bottom:2px solid var(--purple);
+    padding:8px 8px;
+  }
+  table.worksheet th.num{ text-align:right; }
+  table.worksheet td{
+    border-bottom:1px solid var(--line);
+    padding:9px 8px;
+    vertical-align:middle;
+  }
+  table.worksheet td.sub{ padding-left:24px; }
+  table.worksheet td.amt{ width:130px; text-align:right; font-family:'IBM Plex Mono',monospace; }
+  table.worksheet tr.ws-group + tr.ws-group-start td{ border-top:1.4px solid var(--purple-mid); }
+  table.worksheet tr.ws-entrystart td{ padding-top:16px; }
+  table.worksheet input[type="text"]{
+    width:100%;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13.5px;
+    padding:6px 8px;
+    border:1px solid var(--line);
+    border-radius:5px;
+    background:var(--parchment);
+    color:var(--ink);
+    text-align:right;
+  }
+  table.worksheet input[type="text"]:focus{
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
+  }
+  table.worksheet select.acct{
+    width:100%;
+    font-family:'Inter',sans-serif;
+    font-size:13.5px;
+    font-weight:400;
+    padding:6px 8px;
+    border:1px solid var(--line);
+    border-radius:5px;
+    background:var(--parchment);
+    color:var(--ink);
+  }
+  table.worksheet select.acct:focus{
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
+  }
+  table.worksheet td.acctcell{ padding-right:14px; }
+  table.worksheet td.entrytag{ font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--gold); background:var(--purple); border-radius:4px; padding:2px 7px; display:inline-block; }
+
+  table.stmt td.label{ font-size:13.5px; }
+  table.stmt td.label.indent{ padding-left:26px; color:var(--slate); }
+  table.stmt tr.stmt-bold td{ font-weight:700; border-top:1.4px solid var(--purple-mid); color:var(--purple-deep); }
+  table.stmt tr.stmt-final td{ border-top:1.6px solid var(--purple); border-bottom:1.6px solid var(--purple); }
+
+  .score-panel{
+    display:flex; align-items:center; gap:18px;
+    margin:0 0 4px; padding:14px 18px;
+    background:var(--parchment);
+    border:1px solid var(--line);
+    border-radius:8px;
+  }
+  .score-panel.scored-good{ background:var(--answer-bg); border-color:#B7D3BE; }
+  .score-panel.scored-bad{ background:#F8F0EF; border-color:#E2C6C2; }
+  .score-pct{
+    font-family:'Source Serif 4', serif;
+    font-size:30px; font-weight:700; line-height:1.05;
+    color:var(--slate); min-width:96px; text-align:center;
+  }
+  .score-panel.scored-good .score-pct{ color:var(--answer); }
+  .score-panel.scored-bad .score-pct{ color:var(--danger); }
+  .score-detail{ flex:1; min-width:0; }
+  .score-meta{ font-size:13.5px; font-weight:600; color:var(--ink); margin:0 0 7px; }
+  .score-bar{ height:8px; border-radius:4px; background:var(--line-soft); overflow:hidden; }
+  .score-bar span{ display:block; height:100%; width:0; background:var(--purple-mid); transition:width .35s ease; }
+  .score-panel.scored-good .score-bar span{ background:var(--answer); }
+  .score-panel.scored-bad .score-bar span{ background:var(--danger); }
+  .score-sub{ font-size:11.5px; color:var(--slate); margin:7px 0 0; }
+
+  .check-bar{
+    margin-top:20px;
+    padding-top:16px;
+    border-top:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .btn-check{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:9px 18px; border:1px solid var(--purple);
+    background:var(--purple); color:#fff; cursor:pointer;
+  }
+  .btn-check:hover{ background:var(--purple-mid); }
+  .check-summary{ font-size:13.5px; font-weight:600; }
+  .check-summary.good{ color:var(--answer); }
+  .check-summary.bad{ color:var(--danger); }
+  .check-disclaimer{ font-size:11.5px; color:var(--slate); width:100%; margin-top:2px; font-style:italic; }
+
+  input.field-correct, select.field-correct{
+    border-color:var(--answer) !important;
+    background:var(--answer-bg) !important;
+  }
+  input.field-incorrect, select.field-incorrect{
+    border-color:var(--danger) !important;
+    background:#F3E1DE !important;
+  }
+
+  .submit-bar{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    box-shadow:var(--shadow);
+    padding:22px 26px 24px;
+    margin-top:26px;
+  }
+  .submit-bar h2{
+    font-family:'Source Serif 4', serif; font-size:19px; font-weight:600;
+    color:var(--purple); margin:0 0 14px;
+  }
+  .submit-row{ display:flex; align-items:center; gap:10px; margin-bottom:12px; flex-wrap:wrap; }
+  .submit-row label{ font-size:13px; font-weight:600; color:var(--slate); }
+  .btn-submit{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:10px 18px; border:1px solid var(--purple);
+    background:var(--purple); color:#fff; cursor:pointer;
+  }
+  .btn-submit:hover{ background:var(--purple-mid); }
+  .submit-hint{ font-size:12px; color:var(--slate); margin:6px 0 0; }
+
+  @media print{
+    .print-hide, .id-bar, .check-bar, .rounding-note{ display:none !important; }
+    header{ background:none !important; color:var(--ink) !important; padding:0 0 14px !important; }
+    header::after{ display:none !important; }
+    .eyebrow{ color:var(--purple) !important; }
+    .subtitle{ color:var(--slate) !important; }
+    body{ background:#fff !important; }
+    .part{ box-shadow:none !important; border:1px solid #999 !important; break-inside:auto; }
+    .score-panel{ background:#fff !important; border:1.5px solid #000 !important; break-inside:avoid; }
+    .score-bar{ display:none !important; }
+    .score-pct, .score-panel.scored-good .score-pct, .score-panel.scored-bad .score-pct{ color:#000 !important; }
+    .part h2, .part-label, .scenario, h4.subsection{ break-after:avoid; break-inside:avoid; }
+    table.given, table.worksheet{ break-inside:auto; }
+    table.given tr, table.worksheet tr{ break-inside:avoid; }
+    .submit-bar{ break-before:avoid; }
+    input[type="text"], select.acct{
+      border:none !important;
+      border-bottom:1px solid #000 !important;
+      background:transparent !important;
+      border-radius:0 !important;
+      color:#000 !important;
+      -webkit-appearance:none;
+      -moz-appearance:none;
+      appearance:none;
+      padding:2px 4px !important;
+    }
+    .print-name-line{ display:block !important; }
+  }
+  .print-name-line{ display:none; font-size:13px; color:var(--ink); padding:0 6vw; margin:0 0 10px; }
+
+  footer{ text-align:center; padding:26px 6vw 40px; font-size:12px; color:var(--slate); }
+
+  @media (max-width:600px){
+    header, main, .id-bar{ padding-left:5vw; padding-right:5vw; }
+    table.worksheet{ font-size:12.5px; }
+  }
+
+
+  html:not(.wcu-unlocked) body > *:not(#wcu-gate){ display:none !important; }
+  #wcu-gate{
+    position:fixed; inset:0; z-index:9999;
+    background: linear-gradient(180deg, #38195A 0%, #221B2E 100%);
+    display:flex; align-items:center; justify-content:center;
+    padding:24px;
+    font-family:'Inter',sans-serif;
+  }
+  html.wcu-unlocked .wcu-gate{ display:none !important; }
+  .wcu-gate-card{
+    background:#FFFEFA; border-radius:12px; max-width:380px; width:100%;
+    padding:32px 30px 28px; text-align:center;
+    box-shadow:0 10px 40px rgba(0,0,0,0.35);
+  }
+  .wcu-gate-eyebrow{
+    font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.12em;
+    text-transform:uppercase; color:#B0925C; margin:0 0 10px;
+  }
+  .wcu-gate-card h2{
+    font-family:'Source Serif 4', serif; font-size:20px; color:#38195A; margin:0 0 14px;
+  }
+  .wcu-gate-card input[type="text"]{
+    width:100%; font-family:'Inter',sans-serif; font-size:14px; padding:10px 12px;
+    border:1px solid #DBD3E0; border-radius:6px; margin-bottom:12px; box-sizing:border-box;
+    text-align:center; letter-spacing:.05em;
+  }
+  .wcu-gate-card button{
+    width:100%; font-family:'Inter',sans-serif; font-size:14px; font-weight:600;
+    border-radius:6px; padding:10px 18px; border:1px solid #592C88;
+    background:#592C88; color:#fff; cursor:pointer;
+  }
+  .wcu-gate-card button:hover{ background:#6E3FA3; }
+  .wcu-gate-error{ color:#9C3B34; font-size:12.5px; margin:10px 0 0; min-height:16px; }
+
+  .back-bar{ max-width:960px; margin:0 auto; padding:14px 6vw 0; }
+  .back-bar a{
+    font-family:'Inter',sans-serif; font-size:13px; font-weight:600;
+    color:#592C88; text-decoration:none;
+  }
+  .back-bar a:hover{ text-decoration:underline; }
+</style>
+</head>
+<body>
+<div id="wcu-gate">
+  <div class="wcu-gate-card">
+    <p class="wcu-gate-eyebrow">ACCT 635 &middot; Governmental &amp; Nonprofit Accounting</p>
+    <h2>Access Code Required</h2>
+    <input type="text" id="wcu-gate-input" placeholder="Enter access code" autocomplete="off">
+    <button type="button" id="wcu-gate-btn">Unlock</button>
+    <p class="wcu-gate-error" id="wcu-gate-error"></p>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY = 'wcu_unlock_acct635';
+  var CODE = 'ACCT635DOR';
+  try{
+    if(localStorage.getItem(KEY) === '1'){
+      document.documentElement.classList.add('wcu-unlocked');
+    }
+  }catch(e){}
+  function tryUnlock(){
+    var val = document.getElementById('wcu-gate-input').value.trim().toUpperCase();
+    if(val === CODE){
+      try{ localStorage.setItem(KEY, '1'); }catch(e){}
+      document.documentElement.classList.add('wcu-unlocked');
+    } else {
+      document.getElementById('wcu-gate-error').textContent = 'Incorrect code. Please try again.';
+    }
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    var btn = document.getElementById('wcu-gate-btn');
+    var input = document.getElementById('wcu-gate-input');
+    if(btn) btn.addEventListener('click', tryUnlock);
+    if(input) input.addEventListener('keydown', function(e){ if(e.key === 'Enter') tryUnlock(); });
+  });
+})();
+</script>
+<div class="back-bar print-hide"><a href="../../acct-635.html">&larr; Back to ACCT 635</a></div>
+
+
+<header>
+  <p class="eyebrow">ACCT 635 &middot; Governmental and Nonprofit Accounting &middot; Proprietary Funds — Internal Service Funds</p>
+  <h1 class="title">Journal Entries and Financial Statements — Data Processing Fund, City of Hendersonville</h1>
+  <p class="subtitle">Recording a year's activity in an Internal Service Fund using full accrual accounting, then preparing the fund's statement of revenues, expenses, and changes in net position and its statement of net position.</p>
+</header>
+
+<p class="print-name-line" id="printNameLine"></p>
+
+<div class="id-bar">
+  <label for="studentName">Name</label>
+  <input type="text" id="studentName" placeholder="First and last name">
+  <label for="studentId">Student ID</label>
+  <input type="text" id="studentId" placeholder="e.g. 920410165">
+  <button id="genBtn" type="button">Generate scenario</button>
+  <span class="id-hint">Leave the ID blank and click to restore the original textbook figures.</span>
+</div>
+
+<div class="score-area" id="scoreArea"></div>
+
+<div class="rounding-note">
+  <strong>Before you start:</strong> record every entry in the Data Processing Fund's general journal using full accrual accounting (no budgetary or encumbrance entries are needed for an Internal Service Fund). Enter all dollar amounts <strong>in whole dollars</strong> (e.g., 285,000), and use the account dropdown to select the exact account title for each journal-entry line. On the two statements below, fill in every line — including subtotals and totals — and enter a deduction (such as accumulated depreciation) in parentheses, e.g. <strong>(250,000)</strong>.
+</div>
+
+<main>
+
+  <div class="part">
+    <span class="part-label">Background</span>
+    <h2>City of Hendersonville — Data Processing Fund</h2>
+    <div class="scenario">
+      <p>The <span class="val">City of Hendersonville's</span> Data Processing Fund, an Internal Service Fund, had the following transactions and events during calendar year <span class="val" id="yr-0">2026</span>. The Fund provides services for a fee to all departments of Hendersonville's government.</p>
+      <p><strong>Required:</strong> Prepare (a) the journal entries necessary to record the transactions and events in the Data Processing Fund; (b) a statement of revenues, expenses, and changes in net position for the Data Processing Fund for <span class="val" id="yr-1">2026</span>; and (c) a statement of net position as of December 31, <span class="val" id="yr-2">2026</span>.</p>
+    </div>
+  </div>
+
+  <!-- ITEM 1 -->
+  <div class="part">
+    <span class="part-label">Item 1</span>
+    <h2>Fund established by the General Fund</h2>
+    <div class="scenario">
+      <p>The General Fund made a <span class="val" id="sc-transfer">$2,000,000</span> transfer of cash to establish the Data Processing Fund.</p>
+    </div>
+    <div class="req"><span class="reqlabel">Required:</span> Prepare the journal entry to record the transfer.</div>
+    <table class="worksheet">
+      <thead><tr><th>Account</th><th class="num">Debit</th><th class="num">Credit</th></tr></thead>
+      <tbody id="je1-body"></tbody>
+    </table>
+    <div class="check-bar">
+      <button class="btn-check" id="check-je1" type="button">Check my work</button>
+      <span class="check-summary" id="sum-je1"></span>
+      <span class="check-disclaimer">This checks your account selections and amounts against the key within a small tolerance.</span>
+    </div>
+  </div>
+
+  <!-- ITEM 2 -->
+  <div class="part">
+    <span class="part-label">Item 2</span>
+    <h2>Computer purchased for cash</h2>
+    <div class="scenario">
+      <p>The Data Processing Fund pays cash for a <span class="val" id="sc-computer">$1,900,000</span> computer.</p>
+    </div>
+    <div class="req"><span class="reqlabel">Required:</span> Prepare the journal entry to record the purchase.</div>
+    <table class="worksheet">
+      <thead><tr><th>Account</th><th class="num">Debit</th><th class="num">Credit</th></tr></thead>
+      <tbody id="je2-body"></tbody>
+    </table>
+    <div class="check-bar">
+      <button class="btn-check" id="check-je2" type="button">Check my work</button>
+      <span class="check-summary" id="sum-je2"></span>
+      <span class="check-disclaimer">This checks your account selections and amounts against the key within a small tolerance.</span>
+    </div>
+  </div>
+
+  <!-- ITEM 3 -->
+  <div class="part">
+    <span class="part-label">Item 3</span>
+    <h2>Supplies purchased on credit</h2>
+    <div class="scenario">
+      <p>Supplies costing <span class="val" id="sc-supplies">$4,500</span> were purchased on credit.</p>
+    </div>
+    <div class="req"><span class="reqlabel">Required:</span> Prepare the journal entry to record the purchase.</div>
+    <table class="worksheet">
+      <thead><tr><th>Account</th><th class="num">Debit</th><th class="num">Credit</th></tr></thead>
+      <tbody id="je3-body"></tbody>
+    </table>
+    <div class="check-bar">
+      <button class="btn-check" id="check-je3" type="button">Check my work</button>
+      <span class="check-summary" id="sum-je3"></span>
+      <span class="check-disclaimer">This checks your account selections and amounts against the key within a small tolerance.</span>
+    </div>
+  </div>
+
+  <!-- ITEM 4 -->
+  <div class="part">
+    <span class="part-label">Item 4</span>
+    <h2>Bills sent to city departments</h2>
+    <div class="scenario">
+      <p>Bills totaling <span class="val" id="sc-billings">$650,000</span> were sent to the various city departments.</p>
+    </div>
+    <div class="req"><span class="reqlabel">Required:</span> Prepare the journal entry to record the billings.</div>
+    <table class="worksheet">
+      <thead><tr><th>Account</th><th class="num">Debit</th><th class="num">Credit</th></tr></thead>
+      <tbody id="je4-body"></tbody>
+    </table>
+    <div class="check-bar">
+      <button class="btn-check" id="check-je4" type="button">Check my work</button>
+      <span class="check-summary" id="sum-je4"></span>
+      <span class="check-disclaimer">This checks your account selections and amounts against the key within a small tolerance.</span>
+    </div>
+  </div>
+
+  <!-- ITEM 5 -->
+  <div class="part">
+    <span class="part-label">Item 5</span>
+    <h2>Repairs on credit</h2>
+    <div class="scenario">
+      <p>Repairs to the computer were made at a cost of <span class="val" id="sc-repairs">$2,400</span>, on credit.</p>
+    </div>
+    <div class="req"><span class="reqlabel">Required:</span> Prepare the journal entry to record the repairs.</div>
+    <table class="worksheet">
+      <thead><tr><th>Account</th><th class="num">Debit</th><th class="num">Credit</th></tr></thead>
+      <tbody id="je5-body"></tbody>
+    </table>
+    <div class="check-bar">
+      <button class="btn-check" id="check-je5" type="button">Check my work</button>
+      <span class="check-summary" id="sum-je5"></span>
+      <span class="check-disclaimer">This checks your account selections and amounts against the key within a small tolerance.</span>
+    </div>
+  </div>
+
+  <!-- ITEM 6 -->
+  <div class="part">
+    <span class="part-label">Item 6</span>
+    <h2>Collections from departments</h2>
+    <div class="scenario">
+      <p>Collections from city departments for services (see item 4) were <span class="val" id="sc-collections">$629,000</span>.</p>
+    </div>
+    <div class="req"><span class="reqlabel">Required:</span> Prepare the journal entry to record the collections.</div>
+    <table class="worksheet">
+      <thead><tr><th>Account</th><th class="num">Debit</th><th class="num">Credit</th></tr></thead>
+      <tbody id="je6-body"></tbody>
+    </table>
+    <div class="check-bar">
+      <button class="btn-check" id="check-je6" type="button">Check my work</button>
+      <span class="check-summary" id="sum-je6"></span>
+      <span class="check-disclaimer">This checks your account selections and amounts against the key within a small tolerance.</span>
+    </div>
+  </div>
+
+  <!-- ITEM 7 -->
+  <div class="part">
+    <span class="part-label">Item 7</span>
+    <h2>Salaries paid</h2>
+    <div class="scenario">
+      <p>Salaries of <span class="val" id="sc-salaries">$200,000</span> were paid to the employees.</p>
+    </div>
+    <div class="req"><span class="reqlabel">Required:</span> Prepare the journal entry to record the salaries.</div>
+    <table class="worksheet">
+      <thead><tr><th>Account</th><th class="num">Debit</th><th class="num">Credit</th></tr></thead>
+      <tbody id="je7-body"></tbody>
+    </table>
+    <div class="check-bar">
+      <button class="btn-check" id="check-je7" type="button">Check my work</button>
+      <span class="check-summary" id="sum-je7"></span>
+      <span class="check-disclaimer">This checks your account selections and amounts against the key within a small tolerance.</span>
+    </div>
+  </div>
+
+  <!-- ITEM 8 -->
+  <div class="part">
+    <span class="part-label">Item 8</span>
+    <h2>Accounts payable paid</h2>
+    <div class="scenario">
+      <p>Accounts payable totaling <span class="val" id="sc-appaid">$5,900</span> was paid.</p>
+    </div>
+    <div class="req"><span class="reqlabel">Required:</span> Prepare the journal entry to record the payment.</div>
+    <table class="worksheet">
+      <thead><tr><th>Account</th><th class="num">Debit</th><th class="num">Credit</th></tr></thead>
+      <tbody id="je8-body"></tbody>
+    </table>
+    <div class="check-bar">
+      <button class="btn-check" id="check-je8" type="button">Check my work</button>
+      <span class="check-summary" id="sum-je8"></span>
+      <span class="check-disclaimer">This checks your account selections and amounts against the key within a small tolerance.</span>
+    </div>
+  </div>
+
+  <!-- ITEM 9 -->
+  <div class="part">
+    <span class="part-label">Item 9</span>
+    <h2>Supplies on hand at year-end</h2>
+    <div class="scenario">
+      <p>As of the end of the year, <span class="val" id="sc-suppliesend">$300</span> of supplies (see item 3) had not been used.</p>
+    </div>
+    <div class="req"><span class="reqlabel">Required:</span> Prepare the journal entry to record supplies used during the year.</div>
+    <table class="worksheet">
+      <thead><tr><th>Account</th><th class="num">Debit</th><th class="num">Credit</th></tr></thead>
+      <tbody id="je9-body"></tbody>
+    </table>
+    <div class="check-bar">
+      <button class="btn-check" id="check-je9" type="button">Check my work</button>
+      <span class="check-summary" id="sum-je9"></span>
+      <span class="check-disclaimer">This checks your account selections and amounts against the key within a small tolerance.</span>
+    </div>
+  </div>
+
+  <!-- ITEM 10 -->
+  <div class="part">
+    <span class="part-label">Item 10</span>
+    <h2>Depreciation</h2>
+    <div class="scenario">
+      <p>Depreciation expense on the computer for the year was <span class="val" id="sc-dep">$250,000</span>.</p>
+    </div>
+    <div class="req"><span class="reqlabel">Required:</span> Prepare the journal entry to record depreciation.</div>
+    <table class="worksheet">
+      <thead><tr><th>Account</th><th class="num">Debit</th><th class="num">Credit</th></tr></thead>
+      <tbody id="je10-body"></tbody>
+    </table>
+    <div class="check-bar">
+      <button class="btn-check" id="check-je10" type="button">Check my work</button>
+      <span class="check-summary" id="sum-je10"></span>
+      <span class="check-disclaimer">This checks your account selections and amounts against the key within a small tolerance.</span>
+    </div>
+  </div>
+
+  <!-- ITEM 11 -->
+  <div class="part">
+    <span class="part-label">Item 11</span>
+    <h2>Office rent and equipment lease, unpaid</h2>
+    <div class="scenario">
+      <p>The city charged the Data Processing Fund <span class="val" id="sc-rent">$2,000</span> for the rental of office space and <span class="val" id="sc-lease">$500</span> for the lease of office equipment for the year. Both leases are for 12 months. This amount was unpaid at the end of the year.</p>
+    </div>
+    <div class="req"><span class="reqlabel">Required:</span> Prepare the journal entry to record the rent and lease charges.</div>
+    <table class="worksheet">
+      <thead><tr><th>Account</th><th class="num">Debit</th><th class="num">Credit</th></tr></thead>
+      <tbody id="je11-body"></tbody>
+    </table>
+    <div class="check-bar">
+      <button class="btn-check" id="check-je11" type="button">Check my work</button>
+      <span class="check-summary" id="sum-je11"></span>
+      <span class="check-disclaimer">This checks your account selections and amounts against the key within a small tolerance.</span>
+    </div>
+  </div>
+
+  <!-- ITEM 12 -->
+  <div class="part">
+    <span class="part-label">Item 12</span>
+    <h2>Miscellaneous expenses, unpaid</h2>
+    <div class="scenario">
+      <p>Miscellaneous expenses not paid by the end of the year totaled <span class="val" id="sc-misc">$700</span>. These amounts were owed to businesses outside the city of Hendersonville.</p>
+    </div>
+    <div class="req"><span class="reqlabel">Required:</span> Prepare the journal entry to record the miscellaneous expenses.</div>
+    <table class="worksheet">
+      <thead><tr><th>Account</th><th class="num">Debit</th><th class="num">Credit</th></tr></thead>
+      <tbody id="je12-body"></tbody>
+    </table>
+    <div class="check-bar">
+      <button class="btn-check" id="check-je12" type="button">Check my work</button>
+      <span class="check-summary" id="sum-je12"></span>
+      <span class="check-disclaimer">This checks your account selections and amounts against the key within a small tolerance.</span>
+    </div>
+  </div>
+
+  <!-- PART B: ACTIVITY STATEMENT -->
+  <div class="part">
+    <span class="part-label">Part (b)</span>
+    <h2>Statement of Revenues, Expenses, and Changes in Net Position</h2>
+    <div class="scenario">
+      <p>Prepare the Data Processing Fund's statement of revenues, expenses, and changes in net position for the year ended December 31, <span class="val" id="yr-3">2026</span>. Fill in every line, including subtotals.</p>
+    </div>
+    <table class="worksheet stmt">
+      <thead><tr><th>Line item</th><th class="num">Amount</th></tr></thead>
+      <tbody id="act-body"></tbody>
+    </table>
+    <div class="check-bar">
+      <button class="btn-check" id="check-act" type="button">Check my work</button>
+      <span class="check-summary" id="sum-act"></span>
+      <span class="check-disclaimer">This checks each amount against the key within a small tolerance.</span>
+    </div>
+  </div>
+
+  <!-- PART C: STATEMENT OF NET POSITION -->
+  <div class="part">
+    <span class="part-label">Part (c)</span>
+    <h2>Statement of Net Position</h2>
+    <div class="scenario">
+      <p>Prepare the Data Processing Fund's statement of net position as of December 31, <span class="val" id="yr-4">2026</span>. Enter the accumulated-depreciation deduction in parentheses, e.g. (250,000).</p>
+    </div>
+    <table class="worksheet stmt">
+      <thead><tr><th>Line item</th><th class="num">Amount</th></tr></thead>
+      <tbody id="pos-body"></tbody>
+    </table>
+    <div class="check-bar">
+      <button class="btn-check" id="check-pos" type="button">Check my work</button>
+      <span class="check-summary" id="sum-pos"></span>
+      <span class="check-disclaimer">This checks each amount against the key within a small tolerance.</span>
+    </div>
+  </div>
+
+  <div class="submit-bar print-hide">
+    <h2>Ready to submit?</h2>
+    <p class="submit-hint" style="margin:0 0 12px;">Your name is taken from the top of the page.</p>
+    <div class="submit-row submit-actions">
+      <button class="btn-submit" id="printBtn" type="button">Print / Save as PDF</button>
+    </div>
+    <p class="submit-hint">This captures exactly what's currently filled in above and works offline.</p>
+  </div>
+</main>
+
+<footer>Journal Entries and Financial Statements — Internal Service Fund &middot; ACCT 635 &middot; Western Carolina University</footer>
+
+<script>
+(function(){
+  var FILE_SLUG = "ACCT635-Internal-Service-Fund-P7-40";
+  var CURRENT_YEAR = new Date().getFullYear();
+
+  // ---------- seeded pseudo-random ----------
+  function hashSeed(str){
+    var h = 2166136261;
+    for(var i=0;i<str.length;i++){
+      h ^= str.charCodeAt(i);
+      h = Math.imul(h, 16777619);
+    }
+    return h >>> 0;
+  }
+  function mulberry32(seed){
+    return function(){
+      seed |= 0; seed = seed + 0x6D2B79F5 | 0;
+      var t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
+  }
+  function pick(rand, arr){ return arr[Math.floor(rand() * arr.length)]; }
+  function rTo(x, m){ return Math.round(x/m)*m; }
+
+  function money0(n){
+    var v = Number(n);
+    var s = Math.abs(v).toLocaleString('en-US', {minimumFractionDigits:0, maximumFractionDigits:0});
+    return v < 0 ? '$(' + s + ')' : '$' + s;
+  }
+  function setText(id, text){
+    var el = document.getElementById(id);
+    if(el) el.textContent = text;
+  }
+
+  var TOL = { dollars:1 };
+
+  function parseMoney(s){
+    if(s === null || s === undefined) return NaN;
+    var raw = String(s).trim();
+    var neg = /^\(.*\)$/.test(raw) || /^-/.test(raw) || /^−/.test(raw);
+    var cleaned = raw.replace(/[^0-9.]/g, '');
+    if(cleaned === '') return NaN;
+    var v = parseFloat(cleaned);
+    if(isNaN(v)) return NaN;
+    return neg ? -v : v;
+  }
+  function near(a, b, tol){
+    if(isNaN(a) || isNaN(b)) return false;
+    return Math.abs(a - b) <= tol;
+  }
+  function clearFieldState(el){
+    if(!el) return;
+    el.classList.remove('field-correct', 'field-incorrect');
+  }
+  function clearAllFieldStates(){
+    document.querySelectorAll('.field-correct, .field-incorrect').forEach(function(el){
+      el.classList.remove('field-correct', 'field-incorrect');
+    });
+    document.querySelectorAll('.check-summary').forEach(function(el){
+      el.textContent = ''; el.classList.remove('good','bad');
+    });
+  }
+  function markField(id, correct, tol){
+    var el = document.getElementById(id);
+    if(!el) return null;
+    el.classList.remove('field-correct', 'field-incorrect');
+    var ok = near(parseMoney(el.value), correct, tol);
+    el.classList.add(ok ? 'field-correct' : 'field-incorrect');
+    if(!el.dataset.clearBound){
+      el.addEventListener('input', function(){ clearFieldState(el); });
+      el.dataset.clearBound = '1';
+    }
+    return ok;
+  }
+  function markSelect(id, expected){
+    var el = document.getElementById(id);
+    if(!el) return null;
+    el.classList.remove('field-correct', 'field-incorrect');
+    var ok = el.value === expected;
+    el.classList.add(ok ? 'field-correct' : 'field-incorrect');
+    if(!el.dataset.clearBound){
+      el.addEventListener('change', function(){ clearFieldState(el); });
+      el.dataset.clearBound = '1';
+    }
+    return ok;
+  }
+  function bindClear(el){
+    if(!el || el.dataset.clearBound) return;
+    el.addEventListener('input', function(){ clearFieldState(el); });
+    el.dataset.clearBound = '1';
+  }
+  // A journal-entry row's amount belongs in exactly one of the two columns (Debit or
+  // Credit, per `side`). The other column should be left blank. This grades the pair as
+  // a single result: the active column must hold the right amount, and the other column
+  // must be empty; an amount typed into the wrong column is flagged there too.
+  function markAmountPair(rowId, side, correct, tol){
+    var debitEl = document.getElementById(rowId + '-debit');
+    var creditEl = document.getElementById(rowId + '-credit');
+    if(!debitEl || !creditEl) return null;
+    clearFieldState(debitEl);
+    clearFieldState(creditEl);
+    bindClear(debitEl);
+    bindClear(creditEl);
+
+    var debitBlank = debitEl.value.trim() === '';
+    var creditBlank = creditEl.value.trim() === '';
+    var ok;
+    if(side === 'Dr'){
+      var debitOk = near(parseMoney(debitEl.value), correct, tol);
+      debitEl.classList.add(debitOk ? 'field-correct' : 'field-incorrect');
+      if(!creditBlank) creditEl.classList.add('field-incorrect');
+      ok = debitOk && creditBlank;
+    } else {
+      var creditOk = near(parseMoney(creditEl.value), correct, tol);
+      creditEl.classList.add(creditOk ? 'field-correct' : 'field-incorrect');
+      if(!debitBlank) debitEl.classList.add('field-incorrect');
+      ok = creditOk && debitBlank;
+    }
+    return ok;
+  }
+  function updateSummary(elId, results){
+    var el = document.getElementById(elId);
+    if(!el) return;
+    var graded = results.filter(function(r){ return r !== null; }).length;
+    var correct = results.filter(function(r){ return r === true; }).length;
+    el.textContent = correct + ' of ' + graded + ' correct';
+    el.classList.remove('good', 'bad');
+    el.classList.add(correct === graded && graded > 0 ? 'good' : 'bad');
+  }
+
+  var SCORES = {};
+  function scoreState(g){
+    if(!SCORES[g.btn]) SCORES[g.btn] = { correct:0, graded:0, attempts:0, checked:false, stale:false };
+    return SCORES[g.btn];
+  }
+  function scorePct(s){
+    return s.graded ? Math.round(s.correct / s.graded * 100) : 0;
+  }
+  var SCORE_PROMPT = 'Fill in the entry or statement below, then choose <strong>Check my work</strong>. Every blank counts as incorrect.';
+
+  // We keep the per-item score summaries inline (near each check button) rather than
+  // stacking many score panels above the fold; the scoreArea only shows an overall rollup.
+  function renderOverall(){
+    var area = document.getElementById('scoreArea');
+    if(!area) return;
+    var panel = area.querySelector('.score-panel[data-for="overall"]');
+    if(!panel){
+      panel = document.createElement('div');
+      panel.className = 'score-panel';
+      panel.setAttribute('data-for', 'overall');
+      panel.innerHTML =
+        '<div class="score-pct">&mdash;</div>' +
+        '<div class="score-detail">' +
+          '<p class="score-meta">Overall score</p>' +
+          '<div class="score-bar"><span></span></div>' +
+          '<p class="score-sub">' + SCORE_PROMPT + '</p>' +
+        '</div>';
+      area.appendChild(panel);
+    }
+    var totalCorrect = 0, totalGraded = 0, anyChecked = false;
+    Object.keys(SCORES).forEach(function(k){
+      var s = SCORES[k];
+      if(s.checked){ anyChecked = true; totalCorrect += s.correct; totalGraded += s.graded; }
+    });
+    var pctEl = panel.querySelector('.score-pct');
+    var metaEl = panel.querySelector('.score-meta');
+    var fillEl = panel.querySelector('.score-bar span');
+    var subEl = panel.querySelector('.score-sub');
+    panel.classList.remove('scored-good','scored-bad');
+    if(!anyChecked){
+      pctEl.innerHTML = '&mdash;';
+      metaEl.textContent = 'Overall score';
+      fillEl.style.width = '0%';
+      subEl.textContent = 'Check each item below; this rolls up every item you have checked so far.';
+      return;
+    }
+    var pct = totalGraded ? Math.round(totalCorrect/totalGraded*100) : 0;
+    pctEl.textContent = pct + '%';
+    metaEl.textContent = 'Overall: ' + totalCorrect + ' of ' + totalGraded + ' correct (checked items only)';
+    fillEl.style.width = pct + '%';
+    if(totalCorrect === totalGraded){
+      subEl.textContent = 'All checked items match the key.';
+      panel.classList.add('scored-good');
+    } else {
+      subEl.textContent = (totalGraded-totalCorrect) + ' line(s) still to fix across the items you have checked.';
+      panel.classList.add('scored-bad');
+    }
+  }
+
+  function resetScore(g){
+    SCORES[g.btn] = { correct:0, graded:0, attempts:0, checked:false, stale:false };
+    renderOverall();
+  }
+
+  // ---------- scenario generation ----------
+  function baseline(){
+    return {
+      transfer:2000000, computerCost:1900000, suppliesPurchased:4500,
+      billings:650000, repairsCredit:2400, remainingDue:21000, collections:629000,
+      salariesPaid:200000, apPaid:5900, suppliesUnusedEnd:300, depreciation:250000,
+      rentCharge:2000, leaseCharge:500, miscUnpaid:700
+    };
+  }
+
+  function randomParams(rand){
+    var transfer = rTo(pick(rand,[1800000,1900000,2000000,2100000,2200000]),10000);
+    var computerFrac = pick(rand,[0.85,0.88,0.90,0.92,0.95]);
+    var computerCost = rTo(transfer*computerFrac,10000);
+    var suppliesPurchased = rTo(pick(rand,[3500,4000,4500,5000,5500,6000]),500);
+    var billings = rTo(pick(rand,[550000,600000,650000,700000,750000]),10000);
+    var repairsCredit = rTo(pick(rand,[1500,1800,2100,2400,2700,3000]),100);
+    var remainingDue = rTo(pick(rand,[15000,18000,20000,21000,25000,28000]),1000);
+    var collections = billings - remainingDue;
+    var salariesPaid = rTo(pick(rand,[150000,175000,200000,210000,225000,250000]),5000);
+    var apPaidFrac = pick(rand,[0.75,0.80,0.85,0.90,0.95]);
+    var apPaid = rTo((suppliesPurchased+repairsCredit)*apPaidFrac,100);
+    var sueFrac = pick(rand,[0.04,0.05,0.06,0.07,0.08,0.09]);
+    var suppliesUnusedEnd = Math.max(25, rTo(suppliesPurchased*sueFrac,25));
+    var depFrac = pick(rand,[0.10,0.115,0.13,0.14,0.15]);
+    var depreciation = rTo(computerCost*depFrac,10000);
+    var rentCharge = rTo(pick(rand,[1500,1750,2000,2250,2500]),50);
+    var leaseCharge = rTo(pick(rand,[400,450,500,550,600,700]),50);
+    var miscUnpaid = rTo(pick(rand,[500,600,700,800,900]),50);
+
+    return {
+      transfer:transfer, computerCost:computerCost, suppliesPurchased:suppliesPurchased,
+      billings:billings, repairsCredit:repairsCredit, remainingDue:remainingDue, collections:collections,
+      salariesPaid:salariesPaid, apPaid:apPaid, suppliesUnusedEnd:suppliesUnusedEnd, depreciation:depreciation,
+      rentCharge:rentCharge, leaseCharge:leaseCharge, miscUnpaid:miscUnpaid
+    };
+  }
+
+  function solve(p){
+    var suppliesUsed = p.suppliesPurchased - p.suppliesUnusedEnd;
+    var dueFromEnd = p.billings - p.collections;
+    var apIncurred = p.suppliesPurchased + p.repairsCredit + p.rentCharge + p.leaseCharge + p.miscUnpaid;
+    var apEnd = apIncurred - p.apPaid;
+    var cashEnd = p.transfer - p.computerCost + p.collections - p.salariesPaid - p.apPaid;
+    var totalOperatingExpenses = p.salariesPaid + suppliesUsed + p.repairsCredit + p.rentCharge + p.leaseCharge + p.miscUnpaid + p.depreciation;
+    var operatingIncome = p.billings - totalOperatingExpenses;
+    var changeInNetPosition = operatingIncome + p.transfer;
+    var netPositionEnding = changeInNetPosition;
+    var netCapitalAssets = p.computerCost - p.depreciation;
+    var totalAssets = cashEnd + dueFromEnd + p.suppliesUnusedEnd + netCapitalAssets;
+    var totalLiabilities = apEnd;
+    var netInvestment = netCapitalAssets;
+    var unrestricted = netPositionEnding - netInvestment;
+
+    var out = {};
+    for(var k in p) out[k] = p[k];
+    out.suppliesUsed = suppliesUsed;
+    out.dueFromEnd = dueFromEnd;
+    out.apIncurred = apIncurred;
+    out.apEnd = apEnd;
+    out.cashEnd = cashEnd;
+    out.totalOperatingExpenses = totalOperatingExpenses;
+    out.operatingIncome = operatingIncome;
+    out.changeInNetPosition = changeInNetPosition;
+    out.netPositionEnding = netPositionEnding;
+    out.netCapitalAssets = netCapitalAssets;
+    out.totalAssets = totalAssets;
+    out.totalLiabilities = totalLiabilities;
+    out.netInvestment = netInvestment;
+    out.unrestricted = unrestricted;
+    return out;
+  }
+
+  function generateScenario(id){
+    var seed = (id || '').trim();
+    if(seed === '') return solve(baseline());
+    // Folding the current year into the seed means the scenario stays fixed for a given
+    // student ID all year, then refreshes automatically once the calendar turns over.
+    return solve(randomParams(mulberry32(hashSeed(seed.toLowerCase() + '-' + CURRENT_YEAR))));
+  }
+
+  function applyYearLabels(){
+    var y = String(CURRENT_YEAR);
+    ['yr-0','yr-1','yr-2','yr-3','yr-4'].forEach(function(id){ setText(id, y); });
+  }
+
+  function applyScenario(d){
+    setText('sc-transfer', money0(d.transfer));
+    setText('sc-computer', money0(d.computerCost));
+    setText('sc-supplies', money0(d.suppliesPurchased));
+    setText('sc-billings', money0(d.billings));
+    setText('sc-repairs', money0(d.repairsCredit));
+    setText('sc-collections', money0(d.collections));
+    setText('sc-salaries', money0(d.salariesPaid));
+    setText('sc-appaid', money0(d.apPaid));
+    setText('sc-suppliesend', money0(d.suppliesUnusedEnd));
+    setText('sc-dep', money0(d.depreciation));
+    setText('sc-rent', money0(d.rentCharge));
+    setText('sc-lease', money0(d.leaseCharge));
+    setText('sc-misc', money0(d.miscUnpaid));
+  }
+
+  // ---------- account options ----------
+  var ACCOUNTS = [
+    'Cash',
+    'Due from Other Funds',
+    'Inventory of Supplies',
+    'Machinery and Equipment',
+    'Accumulated Depreciation—Machinery and Equipment',
+    'Accounts Payable',
+    'Transfers In from General Fund',
+    'Operating Revenues—Charges for Services',
+    'Salaries and Wages Expense',
+    'Supplies Expense',
+    'Repairs and Maintenance Expense',
+    'Rental Expense',
+    'Lease Expense',
+    'Miscellaneous Expense',
+    'Depreciation Expense'
+  ];
+
+  function acctOptionsHtml(){
+    var html = '<option value="">— select account —</option>';
+    ACCOUNTS.forEach(function(a){
+      html += '<option value="' + a.replace(/"/g,'&quot;') + '">' + a + '</option>';
+    });
+    return html;
+  }
+
+  // Each JE definition: array of rows {side:'Dr'|'Cr', acct: function(d), amt: function(d), tag: optional label}
+  var JE_DEFS = {
+    je1: [
+      { side:'Dr', acct:function(){ return 'Cash'; }, amt:function(d){ return d.transfer; } },
+      { side:'Cr', acct:function(){ return 'Transfers In from General Fund'; }, amt:function(d){ return d.transfer; } }
+    ],
+    je2: [
+      { side:'Dr', acct:function(){ return 'Machinery and Equipment'; }, amt:function(d){ return d.computerCost; } },
+      { side:'Cr', acct:function(){ return 'Cash'; }, amt:function(d){ return d.computerCost; } }
+    ],
+    je3: [
+      { side:'Dr', acct:function(){ return 'Inventory of Supplies'; }, amt:function(d){ return d.suppliesPurchased; } },
+      { side:'Cr', acct:function(){ return 'Accounts Payable'; }, amt:function(d){ return d.suppliesPurchased; } }
+    ],
+    je4: [
+      { side:'Dr', acct:function(){ return 'Due from Other Funds'; }, amt:function(d){ return d.billings; } },
+      { side:'Cr', acct:function(){ return 'Operating Revenues—Charges for Services'; }, amt:function(d){ return d.billings; } }
+    ],
+    je5: [
+      { side:'Dr', acct:function(){ return 'Repairs and Maintenance Expense'; }, amt:function(d){ return d.repairsCredit; } },
+      { side:'Cr', acct:function(){ return 'Accounts Payable'; }, amt:function(d){ return d.repairsCredit; } }
+    ],
+    je6: [
+      { side:'Dr', acct:function(){ return 'Cash'; }, amt:function(d){ return d.collections; } },
+      { side:'Cr', acct:function(){ return 'Due from Other Funds'; }, amt:function(d){ return d.collections; } }
+    ],
+    je7: [
+      { side:'Dr', acct:function(){ return 'Salaries and Wages Expense'; }, amt:function(d){ return d.salariesPaid; } },
+      { side:'Cr', acct:function(){ return 'Cash'; }, amt:function(d){ return d.salariesPaid; } }
+    ],
+    je8: [
+      { side:'Dr', acct:function(){ return 'Accounts Payable'; }, amt:function(d){ return d.apPaid; } },
+      { side:'Cr', acct:function(){ return 'Cash'; }, amt:function(d){ return d.apPaid; } }
+    ],
+    je9: [
+      { side:'Dr', acct:function(){ return 'Supplies Expense'; }, amt:function(d){ return d.suppliesUsed; } },
+      { side:'Cr', acct:function(){ return 'Inventory of Supplies'; }, amt:function(d){ return d.suppliesUsed; } }
+    ],
+    je10: [
+      { side:'Dr', acct:function(){ return 'Depreciation Expense'; }, amt:function(d){ return d.depreciation; } },
+      { side:'Cr', acct:function(){ return 'Accumulated Depreciation—Machinery and Equipment'; }, amt:function(d){ return d.depreciation; } }
+    ],
+    je11: [
+      { side:'Dr', acct:function(){ return 'Rental Expense'; }, amt:function(d){ return d.rentCharge; } },
+      { side:'Dr', acct:function(){ return 'Lease Expense'; }, amt:function(d){ return d.leaseCharge; } },
+      { side:'Cr', acct:function(){ return 'Accounts Payable'; }, amt:function(d){ return d.rentCharge + d.leaseCharge; } }
+    ],
+    je12: [
+      { side:'Dr', acct:function(){ return 'Miscellaneous Expense'; }, amt:function(d){ return d.miscUnpaid; } },
+      { side:'Cr', acct:function(){ return 'Accounts Payable'; }, amt:function(d){ return d.miscUnpaid; } }
+    ]
+  };
+
+  function buildJeTable(jeKey){
+    var body = document.getElementById(jeKey + '-body');
+    if(!body) return;
+    body.innerHTML = '';
+    JE_DEFS[jeKey].forEach(function(row, idx){
+      var tr = document.createElement('tr');
+      var rowId = jeKey + '-r' + idx;
+      var tagHtml = row.tag ? ('<div class="hint" style="margin:0 0 4px;"><span class="entrytag">' + row.tag + '</span></div>') : '';
+      tr.innerHTML =
+        '<td class="acctcell">' + tagHtml + '<select class="acct" id="' + rowId + '-acct">' + acctOptionsHtml() + '</select></td>' +
+        '<td class="amt"><input type="text" placeholder="$" id="' + rowId + '-debit"></td>' +
+        '<td class="amt"><input type="text" placeholder="$" id="' + rowId + '-credit"></td>';
+      body.appendChild(tr);
+    });
+  }
+
+  // ---------- statement definitions ----------
+  var STMT_DEFS = {
+    act: [
+      { id:'actrev', label:'Operating revenues — charges for services', amt:function(d){ return d.billings; } },
+      { id:'actsal', label:'Salaries and wages', indent:true, amt:function(d){ return d.salariesPaid; } },
+      { id:'actsup', label:'Supplies', indent:true, amt:function(d){ return d.suppliesUsed; } },
+      { id:'actrep', label:'Repairs and maintenance', indent:true, amt:function(d){ return d.repairsCredit; } },
+      { id:'actrent', label:'Rental', indent:true, amt:function(d){ return d.rentCharge; } },
+      { id:'actlease', label:'Lease', indent:true, amt:function(d){ return d.leaseCharge; } },
+      { id:'actmisc', label:'Miscellaneous', indent:true, amt:function(d){ return d.miscUnpaid; } },
+      { id:'actdep', label:'Depreciation', indent:true, amt:function(d){ return d.depreciation; } },
+      { id:'acttotalexp', label:'Total operating expenses', bold:true, amt:function(d){ return d.totalOperatingExpenses; } },
+      { id:'actopinc', label:'Operating income', bold:true, amt:function(d){ return d.operatingIncome; } },
+      { id:'acttransfer', label:'Transfers in from General Fund', amt:function(d){ return d.transfer; } },
+      { id:'actchange', label:'Change in net position', bold:true, amt:function(d){ return d.changeInNetPosition; } },
+      { id:'actnpbeg', label:'Net position, January 1', amt:function(){ return 0; } },
+      { id:'actnpend', label:'Net position, December 31', bold:true, final:true, amt:function(d){ return d.netPositionEnding; } }
+    ],
+    pos: [
+      { id:'poscash', label:'Cash', amt:function(d){ return d.cashEnd; } },
+      { id:'posdue', label:'Due from other funds', amt:function(d){ return d.dueFromEnd; } },
+      { id:'possupplies', label:'Inventory of supplies', amt:function(d){ return d.suppliesUnusedEnd; } },
+      { id:'posmach', label:'Machinery and equipment', amt:function(d){ return d.computerCost; } },
+      { id:'posaccdep', label:'Less: accumulated depreciation', indent:true, amt:function(d){ return -d.depreciation; } },
+      { id:'postotalassets', label:'Total assets', bold:true, amt:function(d){ return d.totalAssets; } },
+      { id:'posap', label:'Accounts payable', amt:function(d){ return d.apEnd; } },
+      { id:'postotalliab', label:'Total liabilities', bold:true, amt:function(d){ return d.totalLiabilities; } },
+      { id:'posnetinvest', label:'Net investment in capital assets', amt:function(d){ return d.netInvestment; } },
+      { id:'posunrestricted', label:'Unrestricted', amt:function(d){ return d.unrestricted; } },
+      { id:'postotalnp', label:'Total net position', bold:true, final:true, amt:function(d){ return d.netPositionEnding; } }
+    ]
+  };
+
+  function buildStmtTable(key){
+    var body = document.getElementById(key + '-body');
+    if(!body) return;
+    body.innerHTML = '';
+    STMT_DEFS[key].forEach(function(row){
+      var tr = document.createElement('tr');
+      var cls = [];
+      if(row.bold) cls.push('stmt-bold');
+      if(row.final) cls.push('stmt-final');
+      if(cls.length) tr.className = cls.join(' ');
+      tr.innerHTML =
+        '<td class="label' + (row.indent ? ' indent' : '') + '">' + row.label + '</td>' +
+        '<td class="amt"><input type="text" placeholder="$" id="' + row.id + '"></td>';
+      body.appendChild(tr);
+    });
+  }
+
+  Object.keys(JE_DEFS).forEach(buildJeTable);
+  Object.keys(STMT_DEFS).forEach(buildStmtTable);
+  applyYearLabels();
+
+  // ---------------- wiring ----------------
+  var idInput = document.getElementById('studentId');
+  var genBtn = document.getElementById('genBtn');
+  var currentScenario = null;
+
+  function applyAndStore(id){
+    currentScenario = generateScenario(id);
+    applyScenario(currentScenario);
+    clearAllFieldStates();
+    Object.keys(JE_DEFS).forEach(function(k){
+      resetScore({ btn:'check-' + k });
+    });
+    Object.keys(STMT_DEFS).forEach(function(k){
+      resetScore({ btn:'check-' + k });
+    });
+  }
+  genBtn.addEventListener('click', function(){ applyAndStore(idInput.value); });
+  idInput.addEventListener('keydown', function(e){
+    if(e.key === 'Enter'){ e.preventDefault(); applyAndStore(idInput.value); }
+  });
+  applyAndStore('');
+
+  Object.keys(JE_DEFS).forEach(function(jeKey){
+    var btnId = 'check-' + jeKey;
+    var summaryId = 'sum-' + jeKey;
+    var btn = document.getElementById(btnId);
+    if(!btn) return;
+    var g = { btn: btnId };
+
+    var part = btn.closest('.part');
+    if(part){
+      part.addEventListener('input', function(e){
+        if(e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT')){
+          var s = scoreState(g);
+          if(s.checked) s.stale = true;
+        }
+      });
+      part.addEventListener('change', function(e){
+        if(e.target && e.target.tagName === 'SELECT'){
+          var s = scoreState(g);
+          if(s.checked) s.stale = true;
+        }
+      });
+    }
+
+    btn.addEventListener('click', function(){
+      if(!currentScenario) return;
+      var rows = JE_DEFS[jeKey];
+      var results = [];
+      rows.forEach(function(row, idx){
+        var rowId = jeKey + '-r' + idx;
+        var expectedAcct = row.acct(currentScenario);
+        var expectedAmt = row.amt(currentScenario);
+        results.push(markSelect(rowId + '-acct', expectedAcct));
+        results.push(markAmountPair(rowId, row.side, expectedAmt, TOL.dollars));
+      });
+      updateSummary(summaryId, results);
+      var s = scoreState(g);
+      s.graded = results.filter(function(r){ return r !== null; }).length;
+      s.correct = results.filter(function(r){ return r === true; }).length;
+      s.attempts += 1;
+      s.checked = true;
+      s.stale = false;
+      renderOverall();
+    });
+  });
+
+  Object.keys(STMT_DEFS).forEach(function(stmtKey){
+    var btnId = 'check-' + stmtKey;
+    var summaryId = 'sum-' + stmtKey;
+    var btn = document.getElementById(btnId);
+    if(!btn) return;
+    var g = { btn: btnId };
+
+    var part = btn.closest('.part');
+    if(part){
+      part.addEventListener('input', function(e){
+        if(e.target && e.target.tagName === 'INPUT'){
+          var s = scoreState(g);
+          if(s.checked) s.stale = true;
+        }
+      });
+    }
+
+    btn.addEventListener('click', function(){
+      if(!currentScenario) return;
+      var rows = STMT_DEFS[stmtKey];
+      var results = [];
+      rows.forEach(function(row){
+        results.push(markField(row.id, row.amt(currentScenario), TOL.dollars));
+      });
+      updateSummary(summaryId, results);
+      var s = scoreState(g);
+      s.graded = results.filter(function(r){ return r !== null; }).length;
+      s.correct = results.filter(function(r){ return r === true; }).length;
+      s.attempts += 1;
+      s.checked = true;
+      s.stale = false;
+      renderOverall();
+    });
+  });
+
+  // ---------------- Print / Save as PDF ----------------
+  function val(id){
+    var el = document.getElementById(id);
+    return el ? el.value.trim() : '';
+  }
+  document.getElementById('printBtn').addEventListener('click', function(){
+    var name = val('studentName');
+    var id = val('studentId');
+    var line = document.getElementById('printNameLine');
+    line.textContent = 'Name: ' + (name || '_______________________') +
+                       '     Student ID: ' + (id || '_______________________');
+    var oldTitle = document.title;
+    document.title = FILE_SLUG + '-' + (id || 'submission');
+    window.print();
+    document.title = oldTitle;
+  });
+
+})();
+</script>
+
+</body>
+</html>
