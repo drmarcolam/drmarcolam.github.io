@@ -170,9 +170,55 @@
     .instructor-card{ gap:6px 22px; }
   }
 
+
+.wcu-gate{position:fixed;inset:0;z-index:99999;background:var(--parchment,#F7F4EC);display:flex;align-items:center;justify-content:center;padding:20px;}
+html.wcu-unlocked .wcu-gate{display:none !important;}
+.wcu-gate-card{background:var(--paper,#FFFEFA);border:1px solid var(--line,#DBD3E0);border-radius:12px;box-shadow:0 10px 30px rgba(56,25,90,.18);padding:34px 32px;max-width:380px;width:100%;text-align:center;font-family:'Inter',sans-serif;}
+.wcu-gate-card .wcu-gate-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold,#B0925C);margin:0 0 8px;}
+.wcu-gate-card h2{font-family:'Source Serif 4',serif;color:var(--purple-deep,#38195A);font-size:20px;margin:0 0 8px;}
+.wcu-gate-card p.wcu-gate-sub{font-size:13px;color:var(--slate,#5F5A6B);margin:0 0 20px;}
+.wcu-gate-card input{width:100%;font-family:'IBM Plex Mono',monospace;font-size:15px;letter-spacing:.06em;text-align:center;text-transform:uppercase;padding:11px 12px;border:1px solid var(--line,#DBD3E0);border-radius:6px;margin-bottom:12px;background:var(--parchment,#F7F4EC);color:var(--ink,#221B2E);box-sizing:border-box;}
+.wcu-gate-card input:focus{outline:none;border-color:var(--purple-mid,#6E3FA3);box-shadow:0 0 0 3px rgba(89,44,136,.12);}
+.wcu-gate-card button{width:100%;font-family:'Inter',sans-serif;font-size:14px;font-weight:600;padding:11px 12px;border:1px solid var(--purple,#592C88);border-radius:6px;background:var(--purple,#592C88);color:#fff;cursor:pointer;}
+.wcu-gate-card button:hover{background:var(--purple-mid,#6E3FA3);}
+.wcu-gate-error{display:none;color:#9C3B34;font-size:12.5px;margin-top:12px;}
+@media print{ .wcu-gate{ display:none !important; } }
 </style>
 </head>
 <body>
+<script>(function(){try{if(localStorage.getItem('wcu_unlock_acct252')==='1'){document.documentElement.classList.add('wcu-unlocked');}}catch(e){}})();</script>
+<div class="wcu-gate" id="wcu-gate">
+  <div class="wcu-gate-card">
+    <p class="wcu-gate-eyebrow">ACCT 252</p>
+    <h2>Access Code Required</h2>
+    <p class="wcu-gate-sub">Enter the course access code to view this page.</p>
+    <form id="wcu-gate-form" autocomplete="off">
+      <input type="text" id="wcu-gate-input" placeholder="Access code" autocapitalize="characters" autocomplete="off">
+      <button type="submit">Unlock</button>
+      <p class="wcu-gate-error" id="wcu-gate-error">That code isn&rsquo;t correct. Please try again.</p>
+    </form>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY='wcu_unlock_acct252', CODE='ACCT252FEY';
+  function unlock(){
+    try{ localStorage.setItem(KEY,'1'); }catch(e){}
+    document.documentElement.classList.add('wcu-unlocked');
+  }
+  var form = document.getElementById('wcu-gate-form');
+  if(form){
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var input = document.getElementById('wcu-gate-input');
+      var err = document.getElementById('wcu-gate-error');
+      var val = (input.value || '').trim().toUpperCase();
+      if(val === CODE){ unlock(); } else { err.style.display='block'; input.value=''; input.focus(); }
+    });
+  }
+})();
+</script>
+
 
 <p class="crumbs"><a href="../index.html">Courses</a> &nbsp;/&nbsp; ACCT 252</p>
 
