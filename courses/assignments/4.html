@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>City of Llama Falls — Assignment 4 (Custodial Fund)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple:#2C5F88; --purple-deep:#193B5A; --purple-mid:#3F7FA3;
+    --gold:#5C8A92; --gold-soft:#98C3C8; --gold-pale:#E1EFEF;
+    --parchment:#F4F6F7; --paper:#FFFFFF; --ink:#1B2229; --slate:#5A6570;
+    --line:#D3DCE0; --line-soft:#E4EAEC; --answer:#1E5C34; --answer-bg:#E7F1E9;
+    --danger:#9C3B34; --shadow: 0 1px 2px rgba(25,59,90,0.07), 0 6px 18px rgba(25,59,90,0.08);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{background:var(--parchment);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased;}
+  a{color:inherit;}
+  header{background:linear-gradient(180deg, var(--purple) 0%, var(--purple-deep) 100%);color:#EAF3F3;padding:30px 6vw 24px;position:relative;}
+  header::after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;background:linear-gradient(90deg, var(--gold-soft), var(--gold) 40%, var(--gold-soft) 70%, var(--gold));}
+  .eyebrow{font-family:'IBM Plex Mono', monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-soft);margin:0 0 10px;}
+  h1.title{font-family:'Source Serif 4', serif;font-weight:600;font-size:clamp(22px,3.2vw,32px);margin:0 0 8px;letter-spacing:-0.01em;}
+  .subtitle{font-size:14.5px;color:#D6E6E6;max-width:760px;margin:0;}
+  .id-bar{max-width:1040px;margin:0 auto;padding:18px 6vw 0;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+  .id-bar label{font-size:13px;font-weight:600;color:var(--slate);}
+  .id-bar input[type="text"]{font-family:'Inter',sans-serif;font-size:13.5px;padding:8px 11px;border:1px solid var(--line);border-radius:5px;background:var(--paper);color:var(--ink);width:220px;}
+  .id-bar input:focus{outline:none;border-color:var(--purple-mid);box-shadow:0 0 0 3px rgba(44,95,136,0.10);}
+  .id-bar .id-hint{font-size:12px;color:var(--slate);}
+  .id-bar button{font-family:'Inter',sans-serif;font-size:13.5px;font-weight:600;border-radius:5px;padding:9px 16px;border:1px solid var(--purple);background:var(--purple);color:#fff;cursor:pointer;}
+  .id-bar button:hover{background:var(--purple-mid);}
+  .score-area{max-width:1040px;margin:0 auto;padding:14px 6vw 0;}
+  .rounding-note{max-width:1040px;margin:14px auto 0;padding:12px 6vw;font-size:12.5px;color:var(--slate);line-height:1.5;}
+  .rounding-note strong{color:var(--purple);font-weight:600;}
+  main{max-width:1040px;margin:0 auto;padding:22px 6vw 90px;}
+  .fund-divider{margin:44px 0 10px;padding:10px 0 6px;border-bottom:2px solid var(--purple);}
+  .fund-divider h2{font-family:'Source Serif 4',serif;font-size:24px;color:var(--purple-deep);margin:0;}
+  .fund-divider p{font-size:13px;color:var(--slate);margin:4px 0 0;}
+  .part{background:var(--paper);border:1px solid var(--line);border-radius:10px;box-shadow:var(--shadow);padding:24px 26px 26px;margin-top:22px;}
+  .part-label{font-family:'IBM Plex Mono', monospace;font-size:12px;color:var(--gold-pale);background:var(--purple);display:inline-block;padding:3px 9px;border-radius:4px;letter-spacing:.04em;margin-bottom:12px;}
+  .part h2{font-family:'Source Serif 4', serif;font-size:20px;font-weight:600;color:var(--purple);margin:0 0 12px;}
+  .part h3{font-family:'Source Serif 4', serif;font-size:17px;font-weight:600;color:var(--purple);margin:0 0 10px;}
+  .scenario{background:var(--parchment);border-left:3px solid var(--gold);padding:14px 18px;border-radius:0 6px 6px 0;font-size:14.5px;color:var(--ink);margin-bottom:16px;}
+  .scenario p{margin:0 0 10px;}
+  .scenario p:last-child{margin-bottom:0;}
+  .scenario span.val{font-weight:700;color:var(--purple-deep);}
+  .req{font-weight:600;font-size:14.5px;color:var(--ink);margin:20px 0 10px;}
+  .req span.reqlabel{color:var(--purple);}
+  .footnote{font-size:12px;color:var(--slate);margin:2px 0 14px;font-style:italic;}
+  table.given{width:100%;border-collapse:collapse;font-size:13px;margin:6px 0 14px;}
+  table.given th{text-align:left;font-size:10.5px;text-transform:uppercase;letter-spacing:.03em;color:var(--slate);border-bottom:2px solid var(--purple);padding:6px 8px;}
+  table.given td{border-bottom:1px solid var(--line);padding:5px 8px;font-family:'IBM Plex Mono', monospace;}
+  table.given td.lbl{font-family:'Inter',sans-serif;}
+  table.given td.num, table.given th.num{text-align:right;}
+  table.given tr.given-total td{border-top:1.6px solid var(--purple);font-weight:600;}
+  table.worksheet{width:100%;border-collapse:collapse;font-size:13.5px;margin:10px 0 4px;}
+  table.worksheet th{text-align:left;font-size:11.5px;text-transform:uppercase;letter-spacing:.03em;color:var(--slate);border-bottom:2px solid var(--purple);padding:8px 8px;}
+  table.worksheet th.num{text-align:right;}
+  table.worksheet td{border-bottom:1px solid var(--line);padding:8px 8px;vertical-align:middle;}
+  table.worksheet td.amt{width:128px;text-align:right;font-family:'IBM Plex Mono',monospace;}
+  table.worksheet input[type="text"]{width:100%;font-family:'IBM Plex Mono', monospace;font-size:13.5px;padding:6px 8px;border:1px solid var(--line);border-radius:5px;background:var(--parchment);color:var(--ink);text-align:right;}
+  table.worksheet input[type="text"]:focus{outline:none;border-color:var(--purple-mid);box-shadow:0 0 0 3px rgba(44,95,136,0.10);background:var(--paper);}
+  table.worksheet select.acct{width:100%;font-family:'Inter',sans-serif;font-size:13px;font-weight:400;padding:6px 8px;border:1px solid var(--line);border-radius:5px;background:var(--parchment);color:var(--ink);}
+  table.worksheet select.acct:focus{outline:none;border-color:var(--purple-mid);box-shadow:0 0 0 3px rgba(44,95,136,0.10);background:var(--paper);}
+  table.worksheet td.acctcell{padding-right:14px;}
+  table.worksheet td.entrytag{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--gold-pale);background:var(--purple);border-radius:4px;padding:2px 7px;display:inline-block;}
+  .score-panel{display:flex;align-items:center;gap:18px;margin:0 0 4px;padding:14px 18px;background:var(--parchment);border:1px solid var(--line);border-radius:8px;}
+  .score-panel.scored-good{background:var(--answer-bg);border-color:#B7D3BE;}
+  .score-panel.scored-bad{background:#F8F0EF;border-color:#E2C6C2;}
+  .score-pct{font-family:'Source Serif 4', serif;font-size:28px;font-weight:700;line-height:1.05;color:var(--slate);min-width:90px;text-align:center;}
+  .score-panel.scored-good .score-pct{color:var(--answer);}
+  .score-panel.scored-bad .score-pct{color:var(--danger);}
+  .score-detail{flex:1;min-width:0;}
+  .score-meta{font-size:13.5px;font-weight:600;color:var(--ink);margin:0 0 7px;}
+  .score-bar{height:8px;border-radius:4px;background:var(--line-soft);overflow:hidden;}
+  .score-bar span{display:block;height:100%;width:0;background:var(--purple-mid);transition:width .35s ease;}
+  .score-panel.scored-good .score-bar span{background:var(--answer);}
+  .score-panel.scored-bad .score-bar span{background:var(--danger);}
+  .score-sub{font-size:11.5px;color:var(--slate);margin:7px 0 0;}
+  .check-bar{margin-top:18px;padding-top:14px;border-top:1px solid var(--line);display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+  .btn-check{font-family:'Inter',sans-serif;font-size:13.5px;font-weight:600;border-radius:5px;padding:9px 18px;border:1px solid var(--purple);background:var(--purple);color:#fff;cursor:pointer;}
+  .btn-check:hover{background:var(--purple-mid);}
+  .check-summary{font-size:13.5px;font-weight:600;}
+  .check-summary.good{color:var(--answer);}
+  .check-summary.bad{color:var(--danger);}
+  .check-disclaimer{font-size:11.5px;color:var(--slate);width:100%;margin-top:2px;font-style:italic;}
+  input.field-correct, select.field-correct{border-color:var(--answer) !important;background:var(--answer-bg) !important;}
+  input.field-incorrect, select.field-incorrect{border-color:var(--danger) !important;background:#F3E1DE !important;}
+  .live-badge{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--purple);background:var(--gold-pale);border-radius:4px;padding:2px 7px;margin-left:8px;vertical-align:middle;}
+  table.tb{width:100%;border-collapse:collapse;font-size:12.5px;margin:10px 0 4px;}
+  table.tb th{text-align:right;font-size:10px;text-transform:uppercase;letter-spacing:.02em;color:var(--slate);border-bottom:2px solid var(--purple);padding:6px 6px;}
+  table.tb th:first-child{text-align:left;}
+  table.tb td{border-bottom:1px solid var(--line-soft);padding:5px 6px;text-align:right;font-family:'IBM Plex Mono',monospace;font-size:12px;white-space:nowrap;}
+  table.tb td.lbl{text-align:left;font-family:'Inter',sans-serif;white-space:normal;}
+  table.tb tr.tb-total td{border-top:1.6px solid var(--purple);font-weight:600;background:var(--parchment);}
+  table.tb tr.tb-zero td{color:#B6BEC4;}
+  .tb-scroll{overflow-x:auto;}
+  table.stmt{width:100%;border-collapse:collapse;font-size:13.5px;margin:4px 0 18px;}
+  table.stmt td{padding:5px 4px;border-bottom:1px solid var(--line-soft);}
+  table.stmt td.num{text-align:right;font-family:'IBM Plex Mono',monospace;width:150px;}
+  table.stmt tr.stmt-head td{font-weight:700;color:var(--purple);padding-top:14px;border-bottom:1.4px solid var(--purple-mid);}
+  table.stmt tr.stmt-sub td{padding-left:18px;}
+  table.stmt tr.stmt-total td{font-weight:700;border-top:1.4px solid var(--purple);border-bottom:none;}
+  table.stmt tr.stmt-grand td{font-weight:700;border-top:2px double var(--purple-deep);}
+  .diff-flag{font-size:11px;color:var(--danger);font-weight:600;margin-left:6px;}
+  .diff-ok{font-size:11px;color:var(--answer);font-weight:600;margin-left:6px;}
+  .submit-bar{background:var(--paper);border:1px solid var(--line);border-radius:10px;box-shadow:var(--shadow);padding:22px 26px 24px;margin-top:26px;}
+  .submit-bar h2{font-family:'Source Serif 4', serif;font-size:19px;font-weight:600;color:var(--purple);margin:0 0 14px;}
+  .submit-row{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap;}
+  .btn-submit{font-family:'Inter',sans-serif;font-size:13.5px;font-weight:600;border-radius:5px;padding:10px 18px;border:1px solid var(--purple);background:var(--purple);color:#fff;cursor:pointer;}
+  .btn-submit:hover{background:var(--purple-mid);}
+  .submit-hint{font-size:12px;color:var(--slate);margin:6px 0 0;}
+  .toc{background:var(--paper);border:1px solid var(--line);border-radius:10px;box-shadow:var(--shadow);padding:18px 22px;margin-top:22px;font-size:13px;}
+  .toc h3{margin:0 0 8px;font-family:'Source Serif 4',serif;color:var(--purple);font-size:15px;}
+  .toc ul{margin:0;padding-left:0;list-style:none;columns:2;column-gap:24px;}
+  .toc li{margin:3px 0;}
+  .toc a{color:var(--purple-mid);text-decoration:none;font-size:12.5px;}
+  .toc a:hover{text-decoration:underline;}
+  @media print{
+    .print-hide, .id-bar, .check-bar, .rounding-note, .toc{display:none !important;}
+    header{background:none !important;color:var(--ink) !important;padding:0 0 14px !important;}
+    header::after{display:none !important;}
+    .eyebrow{color:var(--purple) !important;}
+    .subtitle{color:var(--slate) !important;}
+    body{background:#fff !important;}
+    .part{box-shadow:none !important;border:1px solid #999 !important;break-inside:auto;}
+    .score-panel{background:#fff !important;border:1.5px solid #000 !important;break-inside:avoid;}
+    .score-bar{display:none !important;}
+    input[type="text"], select.acct{border:none !important;border-bottom:1px solid #000 !important;background:transparent !important;border-radius:0 !important;color:#000 !important;-webkit-appearance:none;appearance:none;padding:2px 4px !important;}
+    .print-name-line{display:block !important;}
+  }
+  .print-name-line{display:none;font-size:13px;color:var(--ink);padding:0 6vw;margin:0 0 10px;}
+  footer{text-align:center;padding:26px 6vw 40px;font-size:12px;color:var(--slate);}
+  @media (max-width:600px){
+    header, main, .id-bar{padding-left:5vw;padding-right:5vw;}
+    table.worksheet{font-size:12px;}
+    .toc ul{columns:1;}
+  }
+
+  .back-bar{ max-width:960px; margin:0 auto; padding:14px 6vw 0; }
+  .back-bar a{
+    font-family:'Inter',sans-serif; font-size:13px; font-weight:600;
+    color:#592C88; text-decoration:none;
+  }
+  .back-bar a:hover{ text-decoration:underline; }
+</style>
+</head>
+<body>
+<div class="back-bar print-hide"><a href="../../acct-635.html">&larr; Back to ACCT 635</a></div>
+
+
+<header>
+  <p class="eyebrow">ACCT 635 &middot; Governmental and Nonprofit Accounting &middot; City of Llama Falls</p>
+  <h1 class="title">Assignment 4 — Custodial Fund</h1>
+  <p class="subtitle">Record the year's activity for the Tax Collection Custodial Fund, which the City uses solely as a collection agent for county and school district property taxes — resources that do not belong to the City and cannot be used for City programs. Under GASB 84, the fund reports additions and deductions instead of revenues and expenditures, and year-end amounts collected but not yet distributed are reclassified as specific liabilities owed to each government. The statement of fiduciary net position and statement of changes in fiduciary net position below update automatically as you enter each journal entry.</p>
+</header>
+
+<p class="print-name-line" id="printNameLine"></p>
+
+<div class="id-bar">
+  <label for="studentName">Name</label>
+  <input type="text" id="studentName" placeholder="First and last name">
+  <label for="studentId">Student ID</label>
+  <input type="text" id="studentId" placeholder="e.g. 920410165">
+  <button id="genBtn" type="button">Generate scenario</button>
+  <span class="id-hint">Use the <strong>same Student ID</strong> you used for the other Llama Falls assignments, so your figures stay consistent across the whole case. This Custodial Fund does not depend on any other assignment's numbers. Leave the ID blank to restore the original City of Llama Falls figures.</span>
+</div>
+
+<div class="score-area" id="scoreArea"></div>
+
+<div class="rounding-note">
+  <strong>Before you start:</strong> enter amounts in <strong>whole dollars</strong> with no commas or dollar signs (e.g., 285000). Use the account dropdown for the exact account title on each line — account names must match the chart of accounts exactly. As you fill in a journal entry, the trial balances and statements below recalculate live, the same way the workbook's formulas do. <strong>Check my work</strong> buttons grade your account selections and amounts against the answer key within a small tolerance.
+</div>
+
+<main>
+
+<div class="toc part" id="toc">
+  <h3>Contents</h3>
+  <ul>
+    <li><a href="#fid-journal">Custodial Fund — Transaction Journal (F-2, F-3, F-5)</a></li>
+    <li><a href="#fid-adj">Custodial Fund — Year-End Adjustment</a></li>
+    <li><a href="#fid-close">Custodial Fund — Closing Entry</a></li>
+    <li><a href="#fid-tb">Custodial Fund — Trial Balances</a></li>
+    <li><a href="#fid-stmt">Custodial Fund — Statements</a></li>
+  </ul>
+</div>
+
+<div class="fund-divider" id="fid-journal">
+  <h2>Tax Collection Custodial Fund</h2>
+  <p>The City acts solely as collection agent for county and school district taxes; these resources do not belong to the City and cannot be used for City programs. Use only the accounts listed in the dropdowns. Under GASB 84 there are no budgetary accounts, and additions/deductions take the place of revenues/expenditures.</p>
+</div>
+<div class="part">
+  <span class="part-label">Item F-1</span>
+  <h2>Beginning balances</h2>
+  <div class="scenario">
+    <p>At July 1, the Custodial Fund has cash of <span class="val" id="bg-fidboy">$140,000</span> and equal net position restricted for others, <span class="val" id="bg-fidboynp">$140,000</span>.</p>
+  </div>
+  <p class="footnote">No journal entry is required &mdash; this is the fund's opening trial balance.</p>
+</div>
+<div id="fid-journal-host"></div>
+
+<div class="fund-divider" id="fid-adj"><h2>Custodial Fund — Year-End Adjustment</h2></div>
+<div id="fid-adj-host"></div>
+<div class="fund-divider" id="fid-close"><h2>Custodial Fund — Closing Entry</h2></div>
+<div id="fid-close-host"></div>
+
+<div class="fund-divider" id="fid-tb"><h2>Custodial Fund — Trial Balances</h2><p>Automatically calculated from the journal entries, adjustment, and closing entry you enter above.</p></div>
+<div class="part">
+  <h3>Adjusted Trial Balance</h3>
+  <div class="tb-scroll"><table class="tb" id="fid-adjusted-tb"></table></div>
+</div>
+<div class="part">
+  <h3>Post-Closing Trial Balance</h3>
+  <div class="tb-scroll"><table class="tb" id="fid-postclosing-tb"></table></div>
+</div>
+
+<div class="fund-divider" id="fid-stmt"><h2>Custodial Fund — Statements</h2><p>Linked to the Custodial Fund adjusted trial balance. The custodial fund is excluded from the City's government-wide statements because the resources it holds belong to the county and school district, not to the City &mdash; the City has no equitable claim to them and holds them purely in a fiduciary capacity, so including them would overstate resources available for City programs.</p></div>
+<div class="part">
+  <h3>Statement of Fiduciary Net Position — <span id="fid-bs-date">June 30, 2027</span></h3>
+  <table class="stmt" id="fid-net-position"></table>
+</div>
+<div class="part">
+  <h3>Statement of Changes in Fiduciary Net Position</h3>
+  <table class="stmt" id="fid-operating-stmt"></table>
+</div>
+
+<div class="submit-bar print-hide">
+  <h2>Ready to submit?</h2>
+  <p class="submit-hint" style="margin:0 0 12px;">Your name is taken from the top of the page.</p>
+  <div class="submit-row submit-actions">
+    <button class="btn-submit" id="printBtn" type="button">Print / Save as PDF</button>
+  </div>
+  <p class="submit-hint">This captures exactly what's currently filled in above and works offline.</p>
+</div>
+
+</main>
+
+<footer>City of Llama Falls &middot; Assignment 4 &middot; ACCT 635 Governmental and Nonprofit Accounting</footer>
+
+<script>
+(function(){
+"use strict";
+
+/* =========================================================================
+   RNG / HELPERS
+   ========================================================================= */
+function hashSeed(str){ var h = 2166136261; for(var i=0;i<str.length;i++){ h ^= str.charCodeAt(i); h = Math.imul(h, 16777619); } return h >>> 0; }
+function mulberry32(seed){ return function(){ seed |= 0; seed = seed + 0x6D2B79F5 | 0; var t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+function pick(rand, arr){ return arr[Math.floor(rand()*arr.length)]; }
+function rTo(v, step){ return Math.round(v/step)*step; }
+function money0(v){ v = Math.round(v||0); var neg = v<0; v=Math.abs(v); var s = v.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); return (neg?'-':'')+'$'+s; }
+function num0(v){ v = Math.round(v||0); var neg = v<0; v=Math.abs(v); var s = v.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); return neg? '('+s+')' : s; }
+function setText(id, txt){ var el = document.getElementById(id); if(el) el.textContent = txt; }
+var CURRENT_YEAR = new Date().getFullYear(); // fiscal year end derived from the visitor's system clock
+function applyFYSpans(){
+  setText('fid-bs-date', 'June 30, ' + CURRENT_YEAR);
+}
+function parseMoney(v){ if(v===undefined||v===null) return NaN; v = String(v).trim(); if(v==='') return NaN; v = v.replace(/[$,]/g,''); var n = Number(v); return isNaN(n)?NaN:n; }
+var TOL = { dollars: 1 };
+function near(a,b,tol){ return Math.abs(a-b) <= (tol===undefined?TOL.dollars:tol); }
+
+/* =========================================================================
+   SCENARIO ENGINE
+   ========================================================================= */
+function a4_baselineParams(){
+  return {
+    Cash_boy:140000,
+    F2_county:3600000, F2_school:2400000,
+    F3_county:3520000, F3_school:2350000,
+    F5_invIncome:9000
+  };
+}
+function a4_randomParams(rand){
+  function vary(base,pct,step){ return rTo(base*(1+(rand()*2-1)*pct), step); }
+  var F2_county = vary(3600000,0.08,10000), F2_school = vary(2400000,0.08,10000);
+  var distRate = pick(rand,[0.94,0.95,0.96,0.97,0.98]);
+  var F3_county = rTo(F2_county*distRate,10000), F3_school = rTo(F2_school*distRate,10000);
+  return {
+    Cash_boy: vary(140000,0.15,5000),
+    F2_county: F2_county, F2_school: F2_school,
+    F3_county: F3_county, F3_school: F3_school,
+    F5_invIncome: vary(9000,0.2,500)
+  };
+}
+function a4_solve(p){
+  var d = {}; for(var k in p) d[k]=p[k];
+  d.F2_total = p.F2_county + p.F2_school;
+  d.F3_total = p.F3_county + p.F3_school;
+  d.CountyShare = p.F2_county / d.F2_total;
+  d.SchoolShare = p.F2_school / d.F2_total;
+  // Outstanding (undistributed) collections at year end MUST equal collections minus
+  // distributions — deriving it any other way can consume or manufacture net position
+  // with no supporting transaction. Split it in the same proportion as each government's
+  // share of tax collections (item F-2).
+  d.F4_total = d.F2_total - d.F3_total;
+  d.F4_county = rTo(d.F4_total * d.CountyShare, 1);
+  d.F4_school = d.F4_total - d.F4_county;
+  d.F5_county = rTo(p.F5_invIncome * d.CountyShare, 1);
+  d.F5_school = p.F5_invIncome - d.F5_county;
+  d.Additions_total = d.F2_total + p.F5_invIncome;
+  d.Deductions_total = d.F3_total;
+  d.NetChange_closing = d.Additions_total - d.Deductions_total;
+  d.NP_boy = p.Cash_boy;
+  return d;
+}
+function generateScenario(id){
+  var seed = (id||'').trim();
+  if(seed==='') return a4_solve(a4_baselineParams());
+  return a4_solve(a4_randomParams(mulberry32(hashSeed(seed.toLowerCase()+'-llama-falls-a4'))));
+}
+
+/* =========================================================================
+   CHART OF ACCOUNTS
+   ========================================================================= */
+var FID_ACCOUNTS = ["Cash","Taxes Receivable for Other Governments","Due to County Government",
+ "Due to School District","Additions—Tax Collections for Others","Deductions—Distributions to Other Governments",
+ "Net Position—Restricted for Others"];
+
+var FID_TYPE = {"Cash":"Asset","Taxes Receivable for Other Governments":"Asset","Due to County Government":"Liability",
+ "Due to School District":"Liability","Additions—Tax Collections for Others":"Addition",
+ "Deductions—Distributions to Other Governments":"Deduction","Net Position—Restricted for Others":"Net Position"};
+
+function fidBeginning(d){
+  var b = {}; FID_ACCOUNTS.forEach(function(a){ b[a]=[0,0]; });
+  b["Cash"]=[d.Cash_boy,0];
+  b["Net Position—Restricted for Others"]=[0,d.NP_boy];
+  return b;
+}
+
+/* =========================================================================
+   JOURNAL-ENTRY DEFINITIONS
+   ========================================================================= */
+var FID_JOURNAL = {
+ F2:[
+  {side:'Dr',acct:function(){return 'Cash';},amt:function(d){return d.F2_total;}},
+  {side:'Cr',acct:function(){return 'Additions—Tax Collections for Others';},amt:function(d){return d.F2_total;}}
+ ],
+ F3:[
+  {side:'Dr',acct:function(){return 'Deductions—Distributions to Other Governments';},amt:function(d){return d.F3_total;}},
+  {side:'Cr',acct:function(){return 'Cash';},amt:function(d){return d.F3_total;}}
+ ],
+ F5:[
+  {side:'Dr',acct:function(){return 'Cash';},amt:function(d){return d.F5_invIncome;},tag:'(a) Record the investment income addition'},
+  {side:'Cr',acct:function(){return 'Additions—Tax Collections for Others';},amt:function(d){return d.F5_invIncome;}},
+  {side:'Dr',acct:function(){return 'Net Position—Restricted for Others';},amt:function(d){return d.F5_invIncome;},tag:'(b) Record the related amount due to the other governments, in proportion to each government’s share of tax collections'},
+  {side:'Cr',acct:function(){return 'Due to County Government';},amt:function(d){return d.F5_county;}},
+  {side:'Cr',acct:function(){return 'Due to School District';},amt:function(d){return d.F5_school;}}
+ ]
+};
+
+var FID_ADJ = {
+ A:[
+  {side:'Dr',acct:function(){return 'Net Position—Restricted for Others';},amt:function(d){return d.F4_total;}},
+  {side:'Cr',acct:function(){return 'Due to County Government';},amt:function(d){return d.F4_county;}},
+  {side:'Cr',acct:function(){return 'Due to School District';},amt:function(d){return d.F4_school;}}
+ ]
+};
+
+var FID_CLOSE = {
+ C1:[
+  {side:'Dr',acct:function(){return 'Additions—Tax Collections for Others';},amt:function(d){return d.Additions_total;}},
+  {side:'Cr',acct:function(){return 'Deductions—Distributions to Other Governments';},amt:function(d){return d.Deductions_total;}},
+  {side:function(d){return d.NetChange_closing>=0?'Cr':'Dr';},acct:function(){return 'Net Position—Restricted for Others';},amt:function(d){return Math.abs(d.NetChange_closing);}}
+ ]
+};
+
+/* =========================================================================
+   ROW-ID REGISTRIES / GRADING / LIVE POSTING (identical pattern to A1-A3)
+   ========================================================================= */
+var ROWS = { fid:{journal:[],adj:[],close:[]} };
+var SCORES = {};
+var currentScenario = null;
+var TOTAL_POINTS = 0;
+
+function computeTotalPoints(){
+  var total = 0;
+  ['journal','adj','close'].forEach(function(sec){
+    ROWS.fid[sec].forEach(function(entry){ total += entry.defRows.length * 2; });
+  });
+  TOTAL_POINTS = total;
+}
+
+function acctOptionsHtml(list){
+  var html = '<option value="">— select account —</option>';
+  list.forEach(function(a){ html += '<option value="'+a.replace(/"/g,'&quot;')+'">'+a+'</option>'; });
+  return html;
+}
+
+function buildEntryPart(host, opts){
+  var part = document.createElement('div');
+  part.className = 'part';
+  var reqText = opts.reqText || 'Prepare the journal entry to record this item.';
+  part.innerHTML =
+   '<span class="part-label">'+opts.sectionLabel+'</span>'+
+   '<h2>'+opts.title+'</h2>'+
+   (opts.scenarioHtml? '<div class="scenario">'+opts.scenarioHtml+'</div>' : '')+
+   '<div class="req"><span class="reqlabel">Required:</span> '+reqText+'</div>'+
+   '<table class="worksheet"><thead><tr><th>Account</th><th class="num">Debit</th><th class="num">Credit</th></tr></thead><tbody id="'+opts.key+'-body"></tbody></table>'+
+   '<div class="check-bar">'+
+     '<button class="btn-check" id="check-'+opts.key+'" type="button">Check my work</button>'+
+     '<span class="check-summary" id="sum-'+opts.key+'"></span>'+
+     '<span class="live-badge">Live-posts to trial balance</span>'+
+     '<span class="check-disclaimer">This checks your account selections and amounts against the key within a small tolerance.</span>'+
+   '</div>';
+  host.appendChild(part);
+
+  var body = document.getElementById(opts.key+'-body');
+  var rowIds = [];
+  opts.rows.forEach(function(row,idx){
+    var rowId = opts.key+'-r'+idx;
+    rowIds.push(rowId);
+    var tr = document.createElement('tr');
+    var tagHtml = row.tag? ('<div class="hint" style="margin:0 0 4px;"><span class="entrytag">'+row.tag+'</span></div>') : '';
+    tr.innerHTML =
+      '<td class="acctcell">'+tagHtml+'<select class="acct" id="'+rowId+'-acct">'+acctOptionsHtml(opts.acctList)+'</select></td>'+
+      '<td class="amt"><input type="text" placeholder="$" id="'+rowId+'-debit"></td>'+
+      '<td class="amt"><input type="text" placeholder="$" id="'+rowId+'-credit"></td>';
+    body.appendChild(tr);
+  });
+  opts.regBucket.push({key:opts.key, rowIds:rowIds, defRows:opts.rows});
+
+  rowIds.forEach(function(rowId){
+    var accEl = document.getElementById(rowId+'-acct');
+    if(accEl) accEl.addEventListener('change', function(){ clearFieldState(accEl); scheduleRecompute(); markStale(opts.key); });
+    ['-debit','-credit'].forEach(function(suf){
+      var el = document.getElementById(rowId+suf);
+      if(el) el.addEventListener('input', function(){ clearFieldState(el); scheduleRecompute(); markStale(opts.key); });
+    });
+  });
+
+  var btn = document.getElementById('check-'+opts.key);
+  btn.addEventListener('click', function(){ gradeEntry(opts.key, opts.rows, rowIds); });
+}
+
+function clearFieldState(el){ if(el) el.classList.remove('field-correct','field-incorrect'); }
+function markStale(key){ var s=SCORES[key]; if(s && s.checked) s.stale = true; }
+function markSelect(id, expected){
+  var el=document.getElementById(id); if(!el) return null;
+  el.classList.remove('field-correct','field-incorrect');
+  var ok = el.value===expected;
+  el.classList.add(ok?'field-correct':'field-incorrect');
+  return ok;
+}
+function markAmountPair(rowId, side, correct, tol){
+  var debitEl=document.getElementById(rowId+'-debit'), creditEl=document.getElementById(rowId+'-credit');
+  if(!debitEl||!creditEl) return null;
+  clearFieldState(debitEl); clearFieldState(creditEl);
+  var debitBlank=debitEl.value.trim()==='', creditBlank=creditEl.value.trim()==='';
+  var ok;
+  if(side==='Dr'){
+    var debitOk=near(parseMoney(debitEl.value),correct,tol);
+    debitEl.classList.add(debitOk?'field-correct':'field-incorrect');
+    if(!creditBlank) creditEl.classList.add('field-incorrect');
+    ok = debitOk && creditBlank;
+  } else {
+    var creditOk=near(parseMoney(creditEl.value),correct,tol);
+    creditEl.classList.add(creditOk?'field-correct':'field-incorrect');
+    if(!debitBlank) debitEl.classList.add('field-incorrect');
+    ok = creditOk && debitBlank;
+  }
+  return ok;
+}
+function updateSummary(elId, results){
+  var el=document.getElementById(elId); if(!el) return;
+  var graded=results.filter(function(r){return r!==null;}).length;
+  var correct=results.filter(function(r){return r===true;}).length;
+  el.textContent = correct+' of '+graded+' correct';
+  el.classList.remove('good','bad');
+  el.classList.add(correct===graded && graded>0 ? 'good':'bad');
+}
+function gradeEntry(key, defRows, rowIds){
+  if(!currentScenario) return;
+  var results=[];
+  defRows.forEach(function(row,idx){
+    var rowId=rowIds[idx];
+    var side=(typeof row.side==='function')?row.side(currentScenario):row.side;
+    results.push(markSelect(rowId+'-acct', row.acct(currentScenario)));
+    results.push(markAmountPair(rowId, side, row.amt(currentScenario), TOL.dollars));
+  });
+  updateSummary('sum-'+key, results);
+  if(!SCORES[key]) SCORES[key]={correct:0,graded:0,checked:false,stale:false};
+  var s=SCORES[key];
+  s.graded=results.filter(function(r){return r!==null;}).length;
+  s.correct=results.filter(function(r){return r===true;}).length;
+  s.checked=true; s.stale=false;
+  renderOverall();
+}
+function renderOverall(){
+  var area=document.getElementById('scoreArea'); if(!area) return;
+  var panel=area.querySelector('.score-panel[data-for="overall"]');
+  if(!panel){
+    panel=document.createElement('div');
+    panel.className='score-panel'; panel.setAttribute('data-for','overall');
+    panel.innerHTML='<div class="score-pct">—</div><div class="score-detail"><p class="score-meta">Overall score</p><div class="score-bar"><span></span></div><p class="score-sub">Check each item below; points earned count toward the assignment total as you go.</p></div>';
+    area.appendChild(panel);
+  }
+  var totalCorrect=0, anyChecked=false, uncheckedCount=0;
+  Object.keys(SCORES).forEach(function(k){ var s=SCORES[k]; if(s.checked){ anyChecked=true; totalCorrect+=s.correct; } });
+  ['journal','adj','close'].forEach(function(sec){
+    ROWS.fid[sec].forEach(function(entry){ var s=SCORES[entry.key]; if(!s||!s.checked) uncheckedCount++; });
+  });
+  var pctEl=panel.querySelector('.score-pct'), metaEl=panel.querySelector('.score-meta'), fillEl=panel.querySelector('.score-bar span'), subEl=panel.querySelector('.score-sub');
+  panel.classList.remove('scored-good','scored-bad');
+  var pct = TOTAL_POINTS? Math.round(totalCorrect/TOTAL_POINTS*100):0;
+  pctEl.textContent = pct+'%';
+  metaEl.textContent = 'Overall: '+totalCorrect+' of '+TOTAL_POINTS+' points';
+  fillEl.style.width = pct+'%';
+  if(!anyChecked){ subEl.textContent = TOTAL_POINTS+' points available across the assignment. Check each item below to earn points.'; return; }
+  if(totalCorrect===TOTAL_POINTS){ subEl.textContent='All '+TOTAL_POINTS+' points earned.'; panel.classList.add('scored-good'); }
+  else { subEl.textContent=(TOTAL_POINTS-totalCorrect)+' point(s) not yet earned'+(uncheckedCount?' ('+uncheckedCount+' item(s) not yet checked)':'')+'.'; panel.classList.add('scored-bad'); }
+}
+
+/* =========================================================================
+   LIVE POSTING ENGINE
+   ========================================================================= */
+var recomputeQueued = false;
+function scheduleRecompute(){
+  if(recomputeQueued) return;
+  recomputeQueued=true;
+  requestAnimationFrame(function(){ recomputeQueued=false; recomputeAll(); });
+}
+function sectionTotals(bucket){
+  var totals={};
+  bucket.forEach(function(entry){
+    entry.rowIds.forEach(function(rowId){
+      var acctEl=document.getElementById(rowId+'-acct');
+      var acct=acctEl?acctEl.value:''; if(!acct) return;
+      var debit=parseMoney(document.getElementById(rowId+'-debit').value); if(isNaN(debit)) debit=0;
+      var credit=parseMoney(document.getElementById(rowId+'-credit').value); if(isNaN(credit)) credit=0;
+      if(!totals[acct]) totals[acct]=[0,0];
+      totals[acct][0]+=debit; totals[acct][1]+=credit;
+    });
+  });
+  return totals;
+}
+function netBalances(accountsList, begin, journal, adj){
+  var out={};
+  accountsList.forEach(function(a){
+    var bd=(begin[a]||[0,0])[0], bc=(begin[a]||[0,0])[1];
+    var jd=(journal[a]||[0,0])[0], jc=(journal[a]||[0,0])[1];
+    var ad=(adj[a]||[0,0])[0], ac=(adj[a]||[0,0])[1];
+    var netD=bd+jd+ad, netC=bc+jc+ac, net=netD-netC;
+    out[a]={bd:bd,bc:bc,jd:jd,jc:jc,ad:ad,ac:ac,adjD:net>=0?net:0,adjC:net<0?-net:0};
+  });
+  return out;
+}
+function remapPC(pcMap){
+  var out={}; for(var a in pcMap){ var r=pcMap[a]; out[a]={bd:r.bd,bc:r.bc,jd:r.jd,jc:r.jc,adjD:r.adjD,adjC:r.adjC}; } return out;
+}
+function renderTB(tableId, accountsList, adjustedMap, cols){
+  var table=document.getElementById(tableId); if(!table) return;
+  var head='<thead><tr><th>Account</th>'+cols.headers.map(function(h){return '<th>'+h+'</th>';}).join('')+'</tr></thead>';
+  var totals={}; cols.keys.forEach(function(k){ totals[k]=0; });
+  var rowsHtml=accountsList.map(function(a){
+    var r=adjustedMap[a];
+    var vals=cols.keys.map(function(k){ totals[k]+=r[k]; return r[k]; });
+    var allZero=vals.every(function(v){return Math.abs(v)<0.5;});
+    return '<tr'+(allZero?' class="tb-zero"':'')+'><td class="lbl">'+a+'</td>'+vals.map(function(v){return '<td>'+(Math.abs(v)<0.5?'–':num0(v))+'</td>';}).join('')+'</tr>';
+  }).join('');
+  var totalRow='<tr class="tb-total"><td class="lbl">TOTALS</td>'+cols.keys.map(function(k){return '<td>'+num0(totals[k])+'</td>';}).join('')+'</tr>';
+  table.innerHTML=head+'<tbody>'+rowsHtml+totalRow+'</tbody>';
+}
+function stmtRow(label,value,cls){ return '<tr class="'+(cls||'')+'"><td>'+label+'</td><td class="num">'+num0(value)+'</td></tr>'; }
+function stmtHead(label){ return '<tr class="stmt-head"><td colspan="2">'+label+'</td></tr>'; }
+
+function recomputeAll(){
+  if(!currentScenario) return;
+  var d = currentScenario;
+
+  var fidBegin = fidBeginning(d);
+  var fidJournal = sectionTotals(ROWS.fid.journal);
+  var fidAdj = sectionTotals(ROWS.fid.adj);
+  var fidClose = sectionTotals(ROWS.fid.close);
+  var fidAdjustedMap = netBalances(FID_ACCOUNTS, fidBegin, fidJournal, fidAdj);
+  renderTB('fid-adjusted-tb', FID_ACCOUNTS, fidAdjustedMap, {headers:['Beg. Dr','Beg. Cr','Jrnl Dr','Jrnl Cr','Adj Dr','Adj Cr','Adjusted Dr','Adjusted Cr'],keys:['bd','bc','jd','jc','ad','ac','adjD','adjC']});
+  var fidAdjustedAsBegin={}; FID_ACCOUNTS.forEach(function(a){ fidAdjustedAsBegin[a]=[fidAdjustedMap[a].adjD,fidAdjustedMap[a].adjC]; });
+  var fidPCMap = netBalances(FID_ACCOUNTS, fidAdjustedAsBegin, fidClose, {});
+  renderTB('fid-postclosing-tb', FID_ACCOUNTS, remapPC(fidPCMap), {headers:['Adjusted Dr','Adjusted Cr','Closing Dr','Closing Cr','Post-Closing Dr','Post-Closing Cr'],keys:['bd','bc','jd','jc','adjD','adjC']});
+  renderFidStatements(d, fidAdjustedMap);
+}
+
+function renderFidStatements(d, m){
+  var bal=function(a){ return m[a].adjD-m[a].adjC; };
+  var cash=bal('Cash'), taxRec=bal('Taxes Receivable for Other Governments');
+  var totalAssets=cash+taxRec;
+  var dueCounty=-bal('Due to County Government'), dueSchool=-bal('Due to School District');
+  var totalDue=dueCounty+dueSchool;
+  var np=totalAssets-totalDue; // net position is the balancing plug of the statement, not a raw ledger read — the
+  // Net Position—Restricted for Others account is also used mid-year as a reclassification clearing account
+  // (items F-4 and F-5(b)), so its adjusted-trial-balance value alone does not represent the period-end position.
+  var bs=stmtHead('Assets')+stmtRow('Cash',cash)+(taxRec?stmtRow('Taxes receivable for other governments',taxRec):'')+stmtRow('Total assets',totalAssets,'stmt-total')
+   +stmtHead('Liabilities')+stmtRow('Due to county government',dueCounty)+stmtRow('Due to school district',dueSchool)+stmtRow('Amounts due to other governments',totalDue,'stmt-total')
+   +stmtRow('Net position—restricted for others',np,'stmt-grand');
+  document.getElementById('fid-net-position').innerHTML=bs;
+
+  var additions=-bal('Additions—Tax Collections for Others'); // credit-normal
+  var deductions=bal('Deductions—Distributions to Other Governments'); // debit-normal
+  // The bottom-line change in net position is tied to the same balancing plug as the
+  // Statement of Fiduciary Net Position (np - beginning), not to Additions - Deductions alone:
+  // items F-4 and F-5(b) reclassify amounts directly out of Net Position into the Due-to
+  // liability accounts without passing through Additions or Deductions, so Additions -
+  // Deductions alone understates how much of the period's activity was reclassified away.
+  var netChange = np - d.NP_boy;
+  var op=stmtHead('Additions')+stmtRow('Tax collections for other governments',additions-d.F5_invIncome)+stmtRow('Investment income',d.F5_invIncome)+stmtRow('Total additions',additions,'stmt-total')
+   +stmtHead('Deductions')+stmtRow('Distributions to other governments',deductions,'stmt-total')
+   +stmtRow('Change in fiduciary net position',netChange,'stmt-total')
+   +stmtRow('Net position—beginning',d.NP_boy)
+   +stmtRow('Net position—ending',np,'stmt-grand');
+  document.getElementById('fid-operating-stmt').innerHTML=op;
+}
+
+/* =========================================================================
+   PAGE ASSEMBLY
+   ========================================================================= */
+function buildAll(){
+  var journalHost=document.getElementById('fid-journal-host');
+  var adjHost=document.getElementById('fid-adj-host');
+  var closeHost=document.getElementById('fid-close-host');
+
+  var FIT = [
+   ['F2','Item F-2','Tax collections for others','<p>During the year the City collected <span class="val" id="v-F2_total"></span> of taxes on behalf of other governments: <span class="val" id="v-F2_county"></span> for the county and <span class="val" id="v-F2_school"></span> for the school district.</p>','Prepare the journal entry to record the collection.'],
+   ['F3','Item F-3','Distributions to other governments','<p>The City distributed <span class="val" id="v-F3_total"></span> to the other governments: <span class="val" id="v-F3_county"></span> to the county and <span class="val" id="v-F3_school"></span> to the school district.</p>','Prepare the journal entry to record the distribution.'],
+   ['F5','Item F-5','Investment income','<p>The custodial fund earned <span class="val" id="v-F5_invIncome"></span> of investment income that, under the collection agreement, belongs proportionately to the other governments (in the same proportion as each government’s share of tax collections in item F-2: <span class="val" id="v-F5_county"></span> to the county and <span class="val" id="v-F5_school"></span> to the school district).</p>','Prepare the journal entries to (a) record the addition and (b) record the related amount due to the other governments.']
+  ];
+  FIT.forEach(function(t){ buildEntryPart(journalHost, {sectionLabel:t[1],title:t[2],scenarioHtml:t[3],reqText:t[4],key:'fidj-'+t[0],rows:FID_JOURNAL[t[0]],acctList:FID_ACCOUNTS,regBucket:ROWS.fid.journal}); });
+
+  buildEntryPart(adjHost, {sectionLabel:'Adjustment A',title:'Classify amounts collected but not yet distributed',scenarioHtml:'<p>At year end, <span class="val" id="v-F4_total"></span> of taxes collected has not yet been distributed: <span class="val" id="v-F4_county"></span> is due to the county and <span class="val" id="v-F4_school"></span> is due to the school district. Reclassify this amount from Net Position—Restricted for Others into the specific liability owed to each government.</p>',key:'fidadj-A',rows:FID_ADJ.A,acctList:FID_ACCOUNTS,regBucket:ROWS.fid.adj});
+
+  buildEntryPart(closeHost, {sectionLabel:'Closing C1',title:'Close addition and deduction accounts',scenarioHtml:'<p>Close the Additions and Deductions accounts to Net Position—Restricted for Others.</p>',key:'fidclose-C1',rows:FID_CLOSE.C1,acctList:FID_ACCOUNTS,regBucket:ROWS.fid.close});
+}
+
+function fillScenarioSpans(d){
+  document.querySelectorAll('span.val[id^="v-"]').forEach(function(el){
+    var key = el.id.slice(2);
+    if(d.hasOwnProperty(key)) el.textContent = money0(d[key]);
+  });
+  setText('bg-fidboy', money0(d.Cash_boy));
+  setText('bg-fidboynp', money0(d.NP_boy));
+}
+function clearAllRowInputs(){
+  ['journal','adj','close'].forEach(function(sec){
+    ROWS.fid[sec].forEach(function(entry){
+      entry.rowIds.forEach(function(rowId){
+        var accEl=document.getElementById(rowId+'-acct'); if(accEl){ accEl.value=''; clearFieldState(accEl); }
+        ['-debit','-credit'].forEach(function(suf){ var el=document.getElementById(rowId+suf); if(el){ el.value=''; clearFieldState(el); } });
+      });
+    });
+  });
+}
+function applyAndStore(id){
+  currentScenario = generateScenario(id);
+  fillScenarioSpans(currentScenario);
+  clearAllRowInputs();
+  SCORES = {};
+  renderOverall();
+  recomputeAll();
+}
+
+document.addEventListener('DOMContentLoaded', function(){
+  applyFYSpans();
+  buildAll();
+  computeTotalPoints();
+  var idInput=document.getElementById('studentId');
+  var genBtn=document.getElementById('genBtn');
+  genBtn.addEventListener('click', function(){ applyAndStore(idInput.value); });
+  idInput.addEventListener('keydown', function(e){ if(e.key==='Enter'){ e.preventDefault(); applyAndStore(idInput.value); } });
+  applyAndStore('');
+
+  document.getElementById('printBtn').addEventListener('click', function(){
+    var name=(document.getElementById('studentName').value||'').trim();
+    var id=(document.getElementById('studentId').value||'').trim();
+    var line=document.getElementById('printNameLine');
+    line.textContent='Name: '+(name||'_______________________')+'     Student ID: '+(id||'_______________________');
+    var oldTitle=document.title;
+    document.title='ACCT635-Llama-Falls-A4-'+(id||'submission');
+    window.print();
+    document.title=oldTitle;
+  });
+});
+
+})();
+
+</script>
+</body>
+</html>
