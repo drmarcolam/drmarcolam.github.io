@@ -1,0 +1,1380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>City of Llama Falls — Assignment 5 (Government-Wide Conversion)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple:#2C5F88; --purple-deep:#193B5A; --purple-mid:#3F7FA3;
+    --gold:#5C8A92; --gold-soft:#98C3C8; --gold-pale:#E1EFEF;
+    --parchment:#F4F6F7; --paper:#FFFFFF; --ink:#1B2229; --slate:#5A6570;
+    --line:#D3DCE0; --line-soft:#E4EAEC; --answer:#1E5C34; --answer-bg:#E7F1E9;
+    --danger:#9C3B34; --shadow: 0 1px 2px rgba(25,59,90,0.07), 0 6px 18px rgba(25,59,90,0.08);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{background:var(--parchment);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased;}
+  a{color:inherit;}
+  header{background:linear-gradient(180deg, var(--purple) 0%, var(--purple-deep) 100%);color:#EAF3F3;padding:30px 6vw 24px;position:relative;}
+  header::after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;background:linear-gradient(90deg, var(--gold-soft), var(--gold) 40%, var(--gold-soft) 70%, var(--gold));}
+  .eyebrow{font-family:'IBM Plex Mono', monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-soft);margin:0 0 10px;}
+  h1.title{font-family:'Source Serif 4', serif;font-weight:600;font-size:clamp(22px,3.2vw,32px);margin:0 0 8px;letter-spacing:-0.01em;}
+  .subtitle{font-size:14.5px;color:#D6E6E6;max-width:760px;margin:0;}
+  .id-bar{max-width:1040px;margin:0 auto;padding:18px 6vw 0;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+  .id-bar label{font-size:13px;font-weight:600;color:var(--slate);}
+  .id-bar input[type="text"]{font-family:'Inter',sans-serif;font-size:13.5px;padding:8px 11px;border:1px solid var(--line);border-radius:5px;background:var(--paper);color:var(--ink);width:220px;}
+  .id-bar input:focus{outline:none;border-color:var(--purple-mid);box-shadow:0 0 0 3px rgba(44,95,136,0.10);}
+  .id-bar .id-hint{font-size:12px;color:var(--slate);}
+  .id-bar button{font-family:'Inter',sans-serif;font-size:13.5px;font-weight:600;border-radius:5px;padding:9px 16px;border:1px solid var(--purple);background:var(--purple);color:#fff;cursor:pointer;}
+  .id-bar button:hover{background:var(--purple-mid);}
+  .score-area{max-width:1040px;margin:0 auto;padding:14px 6vw 0;}
+  .rounding-note{max-width:1040px;margin:14px auto 0;padding:12px 6vw;font-size:12.5px;color:var(--slate);line-height:1.5;}
+  .rounding-note strong{color:var(--purple);font-weight:600;}
+  main{max-width:1040px;margin:0 auto;padding:22px 6vw 90px;}
+  .fund-divider{margin:44px 0 10px;padding:10px 0 6px;border-bottom:2px solid var(--purple);}
+  .fund-divider h2{font-family:'Source Serif 4',serif;font-size:24px;color:var(--purple-deep);margin:0;}
+  .fund-divider p{font-size:13px;color:var(--slate);margin:4px 0 0;}
+  .part{background:var(--paper);border:1px solid var(--line);border-radius:10px;box-shadow:var(--shadow);padding:24px 26px 26px;margin-top:22px;}
+  .part-label{font-family:'IBM Plex Mono', monospace;font-size:12px;color:var(--gold-pale);background:var(--purple);display:inline-block;padding:3px 9px;border-radius:4px;letter-spacing:.04em;margin-bottom:12px;}
+  .auto-tag{font-family:'IBM Plex Mono', monospace;font-size:11px;font-weight:400;color:var(--gold);background:var(--parchment);border:1px solid var(--line);display:inline-block;padding:2px 8px;border-radius:10px;letter-spacing:.03em;vertical-align:middle;margin-left:8px;}
+  .part h2{font-family:'Source Serif 4', serif;font-size:20px;font-weight:600;color:var(--purple);margin:0 0 12px;}
+  .part h3{font-family:'Source Serif 4', serif;font-size:17px;font-weight:600;color:var(--purple);margin:0 0 10px;}
+  .scenario{background:var(--parchment);border-left:3px solid var(--gold);padding:14px 18px;border-radius:0 6px 6px 0;font-size:14.5px;color:var(--ink);margin-bottom:16px;}
+  .scenario p{margin:0 0 10px;}
+  .scenario p:last-child{margin-bottom:0;}
+  .scenario span.val{font-weight:700;color:var(--purple-deep);}
+  .req{font-weight:600;font-size:14.5px;color:var(--ink);margin:20px 0 10px;}
+  .req span.reqlabel{color:var(--purple);}
+  .footnote{font-size:12px;color:var(--slate);margin:2px 0 14px;font-style:italic;}
+  table.given{width:100%;border-collapse:collapse;font-size:13px;margin:6px 0 14px;}
+  table.given th{text-align:left;font-size:10.5px;text-transform:uppercase;letter-spacing:.03em;color:var(--slate);border-bottom:2px solid var(--purple);padding:6px 8px;}
+  table.given td{border-bottom:1px solid var(--line);padding:5px 8px;font-family:'IBM Plex Mono', monospace;}
+  table.given td.lbl{font-family:'Inter',sans-serif;}
+  table.given td.num, table.given th.num{text-align:right;}
+  table.given tr.given-total td{border-top:1.6px solid var(--purple);font-weight:600;}
+  table.worksheet{width:100%;border-collapse:collapse;font-size:13.5px;margin:10px 0 4px;}
+  table.worksheet th{text-align:left;font-size:11.5px;text-transform:uppercase;letter-spacing:.03em;color:var(--slate);border-bottom:2px solid var(--purple);padding:8px 8px;}
+  table.worksheet th.num{text-align:right;}
+  table.worksheet td{border-bottom:1px solid var(--line);padding:8px 8px;vertical-align:middle;}
+  table.worksheet td.amt{width:150px;text-align:right;font-family:'IBM Plex Mono',monospace;}
+  table.worksheet td.ref{width:150px;text-align:right;font-family:'IBM Plex Mono',monospace;color:var(--slate);}
+  table.worksheet input[type="text"]{width:100%;font-family:'IBM Plex Mono', monospace;font-size:13.5px;padding:6px 8px;border:1px solid var(--line);border-radius:5px;background:var(--parchment);color:var(--ink);text-align:right;}
+  table.worksheet input[type="text"]:focus{outline:none;border-color:var(--purple-mid);box-shadow:0 0 0 3px rgba(44,95,136,0.10);background:var(--paper);}
+  table.worksheet select.acct{width:100%;font-family:'Inter',sans-serif;font-size:13px;font-weight:400;padding:6px 8px;border:1px solid var(--line);border-radius:5px;background:var(--parchment);color:var(--ink);}
+  table.worksheet select.acct:focus{outline:none;border-color:var(--purple-mid);box-shadow:0 0 0 3px rgba(44,95,136,0.10);background:var(--paper);}
+  table.worksheet td.acctcell{padding-right:14px;}
+  table.worksheet td.entrytag{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--gold-pale);background:var(--purple);border-radius:4px;padding:2px 7px;display:inline-block;}
+  table.worksheet tr.total-row td{border-top:1.6px solid var(--purple);font-weight:600;background:var(--parchment);}
+  .score-panel{display:flex;align-items:center;gap:18px;margin:0 0 4px;padding:14px 18px;background:var(--parchment);border:1px solid var(--line);border-radius:8px;}
+  .score-panel.scored-good{background:var(--answer-bg);border-color:#B7D3BE;}
+  .score-panel.scored-bad{background:#F8F0EF;border-color:#E2C6C2;}
+  .score-pct{font-family:'Source Serif 4', serif;font-size:28px;font-weight:700;line-height:1.05;color:var(--slate);min-width:90px;text-align:center;}
+  .score-panel.scored-good .score-pct{color:var(--answer);}
+  .score-panel.scored-bad .score-pct{color:var(--danger);}
+  .score-detail{flex:1;min-width:0;}
+  .score-meta{font-size:13.5px;font-weight:600;color:var(--ink);margin:0 0 7px;}
+  .score-bar{height:8px;border-radius:4px;background:var(--line-soft);overflow:hidden;}
+  .score-bar span{display:block;height:100%;width:0;background:var(--purple-mid);transition:width .35s ease;}
+  .score-panel.scored-good .score-bar span{background:var(--answer);}
+  .score-panel.scored-bad .score-bar span{background:var(--danger);}
+  .score-sub{font-size:11.5px;color:var(--slate);margin:7px 0 0;}
+  .check-bar{margin-top:18px;padding-top:14px;border-top:1px solid var(--line);display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+  .btn-check{font-family:'Inter',sans-serif;font-size:13.5px;font-weight:600;border-radius:5px;padding:9px 18px;border:1px solid var(--purple);background:var(--purple);color:#fff;cursor:pointer;}
+  .btn-check:hover{background:var(--purple-mid);}
+  .check-summary{font-size:13.5px;font-weight:600;}
+  .check-summary.good{color:var(--answer);}
+  .check-summary.bad{color:var(--danger);}
+  .tie-check{font-size:12.5px;margin:14px 0 0;padding:8px 12px;border-radius:6px;background:var(--parchment);border:1px solid var(--line);}
+  .tie-check.tie-ok{color:var(--answer);border-color:#B7D3BE;}
+  .tie-check.tie-bad{color:var(--danger);border-color:#E2C6C2;}
+  .check-disclaimer{font-size:11.5px;color:var(--slate);width:100%;margin-top:2px;font-style:italic;}
+  input.field-correct, select.field-correct{border-color:var(--answer) !important;background:var(--answer-bg) !important;}
+  input.field-incorrect, select.field-incorrect{border-color:var(--danger) !important;background:#F3E1DE !important;}
+  .live-badge{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--purple);background:var(--gold-pale);border-radius:4px;padding:2px 7px;margin-left:8px;vertical-align:middle;}
+  table.stmt{width:100%;border-collapse:collapse;font-size:13.5px;margin:4px 0 18px;}
+  table.stmt td{padding:5px 4px;border-bottom:1px solid var(--line-soft);}
+  table.stmt td.num{text-align:right;font-family:'IBM Plex Mono',monospace;width:150px;}
+  table.stmt tr.stmt-head td{font-weight:700;color:var(--purple);padding-top:14px;border-bottom:1.4px solid var(--purple-mid);}
+  table.stmt tr.stmt-sub td{padding-left:18px;}
+  table.stmt tr.stmt-total td{font-weight:700;border-top:1.4px solid var(--purple);border-bottom:none;}
+  table.stmt tr.stmt-grand td{font-weight:700;border-top:2px double var(--purple-deep);}
+  .diff-flag{font-size:11px;color:var(--danger);font-weight:600;margin-left:6px;}
+  .diff-ok{font-size:11px;color:var(--answer);font-weight:600;margin-left:6px;}
+  .submit-bar{background:var(--paper);border:1px solid var(--line);border-radius:10px;box-shadow:var(--shadow);padding:22px 26px 24px;margin-top:26px;}
+  .submit-bar h2{font-family:'Source Serif 4', serif;font-size:19px;font-weight:600;color:var(--purple);margin:0 0 14px;}
+  .submit-row{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap;}
+  .btn-submit{font-family:'Inter',sans-serif;font-size:13.5px;font-weight:600;border-radius:5px;padding:10px 18px;border:1px solid var(--purple);background:var(--purple);color:#fff;cursor:pointer;}
+  .btn-submit:hover{background:var(--purple-mid);}
+  .submit-hint{font-size:12px;color:var(--slate);margin:6px 0 0;}
+  .toc{background:var(--paper);border:1px solid var(--line);border-radius:10px;box-shadow:var(--shadow);padding:18px 22px;margin-top:22px;font-size:13px;}
+  .toc h3{margin:0 0 8px;font-family:'Source Serif 4',serif;color:var(--purple);font-size:15px;}
+  .toc ul{margin:0;padding-left:0;list-style:none;columns:2;column-gap:24px;}
+  .toc li{margin:3px 0;}
+  .toc a{color:var(--purple-mid);text-decoration:none;font-size:12.5px;}
+  .toc a:hover{text-decoration:underline;}
+  @media print{
+    .print-hide, .id-bar, .check-bar, .rounding-note, .toc{display:none !important;}
+    header{background:none !important;color:var(--ink) !important;padding:0 0 14px !important;}
+    header::after{display:none !important;}
+    .eyebrow{color:var(--purple) !important;}
+    .subtitle{color:var(--slate) !important;}
+    body{background:#fff !important;}
+    .part{box-shadow:none !important;border:1px solid #999 !important;break-inside:auto;}
+    .score-panel{background:#fff !important;border:1.5px solid #000 !important;break-inside:avoid;}
+    .score-bar{display:none !important;}
+    input[type="text"], select.acct{border:none !important;border-bottom:1px solid #000 !important;background:transparent !important;border-radius:0 !important;color:#000 !important;-webkit-appearance:none;appearance:none;padding:2px 4px !important;}
+    .print-name-line{display:block !important;}
+  }
+  .print-name-line{display:none;font-size:13px;color:var(--ink);padding:0 6vw;margin:0 0 10px;}
+  footer{text-align:center;padding:26px 6vw 40px;font-size:12px;color:var(--slate);}
+  @media (max-width:600px){
+    header, main, .id-bar{padding-left:5vw;padding-right:5vw;}
+    table.worksheet{font-size:12px;}
+    .toc ul{columns:1;}
+  }
+
+  .back-bar{ max-width:960px; margin:0 auto; padding:14px 6vw 0; }
+  .back-bar a{
+    font-family:'Inter',sans-serif; font-size:13px; font-weight:600;
+    color:#592C88; text-decoration:none;
+  }
+  .back-bar a:hover{ text-decoration:underline; }
+</style>
+</head>
+<body>
+<div class="back-bar print-hide"><a href="../../acct-635.html">&larr; Back to ACCT 635</a></div>
+
+
+<header>
+  <p class="eyebrow">ACCT 635 &middot; Governmental and Nonprofit Accounting &middot; City of Llama Falls</p>
+  <h1 class="title">Assignment 5 — Government-Wide Conversion &amp; Financial Statements</h1>
+  <p class="subtitle">Convert the reconciled fund-level results of Assignments 1&ndash;4 to the government-wide, full-accrual basis, and prepare the government-wide Statement of Net Position and Statement of Activities. This assignment contains no correction entries &mdash; the ending balances carried forward from Assignments 1&ndash;4 for your Student ID are already correct and simply flow in below. Record the government-wide conversion worksheet entries, and the reconciliation schedules and statements below them will update automatically from whatever you post.</p>
+</header>
+
+<p class="print-name-line" id="printNameLine"></p>
+
+<div class="id-bar">
+  <label for="studentName">Name</label>
+  <input type="text" id="studentName" placeholder="First and last name">
+  <label for="studentId">Student ID</label>
+  <input type="text" id="studentId" placeholder="e.g. 920410165">
+  <button id="genBtn" type="button">Generate scenario</button>
+  <span class="id-hint">Use the same Student ID you used in Assignments 1&ndash;4 &mdash; this workbook automatically regenerates each fund's actual ending results for that ID. Leave the ID blank to restore the original City of Llama Falls figures.</span>
+</div>
+
+<div class="score-area" id="scoreArea"></div>
+
+<div class="rounding-note">
+  <strong>Before you start:</strong> enter journal-entry amounts in <strong>whole dollars</strong> with no commas or dollar signs, as a debit or a credit &mdash; never a negative number. Each worksheet entry is graded against the answer key within a small tolerance. The reconciliation schedules, the Functional Expense Conversion, the Statement of Net Position, and the Statement of Activities below the entries are <strong>not separately graded</strong> &mdash; they recompute live from whatever you have posted so far, correct or not, exactly the way your posted amounts would flow through a real government-wide conversion worksheet.
+</div>
+
+<main>
+
+<div class="toc part" id="toc">
+  <h3>Contents</h3>
+  <ul>
+    <li><a href="#fund-results">Fund-Level Results Carried Forward</a></li>
+    <li><a href="#gw-data">Government-Wide Conversion Data</a></li>
+    <li><a href="#je-worksheet">Government-Wide Conversion Worksheet Entries</a></li>
+    <li><a href="#np-recon">Reconciliation of Fund Balances to Net Position <em>(auto-computed)</em></a></li>
+    <li><a href="#chg-recon">Reconciliation of the Change in Fund Balances to the Change in Net Position <em>(auto-computed)</em></a></li>
+    <li><a href="#func-conv">Governmental Activities — Functional Expense Conversion <em>(auto-computed)</em></a></li>
+    <li><a href="#snp">Statement of Net Position <em>(auto-computed)</em></a></li>
+    <li><a href="#soa">Statement of Activities <em>(auto-computed)</em></a></li>
+  </ul>
+</div>
+
+<div class="fund-divider" id="fund-results">
+  <h2>Fund-Level Results Carried Forward</h2>
+  <p>These are your own actual ending results from Assignments 1&ndash;4 for this Student ID &mdash; not a separate given fact to memorize, but the same figures your completed workbooks already produce. No correction entries are needed or expected anywhere in this assignment.</p>
+</div>
+<div class="part">
+  <span class="part-label">Carried forward</span>
+  <h2>Governmental and business-type fund/fiduciary results</h2>
+  <table class="given">
+    <thead><tr><th>Item</th><th class="num">Amount</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr><td class="lbl">General Fund ending fund balance</td><td class="num" id="v-GF_endFB"></td><td class="lbl">Assignment 1</td></tr>
+      <tr><td class="lbl">Public Safety Grant Special Revenue Fund ending fund balance</td><td class="num" id="v-SRF_change"></td><td class="lbl">Assignment 1</td></tr>
+      <tr><td class="lbl">Capital Projects Fund ending fund balance</td><td class="num" id="v-CPF_change"></td><td class="lbl">Assignment 2</td></tr>
+      <tr><td class="lbl">Debt Service Fund ending fund balance</td><td class="num" id="v-DSF_endFB"></td><td class="lbl">Assignment 2</td></tr>
+      <tr class="given-total"><td class="lbl">Total governmental fund balances</td><td class="num" id="v-TotalGovFundBalances_end"></td><td class="lbl">Sum of the above</td></tr>
+      <tr><td class="lbl">Internal Service Fund ending net position</td><td class="num" id="v-ISF_NP_end"></td><td class="lbl">Assignment 3 (primarily governmental activities)</td></tr>
+      <tr><td class="lbl">Internal Service Fund net income (loss) for the year</td><td class="num" id="v-ISF_NetIncome"></td><td class="lbl">Assignment 3</td></tr>
+      <tr><td class="lbl">Water Utility Enterprise Fund ending net position</td><td class="num" id="v-BTA_NP_end"></td><td class="lbl">Assignment 3 (business-type activities)</td></tr>
+      <tr><td class="lbl">Water Utility Enterprise Fund net income for the year</td><td class="num" id="v-BTA_Change"></td><td class="lbl">Assignment 3</td></tr>
+      <tr><td class="lbl">Custodial Fund fiduciary net position</td><td class="num">$0</td><td class="lbl">Assignment 4 &mdash; excluded entirely from the government-wide statements below</td></tr>
+    </tbody>
+  </table>
+  <p class="footnote">The $180,000 of Public Works equipment identified in Assignment 1, item T10, remains a General Fund expenditure at the fund level and is capitalized only in the conversion below.</p>
+</div>
+
+<div class="fund-divider" id="gw-data">
+  <h2>Government-Wide Conversion Data</h2>
+  <p>The facts below exist only at the government-wide level &mdash; they have no fund-level journal entry in Assignments 1&ndash;4.</p>
+</div>
+<div class="part">
+  <span class="part-label">Given</span>
+  <h2>Capital assets, long-term debt, and compensated absences</h2>
+  <div class="scenario">
+    <p><strong>GW-1 (Capital assets).</strong> Beginning-of-year governmental capital assets, net, are <span class="val" id="v-GovCapAssets_boy"></span>. During the year the City capitalized <span class="val" id="v-CapOutlaysCapitalized"></span> of governmental capital outlay &mdash; the Capital Projects Fund's <span class="val" id="v-CPF_ExpTotal"></span> of construction expenditures (Assignment 2) plus the <span class="val" id="v-CapAssetEquip_pw2"></span> of Public Works equipment purchased through the General Fund (Assignment 1, item T10) &mdash; and recorded <span class="val" id="v-GovDepreciation_total"></span> of current-year depreciation, allocated by function: general government <span class="val" id="v-Dep_gg"></span>; public safety <span class="val" id="v-Dep_ps"></span>; public works <span class="val" id="v-Dep_pw"></span>; parks and recreation <span class="val" id="v-Dep_pr"></span>.</p>
+    <p><strong>GW-2 (Long-term debt).</strong> Beginning-of-year governmental bonds payable are <span class="val" id="v-GovBonds_boy"></span>. The City issued the <span class="val" id="v-Bond2"></span> of new bonds recorded in Assignment 2 (Capital Projects Fund, item CP-1) and repaid <span class="val" id="v-BondPrincipal2"></span> of principal on previously outstanding bonds (Assignment 2, Debt Service Fund, item DS-3), leaving ending governmental bonds payable of <span class="val" id="v-GovBonds_end"></span>.</p>
+    <p><strong>GW-3 (Compensated absences).</strong> Beginning-of-year compensated absences payable are <span class="val" id="v-GovCompAbs_boy"></span>. The liability increased <span class="val" id="v-CompAbsIncrease_total"></span> during the year, allocated by function: general government <span class="val" id="v-CompAbs_gg"></span>; public safety <span class="val" id="v-CompAbs_ps"></span>; public works <span class="val" id="v-CompAbs_pw"></span>; parks and recreation <span class="val" id="v-CompAbs_pr"></span>.</p>
+    <p><strong>GW-4 (Property-tax availability).</strong> Of the property tax revenue recognized in the General Fund this year (Assignment 1), <span class="val" id="v-CashDelinquent2"></span> relates to delinquent taxes that were earned &mdash; and already reported as government-wide revenue &mdash; in a prior fiscal year; it is not government-wide revenue again this year. The General Fund's own year-end Deferred Inflows&mdash;Unavailable Property Taxes balance of <span class="val" id="v-EndingDeferredInflow_A1"></span> does not exist at the government-wide level (full accrual accounting does not defer revenue recognition for collectibility) and is added back in the balance-sheet reconciliation below.</p>
+    <p><strong>GW-5 (Internal Service Fund look-back).</strong> The Central Motor Pool Internal Service Fund is included in governmental activities because governmental funds are its predominant participants (Assignment 3). Its net income or loss for the year effectively over- or under-charged the governmental functions it serves and is allocated back to those functions in the same proportion as Assignment 1's Motor Pool billing (item T19): general government <span class="val" id="v-ISFlb_gg"></span>; public safety <span class="val" id="v-ISFlb_ps"></span>; public works <span class="val" id="v-ISFlb_pw"></span>; parks and recreation <span class="val" id="v-ISFlb_pr"></span>. (A positive amount here is an additional governmental-activity cost; it is positive whenever the Internal Service Fund reported a net loss.)</p>
+    <p><strong>GW-6 (Business-type activities).</strong> The Water Utility Enterprise Fund already reports on the full accrual basis and carries directly to business-type activities with no conversion entries.</p>
+    <p><strong>GW-7 (Fiduciary exclusion).</strong> The Custodial Fund (Assignment 4) is fiduciary and is excluded entirely from the government-wide statements.</p>
+    <p><strong>Beginning net position (from the prior year's audited financial statements).</strong> Governmental activities: <span class="val" id="v-GovNetPosition_beg"></span>. Business-type activities: <span class="val" id="v-BTA_NP_boy"></span>.</p>
+  </div>
+</div>
+
+<div class="fund-divider" id="je-worksheet">
+  <h2>Government-Wide Conversion Worksheet Entries</h2>
+  <p>Record the standard conversion worksheet entries that bring the governmental funds' results onto the full-accrual, government-wide basis. Each account below starts the worksheet at the balance shown; post your entries directly against it. The reconciliation schedules and statements after the entries recompute automatically from whatever you post here.</p>
+</div>
+<div class="part">
+  <span class="part-label">Given</span>
+  <h2>Worksheet accounts — beginning balances</h2>
+  <table class="given">
+    <thead><tr><th>Account</th><th class="num">Beginning balance</th></tr></thead>
+    <tbody>
+      <tr><td class="lbl">Capital Assets, Net</td><td class="num" id="v-ws-cap-boy"></td></tr>
+      <tr><td class="lbl">Bonds Payable</td><td class="num" id="v-ws-bonds-boy"></td></tr>
+      <tr><td class="lbl">Compensated Absences Payable</td><td class="num" id="v-ws-ca-boy"></td></tr>
+      <tr><td class="lbl">Internal Service Fund Net Position</td><td class="num" id="v-ws-isf-boy"></td></tr>
+      <tr><td class="lbl">Expenditures—Capital Outlay (Capital Projects Fund)</td><td class="num" id="v-ws-cpfexp-boy"></td></tr>
+      <tr><td class="lbl">Other Financing Sources—Bond Proceeds</td><td class="num" id="v-ws-bondofs-boy"></td></tr>
+      <tr><td class="lbl">Expenditures—Bond Principal</td><td class="num" id="v-ws-bondprin-boy"></td></tr>
+      <tr><td class="lbl">Expenses—General Government (fund expenditures)</td><td class="num" id="v-ws-gg-boy"></td></tr>
+      <tr><td class="lbl">Expenses—Public Safety (fund expenditures)</td><td class="num" id="v-ws-ps-boy"></td></tr>
+      <tr><td class="lbl">Expenses—Public Works (fund expenditures)</td><td class="num" id="v-ws-pw-boy"></td></tr>
+      <tr><td class="lbl">Expenses—Parks and Recreation (fund expenditures)</td><td class="num" id="v-ws-pr-boy"></td></tr>
+    </tbody>
+  </table>
+  <p class="footnote">The four "Expenses" accounts start at each function's combined General Fund (and, for public safety, Special Revenue Fund) expenditures &mdash; the same figures a Statement of Revenues, Expenditures, and Changes in Fund Balance would report. Posting to them converts fund expenditures to government-wide expenses.</p>
+</div>
+<div id="je-host"></div>
+
+<div class="fund-divider" id="np-recon-intro">
+  <h2>Reconciliation of Fund Balances to Net Position <span class="auto-tag">auto-computed</span></h2>
+  <p>Recomputes live from your posted worksheet entries above. Not separately graded.</p>
+</div>
+<div id="np-recon-host"></div>
+<div class="fund-divider" id="chg-recon-intro">
+  <h2>Reconciliation of the Change in Fund Balances to the Change in Net Position <span class="auto-tag">auto-computed</span></h2>
+  <p>Recomputes live from your posted worksheet entries above. Not separately graded.</p>
+</div>
+<div id="chg-recon-host"></div>
+<div class="fund-divider" id="func-conv-intro">
+  <h2>Governmental Activities — Functional Expense Conversion <span class="auto-tag">auto-computed</span></h2>
+  <p>Recomputes live from your posted worksheet entries above. Not separately graded.</p>
+</div>
+<div id="func-conv-host"></div>
+<div class="fund-divider" id="snp-intro">
+  <h2>Statement of Net Position <span class="auto-tag">auto-computed</span></h2>
+  <p><span id="snp-date">June 30, 2027</span>. Recomputes live from your posted worksheet entries above. Not separately graded.</p>
+</div>
+<div id="snp-host"></div>
+<div class="fund-divider" id="soa-intro">
+  <h2>Statement of Activities <span class="auto-tag">auto-computed</span></h2>
+  <p>Fiscal year ended <span id="soa-fy-date">June 30, 2027</span>. Recomputes live from your posted worksheet entries above. Not separately graded.</p>
+</div>
+<div id="soa-host"></div>
+
+<div class="submit-bar print-hide">
+  <h2>Ready to submit?</h2>
+  <p class="submit-hint" style="margin:0 0 12px;">Your name is taken from the top of the page.</p>
+  <div class="submit-row submit-actions">
+    <button class="btn-submit" id="printBtn" type="button">Print / Save as PDF</button>
+  </div>
+  <p class="submit-hint">This captures exactly what's currently filled in above and works offline.</p>
+</div>
+
+</main>
+
+<footer>City of Llama Falls &middot; Assignment 5 &middot; ACCT 635 Governmental and Nonprofit Accounting</footer>
+
+<script>
+(function(){
+"use strict";
+
+/* =========================================================================
+   SEEDED RANDOM (shared helpers)
+   ========================================================================= */
+function hashSeed(str){
+  var h = 2166136261;
+  for(var i=0;i<str.length;i++){ h ^= str.charCodeAt(i); h = Math.imul(h, 16777619); }
+  return h >>> 0;
+}
+function mulberry32(seed){
+  return function(){
+    seed |= 0; seed = seed + 0x6D2B79F5 | 0;
+    var t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+    t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+    return ((t ^ t >>> 14) >>> 0) / 4294967296;
+  };
+}
+function pick(rand, arr){ return arr[Math.floor(rand()*arr.length)]; }
+function rTo(x,m){ return Math.round(x/m)*m; }
+
+function money0(n){
+  var v = Number(n)||0;
+  var s = Math.abs(Math.round(v)).toLocaleString('en-US',{minimumFractionDigits:0,maximumFractionDigits:0});
+  return v < 0 ? '$(' + s + ')' : '$' + s;
+}
+function num0(n){
+  var v = Number(n)||0;
+  var s = Math.abs(Math.round(v)).toLocaleString('en-US',{minimumFractionDigits:0,maximumFractionDigits:0});
+  return v < 0 ? '(' + s + ')' : s;
+}
+function setText(id, text){ var el = document.getElementById(id); if(el) el.textContent = text; }
+var CURRENT_YEAR = new Date().getFullYear(); // fiscal year end derived from the visitor's system clock
+function applyFYSpans(){
+  setText('snp-date', 'June 30, ' + CURRENT_YEAR);
+  setText('soa-fy-date', 'June 30, ' + CURRENT_YEAR);
+}
+function parseMoney(s){
+  if(s===null||s===undefined) return NaN;
+  var raw = String(s).trim();
+  if(raw==='') return NaN;
+  var neg = /^\(.*\)$/.test(raw) || /^-/.test(raw) || /^−/.test(raw);
+  var cleaned = raw.replace(/[^0-9.]/g,'');
+  if(cleaned==='') return NaN;
+  var v = parseFloat(cleaned);
+  if(isNaN(v)) return NaN;
+  return neg? -v : v;
+}
+function near(a,b,tol){ if(isNaN(a)||isNaN(b)) return false; return Math.abs(a-b)<=tol; }
+var TOL = { dollars: 1 };
+
+/* =========================================================================
+   ASSIGNMENT 1 ENGINE (ported verbatim) — regenerates the actual General
+   Fund and Special Revenue Fund results for this Student ID, so Assignment
+   5 always flows from the same figures Assignment 1 itself produces.
+   ========================================================================= */
+function a1_baselineParams(){
+  return {
+    P:9600000, ST:2400000, LP:650000, CS:825000, FF:275000, IE:100000,
+    A_gg:2150000, A_ps:5600000, A_pw:3250000, A_pr:1650000,
+    G_gg:410000, G_ps:980000, G_pw:770000, G_pr:285000,
+    PR_gg:1150000, PR_ps:2850000, PR_pw:1200000, PR_pr:650000,
+    INV_gg:25000, INV_ps:45000, INV_pw:40000, INV_pr:25000,
+    OFU_DSF:750000, OFU_SRF:200000,
+    Cash_boy:2850000, PTRdel_boy:320000, AllowDelRate_boy: 40000/320000,
+    AP_boy:210000, DueOther_boy:75000,
+    FB_Nonspendable_boy:50000, FB_Assigned_boy:300000,
+    allowCurRate:0.02, collectRateCurrent: 9150000/9600000, collectRateDelinquent: null,
+    ST_cashRate: 2350000/2400000, IE_cashRate:0.75,
+    delWriteoffRate:0.08, lapseFrac:0.5, adjD_amount:50000,
+    SR_advance:200000, SR_qualExp:700000, SR_reimbRate:0.8, SR_maxContribution:800000,
+    SR_encumGross:300000, SR_outstandingPO:50000, SR_adjH_amount:15000,
+    SR5_payroll:260000, ISF_total:1050000, CapAssetEquip_pw:180000
+  };
+}
+function a1_randomParams(rand){
+  function vary(base,pct,step){ return rTo(base*(1+(rand()*2-1)*pct), step); }
+  var P=vary(9600000,0.10,10000), ST=vary(2400000,0.10,10000), LP=vary(650000,0.10,5000),
+      CS=vary(825000,0.10,5000), FF=vary(275000,0.10,5000), IE=vary(100000,0.15,5000);
+  var A_gg=vary(2150000,0.08,10000), A_ps=vary(5600000,0.08,10000), A_pw=vary(3250000,0.08,10000), A_pr=vary(1650000,0.08,10000);
+  var G_gg=vary(410000,0.10,5000), G_ps=vary(980000,0.10,5000), G_pw=vary(770000,0.10,5000), G_pr=vary(285000,0.10,5000);
+  var PR_gg=vary(1150000,0.06,5000), PR_ps=vary(2850000,0.06,5000), PR_pw=vary(1200000,0.06,5000), PR_pr=vary(650000,0.06,5000);
+  var INV_gg=vary(25000,0.2,1000), INV_ps=vary(45000,0.2,1000), INV_pw=vary(40000,0.2,1000), INV_pr=vary(25000,0.2,1000);
+  var OFU_DSF=vary(750000,0.10,10000), OFU_SRF=vary(200000,0.10,5000);
+  var Cash_boy=vary(2850000,0.10,10000);
+  var PTRdel_boy=vary(320000,0.15,5000);
+  var AllowDelRate_boy=pick(rand,[0.10,0.11,0.125,0.14,0.15]);
+  var AP_boy=vary(210000,0.15,5000), DueOther_boy=vary(75000,0.2,5000);
+  var FB_Nonspendable_boy=vary(50000,0.2,5000), FB_Assigned_boy=vary(300000,0.15,5000);
+  var collectRateCurrent=pick(rand,[0.86,0.88,0.90,0.92,0.94]);
+  var collectRateDelinquent=pick(rand,[0.65,0.70,0.75,0.80,0.85]);
+  var ST_cashRate=pick(rand,[0.80,0.83,0.86,0.89,0.92]);
+  var IE_cashRate=pick(rand,[0.65,0.70,0.75,0.80]);
+  var allowCurRate=pick(rand,[0.015,0.02,0.025,0.03]);
+  var delWriteoffRate=pick(rand,[0.04,0.06,0.08,0.10]);
+  var lapseFrac=pick(rand,[0.35,0.40,0.45,0.50,0.55]);
+  var adjD_amount=rTo(pick(rand,[35000,45000,55000,65000,75000]),1000);
+  var SR_advance=200000;
+  var SR_qualExp=vary(700000,0.10,10000);
+  var SR_maxContribution=vary(800000,0.05,10000);
+  var SR_encumGross=vary(300000,0.12,10000);
+  var SR_outstandingPO=vary(50000,0.2,5000);
+  var SR_adjH_amount=rTo(pick(rand,[10000,15000,20000,25000]),1000);
+  var SR5_payroll=rTo(pick(rand,[220000,240000,260000,280000,300000]),1000);
+  var ISF_total=vary(1050000,0.12,10000);
+  var CapAssetEquip_pw=vary(180000,0.15,5000);
+  return {
+    P:P,ST:ST,LP:LP,CS:CS,FF:FF,IE:IE,A_gg:A_gg,A_ps:A_ps,A_pw:A_pw,A_pr:A_pr,
+    G_gg:G_gg,G_ps:G_ps,G_pw:G_pw,G_pr:G_pr,PR_gg:PR_gg,PR_ps:PR_ps,PR_pw:PR_pw,PR_pr:PR_pr,
+    INV_gg:INV_gg,INV_ps:INV_ps,INV_pw:INV_pw,INV_pr:INV_pr,OFU_DSF:OFU_DSF,OFU_SRF:OFU_SRF,
+    Cash_boy:Cash_boy,PTRdel_boy:PTRdel_boy,AllowDelRate_boy:AllowDelRate_boy,
+    AP_boy:AP_boy,DueOther_boy:DueOther_boy,FB_Nonspendable_boy:FB_Nonspendable_boy,FB_Assigned_boy:FB_Assigned_boy,
+    collectRateCurrent:collectRateCurrent,collectRateDelinquent:collectRateDelinquent,
+    ST_cashRate:ST_cashRate,IE_cashRate:IE_cashRate,allowCurRate:allowCurRate,
+    delWriteoffRate:delWriteoffRate,lapseFrac:lapseFrac,adjD_amount:adjD_amount,
+    SR_advance:SR_advance,SR_qualExp:SR_qualExp,SR_reimbRate:0.8,SR_maxContribution:SR_maxContribution,
+    SR_encumGross:SR_encumGross,SR_outstandingPO:SR_outstandingPO,SR_adjH_amount:SR_adjH_amount,
+    SR5_payroll:SR5_payroll, ISF_total:ISF_total, CapAssetEquip_pw:CapAssetEquip_pw
+  };
+}
+function a2_randomParams_forGFTransferCPF(rand){
+  function vary(base,pct,step){ return rTo(base*(1+(rand()*2-1)*pct), step); }
+  var Bond = vary(6000000,0.10,50000);
+  var GFTransferCPF = vary(300000,0.15,10000);
+  return { GFTransferCPF: GFTransferCPF };
+}
+function getA2_GFTransferCPF(seed){
+  var s = (seed||'').trim();
+  if(s==='') return 300000;
+  var rand = mulberry32(hashSeed(s.toLowerCase()+'-llama-falls-a2'));
+  return a2_randomParams_forGFTransferCPF(rand).GFTransferCPF;
+}
+function a1_solve(p, isBaseline, seed){
+  var d = {}; for(var k in p) d[k]=p[k];
+  d.GFTransferCPF = isBaseline ? 300000 : getA2_GFTransferCPF(seed);
+  d.TotalEstRev = p.P+p.ST+p.LP+p.CS+p.FF+p.IE;
+  d.TotalAppr = p.A_gg+p.A_ps+p.A_pw+p.A_pr;
+  d.BudgetaryFB_orig = d.TotalEstRev - d.TotalAppr - p.OFU_DSF;
+  d.OFU_budget_final = p.OFU_DSF + p.OFU_SRF + d.GFTransferCPF;
+  d.BudgetaryFB_final = d.TotalEstRev - d.TotalAppr - d.OFU_budget_final;
+  d.GrossLevy = isBaseline ? rTo(p.P/(1-0.02),1000) : rTo(p.P/(1-p.allowCurRate),1000);
+  d.AllowCur = d.GrossLevy - p.P;
+  d.RevPropTaxAtLevy = p.P;
+  d.CashCurrentTotal = isBaseline ? 9150000 : rTo(p.P*p.collectRateCurrent,1000);
+  d.CashCurrent1 = isBaseline ? 5490000 : rTo(d.CashCurrentTotal*0.6,1000);
+  d.CashCurrent2 = d.CashCurrentTotal - d.CashCurrent1;
+  d.EndPTRCurrent = p.P - d.CashCurrentTotal;
+  d.AllowDel_boy = rTo(p.PTRdel_boy*p.AllowDelRate_boy,1000);
+  d.DeferredInflow_boy = p.PTRdel_boy - d.AllowDel_boy;
+  d.CashDelinquent = isBaseline ? 250000 : rTo(d.DeferredInflow_boy*p.collectRateDelinquent,1000);
+  if(d.CashDelinquent > d.DeferredInflow_boy) d.CashDelinquent = d.DeferredInflow_boy;
+  d.RevPropTaxDelRecognized = d.CashDelinquent;
+  d.STCash = isBaseline ? 2350000 : rTo(p.ST*p.ST_cashRate,1000);
+  d.STReceivableAccrual = p.ST - d.STCash;
+  d.LPCash = p.LP; d.CSCash = p.CS; d.FFCash = p.FF;
+  d.IECash = isBaseline ? rTo(p.IE*0.75,1000) : rTo(p.IE*p.IE_cashRate,1000);
+  d.IEReceivableAccrual = p.IE - d.IECash;
+  d.G_total = p.G_gg+p.G_ps+p.G_pw+p.G_pr;
+  d.G_received_gg = isBaseline ? p.G_gg : rTo(p.G_gg*0.78,1000);
+  d.G_received_ps = isBaseline ? p.G_ps : rTo(p.G_ps*0.78,1000);
+  d.G_received_pw = isBaseline ? p.G_pw : rTo(p.G_pw*0.78,1000);
+  d.G_received_pr = isBaseline ? p.G_pr : rTo(p.G_pr*0.78,1000);
+  if(isBaseline){ d.G_received_gg=p.G_gg; d.G_received_ps=p.G_ps; d.G_received_pw=p.G_pw; d.G_received_pr=p.G_pr; }
+  d.G_received_total = d.G_received_gg+d.G_received_ps+d.G_received_pw+d.G_received_pr;
+  d.G_unreceived = d.G_total - d.G_received_total;
+  var lapseFrac = isBaseline ? 0.5 : p.lapseFrac;
+  d.G_lapsed = rTo(d.G_unreceived*lapseFrac,1000);
+  d.G_stillOutstanding = d.G_unreceived - d.G_lapsed;
+  d.CapAssetEquip_pw = p.CapAssetEquip_pw;
+  d.PR_total = p.PR_gg+p.PR_ps+p.PR_pw+p.PR_pr;
+  d.AP_paid = p.AP_boy + d.G_received_total;
+  d.SAL_paid = d.PR_total;
+  d.INV_total = p.INV_gg+p.INV_ps+p.INV_pw+p.INV_pr;
+  d.AdjD = isBaseline ? 50000 : p.adjD_amount;
+  d.WriteoffAmt = isBaseline ? 8000 : rTo(Math.min(d.AllowDel_boy, (p.PTRdel_boy-d.CashDelinquent))*p.delWriteoffRate,1000);
+  d.ReclassAmt = d.EndPTRCurrent;
+  d.ReclassAllow = d.AllowCur;
+  d.ISF_total = p.ISF_total;
+  if(isBaseline){
+    d.ISF_gg=150000; d.ISF_ps=475000; d.ISF_pw=325000; d.ISF_pr=100000;
+  } else {
+    d.ISF_pw = rTo(d.ISF_total*0.309524,5000);
+    d.ISF_pr = rTo(d.ISF_total*0.095238,5000);
+    d.ISF_gg = rTo(d.ISF_total*0.142857,5000);
+    d.ISF_ps = d.ISF_total - d.ISF_pw - d.ISF_pr - d.ISF_gg;
+  }
+  d.ExpGG = d.G_received_gg + p.PR_gg + p.INV_gg + d.ISF_gg;
+  d.ExpPS = d.G_received_ps + p.PR_ps + d.AdjD + p.INV_ps + d.ISF_ps;
+  d.ExpPW = d.G_received_pw + p.PR_pw + p.INV_pw + d.ISF_pw;
+  d.ExpPR = d.G_received_pr + p.PR_pr + p.INV_pr + d.ISF_pr;
+  d.ExpTotal = d.ExpGG+d.ExpPS+d.ExpPW+d.ExpPR;
+  d.RevPropTaxTotal = d.RevPropTaxAtLevy + d.RevPropTaxDelRecognized;
+  d.RevSalesTaxTotal = d.STCash + d.STReceivableAccrual;
+  d.RevLicensesTotal = d.LPCash;
+  d.RevChargesTotal = d.CSCash;
+  d.RevFinesTotal = d.FFCash;
+  d.RevInvestTotal = d.IECash + d.IEReceivableAccrual;
+  d.RevTotal = d.RevPropTaxTotal+d.RevSalesTaxTotal+d.RevLicensesTotal+d.RevChargesTotal+d.RevFinesTotal+d.RevInvestTotal;
+  d.NetChangeGF = d.RevTotal - d.ExpTotal - p.OFU_DSF - p.OFU_SRF - d.GFTransferCPF;
+  d.FB_Unassigned_boy = p.Cash_boy + p.PTRdel_boy - d.AllowDel_boy - p.AP_boy - p.DueOther_boy - d.DeferredInflow_boy - p.FB_Nonspendable_boy - p.FB_Assigned_boy;
+  d.SR_reimbursable = rTo(p.SR_qualExp * p.SR_reimbRate, 1000);
+  if(d.SR_reimbursable > p.SR_maxContribution) d.SR_reimbursable = p.SR_maxContribution;
+  d.SR_earnedBeyondAdvance = d.SR_reimbursable - p.SR_advance;
+  d.SR_encumReceived = p.SR_encumGross - p.SR_outstandingPO;
+  d.SR_cashReimb = isBaseline ? 350000 : rTo(d.SR_earnedBeyondAdvance*0.97,1000);
+  if(d.SR_cashReimb > d.SR_earnedBeyondAdvance) d.SR_cashReimb = d.SR_earnedBeyondAdvance;
+  d.SR_grantsRecEnd1 = d.SR_earnedBeyondAdvance - d.SR_cashReimb;
+  d.SR_adjH = isBaseline ? 15000 : p.SR_adjH_amount;
+  d.SR_adjI = rTo(d.SR_adjH*p.SR_reimbRate,500);
+  d.SR_grantsRecEnd = d.SR_grantsRecEnd1 + d.SR_adjI;
+  d.SR_match = p.OFU_SRF;
+  d.SR5_payroll = isBaseline ? 260000 : p.SR5_payroll;
+  d.SR6_outreach = p.SR_qualExp - d.SR_encumReceived - d.SR5_payroll - d.SR_adjH;
+  d.SR_revTotal = d.SR_reimbursable + d.SR_adjI;
+  d.SR_expTotal = d.SR_encumReceived + d.SR5_payroll + (d.SR6_outreach + d.SR_adjH);
+  return d;
+}
+function a1_generateScenario(id){
+  var seed = (id||'').trim();
+  if(seed==='') return a1_solve(a1_baselineParams(), true, '');
+  return a1_solve(a1_randomParams(mulberry32(hashSeed(seed.toLowerCase()+'-llama-falls'))), false, seed);
+}
+
+/* =========================================================================
+   ASSIGNMENT 2 ENGINE (ported verbatim) — Capital Projects Fund & Debt
+   Service Fund actual results for this Student ID.
+   ========================================================================= */
+function a1_randomParams_forOFU(rand){
+  function vary(base,pct,step){ return rTo(base*(1+(rand()*2-1)*pct), step); }
+  var P=vary(9600000,0.10,10000), ST=vary(2400000,0.10,10000), LP=vary(650000,0.10,5000),
+      CS=vary(825000,0.10,5000), FF=vary(275000,0.10,5000), IE=vary(100000,0.15,5000);
+  var A_gg=vary(2150000,0.08,10000), A_ps=vary(5600000,0.08,10000), A_pw=vary(3250000,0.08,10000), A_pr=vary(1650000,0.08,10000);
+  var G_gg=vary(410000,0.10,5000), G_ps=vary(980000,0.10,5000), G_pw=vary(770000,0.10,5000), G_pr=vary(285000,0.10,5000);
+  var PR_gg=vary(1150000,0.06,5000), PR_ps=vary(2850000,0.06,5000), PR_pw=vary(1200000,0.06,5000), PR_pr=vary(650000,0.06,5000);
+  var INV_gg=vary(25000,0.2,1000), INV_ps=vary(45000,0.2,1000), INV_pw=vary(40000,0.2,1000), INV_pr=vary(25000,0.2,1000);
+  var OFU_DSF=vary(750000,0.10,10000), OFU_SRF=vary(200000,0.10,5000);
+  var Cash_boy=vary(2850000,0.10,10000), PTRdel_boy=vary(320000,0.15,5000);
+  var AllowDelRate_boy=pick(rand,[0.10,0.11,0.125,0.14,0.15]);
+  var AP_boy=vary(210000,0.15,5000), DueOther_boy=vary(75000,0.2,5000);
+  var FB_Nonspendable_boy=vary(50000,0.2,5000), FB_Assigned_boy=vary(300000,0.15,5000);
+  var collectRateCurrent=pick(rand,[0.86,0.88,0.90,0.92,0.94]);
+  var collectRateDelinquent=pick(rand,[0.65,0.70,0.75,0.80,0.85]);
+  var ST_cashRate=pick(rand,[0.80,0.83,0.86,0.89,0.92]);
+  var IE_cashRate=pick(rand,[0.65,0.70,0.75,0.80]);
+  var allowCurRate=pick(rand,[0.015,0.02,0.025,0.03]);
+  var delWriteoffRate=pick(rand,[0.04,0.06,0.08,0.10]);
+  var lapseFrac=pick(rand,[0.35,0.40,0.45,0.50,0.55]);
+  var adjD_amount=rTo(pick(rand,[35000,45000,55000,65000,75000]),1000);
+  var SR_qualExp=vary(700000,0.10,10000);
+  var SR_maxContribution=vary(800000,0.05,10000);
+  var SR_encumGross=vary(300000,0.12,10000);
+  var SR_outstandingPO=vary(50000,0.2,5000);
+  var SR_adjH_amount=rTo(pick(rand,[10000,15000,20000,25000]),1000);
+  var SR5_payroll=rTo(pick(rand,[220000,240000,260000,280000,300000]),1000);
+  return { OFU_DSF: OFU_DSF };
+}
+function getA1_OFU_DSF(seed){
+  var s = (seed||'').trim();
+  if(s==='') return 750000;
+  var rand = mulberry32(hashSeed(s.toLowerCase()+'-llama-falls'));
+  return a1_randomParams_forOFU(rand).OFU_DSF;
+}
+function a2_baselineParams(){
+  return {
+    Bond:6000000, GFTransferCPF:300000, Contract:5700000, Billing1:2200000, Billing2:2600000,
+    RetainRate:0.05, InvIncomeCPF:85000, UnbilledCIP:400000,
+    DSF_boy:425000, GrossLevyDSF:625000, UncollRate:0.01, collectFrac:590000/618750,
+    BondPrincipal:800000, BondInterest:360000, InvIncomeDSF:18000, AccrInterest:28750
+  };
+}
+function a2_randomParams(rand){
+  function vary(base,pct,step){ return rTo(base*(1+(rand()*2-1)*pct), step); }
+  var Bond = vary(6000000,0.10,50000);
+  var GFTransferCPF = vary(300000,0.15,10000);
+  var Contract = vary(5700000,0.08,50000);
+  var Billing1 = vary(2200000,0.08,10000);
+  var Billing2 = vary(2600000,0.08,10000);
+  var RetainRate = 0.05;
+  var InvIncomeCPF = vary(85000,0.2,1000);
+  var RemainingAfterBillings = Contract - Billing1 - Billing2;
+  var UnbilledCIP = rTo(RemainingAfterBillings * pick(rand,[0.30,0.35,0.40,0.45,0.50]), 5000);
+  var DSF_boy = vary(425000,0.10,5000);
+  var GrossLevyDSF = vary(625000,0.10,5000);
+  var UncollRate = 0.01;
+  var collectFrac = pick(rand,[0.92,0.93,0.94,0.95,0.96,0.97]);
+  var BondPrincipal = vary(800000,0.10,10000);
+  var BondInterest = vary(360000,0.10,5000);
+  var InvIncomeDSF = vary(18000,0.25,1000);
+  var AccrInterest = vary(28750,0.2,250);
+  return {
+    Bond:Bond, GFTransferCPF:GFTransferCPF, Contract:Contract, Billing1:Billing1, Billing2:Billing2,
+    RetainRate:RetainRate, InvIncomeCPF:InvIncomeCPF, UnbilledCIP:UnbilledCIP,
+    DSF_boy:DSF_boy, GrossLevyDSF:GrossLevyDSF, UncollRate:UncollRate, collectFrac:collectFrac,
+    BondPrincipal:BondPrincipal, BondInterest:BondInterest, InvIncomeDSF:InvIncomeDSF, AccrInterest:AccrInterest
+  };
+}
+function a2_solve(p, seed, isBaseline){
+  var d = {}; for(var k in p) d[k]=p[k];
+  d.OFU_DSF_fromA1 = getA1_OFU_DSF(seed);
+  d.Retain1 = rTo(p.Billing1*p.RetainRate,1);
+  d.Due1 = p.Billing1 - d.Retain1;
+  d.Retain2 = rTo(p.Billing2*p.RetainRate,1);
+  d.Due2 = p.Billing2 - d.Retain2;
+  d.RemainingCommitment = p.Contract - p.Billing1 - p.Billing2 - p.UnbilledCIP;
+  d.CPF_ExpTotal = p.Billing1 + p.Billing2 + p.UnbilledCIP;
+  d.CPF_NetChange = p.Bond + p.GFTransferCPF + p.InvIncomeCPF - d.CPF_ExpTotal;
+  d.NetLevyDSF = isBaseline ? 618750 : rTo(p.GrossLevyDSF*(1-p.UncollRate),1);
+  d.CollectDSF = isBaseline ? 590000 : rTo(d.NetLevyDSF*p.collectFrac,1);
+  d.RemainingTaxRec = d.NetLevyDSF - d.CollectDSF;
+  d.NewBondAccrInterest = p.Bond * 0.025;
+  d.DSF_RevTotal = d.NetLevyDSF + p.InvIncomeDSF;
+  d.DSF_ExpTotal = p.BondPrincipal + p.BondInterest + p.AccrInterest + d.NewBondAccrInterest;
+  d.DSF_NetChange = d.DSF_RevTotal - d.DSF_ExpTotal + d.OFU_DSF_fromA1;
+  return d;
+}
+function a2_generateScenario(id){
+  var seed = (id||'').trim();
+  if(seed==='') return a2_solve(a2_baselineParams(), '', true);
+  return a2_solve(a2_randomParams(mulberry32(hashSeed(seed.toLowerCase()+'-llama-falls-a2'))), seed, false);
+}
+
+/* =========================================================================
+   ASSIGNMENT 3 ENGINE (ported verbatim) — Enterprise Fund & Internal
+   Service Fund actual results for this Student ID.
+   ========================================================================= */
+function a1_randomParams_forISF(rand){
+  function vary(base,pct,step){ return rTo(base*(1+(rand()*2-1)*pct), step); }
+  var P=vary(9600000,0.10,10000), ST=vary(2400000,0.10,10000), LP=vary(650000,0.10,5000),
+      CS=vary(825000,0.10,5000), FF=vary(275000,0.10,5000), IE=vary(100000,0.15,5000);
+  var A_gg=vary(2150000,0.08,10000), A_ps=vary(5600000,0.08,10000), A_pw=vary(3250000,0.08,10000), A_pr=vary(1650000,0.08,10000);
+  var G_gg=vary(410000,0.10,5000), G_ps=vary(980000,0.10,5000), G_pw=vary(770000,0.10,5000), G_pr=vary(285000,0.10,5000);
+  var PR_gg=vary(1150000,0.06,5000), PR_ps=vary(2850000,0.06,5000), PR_pw=vary(1200000,0.06,5000), PR_pr=vary(650000,0.06,5000);
+  var INV_gg=vary(25000,0.2,1000), INV_ps=vary(45000,0.2,1000), INV_pw=vary(40000,0.2,1000), INV_pr=vary(25000,0.2,1000);
+  var OFU_DSF=vary(750000,0.10,10000), OFU_SRF=vary(200000,0.10,5000);
+  var Cash_boy=vary(2850000,0.10,10000);
+  var PTRdel_boy=vary(320000,0.15,5000);
+  var AllowDelRate_boy=pick(rand,[0.10,0.11,0.125,0.14,0.15]);
+  var AP_boy=vary(210000,0.15,5000), DueOther_boy=vary(75000,0.2,5000);
+  var FB_Nonspendable_boy=vary(50000,0.2,5000), FB_Assigned_boy=vary(300000,0.15,5000);
+  var collectRateCurrent=pick(rand,[0.86,0.88,0.90,0.92,0.94]);
+  var collectRateDelinquent=pick(rand,[0.65,0.70,0.75,0.80,0.85]);
+  var ST_cashRate=pick(rand,[0.80,0.83,0.86,0.89,0.92]);
+  var IE_cashRate=pick(rand,[0.65,0.70,0.75,0.80]);
+  var allowCurRate=pick(rand,[0.015,0.02,0.025,0.03]);
+  var delWriteoffRate=pick(rand,[0.04,0.06,0.08,0.10]);
+  var lapseFrac=pick(rand,[0.35,0.40,0.45,0.50,0.55]);
+  var adjD_amount=rTo(pick(rand,[35000,45000,55000,65000,75000]),1000);
+  var SR_advance=200000;
+  var SR_qualExp=vary(700000,0.10,10000);
+  var SR_maxContribution=vary(800000,0.05,10000);
+  var SR_encumGross=vary(300000,0.12,10000);
+  var SR_outstandingPO=vary(50000,0.2,5000);
+  var SR_adjH_amount=rTo(pick(rand,[10000,15000,20000,25000]),1000);
+  var SR5_payroll=rTo(pick(rand,[220000,240000,260000,280000,300000]),1000);
+  var ISF_total=vary(1050000,0.12,10000);
+  return { ISF_total: ISF_total };
+}
+function getA1_ISF_total(seed){
+  var s = (seed||'').trim();
+  if(s==='') return 1050000;
+  var rand = mulberry32(hashSeed(s.toLowerCase()+'-llama-falls'));
+  return a1_randomParams_forISF(rand).ISF_total;
+}
+function a3_baselineParams(){
+  return {
+    Cash_boy:1200000, AR_boy:240000, Allow_boy:12000, UtilPlant:8500000, Equip_boy:900000,
+    AccumDep_boy:3100000, AP_boy:180000, Bonds_boy:4000000,
+    E1_Billed:4250000, E2_Collected:4180000,
+    E3_Incur:840000,
+    E4_Salaries:1450000, E4_Payable:75000,
+    E5_Supplies:410000, E5_UnusedEnd:65000,
+    E6_Equip:600000, E7_CapContrib:500000,
+    E8_BondPrincipal:250000, E8_BondInterest:190000,
+    E9_InvIncome:42000,
+    E10_Depreciation:525000, E10_AccrInterest:35000, E10_AllowRate:0.05,
+    ISF_water:300000,
+    ISF_Cash_boy:450000, ISF_Due_boy:90000, ISF_Vehicles_boy:2400000, ISF_AccumDep_boy:900000, ISF_AP_boy:70000,
+    I2_Collected:1300000, I3_FuelRepairs:620000, I4_Salaries:420000, I5_Vehicles:500000, I7_InvIncome:12000,
+    I8_Depreciation:380000, I9_AccrAP:45000
+  };
+}
+function a3_randomParams(rand){
+  function vary(base,pct,step){ return rTo(base*(1+(rand()*2-1)*pct), step); }
+  return {
+    Cash_boy:vary(1200000,0.10,10000), AR_boy:vary(240000,0.15,5000), Allow_boy:vary(12000,0.15,1000),
+    UtilPlant:vary(8500000,0.05,50000), Equip_boy:vary(900000,0.1,10000),
+    AccumDep_boy:vary(3100000,0.08,50000), AP_boy:vary(180000,0.15,5000), Bonds_boy:vary(4000000,0.05,50000),
+    E1_Billed:vary(4250000,0.08,10000), E2_Collected:vary(4180000,0.08,10000),
+    E3_Incur:vary(840000,0.12,5000),
+    E4_Salaries:vary(1450000,0.06,5000), E4_Payable:vary(75000,0.2,5000),
+    E5_Supplies:vary(410000,0.1,5000), E5_UnusedEnd:vary(65000,0.15,1000),
+    E6_Equip:vary(600000,0.15,10000), E7_CapContrib:vary(500000,0.1,10000),
+    E8_BondPrincipal:vary(250000,0.05,5000), E8_BondInterest:vary(190000,0.05,1000),
+    E9_InvIncome:vary(42000,0.15,1000),
+    E10_Depreciation:vary(525000,0.06,5000), E10_AccrInterest:vary(35000,0.1,1000), E10_AllowRate:0.05,
+    ISF_water:vary(300000,0.15,5000),
+    ISF_Cash_boy:vary(450000,0.1,5000), ISF_Due_boy:vary(90000,0.15,5000), ISF_Vehicles_boy:vary(2400000,0.08,10000),
+    ISF_AccumDep_boy:vary(900000,0.08,10000), ISF_AP_boy:vary(70000,0.15,5000),
+    I2_Collected:vary(1300000,0.06,5000), I3_FuelRepairs:vary(620000,0.1,5000), I4_Salaries:vary(420000,0.06,5000),
+    I5_Vehicles:vary(500000,0.15,10000), I7_InvIncome:vary(12000,0.15,1000),
+    I8_Depreciation:vary(380000,0.06,5000), I9_AccrAP:vary(45000,0.15,1000)
+  };
+}
+function a3_solve(p, seed, isBaseline){
+  var d = {}; for(var k in p) d[k]=p[k];
+  d.ISF_total_gf = getA1_ISF_total(seed);
+  d.ISF_billed_total = d.ISF_total_gf + p.ISF_water;
+  d.E3_Pay = p.AP_boy + p.E3_Incur;
+  d.E4_Paid = p.E4_Salaries - p.E4_Payable;
+  d.GrossAR_end = p.AR_boy + p.E1_Billed - p.E2_Collected;
+  d.AllowEnd = isBaseline ? 15500 : rTo(d.GrossAR_end*p.E10_AllowRate,100);
+  d.AllowIncrease = d.AllowEnd - p.Allow_boy;
+  d.CapAssetsNet_boy = p.UtilPlant + p.Equip_boy - p.AccumDep_boy;
+  d.CapAssetsNet_end = p.UtilPlant + p.Equip_boy + p.E6_Equip - (p.AccumDep_boy + p.E10_Depreciation);
+  d.Bonds_end = p.Bonds_boy - p.E8_BondPrincipal;
+  d.NetInvest_boy = d.CapAssetsNet_boy - p.Bonds_boy;
+  d.NetInvest_end = d.CapAssetsNet_end - d.Bonds_end;
+  d.NP_reclass = d.NetInvest_end - d.NetInvest_boy;
+  d.Assets_boy = p.Cash_boy + p.AR_boy - p.Allow_boy + p.UtilPlant + p.Equip_boy - p.AccumDep_boy;
+  d.Liab_boy = p.AP_boy + p.Bonds_boy;
+  d.NP_boy_total = d.Assets_boy - d.Liab_boy;
+  d.NP_Unrestricted_boy = d.NP_boy_total - d.NetInvest_boy;
+  d.Ent_RevWater = p.E1_Billed - d.AllowIncrease;
+  d.Ent_ExpSalaries = p.E4_Salaries;
+  d.Ent_ExpSupplies = p.E5_Supplies - p.E5_UnusedEnd;
+  d.Ent_ExpUtilities = p.E3_Incur;
+  d.Ent_ExpOther = p.ISF_water;
+  d.Ent_ExpDep = p.E10_Depreciation;
+  d.Ent_IntExp = p.E8_BondInterest + p.E10_AccrInterest;
+  d.Ent_NonopInv = p.E9_InvIncome;
+  d.Ent_CapContrib = p.E7_CapContrib;
+  d.Ent_NetIncome = d.Ent_RevWater + d.Ent_NonopInv + d.Ent_CapContrib - d.Ent_ExpSalaries - d.Ent_ExpSupplies - d.Ent_ExpUtilities - d.Ent_ExpOther - d.Ent_ExpDep - d.Ent_IntExp;
+  d.NP_end_total = d.NP_boy_total + d.Ent_NetIncome;
+  d.ISF_Due_end = p.ISF_Due_boy + d.ISF_billed_total - p.I2_Collected;
+  d.ISF_VehiclesEquip_end = p.ISF_Vehicles_boy + p.I5_Vehicles;
+  d.ISF_AccumDep_end = p.ISF_AccumDep_boy + p.I8_Depreciation;
+  d.ISF_NetInvest_boy = p.ISF_Vehicles_boy - p.ISF_AccumDep_boy;
+  d.ISF_NetInvest_end = d.ISF_VehiclesEquip_end - d.ISF_AccumDep_end;
+  d.ISF_NP_reclass = d.ISF_NetInvest_end - d.ISF_NetInvest_boy;
+  d.ISF_Assets_boy = p.ISF_Cash_boy + p.ISF_Due_boy + p.ISF_Vehicles_boy - p.ISF_AccumDep_boy;
+  d.ISF_Liab_boy = p.ISF_AP_boy;
+  d.ISF_NP_boy_total = d.ISF_Assets_boy - d.ISF_Liab_boy;
+  d.ISF_NP_Unrestricted_boy = d.ISF_NP_boy_total - d.ISF_NetInvest_boy;
+  d.ISF_RevCharges = d.ISF_billed_total;
+  d.ISF_ExpSalaries = p.I4_Salaries;
+  d.ISF_ExpFuel = p.I3_FuelRepairs + p.I9_AccrAP;
+  d.ISF_ExpDep = p.I8_Depreciation;
+  d.ISF_NonopInv = p.I7_InvIncome;
+  d.ISF_NetIncome = d.ISF_RevCharges + d.ISF_NonopInv - d.ISF_ExpSalaries - d.ISF_ExpFuel - d.ISF_ExpDep;
+  d.ISF_NP_end_total = d.ISF_NP_boy_total + d.ISF_NetIncome;
+  return d;
+}
+function a3_generateScenario(id){
+  var seed = (id||'').trim();
+  if(seed==='') return a3_solve(a3_baselineParams(), '', true);
+  return a3_solve(a3_randomParams(mulberry32(hashSeed(seed.toLowerCase()+'-llama-falls-a3'))), seed, false);
+}
+
+/* =========================================================================
+   ASSIGNMENT 5 ENGINE — government-wide conversion. New independent random
+   parameters exist only for facts that have no fund-level journal entry in
+   Assignments 1-4 (beginning capital assets, beginning bonds, beginning
+   and increase in compensated absences, and current-year depreciation).
+   Every other figure is ported directly from the actual Assignment 1-3
+   results for this Student ID -- there are no correction entries.
+   ========================================================================= */
+function a5_baselineParams(){
+  return { GovCapAssets_boy:18000000, GovBonds_boy:3000000, GovCompAbs_boy:700000,
+    CompAbsIncrease_total:55000, GovDepreciation_total:1230000 };
+}
+function a5_randomParams(rand){
+  function vary(base,pct,step){ return rTo(base*(1+(rand()*2-1)*pct), step); }
+  return { GovCapAssets_boy:vary(18000000,0.05,100000), GovBonds_boy:vary(3000000,0.10,50000),
+    GovCompAbs_boy:vary(700000,0.10,5000), CompAbsIncrease_total:vary(55000,0.15,1000),
+    GovDepreciation_total:vary(1230000,0.08,5000) };
+}
+function a5_solve(seed, isBaseline){
+  var a1 = a1_generateScenario(seed);
+  var a2 = a2_generateScenario(seed);
+  var a3 = a3_generateScenario(seed);
+  var p = isBaseline ? a5_baselineParams() : a5_randomParams(mulberry32(hashSeed(seed.toLowerCase()+'-llama-falls-a5')));
+  var d = {}; for(var k in p) d[k]=p[k];
+  d.a1=a1; d.a2=a2; d.a3=a3;
+
+  // Functional split weights are fixed proportions (baseline reproduces 200/400/430/200
+  // depreciation and 10/25/12/8 compensated-absence splits exactly); the last function
+  // absorbs the rounding residual so each schedule always foots exactly.
+  var depW = { gg:200/1230, ps:400/1230, pw:430/1230 };
+  var caW  = { gg:10/55, ps:25/55, pw:12/55 };
+
+  d.Dep_gg = rTo(d.GovDepreciation_total*depW.gg, 1000);
+  d.Dep_ps = rTo(d.GovDepreciation_total*depW.ps, 1000);
+  d.Dep_pw = rTo(d.GovDepreciation_total*depW.pw, 1000);
+  d.Dep_pr = d.GovDepreciation_total - d.Dep_gg - d.Dep_ps - d.Dep_pw;
+
+  d.CompAbs_gg = rTo(d.CompAbsIncrease_total*caW.gg, 1000);
+  d.CompAbs_ps = rTo(d.CompAbsIncrease_total*caW.ps, 1000);
+  d.CompAbs_pw = rTo(d.CompAbsIncrease_total*caW.pw, 1000);
+  d.CompAbs_pr = d.CompAbsIncrease_total - d.CompAbs_gg - d.CompAbs_ps - d.CompAbs_pw;
+
+  d.GF_endFB = a1.FB_Nonspendable_boy + a1.FB_Assigned_boy + a1.FB_Unassigned_boy + a1.NetChangeGF;
+  d.SRF_change = a1.SR_revTotal + a1.SR_match - a1.SR_expTotal;
+  d.CPF_change = a2.CPF_NetChange;
+  d.DSF_endFB = a2.DSF_boy + a2.DSF_NetChange;
+
+  d.CapOutlaysCapitalized = a2.CPF_ExpTotal + a1.CapAssetEquip_pw;
+  d.GovCapAssets_end = d.GovCapAssets_boy + d.CapOutlaysCapitalized - d.GovDepreciation_total;
+  d.GovBonds_end = d.GovBonds_boy + a2.Bond - a2.BondPrincipal;
+  d.GovCompAbs_end = d.GovCompAbs_boy + d.CompAbsIncrease_total;
+  d.EndingDeferredInflow_A1 = a1.DeferredInflow_boy - a1.CashDelinquent;
+
+  d.TotalGovFundBalances_end = d.GF_endFB + d.SRF_change + d.CPF_change + d.DSF_endFB;
+  d.ISF_NP_end = a3.ISF_NP_end_total;
+  d.GovNetPosition_end = d.TotalGovFundBalances_end + d.GovCapAssets_end - d.GovBonds_end - d.GovCompAbs_end + d.EndingDeferredInflow_A1 + d.ISF_NP_end;
+
+  d.ChangeInTotalGovFundBalances = a1.NetChangeGF + d.SRF_change + d.CPF_change + a2.DSF_NetChange;
+  d.ISF_NetIncome = a3.ISF_NetIncome;
+  d.ChangeInGovNetPosition = d.ChangeInTotalGovFundBalances + d.CapOutlaysCapitalized - d.GovDepreciation_total
+    - a2.Bond + a2.BondPrincipal - d.CompAbsIncrease_total - a1.CashDelinquent + d.ISF_NetIncome;
+  d.GovNetPosition_beg = d.GovNetPosition_end - d.ChangeInGovNetPosition;
+
+  d.BTA_NP_end = a3.NP_end_total;
+  d.BTA_NP_boy = a3.NP_boy_total;
+  d.BTA_Change = a3.Ent_NetIncome;
+
+  d.FundExp_gg = a1.ExpGG;
+  d.FundExp_ps = a1.ExpPS + a1.SR_expTotal;
+  d.FundExp_pw = a1.ExpPW;
+  d.FundExp_pr = a1.ExpPR;
+
+  var isfTot = a1.ISF_total;
+  var fgg = a1.ISF_gg/isfTot, fps = a1.ISF_ps/isfTot, fpw = a1.ISF_pw/isfTot;
+  d.ISFlb_gg = rTo(-d.ISF_NetIncome*fgg, 100);
+  d.ISFlb_ps = rTo(-d.ISF_NetIncome*fps, 100);
+  d.ISFlb_pw = rTo(-d.ISF_NetIncome*fpw, 100);
+  d.ISFlb_pr = (-d.ISF_NetIncome) - d.ISFlb_gg - d.ISFlb_ps - d.ISFlb_pw;
+
+  d.GWExp_gg = d.FundExp_gg + d.Dep_gg + d.CompAbs_gg + d.ISFlb_gg;
+  d.GWExp_ps = d.FundExp_ps + d.Dep_ps + d.CompAbs_ps + d.ISFlb_ps;
+  d.GWExp_pw = d.FundExp_pw - a1.CapAssetEquip_pw + d.Dep_pw + d.CompAbs_pw + d.ISFlb_pw;
+  d.GWExp_pr = d.FundExp_pr + d.Dep_pr + d.CompAbs_pr + d.ISFlb_pr;
+  d.GWExp_interest = a2.DSF_ExpTotal - a2.BondPrincipal;
+
+  d.ProgRev_gg = a1.RevLicensesTotal + a1.RevChargesTotal;
+  d.ProgRev_ps = a1.SR_revTotal;
+  d.ProgRev_pw = 0;
+  d.ProgRev_pr = 0;
+
+  d.NetExpRev_gg = d.ProgRev_gg - d.GWExp_gg;
+  d.NetExpRev_ps = d.ProgRev_ps - d.GWExp_ps;
+  d.NetExpRev_pw = d.ProgRev_pw - d.GWExp_pw;
+  d.NetExpRev_pr = d.ProgRev_pr - d.GWExp_pr;
+  d.NetExpRev_interest = -d.GWExp_interest;
+
+  d.TotalGWExp = d.GWExp_gg+d.GWExp_ps+d.GWExp_pw+d.GWExp_pr+d.GWExp_interest;
+  d.TotalProgRev = d.ProgRev_gg+d.ProgRev_ps+d.ProgRev_pw+d.ProgRev_pr;
+  d.TotalNetExpRev = d.TotalProgRev - d.TotalGWExp;
+
+  d.GenRev_PropertyTax = a1.RevPropTaxAtLevy + a2.NetLevyDSF;
+  d.GenRev_SalesTax = a1.RevSalesTaxTotal;
+  d.GenRev_Other = a1.RevFinesTotal + a1.RevInvestTotal + a2.InvIncomeCPF + a2.InvIncomeDSF;
+  d.TotalGenRev = d.GenRev_PropertyTax + d.GenRev_SalesTax + d.GenRev_Other;
+  d.ChangeGovNP_check = d.TotalNetExpRev + d.TotalGenRev;
+
+  d.BTA_TotalExp = a3.Ent_ExpSalaries+a3.Ent_ExpSupplies+a3.Ent_ExpUtilities+a3.Ent_ExpOther+a3.Ent_ExpDep+a3.Ent_IntExp;
+  d.BTA_ProgRev = a3.Ent_RevWater;
+  d.BTA_NetExpRev = d.BTA_ProgRev - d.BTA_TotalExp;
+  d.BTA_GenRev = a3.Ent_NonopInv + a3.Ent_CapContrib;
+
+  d.Total_NP_end = d.GovNetPosition_end + d.BTA_NP_end;
+  d.Total_NP_beg = d.GovNetPosition_beg + d.BTA_NP_boy;
+  d.Total_Change = d.ChangeInGovNetPosition + d.BTA_Change;
+
+  // convenience aliases for narrative spans that duplicate an id already used above
+  d.CapAssetEquip_pw2 = a1.CapAssetEquip_pw;
+  d.Bond2 = a2.Bond;
+  d.BondPrincipal2 = a2.BondPrincipal;
+  d.CashDelinquent2 = a1.CashDelinquent;
+  d.CPF_ExpTotal = a2.CPF_ExpTotal;
+
+  return d;
+}
+function generateScenario(id){
+  var seed = (id||'').trim();
+  return a5_solve(seed, seed==='');
+}
+
+/* =========================================================================
+   WORKSHEET CHART OF ACCOUNTS (government-wide conversion entries)
+   ========================================================================= */
+var WS_ACCOUNTS = [
+  'Capital Assets, Net',
+  'Bonds Payable',
+  'Compensated Absences Payable',
+  'Internal Service Fund Net Position',
+  'Expenditures—Capital Outlay (Capital Projects Fund)',
+  'Other Financing Sources—Bond Proceeds',
+  'Expenditures—Bond Principal',
+  'Expenses—General Government',
+  'Expenses—Public Safety',
+  'Expenses—Public Works',
+  'Expenses—Parks and Recreation'
+];
+var WS_TYPE = {
+  'Capital Assets, Net':'Asset',
+  'Bonds Payable':'Liability',
+  'Compensated Absences Payable':'Liability',
+  'Internal Service Fund Net Position':'Asset',
+  'Expenditures—Capital Outlay (Capital Projects Fund)':'Expenditure',
+  'Other Financing Sources—Bond Proceeds':'Other Financing Source',
+  'Expenditures—Bond Principal':'Expenditure',
+  'Expenses—General Government':'Expense',
+  'Expenses—Public Safety':'Expense',
+  'Expenses—Public Works':'Expense',
+  'Expenses—Parks and Recreation':'Expense'
+};
+/* beginning [debit, credit] balance for each worksheet account, drawn from the
+   given fund-level results carried forward above -- nothing here is journalized */
+function wsBeginning(d){
+  var b = {};
+  WS_ACCOUNTS.forEach(function(a){ b[a] = [0,0]; });
+  b['Capital Assets, Net'] = [d.GovCapAssets_boy, 0];
+  b['Bonds Payable'] = [0, d.GovBonds_boy];
+  b['Compensated Absences Payable'] = [0, d.GovCompAbs_boy];
+  b['Internal Service Fund Net Position'] = [d.a3.ISF_NP_boy_total, 0];
+  b['Expenditures—Capital Outlay (Capital Projects Fund)'] = [d.a2.CPF_ExpTotal, 0];
+  b['Other Financing Sources—Bond Proceeds'] = [0, d.a2.Bond];
+  b['Expenditures—Bond Principal'] = [d.a2.BondPrincipal, 0];
+  b['Expenses—General Government'] = [d.FundExp_gg, 0];
+  b['Expenses—Public Safety'] = [d.FundExp_ps, 0];
+  b['Expenses—Public Works'] = [d.FundExp_pw, 0];
+  b['Expenses—Parks and Recreation'] = [d.FundExp_pr, 0];
+  return b;
+}
+
+/* =========================================================================
+   ANSWER KEY -- the 4 conversion worksheet entries
+   ========================================================================= */
+function sgn(v){ return v>=0 ? 'Dr' : 'Cr'; }
+var KEY_ENTRIES = {
+  'je-capital': {
+    title: 'Capital assets and depreciation',
+    reqText: 'Capitalize the year’s governmental capital outlays, remove the fund-basis expenditures that financed them, and record depreciation by function.',
+    rows: [
+      {tag:'GW-1', acct:function(){return 'Capital Assets, Net';}, side:'Dr', amt:function(d){return d.CapOutlaysCapitalized;}},
+      {tag:'GW-1', acct:function(){return 'Expenses—General Government';}, side:'Dr', amt:function(d){return d.Dep_gg;}},
+      {tag:'GW-1', acct:function(){return 'Expenses—Public Safety';}, side:'Dr', amt:function(d){return d.Dep_ps;}},
+      {tag:'GW-1', acct:function(){return 'Expenses—Public Works';}, side:'Dr', amt:function(d){return d.Dep_pw;}},
+      {tag:'GW-1', acct:function(){return 'Expenses—Parks and Recreation';}, side:'Dr', amt:function(d){return d.Dep_pr;}},
+      {tag:'GW-1', acct:function(){return 'Expenditures—Capital Outlay (Capital Projects Fund)';}, side:'Cr', amt:function(d){return d.a2.CPF_ExpTotal;}},
+      {tag:'GW-1', acct:function(){return 'Expenses—Public Works';}, side:'Cr', amt:function(d){return d.a1.CapAssetEquip_pw;}},
+      {tag:'GW-1', acct:function(){return 'Capital Assets, Net';}, side:'Cr', amt:function(d){return d.GovDepreciation_total;}}
+    ]
+  },
+  'je-debt': {
+    title: 'Long-term debt (bonds)',
+    reqText: 'Record the new bonds issued and the principal repaid as changes in the long-term liability, removing the fund-basis other financing source and expenditure.',
+    rows: [
+      {tag:'GW-2', acct:function(){return 'Other Financing Sources—Bond Proceeds';}, side:'Dr', amt:function(d){return d.a2.Bond;}},
+      {tag:'GW-2', acct:function(){return 'Bonds Payable';}, side:'Dr', amt:function(d){return d.a2.BondPrincipal;}},
+      {tag:'GW-2', acct:function(){return 'Bonds Payable';}, side:'Cr', amt:function(d){return d.a2.Bond;}},
+      {tag:'GW-2', acct:function(){return 'Expenditures—Bond Principal';}, side:'Cr', amt:function(d){return d.a2.BondPrincipal;}}
+    ]
+  },
+  'je-compabs': {
+    title: 'Compensated absences',
+    reqText: 'Accrue the year’s increase in compensated absences payable, by function.',
+    rows: [
+      {tag:'GW-3', acct:function(){return 'Expenses—General Government';}, side:'Dr', amt:function(d){return d.CompAbs_gg;}},
+      {tag:'GW-3', acct:function(){return 'Expenses—Public Safety';}, side:'Dr', amt:function(d){return d.CompAbs_ps;}},
+      {tag:'GW-3', acct:function(){return 'Expenses—Public Works';}, side:'Dr', amt:function(d){return d.CompAbs_pw;}},
+      {tag:'GW-3', acct:function(){return 'Expenses—Parks and Recreation';}, side:'Dr', amt:function(d){return d.CompAbs_pr;}},
+      {tag:'GW-3', acct:function(){return 'Compensated Absences Payable';}, side:'Cr', amt:function(d){return d.CompAbsIncrease_total;}}
+    ]
+  },
+  'je-isf': {
+    title: 'Internal Service Fund incorporation',
+    reqText: 'Incorporate the Internal Service Fund’s current-year net income (loss) into governmental activities, allocating it back to the functions it serves.',
+    rows: [
+      {tag:'GW-5', acct:function(){return 'Internal Service Fund Net Position';}, side:function(d){return sgn(d.ISF_NetIncome);}, amt:function(d){return Math.abs(d.ISF_NetIncome);}},
+      {tag:'GW-5', acct:function(){return 'Expenses—General Government';}, side:function(d){return sgn(d.ISFlb_gg);}, amt:function(d){return Math.abs(d.ISFlb_gg);}},
+      {tag:'GW-5', acct:function(){return 'Expenses—Public Safety';}, side:function(d){return sgn(d.ISFlb_ps);}, amt:function(d){return Math.abs(d.ISFlb_ps);}},
+      {tag:'GW-5', acct:function(){return 'Expenses—Public Works';}, side:function(d){return sgn(d.ISFlb_pw);}, amt:function(d){return Math.abs(d.ISFlb_pw);}},
+      {tag:'GW-5', acct:function(){return 'Expenses—Parks and Recreation';}, side:function(d){return sgn(d.ISFlb_pr);}, amt:function(d){return Math.abs(d.ISFlb_pr);}}
+    ]
+  }
+};
+var JE_ORDER = ['je-capital','je-debt','je-compabs','je-isf'];
+
+var ROWS = { je: [] };
+var SCORES = {};
+var TOTAL_POINTS = 0;
+var currentScenario = null;
+var recomputeQueued = false;
+
+function computeTotalPoints(){
+  var total = 0;
+  ROWS.je.forEach(function(entry){ total += entry.defRows.length * 2; });
+  TOTAL_POINTS = total;
+}
+
+function acctOptionsHtml(list){
+  var html = '<option value="">— select account —</option>';
+  list.forEach(function(a){ html += '<option value="'+a.replace(/"/g,'&quot;')+'">'+a+'</option>'; });
+  return html;
+}
+
+/* Build one worksheet-entry .part (account dropdown + debit/credit), same component as Assignments 1-4 */
+function buildEntryPart(host, opts){
+  // opts: {sectionLabel, title, reqText, key, rows, acctList, regBucket}
+  var part = document.createElement('div');
+  part.className = 'part';
+  var reqText = opts.reqText || 'Prepare the worksheet entry to record this item.';
+  part.innerHTML =
+   '<span class="part-label">'+opts.sectionLabel+'</span>'+
+   '<h2>'+opts.title+'</h2>'+
+   '<div class="req"><span class="reqlabel">Required:</span> '+reqText+'</div>'+
+   '<table class="worksheet"><thead><tr><th>Account</th><th class="num">Debit</th><th class="num">Credit</th></tr></thead><tbody id="'+opts.key+'-body"></tbody></table>'+
+   '<div class="check-bar">'+
+     '<button class="btn-check" id="check-'+opts.key+'" type="button">Check my work</button>'+
+     '<span class="check-summary" id="sum-'+opts.key+'"></span>'+
+     '<span class="live-badge">Live-updates the schedules below</span>'+
+     '<span class="check-disclaimer">This checks your account selections and amounts against the key within a small tolerance.</span>'+
+   '</div>';
+  host.appendChild(part);
+
+  var body = document.getElementById(opts.key+'-body');
+  var rowIds = [];
+  opts.rows.forEach(function(row,idx){
+    var rowId = opts.key+'-r'+idx;
+    rowIds.push(rowId);
+    var tr = document.createElement('tr');
+    var tagHtml = row.tag? ('<div class="hint" style="margin:0 0 4px;"><span class="entrytag">'+row.tag+'</span></div>') : '';
+    tr.innerHTML =
+      '<td class="acctcell">'+tagHtml+'<select class="acct" id="'+rowId+'-acct">'+acctOptionsHtml(opts.acctList)+'</select></td>'+
+      '<td class="amt"><input type="text" placeholder="$" id="'+rowId+'-debit"></td>'+
+      '<td class="amt"><input type="text" placeholder="$" id="'+rowId+'-credit"></td>';
+    body.appendChild(tr);
+  });
+  opts.regBucket.push({key:opts.key, rowIds:rowIds, defRows:opts.rows});
+
+  rowIds.forEach(function(rowId){
+    var el = document.getElementById(rowId+'-acct');
+    if(el) el.addEventListener('change', function(){ clearFieldState(el); scheduleRecompute(); markStale(opts.key); });
+    ['-debit','-credit'].forEach(function(suf){
+      var el2 = document.getElementById(rowId+suf);
+      if(el2) el2.addEventListener('input', function(){ clearFieldState(el2); scheduleRecompute(); markStale(opts.key); });
+    });
+  });
+
+  var btn = document.getElementById('check-'+opts.key);
+  btn.addEventListener('click', function(){ gradeEntry(opts.key, opts.rows, rowIds); });
+}
+
+function clearFieldState(el){ if(el) el.classList.remove('field-correct','field-incorrect'); }
+function markStale(key){ var s=SCORES[key]; if(s && s.checked) s.stale = true; }
+
+function markSelect(id, expected){
+  var el = document.getElementById(id); if(!el) return null;
+  el.classList.remove('field-correct','field-incorrect');
+  var ok = el.value === expected;
+  el.classList.add(ok?'field-correct':'field-incorrect');
+  return ok;
+}
+function markAmountPair(rowId, side, correct, tol){
+  var debitEl = document.getElementById(rowId+'-debit'), creditEl = document.getElementById(rowId+'-credit');
+  if(!debitEl||!creditEl) return null;
+  clearFieldState(debitEl); clearFieldState(creditEl);
+  var debitBlank = debitEl.value.trim()==='', creditBlank = creditEl.value.trim()==='';
+  var ok;
+  if(side==='Dr'){
+    var debitOk = near(parseMoney(debitEl.value), correct, tol);
+    debitEl.classList.add(debitOk?'field-correct':'field-incorrect');
+    if(!creditBlank) creditEl.classList.add('field-incorrect');
+    ok = debitOk && creditBlank;
+  } else {
+    var creditOk = near(parseMoney(creditEl.value), correct, tol);
+    creditEl.classList.add(creditOk?'field-correct':'field-incorrect');
+    if(!debitBlank) debitEl.classList.add('field-incorrect');
+    ok = creditOk && debitBlank;
+  }
+  return ok;
+}
+function updateSummary(elId, results){
+  var el = document.getElementById(elId); if(!el) return;
+  var graded = results.filter(function(r){return r!==null;}).length;
+  var correct = results.filter(function(r){return r===true;}).length;
+  el.textContent = correct+' of '+graded+' correct';
+  el.classList.remove('good','bad');
+  el.classList.add(correct===graded && graded>0 ? 'good':'bad');
+}
+function gradeEntry(key, defRows, rowIds){
+  if(!currentScenario) return;
+  var results = [];
+  defRows.forEach(function(row, idx){
+    var rowId = rowIds[idx];
+    var side = (typeof row.side==='function') ? row.side(currentScenario) : row.side;
+    var expectedAcct = row.acct(currentScenario);
+    var expectedAmt = row.amt(currentScenario);
+    results.push(markSelect(rowId+'-acct', expectedAcct));
+    results.push(markAmountPair(rowId, side, expectedAmt, TOL.dollars));
+  });
+  updateSummary('sum-'+key, results);
+  if(!SCORES[key]) SCORES[key] = {correct:0,graded:0,checked:false,stale:false};
+  var s = SCORES[key];
+  s.graded = results.filter(function(r){return r!==null;}).length;
+  s.correct = results.filter(function(r){return r===true;}).length;
+  s.checked = true; s.stale = false;
+  renderOverall();
+}
+function resetAllScores(){
+  Object.keys(SCORES).forEach(function(k){ SCORES[k] = {correct:0,graded:0,checked:false,stale:false}; });
+  renderOverall();
+}
+function renderOverall(){
+  var area = document.getElementById('scoreArea'); if(!area) return;
+  var panel = area.querySelector('.score-panel[data-for="overall"]');
+  if(!panel){
+    panel = document.createElement('div');
+    panel.className='score-panel'; panel.setAttribute('data-for','overall');
+    panel.innerHTML = '<div class="score-pct">—</div><div class="score-detail"><p class="score-meta">Overall score</p><div class="score-bar"><span></span></div><p class="score-sub">Check each worksheet entry below; points earned count toward the assignment total as you go.</p></div>';
+    area.appendChild(panel);
+  }
+  var totalCorrect=0, anyChecked=false, uncheckedCount=0;
+  Object.keys(SCORES).forEach(function(k){ var s=SCORES[k]; if(s.checked){ anyChecked=true; totalCorrect+=s.correct; } });
+  ROWS.je.forEach(function(entry){ var s=SCORES[entry.key]; if(!s || !s.checked) uncheckedCount++; });
+  var pctEl=panel.querySelector('.score-pct'), metaEl=panel.querySelector('.score-meta'), fillEl=panel.querySelector('.score-bar span'), subEl=panel.querySelector('.score-sub');
+  panel.classList.remove('scored-good','scored-bad');
+  var pct = TOTAL_POINTS? Math.round(totalCorrect/TOTAL_POINTS*100):0;
+  pctEl.textContent = pct+'%';
+  metaEl.textContent = 'Overall: '+totalCorrect+' of '+TOTAL_POINTS+' points';
+  fillEl.style.width = pct+'%';
+  if(!anyChecked){ subEl.textContent = TOTAL_POINTS+' points available across the four worksheet entries. Check each entry below to earn points.'; return; }
+  if(totalCorrect===TOTAL_POINTS){ subEl.textContent='All '+TOTAL_POINTS+' points earned.'; panel.classList.add('scored-good'); }
+  else { subEl.textContent=(TOTAL_POINTS-totalCorrect)+' point(s) not yet earned'+(uncheckedCount? ' ('+uncheckedCount+' item(s) not yet checked)':'')+'.'; panel.classList.add('scored-bad'); }
+}
+
+/* =========================================================================
+   LIVE POSTING -- turns whatever is in the worksheet-entry inputs into
+   per-account debit/credit totals, exactly like Assignments 1-4's trial balance
+   ========================================================================= */
+function scheduleRecompute(){
+  if(recomputeQueued) return;
+  recomputeQueued = true;
+  requestAnimationFrame(function(){ recomputeQueued=false; recomputeSchedules(); });
+}
+function sectionTotals(bucket){
+  var totals = {};
+  bucket.forEach(function(entry){
+    entry.rowIds.forEach(function(rowId){
+      var acctEl = document.getElementById(rowId+'-acct');
+      var acct = acctEl ? acctEl.value : '';
+      if(!acct) return;
+      var debit = parseMoney(document.getElementById(rowId+'-debit').value); if(isNaN(debit)) debit=0;
+      var credit = parseMoney(document.getElementById(rowId+'-credit').value); if(isNaN(credit)) credit=0;
+      if(!totals[acct]) totals[acct]=[0,0];
+      totals[acct][0]+=debit; totals[acct][1]+=credit;
+    });
+  });
+  return totals;
+}
+
+function renderScheduleTable(host, opts){
+  if(!host) return;
+  var rowsHtml = opts.rows.map(function(r){
+    return '<tr'+(r.total?' class="total-row"':'')+'><td>'+r.label+'</td><td class="amt">'+money0(r.value)+'</td></tr>';
+  }).join('');
+  host.innerHTML = '<div class="part"><span class="part-label">'+opts.sectionLabel+'</span>'+
+    '<table class="worksheet"><thead><tr><th>Item</th><th class="num">Amount</th></tr></thead><tbody>'+rowsHtml+'</tbody></table>'+
+    (opts.note || '') +
+    '</div>';
+}
+function tieNote(labelA, a, labelB, b){
+  var ok = Math.abs(a-b) <= 1;
+  return '<p class="tie-check '+(ok?'tie-ok':'tie-bad')+'">Check: '+labelA+' = '+money0(a)+' vs. '+labelB+' = '+money0(b)+' — '+(ok?'ties out.':'does not tie — check your worksheet entries above.')+'</p>';
+}
+
+function recomputeSchedules(){
+  var npHost = document.getElementById('np-recon-host');
+  var chgHost = document.getElementById('chg-recon-host');
+  var funcHost = document.getElementById('func-conv-host');
+  var snpHost = document.getElementById('snp-host');
+  var soaHost = document.getElementById('soa-host');
+  if(!currentScenario){
+    [npHost,chgHost,funcHost,snpHost,soaHost].forEach(function(h){ if(h) h.innerHTML=''; });
+    return;
+  }
+  var d = currentScenario;
+  var beg = wsBeginning(d);
+  var journal = sectionTotals(ROWS.je);
+
+  function ending(acct){ var b=beg[acct]||[0,0], j=journal[acct]||[0,0]; return (b[0]+j[0])-(b[1]+j[1]); }
+  function jd(acct){ return (journal[acct]||[0,0])[0]; }
+  function jc(acct){ return (journal[acct]||[0,0])[1]; }
+
+  var capAssetsEnd = ending('Capital Assets, Net');
+  var bondsEnd = -ending('Bonds Payable');
+  var compAbsEnd = -ending('Compensated Absences Payable');
+  var isfNPEnd = ending('Internal Service Fund Net Position');
+  var gwExp = {
+    gg: ending('Expenses—General Government'),
+    ps: ending('Expenses—Public Safety'),
+    pw: ending('Expenses—Public Works'),
+    pr: ending('Expenses—Parks and Recreation')
+  };
+  var capOutlaysCapitalized = jd('Capital Assets, Net');
+  var depreciationExpense = jc('Capital Assets, Net');
+  var bondProceeds = jc('Bonds Payable');
+  var principalRepayment = jd('Bonds Payable');
+  var compAbsIncrease = jc('Compensated Absences Payable');
+  var isfNetIncome = jd('Internal Service Fund Net Position') - jc('Internal Service Fund Net Position');
+
+  var npRows = [
+    {label:'Total governmental fund balances', value:d.TotalGovFundBalances_end},
+    {label:'Add: governmental capital assets, net', value:capAssetsEnd},
+    {label:'Less: governmental bonds payable', value:-bondsEnd},
+    {label:'Less: compensated absences payable', value:-compAbsEnd},
+    {label:'Add: deferred inflows not deferred at the government-wide level (unavailable property taxes)', value:d.EndingDeferredInflow_A1},
+    {label:'Add: Internal Service Fund net position', value:isfNPEnd}
+  ];
+  var npTotal = npRows.reduce(function(s,r){return s+r.value;},0);
+  npRows.push({label:'Governmental activities net position', value:npTotal, total:true});
+  renderScheduleTable(npHost, {sectionLabel:'Balance-sheet reconciliation', rows:npRows});
+
+  var chgRows = [
+    {label:'Change in total governmental fund balances', value:d.ChangeInTotalGovFundBalances},
+    {label:'Add: capital outlays capitalized', value:capOutlaysCapitalized},
+    {label:'Less: depreciation expense', value:-depreciationExpense},
+    {label:'Less: bond proceeds reported as an other financing source in the funds', value:-bondProceeds},
+    {label:'Add: principal repayment (reduces long-term debt; not a government-wide expense)', value:principalRepayment},
+    {label:'Less: increase in compensated absences payable', value:-compAbsIncrease},
+    {label:'Less: property-tax revenue recognized in the funds but earned in a prior year', value:-d.a1.CashDelinquent},
+    {label:'Add (less): Internal Service Fund net income (loss) for the year', value:isfNetIncome}
+  ];
+  var chgTotal = chgRows.reduce(function(s,r){return s+r.value;},0);
+  chgRows.push({label:'Change in governmental activities net position', value:chgTotal, total:true});
+  renderScheduleTable(chgHost, {sectionLabel:'Statement-of-activities reconciliation', rows:chgRows,
+    note: tieNote('beginning net position + change in net position', d.GovNetPosition_beg+chgTotal, 'ending net position (reconciliation above)', npTotal)});
+
+  if(funcHost){
+    var fns = [{code:'gg',label:'General government'},{code:'ps',label:'Public safety'},{code:'pw',label:'Public works'},{code:'pr',label:'Parks and recreation'}];
+    var rowsHtml = fns.map(function(fn){
+      return '<tr><td>'+fn.label+'</td><td class="amt">'+money0(d['FundExp_'+fn.code])+'</td><td class="amt">'+money0(gwExp[fn.code])+'</td></tr>';
+    }).join('');
+    funcHost.innerHTML = '<div class="part"><span class="part-label">Functional conversion</span>'+
+      '<table class="worksheet"><thead><tr><th>Function</th><th class="num">Fund Expenditures</th><th class="num">GW Expense</th></tr></thead><tbody>'+rowsHtml+'</tbody></table>'+
+      '<p class="footnote">Fund Expenditures is given (carried forward from Assignments 1&ndash;2); GW Expense reflects your posted worksheet entries above.</p></div>';
+  }
+
+  var totalNPEnd = npTotal + d.BTA_NP_end;
+  var totalChangeFromRecon = chgTotal + d.BTA_Change;
+  renderScheduleTable(snpHost, {sectionLabel:'Government-wide statement', rows:[
+    {label:'Governmental activities — net position, ending', value:npTotal},
+    {label:'Governmental activities — change in net position', value:chgTotal},
+    {label:'Business-type activities — net position, ending', value:d.BTA_NP_end},
+    {label:'Business-type activities — change in net position', value:d.BTA_Change},
+    {label:'Total primary government — net position, ending', value:totalNPEnd, total:true},
+    {label:'Total primary government — change in net position', value:totalChangeFromRecon, total:true}
+  ]});
+
+  var progRev = {gg:d.ProgRev_gg, ps:d.ProgRev_ps, pw:d.ProgRev_pw, pr:d.ProgRev_pr};
+  var netExpRev = { gg:progRev.gg-gwExp.gg, ps:progRev.ps-gwExp.ps, pw:progRev.pw-gwExp.pw, pr:progRev.pr-gwExp.pr };
+  var netExpRevInterest = -d.GWExp_interest;
+  var totalProgRev = progRev.gg+progRev.ps+progRev.pw+progRev.pr;
+  var totalNetExpRev = netExpRev.gg+netExpRev.ps+netExpRev.pw+netExpRev.pr+netExpRevInterest;
+  var totalGenRev = d.GenRev_PropertyTax+d.GenRev_SalesTax+d.GenRev_Other;
+  var soaChangeGovNP = totalNetExpRev + totalGenRev;
+  var soaBTAChange = d.BTA_NetExpRev + d.BTA_GenRev;
+  var soaTotalChange = soaChangeGovNP + soaBTAChange;
+  renderScheduleTable(soaHost, {sectionLabel:'Government-wide statement', rows:[
+    {label:'Program revenues — General government', value:progRev.gg},
+    {label:'Program revenues — Public safety', value:progRev.ps},
+    {label:'Program revenues — Public works', value:progRev.pw},
+    {label:'Program revenues — Parks and recreation', value:progRev.pr},
+    {label:'Net (expense) revenue — General government', value:netExpRev.gg},
+    {label:'Net (expense) revenue — Public safety', value:netExpRev.ps},
+    {label:'Net (expense) revenue — Public works', value:netExpRev.pw},
+    {label:'Net (expense) revenue — Parks and recreation', value:netExpRev.pr},
+    {label:'Net (expense) revenue — Interest on long-term debt', value:netExpRevInterest},
+    {label:'Total governmental activities — program revenues', value:totalProgRev, total:true},
+    {label:'Total governmental activities — net (expense) revenue', value:totalNetExpRev, total:true},
+    {label:'General revenues — property taxes', value:d.GenRev_PropertyTax},
+    {label:'General revenues — sales taxes', value:d.GenRev_SalesTax},
+    {label:'General revenues — fines, forfeitures, and investment earnings', value:d.GenRev_Other},
+    {label:'Change in governmental activities net position', value:soaChangeGovNP, total:true},
+    {label:'Business-type activities — net (expense) revenue (Water Utility)', value:d.BTA_NetExpRev},
+    {label:'Business-type activities — general revenues (investment earnings and capital contributions)', value:d.BTA_GenRev},
+    {label:'Change in business-type activities net position', value:soaBTAChange, total:true},
+    {label:'Change in net position — total primary government', value:soaTotalChange, total:true}
+  ], note: tieNote('change in governmental activities net position (Statement of Activities)', soaChangeGovNP, 'change in net position (reconciliation above)', chgTotal)});
+}
+
+/* =========================================================================
+   PAGE ASSEMBLY
+   ========================================================================= */
+function buildAll(){
+  var jeHost = document.getElementById('je-host');
+  JE_ORDER.forEach(function(key){
+    var def = KEY_ENTRIES[key];
+    buildEntryPart(jeHost, {
+      sectionLabel:'Worksheet entry', title:def.title, reqText:def.reqText,
+      key:key, regBucket:ROWS.je, acctList:WS_ACCOUNTS, rows:def.rows
+    });
+  });
+  recomputeSchedules();
+}
+
+/* fills every <span id="v-XYZ"> with the money-formatted value of d.XYZ (or a mapped alias) */
+var DUP_MAP = {
+  'v-ISF_NP_end':'ISF_NP_end', 'v-CapAssetEquip_pw2':'CapAssetEquip_pw2', 'v-Bond2':'Bond2', 'v-BondPrincipal2':'BondPrincipal2',
+  'v-CashDelinquent2':'CashDelinquent2'
+};
+function fillScenarioSpans(d){
+  document.querySelectorAll('span.val[id^="v-"]').forEach(function(el){
+    var key = DUP_MAP[el.id] || el.id.slice(2);
+    if(d.hasOwnProperty(key)) el.textContent = money0(d[key]);
+  });
+  // worksheet accounts' beginning balances (given, not journalized)
+  setText('v-ws-cap-boy', money0(d.GovCapAssets_boy));
+  setText('v-ws-bonds-boy', money0(d.GovBonds_boy));
+  setText('v-ws-ca-boy', money0(d.GovCompAbs_boy));
+  setText('v-ws-isf-boy', money0(d.a3.ISF_NP_boy_total));
+  setText('v-ws-cpfexp-boy', money0(d.a2.CPF_ExpTotal));
+  setText('v-ws-bondofs-boy', money0(d.a2.Bond));
+  setText('v-ws-bondprin-boy', money0(d.a2.BondPrincipal));
+  setText('v-ws-gg-boy', money0(d.FundExp_gg));
+  setText('v-ws-ps-boy', money0(d.FundExp_ps));
+  setText('v-ws-pw-boy', money0(d.FundExp_pw));
+  setText('v-ws-pr-boy', money0(d.FundExp_pr));
+}
+
+function clearAllRowInputs(){
+  ROWS.je.forEach(function(entry){
+    entry.rowIds.forEach(function(rowId){
+      ['-acct','-debit','-credit'].forEach(function(suf){
+        var el = document.getElementById(rowId+suf);
+        if(el){ if(suf==='-acct') el.value=''; else el.value=''; el.classList.remove('field-correct','field-incorrect'); }
+      });
+    });
+  });
+}
+
+function applyAndStore(id){
+  currentScenario = generateScenario(id);
+  fillScenarioSpans(currentScenario);
+  clearAllRowInputs();
+  SCORES = {};
+  renderOverall();
+  recomputeSchedules();
+}
+
+document.addEventListener('DOMContentLoaded', function(){
+  applyFYSpans();
+  buildAll();
+  computeTotalPoints();
+  var idInput = document.getElementById('studentId');
+  var genBtn = document.getElementById('genBtn');
+  genBtn.addEventListener('click', function(){ applyAndStore(idInput.value); });
+  idInput.addEventListener('keydown', function(e){ if(e.key==='Enter'){ e.preventDefault(); applyAndStore(idInput.value); } });
+  applyAndStore('');
+
+  document.getElementById('printBtn').addEventListener('click', function(){
+    var name = (document.getElementById('studentName').value||'').trim();
+    var id = (document.getElementById('studentId').value||'').trim();
+    var line = document.getElementById('printNameLine');
+    line.textContent = 'Name: '+(name||'_______________________')+'     Student ID: '+(id||'_______________________');
+    var oldTitle = document.title;
+    document.title = 'ACCT635-Llama-Falls-A5-'+(id||'submission');
+    window.print();
+    document.title = oldTitle;
+  });
+});
+
+})();
+
+</script>
+</body>
+</html>
