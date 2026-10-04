@@ -732,11 +732,13 @@
   // The whole entry is compared as a set: account title, which side it sits on,
   // and the amount. Row order inside an entry does not matter, so a student who
   // lists the credit first is not penalised.
-  function markEntry(spec, d){
+  // Compare one entry against the key without touching the page. Returns null
+  // when the entry is not on this page, otherwise the verdict plus the detail
+  // markEntry needs for its status line.
+  function evalEntry(spec, d){
     var totalEl = document.getElementById(spec.prefix + '-debit');
     if(!totalEl) return null;
     var table = totalEl.closest('table.je');
-    var statusEl = document.getElementById(spec.prefix + '-status');
     var tol = spec.tol !== undefined ? spec.tol : (typeof JE_TOL !== 'undefined' ? JE_TOL : 2);
 
     var keyRows = (typeof spec.rows === 'function') ? spec.rows(d) : spec.rows;
@@ -778,6 +780,16 @@
       if(remaining.length) ok = false;
     }
 
+    return { ok: ok, got: got, wanted: wanted, bothSides: bothSides, rowEls: rowEls };
+  }
+
+  function markEntry(spec, d){
+    var res = evalEntry(spec, d);
+    if(!res) return null;
+    var ok = res.ok, got = res.got, wanted = res.wanted,
+        bothSides = res.bothSides, rowEls = res.rowEls;
+    var statusEl = document.getElementById(spec.prefix + '-status');
+
     rowEls.forEach(function(tr){
       var sel = tr.querySelector('select');
       if(!sel) return;
@@ -817,10 +829,49 @@
   }
 
   // ---------- score panel ----------
+  // A page can set ONE_SCORE = true to show a single score covering the whole
+  // problem instead of one panel per "Check my work" section.
+  // Read at call time, not at load time: the page sets ONE_SCORE after this
+  // block runs, and a hoisted var would still be undefined here.
+  function singleScore(){ return (typeof ONE_SCORE !== 'undefined') && ONE_SCORE === true; }
+  function panelKey(g){ return singleScore() ? 'all' : g.btn; }
+
   var SCORES = {};
   function scoreState(g){
-    if(!SCORES[g.btn]) SCORES[g.btn] = { correct:0, graded:0, attempts:0, checked:false, stale:false };
-    return SCORES[g.btn];
+    var k = panelKey(g);
+    if(!SCORES[k]) SCORES[k] = { correct:0, graded:0, attempts:0, checked:false, stale:false };
+    return SCORES[k];
+  }
+
+  // Grade a group without touching the page, so the single score can cover
+  // sections the student has not pressed Check on yet.
+  function gradeSilent(g, d){
+    var out = [];
+    (g.fields || []).forEach(function(f){
+      var el = document.getElementById(f.id);
+      if(!el){ out.push(null); return; }
+      var correct = (typeof f.key === 'function') ? f.key(d) : d[f.key];
+      var tol = f.tol !== undefined ? f.tol : TOL[f.type || 'money'];
+      out.push(near(parseMoney(el.value), correct, tol));
+    });
+    (g.picks || []).forEach(function(pk){
+      var el = document.getElementById(pk.id);
+      if(!el){ out.push(null); return; }
+      var correct = (typeof pk.key === 'function') ? pk.key(d) : d[pk.key];
+      out.push(el.value === correct);
+    });
+    if(g.pickGroup){
+      var spec = (typeof g.pickGroup === 'function') ? g.pickGroup(d) : g.pickGroup;
+      spec.forEach(function(pk){
+        var el = document.getElementById(pk.id);
+        out.push(el ? el.value === pk.correct : null);
+      });
+    }
+    (g.entries || []).forEach(function(es){
+      var res = evalEntry(es, d);
+      out.push(res ? res.ok : null);
+    });
+    return out;
   }
   function scorePct(s){ return s.graded ? Math.round(s.correct / s.graded * 100) : 0; }
 
@@ -829,11 +880,12 @@
   function ensureScorePanel(g){
     var area = document.getElementById('scoreArea');
     if(!area) return null;
-    var panel = area.querySelector('.score-panel[data-for="' + g.btn + '"]');
+    var key = panelKey(g);
+    var panel = area.querySelector('.score-panel[data-for="' + key + '"]');
     if(panel) return panel;
     panel = document.createElement('div');
     panel.className = 'score-panel';
-    panel.setAttribute('data-for', g.btn);
+    panel.setAttribute('data-for', key);
     panel.innerHTML =
       '<div class="score-pct">&mdash;</div>' +
       '<div class="score-detail">' +
@@ -883,10 +935,13 @@
     renderScore(g);
   }
   function resetScore(g){
-    SCORES[g.btn] = { correct:0, graded:0, attempts:0, checked:false, stale:false };
+    SCORES[panelKey(g)] = { correct:0, graded:0, attempts:0, checked:false, stale:false };
     renderScore(g);
   }
 
+
+  // One score for the whole problem rather than one per section.
+  var ONE_SCORE = true;
 
   var VENDOR = 'Little Tennessee Supply';
 
@@ -1134,9 +1189,18 @@
       }
       (g.entries || []).forEach(function(e){ results.push(markEntry(e, d)); });
       updateSummary(g.summary, results);
+      // The section just checked is marked up as usual. The score panel then
+      // covers either that section or, with ONE_SCORE, the whole problem.
+      var scored = results;
+      if(singleScore()){
+        scored = [];
+        CHECK_GROUPS.forEach(function(other){
+          scored = scored.concat(other === g ? results : gradeSilent(other, d));
+        });
+      }
       var s = scoreState(g);
-      s.graded = results.filter(function(r){ return r !== null; }).length;
-      s.correct = results.filter(function(r){ return r === true; }).length;
+      s.graded = scored.filter(function(r){ return r !== null; }).length;
+      s.correct = scored.filter(function(r){ return r === true; }).length;
       s.attempts += 1;
       s.checked = true;
       s.stale = false;
