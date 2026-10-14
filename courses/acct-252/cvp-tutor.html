@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>CVP Practice Tutor | ACCT 252</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple:#592C88;
+    --purple-deep:#38195A;
+    --purple-mid:#6E3FA3;
+    --gold:#B0925C;
+    --gold-soft:#D6C398;
+    --gold-pale:#F1E9D6;
+    --parchment:#F7F4EC;
+    --paper:#FFFEFA;
+    --ink:#221B2E;
+    --slate:#5F5A6B;
+    --line:#8C8497;
+    --error:#9C3B34;
+    color-scheme: light;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--parchment);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    font-size:1.0625rem;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .crumbs{
+    max-width:1100px; margin:0 auto; padding:16px 6vw 0;
+    font-size:0.9rem; color:var(--slate);
+  }
+  .crumbs a{ color:var(--purple); text-decoration:none; font-weight:600; }
+  .crumbs a:hover{ text-decoration:underline; }
+
+  header.banner{ max-width:1100px; margin:14px auto 0; padding:0 6vw; }
+  .banner-inner{
+    background:linear-gradient(120deg, var(--purple) 0%, var(--purple-deep) 100%);
+    color:#F1E9D6;
+    border-radius:14px;
+    padding:34px 6vw 30px;
+    position:relative;
+    overflow:hidden;
+  }
+  .banner-inner::after{
+    content:""; position:absolute; left:0; right:0; bottom:0; height:4px;
+    background:linear-gradient(90deg, var(--gold-soft), var(--gold) 40%, var(--gold-soft) 70%, var(--gold));
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.8rem; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--gold-soft); margin:0 0 10px;
+  }
+  h1.title{
+    font-family:'Source Serif 4', serif; font-weight:600;
+    font-size:clamp(26px,3.6vw,36px); margin:0 0 10px; letter-spacing:-0.01em;
+  }
+  .subtitle{ font-size:1rem; color:#E6DCEF; max-width:640px; margin:0; }
+
+  main{ max-width:1100px; margin:0 auto; padding:28px 6vw 80px; }
+  .panel{
+    background:var(--paper); border:1px solid var(--line); border-radius:10px;
+    box-shadow:0 1px 2px rgba(56,25,90,0.07), 0 6px 18px rgba(56,25,90,0.08);
+    padding:24px 26px; max-width:760px;
+  }
+  h2{
+    font-family:'Source Serif 4', serif; font-size:1.4rem; font-weight:600;
+    color:var(--purple-deep); margin:0 0 10px;
+    border-left:3px solid var(--gold); padding-left:14px;
+  }
+  p{ margin:0.5rem 0; }
+  .muted{ color:var(--slate); font-size:0.95rem; }
+
+  label{ display:block; font-weight:600; margin:1rem 0 0.3rem; color:var(--purple-deep); }
+  input, textarea{
+    width:100%; font:inherit; color:var(--ink); background:#fff;
+    border:2px solid var(--line); border-radius:6px; padding:0.6rem 0.75rem;
+  }
+  textarea{ resize:vertical; min-height:5rem; }
+  button{
+    font:inherit; font-weight:600; cursor:pointer; border-radius:6px;
+    padding:0.6rem 1.2rem; border:2px solid var(--purple);
+    background:var(--purple); color:#fff;
+  }
+  button:hover:not(:disabled){ background:var(--purple-mid); border-color:var(--purple-mid); }
+  button.secondary{ background:transparent; color:var(--purple); }
+  button.secondary:hover:not(:disabled){ background:var(--gold-pale); color:var(--purple-deep); border-color:var(--purple); }
+  button:disabled{ opacity:.6; cursor:not-allowed; }
+  :focus-visible{ outline:3px solid var(--purple-mid); outline-offset:2px; }
+  .row{ display:flex; gap:.75rem; flex-wrap:wrap; margin-top:.9rem; }
+
+  #log{
+    background:#fff; border:2px solid var(--line); border-radius:6px;
+    padding:.75rem; height:55vh; min-height:16rem; overflow-y:auto;
+  }
+  .msg{ padding:.6rem .85rem; border-radius:6px; margin:0 0 .75rem; border:1px solid transparent; }
+  .msg.assistant{ background:var(--gold-pale); }
+  .msg.user{ background:var(--parchment); border-color:var(--line); }
+  .msg .who{ font-weight:700; color:var(--purple-deep); }
+  .msg .text{ white-space:pre-wrap; overflow-wrap:anywhere; }
+  #status{ min-height:1.6rem; color:var(--slate); font-size:.95rem; margin:.5rem 0 0; }
+  .error{ color:var(--error); font-weight:600; }
+  [hidden]{ display:none !important; }
+
+  footer{ text-align:center; padding:10px 6vw 46px; font-size:.9rem; color:var(--slate); max-width:760px; margin:0 auto; }
+  @media (prefers-reduced-motion: no-preference){ #log{ scroll-behavior:smooth; } }
+  @media (max-width:560px){
+    .banner-inner{ padding:28px 5vw 26px; }
+    main{ padding:22px 5vw 60px; }
+    .panel{ padding:20px 18px; }
+  }
+</style>
+</head>
+<body>
+
+<p class="crumbs"><a href="../../index.html">Courses</a> &nbsp;/&nbsp; <a href="../acct-252.html">ACCT 252</a> &nbsp;/&nbsp; CVP Practice Tutor</p>
+
+<header class="banner">
+  <div class="banner-inner">
+    <p class="eyebrow">ACCT 252 &middot; Practice</p>
+    <h1 class="title">CVP Practice Tutor</h1>
+    <p class="subtitle">Work through cost-volume-profit problems with a tutor that asks you questions instead of giving you the answers. You do the thinking, and it guides you.</p>
+  </div>
+</header>
+
+<main>
+  <section id="start" class="panel" aria-labelledby="start-heading">
+    <h2 id="start-heading">Start a session</h2>
+    <form id="start-form">
+      <label for="code">Tutor access code</label>
+      <input id="code" name="code" type="password" autocomplete="off" required aria-describedby="start-help start-error">
+      <p id="start-help" class="muted">Your instructor will give you the access code.</p>
+      <p id="start-error" class="error" role="alert"></p>
+      <div class="row">
+        <button type="submit" id="start-btn">Start a practice session</button>
+      </div>
+    </form>
+  </section>
+
+  <section id="chat" class="panel" aria-labelledby="chat-heading" hidden>
+    <h2 id="chat-heading">Conversation</h2>
+    <div id="log" role="log" aria-label="Conversation with the tutor" tabindex="0"></div>
+    <p id="status" role="status"></p>
+    <form id="chat-form">
+      <label for="reply">Your reply</label>
+      <textarea id="reply" name="reply" rows="3" maxlength="4000" aria-describedby="reply-help"></textarea>
+      <p id="reply-help" class="muted">Press Enter to send. Press Shift+Enter for a new line.</p>
+      <div class="row">
+        <button type="submit" id="send-btn">Send</button>
+        <button type="button" id="new-btn" class="secondary">New session</button>
+      </div>
+    </form>
+  </section>
+</main>
+
+<footer>
+  <p>This tutor is an AI and can make mistakes. Check answers against your textbook or ask your instructor if something seems off. Please do not enter personal information.</p>
+  <p>ACCT 252 &middot; Western Carolina University</p>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  // ---- CONFIG: replace with your Cloudflare Worker address (no trailing slash) ----
+  var WORKER_URL = "https://cvp-tutor.YOUR-SUBDOMAIN.workers.dev";
+  // ---------------------------------------------------------------------------------
+
+  var workerUrl = String(WORKER_URL).replace(/\/$/, "");
+  var START_MESSAGE = "Hi, I'd like to practice.";
+
+  var startSection = document.getElementById("start");
+  var startForm = document.getElementById("start-form");
+  var startBtn = document.getElementById("start-btn");
+  var startError = document.getElementById("start-error");
+  var codeInput = document.getElementById("code");
+  var chatSection = document.getElementById("chat");
+  var log = document.getElementById("log");
+  var statusEl = document.getElementById("status");
+  var chatForm = document.getElementById("chat-form");
+  var reply = document.getElementById("reply");
+  var sendBtn = document.getElementById("send-btn");
+  var newBtn = document.getElementById("new-btn");
+
+  var code = "";
+  var messages = [];
+  var busy = false;
+
+  function setStatus(text) { statusEl.textContent = text; }
+
+  function setBusy(value) {
+    busy = value;
+    sendBtn.disabled = value;
+    newBtn.disabled = value;
+    startBtn.disabled = value;
+  }
+
+  // Messages are written with textContent only, so nothing a student or the
+  // tutor types can be interpreted as HTML.
+  function addMessage(role, text) {
+    var box = document.createElement("div");
+    box.className = "msg " + role;
+    var who = document.createElement("span");
+    who.className = "who";
+    who.textContent = role === "user" ? "You: " : "Tutor: ";
+    var body = document.createElement("span");
+    body.className = "text";
+    body.textContent = text;
+    box.appendChild(who);
+    box.appendChild(body);
+    log.appendChild(box);
+    log.scrollTop = log.scrollHeight;
+    return box;
+  }
+
+  // Sends the current conversation. Resolves to { ok: true } or { ok: false, message }.
+  function callTutor() {
+    if (!workerUrl || workerUrl.indexOf("YOUR-") !== -1) {
+      return Promise.resolve({ ok: false, message: "This tutor has not been set up yet. Please tell your instructor." });
+    }
+    setBusy(true);
+    setStatus("The tutor is thinking…");
+    return fetch(workerUrl + "/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ code: code, messages: messages })
+    }).then(function (res) {
+      return res.json().catch(function () { return {}; }).then(function (data) {
+        if (!res.ok || typeof data.reply !== "string") {
+          return { ok: false, message: data.message || "Something went wrong. Please try again." };
+        }
+        messages.push({ role: "assistant", content: data.reply });
+        addMessage("assistant", data.reply);
+        return { ok: true };
+      });
+    }).catch(function () {
+      return { ok: false, message: "Could not reach the tutor. Check your connection and try again." };
+    }).then(function (result) {
+      setBusy(false);
+      setStatus("");
+      return result;
+    });
+  }
+
+  function startSession() {
+    messages = [{ role: "user", content: START_MESSAGE }];
+    log.textContent = "";
+    startError.textContent = "";
+    return callTutor().then(function (result) {
+      if (!result.ok) {
+        messages = [];
+        if (chatSection.hidden) {
+          startError.textContent = result.message;
+          codeInput.focus();
+        } else {
+          setStatus(result.message);
+          statusEl.classList.add("error");
+        }
+        return;
+      }
+      statusEl.classList.remove("error");
+      startSection.hidden = true;
+      chatSection.hidden = false;
+      reply.focus();
+    });
+  }
+
+  startForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    if (busy) return;
+    code = codeInput.value.trim();
+    if (!code) {
+      startError.textContent = "Please enter the tutor access code.";
+      codeInput.focus();
+      return;
+    }
+    startSession();
+  });
+
+  function sendReply() {
+    if (busy) return;
+    var text = reply.value.trim();
+    if (!text) return;
+    statusEl.classList.remove("error");
+    messages.push({ role: "user", content: text });
+    var box = addMessage("user", text);
+    reply.value = "";
+    callTutor().then(function (result) {
+      if (!result.ok) {
+        // Roll back so the student can edit and resend.
+        messages.pop();
+        if (box.parentNode) box.parentNode.removeChild(box);
+        reply.value = text;
+        setStatus(result.message);
+        statusEl.classList.add("error");
+      }
+      reply.focus();
+    });
+  }
+
+  chatForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    sendReply();
+  });
+
+  reply.addEventListener("keydown", function (event) {
+    if (event.key === "Enter" && !event.shiftKey && !event.isComposing) {
+      event.preventDefault();
+      sendReply();
+    }
+  });
+
+  newBtn.addEventListener("click", function () {
+    if (busy) return;
+    statusEl.classList.remove("error");
+    startSession();
+  });
+})();
+</script>
+
+</body>
+</html>
