@@ -183,6 +183,12 @@ html.wcu-unlocked .wcu-gate{display:none !important;}
 .wcu-gate-card button:hover{background:var(--purple-mid,#6E3FA3);}
 .wcu-gate-error{display:none;color:#9C3B34;font-size:12.5px;margin-top:12px;}
 @media print{ .wcu-gate{ display:none !important; } }
+
+  .tabs{ background:var(--paper,#FFFEFA); border-bottom:1px solid var(--line,#DBD3E0); }
+  .tabs-inner{ max-width:1040px; margin:0 auto; padding:0 6vw; display:flex; gap:4px; }
+  .tabs a{ font-family:'Inter',sans-serif; font-size:14px; font-weight:600; color:var(--slate,#5F5A6B); text-decoration:none; padding:14px 18px 12px; border-bottom:3px solid transparent; }
+  .tabs a:hover{ color:var(--purple,#592C88); }
+  .tabs a[aria-current="page"]{ color:var(--purple-deep,#38195A); border-bottom-color:var(--gold,#B0925C); }
 </style>
 </head>
 <body>
@@ -234,6 +240,7 @@ html.wcu-unlocked .wcu-gate{display:none !important;}
     <p class="subtitle">Develop the accounting knowledge and analytical skills you need to understand business performance and make informed management decisions.</p>
   </div>
 </header>
+<nav class="tabs" aria-label="ACCT 252 sections"><div class="tabs-inner"><a href="acct-252.html" aria-current="page">Course Page</a><a href="acct-252-tutors.html">ACCT 252 Tutors</a></div></nav>
 
 <main>
   <div class="instructor-card">
@@ -272,97 +279,6 @@ html.wcu-unlocked .wcu-gate{display:none !important;}
         <h4>Apply</h4>
         <p>Connect accounting concepts to real-world situations.</p>
       </div>
-    </div>
-  </div>
-
-  <!-- AI practice tutor, hosted on Claude. Students must be signed in to Claude and have access
-       to the page (set under Share on the page itself). To hide this section, add the word "hidden"
-       to the opening div below. -->
-  <div class="problems-section" id="tutorSection">
-    <p class="section-label">Practice</p>
-    <h2 class="section-title">AI Practice Tutor</h2>
-    <p class="section-sub">Choose your chapter and work through practice problems with a tutor that asks you questions instead of handing you the answers. It opens in Claude, and you will need to be signed in to a Claude account.</p>
-    <div class="problem-list">
-      <a class="problem-row" href="https://claude.ai/artifact/GjsgJoNv6qWUwqKQEdpBeH" target="_blank" rel="noopener">
-        <span class="problem-num">Ch. 1</span>
-        <span class="problem-info">
-          <p class="problem-title">Chapter 1 Tutor</p>
-          <p class="problem-topic">Cost classifications, product vs. period costs, cost of goods manufactured, and the high-low method</p>
-        </span>
-        <span class="problem-go">Open in Claude &rarr;</span>
-      </a>
-      <a class="problem-row" href="https://claude.ai/artifact/J5hNuBTw478Scm1YYQW5hZ" target="_blank" rel="noopener">
-        <span class="problem-num">Ch. 2</span>
-        <span class="problem-info">
-          <p class="problem-title">Chapter 2 Tutor</p>
-          <p class="problem-topic">Break-even, target profit, margin of safety, operating leverage, and sales mix</p>
-        </span>
-        <span class="problem-go">Open in Claude &rarr;</span>
-      </a>
-      <a class="problem-row" href="https://claude.ai/artifact/XVewgNcF6e5z6nEDf1cw7V" target="_blank" rel="noopener">
-        <span class="problem-num">Ch. 3</span>
-        <span class="problem-info">
-          <p class="problem-title">Chapter 3 Tutor</p>
-          <p class="problem-topic">Predetermined overhead rates, job cost sheets, pricing, and over- or underapplied overhead</p>
-        </span>
-        <span class="problem-go">Open in Claude &rarr;</span>
-      </a>
-      <a class="problem-row" href="https://claude.ai/artifact/EEBRDfVVR6MHixjdnT4C5h" target="_blank" rel="noopener">
-        <span class="problem-num">Ch. 4</span>
-        <span class="problem-info">
-          <p class="problem-title">Chapter 4 Tutor</p>
-          <p class="problem-topic">Variable vs. absorption costing, income reconciliation, and segment margin reports</p>
-        </span>
-        <span class="problem-go">Open in Claude &rarr;</span>
-      </a>
-      <a class="problem-row" href="https://claude.ai/artifact/7J1KN15AAeqkrYAPPMZhiQ" target="_blank" rel="noopener">
-        <span class="problem-num">Ch. 5</span>
-        <span class="problem-info">
-          <p class="problem-title">Chapter 5 Tutor</p>
-          <p class="problem-topic">Activity rates, ABC vs. traditional costing, customer margins, and unused capacity</p>
-        </span>
-        <span class="problem-go">Open in Claude &rarr;</span>
-      </a>
-      <a class="problem-row" href="https://claude.ai/artifact/7see5nPyfjreux6EpescGU" target="_blank" rel="noopener">
-        <span class="problem-num">Ch. 6</span>
-        <span class="problem-info">
-          <p class="problem-title">Chapter 6 Tutor</p>
-          <p class="problem-topic">Relevant costs: make or buy, special orders, drop a segment, constrained resources, and sell or process further</p>
-        </span>
-        <span class="problem-go">Open in Claude &rarr;</span>
-      </a>
-      <a class="problem-row" href="https://claude.ai/artifact/9czShLhCuvp4PC7HyXXkvy" target="_blank" rel="noopener">
-        <span class="problem-num">Ch. 8</span>
-        <span class="problem-info">
-          <p class="problem-title">Chapter 8 Tutor</p>
-          <p class="problem-topic">Sales, production, direct materials, direct labor, and cash budgets</p>
-        </span>
-        <span class="problem-go">Open in Claude &rarr;</span>
-      </a>
-      <a class="problem-row" href="https://claude.ai/artifact/Df97NFUiicQL4Cbrb3bL4R" target="_blank" rel="noopener">
-        <span class="problem-num">Ch. 9</span>
-        <span class="problem-info">
-          <p class="problem-title">Chapter 9 Tutor</p>
-          <p class="problem-topic">Flexible budgets, activity and spending variances, and fair performance reports</p>
-        </span>
-        <span class="problem-go">Open in Claude &rarr;</span>
-      </a>
-      <a class="problem-row" href="https://claude.ai/artifact/PtRtvacV34TWRjBt6z6qtc" target="_blank" rel="noopener">
-        <span class="problem-num">Ch. 10</span>
-        <span class="problem-info">
-          <p class="problem-title">Chapter 10 Tutor</p>
-          <p class="problem-topic">Standard cost cards and direct materials, direct labor, and variable overhead variances</p>
-        </span>
-        <span class="problem-go">Open in Claude &rarr;</span>
-      </a>
-      <a class="problem-row" href="https://claude.ai/artifact/HQGM82AKsfpwLpvmyEa7o6" target="_blank" rel="noopener">
-        <span class="problem-num">Ch. 12</span>
-        <span class="problem-info">
-          <p class="problem-title">Chapter 12 Tutor</p>
-          <p class="problem-topic">Balanced scorecard, throughput time and MCE, overall equipment effectiveness, and cost of quality</p>
-        </span>
-        <span class="problem-go">Open in Claude &rarr;</span>
-      </a>
     </div>
   </div>
 
