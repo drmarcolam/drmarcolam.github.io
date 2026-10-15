@@ -1,0 +1,401 @@
+<title>Chapter 2 Tutor</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  /* Layout: one narrow column under the ACCT 252 purple banner. The start panel is replaced by the conversation once a session begins.
+     Colors and type follow the course pages on the instructor's site (purple, gold, parchment). */
+  :root {
+    --bg: #F7F4EC;
+    --surface: #FFFEFA;
+    --field: #FFFFFF;
+    --ink: #221B2E;
+    --muted: #5F5A6B;
+    --line: #8C8497;
+    --head: #38195A;
+    --link: #592C88;
+    --btn: #592C88;
+    --btn-hover: #6E3FA3;
+    --btn-fg: #FFFFFF;
+    --gold: #B0925C;
+    --tutor-bg: #F1E9D6;
+    --you-bg: #F7F4EC;
+    --error: #9C3B34;
+    --focus: #6E3FA3;
+    --banner-from: #592C88;
+    --banner-to: #38195A;
+    --banner-ink: #F1E9D6;
+    --banner-sub: #E6DCEF;
+    --eyebrow: #D6C398;
+    --font-display: 'Source Serif 4', Georgia, serif;
+    --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --font-mono: 'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #16111E;
+      --surface: #1F1829;
+      --field: #120D19;
+      --ink: #EEE8F5;
+      --muted: #B9B0C8;
+      --line: #80768F;
+      --head: #D9C7F2;
+      --link: #D9C7F2;
+      --btn: #7A4DB5;
+      --btn-hover: #8A5FC2;
+      --btn-fg: #FFFFFF;
+      --tutor-bg: #2B2139;
+      --you-bg: #1A1424;
+      --error: #FFA39B;
+      --focus: #C9A8F2;
+      --banner-from: #38195A;
+      --banner-to: #241039;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #16111E;
+    --surface: #1F1829;
+    --field: #120D19;
+    --ink: #EEE8F5;
+    --muted: #B9B0C8;
+    --line: #80768F;
+    --head: #D9C7F2;
+    --link: #D9C7F2;
+    --btn: #7A4DB5;
+    --btn-hover: #8A5FC2;
+    --btn-fg: #FFFFFF;
+    --tutor-bg: #2B2139;
+    --you-bg: #1A1424;
+    --error: #FFA39B;
+    --focus: #C9A8F2;
+    --banner-from: #38195A;
+    --banner-to: #241039;
+    color-scheme: dark;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 18px 56px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page { max-width: 48rem; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
+  .back { font-size: 0.9rem; margin: 0; }
+  .back a { color: var(--link); font-weight: 600; text-decoration: none; }
+  .back a:hover { text-decoration: underline; }
+
+  header.banner {
+    background: linear-gradient(120deg, var(--banner-from) 0%, var(--banner-to) 100%);
+    color: var(--banner-ink);
+    border-radius: 14px;
+    padding: 30px clamp(18px, 5vw, 36px) 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  header.banner::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 4px;
+    background: linear-gradient(90deg, #D6C398, #B0925C 40%, #D6C398 70%, #B0925C);
+  }
+  .eyebrow {
+    font-family: var(--font-mono); font-weight: 500;
+    font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--eyebrow); margin: 0 0 8px;
+  }
+  h1 {
+    font-family: var(--font-display); font-weight: 600;
+    font-size: clamp(1.7rem, 5vw, 2.25rem); line-height: 1.2;
+    margin: 0 0 8px; letter-spacing: -0.01em; text-wrap: balance;
+  }
+  .subtitle { margin: 0; color: var(--banner-sub); max-width: 38rem; font-size: 1rem; }
+
+  .panel {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 22px clamp(16px, 4vw, 26px);
+  }
+  h2 {
+    font-family: var(--font-display); font-weight: 600; font-size: 1.35rem;
+    color: var(--head); margin: 0 0 10px;
+    border-left: 3px solid var(--gold); padding-left: 14px;
+  }
+  p { margin: 0.5rem 0; }
+  .muted { color: var(--muted); font-size: 0.95rem; }
+
+  button {
+    font: inherit; font-weight: 600; cursor: pointer;
+    border-radius: 6px; padding: 0.6rem 1.2rem;
+    border: 2px solid var(--btn); background: var(--btn); color: var(--btn-fg);
+  }
+  button:hover:not(:disabled) { background: var(--btn-hover); border-color: var(--btn-hover); }
+  button.secondary { background: transparent; color: var(--link); border-color: var(--link); }
+  button.secondary:hover:not(:disabled) { background: var(--tutor-bg); color: var(--head); }
+  button:disabled { opacity: 0.55; cursor: not-allowed; }
+  :focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+  .row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 14px; }
+
+  #log {
+    background: var(--field);
+    border: 2px solid var(--line);
+    border-radius: 6px;
+    padding: 12px;
+    height: 52vh; min-height: 16rem;
+    overflow-y: auto;
+  }
+  .msg { padding: 10px 14px; border-radius: 6px; margin: 0 0 12px; border: 1px solid transparent; }
+  .msg:last-child { margin-bottom: 0; }
+  .msg.assistant { background: var(--tutor-bg); }
+  .msg.user { background: var(--you-bg); border-color: var(--line); }
+  .msg .who { font-weight: 700; color: var(--head); }
+  .msg .text { white-space: pre-wrap; overflow-wrap: anywhere; }
+
+  label { display: block; font-weight: 600; margin: 16px 0 4px; color: var(--head); }
+  textarea {
+    width: 100%; font: inherit; color: var(--ink); background: var(--field);
+    border: 2px solid var(--line); border-radius: 6px; padding: 10px 12px;
+    resize: vertical; min-height: 5rem;
+  }
+  #status, #start-status { min-height: 1.6rem; color: var(--muted); font-size: 0.95rem; margin: 10px 0 0; }
+  .error { color: var(--error); font-weight: 600; }
+  footer { max-width: 48rem; margin: 0 auto; }
+  footer p { color: var(--muted); font-size: 0.9rem; }
+  @media (prefers-reduced-motion: no-preference) { #log { scroll-behavior: smooth; } }
+</style>
+
+<div class="page">
+  <p class="back"><a href="https://drmarcolam.github.io/courses/acct-252.html">&larr; Back to ACCT 252</a></p>
+
+  <header class="banner">
+    <p class="eyebrow">ACCT 252 &middot; Practice</p>
+    <h1>Chapter 2 Tutor</h1>
+    <p class="subtitle">Work through cost-volume-profit problems with a tutor that asks you questions instead of giving you the answers. You do the thinking, and it guides you.</p>
+  </header>
+
+  <main>
+    <section id="start" class="panel" aria-labelledby="start-heading">
+      <h2 id="start-heading">Start a session</h2>
+      <p>The tutor will ask which type of problem you want to practice, such as break-even, target profit, or margin of safety. Answer its questions one at a time. If you get stuck, say so and it will give you a hint.</p>
+      <p class="muted">Claude asks for your permission the first time. Choose Allow.</p>
+      <p id="start-status" role="status"></p>
+      <p id="start-error" class="error" role="alert"></p>
+      <div class="row">
+        <button type="button" id="start-btn" disabled>Start a practice session</button>
+      </div>
+    </section>
+
+    <section id="chat" class="panel" aria-labelledby="chat-heading" hidden>
+      <h2 id="chat-heading">Conversation</h2>
+      <div id="log" role="log" aria-label="Conversation with the tutor" tabindex="0"></div>
+      <p id="status" role="status"></p>
+      <form id="chat-form">
+        <label for="reply">Your reply</label>
+        <textarea id="reply" name="reply" rows="3" maxlength="4000" aria-describedby="reply-help"></textarea>
+        <p id="reply-help" class="muted">Press Enter to send. Press Shift+Enter for a new line.</p>
+        <div class="row">
+          <button type="submit" id="send-btn">Send</button>
+          <button type="button" id="new-btn" class="secondary">New session</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>This tutor is an AI and can make mistakes. Check answers against your textbook or ask your instructor if something seems off. Please do not enter personal information.</p>
+    <p>ACCT 252 &middot; Western Carolina University</p>
+  </footer>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  // The tutor instructions, inserted when the page is built from the prompt file.
+  var TUTOR_PROMPT = __TUTOR_PROMPT__;
+
+  // Claude has no memory between calls, so the instructions travel with every request,
+  // attached to the student's first message.
+  var INSTRUCTIONS =
+    "You are the tutor described in the instructions below. Follow them for the whole conversation. " +
+    "Reply only with the tutor's next message, in plain text.\n\n" +
+    "=== INSTRUCTIONS ===\n" + TUTOR_PROMPT + "\n=== END OF INSTRUCTIONS ===";
+
+  var START_MESSAGE = "Hi, I'd like to practice.";
+  var MAX_MESSAGES = 60;
+
+  var startSection = document.getElementById("start");
+  var startBtn = document.getElementById("start-btn");
+  var startStatus = document.getElementById("start-status");
+  var startError = document.getElementById("start-error");
+  var chatSection = document.getElementById("chat");
+  var log = document.getElementById("log");
+  var statusEl = document.getElementById("status");
+  var chatForm = document.getElementById("chat-form");
+  var reply = document.getElementById("reply");
+  var sendBtn = document.getElementById("send-btn");
+  var newBtn = document.getElementById("new-btn");
+
+  var sample = null;
+  var messages = [];
+  var busy = false;
+
+  function setStatus(text, isError) {
+    statusEl.textContent = text;
+    statusEl.classList.toggle("error", !!isError);
+  }
+
+  function setControls() {
+    var off = busy || !sample;
+    startBtn.disabled = off;
+    sendBtn.disabled = off;
+    newBtn.disabled = off;
+  }
+
+  // Text goes in with textContent only, so nothing typed by a student or the tutor is read as HTML.
+  // Each reply is added once it is complete. Streaming it word by word into a live region
+  // would make a screen reader repeat the text over and over.
+  function addMessage(role, text) {
+    var box = document.createElement("div");
+    box.className = "msg " + role;
+    var who = document.createElement("span");
+    who.className = "who";
+    who.textContent = role === "user" ? "You: " : "Tutor: ";
+    var body = document.createElement("span");
+    body.className = "text";
+    body.textContent = text;
+    box.appendChild(who);
+    box.appendChild(body);
+    log.appendChild(box);
+    log.scrollTop = log.scrollHeight;
+    return box;
+  }
+
+  function friendlyError(err) {
+    var code = err && err.code;
+    if (code === "not_granted") {
+      return "Claude needs your permission for this page to work. Choose the button again and select Allow.";
+    }
+    if (code === "rate_limited") {
+      return "Claude is busy right now. Wait a minute, then try again.";
+    }
+    return "Something went wrong. Please try again.";
+  }
+
+  // Sends the whole conversation. Resolves to { ok: true } or { ok: false, message }.
+  function ask() {
+    busy = true;
+    setControls();
+    setStatus("The tutor is thinking…");
+    var input = messages.map(function (m, i) {
+      return i === 0
+        ? { role: "user", content: INSTRUCTIONS + "\n\n---\nThe student's first message:\n" + m.content }
+        : { role: m.role, content: m.content };
+    });
+    return Promise.resolve()
+      .then(function () { return sample(input, { cache: false }); })
+      .then(function (res) {
+        var text = res && typeof res.text === "string" ? res.text.trim() : "";
+        if (!text) throw { code: "empty" };
+        messages.push({ role: "assistant", content: text });
+        addMessage("assistant", text);
+        return { ok: true };
+      })
+      .catch(function (err) {
+        return { ok: false, message: friendlyError(err) };
+      })
+      .then(function (result) {
+        busy = false;
+        setControls();
+        setStatus("");
+        return result;
+      });
+  }
+
+  function startSession() {
+    if (busy || !sample) return;
+    messages = [{ role: "user", content: START_MESSAGE }];
+    log.textContent = "";
+    startError.textContent = "";
+    ask().then(function (result) {
+      if (!result.ok) {
+        messages = [];
+        if (chatSection.hidden) {
+          startError.textContent = result.message;
+        } else {
+          setStatus(result.message, true);
+        }
+        return;
+      }
+      startSection.hidden = true;
+      chatSection.hidden = false;
+      reply.focus();
+    });
+  }
+
+  function sendReply() {
+    if (busy || !sample) return;
+    var text = reply.value.trim();
+    if (!text) return;
+    if (messages.length >= MAX_MESSAGES) {
+      setStatus("This session has reached its length limit. Choose New session to continue.", true);
+      return;
+    }
+    setStatus("");
+    messages.push({ role: "user", content: text });
+    var box = addMessage("user", text);
+    reply.value = "";
+    ask().then(function (result) {
+      if (!result.ok) {
+        // Roll back so the student can edit and resend.
+        messages.pop();
+        if (box.parentNode) box.parentNode.removeChild(box);
+        reply.value = text;
+        setStatus(result.message, true);
+      }
+      reply.focus();
+    });
+  }
+
+  startBtn.addEventListener("click", startSession);
+  newBtn.addEventListener("click", startSession);
+
+  chatForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    sendReply();
+  });
+
+  reply.addEventListener("keydown", function (event) {
+    if (event.key === "Enter" && !event.shiftKey && !event.isComposing) {
+      event.preventDefault();
+      sendReply();
+    }
+  });
+
+  function unavailable() {
+    sample = null;
+    setControls();
+    startStatus.textContent = "";
+    startError.textContent = "This tutor only works when this page is opened on Claude while you are signed in.";
+  }
+
+  startStatus.textContent = "Connecting to Claude…";
+  if (window.claude && typeof window.claude.use === "function") {
+    window.claude.use("sample").then(function (s) {
+      if (!s) { unavailable(); return; }
+      sample = s;
+      startStatus.textContent = "";
+      setControls();
+    }).catch(unavailable);
+  } else {
+    unavailable();
+  }
+})();
+</script>
