@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ACCT 252 Chapter 12 Tutor</title>
+<meta name="description" content="Step-by-step practice problems for ACCT 252, Strategic Performance Measurement. Every problem uses new numbers, and each step is checked as you go.">
+<style>
+:root{
+  --bg:#f5f3f8; --card:#ffffff; --ink:#1f1a26; --muted:#585062; --line:#d9d3e2;
+  --purple:#4f2a7a; --purple-dark:#3a1d5c; --gold:#f2b705; --tint:#efe9f6;
+  --good-bg:#e7f5ea; --good-ink:#14532d; --good-line:#2e7d32;
+  --warn-bg:#fff3de; --warn-ink:#5e3300; --warn-line:#b86b00;
+  --focus:#0b57d0;
+  --hint-bg:#e8f0fc; --hint-ink:#0b3a75; --hint-line:#3b78c9;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#17131d; --card:#211b2b; --ink:#f0ecf5; --muted:#b9b0c6; --line:#3d3350;
+    --purple:#c9a8f0; --purple-dark:#1c1128; --tint:#2c2239;
+    --good-bg:#16301d; --good-ink:#bfe8c8; --good-line:#58b46c;
+    --warn-bg:#3a2a10; --warn-ink:#ffe0b3; --warn-line:#e0a040;
+    --focus:#8ab4ff;
+    --hint-bg:#14263f; --hint-ink:#cfe0ff; --hint-line:#6f9fe6;
+  }
+}
+*{box-sizing:border-box}
+html{font-size:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.55;font-size:1.0625rem}
+.skip{position:absolute;left:-999px;top:0;background:var(--gold);color:#1f1a26;padding:.6rem 1rem;z-index:10;font-weight:700}
+.skip:focus{left:8px;top:8px}
+header.site{background:var(--purple-dark);color:#fff;border-bottom:6px solid var(--gold)}
+header.site .wrap{max-width:60rem;margin:0 auto;padding:1.1rem 1rem}
+header.site .eyebrow{margin:0;font-size:.9rem;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);font-weight:700}
+header.site h1{margin:.15rem 0 0;font-size:1.65rem;line-height:1.2}
+main{max-width:60rem;margin:0 auto;padding:1.25rem 1rem 3rem}
+main:focus{outline:none}
+h2{font-size:1.35rem;margin:.2rem 0 .6rem}
+h3{font-size:1.1rem;margin:.1rem 0 .4rem}
+p{margin:.45rem 0}
+.lede{color:var(--muted);max-width:46rem}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+button,input,select{font:inherit}
+
+/* menu */
+.menu{display:grid;grid-template-columns:repeat(auto-fill,minmax(17rem,1fr));gap:.9rem;margin:1rem 0 0;padding:0;list-style:none}
+.step{scroll-margin-top:4.5rem}
+.menu button{display:flex;flex-direction:column;justify-content:flex-start;align-items:flex-start;width:100%;height:100%;text-align:left;background:var(--card);color:var(--ink);border:2px solid var(--line);border-left:8px solid var(--purple);border-radius:10px;padding:.9rem 1rem;cursor:pointer}
+.menu button:hover{border-color:var(--purple);background:var(--tint)}
+.menu .t{display:block;font-weight:700;font-size:1.08rem;color:var(--purple)}
+.menu .d{display:block;margin-top:.25rem}
+.menu .m{display:block;margin-top:.5rem;font-size:.9rem;color:var(--muted)}
+
+/* problem */
+.toolbar{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;justify-content:space-between;margin-bottom:.8rem}
+.btn{display:inline-block;border:2px solid var(--purple);background:var(--purple);color:#fff;border-radius:8px;padding:.55rem 1.1rem;font-weight:700;cursor:pointer}
+:root[data-theme="dark"] .btn{color:#1c1128}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .btn{color:#1c1128}}
+.btn:hover{filter:brightness(1.1)}
+.btn.secondary{background:transparent;color:var(--purple)}
+.btn.secondary:hover{background:var(--tint)}
+.badge{display:inline-block;background:var(--tint);color:var(--purple);border-radius:999px;padding:.1rem .7rem;font-size:.9rem;font-weight:600}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:1rem 1.15rem;margin:0 0 1rem}
+.card.scenario{border-top:6px solid var(--gold)}
+.progress{position:sticky;top:0;z-index:5;background:var(--bg);padding:.5rem 0 .6rem;margin-bottom:.6rem}
+.progress progress{width:100%;height:.8rem;accent-color:var(--purple)}
+.progress .txt{display:flex;justify-content:space-between;gap:1rem;font-size:.95rem;color:var(--muted);flex-wrap:wrap}
+details.ref{margin:.6rem 0 0;border:1px dashed var(--line);border-radius:8px;padding:.45rem .8rem;background:var(--bg)}
+details.ref summary{cursor:pointer;font-weight:600;color:var(--purple)}
+details.ref ul{margin:.4rem 0 .2rem 1.1rem;padding:0}
+.tablewrap{overflow-x:auto;margin:.7rem 0}
+table{border-collapse:collapse;min-width:min(100%,24rem);font-variant-numeric:tabular-nums}
+caption{text-align:left;font-weight:700;padding:.2rem 0 .35rem;color:var(--purple)}
+th,td{border:1px solid var(--line);padding:.35rem .65rem;vertical-align:top}
+thead th{background:var(--tint);text-align:left}
+tbody th{text-align:left;font-weight:600;background:var(--card)}
+td.n,th.n{text-align:right;white-space:nowrap}
+tr.tot th,tr.tot td{border-top:2px solid var(--ink);font-weight:700}
+
+.step{border-left:6px solid var(--line)}
+.step.active{border-left-color:var(--purple)}
+.step.correct{border-left-color:var(--good-line)}
+.step.wrong{border-left-color:var(--warn-line)}
+.step .num{font-size:.85rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin:0}
+.step .q{font-weight:600;margin:.15rem 0 .3rem}
+.hint{color:var(--muted);font-size:.93rem;margin:.1rem 0 .5rem}
+.ansrow{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center}
+.ansrow input[type=text]{width:14rem;max-width:100%;padding:.55rem .7rem;border:2px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);font-size:1.1rem;font-variant-numeric:tabular-nums}
+.ansrow label{font-weight:600;margin-right:.2rem}
+fieldset{border:0;margin:0;padding:0}
+legend{font-weight:600;padding:0;margin-bottom:.35rem}
+.opt{display:flex;gap:.6rem;align-items:flex-start;padding:.45rem .6rem;border:2px solid var(--line);border-radius:8px;margin:.3rem 0;cursor:pointer;background:var(--card)}
+.opt:hover{background:var(--tint)}
+.opt input{margin-top:.38rem;width:1.1rem;height:1.1rem;accent-color:var(--purple)}
+.err{color:var(--warn-ink);font-weight:600;min-height:1.4em;margin:.35rem 0 0}
+.fb{border-radius:8px;padding:.7rem .9rem;margin:.5rem 0}
+.fb.good{background:var(--good-bg);color:var(--good-ink);border:1px solid var(--good-line)}
+.fb.bad{background:var(--warn-bg);color:var(--warn-ink);border:1px solid var(--warn-line)}
+.fb.hintbox{background:var(--hint-bg);color:var(--hint-ink);border:1px solid var(--hint-line)}
+.fb strong.lead{display:block;font-size:1.05rem}
+.sol{margin:.55rem 0 0;padding:.6rem .8rem;background:var(--bg);border-radius:8px;border:1px solid var(--line);color:var(--ink)}
+.sol .line{display:block;margin:.15rem 0}
+.sol .final{font-weight:700}
+.summary h2{margin-top:0}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+footer{max-width:60rem;margin:0 auto;padding:0 1rem 2rem;color:var(--muted);font-size:.9rem}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+@media print{.toolbar,.progress,.skip{display:none}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="site">
+  <div class="wrap">
+    <p class="eyebrow">ACCT 252 · Managerial Accounting</p>
+    <h1>Chapter 12 Tutor: Strategic Performance Measurement</h1>
+    <p style="margin:.4rem 0 0"><a href="../courses/acct-252-tutors.html" style="color:#fff">&larr; Back to ACCT 252 Tutors</a></p>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+  <!-- MENU -->
+  <section id="menu-view" aria-labelledby="menu-h">
+    <h2 id="menu-h">Choose a problem type</h2>
+    <p class="lede">Pick a type of problem below. You will get a new scenario with new numbers, and I will walk you through it one step at a time. Type your answer for each step and press <strong>Check my answer</strong>. If you miss a step, no worries: you will get a hint and one more try. If you miss it again, you will see the solution for that step and then move on to the next one.</p>
+    <ul class="menu" id="menu"></ul>
+  </section>
+
+  <!-- PROBLEM -->
+  <section id="problem-view" hidden aria-labelledby="prob-h">
+    <div class="toolbar">
+      <button type="button" class="btn secondary" id="back-btn">← All problem types</button>
+      <span class="badge" id="seed-badge"></span>
+    </div>
+    <div class="progress">
+      <progress id="prog" max="1" value="0" aria-label="Progress through this problem"></progress>
+      <div class="txt"><span id="prog-left"></span><span id="prog-right"></span></div>
+    </div>
+    <h2 id="prob-h" tabindex="-1"></h2>
+    <div class="card scenario" id="scenario"></div>
+    <div id="steps"></div>
+  </section>
+</main>
+
+<div id="live" class="sr-only" role="status" aria-live="polite"></div>
+
+<footer>
+  <p>Practice problems are modeled on the exercises and problems in the chapter. All company names and numbers are fictional and are generated at random each time, so you can try as many problems as you like.</p>
+</footer>
+
+<script>
+(function(){
+'use strict';
+
+/* ================= utilities ================= */
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+function makeRng(seed){
+  var f=mulberry32(seed);
+  var r={
+    f:f,
+    int:function(a,b){return a+Math.floor(f()*(b-a+1));},
+    stepv:function(lo,hi,st){var n=Math.round((hi-lo)/st);var k=Math.floor(f()*(n+1));return Math.round((lo+k*st)*1e6)/1e6;},
+    pick:function(a){return a[Math.floor(f()*a.length)];},
+    shuffle:function(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(f()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+  };
+  return r;
+}
+function nf(x,d){d=d||0;return Math.abs(x).toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});}
+function money(x,d){d=d||0;var s=nf(x,d);var isZero=Number(s.replace(/,/g,''))===0;return (x<0&&!isZero)?'$('+s+')':'$'+s;}
+function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function rnd1000(x){return Math.round(x/1000)*1000;}
+
+function tbl(caption,head,rows,opts){
+  opts=opts||{};
+  var h='<div class="tablewrap" tabindex="0" role="region" aria-label="'+esc(caption)+' (scrollable table)"><table><caption>'+esc(caption)+'</caption><thead><tr>';
+  head.forEach(function(x,i){h+='<th scope="col"'+(i?' class="n"':'')+'>'+x+'</th>';});
+  h+='</tr></thead><tbody>';
+  rows.forEach(function(r,ri){
+    var tot=opts.totalLast&&ri===rows.length-1;
+    h+='<tr'+(tot?' class="tot"':'')+'><th scope="row">'+r[0]+'</th>';
+    for(var i=1;i<r.length;i++){h+='<td class="n">'+r[i]+'</td>';}
+    h+='</tr>';
+  });
+  return h+'</tbody></table></div>';
+}
+function sol(lines,final){
+  var h='<div class="sol">';
+  lines.forEach(function(l){h+='<span class="line">'+l+'</span>';});
+  if(final)h+='<span class="line final">'+final+'</span>';
+  return h+'</div>';
+}
+
+/* ================= data pools ================= */
+var COMPANIES=['Blue Ridge Cabinetry','Smoky Mountain Woodworks','Pisgah Outdoor Gear','Nantahala Canoe Company','Tuckasegee Tool & Die','Balsam Mountain Furniture','Cullowhee Creek Pottery','French Broad Bikes','Cataloochee Candle Company','Qualla Valley Textiles','Mount Mitchell Metalworks','Hiwassee Hardware'];
+var TOWNS=['Asheville','Sylva','Cullowhee','Waynesville','Brevard','Hendersonville','Boone','Franklin','Cashiers','Bryson City','Black Mountain','Dillsboro'];
+var PRODUCT_PAIRS=[['Standard porch rocker','Custom porch rocker'],['Standard trail pack','Expedition pack'],['Classic canoe paddle','Racing canoe paddle'],['Basic camp stove','Gourmet camp stove'],['Standard bike frame','Custom bike frame'],['Plain ceramic mug','Hand-painted mug']];
+var CUSTOMERS=['Cashiers Outfitters','Boone Trailhead Supply','Hendersonville Hardware','Franklin Farm & Home','Brevard Bike Shop','Black Mountain Mercantile','Waynesville Gift Gallery'];
+var CUST_PRODUCTS=['trail packs','camp stoves','cast-iron skillets','ceramic mugs','canoe paddles','hardwood cutting boards'];
+var PRODS=['porch rockers','trail packs','camp stoves','cast-iron skillets','canoe paddles','hand-woven baskets','ceramic mugs'];
+var PRAISE=['Correct! Nice work.','Exactly right. Great job!','Spot on! You are getting the hang of this.','Yes, that is right. Well done!','Correct, and nicely done!','That is right. Keep it up!','Excellent. That is exactly it.'];
+var HINTMSG=['Not quite, and that is okay! Here is a hint. Take another look and try once more.','Close, but not yet. Read the hint below and give it one more try.','Good effort! That is not it yet. Here is a hint to help you try again.','Not quite. No worries, here is a hint, and then you get one more try.'];
+var MISS=['Not quite, and that is okay! Here is how this step works.','Good effort, but that is not the right answer. Let us walk through it.','Close, but not quite. Here is the solution to this step.','That one is tricky. Here is the solution so you can see how it works.','Not this time. Take a look at the solution, then try the next step.'];
+var PRAISE2=['Correct this time. The hint paid off!','Yes, that is right. Nice recovery!','That is it! Good job sticking with it.'];
+var GENERIC_HINT='Re-read the problem and open “Need a quick refresher?” above. Then check each number you used and try again.';
+
+
+/* ---- step helpers ---- */
+function Nstep(q,ans,o){o=o||{};return {kind:'num',q:q,ans:ans,fmt:o.fmt||'money',dec:o.dec==null?0:o.dec,unit:o.unit||'',tol:o.tol,hint:o.hint||'',exp:o.exp||''};}
+function Cstep(q,options,ans,hint,exp){return {kind:'choice',q:q,options:options,ans:ans,hint:hint||'',exp:exp||''};}
+function pct1(x){return nf(x,1)+'%';}
+function uf(x,dec){return Math.abs(x)<0.5*Math.pow(10,-(dec||0))?'':(x>0?'F':'U');}
+var UF=['Favorable','Unfavorable'];
+
+/* ================= Chapter 12: Strategic Performance Measurement ================= */
+var PERSP=['Financial','Customer','Internal business processes','Learning and growth'];
+var BSC=[
+['Return on investment','Financial','ROI shows whether the company earns an adequate return on its assets, which is a financial result.'],
+['Net operating income growth','Financial','Profit growth is a financial outcome.'],
+['Residual income','Financial','Residual income measures financial performance against a required return.'],
+['Customer satisfaction rating','Customer','It measures how customers view the company.'],
+['Market share','Customer','It shows how well the company is doing with customers in its market.'],
+['Customer retention rate','Customer','It shows how well the company keeps its customers.'],
+['Number of customer complaints','Customer','Complaints reflect customers’ experience of the company.'],
+['Defect rate','Internal business processes','Defects measure the quality of internal processes.'],
+['Manufacturing cycle efficiency','Internal business processes','MCE measures how efficient the production process is.'],
+['Throughput time','Internal business processes','Throughput time describes how quickly the internal process works.'],
+['Machine downtime percentage','Internal business processes','Downtime is a measure of internal process performance.'],
+['Employee training hours','Learning and growth','Training builds the skills that support future performance.'],
+['Employee turnover rate','Learning and growth','It reflects employee satisfaction and retention of skills.'],
+['Percentage of employees with cross-training','Learning and growth','Skill development is a learning and growth measure.'],
+['Hours spent on new information-system training','Learning and growth','It measures investment in employee capability.']
+];
+var MREF='<ul><li>Throughput (manufacturing cycle) time = process time + inspection time + move time + queue time.</li><li>Only <strong>process time</strong> adds value.</li><li>MCE = value-added time ÷ throughput time.</li><li>Delivery cycle time = wait time + throughput time.</li></ul>';
+var OREF='<ul><li>Availability = (planned time − downtime) ÷ planned time.</li><li>Performance = (ideal cycle time × total units produced) ÷ run time.</li><li>Quality = good units ÷ total units produced.</li><li>OEE = availability × performance × quality.</li></ul>';
+var QREF='<ul><li><strong>Prevention</strong>: training, design review. <strong>Appraisal</strong>: inspection, testing.</li><li><strong>Internal failure</strong>: scrap, rework. <strong>External failure</strong>: warranty, returns, lost sales.</li><li>Quality cost percentage = quality costs ÷ sales.</li></ul>';
+
+function g12bsc(R){
+  var co=R.pick(COMPANIES),pers=R.shuffle(PERSP);
+  var items=pers.map(function(p){return R.pick(BSC.filter(function(x){return x[1]===p;}));});
+  items=R.shuffle(items);
+  var intro='<p><strong>'+esc(co)+'</strong> uses a balanced scorecard with four perspectives: financial, customer, internal business processes, and learning and growth. Classify each measure below.</p>';
+  var steps=items.map(function(it){return Cstep('Which perspective does <strong>'+it[0].toLowerCase()+'</strong> belong to?',PERSP,it[1],'Ask what the measure describes: money results, customers’ views, how well processes run, or employees’ skills and capacity to improve.',sol([it[2]],'Perspective: '+it[1]));});
+  return {intro:intro,refresher:'<ul><li><strong>Financial</strong>: profit and return results.</li><li><strong>Customer</strong>: how customers see and respond to the company.</li><li><strong>Internal business processes</strong>: quality, speed and efficiency of operations.</li><li><strong>Learning and growth</strong>: employee skills, systems and capacity to improve.</li></ul>',steps:steps};
+}
+
+function mBase(R){
+  var proc=R.stepv(1,4,0.5),insp=R.stepv(0.2,1,0.2),mov=R.stepv(0.2,1,0.2),que=R.stepv(2,8,2),wait=R.stepv(2,8,1);
+  var th=Math.round((proc+insp+mov+que)*10)/10;
+  return {co:R.pick(COMPANIES),prod:R.pick(PRODS),proc:proc,insp:insp,mov:mov,que:que,wait:wait,th:th,dc:th+wait,mce:proc/th,que2:Math.round(que/2*10)/10};
+}
+function mTable(b){return tbl('Average time per order',['Activity','Days'],[['Process time',nf(b.proc,1)],['Inspection time',nf(b.insp,1)],['Move time',nf(b.mov,1)],['Queue time',nf(b.que,1)]]);}
+function g12tp(R){
+  var b=mBase(R);
+  var intro='<p>For <strong>'+esc(b.co)+'</strong>, the time a typical order of '+esc(b.prod)+' spends in each activity is shown below. Customers wait an average of <strong>'+nf(b.wait,1)+' days</strong> after placing an order before production starts.</p>'+mTable(b);
+  var steps=[
+    Nstep('What is the <strong>throughput (manufacturing cycle) time</strong>?',b.th,{fmt:'num',dec:1,unit:'days',hint:'Add process, inspection, move and queue time. Do not include the wait time before production.',exp:sol([nf(b.proc,1)+' + '+nf(b.insp,1)+' + '+nf(b.mov,1)+' + '+nf(b.que,1)],'Throughput time = '+nf(b.th,1)+' days')}),
+    Nstep('What is the <strong>delivery cycle time</strong>?',b.dc,{fmt:'num',dec:1,unit:'days',hint:'Wait time plus throughput time.',exp:sol([nf(b.wait,1)+' + '+nf(b.th,1)],'Delivery cycle time = '+nf(b.dc,1)+' days')}),
+    Cstep('Which of these times is <strong>value-added</strong>?',['Process time','Inspection time','Move time','Queue time'],'Process time','Only time spent actually changing the product is value-added.',sol(['Inspection, moving and waiting in queues do not change the product, so only <strong>process time</strong> adds value.'])),
+    Nstep('By how many days would delivery cycle time fall if the queue time were cut in <strong>half</strong>?',b.que-b.que2,{fmt:'num',dec:2,unit:'days',tol:0.05,hint:'The reduction in queue time flows straight through to throughput time and to delivery cycle time.',exp:sol(['Queue time falls from '+nf(b.que,1)+' to '+nf(b.que2,1)+' days.','Reduction = '+nf(b.que,1)+' − '+nf(b.que2,1)+' = '+nf(b.que-b.que2,2)+' days'],'New delivery cycle time = '+nf(b.dc-(b.que-b.que2),2)+' days')})
+  ];
+  return {intro:intro,refresher:MREF,steps:steps};
+}
+function g12mce(R){
+  var b=mBase(R),cut=Math.round((b.que-b.que2)*10)/10,th2=Math.round((b.th-cut)*10)/10,mce2=b.proc/th2;
+  var intro='<p>For <strong>'+esc(b.co)+'</strong>, an order of '+esc(b.prod)+' spends the following time in each activity.</p>'+mTable(b);
+  var steps=[
+    Nstep('What is the <strong>throughput time</strong>?',b.th,{fmt:'num',dec:1,unit:'days',hint:'Add all four times.',exp:sol([nf(b.proc,1)+' + '+nf(b.insp,1)+' + '+nf(b.mov,1)+' + '+nf(b.que,1)],'Throughput time = '+nf(b.th,1)+' days')}),
+    Nstep('What is the <strong>value-added time</strong>?',b.proc,{fmt:'num',dec:1,unit:'days',hint:'Only process time adds value.',exp:sol(['Value-added time = process time'],nf(b.proc,1)+' days')}),
+    Nstep('What is the <strong>manufacturing cycle efficiency (MCE)</strong>, as a percentage?',b.mce*100,{fmt:'pct',dec:1,hint:'Value-added time ÷ throughput time.',exp:sol([nf(b.proc,1)+' ÷ '+nf(b.th,1)+' = '+nf(b.mce,3)],'MCE = '+pct1(b.mce*100))}),
+    Nstep('What percentage of throughput time is <strong>non-value-added</strong>?',100-b.mce*100,{fmt:'pct',dec:1,hint:'100% minus the MCE.',exp:sol(['100% − '+pct1(b.mce*100)],'Non-value-added = '+pct1(100-b.mce*100))}),
+    Nstep('Management reduces queue time to <strong>'+nf(b.que2,1)+' days</strong>. What is the <strong>new MCE</strong>?',mce2*100,{fmt:'pct',dec:1,hint:'New throughput time = old throughput time minus the reduction in queue time. Process time does not change.',exp:sol(['New throughput time = '+nf(b.th,1)+' − '+nf(b.que,1)+' + '+nf(b.que2,1)+' = '+nf(th2,1)+' days',nf(b.proc,1)+' ÷ '+nf(th2,1)],'New MCE = '+pct1(mce2*100))})
+  ];
+  return {intro:intro,refresher:MREF,steps:steps};
+}
+
+function g12oee(R){
+  var plan=R.stepv(400,600,50),down=R.stepv(20,120,20),run=plan-down,ic=R.pick([0.5,1,1.5,2]);
+  var cap=run/ic,tot=Math.round(cap*R.pick([0.8,0.85,0.9,0.95])/10)*10,good=Math.round(tot*R.pick([0.9,0.95,0.97])/5)*5;
+  if(tot>cap)tot=Math.floor(cap/10)*10;
+  if(good>tot)good=tot;
+  var av=run/plan,pf=ic*tot/run,ql=good/tot,oee=av*pf*ql,co=R.pick(COMPANIES);
+  var intro='<p>A machine at <strong>'+esc(co)+'</strong> had <strong>'+nf(plan)+' minutes</strong> of planned production time, with <strong>'+nf(down)+' minutes</strong> of downtime. The ideal cycle time is <strong>'+nf(ic,1)+' minutes</strong> per unit. The machine produced <strong>'+nf(tot)+' units</strong>, of which <strong>'+nf(good)+'</strong> were good.</p>';
+  var steps=[
+    Nstep('What is the <strong>run time</strong>?',run,{fmt:'num',unit:'minutes',hint:'Planned production time minus downtime.',exp:sol([nf(plan)+' − '+nf(down)],'Run time = '+nf(run)+' minutes')}),
+    Nstep('What is the <strong>availability</strong>?',av*100,{fmt:'pct',dec:1,hint:'Run time ÷ planned production time.',exp:sol([nf(run)+' ÷ '+nf(plan)],'Availability = '+pct1(av*100))}),
+    Nstep('What is the <strong>performance</strong>?',pf*100,{fmt:'pct',dec:1,hint:'(Ideal cycle time × total units produced) ÷ run time.',exp:sol(['('+nf(ic,1)+' × '+nf(tot)+') ÷ '+nf(run)],'Performance = '+pct1(pf*100))}),
+    Nstep('What is the <strong>quality</strong> rate?',ql*100,{fmt:'pct',dec:1,hint:'Good units ÷ total units produced.',exp:sol([nf(good)+' ÷ '+nf(tot)],'Quality = '+pct1(ql*100))}),
+    Nstep('What is the <strong>overall equipment effectiveness (OEE)</strong>?',oee*100,{fmt:'pct',dec:1,tol:0.15,hint:'Multiply availability × performance × quality.',exp:sol([pct1(av*100)+' × '+pct1(pf*100)+' × '+pct1(ql*100),'Check: (good units × ideal cycle time) ÷ planned time = ('+nf(good)+' × '+nf(ic,1)+') ÷ '+nf(plan)+' = '+pct1(oee*100)],'OEE = '+pct1(oee*100))})
+  ];
+  return {intro:intro,refresher:OREF,steps:steps};
+}
+
+function g12qc(R){
+  var co=R.pick(COMPANIES),sales=R.stepv(1000000,3000000,250000);
+  var tr=R.stepv(10000,30000,5000),dr=R.stepv(10000,20000,5000),ins=R.stepv(20000,50000,10000),sc=R.stepv(15000,40000,5000),rw=R.stepv(10000,30000,5000),wa=R.stepv(30000,70000,10000),rt=R.stepv(10000,30000,5000);
+  var P=tr+dr,A=ins,IF=sc+rw,EF=wa+rt,T=P+A+IF+EF;
+  var intro='<p><strong>'+esc(co)+'</strong> reports the following quality costs for the year. Sales were <strong>'+money(sales)+'</strong>.</p>'+tbl('Quality costs',['Item','Amount'],[['Employee training',money(tr)],['Design review',money(dr)],['Inspection',money(ins)],['Scrap',money(sc)],['Rework',money(rw)],['Warranty claims',money(wa)],['Customer returns',money(rt)]]);
+  var steps=[
+    Nstep('What are the total <strong>prevention costs</strong>?',P,{hint:'Training and design review are spent to keep defects from happening.',exp:sol([money(tr)+' + '+money(dr)],'Prevention = '+money(P))}),
+    Nstep('What are the total <strong>appraisal costs</strong>?',A,{hint:'Inspection and testing find defects.',exp:sol(['Inspection = '+money(ins)],'Appraisal = '+money(A))}),
+    Nstep('What are the total <strong>internal failure costs</strong>?',IF,{hint:'Scrap and rework: defects found before the product reaches the customer.',exp:sol([money(sc)+' + '+money(rw)],'Internal failure = '+money(IF))}),
+    Nstep('What are the total <strong>external failure costs</strong>?',EF,{hint:'Warranty claims and returns: defects found after delivery.',exp:sol([money(wa)+' + '+money(rt)],'External failure = '+money(EF))}),
+    Nstep('What is the <strong>total quality cost</strong>?',T,{hint:'Add the four categories.',exp:sol([money(P)+' + '+money(A)+' + '+money(IF)+' + '+money(EF)],'Total quality cost = '+money(T))}),
+    Nstep('What are total quality costs as a <strong>percentage of sales</strong>?',T/sales*100,{fmt:'pct',dec:1,hint:'Total quality cost ÷ sales.',exp:sol([money(T)+' ÷ '+money(sales)],'Quality cost percentage = '+pct1(T/sales*100))}),
+    Cstep('Which two categories together make up the <strong>failure costs</strong>?',['Internal failure and external failure','Prevention and appraisal','Appraisal and internal failure','Prevention and external failure'],'Internal failure and external failure','Failure means the product did not conform to its requirements.',sol(['Failure costs are the costs of defects: internal failure ('+money(IF)+') plus external failure ('+money(EF)+') = '+money(IF+EF)+'.']))
+  ];
+  return {intro:intro,refresher:QREF,steps:steps};
+}
+
+function g12interp(R){
+  var b=mBase(R),co=b.co,sales=R.stepv(1000000,2000000,250000);
+  var mceA=b.mce*100,tqA=R.stepv(120000,200000,20000),tqB=tqA-R.stepv(20000,40000,10000);
+  var bank=[
+    Cstep('<strong>'+esc(co)+'</strong> has an MCE of '+pct1(mceA)+'. What does this tell the manager?',['Most of the throughput time is spent on activities that do not add value','Most of the throughput time adds value','Production is perfectly efficient','Quality costs are too high'],'Most of the throughput time is spent on activities that do not add value','An MCE below 100% means non-value-added time is present. How much of the time is that?',sol(['Only '+pct1(mceA)+' of throughput time is process time. The other '+pct1(100-mceA)+' is inspection, moving and waiting, which a lean approach tries to cut.'])),
+    Cstep('Which action is most likely to <strong>raise MCE</strong>?',['Cutting queue time through better scheduling','Adding another inspection step','Increasing the ideal cycle time','Storing more work in process'],'Cutting queue time through better scheduling','MCE rises when non-value-added time shrinks.',sol(['Queue time is non-value-added. Reducing it lowers throughput time while process time stays the same, so MCE rises.'])),
+    Cstep('Quality costs fell from '+money(tqA)+' to '+money(tqB)+' after the company increased spending on prevention. What is the best interpretation?',['Prevention spending reduced failure costs by more than it cost','Prevention spending is wasteful and should be cut','Total quality cost can never fall','Appraisal costs must have risen'],'Prevention spending reduced failure costs by more than it cost','Think about the trade-off between spending to prevent defects and the cost of fixing them.',sol(['Spending more on prevention can reduce internal and external failure costs by more than the added spending, so total quality cost can fall.'])),
+    Cstep('A manager reports only <strong>return on investment</strong> to evaluate a division. What is the main weakness?',['It ignores customer, process and employee measures that drive future results','ROI cannot be computed from the income statement','ROI is a nonfinancial measure','It always encourages too little investment'],'It ignores customer, process and employee measures that drive future results','What does a balanced scorecard add to a financial measure?',sol(['Financial measures look backward. A balanced scorecard adds customer, internal process and learning and growth measures that drive future financial results.'])),
+    Cstep('OEE of 100% would mean the machine…',['Ran all planned time at the ideal rate and made only good units','Made only good units but sometimes stopped','Ran at the ideal rate but with some defects','Ran without any downtime or defects at a slower than ideal rate'],'Ran all planned time at the ideal rate and made only good units','Each of the three factors (availability, performance, quality) would have to be 100%.',sol(['OEE multiplies availability, performance and quality. All three must be 100% for OEE to be 100%.'])),
+    Cstep('Which is a <strong>common mistake</strong> when computing MCE?',['Using delivery cycle time instead of throughput time in the denominator','Using process time in the numerator','Adding queue time to throughput time','Dividing by throughput time'],'Using delivery cycle time instead of throughput time in the denominator','The denominator of MCE is the time the product is in the plant.',sol(['MCE = value-added time ÷ <strong>throughput</strong> time. Wait time before production belongs only in delivery cycle time.']))
+  ];
+  var steps=R.shuffle(bank).slice(0,5);
+  var intro='<p>Managers use performance measures to decide where to improve. Answer these questions about interpreting the measures.</p>';
+  return {intro:intro,refresher:MREF+QREF+OREF,steps:steps};
+}
+
+var TYPES=[
+ {id:'bsc',title:'Balanced scorecard perspectives',desc:'Classify measures into the four balanced scorecard perspectives.',ref:'Chapter 12 exercises',gen:g12bsc,name:'Balanced scorecard perspectives and measures'},
+ {id:'tp',title:'Throughput and delivery cycle time',desc:'Compute throughput time and delivery cycle time from activity times.',ref:'Chapter 12 exercises',gen:g12tp,name:'Throughput time and delivery cycle time'},
+ {id:'mce',title:'Manufacturing cycle efficiency',desc:'Compute MCE and see how cutting queue time changes it.',ref:'Chapter 12 exercises',gen:g12mce,name:'Manufacturing cycle efficiency (MCE)'},
+ {id:'oee',title:'Overall equipment effectiveness',desc:'Compute availability, performance, quality and OEE.',ref:'Chapter 12 exercises',gen:g12oee,name:'Overall equipment effectiveness (OEE)'},
+ {id:'qc',title:'Quality costs',desc:'Classify quality costs and compute the quality cost percentage.',ref:'Chapter 12 exercises',gen:g12qc,name:'Quality costs: prevention, appraisal, internal and external failure'},
+ {id:'interp',title:'Interpreting performance measures',desc:'Explain what the measures mean for a manager.',ref:'Chapter 12 exercises',gen:g12interp,name:'Interpreting performance measures for a manager'}
+];
+
+TYPES.forEach(function(t){t.n=t.gen(makeRng(1)).steps.length;});
+
+/* ================= answer checking ================= */
+function parse(s){
+  s=String(s).trim().replace(/[\u2212\u2013]/g,'-').replace(/[A-Za-z]+/g,'').replace(/[\$,\s%]/g,'');
+  var neg=false;
+  if(/^\(.*\)$/.test(s)){neg=true;s=s.slice(1,-1);}
+  if(!/^-?(\d+\.?\d*|\.\d+)$/.test(s)) return NaN;
+  var v=parseFloat(s);
+  return neg?-v:v;
+}
+function tolOf(s){return (s.tol!=null?s.tol:0.5*Math.pow(10,-(s.dec||0)))+1e-9;}
+function isRight(s,raw){
+  if(s.kind==='choice') return raw===s.ans;
+  var v=parse(raw);
+  return !isNaN(v)&&Math.abs(v-s.ans)<=tolOf(s);
+}
+function showAns(s){
+  if(s.kind==='choice') return s.ans;
+  if(s.fmt==='money') return money(s.ans,s.dec||0);
+  if(s.fmt==='pct') return nf(s.ans,s.dec==null?1:s.dec)+'%';
+  return nf(s.ans,s.dec||0)+(s.unit?' '+s.unit:'');
+}
+function roundHint(s){
+  if(s.kind!=='num') return '';
+  if(s.fmt==='money') return s.dec===0?'Enter dollars rounded to the nearest whole dollar, for example 12,500.':'Enter dollars and cents, for example 12.50.';
+  if(s.fmt==='pct') return s.dec===0?'Enter a percentage rounded to the nearest whole percent, for example 67.':'Enter a percentage rounded to one decimal place, for example 66.7.';
+  if(!s.dec) return 'Enter a whole number, for example 4,500.';
+  return 'Round to '+s.dec+' decimal places, for example '+(s.dec===1?'12.5':s.dec===2?'12.50':'12.500')+'.';
+}
+
+// expose for testing
+window.ACCT252={TYPES:TYPES,makeRng:makeRng,isRight:isRight,showAns:showAns,parse:parse};
+
+/* ================= UI ================= */
+function $(s){return document.querySelector(s);}
+var S={t:null,seed:0,d:null,st:[],score:0,score2:0};
+var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function buildMenu(){
+  var h='';
+  TYPES.forEach(function(t){
+    h+='<li><button type="button" data-type="'+t.id+'"><span class="t">'+esc(t.title)+'</span><span class="d">'+esc(t.desc)+'</span><span class="m">Based on '+esc(t.ref)+' · about '+t.n+' steps</span></button></li>';
+  });
+  $('#menu').innerHTML=h;
+}
+function announce(msg){var l=$('#live');l.textContent='';setTimeout(function(){l.textContent=msg;},50);}
+function plain(html){var d=document.createElement('div');d.innerHTML=html;return d.textContent.replace(/\s+/g,' ').trim();}
+
+function setHash(v){try{history.replaceState(null,'',v?('#'+v):location.pathname+location.search);}catch(e){}}
+
+function startProblem(id,seed){
+  var t=TYPES.filter(function(x){return x.id===id;})[0];
+  if(!t) return;
+  var sd=seed||(Math.floor(Math.random()*900000)+100000);
+  S.t=t;S.seed=sd;S.d=t.gen(makeRng(sd));S.score=0;S.score2=0;
+  S.st=S.d.steps.map(function(){return {status:'pending',user:'',first:'',tries:0,advanced:false,msg:'',hintMsg:''};});
+  $('#menu-view').hidden=true;$('#problem-view').hidden=false;
+  $('#prob-h').textContent=t.name;
+  $('#seed-badge').textContent='Problem #'+sd;
+  $('#scenario').innerHTML='<h3>The situation</h3>'+S.d.intro+'<details class="ref"><summary>Need a quick refresher?</summary>'+S.d.refresher+'</details>';
+  setHash(id+'-'+sd);
+  window.scrollTo(0,0);
+  renderSteps(true);
+  announce('New problem: '+t.name+'. '+S.d.steps.length+' steps.');
+  $('#prob-h').focus();
+}
+function showMenu(){
+  $('#problem-view').hidden=true;$('#menu-view').hidden=false;setHash('');
+  window.scrollTo(0,0);$('#main').focus();
+  announce('Back to the list of problem types.');
+}
+function curIndex(){
+  for(var i=0;i<S.st.length;i++){
+    var s=S.st[i];
+    if(!(s.status==='correct'||(s.status==='wrong'&&s.advanced))) return i;
+  }
+  return -1;
+}
+function stepHtml(i,active){
+  var s=S.d.steps[i],st=S.st[i];
+  var cls='card step '+(st.status==='correct'?'correct':st.status==='wrong'?'wrong':'active');
+  var h='<section class="'+cls+'" id="step-'+i+'" aria-labelledby="step-'+i+'-n">';
+  h+='<p class="num" id="step-'+i+'-n">Step '+(i+1)+' of '+S.d.steps.length+'</p>';
+  if(st.status==='pending'){
+    if(st.tries===1){
+      h+='<div class="fb bad"><strong class="lead">'+esc(st.hintMsg)+'</strong>Your first answer: '+esc(st.first)+'</div><div class="fb hintbox"><strong class="lead">Hint</strong>'+(s.hint||GENERIC_HINT)+'</div>';
+    }
+    if(s.kind==='choice'){
+      h+='<form class="step-form" data-i="'+i+'" novalidate><fieldset><legend class="q">'+s.q+'</legend>';
+      s.options.forEach(function(o,k){
+        h+='<label class="opt"><input type="radio" name="opt-'+i+'" value="'+esc(o)+'"'+(k===0?' id="first-'+i+'"':'')+'><span>'+esc(o)+'</span></label>';
+      });
+      h+='</fieldset><p class="err" role="alert" data-err></p><button class="btn" type="submit">Check my answer</button></form>';
+    }else{
+      h+='<form class="step-form" data-i="'+i+'" novalidate><p class="q" id="q-'+i+'">'+s.q+'</p><p class="hint" id="h-'+i+'">'+roundHint(s)+'</p>';
+      h+='<div class="ansrow"><label for="in-'+i+'">Your answer</label><input type="text" id="in-'+i+'" inputmode="decimal" autocomplete="off" autocapitalize="off" spellcheck="false" aria-describedby="h-'+i+'">';
+      h+='<button class="btn" type="submit">Check my answer</button></div><p class="err" role="alert" data-err></p></form>';
+    }
+  }else{
+    h+='<p class="q">'+s.q+'</p>';
+    var mine=s.kind==='choice'?esc(st.user):esc(st.user);
+    if(st.status==='correct'){
+      h+='<div class="fb good"><strong class="lead">✔ '+esc(st.msg)+'</strong>'+(st.tries?'Your first answer: '+esc(st.first)+'<br>Your second answer: ':'Your answer: ')+mine+'</div>';
+      h+='<details class="ref"><summary>See why this is right</summary>'+s.exp+'</details>';
+    }else{
+      h+='<div class="fb bad"><strong class="lead">✘ '+esc(st.msg)+'</strong>'+(st.tries?'Your first answer: '+esc(st.first)+'<br>Your second answer: ':'Your answer: ')+mine+'<br>Correct answer: <strong>'+esc(showAns(s))+'</strong></div>';
+      h+=s.exp;
+      if(active) h+='<p><button type="button" class="btn" data-act="next" data-i="'+i+'">Continue to the next step</button></p>';
+    }
+  }
+  return h+'</section>';
+}
+function summaryHtml(){
+  var n=S.d.steps.length,sc=S.score,sc2=S.score2;
+  var pct=(sc+sc2)/n;
+  var msg=pct===1?'A perfect run! You clearly understand this one.':pct>=0.7?'Nice work. You have a solid handle on this topic.':pct>=0.4?'Good progress. Review the solutions above and try a fresh problem to lock it in.':'Thanks for sticking with it. Read through the solutions above, then try a new problem. The numbers change every time, so you will get more practice.';
+  var rows=S.d.steps.map(function(s,i){
+    var st=S.st[i];
+    var res=st.status==='correct'?(st.tries?'✔ Correct after a hint':'✔ Correct on the first try'):'✘ Missed';
+    return '<tr><th scope="row">Step '+(i+1)+'</th><td>'+esc(showAns(s))+'</td><td>'+res+'</td></tr>';
+  }).join('');
+  var h='<section class="card summary" id="summary" aria-labelledby="sum-h"><h2 id="sum-h" tabindex="-1">You finished! '+sc+' of '+n+' correct on the first try'+(sc2?' (plus '+sc2+' after a hint)':'')+'</h2><p>'+msg+'</p>';
+  h+='<div class="tablewrap"><table><caption>Answer summary</caption><thead><tr><th scope="col">Step</th><th scope="col">Correct answer</th><th scope="col">Your result</th></tr></thead><tbody>'+rows+'</tbody></table></div>';
+  h+='<p><button type="button" class="btn" data-act="again">Try a new problem of this type</button> <button type="button" class="btn secondary" data-act="menu">Choose a different problem type</button></p></section>';
+  return h;
+}
+function renderSteps(initial){
+  var cur=curIndex(),n=S.d.steps.length;
+  var upto=cur===-1?n:cur+1,h='';
+  for(var i=0;i<upto;i++) h+=stepHtml(i,i===cur);
+  if(cur===-1) h+=summaryHtml();
+  $('#steps').innerHTML=h;
+  var done=cur===-1?n:cur;
+  $('#prog').max=n;$('#prog').value=done;
+  $('#prog-left').textContent=cur===-1?'All '+n+' steps complete':'Step '+(cur+1)+' of '+n;
+  var answered=S.st.filter(function(x){return x.status!=='pending';}).length;
+  $('#prog-right').textContent=S.score+' correct on the first try'+(S.score2?', '+S.score2+' after a hint':'')+' · '+answered+' of '+n+' answered';
+  if(initial) return;
+}
+function focusActive(){
+  var cur=curIndex(),el;
+  if(cur===-1){el=$('#sum-h');}
+  else if(S.st[cur].status==='wrong'){el=$('#steps [data-act=next]');}
+  else{el=$('#in-'+cur)||$('#first-'+cur);}
+  if(el){el.focus({preventScroll:true});var card=el.closest('section')||el;card.scrollIntoView({block:'start',behavior:reduce?'auto':'smooth'});}
+}
+function submitStep(i,raw){
+  var s=S.d.steps[i],st=S.st[i];
+  var ok=isRight(s,raw);
+  var val=s.kind==='choice'?raw:raw.trim();
+  var cur;
+  if(ok){
+    st.user=val;st.status='correct';
+    if(st.tries){S.score2++;st.msg=PRAISE2[Math.floor(Math.random()*PRAISE2.length)];}
+    else{S.score++;st.msg=PRAISE[Math.floor(Math.random()*PRAISE.length)];}
+    renderSteps();cur=curIndex();
+    announce(st.msg+' '+(cur===-1?'You finished the problem. '+S.score+' of '+S.d.steps.length+' correct on the first try.':'Next, step '+(cur+1)+'. '+plain(S.d.steps[cur].q)));
+  }else if(st.tries===0){
+    st.tries=1;st.first=val;st.hintMsg=HINTMSG[Math.floor(Math.random()*HINTMSG.length)];
+    renderSteps();
+    announce(st.hintMsg+' Hint: '+plain(s.hint||GENERIC_HINT));
+  }else{
+    st.user=val;st.status='wrong';st.msg=MISS[Math.floor(Math.random()*MISS.length)];
+    renderSteps();
+    announce(st.msg+' The correct answer is '+showAns(s)+'. '+plain(s.exp)+' Activate the continue button for the next step.');
+  }
+  focusActive();
+}
+
+document.addEventListener('submit',function(e){
+  var f=e.target.closest('.step-form');if(!f)return;
+  e.preventDefault();
+  var i=+f.getAttribute('data-i'),s=S.d.steps[i],err=f.querySelector('[data-err]'),raw;
+  if(s.kind==='choice'){
+    var c=f.querySelector('input[type=radio]:checked');
+    if(!c){err.textContent='Please choose one of the options first.';return;}
+    raw=c.value;
+  }else{
+    raw=f.querySelector('input[type=text]').value;
+    if(!raw.trim()){err.textContent='Please type your answer first.';return;}
+    if(isNaN(parse(raw))){err.textContent='Please enter a number, such as 12,500 or 66.7. A minus sign or parentheses mean a negative number.';return;}
+  }
+  submitStep(i,raw);
+});
+document.addEventListener('click',function(e){
+  var b=e.target.closest('button');if(!b)return;
+  if(b.hasAttribute('data-type')){startProblem(b.getAttribute('data-type'));return;}
+  var act=b.getAttribute('data-act');
+  if(act==='next'){
+    S.st[+b.getAttribute('data-i')].advanced=true;renderSteps();
+    var cur=curIndex();
+    announce(cur===-1?'You finished the problem. Your score is '+S.score+' of '+S.d.steps.length+'.':'Step '+(cur+1)+'. '+plain(S.d.steps[cur].q));
+    focusActive();
+  }
+  else if(act==='again'){startProblem(S.t.id);}
+  else if(act==='menu'){showMenu();}
+});
+$('#back-btn').addEventListener('click',showMenu);
+document.addEventListener('change',function(e){var c=e.target; if(c.matches&&c.matches('.opt input')){var f=c.closest('form');var er=f&&f.querySelector('[data-err]');if(er)er.textContent='';}});
+document.addEventListener('input',function(e){var f=e.target.closest&&e.target.closest('.step-form');var er=f&&f.querySelector('[data-err]');if(er)er.textContent='';});
+
+buildMenu();
+var m=/^#([a-z]+)-(\d+)$/.exec(location.hash);
+if(m&&TYPES.some(function(t){return t.id===m[1];})) startProblem(m[1],+m[2]);
+})();
+</script>
+</body>
+</html>
