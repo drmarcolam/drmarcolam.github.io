@@ -11,7 +11,7 @@ The live links are the chat versions made from `chat/tutor-chN-chat.html`. The e
 | 2 | J5hNuBTw478Scm1YYQW5hZ (chat version; earlier private version: BxaY46Lp9xaeHApvFZRNsY) | tutor-ch2.html |
 | 3 | XVewgNcF6e5z6nEDf1cw7V (chat version; earlier private version: RRW7a247zc2omMWhsrfPSQ) | tutor-ch3.html |
 | 4 | EEBRDfVVR6MHixjdnT4C5h (chat version; earlier private version: 2ExMHfHGu5iv8CkbKX3h48) | tutor-ch4.html |
-| 5 | 7J1KN15AAeqkrYAPPMZhiQ (chat version; earlier private version: 4TekvuQK5vmJUoj9k62Cnt) | tutor-ch5.html |
+| 5 | XGhHwegE1PxVuHW9d92Pps (replaced the earlier Chapter 5 artifact; HTML copies removed from this repo) | none |
 | 6 | 7see5nPyfjreux6EpescGU (chat version; earlier private version: EgZ4mJ8oTAwVLMBQF5UEav) | tutor-ch6.html |
 | 8 | 9czShLhCuvp4PC7HyXXkvy (chat version; earlier private version: EzzevTu6tVLR3oYGgXTTPg) | tutor-ch8.html |
 | 9 | Df97NFUiicQL4Cbrb3bL4R (chat version; earlier private version: 8WwEspxiiJoQRAUVDJhYgn) | tutor-ch9.html |
