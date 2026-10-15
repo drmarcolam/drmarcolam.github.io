@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ACCT 252 Chapter 9 Walk-Through</title>
+<style>
+:root{--purple:#592C88;--purple-d:#42206a;--gold:#C1A875;--ink:#1d1b22;--bg:#f6f3fa;--card:#fff;--ok:#1b6e3c;--line:#d9d2e4}
+*{box-sizing:border-box}
+body{margin:0;font-family:Georgia,'Times New Roman',serif;color:var(--ink);background:var(--bg);line-height:1.55;font-size:18px}
+.sans,button,input,label,.meta{font-family:'Segoe UI',Arial,Helvetica,sans-serif}
+header.banner{background:var(--purple);color:#fff;padding:22px 24px;border-bottom:6px solid var(--gold)}
+header.banner .course{font-family:'Segoe UI',Arial,sans-serif;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;color:#eadfbf;margin:0}
+header.banner h1{margin:4px 0 0;font-size:1.6rem}
+main{max-width:820px;margin:0 auto;padding:24px 16px 60px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:22px 24px;margin-bottom:18px}
+.meta{color:#5a4d70;font-size:.9rem;margin:0 0 8px}
+.progress{height:8px;background:#e6def0;border-radius:6px;overflow:hidden;margin:6px 0 16px}
+.progress>span{display:block;height:100%;background:var(--purple);transition:width .3s}
+h2{margin:.2em 0 .5em;font-size:1.35rem;color:var(--purple-d)}
+.problem{border-left:5px solid var(--gold);background:#fbf8f1;padding:14px 18px;border-radius:6px}
+.step{border:1px solid var(--line);border-radius:8px;padding:14px 18px;margin:14px 0;background:#fff}
+.step h3{margin:0 0 6px;font-size:1.05rem;color:var(--purple-d)}
+.step h3 .n{display:inline-block;background:var(--purple);color:#fff;border-radius:50%;width:1.7em;height:1.7em;text-align:center;line-height:1.7em;font-size:.85rem;margin-right:8px;font-family:'Segoe UI',Arial,sans-serif}
+.calc{font-family:Consolas,'Courier New',monospace;background:#f1ecf8;border-radius:6px;padding:8px 12px;margin:8px 0 0;font-size:1rem}
+.calc div{padding:1px 0}
+.answer{background:#eaf6ee;border:2px solid var(--ok);border-radius:8px;padding:14px 18px;margin:16px 0}
+.answer strong{color:var(--ok)}
+.tip{font-size:.95rem;color:#4a4357;margin:8px 0 0}
+button{background:var(--purple);color:#fff;border:2px solid var(--purple);border-radius:8px;padding:11px 20px;font-size:1rem;cursor:pointer;margin-top:10px}
+button:hover{background:var(--purple-d)}
+button:focus-visible,input:focus-visible{outline:3px solid #1a5fd0;outline-offset:2px}
+button.secondary{background:#fff;color:var(--purple)}
+button.secondary:hover{background:#f1ecf8}
+button:disabled{opacity:.5;cursor:not-allowed}
+input[type=text]{font-size:1.05rem;padding:10px 12px;border:2px solid #8b7aa5;border-radius:8px;width:100%;max-width:420px}
+label{font-weight:600;display:block;margin-bottom:6px}
+.hidden{display:none}
+.sr{position:absolute;left:-9999px}
+.cert{border:3px double var(--purple);text-align:center;padding:34px 24px}
+.cert .who{font-size:1.8rem;font-weight:bold;margin:10px 0;color:var(--purple-d)}
+.print-only{display:none}
+@media print{
+  body{background:#fff;font-size:14pt}
+  header.banner{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .noprint,.screen-only{display:none!important}
+  .print-only{display:block}
+  .card{border:none;padding:0}
+  .cert{border:3px double #592C88;padding:40px 24px}
+}</style>
+</head>
+<body>
+<header class="banner">
+  <p class="course">ACCT 252 · Managerial Accounting · Western Carolina University</p>
+  <h1>Chapter 9 Walk-Through: Flexible Budgets and Performance Analysis</h1>
+</header>
+<main id="main">
+  <div id="live" class="sr" aria-live="polite" role="status"></div>
+
+  <section id="welcome" class="card" aria-labelledby="wh">
+    <h2 id="wh">Welcome</h2>
+    <p>This walk-through shows you, one step at a time, how to solve the kind of calculation problems you will see on the Chapter 9 Quiz. You will work through 5 practice problems, one at a time. After every step you decide when you are ready to continue. The numbers here are examples, so your quiz numbers will be different.</p>
+    <p>When you finish all 5 problems you can create a PDF that shows your name and the date and time you completed this walk-through.</p>
+    <form id="nameForm" novalidate>
+      <label for="nameInput">Type your name to begin</label>
+      <input type="text" id="nameInput" autocomplete="name" aria-describedby="nameErr">
+      <div id="nameErr" class="sans" style="color:#a11;min-height:1.4em" role="alert"></div>
+      <button type="submit">Start the walk-through</button>
+    </form>
+  </section>
+
+  <section id="work" class="hidden" aria-label="Problem walk-through">
+    <div class="card">
+      <p id="meta" class="meta"></p>
+      <div id="pbarwrap" class="progress" role="progressbar" aria-label="Problems completed" aria-valuemin="0" aria-valuemax="5" aria-valuenow="0"><span id="pbar" style="width:0%"></span></div>
+      <h2 id="ptitle"></h2>
+      <div class="problem" id="ptext"></div>
+      <div id="steps"></div>
+      <div id="ctrl"><button type="button" id="nextBtn"></button></div>
+      <div id="after" class="hidden">
+        <div class="answer" id="ansBox"><strong>Final answer:</strong> <span id="ansText"></span><p class="tip" id="tipText"></p></div>
+        <button type="button" id="readyBtn"></button>
+      </div>
+    </div>
+  </section>
+
+  <section id="done" class="hidden" aria-labelledby="doneH">
+    <div class="card cert" id="certificate">
+      <p class="meta">ACCT 252 · Managerial Accounting · Western Carolina University</p>
+      <h2 id="doneH">Chapter 9 Walk-Through Complete</h2>
+      <p>This certifies that</p>
+      <p class="who" id="certName"></p>
+      <p>completed all 5 problems in the<br><strong>Chapter 9 Walk-Through: Flexible Budgets and Performance Analysis</strong></p>
+      <p>on <strong id="certWhen"></strong></p>
+    </div>
+    <div class="noprint card">
+      <p>To save a PDF, choose the button below, then in the print window choose <strong>Save as PDF</strong> as the destination.</p>
+      <button type="button" id="pdfBtn">Create PDF with my name and completion time</button>
+      <button type="button" id="restartBtn" class="secondary">Start over</button>
+    </div>
+  </section>
+</main>
+<script>
+(function(){
+  var CH={"n":9,"name":"Flexible Budgets and Performance Analysis","problems":[{"title":"Flexible-budget electricity cost","text":"Electricity has a fixed monthly cost of $1,500 plus $0.10 per client-visit. What is the flexible-budget electricity cost for 1,200 client-visits?","steps":[{"h":"Identify the fixed and variable parts","t":"A flexible budget formula is: Total cost = Fixed cost + (Variable rate × Activity).","c":["Fixed = $1,500","Variable = $0.10 per client-visit"]},{"h":"Compute the variable portion","t":"","c":["$0.10 × 1,200 = $120.00"]},{"h":"Add the fixed portion","t":"","c":["$1,500 + $120.00 = $1,620.00"]}],"answer":"$1,620.00","tip":"Fixed costs stay the same in total; variable costs change with the activity level."},{"title":"Flexible-budget net operating income","text":"Revenue is $180 per client-visit. Flexible-budget total expenses equal $120,300 plus $42.90 per client-visit. What is flexible-budget net operating income for 1,500 client-visits?","steps":[{"h":"Compute flexible-budget revenue","t":"","c":["$180 × 1,500 = $270,000"]},{"h":"Compute flexible-budget total expenses","t":"Variable part plus fixed part.","c":["$42.90 × 1,500 = $64,350.00","$64,350.00 + $120,300 = $184,650.00"]},{"h":"Subtract expenses from revenue","t":"","c":["$270,000 − $184,650.00 = $85,350.00"]}],"answer":"$85,350.00","tip":"You can also combine the rates first: ($180 − $42.90) × 1,500 − $120,300."},{"title":"Flexible-budget wages and salaries","text":"A salon expects 1,000 client-visits. Wages and salaries are budgeted at $65,000 plus $37 per client-visit. What is the flexible-budget wages and salaries cost?","steps":[{"h":"Compute the variable portion","t":"","c":["$37 × 1,000 = $37,000"]},{"h":"Add the fixed portion","t":"","c":["$37,000 + $65,000 = $102,000"]}],"answer":"$102,000","tip":"Mixed costs have both a fixed and a variable component."},{"title":"Flexible-budget hairstyling supplies","text":"Hairstyling supplies cost $1.50 per client-visit. What is the flexible-budget supplies cost for 1,400 client-visits?","steps":[{"h":"Recognize this is a purely variable cost","t":"There is no fixed component, so cost = rate × activity.","c":["Rate = $1.50 per client-visit"]},{"h":"Multiply","t":"","c":["$1.50 × 1,400 = $2,100.00"]}],"answer":"$2,100.00","tip":"Purely variable cost: doubling the activity doubles the cost."},{"title":"Revenue activity variance","text":"The planning budget is based on 1,000 client-visits and actual activity is 1,150 client-visits. Revenue is $180 per client-visit. What is the revenue activity variance in dollars?","steps":[{"h":"Compute the difference in activity","t":"The activity variance isolates the effect of selling more or fewer client-visits than planned.","c":["1,150 − 1,000 = 150 client-visits"]},{"h":"Multiply by the budgeted revenue per client-visit","t":"Use the planned price, not actual results.","c":["150 × $180 = $27,000"]},{"h":"Label the variance","t":"More revenue than planned is favorable.","c":["$27,000 favorable"]}],"answer":"$27,000 (favorable)","tip":"Activity variance = flexible budget − planning budget."}]};var P=CH.problems;
+  var $=function(id){return document.getElementById(id)};
+  var state={name:'',pi:0,si:0,finishedAt:null};
+  var live=$('live');
+  function setProgress(){
+    var total=P.length;var done=state.pi;
+    $('pbar').style.width=Math.round((done/total)*100)+'%';
+    $('pbarwrap').setAttribute('aria-valuenow',done);
+  }
+  function el(tag,cls,html){var e=document.createElement(tag);if(cls)e.className=cls;if(html!==undefined)e.innerHTML=html;return e}
+  function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+  function showScreen(id){['welcome','work','done'].forEach(function(s){$(s).classList.toggle('hidden',s!==id)})}
+  $('nameForm').addEventListener('submit',function(e){
+    e.preventDefault();var v=$('nameInput').value.trim();
+    if(!v){$('nameErr').textContent='Please type your name to begin.';$('nameInput').focus();return}
+    $('nameErr').textContent='';state.name=v;showScreen('work');renderProblem();
+  });
+  function renderProblem(){
+    var p=P[state.pi];state.si=0;setProgress();
+    $('meta').textContent='Problem '+(state.pi+1)+' of '+P.length;
+    $('ptitle').textContent=p.title;
+    $('ptext').textContent=p.text;
+    $('steps').innerHTML='';$('after').classList.add('hidden');
+    $('ctrl').classList.remove('hidden');
+    addStep();
+    $('ptitle').setAttribute('tabindex','-1');$('ptitle').focus();
+  }
+  function addStep(){
+    var p=P[state.pi];var s=p.steps[state.si];
+    var d=el('section','step');d.setAttribute('aria-labelledby','sh'+state.si);
+    var h=el('h3');h.id='sh'+state.si;h.innerHTML='<span class="n" aria-hidden="true">'+(state.si+1)+'</span>Step '+(state.si+1)+' of '+p.steps.length+': '+esc(s.h);
+    d.appendChild(h);
+    if(s.t){d.appendChild(el('div','',esc(s.t)))}
+    var c=el('div','calc');s.c.forEach(function(line){c.appendChild(el('div','',esc(line)))});d.appendChild(c);
+    $('steps').appendChild(d);
+    h.setAttribute('tabindex','-1');h.focus();
+    var last=state.si===p.steps.length-1;
+    $('nextBtn').textContent=last?'I understand every step. Show the final answer':'I understand this step. Show the next step';
+    live.textContent='Step '+(state.si+1)+' of '+p.steps.length+' shown.';
+  }
+  $('nextBtn').addEventListener('click',function(){
+    var p=P[state.pi];
+    if(state.si<p.steps.length-1){state.si++;addStep();return}
+    $('ctrl').classList.add('hidden');
+    $('ansText').textContent=p.answer;$('tipText').textContent=p.tip||'';
+    $('after').classList.remove('hidden');
+    var last=state.pi===P.length-1;
+    $('readyBtn').textContent=last?'I am done with this chapter. Continue':'I am ready for problem '+(state.pi+2);
+    $('ansBox').setAttribute('tabindex','-1');$('ansBox').focus();
+    live.textContent='Final answer shown.';
+  });
+  $('readyBtn').addEventListener('click',function(){
+    if(state.pi<P.length-1){state.pi++;renderProblem();window.scrollTo(0,0);return}
+    state.pi=P.length;setProgress();state.finishedAt=new Date();
+    var opts={year:'numeric',month:'long',day:'numeric',hour:'numeric',minute:'2-digit',second:'2-digit',timeZoneName:'short'};
+    var when=state.finishedAt.toLocaleString(undefined,opts);
+    $('certName').textContent=state.name;$('certWhen').textContent=when;
+    showScreen('done');$('doneH').setAttribute('tabindex','-1');$('doneH').focus();window.scrollTo(0,0);
+  });
+  $('pdfBtn').addEventListener('click',function(){window.print()});
+  $('restartBtn').addEventListener('click',function(){state.pi=0;state.si=0;$('nameInput').value=state.name;showScreen('welcome');setProgress();$('nameInput').focus()});
+})();</script>
+</body>
+</html>

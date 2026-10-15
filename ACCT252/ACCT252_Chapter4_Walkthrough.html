@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ACCT 252 Chapter 4 Walk-Through</title>
+<style>
+:root{--purple:#592C88;--purple-d:#42206a;--gold:#C1A875;--ink:#1d1b22;--bg:#f6f3fa;--card:#fff;--ok:#1b6e3c;--line:#d9d2e4}
+*{box-sizing:border-box}
+body{margin:0;font-family:Georgia,'Times New Roman',serif;color:var(--ink);background:var(--bg);line-height:1.55;font-size:18px}
+.sans,button,input,label,.meta{font-family:'Segoe UI',Arial,Helvetica,sans-serif}
+header.banner{background:var(--purple);color:#fff;padding:22px 24px;border-bottom:6px solid var(--gold)}
+header.banner .course{font-family:'Segoe UI',Arial,sans-serif;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;color:#eadfbf;margin:0}
+header.banner h1{margin:4px 0 0;font-size:1.6rem}
+main{max-width:820px;margin:0 auto;padding:24px 16px 60px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:22px 24px;margin-bottom:18px}
+.meta{color:#5a4d70;font-size:.9rem;margin:0 0 8px}
+.progress{height:8px;background:#e6def0;border-radius:6px;overflow:hidden;margin:6px 0 16px}
+.progress>span{display:block;height:100%;background:var(--purple);transition:width .3s}
+h2{margin:.2em 0 .5em;font-size:1.35rem;color:var(--purple-d)}
+.problem{border-left:5px solid var(--gold);background:#fbf8f1;padding:14px 18px;border-radius:6px}
+.step{border:1px solid var(--line);border-radius:8px;padding:14px 18px;margin:14px 0;background:#fff}
+.step h3{margin:0 0 6px;font-size:1.05rem;color:var(--purple-d)}
+.step h3 .n{display:inline-block;background:var(--purple);color:#fff;border-radius:50%;width:1.7em;height:1.7em;text-align:center;line-height:1.7em;font-size:.85rem;margin-right:8px;font-family:'Segoe UI',Arial,sans-serif}
+.calc{font-family:Consolas,'Courier New',monospace;background:#f1ecf8;border-radius:6px;padding:8px 12px;margin:8px 0 0;font-size:1rem}
+.calc div{padding:1px 0}
+.answer{background:#eaf6ee;border:2px solid var(--ok);border-radius:8px;padding:14px 18px;margin:16px 0}
+.answer strong{color:var(--ok)}
+.tip{font-size:.95rem;color:#4a4357;margin:8px 0 0}
+button{background:var(--purple);color:#fff;border:2px solid var(--purple);border-radius:8px;padding:11px 20px;font-size:1rem;cursor:pointer;margin-top:10px}
+button:hover{background:var(--purple-d)}
+button:focus-visible,input:focus-visible{outline:3px solid #1a5fd0;outline-offset:2px}
+button.secondary{background:#fff;color:var(--purple)}
+button.secondary:hover{background:#f1ecf8}
+button:disabled{opacity:.5;cursor:not-allowed}
+input[type=text]{font-size:1.05rem;padding:10px 12px;border:2px solid #8b7aa5;border-radius:8px;width:100%;max-width:420px}
+label{font-weight:600;display:block;margin-bottom:6px}
+.hidden{display:none}
+.sr{position:absolute;left:-9999px}
+.cert{border:3px double var(--purple);text-align:center;padding:34px 24px}
+.cert .who{font-size:1.8rem;font-weight:bold;margin:10px 0;color:var(--purple-d)}
+.print-only{display:none}
+@media print{
+  body{background:#fff;font-size:14pt}
+  header.banner{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .noprint,.screen-only{display:none!important}
+  .print-only{display:block}
+  .card{border:none;padding:0}
+  .cert{border:3px double #592C88;padding:40px 24px}
+}</style>
+</head>
+<body>
+<header class="banner">
+  <p class="course">ACCT 252 · Managerial Accounting · Western Carolina University</p>
+  <h1>Chapter 4 Walk-Through: Variable Costing and Segment Reporting</h1>
+</header>
+<main id="main">
+  <div id="live" class="sr" aria-live="polite" role="status"></div>
+
+  <section id="welcome" class="card" aria-labelledby="wh">
+    <h2 id="wh">Welcome</h2>
+    <p>This walk-through shows you, one step at a time, how to solve the kind of calculation problems you will see on the Chapter 4 Quiz. You will work through 5 practice problems, one at a time. After every step you decide when you are ready to continue. The numbers here are examples, so your quiz numbers will be different.</p>
+    <p>When you finish all 5 problems you can create a PDF that shows your name and the date and time you completed this walk-through.</p>
+    <form id="nameForm" novalidate>
+      <label for="nameInput">Type your name to begin</label>
+      <input type="text" id="nameInput" autocomplete="name" aria-describedby="nameErr">
+      <div id="nameErr" class="sans" style="color:#a11;min-height:1.4em" role="alert"></div>
+      <button type="submit">Start the walk-through</button>
+    </form>
+  </section>
+
+  <section id="work" class="hidden" aria-label="Problem walk-through">
+    <div class="card">
+      <p id="meta" class="meta"></p>
+      <div id="pbarwrap" class="progress" role="progressbar" aria-label="Problems completed" aria-valuemin="0" aria-valuemax="5" aria-valuenow="0"><span id="pbar" style="width:0%"></span></div>
+      <h2 id="ptitle"></h2>
+      <div class="problem" id="ptext"></div>
+      <div id="steps"></div>
+      <div id="ctrl"><button type="button" id="nextBtn"></button></div>
+      <div id="after" class="hidden">
+        <div class="answer" id="ansBox"><strong>Final answer:</strong> <span id="ansText"></span><p class="tip" id="tipText"></p></div>
+        <button type="button" id="readyBtn"></button>
+      </div>
+    </div>
+  </section>
+
+  <section id="done" class="hidden" aria-labelledby="doneH">
+    <div class="card cert" id="certificate">
+      <p class="meta">ACCT 252 · Managerial Accounting · Western Carolina University</p>
+      <h2 id="doneH">Chapter 4 Walk-Through Complete</h2>
+      <p>This certifies that</p>
+      <p class="who" id="certName"></p>
+      <p>completed all 5 problems in the<br><strong>Chapter 4 Walk-Through: Variable Costing and Segment Reporting</strong></p>
+      <p>on <strong id="certWhen"></strong></p>
+    </div>
+    <div class="noprint card">
+      <p>To save a PDF, choose the button below, then in the print window choose <strong>Save as PDF</strong> as the destination.</p>
+      <button type="button" id="pdfBtn">Create PDF with my name and completion time</button>
+      <button type="button" id="restartBtn" class="secondary">Start over</button>
+    </div>
+  </section>
+</main>
+<script>
+(function(){
+  var CH={"n":4,"name":"Variable Costing and Segment Reporting","problems":[{"title":"Variable costing unit product cost","text":"A manufacturer incurs direct materials of $18 per unit, direct labor of $14 per unit, and variable manufacturing overhead of $4 per unit. Variable selling expense is $2 per unit sold. Fixed manufacturing overhead is $40,000 per period. What is the unit product cost under variable costing? Enter a dollar amount rounded to two decimal places.","steps":[{"h":"Decide which costs are product costs","t":"Under variable costing, only variable manufacturing costs are product costs: direct materials, direct labor, and variable manufacturing overhead.","c":["Included: direct materials, direct labor, variable manufacturing overhead"]},{"h":"Set aside the costs that are NOT product costs","t":"Fixed manufacturing overhead is a period cost under variable costing. Variable selling expense is a period cost under any method.","c":["Excluded: fixed manufacturing overhead ($40,000) and variable selling expense ($2 per unit)"]},{"h":"Add the three included costs","t":"","c":["$18 + $14 + $4 = $36.00 per unit"]}],"answer":"$36.00 per unit","tip":"The distractors in this problem (fixed overhead and selling expense) are a common trap."},{"title":"Absorption costing unit product cost","text":"Direct materials, direct labor, and variable manufacturing overhead total $30 per unit. Actual fixed manufacturing overhead is $45,000 for the period, and actual production is 6,000 units. Use actual units produced to allocate fixed manufacturing overhead. What is the absorption costing unit product cost? Enter a dollar amount rounded to two decimal places.","steps":[{"h":"Identify the variable manufacturing cost per unit","t":"This is given as one combined number.","c":["Variable manufacturing cost = $30 per unit"]},{"h":"Compute fixed manufacturing overhead per unit","t":"Absorption costing treats fixed manufacturing overhead as a product cost, spread over the units produced.","c":["$45,000 ÷ 6,000 units = $7.50 per unit"]},{"h":"Add them together","t":"","c":["$30 + $7.50 = $37.50 per unit"]}],"answer":"$37.50 per unit","tip":"Absorption cost is always variable-costing cost plus fixed overhead per unit."},{"title":"Income reconciliation with inventory growth","text":"A company has no beginning inventory. It produces 5,000 units and has 800 of those units in ending inventory. Actual fixed manufacturing overhead is $40,000 and is allocated using actual production. Variable costing net operating income is $20,000. What is absorption costing net operating income? Enter a dollar amount rounded to two decimal places.","steps":[{"h":"Compute fixed overhead per unit","t":"Absorption costing spreads fixed overhead over units produced.","c":["$40,000 ÷ 5,000 = $8.00 per unit"]},{"h":"Compute fixed overhead deferred in ending inventory","t":"Units that were produced but not sold carry their share of fixed overhead into inventory instead of expensing it.","c":["800 units × $8.00 = $6,400"]},{"h":"Adjust variable costing income","t":"Inventory increased, so absorption costing income is higher than variable costing income by the deferred amount.","c":["$20,000 + $6,400 = $26,400.00"]}],"answer":"$26,400.00","tip":"Rule of thumb: production > sales means absorption income > variable income."},{"title":"Segment margin","text":"A division has sales of $220,000, total variable expenses of $80,000, and traceable fixed expenses of $40,000. Corporate common fixed expenses allocated to the division for an internal report are $15,000. What is the division's segment margin before any allocation of common fixed expenses? Enter a dollar amount rounded to two decimal places.","steps":[{"h":"Compute the division's contribution margin","t":"Sales minus variable expenses.","c":["$220,000 − $80,000 = $140,000"]},{"h":"Subtract traceable fixed expenses","t":"Traceable fixed expenses would disappear if the segment were eliminated, so they belong in segment margin.","c":["$140,000 − $40,000 = $100,000.00"]},{"h":"Leave out the allocated common fixed expenses","t":"Common fixed expenses would continue even if the segment were dropped, so the $15,000 allocation is not deducted.","c":["Segment margin = $100,000.00"]}],"answer":"$100,000.00","tip":"Segment margin measures what the segment itself contributes to covering common costs and profit."},{"title":"Segment break-even sales","text":"A segment has traceable fixed expenses of $60,000 and a contribution margin ratio of 40%. The company also incurs common fixed expenses of $50,000 that would remain if this segment were eliminated. What are the segment's break-even sales dollars? Enter a dollar amount rounded to two decimal places.","steps":[{"h":"Pick the correct fixed costs for the numerator","t":"A segment breaks even when its CM covers its own traceable fixed expenses. Common fixed expenses are excluded because they remain regardless of this segment.","c":["Use: traceable fixed expenses = $60,000","Ignore: common fixed expenses = $50,000"]},{"h":"Convert the CM ratio to a decimal","t":"","c":["40% = 0.40"]},{"h":"Divide","t":"Break-even sales dollars = traceable fixed expenses ÷ CM ratio.","c":["$60,000 ÷ 0.40 = $150,000.00"]}],"answer":"$150,000.00","tip":"Check: $150,000 × 40% = $60,000 CM, which equals traceable fixed expenses."}]};var P=CH.problems;
+  var $=function(id){return document.getElementById(id)};
+  var state={name:'',pi:0,si:0,finishedAt:null};
+  var live=$('live');
+  function setProgress(){
+    var total=P.length;var done=state.pi;
+    $('pbar').style.width=Math.round((done/total)*100)+'%';
+    $('pbarwrap').setAttribute('aria-valuenow',done);
+  }
+  function el(tag,cls,html){var e=document.createElement(tag);if(cls)e.className=cls;if(html!==undefined)e.innerHTML=html;return e}
+  function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+  function showScreen(id){['welcome','work','done'].forEach(function(s){$(s).classList.toggle('hidden',s!==id)})}
+  $('nameForm').addEventListener('submit',function(e){
+    e.preventDefault();var v=$('nameInput').value.trim();
+    if(!v){$('nameErr').textContent='Please type your name to begin.';$('nameInput').focus();return}
+    $('nameErr').textContent='';state.name=v;showScreen('work');renderProblem();
+  });
+  function renderProblem(){
+    var p=P[state.pi];state.si=0;setProgress();
+    $('meta').textContent='Problem '+(state.pi+1)+' of '+P.length;
+    $('ptitle').textContent=p.title;
+    $('ptext').textContent=p.text;
+    $('steps').innerHTML='';$('after').classList.add('hidden');
+    $('ctrl').classList.remove('hidden');
+    addStep();
+    $('ptitle').setAttribute('tabindex','-1');$('ptitle').focus();
+  }
+  function addStep(){
+    var p=P[state.pi];var s=p.steps[state.si];
+    var d=el('section','step');d.setAttribute('aria-labelledby','sh'+state.si);
+    var h=el('h3');h.id='sh'+state.si;h.innerHTML='<span class="n" aria-hidden="true">'+(state.si+1)+'</span>Step '+(state.si+1)+' of '+p.steps.length+': '+esc(s.h);
+    d.appendChild(h);
+    if(s.t){d.appendChild(el('div','',esc(s.t)))}
+    var c=el('div','calc');s.c.forEach(function(line){c.appendChild(el('div','',esc(line)))});d.appendChild(c);
+    $('steps').appendChild(d);
+    h.setAttribute('tabindex','-1');h.focus();
+    var last=state.si===p.steps.length-1;
+    $('nextBtn').textContent=last?'I understand every step. Show the final answer':'I understand this step. Show the next step';
+    live.textContent='Step '+(state.si+1)+' of '+p.steps.length+' shown.';
+  }
+  $('nextBtn').addEventListener('click',function(){
+    var p=P[state.pi];
+    if(state.si<p.steps.length-1){state.si++;addStep();return}
+    $('ctrl').classList.add('hidden');
+    $('ansText').textContent=p.answer;$('tipText').textContent=p.tip||'';
+    $('after').classList.remove('hidden');
+    var last=state.pi===P.length-1;
+    $('readyBtn').textContent=last?'I am done with this chapter. Continue':'I am ready for problem '+(state.pi+2);
+    $('ansBox').setAttribute('tabindex','-1');$('ansBox').focus();
+    live.textContent='Final answer shown.';
+  });
+  $('readyBtn').addEventListener('click',function(){
+    if(state.pi<P.length-1){state.pi++;renderProblem();window.scrollTo(0,0);return}
+    state.pi=P.length;setProgress();state.finishedAt=new Date();
+    var opts={year:'numeric',month:'long',day:'numeric',hour:'numeric',minute:'2-digit',second:'2-digit',timeZoneName:'short'};
+    var when=state.finishedAt.toLocaleString(undefined,opts);
+    $('certName').textContent=state.name;$('certWhen').textContent=when;
+    showScreen('done');$('doneH').setAttribute('tabindex','-1');$('doneH').focus();window.scrollTo(0,0);
+  });
+  $('pdfBtn').addEventListener('click',function(){window.print()});
+  $('restartBtn').addEventListener('click',function(){state.pi=0;state.si=0;$('nameInput').value=state.name;showScreen('welcome');setProgress();$('nameInput').focus()});
+})();</script>
+</body>
+</html>

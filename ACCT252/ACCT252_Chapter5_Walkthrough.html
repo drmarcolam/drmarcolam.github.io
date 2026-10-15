@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ACCT 252 Chapter 5 Walk-Through</title>
+<style>
+:root{--purple:#592C88;--purple-d:#42206a;--gold:#C1A875;--ink:#1d1b22;--bg:#f6f3fa;--card:#fff;--ok:#1b6e3c;--line:#d9d2e4}
+*{box-sizing:border-box}
+body{margin:0;font-family:Georgia,'Times New Roman',serif;color:var(--ink);background:var(--bg);line-height:1.55;font-size:18px}
+.sans,button,input,label,.meta{font-family:'Segoe UI',Arial,Helvetica,sans-serif}
+header.banner{background:var(--purple);color:#fff;padding:22px 24px;border-bottom:6px solid var(--gold)}
+header.banner .course{font-family:'Segoe UI',Arial,sans-serif;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;color:#eadfbf;margin:0}
+header.banner h1{margin:4px 0 0;font-size:1.6rem}
+main{max-width:820px;margin:0 auto;padding:24px 16px 60px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:22px 24px;margin-bottom:18px}
+.meta{color:#5a4d70;font-size:.9rem;margin:0 0 8px}
+.progress{height:8px;background:#e6def0;border-radius:6px;overflow:hidden;margin:6px 0 16px}
+.progress>span{display:block;height:100%;background:var(--purple);transition:width .3s}
+h2{margin:.2em 0 .5em;font-size:1.35rem;color:var(--purple-d)}
+.problem{border-left:5px solid var(--gold);background:#fbf8f1;padding:14px 18px;border-radius:6px}
+.step{border:1px solid var(--line);border-radius:8px;padding:14px 18px;margin:14px 0;background:#fff}
+.step h3{margin:0 0 6px;font-size:1.05rem;color:var(--purple-d)}
+.step h3 .n{display:inline-block;background:var(--purple);color:#fff;border-radius:50%;width:1.7em;height:1.7em;text-align:center;line-height:1.7em;font-size:.85rem;margin-right:8px;font-family:'Segoe UI',Arial,sans-serif}
+.calc{font-family:Consolas,'Courier New',monospace;background:#f1ecf8;border-radius:6px;padding:8px 12px;margin:8px 0 0;font-size:1rem}
+.calc div{padding:1px 0}
+.answer{background:#eaf6ee;border:2px solid var(--ok);border-radius:8px;padding:14px 18px;margin:16px 0}
+.answer strong{color:var(--ok)}
+.tip{font-size:.95rem;color:#4a4357;margin:8px 0 0}
+button{background:var(--purple);color:#fff;border:2px solid var(--purple);border-radius:8px;padding:11px 20px;font-size:1rem;cursor:pointer;margin-top:10px}
+button:hover{background:var(--purple-d)}
+button:focus-visible,input:focus-visible{outline:3px solid #1a5fd0;outline-offset:2px}
+button.secondary{background:#fff;color:var(--purple)}
+button.secondary:hover{background:#f1ecf8}
+button:disabled{opacity:.5;cursor:not-allowed}
+input[type=text]{font-size:1.05rem;padding:10px 12px;border:2px solid #8b7aa5;border-radius:8px;width:100%;max-width:420px}
+label{font-weight:600;display:block;margin-bottom:6px}
+.hidden{display:none}
+.sr{position:absolute;left:-9999px}
+.cert{border:3px double var(--purple);text-align:center;padding:34px 24px}
+.cert .who{font-size:1.8rem;font-weight:bold;margin:10px 0;color:var(--purple-d)}
+.print-only{display:none}
+@media print{
+  body{background:#fff;font-size:14pt}
+  header.banner{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .noprint,.screen-only{display:none!important}
+  .print-only{display:block}
+  .card{border:none;padding:0}
+  .cert{border:3px double #592C88;padding:40px 24px}
+}</style>
+</head>
+<body>
+<header class="banner">
+  <p class="course">ACCT 252 · Managerial Accounting · Western Carolina University</p>
+  <h1>Chapter 5 Walk-Through: Activity-Based Costing</h1>
+</header>
+<main id="main">
+  <div id="live" class="sr" aria-live="polite" role="status"></div>
+
+  <section id="welcome" class="card" aria-labelledby="wh">
+    <h2 id="wh">Welcome</h2>
+    <p>This walk-through shows you, one step at a time, how to solve the kind of calculation problems you will see on the Chapter 5 Quiz. You will work through 5 practice problems, one at a time. After every step you decide when you are ready to continue. The numbers here are examples, so your quiz numbers will be different.</p>
+    <p>When you finish all 5 problems you can create a PDF that shows your name and the date and time you completed this walk-through.</p>
+    <form id="nameForm" novalidate>
+      <label for="nameInput">Type your name to begin</label>
+      <input type="text" id="nameInput" autocomplete="name" aria-describedby="nameErr">
+      <div id="nameErr" class="sans" style="color:#a11;min-height:1.4em" role="alert"></div>
+      <button type="submit">Start the walk-through</button>
+    </form>
+  </section>
+
+  <section id="work" class="hidden" aria-label="Problem walk-through">
+    <div class="card">
+      <p id="meta" class="meta"></p>
+      <div id="pbarwrap" class="progress" role="progressbar" aria-label="Problems completed" aria-valuemin="0" aria-valuemax="5" aria-valuenow="0"><span id="pbar" style="width:0%"></span></div>
+      <h2 id="ptitle"></h2>
+      <div class="problem" id="ptext"></div>
+      <div id="steps"></div>
+      <div id="ctrl"><button type="button" id="nextBtn"></button></div>
+      <div id="after" class="hidden">
+        <div class="answer" id="ansBox"><strong>Final answer:</strong> <span id="ansText"></span><p class="tip" id="tipText"></p></div>
+        <button type="button" id="readyBtn"></button>
+      </div>
+    </div>
+  </section>
+
+  <section id="done" class="hidden" aria-labelledby="doneH">
+    <div class="card cert" id="certificate">
+      <p class="meta">ACCT 252 · Managerial Accounting · Western Carolina University</p>
+      <h2 id="doneH">Chapter 5 Walk-Through Complete</h2>
+      <p>This certifies that</p>
+      <p class="who" id="certName"></p>
+      <p>completed all 5 problems in the<br><strong>Chapter 5 Walk-Through: Activity-Based Costing</strong></p>
+      <p>on <strong id="certWhen"></strong></p>
+    </div>
+    <div class="noprint card">
+      <p>To save a PDF, choose the button below, then in the print window choose <strong>Save as PDF</strong> as the destination.</p>
+      <button type="button" id="pdfBtn">Create PDF with my name and completion time</button>
+      <button type="button" id="restartBtn" class="secondary">Start over</button>
+    </div>
+  </section>
+</main>
+<script>
+(function(){
+  var CH={"n":5,"name":"Activity-Based Costing","problems":[{"title":"ABC product margin","text":"A product has sales of $800,000, direct costs of $450,000, and ABC overhead assignments of $200,000. What is its product margin?","steps":[{"h":"Identify the cost layers","t":"Product margin starts with sales and subtracts both the direct costs and the overhead that ABC assigned to this product.","c":["Sales = $800,000","Direct costs = $450,000","ABC overhead assigned = $200,000"]},{"h":"Subtract direct costs","t":"","c":["$800,000 − $450,000 = $350,000"]},{"h":"Subtract the ABC overhead","t":"","c":["$350,000 − $200,000 = $150,000"]}],"answer":"$150,000","tip":"A negative product margin would signal that the product does not cover the resources it consumes."},{"title":"Customer margin","text":"A customer generates sales of $54,000, direct costs of $9,000, and ABC activity costs of $18,000. What is the customer margin?","steps":[{"h":"Identify the amounts","t":"Customer margin works like product margin, but the costs follow the customer.","c":["Sales = $54,000","Direct costs = $9,000","ABC activity costs = $18,000"]},{"h":"Subtract direct costs and ABC activity costs","t":"","c":["$54,000 − $9,000 − $18,000 = $27,000"]}],"answer":"$27,000","tip":"Customers with the same sales can have very different margins depending on the activities they use."},{"title":"Customer-order activity rate","text":"An ABC customer-orders cost pool contains $300,000 of overhead and processes 1,500 customer orders. What is the activity rate per order? Round to the nearest cent.","steps":[{"h":"Identify the cost pool total and the activity measure","t":"An activity rate is the cost pool divided by the total amount of the activity measure.","c":["Cost pool = $300,000","Activity measure = 1,500 customer orders"]},{"h":"Divide","t":"","c":["$300,000 ÷ 1,500 orders = $200.00 per order"]}],"answer":"$200.00 per order","tip":"This rate will later be multiplied by each customer's or product's actual number of orders."},{"title":"Order-size overhead assignment","text":"The order-size activity rate is $40 per machine-hour. A product uses 2,675 machine-hours. How much order-size overhead is assigned to the product?","steps":[{"h":"Identify the rate and the product's usage","t":"Overhead assigned = activity rate × the activity the product actually uses.","c":["Rate = $40 per machine-hour","Usage = 2,675 machine-hours"]},{"h":"Multiply","t":"","c":["$40 × 2,675 = $107,000"]}],"answer":"$107,000","tip":"Order-size overhead is a batch-level or product-level cost driven by machine time in this setup."},{"title":"Product design activity rate","text":"An ABC product-design cost pool contains $240,000 for 600 designs. What is the activity rate per design? Round to the nearest cent.","steps":[{"h":"Identify the cost pool total and the activity measure","t":"","c":["Cost pool = $240,000","Activity measure = 600 designs"]},{"h":"Divide","t":"Activity rate = cost pool ÷ activity measure.","c":["$240,000 ÷ 600 designs = $400.00 per design"]}],"answer":"$400.00 per design","tip":"Remember to round only at the end of the calculation."}]};var P=CH.problems;
+  var $=function(id){return document.getElementById(id)};
+  var state={name:'',pi:0,si:0,finishedAt:null};
+  var live=$('live');
+  function setProgress(){
+    var total=P.length;var done=state.pi;
+    $('pbar').style.width=Math.round((done/total)*100)+'%';
+    $('pbarwrap').setAttribute('aria-valuenow',done);
+  }
+  function el(tag,cls,html){var e=document.createElement(tag);if(cls)e.className=cls;if(html!==undefined)e.innerHTML=html;return e}
+  function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+  function showScreen(id){['welcome','work','done'].forEach(function(s){$(s).classList.toggle('hidden',s!==id)})}
+  $('nameForm').addEventListener('submit',function(e){
+    e.preventDefault();var v=$('nameInput').value.trim();
+    if(!v){$('nameErr').textContent='Please type your name to begin.';$('nameInput').focus();return}
+    $('nameErr').textContent='';state.name=v;showScreen('work');renderProblem();
+  });
+  function renderProblem(){
+    var p=P[state.pi];state.si=0;setProgress();
+    $('meta').textContent='Problem '+(state.pi+1)+' of '+P.length;
+    $('ptitle').textContent=p.title;
+    $('ptext').textContent=p.text;
+    $('steps').innerHTML='';$('after').classList.add('hidden');
+    $('ctrl').classList.remove('hidden');
+    addStep();
+    $('ptitle').setAttribute('tabindex','-1');$('ptitle').focus();
+  }
+  function addStep(){
+    var p=P[state.pi];var s=p.steps[state.si];
+    var d=el('section','step');d.setAttribute('aria-labelledby','sh'+state.si);
+    var h=el('h3');h.id='sh'+state.si;h.innerHTML='<span class="n" aria-hidden="true">'+(state.si+1)+'</span>Step '+(state.si+1)+' of '+p.steps.length+': '+esc(s.h);
+    d.appendChild(h);
+    if(s.t){d.appendChild(el('div','',esc(s.t)))}
+    var c=el('div','calc');s.c.forEach(function(line){c.appendChild(el('div','',esc(line)))});d.appendChild(c);
+    $('steps').appendChild(d);
+    h.setAttribute('tabindex','-1');h.focus();
+    var last=state.si===p.steps.length-1;
+    $('nextBtn').textContent=last?'I understand every step. Show the final answer':'I understand this step. Show the next step';
+    live.textContent='Step '+(state.si+1)+' of '+p.steps.length+' shown.';
+  }
+  $('nextBtn').addEventListener('click',function(){
+    var p=P[state.pi];
+    if(state.si<p.steps.length-1){state.si++;addStep();return}
+    $('ctrl').classList.add('hidden');
+    $('ansText').textContent=p.answer;$('tipText').textContent=p.tip||'';
+    $('after').classList.remove('hidden');
+    var last=state.pi===P.length-1;
+    $('readyBtn').textContent=last?'I am done with this chapter. Continue':'I am ready for problem '+(state.pi+2);
+    $('ansBox').setAttribute('tabindex','-1');$('ansBox').focus();
+    live.textContent='Final answer shown.';
+  });
+  $('readyBtn').addEventListener('click',function(){
+    if(state.pi<P.length-1){state.pi++;renderProblem();window.scrollTo(0,0);return}
+    state.pi=P.length;setProgress();state.finishedAt=new Date();
+    var opts={year:'numeric',month:'long',day:'numeric',hour:'numeric',minute:'2-digit',second:'2-digit',timeZoneName:'short'};
+    var when=state.finishedAt.toLocaleString(undefined,opts);
+    $('certName').textContent=state.name;$('certWhen').textContent=when;
+    showScreen('done');$('doneH').setAttribute('tabindex','-1');$('doneH').focus();window.scrollTo(0,0);
+  });
+  $('pdfBtn').addEventListener('click',function(){window.print()});
+  $('restartBtn').addEventListener('click',function(){state.pi=0;state.si=0;$('nameInput').value=state.name;showScreen('welcome');setProgress();$('nameInput').focus()});
+})();</script>
+</body>
+</html>
