@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ACCT 252 Chapter 5 Tutor</title>
+<meta name="description" content="Step-by-step practice problems on activity-based costing (Chapter 5) for ACCT 252. Every problem uses new numbers, and each step is checked as you go.">
+<style>
+:root{
+  --bg:#f5f3f8; --card:#ffffff; --ink:#1f1a26; --muted:#585062; --line:#d9d3e2;
+  --purple:#4f2a7a; --purple-dark:#3a1d5c; --gold:#f2b705; --tint:#efe9f6;
+  --good-bg:#e7f5ea; --good-ink:#14532d; --good-line:#2e7d32;
+  --warn-bg:#fff3de; --warn-ink:#5e3300; --warn-line:#b86b00;
+  --focus:#0b57d0;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#17131d; --card:#211b2b; --ink:#f0ecf5; --muted:#b9b0c6; --line:#3d3350;
+    --purple:#c9a8f0; --purple-dark:#1c1128; --tint:#2c2239;
+    --good-bg:#16301d; --good-ink:#bfe8c8; --good-line:#58b46c;
+    --warn-bg:#3a2a10; --warn-ink:#ffe0b3; --warn-line:#e0a040;
+    --focus:#8ab4ff;
+  }
+}
+*{box-sizing:border-box}
+html{font-size:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.55;font-size:1.0625rem}
+.skip{position:absolute;left:-999px;top:0;background:var(--gold);color:#1f1a26;padding:.6rem 1rem;z-index:10;font-weight:700}
+.skip:focus{left:8px;top:8px}
+header.site{background:var(--purple-dark);color:#fff;border-bottom:6px solid var(--gold)}
+header.site .wrap{max-width:60rem;margin:0 auto;padding:1.1rem 1rem}
+header.site .eyebrow{margin:0;font-size:.9rem;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);font-weight:700}
+header.site h1{margin:.15rem 0 0;font-size:1.65rem;line-height:1.2}
+main{max-width:60rem;margin:0 auto;padding:1.25rem 1rem 3rem}
+main:focus{outline:none}
+h2{font-size:1.35rem;margin:.2rem 0 .6rem}
+h3{font-size:1.1rem;margin:.1rem 0 .4rem}
+p{margin:.45rem 0}
+.lede{color:var(--muted);max-width:46rem}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+button,input,select{font:inherit}
+
+/* menu */
+.menu{display:grid;grid-template-columns:repeat(auto-fill,minmax(17rem,1fr));gap:.9rem;margin:1rem 0 0;padding:0;list-style:none}
+.step{scroll-margin-top:4.5rem}
+.menu button{display:flex;flex-direction:column;justify-content:flex-start;align-items:flex-start;width:100%;height:100%;text-align:left;background:var(--card);color:var(--ink);border:2px solid var(--line);border-left:8px solid var(--purple);border-radius:10px;padding:.9rem 1rem;cursor:pointer}
+.menu button:hover{border-color:var(--purple);background:var(--tint)}
+.menu .t{display:block;font-weight:700;font-size:1.08rem;color:var(--purple)}
+.menu .d{display:block;margin-top:.25rem}
+.menu .m{display:block;margin-top:.5rem;font-size:.9rem;color:var(--muted)}
+
+/* problem */
+.toolbar{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;justify-content:space-between;margin-bottom:.8rem}
+.btn{display:inline-block;border:2px solid var(--purple);background:var(--purple);color:#fff;border-radius:8px;padding:.55rem 1.1rem;font-weight:700;cursor:pointer}
+:root[data-theme="dark"] .btn{color:#1c1128}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .btn{color:#1c1128}}
+.btn:hover{filter:brightness(1.1)}
+.btn.secondary{background:transparent;color:var(--purple)}
+.btn.secondary:hover{background:var(--tint)}
+.badge{display:inline-block;background:var(--tint);color:var(--purple);border-radius:999px;padding:.1rem .7rem;font-size:.9rem;font-weight:600}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:1rem 1.15rem;margin:0 0 1rem}
+.card.scenario{border-top:6px solid var(--gold)}
+.progress{position:sticky;top:0;z-index:5;background:var(--bg);padding:.5rem 0 .6rem;margin-bottom:.6rem}
+.progress progress{width:100%;height:.8rem;accent-color:var(--purple)}
+.progress .txt{display:flex;justify-content:space-between;gap:1rem;font-size:.95rem;color:var(--muted);flex-wrap:wrap}
+details.ref{margin:.6rem 0 0;border:1px dashed var(--line);border-radius:8px;padding:.45rem .8rem;background:var(--bg)}
+details.ref summary{cursor:pointer;font-weight:600;color:var(--purple)}
+details.ref ul{margin:.4rem 0 .2rem 1.1rem;padding:0}
+.tablewrap{overflow-x:auto;margin:.7rem 0}
+table{border-collapse:collapse;min-width:min(100%,24rem);font-variant-numeric:tabular-nums}
+caption{text-align:left;font-weight:700;padding:.2rem 0 .35rem;color:var(--purple)}
+th,td{border:1px solid var(--line);padding:.35rem .65rem;vertical-align:top}
+thead th{background:var(--tint);text-align:left}
+tbody th{text-align:left;font-weight:600;background:var(--card)}
+td.n,th.n{text-align:right;white-space:nowrap}
+tr.tot th,tr.tot td{border-top:2px solid var(--ink);font-weight:700}
+
+.step{border-left:6px solid var(--line)}
+.step.active{border-left-color:var(--purple)}
+.step.correct{border-left-color:var(--good-line)}
+.step.wrong{border-left-color:var(--warn-line)}
+.step .num{font-size:.85rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin:0}
+.step .q{font-weight:600;margin:.15rem 0 .3rem}
+.hint{color:var(--muted);font-size:.93rem;margin:.1rem 0 .5rem}
+.ansrow{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center}
+.ansrow input[type=text]{width:14rem;max-width:100%;padding:.55rem .7rem;border:2px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);font-size:1.1rem;font-variant-numeric:tabular-nums}
+.ansrow label{font-weight:600;margin-right:.2rem}
+fieldset{border:0;margin:0;padding:0}
+legend{font-weight:600;padding:0;margin-bottom:.35rem}
+.opt{display:flex;gap:.6rem;align-items:flex-start;padding:.45rem .6rem;border:2px solid var(--line);border-radius:8px;margin:.3rem 0;cursor:pointer;background:var(--card)}
+.opt:hover{background:var(--tint)}
+.opt input{margin-top:.38rem;width:1.1rem;height:1.1rem;accent-color:var(--purple)}
+.err{color:var(--warn-ink);font-weight:600;min-height:1.4em;margin:.35rem 0 0}
+.fb{border-radius:8px;padding:.7rem .9rem;margin:.5rem 0}
+.fb.good{background:var(--good-bg);color:var(--good-ink);border:1px solid var(--good-line)}
+.fb.bad{background:var(--warn-bg);color:var(--warn-ink);border:1px solid var(--warn-line)}
+.fb strong.lead{display:block;font-size:1.05rem}
+.sol{margin:.55rem 0 0;padding:.6rem .8rem;background:var(--bg);border-radius:8px;border:1px solid var(--line);color:var(--ink)}
+.sol .line{display:block;margin:.15rem 0}
+.sol .final{font-weight:700}
+.summary h2{margin-top:0}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+footer{max-width:60rem;margin:0 auto;padding:0 1rem 2rem;color:var(--muted);font-size:.9rem}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+@media print{.toolbar,.progress,.skip{display:none}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="site">
+  <div class="wrap">
+    <p class="eyebrow">ACCT 252 · Managerial Accounting</p>
+    <h1>Chapter 5 Tutor: Activity-Based Costing</h1>
+    <p style="margin:.4rem 0 0"><a href="../courses/acct-252-tutors.html" style="color:#fff">&larr; Back to ACCT 252 Tutors</a></p>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+  <!-- MENU -->
+  <section id="menu-view" aria-labelledby="menu-h">
+    <h2 id="menu-h">Choose a problem type</h2>
+    <p class="lede">Pick a type of problem below. You will get a new scenario with new numbers, and I will walk you through it one step at a time. Type your answer for each step and press <strong>Check my answer</strong>. If you miss a step, no worries: you will see the solution for that step and then move on to the next one.</p>
+    <ul class="menu" id="menu"></ul>
+  </section>
+
+  <!-- PROBLEM -->
+  <section id="problem-view" hidden aria-labelledby="prob-h">
+    <div class="toolbar">
+      <button type="button" class="btn secondary" id="back-btn">← All problem types</button>
+      <span class="badge" id="seed-badge"></span>
+    </div>
+    <div class="progress">
+      <progress id="prog" max="1" value="0" aria-label="Progress through this problem"></progress>
+      <div class="txt"><span id="prog-left"></span><span id="prog-right"></span></div>
+    </div>
+    <h2 id="prob-h" tabindex="-1"></h2>
+    <div class="card scenario" id="scenario"></div>
+    <div id="steps"></div>
+  </section>
+</main>
+
+<div id="live" class="sr-only" role="status" aria-live="polite"></div>
+
+<footer>
+  <p>Practice problems are modeled on the Chapter 5 exercises and problems. All company names and numbers are fictional and are generated at random each time, so use <em>New problem</em> as often as you like.</p>
+</footer>
+
+<script>
+(function(){
+'use strict';
+
+/* ================= utilities ================= */
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+function makeRng(seed){
+  var f=mulberry32(seed);
+  var r={
+    f:f,
+    int:function(a,b){return a+Math.floor(f()*(b-a+1));},
+    stepv:function(lo,hi,st){var n=Math.round((hi-lo)/st);var k=Math.floor(f()*(n+1));return Math.round((lo+k*st)*1e6)/1e6;},
+    pick:function(a){return a[Math.floor(f()*a.length)];},
+    shuffle:function(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(f()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+  };
+  return r;
+}
+function nf(x,d){d=d||0;return Math.abs(x).toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});}
+function money(x,d){d=d||0;var s=nf(x,d);var isZero=Number(s.replace(/,/g,''))===0;return (x<0&&!isZero)?'$('+s+')':'$'+s;}
+function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function rnd1000(x){return Math.round(x/1000)*1000;}
+
+function tbl(caption,head,rows,opts){
+  opts=opts||{};
+  var h='<div class="tablewrap" tabindex="0" role="region" aria-label="'+esc(caption)+' (scrollable table)"><table><caption>'+esc(caption)+'</caption><thead><tr>';
+  head.forEach(function(x,i){h+='<th scope="col"'+(i?' class="n"':'')+'>'+x+'</th>';});
+  h+='</tr></thead><tbody>';
+  rows.forEach(function(r,ri){
+    var tot=opts.totalLast&&ri===rows.length-1;
+    h+='<tr'+(tot?' class="tot"':'')+'><th scope="row">'+r[0]+'</th>';
+    for(var i=1;i<r.length;i++){h+='<td class="n">'+r[i]+'</td>';}
+    h+='</tr>';
+  });
+  return h+'</tbody></table></div>';
+}
+function sol(lines,final){
+  var h='<div class="sol">';
+  lines.forEach(function(l){h+='<span class="line">'+l+'</span>';});
+  if(final)h+='<span class="line final">'+final+'</span>';
+  return h+'</div>';
+}
+
+/* ================= data pools ================= */
+var COMPANIES=['Blue Ridge Cabinetry','Smoky Mountain Woodworks','Pisgah Outdoor Gear','Nantahala Canoe Company','Tuckasegee Tool & Die','Balsam Mountain Furniture','Cullowhee Creek Pottery','French Broad Bikes','Cataloochee Candle Company','Qualla Valley Textiles','Mount Mitchell Metalworks','Hiwassee Hardware'];
+var TOWNS=['Asheville','Sylva','Cullowhee','Waynesville','Brevard','Hendersonville','Boone','Franklin','Cashiers','Bryson City','Black Mountain','Dillsboro'];
+var PRODUCT_PAIRS=[['Standard porch rocker','Custom porch rocker'],['Standard trail pack','Expedition pack'],['Classic canoe paddle','Racing canoe paddle'],['Basic camp stove','Gourmet camp stove'],['Standard bike frame','Custom bike frame'],['Plain ceramic mug','Hand-painted mug']];
+var CUSTOMERS=['Cashiers Outfitters','Boone Trailhead Supply','Hendersonville Hardware','Franklin Farm & Home','Brevard Bike Shop','Black Mountain Mercantile','Waynesville Gift Gallery'];
+var CUST_PRODUCTS=['trail packs','camp stoves','cast-iron skillets','ceramic mugs','canoe paddles','hardwood cutting boards'];
+var PRAISE=['Correct! Nice work.','Exactly right. Great job!','Spot on! You are getting the hang of this.','Yes, that is right. Well done!','Correct, and nicely done!','That is right. Keep it up!','Excellent. That is exactly it.'];
+var MISS=['Not quite, and that is okay! Here is how this step works.','Good effort, but that is not the right answer. Let us walk through it.','Close, but not quite. Here is the solution to this step.','That one is tricky. Here is the solution so you can see how it works.','Not this time. Take a look at the solution, then try the next step.'];
+
+/* ================= generators =================
+ Each returns {intro, refresher, steps[]}
+ step: {kind:'num'|'choice', q, ans, dec, fmt:'money'|'pct'|'num', unit, tol, options, exp}
+*/
+
+/* ---- 1. Activity hierarchy ---- */
+var LEVELS=['Unit-level','Batch-level','Product-level','Customer-level','Organization-sustaining'];
+var ACTS=[
+['Machining each wooden part on the CNC router','Unit-level','Machine time is used on every unit produced, so the cost rises and falls with the number of units.'],
+['Visually inspecting every finished unit for defects','Unit-level','Every single unit is inspected, so the activity is performed once for each unit produced.'],
+['Direct labor workers assembling each product','Unit-level','Assembly work is performed on every unit, so it is driven by the number of units.'],
+['Sanding and finishing each unit as it comes off the line','Unit-level','The work is repeated for every unit produced.'],
+['Setting up the machines for a production run','Batch-level','A setup is performed once per batch, no matter how many units are in the batch.'],
+['Receiving a shipment of raw materials from suppliers','Batch-level','The work is done once per shipment (batch) regardless of how many units are later made from the materials.'],
+['Issuing a purchase order for a job','Batch-level','A purchase order is processed once per job (batch), no matter how big the job is.'],
+['Moving a load of materials from the receiving dock to the production line','Batch-level','The cost depends on the number of loads moved, not on the number of units in each load.'],
+['Preparing shipping documents and packaging for a customer order','Batch-level','The work is done once for each order shipped, regardless of the number of units in the order.'],
+['Designing a new product','Product-level','Design work supports a product no matter how many batches or units are produced.'],
+['Managing the parts inventory for one product line','Product-level','The activity exists to support a particular product, regardless of the batches or units made.'],
+['Processing engineering change orders for a product','Product-level','The work supports a specific product and does not depend on batches or units.'],
+['Negotiating prices with the supplier of one product’s special component','Product-level','The effort supports one product and is not affected by how many units or batches are produced.'],
+['Maintaining equipment that is used for only one product line','Product-level','The equipment, and therefore the maintenance, exists to support that one product.'],
+['Sales representatives’ periodic visits to keep customers informed about products','Customer-level','The visit supports the customer no matter which products the customer buys.'],
+['Mailing monthly statements to regular customers','Customer-level','The cost depends on the number of customers served, not on the products they buy.'],
+['Staffing a help desk for a large wholesale customer','Customer-level','The activity supports the customer, regardless of the products or orders involved.'],
+['Processing credit applications for new customers','Customer-level','The work is done for the customer, not for any particular product, batch, or unit.'],
+['Lighting and heating the factory building','Organization-sustaining','The cost is incurred to keep the organization going and is not caused by any particular product, batch, or customer.'],
+['Preparing the company’s quarterly financial reports','Organization-sustaining','This activity supports the organization as a whole, whatever its mix of products and customers.'],
+['Interviewing and processing new employees in the personnel department','Organization-sustaining','It benefits the organization as a whole and is not tied to a specific product or customer.'],
+['Performing preventive maintenance on general-use equipment','Organization-sustaining','General-use equipment serves the whole organization, so the cost is not traceable to a specific product.'],
+['The plant manager’s salary','Organization-sustaining','The plant manager’s time supports the entire organization.']
+];
+function gen1(R){
+  var chosen=[];
+  LEVELS.forEach(function(L){
+    var pool=ACTS.filter(function(a){return a[1]===L;});
+    chosen.push(R.pick(pool));
+  });
+  var rest=ACTS.filter(function(a){return chosen.indexOf(a)<0;});
+  chosen.push(R.pick(rest));
+  chosen=R.shuffle(chosen);
+  var co=R.pick(COMPANIES), town=R.pick(TOWNS);
+  var intro='<p><strong>'+esc(co)+'</strong> of '+esc(town)+', North Carolina, is installing an activity-based costing system. The first job is to sort the company’s activities into the activity hierarchy. For each activity that follows, choose the level that fits best.</p>';
+  var ref='<ul><li><strong>Unit-level:</strong> performed for each unit produced.</li><li><strong>Batch-level:</strong> performed for each batch, regardless of how many units are in the batch.</li><li><strong>Product-level:</strong> needed to support a product, regardless of how many batches or units are made.</li><li><strong>Customer-level:</strong> needed to support a customer, regardless of which products the customer buys.</li><li><strong>Organization-sustaining:</strong> carried out regardless of the mix of products or customers.</li></ul>';
+  var steps=chosen.map(function(a){
+    return {kind:'choice',q:'Which level of the activity hierarchy fits this activity? <em>'+esc(a[0])+'</em>',options:LEVELS,ans:a[1],
+      exp:sol(['This activity is <strong>'+a[1]+'</strong>.',a[2]])};
+  });
+  return {intro:intro,refresher:ref,steps:steps};
+}
+
+/* ---- 2. First-stage allocation ---- */
+function gen2(R){
+  var ctxs=[
+    {name:'the Sylva branch of Mountain Valley Credit Union',lead:'The branch manager wants to know what it costs to carry out the branch’s main activities.',res:['Teller wages','Assistant branch manager salary','Branch manager salary'],pools:['Opening accounts','Processing deposits and withdrawals','Processing other customer transactions','Other activities']},
+    {name:'Blue Ridge Express, a delivery company in Asheville',lead:'Management wants to know how much of its cost is consumed by each major activity.',res:['Driver and guard wages','Vehicle operating expense','Vehicle depreciation'],pools:['Travel','Pickup and delivery','Customer service','Other activities']},
+    {name:'Pisgah Family Clinic in Brevard',lead:'The clinic administrator wants to know the cost of the clinic’s main activities.',res:['Nurse wages','Physician assistant salary','Office manager salary'],pools:['Patient intake','Examinations','Billing and insurance','Other activities']}
+  ];
+  var c=R.pick(ctxs);
+  var amts=c.res.map(function(){return R.stepv(60000,200000,5000);});
+  var pct=c.res.map(function(){
+    for(var t=0;t<500;t++){
+      var a=R.stepv(0,60,5),b=R.stepv(0,60,5),d=R.stepv(0,60,5);
+      var o=100-a-b-d;
+      if(o>=5&&o<=40) return [a,b,d,o];
+    }
+    return [30,30,20,20];
+  });
+  var intro='<p>This is the <strong>first stage</strong> of activity-based costing for '+esc(c.name)+'. '+c.lead+' Each resource cost below is shared among four activity cost pools according to the percentage of the resource that each activity consumes.</p>';
+  intro+=tbl('Resource costs',['Resource','Annual cost'],c.res.map(function(r,i){return [r,money(amts[i])];}));
+  intro+=tbl('Distribution of resource consumption across activities',['Resource'].concat(c.pools),c.res.map(function(r,i){return [r].concat(pct[i].map(function(p){return p+'%';}));}));
+  var pools=c.pools.map(function(p,j){
+    var parts=c.res.map(function(r,i){return amts[i]*pct[i][j]/100;});
+    var total=parts.reduce(function(s,x){return s+x;},0);
+    return {name:p,parts:parts,total:total};
+  });
+  var grand=amts.reduce(function(s,x){return s+x;},0);
+  var steps=pools.map(function(p,j){
+    var lines=c.res.map(function(r,i){return r+': '+money(amts[i])+' × '+pct[i][j]+'% = '+money(p.parts[i]);});
+    return {kind:'num',fmt:'money',dec:0,ans:p.total,
+      q:'What total cost is assigned to the <strong>'+esc(p.name)+'</strong> activity cost pool?',
+      exp:sol(lines,'Total for '+esc(p.name)+': '+money(p.total))};
+  });
+  var other=pools[3];
+  steps.push({kind:'num',fmt:'pct',dec:1,ans:other.total/grand*100,
+    q:'What percentage of the total resource cost of '+money(grand)+' lands in the <strong>Other activities</strong> pool?',
+    exp:sol(['Other activities cost: '+money(other.total),'Total resource cost: '+money(grand),'Percentage: '+money(other.total)+' ÷ '+money(grand)+' = '+nf(other.total/grand*100,1)+'%'],
+      'Costs in the “Other” pool are usually organization-sustaining or idle capacity, so ABC leaves them out of product costs.')});
+  var ref='<ul><li>Cost assigned to a pool = resource cost × % of that resource consumed by the pool.</li><li>Pool total = the sum of what each resource contributes to that pool.</li></ul>';
+  return {intro:intro,refresher:ref,steps:steps};
+}
+
+/* ---- 3. Activity rates ---- */
+function gen3(R){
+  var co=R.pick(COMPANIES);
+  var m=R.stepv(12,40,2), mh=R.stepv(5000,20000,1000);
+  var s=R.stepv(250,800,50), su=R.stepv(100,400,20);
+  var np=R.pick([2,3,4]), dc=R.stepv(30000,90000,6000);
+  var gf=R.stepv(200000,400000,20000), dlh=R.stepv(10000,20000,1000);
+  var costM=m*mh, costS=s*su, costD=dc*np;
+  var intro='<p><strong>'+esc(co)+'</strong> is setting up an activity-based costing system. Estimated overhead costs and expected activity for the coming year have been assigned to four activity cost pools.</p>';
+  intro+=tbl('Activity cost pools',['Activity cost pool','Estimated overhead cost','Expected activity'],[
+    ['Machining',money(costM),nf(mh)+' machine-hours'],
+    ['Machine setups',money(costS),nf(su)+' setups'],
+    ['Product design',money(costD),nf(np)+' products'],
+    ['General factory administration (organization-sustaining)',money(gf),nf(dlh)+' direct labor-hours']]);
+  var steps=[
+    {kind:'num',fmt:'money',dec:2,ans:m,q:'What is the activity rate for <strong>Machining</strong> (cost per machine-hour)?',
+      exp:sol([money(costM)+' ÷ '+nf(mh)+' machine-hours'],'Activity rate = '+money(m,2)+' per machine-hour')},
+    {kind:'num',fmt:'money',dec:2,ans:s,q:'What is the activity rate for <strong>Machine setups</strong> (cost per setup)?',
+      exp:sol([money(costS)+' ÷ '+nf(su)+' setups'],'Activity rate = '+money(s,2)+' per setup')},
+    {kind:'num',fmt:'money',dec:2,ans:dc,q:'What is the activity rate for <strong>Product design</strong> (cost per product)?',
+      exp:sol([money(costD)+' ÷ '+nf(np)+' products'],'Activity rate = '+money(dc,2)+' per product')},
+    {kind:'choice',q:'Which of these pools is a <strong>batch-level</strong> activity?',options:['Machining','Machine setups','Product design','General factory administration'],ans:'Machine setups',
+      exp:sol(['A setup is performed to run a batch of units, and the cost of the setup does not change with the number of units in the batch.'],'Machine setups is the batch-level pool. Machining is unit-level and Product design is product-level.')},
+    {kind:'choice',q:'Under activity-based costing, should the <strong>General factory administration</strong> cost be assigned to products?',options:['Yes. Allocate it on direct labor-hours so that every dollar of cost is covered.','No. It is organization-sustaining, so it is left out of product costs.'],
+      ans:'No. It is organization-sustaining, so it is left out of product costs.',
+      exp:sol(['Organization-sustaining costs are not caused by any product, batch, or customer. Forcing them onto products would distort product costs, so ABC leaves them out (along with the cost of idle capacity).'])}
+  ];
+  var ref='<ul><li>Activity rate = estimated overhead cost in the pool ÷ expected activity for the pool.</li><li>Organization-sustaining costs and the costs of idle capacity are not assigned to products.</li></ul>';
+  return {intro:intro,refresher:ref,steps:steps};
+}
+
+/* ---- 4. Plantwide overhead rate ---- */
+function gen4(R){
+  var co=R.pick(COMPANIES), pr=R.pick(PRODUCT_PAIRS);
+  var rate=R.stepv(40,80,2), dY=R.stepv(4000,9000,500), dZ=R.stepv(2000,5000,500);
+  var uY=R.stepv(10000,16000,1000), uZ=R.stepv(4000,8000,1000);
+  var tot=rate*(dY+dZ), oY=rate*dY, oZ=rate*dZ;
+  var intro='<p><strong>'+esc(co)+'</strong> makes two products. It uses a traditional <strong>plantwide overhead rate</strong> based on direct labor-hours to apply manufacturing overhead to products.</p>';
+  intro+='<p>Total estimated manufacturing overhead for the year is <strong>'+money(tot)+'</strong>.</p>';
+  intro+=tbl('Expected production',['','Direct labor-hours','Units produced'],[[esc(pr[0]),nf(dY),nf(uY)],[esc(pr[1]),nf(dZ),nf(uZ)]]);
+  var steps=[
+    {kind:'num',fmt:'money',dec:2,ans:rate,q:'What is the plantwide overhead rate per direct labor-hour?',
+      exp:sol(['Total direct labor-hours: '+nf(dY)+' + '+nf(dZ)+' = '+nf(dY+dZ),money(tot)+' ÷ '+nf(dY+dZ)+' DLHs'],'Plantwide rate = '+money(rate,2)+' per DLH')},
+    {kind:'num',fmt:'money',dec:0,ans:oY,q:'How much overhead is assigned to the <strong>'+esc(pr[0])+'</strong>?',
+      exp:sol([money(rate,2)+' per DLH × '+nf(dY)+' DLHs'],'Overhead assigned = '+money(oY))},
+    {kind:'num',fmt:'money',dec:0,ans:oZ,q:'How much overhead is assigned to the <strong>'+esc(pr[1])+'</strong>?',
+      exp:sol([money(rate,2)+' per DLH × '+nf(dZ)+' DLHs'],'Overhead assigned = '+money(oZ)+' (check: '+money(oY)+' + '+money(oZ)+' = '+money(tot)+')')},
+    {kind:'num',fmt:'money',dec:2,ans:oY/uY,q:'What is the overhead cost <strong>per unit</strong> of the '+esc(pr[0])+'?',
+      exp:sol([money(oY)+' ÷ '+nf(uY)+' units'],'Overhead per unit = '+money(oY/uY,2))},
+    {kind:'num',fmt:'money',dec:2,ans:oZ/uZ,q:'What is the overhead cost <strong>per unit</strong> of the '+esc(pr[1])+'?',
+      exp:sol([money(oZ)+' ÷ '+nf(uZ)+' units'],'Overhead per unit = '+money(oZ/uZ,2))}
+  ];
+  var ref='<ul><li>Plantwide rate = total estimated overhead ÷ total expected direct labor-hours.</li><li>Overhead assigned to a product = plantwide rate × the product’s direct labor-hours.</li><li>Overhead per unit = overhead assigned ÷ units produced.</li></ul>';
+  return {intro:intro,refresher:ref,steps:steps};
+}
+
+/* ---- 5. ABC overhead for a job ---- */
+function gen5(R){
+  var co=R.pick(COMPANIES), N=R.pick([20,30,40,50,60]);
+  var pr=R.pick(['custom cabinets','trail packs','porch rockers','camp stoves','canoe paddles']);
+  var rDLH=R.stepv(4,9,1), rMH=R.stepv(3,8,1), rSet=R.stepv(40,80,5), rOrd=R.stepv(70,120,5), rProd=R.stepv(600,1000,20);
+  var dlhPer=R.pick([1,1.5,2,2.5]), mhPer=R.pick([1,1.5,2,2.5]);
+  var DLH=N*dlhPer, MH=N*mhPer, SU=R.int(1,4), OR=R.int(1,3), PR=1;
+  var c=[rDLH*DLH, rMH*MH, rSet*SU, rOrd*OR, rProd*PR];
+  var total=c.reduce(function(s,x){return s+x;},0);
+  var intro='<p><strong>'+esc(co)+'</strong> uses activity-based costing to assign overhead. A customer has just ordered <strong>'+N+' '+esc(pr)+'</strong> as a special job. Here are the company’s activity rates and the activity that this job requires.</p>';
+  intro+=tbl('Activity rates and activity required by the job',['Activity cost pool','Activity rate','Activity required by this job'],[
+    ['Supporting direct labor',money(rRate(rDLH))+' per direct labor-hour',nf(DLH,dlhPer%1?1:0)+' direct labor-hours'],
+    ['Machine processing',money(rMH)+' per machine-hour',nf(MH,mhPer%1?1:0)+' machine-hours'],
+    ['Machine setups',money(rSet)+' per setup',nf(SU)+' '+(SU===1?'setup':'setups')],
+    ['Production orders',money(rOrd)+' per order',nf(OR)+' '+(OR===1?'order':'orders')],
+    ['Product sustaining',money(rProd)+' per product',nf(PR)+' product']]);
+  function rRate(x){return x;}
+  var names=['Supporting direct labor','Machine processing','Machine setups','Production orders','Product sustaining'];
+  var calc=[
+    money(rDLH)+' per DLH × '+nf(DLH,dlhPer%1?1:0)+' DLHs',
+    money(rMH)+' per MH × '+nf(MH,mhPer%1?1:0)+' MHs',
+    money(rSet)+' per setup × '+SU+' '+(SU===1?'setup':'setups'),
+    money(rOrd)+' per order × '+OR+' '+(OR===1?'order':'orders'),
+    money(rProd)+' per product × 1 product'];
+  var steps=names.map(function(n,i){
+    return {kind:'num',fmt:'money',dec:0,ans:c[i],q:'What ABC overhead cost is assigned to the job from the <strong>'+n+'</strong> pool?',
+      exp:sol([calc[i]],n+' cost = '+money(c[i]))};
+  });
+  steps.push({kind:'num',fmt:'money',dec:0,ans:total,q:'What is the <strong>total ABC overhead</strong> assigned to the job?',
+    exp:sol(c.map(function(x,i){return names[i]+': '+money(x);}),'Total overhead = '+money(total))});
+  steps.push({kind:'num',fmt:'money',dec:2,ans:total/N,q:'What is the overhead cost <strong>per unit</strong> for this job?',
+    exp:sol([money(total)+' ÷ '+N+' units'],'Overhead per unit = '+money(total/N,2))});
+  var ref='<ul><li>ABC cost for a pool = activity rate × amount of activity the job uses.</li><li>Total overhead = the sum of the ABC cost from every pool.</li><li>Overhead per unit = total overhead ÷ units in the job.</li></ul>';
+  return {intro:intro,refresher:ref,steps:steps};
+}
+
+/* ---- 6. Customer margin ---- */
+function gen6(R){
+  var cust=R.pick(CUSTOMERS), prod=R.pick(CUST_PRODUCTS), co=R.pick(COMPANIES);
+  var N=R.stepv(20,60,5), price=R.stepv(120,300,10);
+  var dm=Math.round(price*R.stepv(0.30,0.40,0.05)), dl=Math.round(price*R.stepv(0.12,0.20,0.04));
+  var dlhPer=R.pick([0.5,1,1.5,2]), rSup=R.stepv(10,30,2);
+  var O=R.pick([2,4,6,8]), rOrd=R.stepv(150,400,25), cs=R.stepv(1200,3000,100);
+  var sales=N*price, dmdl=N*(dm+dl), dlh=N*dlhPer, sup=dlh*rSup, ord=O*rOrd;
+  var margin=sales-dmdl-sup-ord-cs;
+  var intro='<p><strong>'+esc(co)+'</strong> sells to retailers and uses activity-based costing to measure <strong>customer margin</strong>. Last year <strong>'+esc(cust)+'</strong> bought '+N+' '+esc(prod)+' in '+O+' separate orders at $'+price+' per unit.</p>';
+  intro+=tbl('Costs and activity rates',['Item','Amount'],[
+    ['Direct materials per unit',money(dm)],
+    ['Direct labor per unit',money(dl)],
+    ['Direct labor-hours per unit',nf(dlhPer,dlhPer%1?1:0)+' DLH'],
+    ['Supporting direct labor overhead rate',money(rSup)+' per DLH'],
+    ['Order processing cost',money(rOrd)+' per order'],
+    ['Customer service cost',money(cs)+' per customer']]);
+  var more=R.pick([true,false]);
+  var newO=more?O*2:O/2;
+  var steps=[
+    {kind:'num',fmt:'money',dec:0,ans:sales,q:'What are the <strong>sales</strong> to '+esc(cust)+'?',
+      exp:sol([N+' units × $'+price+' per unit'],'Sales = '+money(sales))},
+    {kind:'num',fmt:'money',dec:0,ans:dmdl,q:'What is the total cost of <strong>direct materials and direct labor</strong> for these units?',
+      exp:sol(['Direct materials + direct labor per unit: '+money(dm)+' + '+money(dl)+' = '+money(dm+dl),N+' units × '+money(dm+dl)],'Direct materials and labor = '+money(dmdl))},
+    {kind:'num',fmt:'money',dec:0,ans:sup,q:'How much <strong>supporting direct labor overhead</strong> is assigned to the customer?',
+      exp:sol(['Direct labor-hours: '+N+' units × '+nf(dlhPer,dlhPer%1?1:0)+' DLH = '+nf(dlh,dlh%1?1:0)+' DLHs',nf(dlh,dlh%1?1:0)+' DLHs × '+money(rSup)+' per DLH'],'Supporting direct labor overhead = '+money(sup))},
+    {kind:'num',fmt:'money',dec:0,ans:ord,q:'How much <strong>order processing</strong> cost is assigned to the customer?',
+      exp:sol([O+' orders × '+money(rOrd)+' per order'],'Order processing cost = '+money(ord))},
+    {kind:'num',fmt:'money',dec:0,ans:margin,q:'What is the <strong>customer margin</strong> for '+esc(cust)+'? (Remember the customer service cost. Enter a loss as a negative number or in parentheses.)',
+      exp:sol(['Sales: '+money(sales),'Less direct materials and labor: '+money(dmdl),'Less supporting direct labor overhead: '+money(sup),'Less order processing: '+money(ord),'Less customer service: '+money(cs)],'Customer margin = '+money(margin)+(margin<0?' (a loss)':''))},
+    {kind:'choice',q:'Suppose '+esc(cust)+' buys the <em>same total units</em> but places <strong>'+newO+' orders</strong> instead of '+O+'. What happens to the customer margin?',options:['It increases','It decreases','It stays the same'],ans:more?'It decreases':'It increases',
+      exp:sol(['Order processing is incurred <em>per order</em>, so the number of orders changes the cost even though sales, materials, labor, and DLHs stay the same.',
+        'New order cost: '+newO+' × '+money(rOrd)+' = '+money(newO*rOrd)+' (was '+money(ord)+')'],
+        'Margin '+(more?'decreases':'increases')+' by '+money(Math.abs(newO*rOrd-ord))+' to '+money(margin+ord-newO*rOrd)+'.')}
+  ];
+  var ref='<ul><li>Customer margin = sales − all costs traced to the customer.</li><li>Costs include direct materials, direct labor, and the ABC overhead for supporting labor, orders, and customer service.</li><li>Order-related costs change with the <em>number of orders</em>, not the number of units.</li></ul>';
+  return {intro:intro,refresher:ref,steps:steps};
+}
+
+/* ---- 7. Traditional vs ABC product margin ---- */
+function gen7(R){
+  var co=R.pick(COMPANIES), pr=R.pick(PRODUCT_PAIRS), A=pr[0], B=pr[1];
+  var d=null;
+  for(var t=0;t<5000;t++){
+    var r=R.pick([1.5,2,2.5,3]);
+    var dlA=R.stepv(150000,300000,10000), dlB=R.stepv(60000,140000,10000);
+    var oh=Math.round(r*(dlA+dlB));
+    var m=R.stepv(1,2,0.1), mhA=R.stepv(60000,120000,5000), mhB=R.stepv(20000,60000,5000);
+    var s=R.stepv(300,500,20), shA=R.stepv(50,150,25), shB=R.stepv(150,300,25);
+    var c=R.stepv(40000,80000,5000);
+    var mach=Math.round(m*(mhA+mhB)), setup=s*(shA+shB), sus=2*c, other=oh-mach-setup-sus;
+    if(other<0.05*oh||other>0.4*oh) continue;
+    var dmA=rnd1000(dlA*R.stepv(1.5,2.5,0.25)), dmB=rnd1000(dlB*R.stepv(1.5,2.5,0.25));
+    var salesA=rnd1000((dmA+dlA+r*dlA)*(1+R.stepv(0.15,0.5,0.05)));
+    var salesB=rnd1000((dmB+dlB+r*dlB)*(1+R.stepv(0.15,0.5,0.05)));
+    d={r:r,dlA:dlA,dlB:dlB,oh:oh,m:m,mhA:mhA,mhB:mhB,s:s,shA:shA,shB:shB,c:c,mach:mach,setup:setup,sus:sus,other:other,dmA:dmA,dmB:dmB,salesA:salesA,salesB:salesB};
+    break;
+  }
+  if(!d) throw new Error('gen7 failed');
+  var tradA=d.salesA-d.dmA-d.dlA-d.r*d.dlA;
+  var abcOHA=d.m*d.mhA+d.s*d.shA+d.c;
+  var abcA=d.salesA-d.dmA-d.dlA-abcOHA;
+  var intro='<p><strong>'+esc(co)+'</strong> makes two products: the <strong>'+esc(A)+'</strong> and the <strong>'+esc(B)+'</strong>. The company has always applied manufacturing overhead using direct labor <em>dollars</em>. Management is considering activity-based costing and wants to see how product margins would change.</p>';
+  intro+=tbl('Product data',['',esc(A),esc(B),'Total'],[
+    ['Sales',money(d.salesA),money(d.salesB),money(d.salesA+d.salesB)],
+    ['Direct materials',money(d.dmA),money(d.dmB),money(d.dmA+d.dmB)],
+    ['Direct labor',money(d.dlA),money(d.dlB),money(d.dlA+d.dlB)],
+    ['Machine-hours',nf(d.mhA),nf(d.mhB),nf(d.mhA+d.mhB)],
+    ['Setup hours',nf(d.shA),nf(d.shB),nf(d.shA+d.shB)]]);
+  intro+=tbl('Manufacturing overhead cost pools',['Cost pool','Estimated cost','Measure of activity'],[
+    ['Machining',money(d.mach),'Machine-hours'],
+    ['Setups',money(d.setup),'Setup hours'],
+    ['Product sustaining',money(d.sus),'Products (2 products, equal cost each)'],
+    ['Other (organization-sustaining and idle capacity)',money(d.other),'Not assigned to products under ABC']]);
+  var steps=[
+    {kind:'num',fmt:'money',dec:2,ans:d.r,q:'Under the traditional system, what is the overhead rate <strong>per direct labor dollar</strong>? (Total overhead is the sum of all four pools.)',
+      exp:sol(['Total overhead: '+money(d.mach)+' + '+money(d.setup)+' + '+money(d.sus)+' + '+money(d.other)+' = '+money(d.oh),'Total direct labor: '+money(d.dlA)+' + '+money(d.dlB)+' = '+money(d.dlA+d.dlB),money(d.oh)+' ÷ '+money(d.dlA+d.dlB)],'Traditional rate = '+money(d.r,2)+' per direct labor dollar')},
+    {kind:'num',fmt:'money',dec:0,ans:tradA,q:'What is the <strong>traditional product margin</strong> of the '+esc(A)+'? (Margin = sales − direct materials − direct labor − applied overhead.)',
+      exp:sol(['Applied overhead: '+money(d.r,2)+' × '+money(d.dlA)+' = '+money(d.r*d.dlA),'Sales '+money(d.salesA)+' − materials '+money(d.dmA)+' − labor '+money(d.dlA)+' − overhead '+money(d.r*d.dlA)],'Traditional product margin = '+money(tradA))},
+    {kind:'num',fmt:'money',dec:2,ans:d.m,q:'Under ABC, what is the activity rate for <strong>Machining</strong> (per machine-hour)?',
+      exp:sol([money(d.mach)+' ÷ '+nf(d.mhA+d.mhB)+' machine-hours'],'Machining rate = '+money(d.m,2)+' per machine-hour')},
+    {kind:'num',fmt:'money',dec:2,ans:d.s,q:'Under ABC, what is the activity rate for <strong>Setups</strong> (per setup hour)?',
+      exp:sol([money(d.setup)+' ÷ '+nf(d.shA+d.shB)+' setup hours'],'Setup rate = '+money(d.s,2)+' per setup hour')},
+    {kind:'num',fmt:'money',dec:0,ans:abcOHA,q:'Under ABC, how much overhead is assigned to the <strong>'+esc(A)+'</strong>? (Machining + setups + product sustaining.)',
+      exp:sol(['Machining: '+money(d.m,2)+' × '+nf(d.mhA)+' MHs = '+money(d.m*d.mhA),'Setups: '+money(d.s,2)+' × '+nf(d.shA)+' setup hours = '+money(d.s*d.shA),'Product sustaining: '+money(d.sus)+' ÷ 2 products = '+money(d.c)],'Total ABC overhead = '+money(abcOHA)+'. The “Other” pool is not assigned.')},
+    {kind:'num',fmt:'money',dec:0,ans:abcA,q:'What is the <strong>ABC product margin</strong> of the '+esc(A)+'? (Enter a loss as a negative number or in parentheses.)',
+      exp:sol(['Sales '+money(d.salesA)+' − materials '+money(d.dmA)+' − labor '+money(d.dlA)+' − ABC overhead '+money(abcOHA)],'ABC product margin = '+money(abcA))},
+    {kind:'choice',q:'Compared with the traditional system, the ABC product margin of the '+esc(A)+' is…',options:['Higher','Lower','The same'],ans:abcA>tradA?'Higher':(abcA<tradA?'Lower':'The same'),
+      exp:sol(['Traditional margin: '+money(tradA),'ABC margin: '+money(abcA)],'The ABC margin is '+(abcA>tradA?'higher':'lower')+' by '+money(Math.abs(abcA-tradA))+'.')}
+  ];
+  var ref='<ul><li>Traditional rate = total overhead ÷ total direct labor dollars.</li><li>ABC activity rate = pool cost ÷ total activity for the pool.</li><li>Organization-sustaining costs and idle capacity are <em>not</em> assigned to products under ABC.</li><li>Product margin = sales − direct materials − direct labor − overhead assigned.</li></ul>';
+  return {intro:intro,refresher:ref,steps:steps};
+}
+
+/* ---- 8. Plantwide vs ABC comparison ---- */
+function gen8(R){
+  var co=R.pick(COMPANIES), pr=R.pick(PRODUCT_PAIRS), Y=pr[0], Z=pr[1];
+  var d=null, last=null;
+  for(var t=0;t<8000;t++){
+    var x={m:R.stepv(15,30,1),mhY:R.stepv(5000,9000,500),mhZ:R.stepv(2000,5000,500),
+      s:R.stepv(300,700,50),suY:R.stepv(30,80,10),suZ:R.stepv(100,200,10),
+      c:R.stepv(30000,60000,6000),g:R.stepv(15,30,1),dY:R.stepv(6000,10000,500),dZ:R.stepv(3000,6000,500)};
+    x.total=x.m*(x.mhY+x.mhZ)+x.s*(x.suY+x.suZ)+2*x.c+x.g*(x.dY+x.dZ);
+    x.rpw=x.total/(x.dY+x.dZ);
+    last=x;
+    if(Math.abs(x.rpw*100-Math.round(x.rpw*100))<1e-7){d=x;break;}
+  }
+  if(!d) d=last;
+  var pwY=d.rpw*d.dY;
+  var abcY=d.m*d.mhY+d.s*d.suY+d.c+d.g*d.dY;
+  var setPct=d.suY/(d.suY+d.suZ)*100;
+  var pwPct=d.dY/(d.dY+d.dZ)*100;
+  var intro='<p><strong>'+esc(co)+'</strong> makes the <strong>'+esc(Y)+'</strong> (high volume) and the <strong>'+esc(Z)+'</strong> (low volume). The company is comparing its traditional <strong>plantwide overhead rate</strong> (based on direct labor-hours) with an <strong>activity-based costing</strong> system.</p>';
+  intro+='<p>Total estimated manufacturing overhead is <strong>'+money(d.total)+'</strong>.</p>';
+  intro+=tbl('ABC activity rates and expected activity',['Activity cost pool (level)','Activity rate','Activity for '+esc(Y),'Activity for '+esc(Z)],[
+    ['Machining (unit-level)',money(d.m,2)+' per MH',nf(d.mhY)+' MH',nf(d.mhZ)+' MH'],
+    ['Machine setups (batch-level)',money(d.s,2)+' per setup',nf(d.suY)+' setups',nf(d.suZ)+' setups'],
+    ['Product design (product-level)',money(d.c,2)+' per product','1 product','1 product'],
+    ['General factory (unit-level, DLH)',money(d.g,2)+' per DLH',nf(d.dY)+' DLH',nf(d.dZ)+' DLH']]);
+  var diff=pwY-abcY;
+  var ans5=Math.abs(diff)<0.5?'About the same amount':(diff>0?'Too much overhead':'Too little overhead');
+  var steps=[
+    {kind:'num',fmt:'money',dec:2,ans:d.rpw,tol:0.02,q:'What is the <strong>plantwide overhead rate</strong> per direct labor-hour? (Use the expected DLHs in the table.)',
+      exp:sol(['Total DLHs: '+nf(d.dY)+' + '+nf(d.dZ)+' = '+nf(d.dY+d.dZ),money(d.total)+' ÷ '+nf(d.dY+d.dZ)+' DLHs'],'Plantwide rate = '+money(d.rpw,2)+' per DLH')},
+    {kind:'num',fmt:'money',dec:0,ans:pwY,tol:Math.max(1,0.02*d.dY),q:'Using the plantwide rate, how much overhead is assigned to the <strong>'+esc(Y)+'</strong>?',
+      exp:sol([money(d.rpw,2)+' per DLH × '+nf(d.dY)+' DLHs'],'Plantwide overhead assigned = '+money(pwY))},
+    {kind:'num',fmt:'money',dec:0,ans:abcY,q:'Using ABC, how much overhead is assigned to the <strong>'+esc(Y)+'</strong>? (Add the four pools.)',
+      exp:sol(['Machining: '+money(d.m,2)+' × '+nf(d.mhY)+' = '+money(d.m*d.mhY),'Machine setups: '+money(d.s,2)+' × '+nf(d.suY)+' = '+money(d.s*d.suY),'Product design: 1 product × '+money(d.c)+' = '+money(d.c),'General factory: '+money(d.g,2)+' × '+nf(d.dY)+' = '+money(d.g*d.dY)],'ABC overhead assigned = '+money(abcY))},
+    {kind:'num',fmt:'pct',dec:1,ans:setPct,q:'Under ABC, what <strong>percentage of the machine setup cost</strong> is assigned to the '+esc(Y)+'?',
+      exp:sol(['Setups: '+nf(d.suY)+' for '+esc(Y)+' and '+nf(d.suZ)+' for '+esc(Z),nf(d.suY)+' ÷ ('+nf(d.suY)+' + '+nf(d.suZ)+') = '+nf(setPct,1)+'%'],'The plantwide system effectively assigns every overhead pool using DLHs, so it gives the '+esc(Y)+' '+nf(pwPct,1)+'% of the setup cost. ABC gives it '+nf(setPct,1)+'%.')},
+    {kind:'choice',q:'Compared with ABC, the plantwide system assigns the '+esc(Y)+'…',options:['Too much overhead','Too little overhead','About the same amount'],ans:ans5,
+      exp:sol(['Plantwide: '+money(pwY),'ABC: '+money(abcY)],'The plantwide system assigns '+(diff>0?'more':'less')+' overhead to the '+esc(Y)+' than ABC does ('+money(Math.abs(diff))+' '+(diff>0?'too much':'too little')+'). The batch-level and product-level pools are not driven by volume, so a volume-based rate spreads them unfairly.')}
+  ];
+  var ref='<ul><li>Plantwide rate = total overhead ÷ total direct labor-hours.</li><li>ABC overhead for a product = sum of (activity rate × the product’s activity) for every pool.</li><li>A volume-based plantwide rate tends to over-cost high-volume products and under-cost low-volume ones when batch-level and product-level costs are large.</li></ul>';
+  return {intro:intro,refresher:ref,steps:steps};
+}
+
+var TYPES=[
+ {id:'levels',title:'Activity hierarchy',desc:'Classify activities as unit-level, batch-level, product-level, customer-level, or organization-sustaining.',ref:'Exercises 5-1, 5-6, 5-12',gen:gen1,name:'Classify activities in the activity hierarchy'},
+ {id:'alloc',title:'First-stage allocation',desc:'Spread resource costs across activity cost pools using consumption percentages.',ref:'Exercises 5-2, 5-7, 5-15',gen:gen2,name:'First-stage allocation to activity cost pools'},
+ {id:'rates',title:'Activity rates',desc:'Compute activity rates and decide which costs belong in product costs.',ref:'Exercises 5-3, 5-8, 5-13',gen:gen3,name:'Compute activity rates'},
+ {id:'plantwide',title:'Plantwide overhead rate',desc:'Apply overhead with a traditional plantwide rate based on direct labor-hours.',ref:'The Foundational 15 (parts 1–3)',gen:gen4,name:'Traditional plantwide overhead rate'},
+ {id:'job',title:'ABC overhead for a job',desc:'Use activity rates to assign overhead to a special order and find the cost per unit.',ref:'Exercises 5-4, 5-9, 5-13',gen:gen5,name:'Assign ABC overhead to a job'},
+ {id:'customer',title:'Customer margin',desc:'Trace sales, materials, labor, and ABC overhead to a customer and find its margin.',ref:'Exercises 5-5, 5-10, 5-11, 5-15',gen:gen6,name:'Customer margin analysis'},
+ {id:'margin',title:'Traditional vs. ABC product margins',desc:'Compute product margins both ways and see how the picture changes.',ref:'Problems 5-16, 5-17',gen:gen7,name:'Traditional versus ABC product margins'},
+ {id:'compare',title:'Plantwide vs. ABC comparison',desc:'Compare overhead assigned to a high-volume product under each system.',ref:'The Foundational 15 (parts 11–15)',gen:gen8,name:'Plantwide versus ABC overhead comparison'}
+];
+TYPES.forEach(function(t){t.n=t.gen(makeRng(1)).steps.length;});
+
+/* ================= answer checking ================= */
+function parse(s){
+  s=String(s).trim().replace(/[−–]/g,'-').replace(/[\$,\s%]/g,'');
+  var neg=false;
+  if(/^\(.*\)$/.test(s)){neg=true;s=s.slice(1,-1);}
+  if(!/^-?(\d+\.?\d*|\.\d+)$/.test(s)) return NaN;
+  var v=parseFloat(s);
+  return neg?-v:v;
+}
+function tolOf(s){return (s.tol!=null?s.tol:0.5*Math.pow(10,-(s.dec||0)))+1e-9;}
+function isRight(s,raw){
+  if(s.kind==='choice') return raw===s.ans;
+  var v=parse(raw);
+  return !isNaN(v)&&Math.abs(v-s.ans)<=tolOf(s);
+}
+function showAns(s){
+  if(s.kind==='choice') return s.ans;
+  if(s.fmt==='money') return money(s.ans,s.dec||0);
+  if(s.fmt==='pct') return nf(s.ans,s.dec==null?1:s.dec)+'%';
+  return nf(s.ans,s.dec||0);
+}
+function roundHint(s){
+  if(s.kind!=='num') return '';
+  if(s.fmt==='money') return s.dec===0?'Enter dollars rounded to the nearest whole dollar, for example 12,500.':'Enter dollars and cents, for example 12.50.';
+  if(s.fmt==='pct') return 'Enter a percentage rounded to one decimal place, for example 66.7.';
+  return 'Round to '+(s.dec||0)+' decimal places.';
+}
+
+// expose for testing
+window.ACCT252={TYPES:TYPES,makeRng:makeRng,isRight:isRight,showAns:showAns,parse:parse};
+
+/* ================= UI ================= */
+function $(s){return document.querySelector(s);}
+var S={t:null,seed:0,d:null,st:[],score:0};
+var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function buildMenu(){
+  var h='';
+  TYPES.forEach(function(t){
+    h+='<li><button type="button" data-type="'+t.id+'"><span class="t">'+esc(t.title)+'</span><span class="d">'+esc(t.desc)+'</span><span class="m">Based on '+esc(t.ref)+' · about '+t.n+' steps</span></button></li>';
+  });
+  $('#menu').innerHTML=h;
+}
+function announce(msg){var l=$('#live');l.textContent='';setTimeout(function(){l.textContent=msg;},50);}
+function plain(html){var d=document.createElement('div');d.innerHTML=html;return d.textContent.replace(/\s+/g,' ').trim();}
+
+function setHash(v){try{history.replaceState(null,'',v?('#'+v):location.pathname+location.search);}catch(e){}}
+
+function startProblem(id,seed){
+  var t=TYPES.filter(function(x){return x.id===id;})[0];
+  if(!t) return;
+  var sd=seed||(Math.floor(Math.random()*900000)+100000);
+  S.t=t;S.seed=sd;S.d=t.gen(makeRng(sd));S.score=0;
+  S.st=S.d.steps.map(function(){return {status:'pending',user:'',advanced:false,msg:''};});
+  $('#menu-view').hidden=true;$('#problem-view').hidden=false;
+  $('#prob-h').textContent=t.name;
+  $('#seed-badge').textContent='Problem #'+sd;
+  $('#scenario').innerHTML='<h3>The situation</h3>'+S.d.intro+'<details class="ref"><summary>Need a quick refresher?</summary>'+S.d.refresher+'</details>';
+  setHash(id+'-'+sd);
+  window.scrollTo(0,0);
+  renderSteps(true);
+  announce('New problem: '+t.name+'. '+S.d.steps.length+' steps.');
+  $('#prob-h').focus();
+}
+function showMenu(){
+  $('#problem-view').hidden=true;$('#menu-view').hidden=false;setHash('');
+  window.scrollTo(0,0);$('#main').focus();
+  announce('Back to the list of problem types.');
+}
+function curIndex(){
+  for(var i=0;i<S.st.length;i++){
+    var s=S.st[i];
+    if(!(s.status==='correct'||(s.status==='wrong'&&s.advanced))) return i;
+  }
+  return -1;
+}
+function stepHtml(i,active){
+  var s=S.d.steps[i],st=S.st[i];
+  var cls='card step '+(st.status==='correct'?'correct':st.status==='wrong'?'wrong':'active');
+  var h='<section class="'+cls+'" id="step-'+i+'" aria-labelledby="step-'+i+'-n">';
+  h+='<p class="num" id="step-'+i+'-n">Step '+(i+1)+' of '+S.d.steps.length+'</p>';
+  if(st.status==='pending'){
+    if(s.kind==='choice'){
+      h+='<form class="step-form" data-i="'+i+'" novalidate><fieldset><legend class="q">'+s.q+'</legend>';
+      s.options.forEach(function(o,k){
+        h+='<label class="opt"><input type="radio" name="opt-'+i+'" value="'+esc(o)+'"'+(k===0?' id="first-'+i+'"':'')+'><span>'+esc(o)+'</span></label>';
+      });
+      h+='</fieldset><p class="err" role="alert" data-err></p><button class="btn" type="submit">Check my answer</button></form>';
+    }else{
+      h+='<form class="step-form" data-i="'+i+'" novalidate><p class="q" id="q-'+i+'">'+s.q+'</p><p class="hint" id="h-'+i+'">'+roundHint(s)+'</p>';
+      h+='<div class="ansrow"><label for="in-'+i+'">Your answer</label><input type="text" id="in-'+i+'" inputmode="decimal" autocomplete="off" autocapitalize="off" spellcheck="false" aria-describedby="h-'+i+'">';
+      h+='<button class="btn" type="submit">Check my answer</button></div><p class="err" role="alert" data-err></p></form>';
+    }
+  }else{
+    h+='<p class="q">'+s.q+'</p>';
+    var mine=s.kind==='choice'?esc(st.user):esc(st.user);
+    if(st.status==='correct'){
+      h+='<div class="fb good"><strong class="lead">✔ '+esc(st.msg)+'</strong>Your answer: '+mine+'</div>';
+      h+='<details class="ref"><summary>See why this is right</summary>'+s.exp+'</details>';
+    }else{
+      h+='<div class="fb bad"><strong class="lead">✘ '+esc(st.msg)+'</strong>Your answer: '+mine+'<br>Correct answer: <strong>'+esc(showAns(s))+'</strong></div>';
+      h+=s.exp;
+      if(active) h+='<p><button type="button" class="btn" data-act="next" data-i="'+i+'">Continue to the next step</button></p>';
+    }
+  }
+  return h+'</section>';
+}
+function summaryHtml(){
+  var n=S.d.steps.length,sc=S.score;
+  var pct=sc/n;
+  var msg=pct===1?'A perfect run! You clearly understand this one.':pct>=0.7?'Nice work. You have a solid handle on this topic.':pct>=0.4?'Good progress. Review the solutions above and try a fresh problem to lock it in.':'Thanks for sticking with it. Read through the solutions above, then try a new problem. The numbers change every time, so you will get more practice.';
+  var rows=S.d.steps.map(function(s,i){
+    var ok=S.st[i].status==='correct';
+    return '<tr><th scope="row">Step '+(i+1)+'</th><td>'+esc(showAns(s))+'</td><td>'+(ok?'✔ Correct':'✘ Missed')+'</td></tr>';
+  }).join('');
+  var h='<section class="card summary" id="summary" aria-labelledby="sum-h"><h2 id="sum-h" tabindex="-1">You finished! Score: '+sc+' of '+n+'</h2><p>'+msg+'</p>';
+  h+='<div class="tablewrap"><table><caption>Answer summary</caption><thead><tr><th scope="col">Step</th><th scope="col">Correct answer</th><th scope="col">Your result</th></tr></thead><tbody>'+rows+'</tbody></table></div>';
+  h+='<p><button type="button" class="btn" data-act="again">Try a new problem of this type</button> <button type="button" class="btn secondary" data-act="menu">Choose a different problem type</button></p></section>';
+  return h;
+}
+function renderSteps(initial){
+  var cur=curIndex(),n=S.d.steps.length;
+  var upto=cur===-1?n:cur+1,h='';
+  for(var i=0;i<upto;i++) h+=stepHtml(i,i===cur);
+  if(cur===-1) h+=summaryHtml();
+  $('#steps').innerHTML=h;
+  var done=cur===-1?n:cur;
+  $('#prog').max=n;$('#prog').value=done;
+  $('#prog-left').textContent=cur===-1?'All '+n+' steps complete':'Step '+(cur+1)+' of '+n;
+  var answered=S.st.filter(function(x){return x.status!=='pending';}).length;
+  $('#prog-right').textContent=S.score+' correct out of '+answered+' answered';
+  if(initial) return;
+}
+function focusActive(){
+  var cur=curIndex(),el;
+  if(cur===-1){el=$('#sum-h');}
+  else if(S.st[cur].status==='wrong'){el=$('#steps [data-act=next]');}
+  else{el=$('#in-'+cur)||$('#first-'+cur);}
+  if(el){el.focus({preventScroll:true});var card=el.closest('section')||el;card.scrollIntoView({block:'start',behavior:reduce?'auto':'smooth'});}
+}
+function submitStep(i,raw){
+  var s=S.d.steps[i],st=S.st[i];
+  var ok=isRight(s,raw);
+  st.user=s.kind==='choice'?raw:raw.trim();
+  if(ok){S.score++;st.status='correct';st.msg=PRAISE[Math.floor(Math.random()*PRAISE.length)];}
+  else{st.status='wrong';st.msg=MISS[Math.floor(Math.random()*MISS.length)];}
+  renderSteps();
+  var cur=curIndex();
+  if(ok){
+    var nextTxt=cur===-1?'You finished the problem. Your score is '+S.score+' of '+S.d.steps.length+'.':'Next, step '+(cur+1)+'. '+plain(S.d.steps[cur].q);
+    announce(st.msg+' '+nextTxt);
+  }else{
+    announce(st.msg+' The correct answer is '+showAns(s)+'. '+plain(s.exp)+' Activate the continue button for the next step.');
+  }
+  focusActive();
+}
+
+document.addEventListener('submit',function(e){
+  var f=e.target.closest('.step-form');if(!f)return;
+  e.preventDefault();
+  var i=+f.getAttribute('data-i'),s=S.d.steps[i],err=f.querySelector('[data-err]'),raw;
+  if(s.kind==='choice'){
+    var c=f.querySelector('input[type=radio]:checked');
+    if(!c){err.textContent='Please choose one of the options first.';return;}
+    raw=c.value;
+  }else{
+    raw=f.querySelector('input[type=text]').value;
+    if(!raw.trim()){err.textContent='Please type your answer first.';return;}
+    if(isNaN(parse(raw))){err.textContent='Please enter a number, such as 12,500 or 66.7. A minus sign or parentheses mean a negative number.';return;}
+  }
+  submitStep(i,raw);
+});
+document.addEventListener('click',function(e){
+  var b=e.target.closest('button');if(!b)return;
+  if(b.hasAttribute('data-type')){startProblem(b.getAttribute('data-type'));return;}
+  var act=b.getAttribute('data-act');
+  if(act==='next'){
+    S.st[+b.getAttribute('data-i')].advanced=true;renderSteps();
+    var cur=curIndex();
+    announce(cur===-1?'You finished the problem. Your score is '+S.score+' of '+S.d.steps.length+'.':'Step '+(cur+1)+'. '+plain(S.d.steps[cur].q));
+    focusActive();
+  }
+  else if(act==='again'){startProblem(S.t.id);}
+  else if(act==='menu'){showMenu();}
+});
+$('#back-btn').addEventListener('click',showMenu);
+document.addEventListener('change',function(e){var c=e.target; if(c.matches&&c.matches('.opt input')){var f=c.closest('form');var er=f&&f.querySelector('[data-err]');if(er)er.textContent='';}});
+document.addEventListener('input',function(e){var f=e.target.closest&&e.target.closest('.step-form');var er=f&&f.querySelector('[data-err]');if(er)er.textContent='';});
+
+buildMenu();
+var m=/^#([a-z]+)-(\d+)$/.exec(location.hash);
+if(m&&TYPES.some(function(t){return t.id===m[1];})) startProblem(m[1],+m[2]);
+})();
+</script>
+</body>
+</html>
