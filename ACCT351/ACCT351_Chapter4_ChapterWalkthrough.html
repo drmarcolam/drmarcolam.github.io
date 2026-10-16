@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ACCT 351 Chapter 4 Chapter Walkthrough</title>
+<meta name="description" content="Chapter 4 Chapter Walkthrough: step-by-step guided practice on the income statement, comprehensive income, and the statement of cash flows for Intermediate Accounting I.">
+<style>
+:root{
+  --bg:#f4f8f5; --card:#ffffff; --text:#14201a; --muted:#41524a;
+  --g900:#0b3b2a; --g800:#14513a; --g700:#1b6a4a; --g100:#e3f0e8; --g50:#f0f7f3;
+  --border:#b4cdbf; --accent:#8a5a00; --ok:#0d6137; --bad:#9b2415; --focus:#0a4fd1;
+  --warn-bg:#fff6df;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0e1814; --card:#15231d; --text:#e9f3ee; --muted:#b5c9bf;
+    --g900:#0a2e21; --g800:#1d6a49; --g700:#58c08f; --g100:#1b3328; --g50:#122019;
+    --border:#34503f; --accent:#f0c36a; --ok:#6fdca3; --bad:#ff9f8f; --focus:#8db4ff;
+    --warn-bg:#2b2410;
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font:17px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+.skip{position:absolute;left:-999px;top:0;background:#fff;color:#000;padding:.6rem 1rem;z-index:100;border:2px solid var(--focus)}
+.skip:focus{left:8px;top:8px}
+a{color:var(--g800)}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+header.site{background:var(--g900);color:#fff;padding:2rem 1rem 1.5rem}
+.wrap{max-width:820px;margin:0 auto;padding:0 1rem}
+header.site .wrap{padding:0}
+.eyebrow{font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:#bfe3cf;margin:0 0 .25rem}
+h1{font-size:2rem;line-height:1.2;margin:.1rem 0 .5rem}
+header.site p{margin:.25rem 0}
+.progress{display:inline-block;margin-top:.75rem;background:#fff;color:var(--g900);font-weight:700;padding:.35rem .8rem;border-radius:999px}
+.howto{background:var(--g100);border-left:6px solid var(--g700);padding:.9rem 1.1rem;border-radius:6px;margin:1.25rem 0}
+nav.toc{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:.8rem 1.1rem;margin:1rem 0}
+nav.toc h2{font-size:1rem;margin:0 0 .3rem}
+nav.toc ol{margin:0;padding-left:1.2rem}
+section.topic{margin:2.2rem 0}
+section.topic>h2{font-size:1.55rem;color:var(--g800);border-bottom:3px solid var(--g700);padding-bottom:.3rem;margin-bottom:.8rem}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) section.topic>h2{color:var(--g700)}}
+h3{font-size:1.15rem;margin:1.2rem 0 .4rem}
+.keyterms{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:.4rem 1.1rem .6rem;margin:1rem 0}
+.keyterms ul,.keyterms ol{margin:.4rem 0;padding-left:1.3rem}
+.keyterms li{margin:.3rem 0}
+.example{background:var(--card);border:1px solid var(--border);border-top:6px solid var(--g700);border-radius:8px;padding:1rem 1.2rem 1.2rem;margin:1.5rem 0}
+.example h3{margin-top:0;color:var(--g800)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .example h3{color:var(--g700)}}
+.scenario{background:var(--g50);border-radius:6px;padding:.6rem .9rem;margin:.6rem 0}
+details.hint{margin:.6rem 0}
+details.hint summary{cursor:pointer;font-weight:600;color:var(--g800);padding:.2rem 0}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) details.hint summary{color:var(--g700)}}
+details.hint div{border-left:4px solid var(--accent);padding:.3rem .9rem;margin:.4rem 0;background:var(--warn-bg)}
+.q{margin:.9rem 0}
+.q>label,.q>.lbl{display:block;font-weight:600;margin-bottom:.25rem}
+.field{display:inline-flex;align-items:center;gap:.3rem}
+.field .pre,.field .suf{font-weight:700}
+input[type=text],select{font:inherit;color:var(--text);background:var(--card);border:2px solid var(--muted);border-radius:6px;padding:.4rem .6rem;min-height:2.6rem}
+input[type=text]{width:12rem;text-align:right}
+select{max-width:100%}
+input[aria-invalid=true],select[aria-invalid=true]{border-color:var(--bad)}
+input.ok,select.ok{border-color:var(--ok)}
+.fb{display:block;margin-top:.25rem;font-weight:600;min-height:0}
+.fb.ok{color:var(--ok)} .fb.bad{color:var(--bad)}
+.btnrow{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1rem;align-items:center}
+button{font:inherit;font-weight:700;cursor:pointer;border-radius:6px;padding:.55rem 1.1rem;min-height:2.75rem;border:2px solid var(--g800)}
+button.check{background:var(--g800);color:#fff}
+button.check:hover{background:var(--g900)}
+button.reset{background:transparent;color:var(--g800)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) button.check{background:#e9f3ee;color:#0a2e21;border-color:#e9f3ee} :root:not([data-theme="light"]) button.reset{color:var(--g700);border-color:var(--g700)}}
+.result{font-weight:700}
+.solution{margin-top:1rem;border:2px solid var(--g700);border-radius:8px;padding:.3rem 1rem .8rem;background:var(--g50)}
+.solution h4{margin:.6rem 0 .3rem;color:var(--g800)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .solution h4{color:var(--g700)}}
+table{border-collapse:collapse;width:100%;margin:.7rem 0;font-size:.98rem}
+caption{text-align:left;font-weight:700;padding:.2rem 0 .4rem}
+th,td{border:1px solid var(--border);padding:.4rem .6rem;text-align:left;vertical-align:top}
+thead th{background:var(--g800);color:#fff}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+tr.tot td{font-weight:700;border-top:3px double var(--text)}
+.tablewrap{overflow-x:auto;position:relative}
+table.je td,table.je th,table.jet td,table.jet th{vertical-align:middle}
+table.je select{width:100%;min-width:13rem}
+table.je input{width:8.5rem}
+.rowfb{font-weight:600;white-space:nowrap}
+.formula{background:var(--g100);padding:.5rem .9rem;border-radius:6px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.95rem;overflow-x:auto}
+footer.site{border-top:1px solid var(--border);margin-top:3rem;padding:1.2rem 1rem 2.5rem;color:var(--muted);font-size:.9rem;text-align:center}
+@media print{.skip,.btnrow,nav.toc{display:none} body{background:#fff;color:#000} .example{break-inside:avoid} .solution[hidden]{display:none}}
+
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="site">
+<div class="wrap">
+<p class="eyebrow">ACCT 351 · Intermediate Accounting I</p>
+<h1>Chapter 4 Chapter Walkthrough</h1>
+<p>The Income Statement and Statement of Cash Flows: step-by-step guided practice</p>
+<p class="progress" role="status" aria-live="polite"><span id="count">0</span> of <span id="total">12</span> checked</p>
+</div>
+</header>
+<main id="main" class="wrap">
+<div class="howto"><p><strong>How this works.</strong> This page is for practice only: it is not graded and nothing is submitted. Read each short review, try the example, and use <em>Check my answer</em> to see feedback and a worked solution. Numbers can be typed with or without dollar signs and commas. <em>Need a hint?</em> opens a nudge without giving the answer away. Company names are fictional.</p></div>
+<nav class="toc" aria-label="On this page"><h2>On this page</h2><ol><li><a href="#s1">The income statement and earnings quality</a></li><li><a href="#s2">Discontinued operations, accounting changes, EPS, and comprehensive income</a></li><li><a href="#s3">The statement of cash flows</a></li><li><a href="#s4">Profitability analysis and IFRS</a></li><li><a href="#wrap">Wrap-up</a></li></ol></nav>
+<section class="topic" id="s1" aria-labelledby="s1h">
+<h2 id="s1h">The income statement and earnings quality</h2>
+<p>Income from continuing operations summarizes recurring, persistent performance. Format and classification help users assess earnings quality.</p>
+<div class="keyterms"><ul>
+<li>The <strong>income statement</strong> reports performance for a period. <strong>Income from continuing operations</strong> is the best base for predicting future results.</li>
+<li><strong>Single-step:</strong> total revenues and gains − total expenses and losses. <strong>Multiple-step:</strong> reports gross profit, operating income, then nonoperating items.</li>
+<li>Multiple-step layout: Net sales − Cost of goods sold = <strong>Gross profit</strong>. Gross profit − Operating expenses (selling, G&amp;A) = <strong>Operating income</strong>. ± Other income and expense (interest, gains and losses) = Income before taxes. − Income tax expense = <strong>Income from continuing operations</strong>.</li>
+<li><strong>Earnings quality</strong> is the ability of reported income to predict future results. Earnings management (income smoothing, &ldquo;big bath&rdquo; write-offs, aggressive revenue recognition, classifying operating expenses as nonoperating) reduces quality. <strong>Non-GAAP (pro forma) earnings</strong> exclude items; they must be reconciled to GAAP.</li>
+</ul></div>
+<article class="example" id="ex1" aria-labelledby="ex1h">
+<h3 id="ex1h">Example 1 — Multiple-step income statement</h3>
+<div class="scenario">Smoky Ridge Cabinets reports for <span data-yr="0"></span>: net sales $900,000; cost of goods sold $540,000; selling expenses $110,000; general and administrative expenses $90,000; interest expense $20,000; gain on sale of equipment $8,000. The income tax rate is 25%.</div>
+<details class="hint"><summary>Need a hint?</summary><div>Work down the statement: gross profit, operating income, income before tax, then tax.</div></details>
+<div class="q"><label for="f1">Gross profit</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f1" inputmode="decimal" autocomplete="off" data-answer="360000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f2">Operating income</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f2" inputmode="decimal" autocomplete="off" data-answer="160000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f3">Income before income taxes</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f3" inputmode="decimal" autocomplete="off" data-answer="148000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f4">Income tax expense</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f4" inputmode="decimal" autocomplete="off" data-answer="37000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f5">Income from continuing operations (net income)</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f5" inputmode="decimal" autocomplete="off" data-answer="111000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><p>Gross profit = $900,000 − $540,000 = <strong>$360,000</strong>.</p><p>Operating income = $360,000 − $110,000 − $90,000 = <strong>$160,000</strong>.</p><p>Income before taxes = $160,000 − $20,000 interest + $8,000 gain = <strong>$148,000</strong>.</p><p>Tax = $148,000 × 25% = <strong>$37,000</strong>. Net income = $148,000 − $37,000 = <strong>$111,000</strong>.</p></div>
+</article><article class="example" id="ex2" aria-labelledby="ex2h">
+<h3 id="ex2h">Example 2 — Operating or nonoperating?</h3>
+<div class="scenario">Classify each item for a manufacturer.</div>
+<details class="hint"><summary>Need a hint?</summary><div>Operating items arise from the company&rsquo;s central, recurring activities. Interest, investment gains, and gains and losses from selling operating assets are nonoperating (other income and expense).</div></details>
+<div class="q"><label for="f6">a. Sales of the company&rsquo;s products</label><select id="f6" data-answer="Operating"><option value="">Choose…</option><option>Operating</option><option>Nonoperating</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f7">b. Salaries of the sales staff</label><select id="f7" data-answer="Operating"><option value="">Choose…</option><option>Operating</option><option>Nonoperating</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f8">c. Interest expense on bonds payable</label><select id="f8" data-answer="Nonoperating"><option value="">Choose…</option><option>Operating</option><option>Nonoperating</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f9">d. Gain on the sale of a delivery truck</label><select id="f9" data-answer="Nonoperating"><option value="">Choose…</option><option>Operating</option><option>Nonoperating</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f10">e. Interest revenue from a note receivable</label><select id="f10" data-answer="Nonoperating"><option value="">Choose…</option><option>Operating</option><option>Nonoperating</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f11">f. Depreciation on the factory</label><select id="f11" data-answer="Operating"><option value="">Choose…</option><option>Operating</option><option>Nonoperating</option></select><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><ul><li><strong>a, b, f. Operating.</strong></li><li><strong>c, d, e. Nonoperating.</strong> They do not arise from the company&rsquo;s principal activities.</li></ul></div>
+</article><article class="example" id="ex3" aria-labelledby="ex3h">
+<h3 id="ex3h">Example 3 — Earnings quality and management practices</h3>
+<div class="scenario">Evaluate each practice.</div>
+<details class="hint"><summary>Need a hint?</summary><div>Earnings quality is about how well current income predicts future income. Practices that shift or smooth income reduce it.</div></details>
+<div class="q"><label for="f12">a. Recording revenue before delivery to boost the quarter&rsquo;s sales</label><select id="f12" data-answer="Lower earnings quality"><option value="">Choose…</option><option>Higher earnings quality</option><option>Lower earnings quality</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f13">b. Recording a large restructuring charge in a bad year to reduce future expenses (&ldquo;big bath&rdquo;)</label><select id="f13" data-answer="Lower earnings quality"><option value="">Choose…</option><option>Higher earnings quality</option><option>Lower earnings quality</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f14">c. Income that comes mostly from recurring operating activities</label><select id="f14" data-answer="Higher earnings quality"><option value="">Choose…</option><option>Higher earnings quality</option><option>Lower earnings quality</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f15">d. Reporting a large nonrecurring gain in operating income</label><select id="f15" data-answer="Lower earnings quality"><option value="">Choose…</option><option>Higher earnings quality</option><option>Lower earnings quality</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f16">e. A non-GAAP measure must be</label><select id="f16" data-answer="Reconciled to GAAP net income"><option value="">Choose…</option><option>Reconciled to GAAP net income</option><option>Shown instead of GAAP net income</option><option>Audited by the SEC</option></select><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><ul><li><strong>a. Lower.</strong> Aggressive revenue recognition.</li><li><strong>b. Lower.</strong> The big bath shifts expenses between periods.</li><li><strong>c. Higher.</strong> Recurring income is more predictable.</li><li><strong>d. Lower.</strong> Nonrecurring items should not inflate operating income.</li><li><strong>e.</strong> Public companies must reconcile non-GAAP measures to the comparable GAAP measure.</li></ul></div>
+</article>
+</section><section class="topic" id="s2" aria-labelledby="s2h">
+<h2 id="s2h">Discontinued operations, accounting changes, EPS, and comprehensive income</h2>
+<p>Items below continuing operations, accounting changes, per-share data, and OCI complete the picture of performance.</p>
+<div class="keyterms"><ul>
+<li><strong>Discontinued operations:</strong> a component (or group of components) disposed of or held for sale that represents a <strong>strategic shift</strong> with a major effect on operations and financial results. Report separately, <strong>net of tax</strong>, after income from continuing operations: gain or loss from operations plus gain or loss on disposal.</li>
+<li><strong>Held for sale:</strong> write down to fair value less cost to sell if lower; stop depreciating.</li>
+<li><strong>Change in accounting principle:</strong> retrospective application (restate prior statements; adjust beginning retained earnings). <strong>Change in estimate:</strong> prospective. <strong>Error correction:</strong> restate prior periods as a prior period adjustment.</li>
+<li><strong>EPS</strong> = (net income − preferred dividends) ÷ weighted-average common shares. Report EPS for continuing operations, discontinued operations, and net income.</li>
+<li><strong>Comprehensive income</strong> = net income + <strong>other comprehensive income (OCI)</strong>. OCI includes unrealized gains and losses on certain investments, foreign currency translation, and pension adjustments. Accumulated OCI is reported in equity.</li>
+</ul></div>
+<article class="example" id="ex4" aria-labelledby="ex4h">
+<h3 id="ex4h">Example 4 — Discontinued operations</h3>
+<div class="scenario">During <span data-yr="0"></span>, Cullowhee Corp. (tax rate 25%) decides to sell its entire flooring division, a strategic shift. The division&rsquo;s operating loss for the year was $120,000 before tax. On December 31 the division&rsquo;s net assets (carrying amount) were $900,000, and its fair value less cost to sell was $780,000. Income from continuing operations before tax was $600,000 (tax $150,000).</div>
+<details class="hint"><summary>Need a hint?</summary><div>Report the discontinued operations net of tax. The write-down to fair value less cost to sell is a loss from the disposal group.</div></details>
+<div class="q"><label for="f17">Pre-tax loss on write-down to fair value less cost to sell</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f17" inputmode="decimal" autocomplete="off" data-answer="120000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f18">Total discontinued operations loss, net of tax</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f18" inputmode="decimal" autocomplete="off" data-answer="180000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f19">Income from continuing operations</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f19" inputmode="decimal" autocomplete="off" data-answer="450000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f20">Net income</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f20" inputmode="decimal" autocomplete="off" data-answer="270000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><p>Write-down: $900,000 − $780,000 = <strong>$120,000</strong>.</p><p>Pre-tax discontinued loss: $120,000 (operations) + $120,000 (write-down) = $240,000. Tax benefit at 25% = $60,000. Net-of-tax loss = <strong>$180,000</strong>.</p><p>Income from continuing operations: $600,000 − $150,000 = <strong>$450,000</strong>. Net income = $450,000 − $180,000 = <strong>$270,000</strong>.</p></div>
+</article><article class="example" id="ex5" aria-labelledby="ex5h">
+<h3 id="ex5h">Example 5 — Accounting changes and errors</h3>
+<div class="scenario">Identify each situation and how it is reported.</div>
+<details class="hint"><summary>Need a hint?</summary><div>A change in estimate is prospective. A change in principle is retrospective. An error means the prior statements were wrong.</div></details>
+<div class="q"><label for="f21">a. A company changes from FIFO to average cost</label><select id="f21" data-answer="Change in accounting principle"><option value="">Choose…</option><option>Change in accounting principle</option><option>Change in estimate</option><option>Correction of an error</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f22">b. A company revises the useful life of equipment from 10 to 7 years based on new information</label><select id="f22" data-answer="Change in estimate"><option value="">Choose…</option><option>Change in accounting principle</option><option>Change in estimate</option><option>Correction of an error</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f23">c. A company discovers it failed to record depreciation on a building in the prior year</label><select id="f23" data-answer="Correction of an error"><option value="">Choose…</option><option>Change in accounting principle</option><option>Change in estimate</option><option>Correction of an error</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f24">d. Reporting treatment for (a)</label><select id="f24" data-answer="Retrospective application"><option value="">Choose…</option><option>Retrospective application</option><option>Prospective only</option><option>Restate prior periods (prior period adjustment)</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f25">e. Reporting treatment for (b)</label><select id="f25" data-answer="Prospective only"><option value="">Choose…</option><option>Retrospective application</option><option>Prospective only</option><option>Restate prior periods (prior period adjustment)</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f26">f. Reporting treatment for (c)</label><select id="f26" data-answer="Restate prior periods (prior period adjustment)"><option value="">Choose…</option><option>Retrospective application</option><option>Prospective only</option><option>Restate prior periods (prior period adjustment)</option></select><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><ul><li><strong>a.</strong> Change in accounting principle &rarr; <strong>retrospective</strong> application.</li><li><strong>b.</strong> Change in estimate &rarr; <strong>prospective</strong> (current and future periods).</li><li><strong>c.</strong> Error &rarr; <strong>restate</strong> prior statements and report a prior period adjustment to beginning retained earnings.</li></ul></div>
+</article><article class="example" id="ex6" aria-labelledby="ex6h">
+<h3 id="ex6h">Example 6 — Earnings per share</h3>
+<div class="scenario">Hendersonville Bakery reports net income of <strong>$510,000</strong> for <span data-yr="0"></span>. It has 6% cumulative preferred stock with a total par of $1,000,000 (dividends declared). Common shares outstanding: 200,000 at the start of the year; on <strong>April 1</strong> it issued 60,000 additional shares.</div>
+<details class="hint"><summary>Need a hint?</summary><div>Preferred dividends = $1,000,000 × 6%. Weighted-average shares: 200,000 for 12 months + 60,000 for 9 months.</div></details>
+<div class="q"><label for="f27">Income available to common shareholders</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f27" inputmode="decimal" autocomplete="off" data-answer="450000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f28">Weighted-average common shares outstanding</label><div class="field"><input type="text" id="f28" inputmode="decimal" autocomplete="off" data-answer="245000" data-unit="" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f29">Earnings per share</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f29" inputmode="decimal" autocomplete="off" data-answer="1.84" data-unit="$" data-tol="0.01"></div><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><p>Income available to common: $510,000 − ($1,000,000 × 6% = $60,000) = <strong>$450,000</strong>.</p><p>Weighted-average shares: 200,000 + 60,000 × 9/12 = 200,000 + 45,000 = <strong>245,000</strong>.</p><p>EPS = $450,000 ÷ 245,000 = <strong>$1.84</strong>.</p></div>
+</article><article class="example" id="ex7" aria-labelledby="ex7h">
+<h3 id="ex7h">Example 7 — Comprehensive income</h3>
+<div class="scenario">Franklin Fabrication reports net income of $240,000. During the year, it also had: unrealized gain on debt investments (available for sale) of $30,000 (net of tax); foreign currency translation loss of $12,000 (net of tax); and a pension adjustment loss of $8,000 (net of tax). Accumulated OCI at the beginning of the year was a credit balance of $50,000.</div>
+<details class="hint"><summary>Need a hint?</summary><div>OCI is the sum of the other comprehensive items (gains positive, losses negative). Comprehensive income = net income + OCI.</div></details>
+<div class="q"><label for="f30">Other comprehensive income</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f30" inputmode="decimal" autocomplete="off" data-answer="10000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f31">Comprehensive income</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f31" inputmode="decimal" autocomplete="off" data-answer="250000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f32">Ending accumulated other comprehensive income</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f32" inputmode="decimal" autocomplete="off" data-answer="60000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f33">Where is accumulated OCI reported?</label><select id="f33" data-answer="In shareholders’ equity"><option value="">Choose…</option><option>In shareholders’ equity</option><option>In current liabilities</option><option>In operating income</option></select><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><p>OCI: $30,000 − $12,000 − $8,000 = <strong>$10,000</strong>. Comprehensive income: $240,000 + $10,000 = <strong>$250,000</strong>.</p><p>Ending AOCI: $50,000 + $10,000 = <strong>$60,000</strong>, reported in shareholders&rsquo; equity.</p></div>
+</article>
+</section><section class="topic" id="s3" aria-labelledby="s3h">
+<h2 id="s3h">The statement of cash flows</h2>
+<p>The statement of cash flows explains the change in cash by category and complements the accrual-based income statement.</p>
+<div class="keyterms"><ul>
+<li>The <strong>statement of cash flows</strong> reports cash receipts and payments in three categories: <strong>operating</strong>, <strong>investing</strong>, and <strong>financing</strong>. It helps assess the ability to generate future cash flows and pay obligations.</li>
+<li><strong>Operating:</strong> cash from customers, payments to suppliers and employees, interest and taxes. <strong>Investing:</strong> purchase and sale of long-term assets and investments, lending. <strong>Financing:</strong> issuing and repaying debt and stock, paying dividends.</li>
+<li><strong>Indirect method</strong> starts with net income: + depreciation and other noncash expenses, + decreases (− increases) in operating assets, + increases (− decreases) in operating liabilities, ± losses (gains) on investing/financing items.</li>
+<li><strong>Noncash investing and financing activities</strong> (for example, acquiring land by issuing a note) are disclosed separately.</li>
+<li>Under U.S. GAAP, interest paid and received and taxes are operating. Under IFRS, interest and dividends paid can be operating or financing.</li>
+</ul></div>
+<article class="example" id="ex8" aria-labelledby="ex8h">
+<h3 id="ex8h">Example 8 — Classifying cash flows</h3>
+<div class="scenario">Classify each transaction on the statement of cash flows (U.S. GAAP).</div>
+<details class="hint"><summary>Need a hint?</summary><div>Operating covers day-to-day activities. Investing: long-term assets. Financing: debt, equity, and dividends.</div></details>
+<div class="q"><label for="f34">a. Cash collected from customers</label><select id="f34" data-answer="Operating"><option value="">Choose…</option><option>Operating</option><option>Investing</option><option>Financing</option><option>Noncash (disclosure only)</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f35">b. Purchase of equipment for cash</label><select id="f35" data-answer="Investing"><option value="">Choose…</option><option>Operating</option><option>Investing</option><option>Financing</option><option>Noncash (disclosure only)</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f36">c. Proceeds from issuing bonds payable</label><select id="f36" data-answer="Financing"><option value="">Choose…</option><option>Operating</option><option>Investing</option><option>Financing</option><option>Noncash (disclosure only)</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f37">d. Payment of cash dividends</label><select id="f37" data-answer="Financing"><option value="">Choose…</option><option>Operating</option><option>Investing</option><option>Financing</option><option>Noncash (disclosure only)</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f38">e. Payment of interest on a loan</label><select id="f38" data-answer="Operating"><option value="">Choose…</option><option>Operating</option><option>Investing</option><option>Financing</option><option>Noncash (disclosure only)</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f39">f. Proceeds from selling a long-term investment</label><select id="f39" data-answer="Investing"><option value="">Choose…</option><option>Operating</option><option>Investing</option><option>Financing</option><option>Noncash (disclosure only)</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f40">g. Acquisition of land by issuing a note payable to the seller</label><select id="f40" data-answer="Noncash (disclosure only)"><option value="">Choose…</option><option>Operating</option><option>Investing</option><option>Financing</option><option>Noncash (disclosure only)</option></select><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><ul><li><strong>a. Operating.</strong></li><li><strong>b. Investing.</strong></li><li><strong>c. Financing.</strong></li><li><strong>d. Financing.</strong></li><li><strong>e. Operating</strong> (U.S. GAAP).</li><li><strong>f. Investing.</strong></li><li><strong>g. Noncash</strong> investing and financing activity, disclosed separately.</li></ul></div>
+</article><article class="example" id="ex9" aria-labelledby="ex9h">
+<h3 id="ex9h">Example 9 — Operating cash flow, indirect method</h3>
+<div class="scenario">Waynesville Landscaping reports net income of <strong>$85,000</strong> for <span data-yr="0"></span>. Other data: depreciation expense $14,000; loss on sale of equipment $3,000; accounts receivable increased $9,000; inventory decreased $6,000; accounts payable increased $5,000; salaries payable decreased $2,000.</div>
+<details class="hint"><summary>Need a hint?</summary><div>Add back noncash expenses and losses. Subtract increases in operating assets and decreases in operating liabilities.</div></details>
+<div class="q"><label for="f41">Net cash flow from operating activities</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f41" inputmode="decimal" autocomplete="off" data-answer="102000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f42">The loss on sale of equipment is</label><select id="f42" data-answer="Added back (nonoperating loss)"><option value="">Choose…</option><option>Added back (nonoperating loss)</option><option>Subtracted</option><option>Ignored</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f43">An increase in accounts receivable is</label><select id="f43" data-answer="Subtracted"><option value="">Choose…</option><option>Added</option><option>Subtracted</option></select><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><div class="tablewrap"><table><caption>Operating activities (indirect method)</caption><thead><tr><th scope="col"></th><th scope="col" class=n>Amount</th></tr></thead><tbody><tr><th scope="row">Net income</th><td class="n">$85,000</td></tr><tr><th scope="row">Depreciation expense</th><td class="n">14,000</td></tr><tr><th scope="row">Loss on sale of equipment</th><td class="n">3,000</td></tr><tr><th scope="row">Increase in accounts receivable</th><td class="n">(9,000)</td></tr><tr><th scope="row">Decrease in inventory</th><td class="n">6,000</td></tr><tr><th scope="row">Increase in accounts payable</th><td class="n">5,000</td></tr><tr><th scope="row">Decrease in salaries payable</th><td class="n">(2,000)</td></tr><tr class="tot"><th scope="row">Net cash from operating activities</th><td class="n">$102,000</td></tr></tbody></table></div><p>The loss is not an operating cash outflow (the sale proceeds are an investing inflow), so it is added back. An increase in receivables means sales not yet collected, so it is subtracted.</p></div>
+</article><article class="example" id="ex10" aria-labelledby="ex10h">
+<h3 id="ex10h">Example 10 — Net change in cash</h3>
+<div class="scenario">Ridgecrest Imports reports: net cash from operating activities $140,000; purchased equipment $90,000; sold land for $30,000; issued bonds for $100,000; paid dividends $40,000; repaid a bank loan $35,000. Cash at the beginning of the year was $55,000.</div>
+<details class="hint"><summary>Need a hint?</summary><div>Add the three categories, then add to the beginning balance.</div></details>
+<div class="q"><label for="f44">Net cash from investing activities (negative = outflow)</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f44" inputmode="decimal" autocomplete="off" data-answer="-60000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f45">Net cash from financing activities</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f45" inputmode="decimal" autocomplete="off" data-answer="25000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f46">Net increase in cash</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f46" inputmode="decimal" autocomplete="off" data-answer="105000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f47">Ending cash balance</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f47" inputmode="decimal" autocomplete="off" data-answer="160000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><p>Investing: −$90,000 + $30,000 = <strong>−$60,000</strong>. Financing: $100,000 − $40,000 − $35,000 = <strong>$25,000</strong>.</p><p>Net increase: $140,000 − $60,000 + $25,000 = <strong>$105,000</strong>. Ending cash: $55,000 + $105,000 = <strong>$160,000</strong>.</p></div>
+</article>
+</section><section class="topic" id="s4" aria-labelledby="s4h">
+<h2 id="s4h">Profitability analysis and IFRS</h2>
+<p>DuPont analysis breaks return on equity into profitability, activity, and leverage.</p>
+<div class="keyterms"><ul>
+<li><strong>Profit margin</strong> = net income ÷ net sales. <strong>Asset turnover</strong> = net sales ÷ average total assets. <strong>ROA</strong> = net income ÷ average total assets = profit margin × asset turnover.</li>
+<li><strong>ROE</strong> = net income ÷ average shareholders&rsquo; equity. <strong>DuPont:</strong> ROE = profit margin × asset turnover × equity multiplier, where <strong>equity multiplier</strong> = average total assets ÷ average equity.</li>
+<li><strong>Operating cash flow ratio</strong> and <strong>cash flow from operations to net income</strong> compare earnings with cash.</li>
+<li><strong>IFRS:</strong> the income statement may classify expenses by nature or function; extraordinary items are prohibited under both; IFRS allows interest to be classified differently on the cash flow statement.</li>
+</ul></div>
+<article class="example" id="ex11" aria-labelledby="ex11h">
+<h3 id="ex11h">Example 11 — DuPont analysis</h3>
+<div class="scenario">Tuckaseegee Tackle reports: net sales $2,000,000; net income $160,000; average total assets $1,000,000; average shareholders&rsquo; equity $640,000.</div>
+<details class="hint"><summary>Need a hint?</summary><div>Multiply the three components and confirm that you get ROE.</div></details>
+<div class="q"><label for="f48">Profit margin</label><div class="field"><input type="text" id="f48" inputmode="decimal" autocomplete="off" data-answer="8" data-unit="%" data-tol="0.1"><span class="suf" aria-hidden="true">%</span></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f49">Asset turnover</label><div class="field"><input type="text" id="f49" inputmode="decimal" autocomplete="off" data-answer="2" data-unit="x" data-tol="0.01"><span class="suf" aria-hidden="true">×</span></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f50">Equity multiplier</label><div class="field"><input type="text" id="f50" inputmode="decimal" autocomplete="off" data-answer="1.56" data-unit="x" data-tol="0.01"><span class="suf" aria-hidden="true">×</span></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f51">Return on equity</label><div class="field"><input type="text" id="f51" inputmode="decimal" autocomplete="off" data-answer="25" data-unit="%" data-tol="0.1"><span class="suf" aria-hidden="true">%</span></div><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><p>Profit margin = $160,000 ÷ $2,000,000 = <strong>8%</strong>. Asset turnover = $2,000,000 ÷ $1,000,000 = <strong>2.0</strong>. Equity multiplier = $1,000,000 ÷ $640,000 = <strong>1.56</strong>.</p><p>ROE = 8% × 2.0 × 1.5625 = <strong>25%</strong>, which equals $160,000 ÷ $640,000.</p></div>
+</article><article class="example" id="ex12" aria-labelledby="ex12h">
+<h3 id="ex12h">Example 12 — Interpreting the ratios</h3>
+<div class="scenario">Select the best interpretation.</div>
+<details class="hint"><summary>Need a hint?</summary><div>Higher leverage raises ROE when the company earns more than its cost of debt, but it adds risk.</div></details>
+<div class="q"><label for="f52">a. A company has ROA of 8% and an equity multiplier of 2. Its ROE is</label><select id="f52" data-answer="16%"><option value="">Choose…</option><option>4%</option><option>10%</option><option>16%</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f53">b. A higher equity multiplier means the company is financed relatively more by</label><select id="f53" data-answer="Debt"><option value="">Choose…</option><option>Equity</option><option>Debt</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f54">c. Asset turnover measures</label><select id="f54" data-answer="Efficiency in using assets to generate sales"><option value="">Choose…</option><option>Profitability on each dollar of sales</option><option>Efficiency in using assets to generate sales</option><option>Financial leverage</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f55">d. Extraordinary items on the income statement are</label><select id="f55" data-answer="Prohibited under U.S. GAAP and IFRS"><option value="">Choose…</option><option>Required for unusual and infrequent events</option><option>Prohibited under U.S. GAAP and IFRS</option></select><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><ul><li><strong>a. 16%</strong> (ROE = ROA × equity multiplier = 8% × 2).</li><li><strong>b. Debt.</strong></li><li><strong>c.</strong> Efficiency in using assets to generate sales.</li><li><strong>d.</strong> Extraordinary item classification is no longer permitted under U.S. GAAP or IFRS; unusual or infrequent items are disclosed within continuing operations.</li></ul></div>
+</article>
+</section>
+<section class="topic" id="wrap" aria-labelledby="wraph"><h2 id="wraph">Wrap-up: Chapter 4 at a glance</h2><ul><li><strong>Income statement:</strong> single-step or multiple-step; income from continuing operations is the key measure for predicting future earnings; earnings management reduces earnings quality.</li><li><strong>Below continuing operations:</strong> discontinued operations are reported net of tax. Changes in principle are retrospective; changes in estimate are prospective; errors are restated.</li><li><strong>EPS</strong> uses weighted-average shares and deducts preferred dividends. <strong>Comprehensive income</strong> = net income + OCI.</li><li><strong>Cash flows</strong> are classified as operating, investing, or financing. The indirect method reconciles net income to operating cash flow.</li><li><strong>DuPont:</strong> ROE = profit margin × asset turnover × equity multiplier.</li></ul></section>
+</main>
+<footer class="site">ACCT 351 · Chapter 4 Chapter Walkthrough · The Income Statement and Statement of Cash Flows (Ungraded)</footer>
+<script>
+(function(){
+  var Y=new Date().getFullYear();
+  document.querySelectorAll('[data-yr]').forEach(function(e){e.textContent=String(Y+Number(e.getAttribute('data-yr')));});
+
+  var ACCOUNTS=["Accounts payable", "Accounts receivable", "Accumulated depreciation", "Cash", "Common stock", "Cost of goods sold", "Depreciation expense", "Equipment", "Income tax expense", "Income tax payable", "Inventory", "Loss from discontinued operations", "Retained earnings", "Sales revenue"];
+
+  function parseNum(s){
+    if(s==null) return NaN; s=String(s).trim(); if(!s) return NaN;
+    var neg=/^\(.*\)$/.test(s)||/^-/.test(s);
+    s=s.replace(/[$,%\s()\-]/g,''); var v=parseFloat(s);
+    return isNaN(v)?NaN:(neg?-v:v);
+  }
+  function fmt(v,unit){
+    var o=Math.abs(v)%1?{minimumFractionDigits:2,maximumFractionDigits:2}:{maximumFractionDigits:0};
+    var t=Math.abs(v).toLocaleString('en-US',o);
+    if(unit==='%') return t+'%';
+    if(unit==='$') return (v<0?'-':'')+'$'+t;
+    return (v<0?'-':'')+t;
+  }
+
+  /* Build journal entry tables */
+  document.querySelectorAll('div.je').forEach(function(box,idx){
+    var rows=Number(box.getAttribute('data-rows')||3);
+    var id='je'+idx;
+    var h='<div class="tablewrap"><table class="je"><caption>'+box.getAttribute('data-caption')+'</caption><thead><tr><th scope="col">Account title</th><th scope="col" class="n">Debit ($)</th><th scope="col" class="n">Credit ($)</th><th scope="col"><span class="sr">Result</span></th></tr></thead><tbody>';
+    for(var r=0;r<rows;r++){
+      h+='<tr><td><label class="sr" for="'+id+'a'+r+'">Account, line '+(r+1)+'</label><select id="'+id+'a'+r+'"><option value="">Choose…</option>'+ACCOUNTS.map(function(a){return '<option>'+a+'</option>';}).join('')+'</select></td>'+
+         '<td class="n"><label class="sr" for="'+id+'d'+r+'">Debit amount, line '+(r+1)+'</label><input type="text" inputmode="decimal" autocomplete="off" id="'+id+'d'+r+'"></td>'+
+         '<td class="n"><label class="sr" for="'+id+'c'+r+'">Credit amount, line '+(r+1)+'</label><input type="text" inputmode="decimal" autocomplete="off" id="'+id+'c'+r+'"></td>'+
+         '<td><span class="rowfb" aria-live="polite"></span></td></tr>';
+    }
+    h+='</tbody></table></div><span class="fb" aria-live="polite"></span>';
+    box.innerHTML=h;
+  });
+
+  var checked={}; var total=document.querySelectorAll('.example').length;
+  document.getElementById('total').textContent=total;
+  function updateProgress(){
+    document.getElementById('count').textContent=Object.keys(checked).length;
+  }
+
+  function gradeField(el){
+    var unit=el.getAttribute('data-unit')||'';
+    var fb=el.closest('.q').querySelector('.fb');
+    var ok;
+    if(el.tagName==='SELECT'){
+      ok=(el.value===el.getAttribute('data-answer'));
+      fb.textContent=ok?'✓ Correct':(el.value?'✗ Not quite. Answer: ':'✗ No answer chosen. Answer: ')+(ok?'':el.getAttribute('data-answer'));
+    } else {
+      var v=parseNum(el.value), a=Number(el.getAttribute('data-answer')), tol=Number(el.getAttribute('data-tol')||0.5);
+      ok=!isNaN(v)&&Math.abs(v-a)<=tol;
+      fb.textContent=ok?'✓ Correct':(isNaN(v)?'✗ No answer entered. Answer: ':'✗ Not quite. Answer: ')+fmt(a,unit);
+    }
+    fb.className='fb '+(ok?'ok':'bad');
+    el.setAttribute('aria-invalid',ok?'false':'true'); el.classList.toggle('ok',ok);
+    return ok;
+  }
+
+  function gradeJE(box){
+    var id=null, rows=Number(box.getAttribute('data-rows')||3);
+    var first=box.querySelector('select').id; id=first.replace(/a0$/,'');
+    var exp={}; JSON.parse(box.getAttribute('data-expected')).forEach(function(e){
+      exp[e[0]]=(exp[e[0]]||0)+(e[1]==='D'?e[2]:-e[2]);
+    });
+    var got={}, rowOk=true, anyBlankAcct=false;
+    for(var r=0;r<rows;r++){
+      var acct=document.getElementById(id+'a'+r).value;
+      var d=parseNum(document.getElementById(id+'d'+r).value), c=parseNum(document.getElementById(id+'c'+r).value);
+      var fbr=box.querySelectorAll('.rowfb')[r];
+      if(isNaN(d)) d=0; if(isNaN(c)) c=0;
+      if(!acct && (d||c)){ fbr.textContent='✗ Pick an account'; fbr.className='rowfb bad'; rowOk=false; continue; }
+      if(!acct){ fbr.textContent=''; continue; }
+      got[acct]=(got[acct]||0)+d-c;
+    }
+    var keys=Object.keys(exp).concat(Object.keys(got).filter(function(k){return !(k in exp);}));
+    var ok=rowOk;
+    keys.forEach(function(k){ if(Math.abs((exp[k]||0)-(got[k]||0))>0.5) ok=false; });
+    for(var r2=0;r2<rows;r2++){
+      var acct2=document.getElementById(id+'a'+r2).value; var fbr2=box.querySelectorAll('.rowfb')[r2];
+      if(!acct2) continue;
+      var good=Math.abs((exp[acct2]||0)-(got[acct2]||0))<=0.5 && (acct2 in exp);
+      fbr2.textContent=good?'✓':'✗'; fbr2.className='rowfb '+(good?'ok':'bad');
+    }
+    var fb=box.querySelector('.fb');
+    fb.textContent=ok?'✓ Journal entry is correct':'✗ Not quite. Compare your entry with the solution below.';
+    fb.className='fb '+(ok?'ok':'bad');
+    return ok;
+  }
+
+  document.querySelectorAll('.example').forEach(function(ex){
+    var btn=ex.querySelector('button.check'), rst=ex.querySelector('button.reset'), sol=ex.querySelector('.solution'), res=ex.querySelector('.result');
+    btn.addEventListener('click',function(){
+      var good=0,n=0;
+      ex.querySelectorAll('[data-answer]').forEach(function(el){ n++; if(gradeField(el)) good++; });
+      ex.querySelectorAll('div.je').forEach(function(box){ n++; if(gradeJE(box)) good++; });
+      res.textContent=good+' of '+n+' correct';
+      sol.hidden=false;
+      checked[ex.id]=true; updateProgress();
+    });
+    rst.addEventListener('click',function(){
+      ex.querySelectorAll('input[type=text]').forEach(function(i){i.value='';i.removeAttribute('aria-invalid');i.classList.remove('ok');});
+      ex.querySelectorAll('select').forEach(function(s){s.selectedIndex=0;s.removeAttribute('aria-invalid');s.classList.remove('ok');});
+      ex.querySelectorAll('.fb,.rowfb').forEach(function(f){f.textContent='';f.className=f.className.split(' ')[0];});
+      res.textContent=''; sol.hidden=true;
+    });
+  });
+})();
+</script>
+</body>
+</html>

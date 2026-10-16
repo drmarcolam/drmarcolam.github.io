@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ACCT 351 Chapter 2 Chapter Walkthrough</title>
+<meta name="description" content="Chapter 2 Chapter Walkthrough: step-by-step guided practice on the accounting process for Intermediate Accounting I.">
+<style>
+:root{
+  --bg:#f4f8f5; --card:#ffffff; --text:#14201a; --muted:#41524a;
+  --g900:#0b3b2a; --g800:#14513a; --g700:#1b6a4a; --g100:#e3f0e8; --g50:#f0f7f3;
+  --border:#b4cdbf; --accent:#8a5a00; --ok:#0d6137; --bad:#9b2415; --focus:#0a4fd1;
+  --warn-bg:#fff6df;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0e1814; --card:#15231d; --text:#e9f3ee; --muted:#b5c9bf;
+    --g900:#0a2e21; --g800:#1d6a49; --g700:#58c08f; --g100:#1b3328; --g50:#122019;
+    --border:#34503f; --accent:#f0c36a; --ok:#6fdca3; --bad:#ff9f8f; --focus:#8db4ff;
+    --warn-bg:#2b2410;
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font:17px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+.skip{position:absolute;left:-999px;top:0;background:#fff;color:#000;padding:.6rem 1rem;z-index:100;border:2px solid var(--focus)}
+.skip:focus{left:8px;top:8px}
+a{color:var(--g800)}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+header.site{background:var(--g900);color:#fff;padding:2rem 1rem 1.5rem}
+.wrap{max-width:820px;margin:0 auto;padding:0 1rem}
+header.site .wrap{padding:0}
+.eyebrow{font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:#bfe3cf;margin:0 0 .25rem}
+h1{font-size:2rem;line-height:1.2;margin:.1rem 0 .5rem}
+header.site p{margin:.25rem 0}
+.progress{display:inline-block;margin-top:.75rem;background:#fff;color:var(--g900);font-weight:700;padding:.35rem .8rem;border-radius:999px}
+.howto{background:var(--g100);border-left:6px solid var(--g700);padding:.9rem 1.1rem;border-radius:6px;margin:1.25rem 0}
+nav.toc{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:.8rem 1.1rem;margin:1rem 0}
+nav.toc h2{font-size:1rem;margin:0 0 .3rem}
+nav.toc ol{margin:0;padding-left:1.2rem}
+section.topic{margin:2.2rem 0}
+section.topic>h2{font-size:1.55rem;color:var(--g800);border-bottom:3px solid var(--g700);padding-bottom:.3rem;margin-bottom:.8rem}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) section.topic>h2{color:var(--g700)}}
+h3{font-size:1.15rem;margin:1.2rem 0 .4rem}
+.keyterms{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:.4rem 1.1rem .6rem;margin:1rem 0}
+.keyterms ul,.keyterms ol{margin:.4rem 0;padding-left:1.3rem}
+.keyterms li{margin:.3rem 0}
+.example{background:var(--card);border:1px solid var(--border);border-top:6px solid var(--g700);border-radius:8px;padding:1rem 1.2rem 1.2rem;margin:1.5rem 0}
+.example h3{margin-top:0;color:var(--g800)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .example h3{color:var(--g700)}}
+.scenario{background:var(--g50);border-radius:6px;padding:.6rem .9rem;margin:.6rem 0}
+details.hint{margin:.6rem 0}
+details.hint summary{cursor:pointer;font-weight:600;color:var(--g800);padding:.2rem 0}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) details.hint summary{color:var(--g700)}}
+details.hint div{border-left:4px solid var(--accent);padding:.3rem .9rem;margin:.4rem 0;background:var(--warn-bg)}
+.q{margin:.9rem 0}
+.q>label,.q>.lbl{display:block;font-weight:600;margin-bottom:.25rem}
+.field{display:inline-flex;align-items:center;gap:.3rem}
+.field .pre,.field .suf{font-weight:700}
+input[type=text],select{font:inherit;color:var(--text);background:var(--card);border:2px solid var(--muted);border-radius:6px;padding:.4rem .6rem;min-height:2.6rem}
+input[type=text]{width:12rem;text-align:right}
+select{max-width:100%}
+input[aria-invalid=true],select[aria-invalid=true]{border-color:var(--bad)}
+input.ok,select.ok{border-color:var(--ok)}
+.fb{display:block;margin-top:.25rem;font-weight:600;min-height:0}
+.fb.ok{color:var(--ok)} .fb.bad{color:var(--bad)}
+.btnrow{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1rem;align-items:center}
+button{font:inherit;font-weight:700;cursor:pointer;border-radius:6px;padding:.55rem 1.1rem;min-height:2.75rem;border:2px solid var(--g800)}
+button.check{background:var(--g800);color:#fff}
+button.check:hover{background:var(--g900)}
+button.reset{background:transparent;color:var(--g800)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) button.check{background:#e9f3ee;color:#0a2e21;border-color:#e9f3ee} :root:not([data-theme="light"]) button.reset{color:var(--g700);border-color:var(--g700)}}
+.result{font-weight:700}
+.solution{margin-top:1rem;border:2px solid var(--g700);border-radius:8px;padding:.3rem 1rem .8rem;background:var(--g50)}
+.solution h4{margin:.6rem 0 .3rem;color:var(--g800)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .solution h4{color:var(--g700)}}
+table{border-collapse:collapse;width:100%;margin:.7rem 0;font-size:.98rem}
+caption{text-align:left;font-weight:700;padding:.2rem 0 .4rem}
+th,td{border:1px solid var(--border);padding:.4rem .6rem;text-align:left;vertical-align:top}
+thead th{background:var(--g800);color:#fff}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+tr.tot td{font-weight:700;border-top:3px double var(--text)}
+.tablewrap{overflow-x:auto;position:relative}
+table.je td,table.je th,table.jet td,table.jet th{vertical-align:middle}
+table.je select{width:100%;min-width:13rem}
+table.je input{width:8.5rem}
+.rowfb{font-weight:600;white-space:nowrap}
+.formula{background:var(--g100);padding:.5rem .9rem;border-radius:6px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.95rem;overflow-x:auto}
+footer.site{border-top:1px solid var(--border);margin-top:3rem;padding:1.2rem 1rem 2.5rem;color:var(--muted);font-size:.9rem;text-align:center}
+@media print{.skip,.btnrow,nav.toc{display:none} body{background:#fff;color:#000} .example{break-inside:avoid} .solution[hidden]{display:none}}
+
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="site">
+<div class="wrap">
+<p class="eyebrow">ACCT 351 · Intermediate Accounting I</p>
+<h1>Chapter 2 Chapter Walkthrough</h1>
+<p>Review of the Accounting Process: step-by-step guided practice</p>
+<p class="progress" role="status" aria-live="polite"><span id="count">0</span> of <span id="total">13</span> checked</p>
+</div>
+</header>
+<main id="main" class="wrap">
+<div class="howto"><p><strong>How this works.</strong> This page is for practice only: it is not graded and nothing is submitted. Read each short review, try the example, and use <em>Check my answer</em> to see feedback and a worked solution. Numbers can be typed with or without dollar signs and commas. <em>Need a hint?</em> opens a nudge without giving the answer away. Company names are fictional.</p></div>
+<nav class="toc" aria-label="On this page"><h2>On this page</h2><ol><li><a href="#s1">The accounting equation, journal entries, and the trial balance</a></li><li><a href="#s2">Adjusting entries</a></li><li><a href="#s3">Financial statements, closing, and cash-to-accrual conversion</a></li><li><a href="#s4">Appendices: reversing entries and special journals</a></li><li><a href="#wrap">Wrap-up</a></li></ol></nav>
+<section class="topic" id="s1" aria-labelledby="s1h">
+<h2 id="s1h">The accounting equation, journal entries, and the trial balance</h2>
+<p>The accounting process captures the effects of transactions with double-entry bookkeeping: journalize, post, and prove the ledger with a trial balance.</p>
+<div class="keyterms"><ul>
+<li><strong>Accounting equation:</strong> Assets = Liabilities + Shareholders&rsquo; equity. Every transaction has a dual effect, so the equation always balances.</li>
+<li><strong>Debits and credits:</strong> assets, expenses, and dividends increase with <strong>debits</strong> (normal debit balance). Liabilities, equity (common stock, retained earnings), and revenues increase with <strong>credits</strong>.</li>
+<li><strong>Processing cycle (10 steps):</strong> (1) source documents, (2) analyze, (3) journalize, (4) post to the ledger, (5) unadjusted trial balance, (6) adjusting entries, (7) adjusted trial balance, (8) financial statements, (9) close temporary accounts (year-end), (10) post-closing trial balance (year-end).</li>
+<li>A <strong>trial balance</strong> proves that total debits equal total credits. It does not catch errors such as a debit and credit posted to the wrong accounts for the right amount.</li>
+</ul></div>
+<article class="example" id="ex1" aria-labelledby="ex1h">
+<h3 id="ex1h">Example 1 — Normal balances</h3>
+<div class="scenario">For each account, choose the side that <strong>increases</strong> the balance (its normal balance).</div>
+<details class="hint"><summary>Need a hint?</summary><div>Assets, expenses, and dividends are debits. Liabilities, equity, and revenues are credits. Accumulated depreciation is a contra asset.</div></details>
+<div class="q"><label for="f1">a. Cash</label><select id="f1" data-answer="Debit"><option value="">Choose…</option><option>Debit</option><option>Credit</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f2">b. Accounts payable</label><select id="f2" data-answer="Credit"><option value="">Choose…</option><option>Debit</option><option>Credit</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f3">c. Common stock</label><select id="f3" data-answer="Credit"><option value="">Choose…</option><option>Debit</option><option>Credit</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f4">d. Dividends</label><select id="f4" data-answer="Debit"><option value="">Choose…</option><option>Debit</option><option>Credit</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f5">e. Sales revenue</label><select id="f5" data-answer="Credit"><option value="">Choose…</option><option>Debit</option><option>Credit</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f6">f. Accumulated depreciation</label><select id="f6" data-answer="Credit"><option value="">Choose…</option><option>Debit</option><option>Credit</option></select><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><ul><li><strong>a. Debit</strong> (asset).</li><li><strong>b. Credit</strong> (liability).</li><li><strong>c. Credit</strong> (equity).</li><li><strong>d. Debit.</strong> Dividends reduce retained earnings, so they increase with a debit.</li><li><strong>e. Credit</strong> (revenue).</li><li><strong>f. Credit.</strong> It is a contra asset, so it reduces assets with a credit.</li></ul></div>
+</article><article class="example" id="ex2" aria-labelledby="ex2h">
+<h3 id="ex2h">Example 2 — Journal entries for external transactions</h3>
+<div class="scenario">Pisgah Hardware Corporation begins operations in <span data-yr="0"></span>. Record each transaction (use the perpetual inventory system).<ol type="a"><li>Issues common stock for <strong>$80,000</strong> cash.</li><li>Purchases inventory for <strong>$24,000</strong> on account.</li><li>Sells merchandise for <strong>$9,000</strong> cash. The merchandise cost <strong>$5,400</strong>. (Record the sale <em>and</em> the cost of goods sold.)</li></ol></div>
+<details class="hint"><summary>Need a hint?</summary><div>Every entry needs equal debits and credits. For the sale you need two entries: one for revenue and one for the cost of the inventory sold.</div></details>
+<div class="q"><div class="je" data-caption="a. Issue common stock" data-rows="2" data-expected="[[&quot;Cash&quot;, &quot;D&quot;, 80000], [&quot;Common stock&quot;, &quot;C&quot;, 80000]]"></div></div><div class="q"><div class="je" data-caption="b. Purchase inventory on account" data-rows="2" data-expected="[[&quot;Inventory&quot;, &quot;D&quot;, 24000], [&quot;Accounts payable&quot;, &quot;C&quot;, 24000]]"></div></div><div class="q"><div class="je" data-caption="c. Cash sale and cost of goods sold (both entries together)" data-rows="4" data-expected="[[&quot;Cash&quot;, &quot;D&quot;, 9000], [&quot;Sales revenue&quot;, &quot;C&quot;, 9000], [&quot;Cost of goods sold&quot;, &quot;D&quot;, 5400], [&quot;Inventory&quot;, &quot;C&quot;, 5400]]"></div></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><table class="jet"><caption>a.</caption><thead><tr><th scope="col">Account</th><th scope="col" class="n">Debit</th><th scope="col" class="n">Credit</th></tr></thead><tbody><tr><td>Cash</td><td class="n">80,000</td><td class="n"></td></tr><tr><td>&nbsp;&nbsp;&nbsp;Common stock</td><td class="n"></td><td class="n">80,000</td></tr></tbody></table><table class="jet"><caption>b.</caption><thead><tr><th scope="col">Account</th><th scope="col" class="n">Debit</th><th scope="col" class="n">Credit</th></tr></thead><tbody><tr><td>Inventory</td><td class="n">24,000</td><td class="n"></td></tr><tr><td>&nbsp;&nbsp;&nbsp;Accounts payable</td><td class="n"></td><td class="n">24,000</td></tr></tbody></table><table class="jet"><caption>c. (two entries combined)</caption><thead><tr><th scope="col">Account</th><th scope="col" class="n">Debit</th><th scope="col" class="n">Credit</th></tr></thead><tbody><tr><td>Cash</td><td class="n">9,000</td><td class="n"></td></tr><tr><td>&nbsp;&nbsp;&nbsp;Sales revenue</td><td class="n"></td><td class="n">9,000</td></tr><tr><td>Cost of goods sold</td><td class="n">5,400</td><td class="n"></td></tr><tr><td>&nbsp;&nbsp;&nbsp;Inventory</td><td class="n"></td><td class="n">5,400</td></tr></tbody></table></div>
+</article><article class="example" id="ex3" aria-labelledby="ex3h">
+<h3 id="ex3h">Example 3 — The trial balance</h3>
+<div class="scenario">Western Peaks Supply prepares an unadjusted trial balance. All accounts have normal balances. The debit accounts are: Cash $40,000, Accounts receivable $15,000, Inventory $30,000, and Equipment $50,000. The credit accounts are: Accounts payable $22,000, Notes payable $40,000, and Common stock $60,000. Retained earnings has an unknown balance.</div>
+<details class="hint"><summary>Need a hint?</summary><div>Total debits must equal total credits. Add each side, then solve for the missing figure.</div></details>
+<div class="q"><label for="f7">Total debits</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f7" inputmode="decimal" autocomplete="off" data-answer="135000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f8">Retained earnings balance (the missing credit)</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f8" inputmode="decimal" autocomplete="off" data-answer="13000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f9">Which error would the trial balance <em>not</em> detect?</label><select id="f9" data-answer="A debit posted to the wrong asset account for the correct amount"><option value="">Choose…</option><option>A debit posted to the wrong asset account for the correct amount</option><option>A debit posted for $5,000 with a credit posted for $4,000</option><option>A one-sided entry</option></select><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><p>Total debits: $40,000 + $15,000 + $30,000 + $50,000 = <strong>$135,000</strong>.</p><p>Known credits: $22,000 + $40,000 + $60,000 = $122,000. Retained earnings = $135,000 − $122,000 = <strong>$13,000</strong>.</p><p>A trial balance only proves that debits equal credits. Posting the right amount to the wrong account of the same side leaves it in balance, so the error goes undetected. The other two errors create an imbalance.</p></div>
+</article>
+</section><section class="topic" id="s2" aria-labelledby="s2h">
+<h2 id="s2h">Adjusting entries</h2>
+<p>At the end of each period, adjusting entries bring prepayments, accruals, and estimates up to date so that the financial statements reflect accrual accounting.</p>
+<div class="keyterms"><ul>
+<li>Adjusting entries make the accounts follow <strong>accrual accounting</strong> at the end of the period. They are needed for <strong>prepayments</strong> (deferrals), <strong>accruals</strong>, and <strong>estimates</strong>. They never involve the cash account.</li>
+<li><strong>Prepaid expense:</strong> cash paid first, expense later. Adjust: debit expense, credit asset.</li>
+<li><strong>Deferred revenue:</strong> cash received first, revenue later. Adjust: debit liability, credit revenue.</li>
+<li><strong>Accrued expense:</strong> expense incurred, cash paid later. Adjust: debit expense, credit liability. <strong>Accrued revenue:</strong> revenue earned, cash received later. Adjust: debit receivable, credit revenue.</li>
+<li><strong>Estimates:</strong> depreciation (debit depreciation expense, credit accumulated depreciation) and bad debts.</li>
+<li><strong>Interest</strong> = principal × annual rate × fraction of the year.</li>
+</ul></div>
+<article class="example" id="ex4" aria-labelledby="ex4h">
+<h3 id="ex4h">Example 4 — Which type of adjusting entry?</h3>
+<div class="scenario">Classify the year-end adjustment needed in each situation.</div>
+<details class="hint"><summary>Need a hint?</summary><div>Ask: did cash move before or after the expense or revenue? Is the amount an estimate?</div></details>
+<div class="q"><label for="f10">a. Rent for the next six months was paid in advance on December 1</label><select id="f10" data-answer="Prepaid expense"><option value="">Choose…</option><option>Prepaid expense</option><option>Deferred revenue</option><option>Accrued expense</option><option>Accrued revenue</option><option>Estimate</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f11">b. Customers paid in advance for subscriptions, and part of the service has now been provided</label><select id="f11" data-answer="Deferred revenue"><option value="">Choose…</option><option>Prepaid expense</option><option>Deferred revenue</option><option>Accrued expense</option><option>Accrued revenue</option><option>Estimate</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f12">c. Employees have worked three days since the last payday</label><select id="f12" data-answer="Accrued expense"><option value="">Choose…</option><option>Prepaid expense</option><option>Deferred revenue</option><option>Accrued expense</option><option>Accrued revenue</option><option>Estimate</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f13">d. Interest has been earned on a note receivable but not yet received</label><select id="f13" data-answer="Accrued revenue"><option value="">Choose…</option><option>Prepaid expense</option><option>Deferred revenue</option><option>Accrued expense</option><option>Accrued revenue</option><option>Estimate</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f14">e. Equipment loses value as it is used over its useful life</label><select id="f14" data-answer="Estimate"><option value="">Choose…</option><option>Prepaid expense</option><option>Deferred revenue</option><option>Accrued expense</option><option>Accrued revenue</option><option>Estimate</option></select><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><ul><li><strong>a. Prepaid expense</strong> (debit Rent expense, credit Prepaid rent).</li><li><strong>b. Deferred revenue</strong> (debit Deferred revenue, credit Revenue).</li><li><strong>c. Accrued expense</strong> (debit Salaries expense, credit Salaries payable).</li><li><strong>d. Accrued revenue</strong> (debit Interest receivable, credit Interest revenue).</li><li><strong>e. Estimate</strong> (depreciation).</li></ul></div>
+</article><article class="example" id="ex5" aria-labelledby="ex5h">
+<h3 id="ex5h">Example 5 — Prepaid expenses</h3>
+<div class="scenario">Mountain View Tours has a December 31 year-end. On <strong>October 1, <span data-yr="0"></span></strong>, it paid <strong>$12,000</strong> for a 12-month insurance policy (debited to Prepaid insurance). Supplies on hand were $500 at the beginning of the year, <strong>$2,300</strong> of supplies were purchased during the year (debited to Supplies), and a count at year-end shows <strong>$800</strong> on hand.</div>
+<details class="hint"><summary>Need a hint?</summary><div>Insurance: how many of the 12 months have been used by December 31? Supplies used = beginning + purchases − ending.</div></details>
+<div class="q"><label for="f15">Insurance expense for the year</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f15" inputmode="decimal" autocomplete="off" data-answer="3000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><div class="je" data-caption="Adjusting entry for insurance" data-rows="2" data-expected="[[&quot;Insurance expense&quot;, &quot;D&quot;, 3000], [&quot;Prepaid insurance&quot;, &quot;C&quot;, 3000]]"></div></div><div class="q"><label for="f16">Supplies expense for the year</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f16" inputmode="decimal" autocomplete="off" data-answer="2000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><div class="je" data-caption="Adjusting entry for supplies" data-rows="2" data-expected="[[&quot;Supplies expense&quot;, &quot;D&quot;, 2000], [&quot;Supplies&quot;, &quot;C&quot;, 2000]]"></div></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><p>Insurance: $12,000 × 3/12 = <strong>$3,000</strong> (October, November, December). Prepaid insurance still has $9,000.</p><table class="jet"><caption>Insurance</caption><thead><tr><th scope="col">Account</th><th scope="col" class="n">Debit</th><th scope="col" class="n">Credit</th></tr></thead><tbody><tr><td>Insurance expense</td><td class="n">3,000</td><td class="n"></td></tr><tr><td>&nbsp;&nbsp;&nbsp;Prepaid insurance</td><td class="n"></td><td class="n">3,000</td></tr></tbody></table><p>Supplies available: $500 + $2,300 = $2,800. Used: $2,800 − $800 = <strong>$2,000</strong>.</p><table class="jet"><caption>Supplies</caption><thead><tr><th scope="col">Account</th><th scope="col" class="n">Debit</th><th scope="col" class="n">Credit</th></tr></thead><tbody><tr><td>Supplies expense</td><td class="n">2,000</td><td class="n"></td></tr><tr><td>&nbsp;&nbsp;&nbsp;Supplies</td><td class="n"></td><td class="n">2,000</td></tr></tbody></table></div>
+</article><article class="example" id="ex6" aria-labelledby="ex6h">
+<h3 id="ex6h">Example 6 — Deferred revenue</h3>
+<div class="scenario">On <strong>November 1, <span data-yr="0"></span></strong>, Tuckasegee Fitness collects <strong>$18,000</strong> for a six-month training program running November through April. The cash was credited to Deferred revenue. The year-end is December 31.</div>
+<details class="hint"><summary>Need a hint?</summary><div>Two of the six months have been provided by December 31.</div></details>
+<div class="q"><label for="f17">Revenue earned by December 31</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f17" inputmode="decimal" autocomplete="off" data-answer="6000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f18">Deferred revenue balance after the adjustment</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f18" inputmode="decimal" autocomplete="off" data-answer="12000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><div class="je" data-caption="December 31 adjusting entry" data-rows="2" data-expected="[[&quot;Deferred revenue&quot;, &quot;D&quot;, 6000], [&quot;Service revenue&quot;, &quot;C&quot;, 6000]]"></div></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><p>Revenue earned: $18,000 × 2/6 = <strong>$6,000</strong>. Remaining deferred revenue: $18,000 − $6,000 = <strong>$12,000</strong> (a liability for four months of service owed).</p><table class="jet"><caption>December 31</caption><thead><tr><th scope="col">Account</th><th scope="col" class="n">Debit</th><th scope="col" class="n">Credit</th></tr></thead><tbody><tr><td>Deferred revenue</td><td class="n">6,000</td><td class="n"></td></tr><tr><td>&nbsp;&nbsp;&nbsp;Service revenue</td><td class="n"></td><td class="n">6,000</td></tr></tbody></table></div>
+</article><article class="example" id="ex7" aria-labelledby="ex7h">
+<h3 id="ex7h">Example 7 — Accrued expenses</h3>
+<div class="scenario">On <strong>November 1, <span data-yr="0"></span></strong>, Haywood Supply borrows <strong>$60,000</strong> on an <strong>8%</strong>, one-year note; interest and principal are due at maturity. Separately, its weekly payroll is <strong>$10,000</strong> for a five-day week, paid every Friday, and December 31 falls on a Wednesday (three days worked and unpaid).</div>
+<details class="hint"><summary>Need a hint?</summary><div>Accrued interest = principal × rate × time. Accrued wages = daily wages × days unpaid.</div></details>
+<div class="q"><label for="f19">Interest accrued at December 31</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f19" inputmode="decimal" autocomplete="off" data-answer="800" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><div class="je" data-caption="Adjusting entry for interest" data-rows="2" data-expected="[[&quot;Interest expense&quot;, &quot;D&quot;, 800], [&quot;Interest payable&quot;, &quot;C&quot;, 800]]"></div></div><div class="q"><label for="f20">Salaries accrued at December 31</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f20" inputmode="decimal" autocomplete="off" data-answer="6000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><div class="je" data-caption="Adjusting entry for salaries" data-rows="2" data-expected="[[&quot;Salaries expense&quot;, &quot;D&quot;, 6000], [&quot;Salaries payable&quot;, &quot;C&quot;, 6000]]"></div></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><p>Interest: $60,000 × 8% × 2/12 = <strong>$800</strong> (November and December).</p><table class="jet"><caption>Interest</caption><thead><tr><th scope="col">Account</th><th scope="col" class="n">Debit</th><th scope="col" class="n">Credit</th></tr></thead><tbody><tr><td>Interest expense</td><td class="n">800</td><td class="n"></td></tr><tr><td>&nbsp;&nbsp;&nbsp;Interest payable</td><td class="n"></td><td class="n">800</td></tr></tbody></table><p>Wages: $10,000 ÷ 5 days = $2,000 per day × 3 days = <strong>$6,000</strong>.</p><table class="jet"><caption>Salaries</caption><thead><tr><th scope="col">Account</th><th scope="col" class="n">Debit</th><th scope="col" class="n">Credit</th></tr></thead><tbody><tr><td>Salaries expense</td><td class="n">6,000</td><td class="n"></td></tr><tr><td>&nbsp;&nbsp;&nbsp;Salaries payable</td><td class="n"></td><td class="n">6,000</td></tr></tbody></table></div>
+</article><article class="example" id="ex8" aria-labelledby="ex8h">
+<h3 id="ex8h">Example 8 — Estimates and accrued revenue</h3>
+<div class="scenario">On <strong>July 1, <span data-yr="0"></span></strong>, Sylva Print Shop buys equipment for <strong>$90,000</strong> with a <strong>$6,000</strong> residual value and a <strong>7-year</strong> life (straight line). On <strong>September 1, <span data-yr="0"></span></strong>, it lends a customer <strong>$30,000</strong> on a 6% note for one year, with interest due at maturity. The year-end is December 31.</div>
+<details class="hint"><summary>Need a hint?</summary><div>Annual depreciation = (cost − residual value) ÷ life, then multiply by the fraction of the year owned. Interest = principal × rate × time.</div></details>
+<div class="q"><label for="f21">Depreciation expense for the current year</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f21" inputmode="decimal" autocomplete="off" data-answer="6000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><div class="je" data-caption="Adjusting entry for depreciation" data-rows="2" data-expected="[[&quot;Depreciation expense&quot;, &quot;D&quot;, 6000], [&quot;Accumulated depreciation&quot;, &quot;C&quot;, 6000]]"></div></div><div class="q"><label for="f22">Interest revenue earned by December 31</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f22" inputmode="decimal" autocomplete="off" data-answer="600" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><p>Annual depreciation: ($90,000 − $6,000) ÷ 7 = $12,000. Six months (July 1 to December 31): $12,000 × 6/12 = <strong>$6,000</strong>.</p><table class="jet"><caption>Depreciation</caption><thead><tr><th scope="col">Account</th><th scope="col" class="n">Debit</th><th scope="col" class="n">Credit</th></tr></thead><tbody><tr><td>Depreciation expense</td><td class="n">6,000</td><td class="n"></td></tr><tr><td>&nbsp;&nbsp;&nbsp;Accumulated depreciation</td><td class="n"></td><td class="n">6,000</td></tr></tbody></table><p>Interest revenue: $30,000 × 6% × 4/12 = <strong>$600</strong>. The entry is a debit to Interest receivable and a credit to Interest revenue for $600.</p></div>
+</article>
+</section><section class="topic" id="s3" aria-labelledby="s3h">
+<h2 id="s3h">Financial statements, closing, and cash-to-accrual conversion</h2>
+<p>After adjusting, the accounts feed the financial statements. At year-end, temporary accounts are closed, and cash-basis records can be converted to accrual.</p>
+<div class="keyterms"><ul>
+<li>The <strong>adjusted trial balance</strong> is the source for the financial statements: income statement, statement of shareholders&rsquo; equity, balance sheet, and statement of cash flows.</li>
+<li><strong>Ending retained earnings</strong> = beginning retained earnings + net income − dividends.</li>
+<li><strong>Closing entries (year-end):</strong> (1) close revenues to retained earnings (debit each revenue); (2) close expenses (credit each expense); (3) close dividends. <strong>Temporary accounts</strong> (revenues, expenses, gains, losses, dividends) go to zero; <strong>permanent accounts</strong> (assets, liabilities, equity) carry forward.</li>
+<li>A <strong>post-closing trial balance</strong> contains only permanent accounts.</li>
+<li><strong>Converting cash-basis to accrual:</strong> Revenue = cash collected + ending receivables − beginning receivables. Expense = cash paid + ending payables − beginning payables (or + beginning prepaid − ending prepaid).</li>
+</ul></div>
+<article class="example" id="ex9" aria-labelledby="ex9h">
+<h3 id="ex9h">Example 9 — Net income, retained earnings, and closing</h3>
+<div class="scenario">The adjusted trial balance of Smoky Peaks Outfitters at year-end shows: Sales revenue $150,000; Service revenue $20,000; Cost of goods sold $80,000; Salaries expense $30,000; Rent expense $6,000; Depreciation expense $4,000; Interest expense $1,000; Dividends $10,000. Retained earnings at the <em>beginning</em> of the year was $25,000.</div>
+<details class="hint"><summary>Need a hint?</summary><div>Net income = total revenues − total expenses. Closing the revenue accounts credits retained earnings for total revenues.</div></details>
+<div class="q"><label for="f23">Total revenues</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f23" inputmode="decimal" autocomplete="off" data-answer="170000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f24">Total expenses</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f24" inputmode="decimal" autocomplete="off" data-answer="121000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f25">Net income</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f25" inputmode="decimal" autocomplete="off" data-answer="49000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f26">Ending retained earnings (after closing)</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f26" inputmode="decimal" autocomplete="off" data-answer="64000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><div class="je" data-caption="Entry to close the revenue accounts" data-rows="3" data-expected="[[&quot;Sales revenue&quot;, &quot;D&quot;, 150000], [&quot;Service revenue&quot;, &quot;D&quot;, 20000], [&quot;Retained earnings&quot;, &quot;C&quot;, 170000]]"></div></div><div class="q"><div class="je" data-caption="Entry to close dividends" data-rows="2" data-expected="[[&quot;Retained earnings&quot;, &quot;D&quot;, 10000], [&quot;Dividends&quot;, &quot;C&quot;, 10000]]"></div></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><p>Revenues: $150,000 + $20,000 = <strong>$170,000</strong>. Expenses: $80,000 + $30,000 + $6,000 + $4,000 + $1,000 = <strong>$121,000</strong>. Net income = $170,000 − $121,000 = <strong>$49,000</strong>.</p><p>Ending retained earnings: $25,000 + $49,000 − $10,000 = <strong>$64,000</strong>.</p><table class="jet"><caption>Close revenues</caption><thead><tr><th scope="col">Account</th><th scope="col" class="n">Debit</th><th scope="col" class="n">Credit</th></tr></thead><tbody><tr><td>Sales revenue</td><td class="n">150,000</td><td class="n"></td></tr><tr><td>Service revenue</td><td class="n">20,000</td><td class="n"></td></tr><tr><td>&nbsp;&nbsp;&nbsp;Retained earnings</td><td class="n"></td><td class="n">170,000</td></tr></tbody></table><table class="jet"><caption>Close dividends</caption><thead><tr><th scope="col">Account</th><th scope="col" class="n">Debit</th><th scope="col" class="n">Credit</th></tr></thead><tbody><tr><td>Retained earnings</td><td class="n">10,000</td><td class="n"></td></tr><tr><td>&nbsp;&nbsp;&nbsp;Dividends</td><td class="n"></td><td class="n">10,000</td></tr></tbody></table><p>A third entry closes the expenses: debit Retained earnings $121,000; credit each expense account.</p></div>
+</article><article class="example" id="ex10" aria-labelledby="ex10h">
+<h3 id="ex10h">Example 10 — Temporary or permanent, and the cycle step</h3>
+<div class="scenario">Classify each account, then identify the step in the processing cycle.</div>
+<details class="hint"><summary>Need a hint?</summary><div>Closing sends temporary account balances to retained earnings. Steps 9 and 10 occur only at year-end.</div></details>
+<div class="q"><label for="f27">a. Rent expense</label><select id="f27" data-answer="Temporary account"><option value="">Choose…</option><option>Temporary account</option><option>Permanent account</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f28">b. Dividends</label><select id="f28" data-answer="Temporary account"><option value="">Choose…</option><option>Temporary account</option><option>Permanent account</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f29">c. Accumulated depreciation</label><select id="f29" data-answer="Permanent account"><option value="">Choose…</option><option>Temporary account</option><option>Permanent account</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f30">d. Retained earnings</label><select id="f30" data-answer="Permanent account"><option value="">Choose…</option><option>Temporary account</option><option>Permanent account</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f31">e. Proving that the ledger balances before any adjusting entries is</label><select id="f31" data-answer="Step 5"><option value="">Choose…</option><option>Step 5</option><option>Step 7</option><option>Step 10</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f32">f. Preparing a trial balance of permanent accounts only after closing is</label><select id="f32" data-answer="Step 10"><option value="">Choose…</option><option>Step 5</option><option>Step 7</option><option>Step 10</option></select><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><ul><li><strong>a, b. Temporary.</strong> Expenses and dividends are closed to retained earnings.</li><li><strong>c, d. Permanent.</strong> Balances carry forward.</li><li><strong>e. Step 5</strong>, the unadjusted trial balance. (Step 7 is the adjusted trial balance.)</li><li><strong>f. Step 10</strong>, the post-closing trial balance.</li></ul></div>
+</article><article class="example" id="ex11" aria-labelledby="ex11h">
+<h3 id="ex11h">Example 11 — Converting cash-basis results to accrual</h3>
+<div class="scenario">Blue Ridge Pharmacy keeps cash-basis records. During the year it collected <strong>$410,000</strong> from customers, paid <strong>$120,000</strong> in salaries, and paid <strong>$24,000</strong> for insurance. Balance sheet information:<ul><li>Accounts receivable: beginning $38,000, ending $46,000</li><li>Salaries payable: beginning $8,000, ending $11,000</li><li>Prepaid insurance: beginning $6,000, ending $10,000</li></ul></div>
+<details class="hint"><summary>Need a hint?</summary><div>Revenue = cash collected + increase in receivables. Salaries expense = cash paid + increase in salaries payable. Insurance expense = cash paid − increase in prepaid insurance.</div></details>
+<div class="q"><label for="f33">Accrual-basis sales revenue</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f33" inputmode="decimal" autocomplete="off" data-answer="418000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f34">Accrual-basis salaries expense</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f34" inputmode="decimal" autocomplete="off" data-answer="123000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f35">Accrual-basis insurance expense</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f35" inputmode="decimal" autocomplete="off" data-answer="20000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f36">Cash-basis net income</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f36" inputmode="decimal" autocomplete="off" data-answer="266000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f37">Accrual-basis net income</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f37" inputmode="decimal" autocomplete="off" data-answer="275000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><p>Revenue: $410,000 + ($46,000 − $38,000) = <strong>$418,000</strong>.</p><p>Salaries: $120,000 + ($11,000 − $8,000) = <strong>$123,000</strong>.</p><p>Insurance: $24,000 − ($10,000 − $6,000) = <strong>$20,000</strong>.</p><p>Cash-basis income: $410,000 − $120,000 − $24,000 = <strong>$266,000</strong>. Accrual income: $418,000 − $123,000 − $20,000 = <strong>$275,000</strong>.</p><div class="tablewrap"><table><caption>Reconciliation</caption><thead><tr><th scope="col"></th><th scope="col" class=n>Effect</th></tr></thead><tbody><tr><th scope="row">Cash-basis net income</th><td class="n">$266,000</td></tr><tr><th scope="row">Increase in accounts receivable</th><td class="n">+8,000</td></tr><tr><th scope="row">Increase in salaries payable</th><td class="n">−3,000</td></tr><tr><th scope="row">Increase in prepaid insurance</th><td class="n">+4,000</td></tr><tr class="tot"><th scope="row">Accrual-basis net income</th><td class="n">$275,000</td></tr></tbody></table></div></div>
+</article>
+</section><section class="topic" id="s4" aria-labelledby="s4h">
+<h2 id="s4h">Appendices: reversing entries and special journals</h2>
+<p>Two optional topics round out the process: reversing entries that simplify the next period, and special journals that streamline high-volume transactions.</p>
+<div class="keyterms"><ul>
+<li><strong>Reversing entries</strong> (optional, first day of the new period) reverse certain accruals so routine entries can be recorded as usual. After reversing and then recording the normal cash payment, the expense for the new period is just the portion that belongs to it.</li>
+<li><strong>Special journals</strong> (sales, cash receipts, purchases, cash disbursements) handle high-volume repetitive transactions; the <strong>general journal</strong> records everything else, including adjusting and closing entries. <strong>Subsidiary ledgers</strong> hold detail (for example, each customer) and tie to a <strong>control account</strong> in the general ledger.</li>
+</ul></div>
+<article class="example" id="ex12" aria-labelledby="ex12h">
+<h3 id="ex12h">Example 12 — Reversing entries</h3>
+<div class="scenario">At December 31, Haywood Supply accrued <strong>$6,000</strong> of salaries (see Example 7). On <strong>January 3</strong>, it pays the full week&rsquo;s payroll of <strong>$10,000</strong> in cash. Assume the company uses reversing entries.</div>
+<details class="hint"><summary>Need a hint?</summary><div>The reversing entry on January 1 undoes the accrual. Then the payroll is recorded as a normal debit to Salaries expense.</div></details>
+<div class="q"><div class="je" data-caption="January 1 reversing entry" data-rows="2" data-expected="[[&quot;Salaries payable&quot;, &quot;D&quot;, 6000], [&quot;Salaries expense&quot;, &quot;C&quot;, 6000]]"></div></div><div class="q"><div class="je" data-caption="January 3 payroll entry" data-rows="2" data-expected="[[&quot;Salaries expense&quot;, &quot;D&quot;, 10000], [&quot;Cash&quot;, &quot;C&quot;, 10000]]"></div></div><div class="q"><label for="f38">Salaries expense for the new year after both entries (shows only the new-year portion)</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f38" inputmode="decimal" autocomplete="off" data-answer="4000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><table class="jet"><caption>January 1 reversal</caption><thead><tr><th scope="col">Account</th><th scope="col" class="n">Debit</th><th scope="col" class="n">Credit</th></tr></thead><tbody><tr><td>Salaries payable</td><td class="n">6,000</td><td class="n"></td></tr><tr><td>&nbsp;&nbsp;&nbsp;Salaries expense</td><td class="n"></td><td class="n">6,000</td></tr></tbody></table><table class="jet"><caption>January 3 payroll</caption><thead><tr><th scope="col">Account</th><th scope="col" class="n">Debit</th><th scope="col" class="n">Credit</th></tr></thead><tbody><tr><td>Salaries expense</td><td class="n">10,000</td><td class="n"></td></tr><tr><td>&nbsp;&nbsp;&nbsp;Cash</td><td class="n"></td><td class="n">10,000</td></tr></tbody></table><p>The expense account is credited $6,000 and then debited $10,000, leaving <strong>$4,000</strong>, which is the two days worked in the new year ($2,000 × 2). The result is the same as without reversing entries, but the January entry is routine.</p></div>
+</article><article class="example" id="ex13" aria-labelledby="ex13h">
+<h3 id="ex13h">Example 13 — Special journals</h3>
+<div class="scenario">Choose the journal in which each transaction is normally recorded.</div>
+<details class="hint"><summary>Need a hint?</summary><div>Special journals handle routine repeating transactions. Everything else, including adjusting entries, goes in the general journal.</div></details>
+<div class="q"><label for="f39">a. A sale of merchandise on credit</label><select id="f39" data-answer="Sales journal"><option value="">Choose…</option><option>Sales journal</option><option>Cash receipts journal</option><option>Cash disbursements journal</option><option>Purchases journal</option><option>General journal</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f40">b. Cash received from a customer on account</label><select id="f40" data-answer="Cash receipts journal"><option value="">Choose…</option><option>Sales journal</option><option>Cash receipts journal</option><option>Cash disbursements journal</option><option>Purchases journal</option><option>General journal</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f41">c. Payment of rent by check</label><select id="f41" data-answer="Cash disbursements journal"><option value="">Choose…</option><option>Sales journal</option><option>Cash receipts journal</option><option>Cash disbursements journal</option><option>Purchases journal</option><option>General journal</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f42">d. Purchase of inventory on account</label><select id="f42" data-answer="Purchases journal"><option value="">Choose…</option><option>Sales journal</option><option>Cash receipts journal</option><option>Cash disbursements journal</option><option>Purchases journal</option><option>General journal</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f43">e. Year-end adjusting entry for accrued interest</label><select id="f43" data-answer="General journal"><option value="">Choose…</option><option>Sales journal</option><option>Cash receipts journal</option><option>Cash disbursements journal</option><option>Purchases journal</option><option>General journal</option></select><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><ul><li><strong>a. Sales journal.</strong></li><li><strong>b. Cash receipts journal.</strong></li><li><strong>c. Cash disbursements journal.</strong></li><li><strong>d. Purchases journal.</strong></li><li><strong>e. General journal.</strong> Adjusting entries are not routine transactions.</li></ul></div>
+</article>
+</section>
+<section class="topic" id="wrap" aria-labelledby="wraph"><h2 id="wraph">Wrap-up: Chapter 2 at a glance</h2><ul><li><strong>Equation and entries:</strong> Assets = Liabilities + Equity. Debits increase assets, expenses, and dividends; credits increase liabilities, equity, and revenues. A trial balance proves debits equal credits but cannot detect every error.</li><li><strong>Adjusting entries</strong> cover prepayments (debit expense / credit asset), deferred revenue (debit liability / credit revenue), accruals, and estimates. They bring the books to accrual accounting.</li><li><strong>Year-end:</strong> prepare statements from the adjusted trial balance, close revenues, expenses, and dividends to retained earnings, and prepare a post-closing trial balance with only permanent accounts.</li><li><strong>Cash to accrual:</strong> adjust cash flows for changes in receivables, payables, and prepaid balances.</li><li><strong>Appendices:</strong> reversing entries simplify routine entries next period; special journals and subsidiary ledgers handle high-volume transactions.</li></ul></section>
+</main>
+<footer class="site">ACCT 351 · Chapter 2 Chapter Walkthrough · Review of the Accounting Process (Ungraded)</footer>
+<script>
+(function(){
+  var Y=new Date().getFullYear();
+  document.querySelectorAll('[data-yr]').forEach(function(e){e.textContent=String(Y+Number(e.getAttribute('data-yr')));});
+
+  var ACCOUNTS=["Accounts payable", "Accounts receivable", "Accumulated depreciation", "Cash", "Common stock", "Cost of goods sold", "Deferred revenue", "Depreciation expense", "Dividends", "Equipment", "Insurance expense", "Interest expense", "Interest payable", "Interest receivable", "Interest revenue", "Inventory", "Notes payable", "Prepaid insurance", "Prepaid rent", "Rent expense", "Retained earnings", "Salaries expense", "Salaries payable", "Sales revenue", "Service revenue", "Supplies", "Supplies expense"];
+
+  function parseNum(s){
+    if(s==null) return NaN; s=String(s).trim(); if(!s) return NaN;
+    var neg=/^\(.*\)$/.test(s)||/^-/.test(s);
+    s=s.replace(/[$,%\s()\-]/g,''); var v=parseFloat(s);
+    return isNaN(v)?NaN:(neg?-v:v);
+  }
+  function fmt(v,unit){
+    var o=Math.abs(v)%1?{minimumFractionDigits:2,maximumFractionDigits:2}:{maximumFractionDigits:0};
+    var t=Math.abs(v).toLocaleString('en-US',o);
+    if(unit==='%') return t+'%';
+    if(unit==='$') return (v<0?'-':'')+'$'+t;
+    return (v<0?'-':'')+t;
+  }
+
+  /* Build journal entry tables */
+  document.querySelectorAll('div.je').forEach(function(box,idx){
+    var rows=Number(box.getAttribute('data-rows')||3);
+    var id='je'+idx;
+    var h='<div class="tablewrap"><table class="je"><caption>'+box.getAttribute('data-caption')+'</caption><thead><tr><th scope="col">Account title</th><th scope="col" class="n">Debit ($)</th><th scope="col" class="n">Credit ($)</th><th scope="col"><span class="sr">Result</span></th></tr></thead><tbody>';
+    for(var r=0;r<rows;r++){
+      h+='<tr><td><label class="sr" for="'+id+'a'+r+'">Account, line '+(r+1)+'</label><select id="'+id+'a'+r+'"><option value="">Choose…</option>'+ACCOUNTS.map(function(a){return '<option>'+a+'</option>';}).join('')+'</select></td>'+
+         '<td class="n"><label class="sr" for="'+id+'d'+r+'">Debit amount, line '+(r+1)+'</label><input type="text" inputmode="decimal" autocomplete="off" id="'+id+'d'+r+'"></td>'+
+         '<td class="n"><label class="sr" for="'+id+'c'+r+'">Credit amount, line '+(r+1)+'</label><input type="text" inputmode="decimal" autocomplete="off" id="'+id+'c'+r+'"></td>'+
+         '<td><span class="rowfb" aria-live="polite"></span></td></tr>';
+    }
+    h+='</tbody></table></div><span class="fb" aria-live="polite"></span>';
+    box.innerHTML=h;
+  });
+
+  var checked={}; var total=document.querySelectorAll('.example').length;
+  document.getElementById('total').textContent=total;
+  function updateProgress(){
+    document.getElementById('count').textContent=Object.keys(checked).length;
+  }
+
+  function gradeField(el){
+    var unit=el.getAttribute('data-unit')||'';
+    var fb=el.closest('.q').querySelector('.fb');
+    var ok;
+    if(el.tagName==='SELECT'){
+      ok=(el.value===el.getAttribute('data-answer'));
+      fb.textContent=ok?'✓ Correct':(el.value?'✗ Not quite. Answer: ':'✗ No answer chosen. Answer: ')+(ok?'':el.getAttribute('data-answer'));
+    } else {
+      var v=parseNum(el.value), a=Number(el.getAttribute('data-answer')), tol=Number(el.getAttribute('data-tol')||0.5);
+      ok=!isNaN(v)&&Math.abs(v-a)<=tol;
+      fb.textContent=ok?'✓ Correct':(isNaN(v)?'✗ No answer entered. Answer: ':'✗ Not quite. Answer: ')+fmt(a,unit);
+    }
+    fb.className='fb '+(ok?'ok':'bad');
+    el.setAttribute('aria-invalid',ok?'false':'true'); el.classList.toggle('ok',ok);
+    return ok;
+  }
+
+  function gradeJE(box){
+    var id=null, rows=Number(box.getAttribute('data-rows')||3);
+    var first=box.querySelector('select').id; id=first.replace(/a0$/,'');
+    var exp={}; JSON.parse(box.getAttribute('data-expected')).forEach(function(e){
+      exp[e[0]]=(exp[e[0]]||0)+(e[1]==='D'?e[2]:-e[2]);
+    });
+    var got={}, rowOk=true, anyBlankAcct=false;
+    for(var r=0;r<rows;r++){
+      var acct=document.getElementById(id+'a'+r).value;
+      var d=parseNum(document.getElementById(id+'d'+r).value), c=parseNum(document.getElementById(id+'c'+r).value);
+      var fbr=box.querySelectorAll('.rowfb')[r];
+      if(isNaN(d)) d=0; if(isNaN(c)) c=0;
+      if(!acct && (d||c)){ fbr.textContent='✗ Pick an account'; fbr.className='rowfb bad'; rowOk=false; continue; }
+      if(!acct){ fbr.textContent=''; continue; }
+      got[acct]=(got[acct]||0)+d-c;
+    }
+    var keys=Object.keys(exp).concat(Object.keys(got).filter(function(k){return !(k in exp);}));
+    var ok=rowOk;
+    keys.forEach(function(k){ if(Math.abs((exp[k]||0)-(got[k]||0))>0.5) ok=false; });
+    for(var r2=0;r2<rows;r2++){
+      var acct2=document.getElementById(id+'a'+r2).value; var fbr2=box.querySelectorAll('.rowfb')[r2];
+      if(!acct2) continue;
+      var good=Math.abs((exp[acct2]||0)-(got[acct2]||0))<=0.5 && (acct2 in exp);
+      fbr2.textContent=good?'✓':'✗'; fbr2.className='rowfb '+(good?'ok':'bad');
+    }
+    var fb=box.querySelector('.fb');
+    fb.textContent=ok?'✓ Journal entry is correct':'✗ Not quite. Compare your entry with the solution below.';
+    fb.className='fb '+(ok?'ok':'bad');
+    return ok;
+  }
+
+  document.querySelectorAll('.example').forEach(function(ex){
+    var btn=ex.querySelector('button.check'), rst=ex.querySelector('button.reset'), sol=ex.querySelector('.solution'), res=ex.querySelector('.result');
+    btn.addEventListener('click',function(){
+      var good=0,n=0;
+      ex.querySelectorAll('[data-answer]').forEach(function(el){ n++; if(gradeField(el)) good++; });
+      ex.querySelectorAll('div.je').forEach(function(box){ n++; if(gradeJE(box)) good++; });
+      res.textContent=good+' of '+n+' correct';
+      sol.hidden=false;
+      checked[ex.id]=true; updateProgress();
+    });
+    rst.addEventListener('click',function(){
+      ex.querySelectorAll('input[type=text]').forEach(function(i){i.value='';i.removeAttribute('aria-invalid');i.classList.remove('ok');});
+      ex.querySelectorAll('select').forEach(function(s){s.selectedIndex=0;s.removeAttribute('aria-invalid');s.classList.remove('ok');});
+      ex.querySelectorAll('.fb,.rowfb').forEach(function(f){f.textContent='';f.className=f.className.split(' ')[0];});
+      res.textContent=''; sol.hidden=true;
+    });
+  });
+})();
+</script>
+</body>
+</html>
