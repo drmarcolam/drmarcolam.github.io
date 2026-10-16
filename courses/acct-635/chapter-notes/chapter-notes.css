@@ -130,3 +130,10 @@ footer{max-width:820px;margin:0 auto;padding:0 16px 32px;font-size:13px;color:va
   .table-wrap{overflow:visible;}
   table{min-width:0;}
 }
+
+/* numeric columns and reveal answers */
+td.num,th.num{text-align:right;white-space:nowrap;}
+details.reveal{border:1px solid var(--line);border-radius:8px;background:var(--paper);margin:0 0 18px;}
+details.reveal summary{cursor:pointer;padding:10px 14px;min-height:44px;font-weight:700;color:var(--navy);}
+details.reveal>div{padding:0 14px 8px;}
+details.reveal .table-wrap{margin-top:4px;}
