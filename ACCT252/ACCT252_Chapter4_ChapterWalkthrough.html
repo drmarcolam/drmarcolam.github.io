@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ACCT 252 Chapter 4 Chapter Walkthrough</title>
+<meta name="description" content="Chapter 4 Chapter Walkthrough: step-by-step guided practice on Variable Costing and Segment Reporting">
+<style>
+:root{
+  --bg:#fffbe8; --card:#fffef6; --ink:#1b2a21; --muted:#4f5a49; --line:#e0d59c;
+  --purple:#1f5136; --purple-dark:#163d29; --gold:#f5e68a; --tint:#f8f0c2; --edge:#c9a500;
+  --good-bg:#e7f5ea; --good-ink:#14532d; --good-line:#2e7d32;
+  --bad-bg:#fdebe4; --bad-ink:#7a2a0b; --bad-line:#b4481a;
+  --warn-bg:#fff3de; --warn-ink:#5e3300; --warn-line:#b86b00;
+  --focus:#0b57d0;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0f1f17; --card:#16291f; --ink:#f6f1d0; --muted:#c3c9a8; --line:#2f4a3a;
+    --purple:#f2e48a; --purple-dark:#0b1a12; --tint:#1e3829; --edge:#f2e48a;
+    --good-bg:#16301d; --good-ink:#bfe8c8; --good-line:#58b46c;
+    --bad-bg:#3b1f14; --bad-ink:#ffd2bf; --bad-line:#e08a5e;
+    --warn-bg:#3a2a10; --warn-ink:#ffe0b3; --warn-line:#e0a040;
+    --focus:#8ab4ff;
+  }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.55;font-size:1.0625rem}
+.skip{position:absolute;left:-999px;top:0;background:var(--gold);color:#163d29;padding:.6rem 1rem;z-index:10;font-weight:700}
+.skip:focus{left:8px;top:8px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+header.site{background:var(--purple-dark);color:#fff;border-bottom:6px solid var(--gold)}
+header.site .wrap{max-width:52rem;margin:0 auto;padding:1.3rem 1rem}
+header.site .eyebrow{margin:0;font-size:.9rem;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);font-weight:700}
+header.site h1{margin:.2rem 0 .3rem;font-size:1.7rem;line-height:1.2}
+header.site p.sub{margin:0;color:#e6efd9}
+.back{margin:.7rem 0 0;font-size:.95rem}
+.back a{color:var(--gold);font-weight:600}
+.progress{max-width:52rem;margin:0 auto;padding:.8rem 1rem 0;display:flex;align-items:center;gap:1rem;position:sticky;top:0;background:var(--bg);z-index:5}
+.progress .track{flex:1;height:10px;background:var(--line);border-radius:5px;overflow:hidden}
+.progress .fill{height:100%;width:0;background:var(--purple);transition:width .3s}
+.progress .lab{font-size:.9rem;color:var(--muted);white-space:nowrap}
+main{max-width:52rem;margin:0 auto;padding:.8rem 1rem 3rem}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+h2{font-size:1.45rem;margin:.2rem 0 .7rem;color:var(--purple);border-bottom:2px solid var(--line);padding-bottom:.35rem}
+h3{font-size:1.02rem;margin:1rem 0 .3rem}
+p{margin:.55rem 0}
+.lo-block{margin:2.2rem 0}
+.lo-tag{display:inline-block;font-size:.8rem;font-weight:700;letter-spacing:.04em;color:#fff;background:var(--purple-dark);padding:.2rem .6rem;border-radius:4px;margin-bottom:.4rem}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .lo-tag{background:var(--purple);color:#0b1a12}}
+.key-idea{background:var(--tint);border-left:5px solid var(--edge);padding:.8rem 1rem;border-radius:0 8px 8px 0;margin:.9rem 0}
+.key-idea ol,.key-idea ul{margin:.4rem 0 .2rem;padding-left:1.3rem}
+.note{color:var(--muted);font-size:.95rem}
+.example{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:1rem 1.1rem 1.1rem;margin:1.1rem 0}
+.ex-label{font-size:.82rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--purple);margin-bottom:.3rem}
+.q{margin:.3rem 0}
+table.mini{border-collapse:collapse;width:100%;margin:.6rem 0;font-size:.92rem;font-variant-numeric:tabular-nums}
+table.mini th,table.mini td{border:1px solid var(--line);padding:.35rem .55rem;text-align:right;vertical-align:top}
+table.mini thead th{background:var(--tint);color:var(--ink)}
+table.mini th[scope="row"]{text-align:left;font-weight:600;background:transparent}
+table.mini thead th:first-child{text-align:left}
+.tablewrap{overflow-x:auto}
+.input-row{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:.8rem 0 .4rem;padding:.7rem;background:var(--tint);border-radius:8px}
+.input-row label{font-weight:700}
+.input-row input{font:inherit;font-variant-numeric:tabular-nums;padding:.45rem .6rem;border:2px solid var(--line);border-radius:6px;width:11rem;background:var(--card);color:var(--ink)}
+.input-col{display:grid;gap:.5rem;margin:.8rem 0 .4rem;padding:.7rem;background:var(--tint);border-radius:8px}
+.sel-row{display:grid;grid-template-columns:1fr minmax(11rem,15rem);gap:.6rem;align-items:center}
+.sel-row label{font-weight:600}
+@media (max-width:34rem){.sel-row{grid-template-columns:1fr}}
+select{font:inherit;padding:.45rem .5rem;border:2px solid var(--line);border-radius:6px;background:var(--card);color:var(--ink)}
+button{font:inherit;font-weight:700;color:#fff;background:var(--purple-dark);border:2px solid var(--purple-dark);padding:.5rem 1rem;border-radius:6px;cursor:pointer}
+button:hover{background:var(--purple);border-color:var(--purple)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) button{background:var(--purple);color:#0b1a12;border-color:var(--purple)}}
+.feedback{margin:.4rem 0;font-weight:600}
+.feedback:not(:empty){padding:.6rem .85rem;border-radius:6px;border-left:5px solid}
+.feedback.good{color:var(--good-ink);background:var(--good-bg);border-color:var(--good-line)}
+.feedback.bad{color:var(--bad-ink);background:var(--bad-bg);border-color:var(--bad-line)}
+.feedback.warn{color:var(--warn-ink);background:var(--warn-bg);border-color:var(--warn-line)}
+.solution{margin-top:.7rem;padding-top:.8rem;border-top:2px dashed var(--line)}
+.solution-label{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--purple);margin-bottom:.4rem}
+.final-answer{margin-top:.6rem}
+.final-answer strong{color:var(--purple);font-size:1.08rem}
+details.hint{margin:.4rem 0}
+details.hint summary,details.data summary{cursor:pointer;font-weight:600;color:var(--purple)}
+details.hint div{padding:.4rem .8rem;border-left:4px solid var(--line);margin-top:.3rem}
+details.data{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:.7rem 1rem;margin:1rem 0}
+ol.steps{margin:.3rem 0;padding-left:1.3rem}
+.data-inline{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:.2rem 1rem;margin:.8rem 0}
+footer{text-align:center;color:var(--muted);font-size:.85rem;padding:1.5rem 1rem 2.5rem}
+@media (max-width:40rem){table.mini{display:block;overflow-x:auto}}
+@media (prefers-reduced-motion:reduce){.progress .fill{transition:none}}
+
+.sel-row select{max-width:100%;min-width:0}
+.sel-row{flex-wrap:wrap}
+
+.back{margin:.7rem 0 0;font-size:.95rem}
+.back a{color:var(--gold);font-weight:600}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="site"><div class="wrap">
+  <p class="eyebrow">ACCT 252 · Managerial Accounting</p>
+  <h1>Chapter 4 Chapter Walkthrough</h1>
+  <p class="sub">Variable Costing and Segment Reporting: Tools for Management · Practice each step, then check yourself.</p>
+  <p class="back"><a href="../courses/acct-252-chapter-walkthroughs.html">&larr; Back to ACCT 252 Chapter Walkthroughs</a></p>
+</div></header>
+<div class="progress" id="progressBar" role="progressbar" aria-label="Questions checked" aria-valuemin="0" aria-valuemax="12" aria-valuenow="0">
+  <div class="track"><div class="fill" id="progressFill"></div></div>
+  <div class="lab" id="progressLabel">0 of 12 checked</div>
+</div>
+<main id="main" tabindex="-1">
+  <div class="key-idea"><strong>How this works.</strong> Work each problem by hand or with a calculator, type your answer, and choose <strong>Check my answer</strong>. You will see right away whether you are correct, plus the full solution either way. Use <em>Need a hint?</em> if you get stuck. This page is for practice only: it is not graded and nothing is submitted.</div>
+
+  <section class="lo-block" aria-labelledby="s1-h">
+    <span class="lo-tag">Two costing methods</span>
+    <h2 id="s1-h">Absorption vs. Variable Costing: Unit Product Cost</h2>
+
+    <p><strong>Pisgah Pottery</strong> in Asheville makes ceramic dinnerware. Year 1 data: selling price $40; direct materials $8, direct labor $4, variable manufacturing overhead $2 per unit; variable selling expense $3 per unit sold; fixed manufacturing overhead $120,000; fixed selling and administrative $90,000. The company <strong>produced 12,000 units and sold 10,000</strong>.</p>
+    <div class="key-idea"><ul><li><strong>Absorption costing:</strong> unit cost includes direct materials, direct labor, variable overhead <em>and</em> fixed manufacturing overhead.</li><li><strong>Variable costing:</strong> unit cost includes only the variable manufacturing costs. Fixed manufacturing overhead is a period expense.</li></ul>Selling and administrative costs are period costs under both methods.</div>
+    <div class="example"><div class="ex-label">Example 1 — Variable Costing Unit Cost</div><p>What is the unit product cost under variable costing?</p>
+      <div class="q">
+      
+      
+      <div class="input-row">
+        <label for="ans-1-1">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-1-1" placeholder="0" aria-describedby="fb-1-1">
+        <button type="button" onclick="checkAnswer('1-1', 14, null)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-1-1" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-1-1" hidden>
+        <div class="solution-label">Solution</div>
+        <p>$8 + $4 + $2 = $14.</p><p class="final-answer">Variable costing unit cost = <strong>$14</strong></p>
+      </div>
+      </div></div>
+    <div class="example"><div class="ex-label">Example 2 — Absorption Costing Unit Cost</div><p>What is the unit product cost under absorption costing? Fixed overhead is spread over the 12,000 units <em>produced</em>.</p>
+      <div class="q">
+      
+      <details class="hint"><summary>Need a hint?</summary><div>Fixed overhead per unit = fixed overhead ÷ units produced.</div></details>
+      <div class="input-row">
+        <label for="ans-1-2">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-1-2" placeholder="0" aria-describedby="fb-1-2">
+        <button type="button" onclick="checkAnswer('1-2', 24.0, null)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-1-2" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-1-2" hidden>
+        <div class="solution-label">Solution</div>
+        <p>Fixed overhead per unit: $120,000 ÷ 12,000 = $10.<br>Unit cost: $14 + $10 = $24.</p><p class="final-answer">Absorption unit cost = <strong>$24</strong></p>
+      </div>
+      </div></div>
+
+  </section>
+
+  <section class="lo-block" aria-labelledby="s2-h">
+    <span class="lo-tag">Income, year 1</span>
+    <h2 id="s2-h">Net Operating Income: Production Exceeds Sales</h2>
+
+    <p>Pisgah produced 12,000 units but sold only 10,000, so 2,000 units went into ending inventory.</p>
+    <div class="example"><div class="ex-label">Example 1 — Absorption Costing Net Operating Income</div><p>Compute net operating income under absorption costing.</p>
+      <div class="q">
+      
+      <details class="hint"><summary>Need a hint?</summary><div>COGS = units sold × absorption unit cost. S&A = 10,000 × $3 + $90,000.</div></details>
+      <div class="input-row">
+        <label for="ans-2-1">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-2-1" placeholder="0" aria-describedby="fb-2-1">
+        <button type="button" onclick="checkAnswer('2-1', 40000.0, null)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-2-1" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-2-1" hidden>
+        <div class="solution-label">Solution</div>
+        <table class="mini"><caption class="sr">Absorption costing income statement</caption><thead><tr><th scope="col"></th><th scope="col">Amount</th></tr></thead><tbody><tr><th scope="row">Sales</th><td>$400,000</td></tr><tr><th scope="row">Cost of goods sold (10,000 × $24)</th><td>$240,000</td></tr><tr><th scope="row">Gross margin</th><td>$160,000</td></tr><tr><th scope="row">Selling and administrative expenses</th><td>$120,000</td></tr><tr><th scope="row"><strong>Net operating income</strong></th><td><strong>$40,000</strong></td></tr></tbody></table><p class="final-answer">Net operating income = <strong>$40,000</strong></p>
+      </div>
+      </div></div>
+    <div class="example"><div class="ex-label">Example 2 — Variable Costing Net Operating Income</div><p>Compute net operating income under variable costing (contribution format).</p>
+      <div class="q">
+      
+      <details class="hint"><summary>Need a hint?</summary><div>Variable expenses per unit sold = $14 + $3. Then deduct <em>all</em> fixed costs.</div></details>
+      <div class="input-row">
+        <label for="ans-2-2">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-2-2" placeholder="0" aria-describedby="fb-2-2">
+        <button type="button" onclick="checkAnswer('2-2', 20000, null)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-2-2" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-2-2" hidden>
+        <div class="solution-label">Solution</div>
+        <table class="mini"><caption class="sr">Variable costing income statement</caption><thead><tr><th scope="col"></th><th scope="col">Amount</th></tr></thead><tbody><tr><th scope="row">Sales</th><td>$400,000</td></tr><tr><th scope="row">Variable expenses</th><td>$170,000</td></tr><tr><th scope="row">Contribution margin</th><td>$230,000</td></tr><tr><th scope="row">Fixed manufacturing overhead</th><td>$120,000</td></tr><tr><th scope="row">Fixed selling and administrative</th><td>$90,000</td></tr><tr><th scope="row"><strong>Net operating income</strong></th><td><strong>$20,000</strong></td></tr></tbody></table><p class="final-answer">Net operating income = <strong>$20,000</strong></p>
+      </div>
+      </div></div>
+    <div class="example"><div class="ex-label">Example 3 — Reconciling the Difference</div><p>The two methods differ by $20,000. Compute the fixed manufacturing overhead deferred in inventory: units added to inventory × fixed overhead per unit.</p>
+      <div class="q">
+      
+      
+      <div class="input-row">
+        <label for="ans-2-3">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-2-3" placeholder="0" aria-describedby="fb-2-3">
+        <button type="button" onclick="checkAnswer('2-3', 20000.0, null)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-2-3" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-2-3" hidden>
+        <div class="solution-label">Solution</div>
+        <p>(12,000 − 10,000) × $10 = 2,000 × $10 = $20,000.</p><p class="final-answer">Fixed overhead deferred = <strong>$20,000</strong></p><div class="key-idea">Absorption costing carries $20,000 of fixed overhead into ending inventory instead of expensing it, so its income is higher. When production exceeds sales, absorption income is higher than variable costing income.</div>
+      </div>
+      </div></div>
+    <div class="example"><div class="ex-label">Example 4 — Which Is Higher?</div><p>Complete each statement.</p>
+      <div class="q">
+      
+      
+      <div class="input-col"><div class="sel-row"><label for="sel-2-4-0">When production > sales, net operating income is higher under</label><select id="sel-2-4-0"><option value="">Choose…</option><option>Absorption costing</option><option>Variable costing</option><option>The same income</option></select></div><div class="sel-row"><label for="sel-2-4-1">When sales > production, net operating income is higher under</label><select id="sel-2-4-1"><option value="">Choose…</option><option>Absorption costing</option><option>Variable costing</option><option>The same income</option></select></div><div class="sel-row"><label for="sel-2-4-2">When production = sales, the two methods give</label><select id="sel-2-4-2"><option value="">Choose…</option><option>Absorption costing</option><option>Variable costing</option><option>The same income</option></select></div>
+        <div><button type="button" onclick='checkSelects("2-4", [[&quot;sel-2-4-0&quot;, &quot;Absorption costing&quot;], [&quot;sel-2-4-1&quot;, &quot;Variable costing&quot;], [&quot;sel-2-4-2&quot;, &quot;The same income&quot;]])'>Check my answers</button></div>
+      </div>
+      <div class="feedback" id="fb-2-4" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-2-4" hidden>
+        <div class="solution-label">Solution</div>
+        <p>Production &gt; sales: fixed overhead is deferred in inventory under absorption costing (absorption income higher). Sales &gt; production: prior-period deferred overhead is released to expense under absorption costing (variable income higher). Equal: no change in inventory, so no difference.</p>
+      </div>
+      </div></div>
+
+  </section>
+
+  <section class="lo-block" aria-labelledby="s3-h">
+    <span class="lo-tag">Income, year 2</span>
+    <h2 id="s3-h">Year 2: Sales Exceed Production</h2>
+
+    <p>In Year 2 Pisgah produced 10,000 units and sold 12,000, using up the 2,000 units in beginning inventory (costed at $24 each under absorption costing). Prices and costs are unchanged. Fixed overhead per unit produced is now $12, so absorption unit cost for Year 2 production is $26.</p>
+    <div class="example"><div class="ex-label">Example 1 — Variable Costing, Year 2</div><p>What is net operating income under variable costing?</p>
+      <div class="q">
+      
+      <details class="hint"><summary>Need a hint?</summary><div>Contribution margin per unit = $40 − $14 − $3.</div></details>
+      <div class="input-row">
+        <label for="ans-3-1">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-3-1" placeholder="0" aria-describedby="fb-3-1">
+        <button type="button" onclick="checkAnswer('3-1', 66000, null)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-3-1" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-3-1" hidden>
+        <div class="solution-label">Solution</div>
+        <p>CM per unit = $23. Total CM = 12,000 × $23 = $276,000.<br>Less fixed costs: $210,000. Net operating income = $66,000.</p><p class="final-answer">Variable costing income = <strong>$66,000</strong></p>
+      </div>
+      </div></div>
+    <div class="example"><div class="ex-label">Example 2 — Absorption Costing, Year 2</div><p>What is net operating income under absorption costing? Cost of goods sold comes from 2,000 units of beginning inventory plus 10,000 units of Year 2 production.</p>
+      <div class="q">
+      
+      <details class="hint"><summary>Need a hint?</summary><div>COGS = (2,000 × $24) + (10,000 × $26).</div></details>
+      <div class="input-row">
+        <label for="ans-3-2">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-3-2" placeholder="0" aria-describedby="fb-3-2">
+        <button type="button" onclick="checkAnswer('3-2', 46000.0, null)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-3-2" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-3-2" hidden>
+        <div class="solution-label">Solution</div>
+        <table class="mini"><caption class="sr">Absorption costing, Year 2</caption><thead><tr><th scope="col"></th><th scope="col">Amount</th></tr></thead><tbody><tr><th scope="row">Sales</th><td>$480,000</td></tr><tr><th scope="row">Cost of goods sold</th><td>$308,000</td></tr><tr><th scope="row">Gross margin</th><td>$172,000</td></tr><tr><th scope="row">Selling and administrative</th><td>$126,000</td></tr><tr><th scope="row"><strong>Net operating income</strong></th><td><strong>$46,000</strong></td></tr></tbody></table><p class="final-answer">Absorption costing income = <strong>$46,000</strong></p><div class="key-idea">Variable costing income ($66,000) is $20,000 higher: the $20,000 of fixed overhead deferred in Year 1 was released to expense in Year 2.</div>
+      </div>
+      </div></div>
+
+  </section>
+
+  <section class="lo-block" aria-labelledby="s4-h">
+    <span class="lo-tag">Segment reporting</span>
+    <h2 id="s4-h">Segment Reporting</h2>
+
+    <p>Pisgah also reports by sales channel. A <strong>segment margin</strong> shows how much a segment contributes toward <em>common</em> costs.</p>
+    <div class="key-idea"><ul><li>Contribution margin = Sales − Variable expenses</li><li>Segment margin = Contribution margin − <strong>Traceable</strong> fixed expenses</li><li>Company net operating income = Total segment margins − <strong>Common</strong> fixed expenses</li></ul>A traceable fixed cost would disappear if the segment were eliminated. A common fixed cost would continue.</div>
+    <table class="mini"><caption class="sr">Segment data</caption><thead><tr><th scope="col"></th><th scope="col">Retail</th><th scope="col">Wholesale</th></tr></thead><tbody><tr><th scope="row">Sales</th><td>$300,000</td><td>$500,000</td></tr><tr><th scope="row">Variable expenses</th><td>$120,000</td><td>$240,000</td></tr><tr><th scope="row">Traceable fixed expenses</th><td>$70,000</td><td>$170,000</td></tr></tbody></table>
+    <p>Common fixed expenses not traceable to either segment (corporate administration) total $80,000.</p>
+    <div class="example"><div class="ex-label">Example 1 — Classify the Fixed Cost</div><p>Is each fixed cost traceable or common?</p>
+      <div class="q">
+      
+      
+      <div class="input-col"><div class="sel-row"><label for="sel-4-1-0">Salary of the Retail store manager</label><select id="sel-4-1-0"><option value="">Choose…</option><option>Traceable</option><option>Common</option></select></div><div class="sel-row"><label for="sel-4-1-1">Salary of the company president</label><select id="sel-4-1-1"><option value="">Choose…</option><option>Traceable</option><option>Common</option></select></div><div class="sel-row"><label for="sel-4-1-2">Rent on the Wholesale warehouse</label><select id="sel-4-1-2"><option value="">Choose…</option><option>Traceable</option><option>Common</option></select></div>
+        <div><button type="button" onclick='checkSelects("4-1", [[&quot;sel-4-1-0&quot;, &quot;Traceable&quot;], [&quot;sel-4-1-1&quot;, &quot;Common&quot;], [&quot;sel-4-1-2&quot;, &quot;Traceable&quot;]])'>Check my answers</button></div>
+      </div>
+      <div class="feedback" id="fb-4-1" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-4-1" hidden>
+        <div class="solution-label">Solution</div>
+        <p>Costs that exist because of a specific segment (its manager, its warehouse) are traceable. Costs that support the company as a whole (the president) are common and are not allocated to segments.
+      </div>
+      </div></div>
+    <div class="example"><div class="ex-label">Example 2 — Retail Segment Margin</div><p>What is the segment margin for Retail?</p>
+      <div class="q">
+      
+      
+      <div class="input-row">
+        <label for="ans-4-2">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-4-2" placeholder="0" aria-describedby="fb-4-2">
+        <button type="button" onclick="checkAnswer('4-2', 110000, null)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-4-2" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-4-2" hidden>
+        <div class="solution-label">Solution</div>
+        <p>CM: $300,000 − $120,000 = $180,000. Segment margin: $180,000 − $70,000 = $110,000.</p><p class="final-answer">Retail segment margin = <strong>$110,000</strong></p>
+      </div>
+      </div></div>
+    <div class="example"><div class="ex-label">Example 3 — Wholesale Segment Margin</div><p>What is the segment margin for Wholesale?</p>
+      <div class="q">
+      
+      
+      <div class="input-row">
+        <label for="ans-4-3">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-4-3" placeholder="0" aria-describedby="fb-4-3">
+        <button type="button" onclick="checkAnswer('4-3', 90000, null)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-4-3" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-4-3" hidden>
+        <div class="solution-label">Solution</div>
+        <p>CM: $500,000 − $240,000 = $260,000. Segment margin: $260,000 − $170,000 = $90,000.</p><p class="final-answer">Wholesale segment margin = <strong>$90,000</strong></p>
+      </div>
+      </div></div>
+    <div class="example"><div class="ex-label">Example 4 — Company Net Operating Income</div><p>What is Pisgah's company-wide net operating income?</p>
+      <div class="q">
+      
+      
+      <div class="input-row">
+        <label for="ans-4-4">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-4-4" placeholder="0" aria-describedby="fb-4-4">
+        <button type="button" onclick="checkAnswer('4-4', 120000, null)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-4-4" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-4-4" hidden>
+        <div class="solution-label">Solution</div>
+        <table class="mini"><caption class="sr">Company income</caption><thead><tr><th scope="col"></th><th scope="col">Amount</th></tr></thead><tbody><tr><th scope="row">Retail segment margin</th><td>$110,000</td></tr><tr><th scope="row">Wholesale segment margin</th><td>$90,000</td></tr><tr><th scope="row">Total segment margins</th><td>$200,000</td></tr><tr><th scope="row">Less: common fixed expenses</th><td>$(80,000)</td></tr><tr><th scope="row"><strong>Net operating income</strong></th><td><strong>$120,000</strong></td></tr></tbody></table><p class="final-answer">Net operating income = <strong>$120,000</strong></p><div class="key-idea">Allocating common costs to segments would make a segment look less profitable than it really is. Dropping a segment saves only its <em>traceable</em> costs.</div>
+      </div>
+      </div></div>
+
+  </section>
+
+  <section class="lo-block" aria-labelledby="wrap-h">
+    <span class="lo-tag">Wrap-up</span>
+    <h2 id="wrap-h">Chapter 4 at a Glance</h2>
+
+    <ul><li><strong>Variable costing</strong> treats fixed manufacturing overhead as a period cost; <strong>absorption</strong> treats it as a product cost.</li>
+    <li>Absorption income − variable income = change in inventory (units) × fixed overhead per unit.</li>
+    <li><strong>Segment margin</strong> = contribution margin − traceable fixed expenses. Common costs are not allocated.</li></ul>
+  </section>
+
+</main>
+<footer>ACCT 252 · Chapter 4 Chapter Walkthrough · Variable Costing and Segment Reporting (Ungraded)</footer>
+<script>
+var CHECKED = {};
+var TOTAL = 12;
+function updateProgress(){
+  var c = Object.keys(CHECKED).length;
+  document.getElementById('progressLabel').textContent = c + ' of ' + TOTAL + ' checked';
+  document.getElementById('progressFill').style.width = (c / TOTAL * 100) + '%';
+  document.getElementById('progressBar').setAttribute('aria-valuenow', c);
+}
+function parseNum(s){
+  s = String(s).replace(/\$/g,'').trim();
+  var neg = /^\(.*\)$/.test(s) || /^-/.test(s);
+  var t = s.replace(/[$,\s()]/g, '').replace(/^-/, '');
+  if (t === '' || isNaN(Number(t))) return NaN;
+  var v = parseFloat(t);
+  return neg ? -v : v;
+}
+function setFb(fb, cls, text){ fb.className = 'feedback ' + cls; fb.textContent = text; }
+function checkAnswer(id, correct, tol){
+  var input = document.getElementById('ans-' + id);
+  var fb = document.getElementById('fb-' + id);
+  var sol = document.getElementById('sol-' + id);
+  var val = parseNum(input.value);
+  if (isNaN(val)) { setFb(fb, 'warn', 'Enter a number first, then choose Check my answer.'); return; }
+  if (tol === null || tol === undefined) { tol = Math.max(1, Math.abs(correct) * 0.005); }
+  if (Math.abs(val - correct) <= tol) {
+    setFb(fb, 'good', '\u2713 Correct! Here is the full solution for reference.');
+  } else {
+    setFb(fb, 'bad', '\u2717 Not quite. Here is the full solution; compare it with your work to see where things diverged.');
+  }
+  sol.hidden = false;
+  CHECKED[id] = true;
+  updateProgress();
+}
+function checkSelects(id, pairs){
+  var fb = document.getElementById('fb-' + id);
+  var sol = document.getElementById('sol-' + id);
+  var ok = 0, blank = 0;
+  for (var i = 0; i < pairs.length; i++) {
+    var el = document.getElementById(pairs[i][0]);
+    if (!el.value) { blank++; continue; }
+    if (el.value === pairs[i][1]) ok++;
+  }
+  if (blank) { setFb(fb, 'warn', 'Choose an answer for every item first, then choose Check my answers.'); return; }
+  if (ok === pairs.length) setFb(fb, 'good', '\u2713 Correct! ' + ok + ' of ' + pairs.length + '. Here is the explanation.');
+  else setFb(fb, 'bad', '\u2717 ' + ok + ' of ' + pairs.length + ' correct. Review the explanation below.');
+  sol.hidden = false;
+  CHECKED[id] = true;
+  updateProgress();
+}
+</script>
+</body>
+</html>

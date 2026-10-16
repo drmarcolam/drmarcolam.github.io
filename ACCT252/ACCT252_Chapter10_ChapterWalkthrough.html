@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ACCT 252 Chapter 10 Chapter Walkthrough</title>
+<meta name="description" content="Chapter 10 Chapter Walkthrough: step-by-step guided practice on Standard Costs and Variances">
+<style>
+:root{
+  --bg:#fffbe8; --card:#fffef6; --ink:#1b2a21; --muted:#4f5a49; --line:#e0d59c;
+  --purple:#1f5136; --purple-dark:#163d29; --gold:#f5e68a; --tint:#f8f0c2; --edge:#c9a500;
+  --good-bg:#e7f5ea; --good-ink:#14532d; --good-line:#2e7d32;
+  --bad-bg:#fdebe4; --bad-ink:#7a2a0b; --bad-line:#b4481a;
+  --warn-bg:#fff3de; --warn-ink:#5e3300; --warn-line:#b86b00;
+  --focus:#0b57d0;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0f1f17; --card:#16291f; --ink:#f6f1d0; --muted:#c3c9a8; --line:#2f4a3a;
+    --purple:#f2e48a; --purple-dark:#0b1a12; --tint:#1e3829; --edge:#f2e48a;
+    --good-bg:#16301d; --good-ink:#bfe8c8; --good-line:#58b46c;
+    --bad-bg:#3b1f14; --bad-ink:#ffd2bf; --bad-line:#e08a5e;
+    --warn-bg:#3a2a10; --warn-ink:#ffe0b3; --warn-line:#e0a040;
+    --focus:#8ab4ff;
+  }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.55;font-size:1.0625rem}
+.skip{position:absolute;left:-999px;top:0;background:var(--gold);color:#163d29;padding:.6rem 1rem;z-index:10;font-weight:700}
+.skip:focus{left:8px;top:8px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+header.site{background:var(--purple-dark);color:#fff;border-bottom:6px solid var(--gold)}
+header.site .wrap{max-width:52rem;margin:0 auto;padding:1.3rem 1rem}
+header.site .eyebrow{margin:0;font-size:.9rem;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);font-weight:700}
+header.site h1{margin:.2rem 0 .3rem;font-size:1.7rem;line-height:1.2}
+header.site p.sub{margin:0;color:#e6efd9}
+.back{margin:.7rem 0 0;font-size:.95rem}
+.back a{color:var(--gold);font-weight:600}
+.progress{max-width:52rem;margin:0 auto;padding:.8rem 1rem 0;display:flex;align-items:center;gap:1rem;position:sticky;top:0;background:var(--bg);z-index:5}
+.progress .track{flex:1;height:10px;background:var(--line);border-radius:5px;overflow:hidden}
+.progress .fill{height:100%;width:0;background:var(--purple);transition:width .3s}
+.progress .lab{font-size:.9rem;color:var(--muted);white-space:nowrap}
+main{max-width:52rem;margin:0 auto;padding:.8rem 1rem 3rem}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+h2{font-size:1.45rem;margin:.2rem 0 .7rem;color:var(--purple);border-bottom:2px solid var(--line);padding-bottom:.35rem}
+h3{font-size:1.02rem;margin:1rem 0 .3rem}
+p{margin:.55rem 0}
+.lo-block{margin:2.2rem 0}
+.lo-tag{display:inline-block;font-size:.8rem;font-weight:700;letter-spacing:.04em;color:#fff;background:var(--purple-dark);padding:.2rem .6rem;border-radius:4px;margin-bottom:.4rem}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .lo-tag{background:var(--purple);color:#0b1a12}}
+.key-idea{background:var(--tint);border-left:5px solid var(--edge);padding:.8rem 1rem;border-radius:0 8px 8px 0;margin:.9rem 0}
+.key-idea ol,.key-idea ul{margin:.4rem 0 .2rem;padding-left:1.3rem}
+.note{color:var(--muted);font-size:.95rem}
+.example{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:1rem 1.1rem 1.1rem;margin:1.1rem 0}
+.ex-label{font-size:.82rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--purple);margin-bottom:.3rem}
+.q{margin:.3rem 0}
+table.mini{border-collapse:collapse;width:100%;margin:.6rem 0;font-size:.92rem;font-variant-numeric:tabular-nums}
+table.mini th,table.mini td{border:1px solid var(--line);padding:.35rem .55rem;text-align:right;vertical-align:top}
+table.mini thead th{background:var(--tint);color:var(--ink)}
+table.mini th[scope="row"]{text-align:left;font-weight:600;background:transparent}
+table.mini thead th:first-child{text-align:left}
+.tablewrap{overflow-x:auto}
+.input-row{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:.8rem 0 .4rem;padding:.7rem;background:var(--tint);border-radius:8px}
+.input-row label{font-weight:700}
+.input-row input{font:inherit;font-variant-numeric:tabular-nums;padding:.45rem .6rem;border:2px solid var(--line);border-radius:6px;width:11rem;background:var(--card);color:var(--ink)}
+.input-col{display:grid;gap:.5rem;margin:.8rem 0 .4rem;padding:.7rem;background:var(--tint);border-radius:8px}
+.sel-row{display:grid;grid-template-columns:1fr minmax(11rem,15rem);gap:.6rem;align-items:center}
+.sel-row label{font-weight:600}
+@media (max-width:34rem){.sel-row{grid-template-columns:1fr}}
+select{font:inherit;padding:.45rem .5rem;border:2px solid var(--line);border-radius:6px;background:var(--card);color:var(--ink)}
+button{font:inherit;font-weight:700;color:#fff;background:var(--purple-dark);border:2px solid var(--purple-dark);padding:.5rem 1rem;border-radius:6px;cursor:pointer}
+button:hover{background:var(--purple);border-color:var(--purple)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) button{background:var(--purple);color:#0b1a12;border-color:var(--purple)}}
+.feedback{margin:.4rem 0;font-weight:600}
+.feedback:not(:empty){padding:.6rem .85rem;border-radius:6px;border-left:5px solid}
+.feedback.good{color:var(--good-ink);background:var(--good-bg);border-color:var(--good-line)}
+.feedback.bad{color:var(--bad-ink);background:var(--bad-bg);border-color:var(--bad-line)}
+.feedback.warn{color:var(--warn-ink);background:var(--warn-bg);border-color:var(--warn-line)}
+.solution{margin-top:.7rem;padding-top:.8rem;border-top:2px dashed var(--line)}
+.solution-label{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--purple);margin-bottom:.4rem}
+.final-answer{margin-top:.6rem}
+.final-answer strong{color:var(--purple);font-size:1.08rem}
+details.hint{margin:.4rem 0}
+details.hint summary,details.data summary{cursor:pointer;font-weight:600;color:var(--purple)}
+details.hint div{padding:.4rem .8rem;border-left:4px solid var(--line);margin-top:.3rem}
+details.data{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:.7rem 1rem;margin:1rem 0}
+ol.steps{margin:.3rem 0;padding-left:1.3rem}
+.data-inline{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:.2rem 1rem;margin:.8rem 0}
+footer{text-align:center;color:var(--muted);font-size:.85rem;padding:1.5rem 1rem 2.5rem}
+@media (max-width:40rem){table.mini{display:block;overflow-x:auto}}
+@media (prefers-reduced-motion:reduce){.progress .fill{transition:none}}
+
+.sel-row select{max-width:100%;min-width:0}
+.sel-row{flex-wrap:wrap}
+
+.back{margin:.7rem 0 0;font-size:.95rem}
+.back a{color:var(--gold);font-weight:600}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="site"><div class="wrap">
+  <p class="eyebrow">ACCT 252 · Managerial Accounting</p>
+  <h1>Chapter 10 Chapter Walkthrough</h1>
+  <p class="sub">Standard Costs and Variances · Practice each step, then check yourself.</p>
+  <p class="back"><a href="../courses/acct-252-chapter-walkthroughs.html">&larr; Back to ACCT 252 Chapter Walkthroughs</a></p>
+</div></header>
+<div class="progress" id="progressBar" role="progressbar" aria-label="Questions checked" aria-valuemin="0" aria-valuemax="12" aria-valuenow="0">
+  <div class="track"><div class="fill" id="progressFill"></div></div>
+  <div class="lab" id="progressLabel">0 of 12 checked</div>
+</div>
+<main id="main" tabindex="-1">
+  <div class="key-idea"><strong>How this works.</strong> Work each problem by hand or with a calculator, type your answer, and choose <strong>Check my answer</strong>. You will see right away whether you are correct, plus the full solution either way. Use <em>Need a hint?</em> if you get stuck. This page is for practice only: it is not graded and nothing is submitted.</div>
+
+  <section class="lo-block" aria-labelledby="s1-h">
+    <span class="lo-tag">Standard cost card</span>
+    <h2 id="s1-h">Setting Standards and the Standard Cost Card</h2>
+
+    <p><strong>Nantahala Rain Gear</strong> in Franklin, North Carolina, makes rain jackets. A <strong>standard</strong> has two parts: a <em>quantity</em> standard (how much input should be used) and a <em>price</em> standard (what the input should cost).</p>
+    <table class="mini"><caption class="sr">Standard cost card for one jacket</caption><thead><tr><th scope="col">Input</th><th scope="col">Quantity standard</th><th scope="col">Price standard</th><th scope="col">Standard cost</th></tr></thead><tbody><tr><th scope="row">Fabric</th><td>2.5 yards</td><td>$8.00 per yard</td><td>$20.00</td></tr><tr><th scope="row">Direct labor</th><td>1.2 hours</td><td>$15.00 per hour</td><td>$18.00</td></tr><tr><th scope="row">Variable overhead</th><td>1.2 hours</td><td>$4.00 per hour</td><td>$4.80</td></tr><tr><th scope="row"><strong>Standard cost per jacket</strong></th><td><strong></strong></td><td><strong></strong></td><td><strong>$42.80</strong></td></tr></tbody></table>
+    <p>Last month Nantahala produced <strong>5,000 jackets</strong>. Actual results: 13,200 yards of fabric were purchased and used at $7.70 per yard; 6,300 direct labor-hours were worked at $15.40 per hour; actual variable overhead was $27,090.</p>
+    <div class="example"><div class="ex-label">Example 1 — Standard Quantity Allowed</div><p>How many yards of fabric are allowed for 5,000 jackets?</p>
+      <div class="q">
+      
+      <details class="hint"><summary>Need a hint?</summary><div>Standard quantity per unit × actual output.</div></details>
+      <div class="input-row">
+        <label for="ans-1-1">Your answer:</label>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-1-1" placeholder="0" aria-describedby="fb-1-1"><span aria-hidden="true"> yards</span>
+        <button type="button" onclick="checkAnswer('1-1', 12500.0, 0.5)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-1-1" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-1-1" hidden>
+        <div class="solution-label">Solution</div>
+        <p>5,000 × 2.5 = 12,500 yards.</p><p class="final-answer">Standard quantity allowed = <strong>12,500 yards</strong></p><div class="key-idea">Standard quantity allowed is based on <em>actual output</em>, not planned output.</div>
+      </div>
+      </div></div>
+    <div class="example"><div class="ex-label">Example 2 — Standard Hours Allowed</div><p>How many direct labor-hours are allowed for 5,000 jackets?</p>
+      <div class="q">
+      
+      
+      <div class="input-row">
+        <label for="ans-1-2">Your answer:</label>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-1-2" placeholder="0" aria-describedby="fb-1-2"><span aria-hidden="true"> hours</span>
+        <button type="button" onclick="checkAnswer('1-2', 6000.0, 0.5)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-1-2" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-1-2" hidden>
+        <div class="solution-label">Solution</div>
+        <p>5,000 × 1.2 = 6,000 hours.</p><p class="final-answer">Standard hours allowed = <strong>6,000 hours</strong></p>
+      </div>
+      </div></div>
+
+  </section>
+
+  <section class="lo-block" aria-labelledby="s2-h">
+    <span class="lo-tag">Materials</span>
+    <h2 id="s2-h">Materials Price and Quantity Variances</h2>
+
+    <div class="key-idea"><ul><li>Materials price variance = AQ × (AP − SP)</li><li>Materials quantity variance = SP × (AQ − SQ)</li></ul>A positive result is <strong>unfavorable (U)</strong>; a negative result is <strong>favorable (F)</strong>.</div>
+    <div class="example"><div class="ex-label">Example 1 — Materials Price Variance</div><p>What is the materials price variance? Enter the amount (without F or U).</p>
+      <div class="q">
+      
+      <details class="hint"><summary>Need a hint?</summary><div>Actual price is $7.70 versus the $8.00 standard.</div></details>
+      <div class="input-row">
+        <label for="ans-2-1">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-2-1" placeholder="0" aria-describedby="fb-2-1">
+        <button type="button" onclick="checkAnswer('2-1', 3959.9999999999977, null)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-2-1" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-2-1" hidden>
+        <div class="solution-label">Solution</div>
+        <p>13,200 × ($7.70 − $8.00) = 13,200 × (−$0.30) = −$3,960, which is <strong>favorable</strong>.</p><p class="final-answer">Materials price variance = <strong>$3,960 F</strong></p>
+      </div>
+      </div></div>
+    <div class="example"><div class="ex-label">Example 2 — Materials Quantity Variance</div><p>What is the materials quantity variance? Enter the amount.</p>
+      <div class="q">
+      
+      <details class="hint"><summary>Need a hint?</summary><div>Compare yards actually used (13,200) with yards allowed (12,500), at the standard price.</div></details>
+      <div class="input-row">
+        <label for="ans-2-2">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-2-2" placeholder="0" aria-describedby="fb-2-2">
+        <button type="button" onclick="checkAnswer('2-2', 5600.0, null)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-2-2" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-2-2" hidden>
+        <div class="solution-label">Solution</div>
+        <p>$8.00 × (13,200 − 12,500) = $8.00 × 700 = $5,600, <strong>unfavorable</strong>.</p><p class="final-answer">Materials quantity variance = <strong>$5,600 U</strong></p>
+      </div>
+      </div></div>
+    <div class="example"><div class="ex-label">Example 3 — Favorable or Unfavorable?</div><p>Label each variance.</p>
+      <div class="q">
+      
+      
+      <div class="input-col"><div class="sel-row"><label for="sel-2-3-0">Materials price variance (paid less than standard)</label><select id="sel-2-3-0"><option value="">Choose…</option><option>Favorable</option><option>Unfavorable</option></select></div><div class="sel-row"><label for="sel-2-3-1">Materials quantity variance (used more than allowed)</label><select id="sel-2-3-1"><option value="">Choose…</option><option>Favorable</option><option>Unfavorable</option></select></div>
+        <div><button type="button" onclick='checkSelects("2-3", [[&quot;sel-2-3-0&quot;, &quot;Favorable&quot;], [&quot;sel-2-3-1&quot;, &quot;Unfavorable&quot;]])'>Check my answers</button></div>
+      </div>
+      <div class="feedback" id="fb-2-3" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-2-3" hidden>
+        <div class="solution-label">Solution</div>
+        <p>Paying less per yard than the standard is favorable. Using more yards than the standard allows for the output is unfavorable. Together these may signal that lower-priced fabric was purchased but wasted more in cutting.</p>
+      </div>
+      </div></div>
+
+  </section>
+
+  <section class="lo-block" aria-labelledby="s3-h">
+    <span class="lo-tag">Labor</span>
+    <h2 id="s3-h">Labor Rate and Efficiency Variances</h2>
+
+    <div class="key-idea"><ul><li>Labor rate variance = AH × (AR − SR)</li><li>Labor efficiency variance = SR × (AH − SH)</li></ul></div>
+    <div class="example"><div class="ex-label">Example 1 — Labor Rate Variance</div><p>What is the labor rate variance? Enter the amount.</p>
+      <div class="q">
+      
+      
+      <div class="input-row">
+        <label for="ans-3-1">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-3-1" placeholder="0" aria-describedby="fb-3-1">
+        <button type="button" onclick="checkAnswer('3-1', 2520.0000000000023, null)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-3-1" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-3-1" hidden>
+        <div class="solution-label">Solution</div>
+        <p>6,300 × ($15.40 − $15.00) = 6,300 × $0.40 = $2,520, <strong>unfavorable</strong>.</p><p class="final-answer">Labor rate variance = <strong>$2,520 U</strong></p>
+      </div>
+      </div></div>
+    <div class="example"><div class="ex-label">Example 2 — Labor Efficiency Variance</div><p>What is the labor efficiency variance? Enter the amount.</p>
+      <div class="q">
+      
+      <details class="hint"><summary>Need a hint?</summary><div>Compare actual hours with standard hours allowed, at the standard rate.</div></details>
+      <div class="input-row">
+        <label for="ans-3-2">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-3-2" placeholder="0" aria-describedby="fb-3-2">
+        <button type="button" onclick="checkAnswer('3-2', 4500.0, null)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-3-2" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-3-2" hidden>
+        <div class="solution-label">Solution</div>
+        <p>$15.00 × (6,300 − 6,000) = $15.00 × 300 = $4,500, <strong>unfavorable</strong>.</p><p class="final-answer">Labor efficiency variance = <strong>$4,500 U</strong></p>
+      </div>
+      </div></div>
+
+  </section>
+
+  <section class="lo-block" aria-labelledby="s4-h">
+    <span class="lo-tag">Variable overhead</span>
+    <h2 id="s4-h">Variable Overhead Variances</h2>
+
+    <p>Variable overhead is applied on direct labor-hours, so the standard rate is $4.00 per hour. Actual variable overhead was $27,090 for 6,300 hours.</p>
+    <div class="key-idea"><ul><li>Variable overhead rate variance = AH × (AR − SR)</li><li>Variable overhead efficiency variance = SR × (AH − SH)</li></ul></div>
+    <div class="example"><div class="ex-label">Example 1 — Actual Variable Overhead Rate</div><p>What was the actual variable overhead rate per direct labor-hour?</p>
+      <div class="q">
+      
+      
+      <div class="input-row">
+        <label for="ans-4-1">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-4-1" placeholder="0.00" aria-describedby="fb-4-1"><span aria-hidden="true"> per hour</span>
+        <button type="button" onclick="checkAnswer('4-1', 4.3, 0.005)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-4-1" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-4-1" hidden>
+        <div class="solution-label">Solution</div>
+        <p>$27,090 ÷ 6,300 hours = $4.30 per hour.</p><p class="final-answer">Actual rate = <strong>$4.30 per hour</strong></p>
+      </div>
+      </div></div>
+    <div class="example"><div class="ex-label">Example 2 — Variable Overhead Rate Variance</div><p>What is the variable overhead rate variance? Enter the amount.</p>
+      <div class="q">
+      
+      
+      <div class="input-row">
+        <label for="ans-4-2">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-4-2" placeholder="0" aria-describedby="fb-4-2">
+        <button type="button" onclick="checkAnswer('4-2', 1889.9999999999989, null)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-4-2" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-4-2" hidden>
+        <div class="solution-label">Solution</div>
+        <p>6,300 × ($4.30 − $4.00) = $1,890, <strong>unfavorable</strong>.</p><p class="final-answer">Variable overhead rate variance = <strong>$1,890 U</strong></p>
+      </div>
+      </div></div>
+    <div class="example"><div class="ex-label">Example 3 — Variable Overhead Efficiency Variance</div><p>What is the variable overhead efficiency variance? Enter the amount.</p>
+      <div class="q">
+      
+      
+      <div class="input-row">
+        <label for="ans-4-3">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-4-3" placeholder="0" aria-describedby="fb-4-3">
+        <button type="button" onclick="checkAnswer('4-3', 1200.0, null)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-4-3" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-4-3" hidden>
+        <div class="solution-label">Solution</div>
+        <p>$4.00 × (6,300 − 6,000) = $1,200, <strong>unfavorable</strong>.</p><p class="final-answer">Variable overhead efficiency variance = <strong>$1,200 U</strong></p><div class="key-idea">Because overhead is applied on direct labor-hours, the overhead efficiency and labor efficiency variances always move together: both are unfavorable here because more hours were worked than standard.</div>
+      </div>
+      </div></div>
+
+  </section>
+
+  <section class="lo-block" aria-labelledby="s5-h">
+    <span class="lo-tag">Putting it together</span>
+    <h2 id="s5-h">Total Variance and Responsibility</h2>
+
+    <div class="example"><div class="ex-label">Example 1 — Total Cost Variance</div><p>Actual total cost of fabric, labor and variable overhead was $225,750. Standard cost for the actual output is 5,000 × $42.80 = $214,000. What is the total unfavorable variance? Verify that it equals the sum of your six variances.</p>
+      <div class="q">
+      
+      <details class="hint"><summary>Need a hint?</summary><div>Sum: −3,960 + 5,600 + 2,520 + 4,500 + 1,890 + 1,200.</div></details>
+      <div class="input-row">
+        <label for="ans-5-1">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-5-1" placeholder="0" aria-describedby="fb-5-1">
+        <button type="button" onclick="checkAnswer('5-1', 11750.0, null)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-5-1" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-5-1" hidden>
+        <div class="solution-label">Solution</div>
+        <table class="mini"><caption class="sr">Summary of variances</caption><thead><tr><th scope="col">Variance</th><th scope="col">Amount</th></tr></thead><tbody><tr><th scope="row">Materials price</th><td>$3,960 F</td></tr><tr><th scope="row">Materials quantity</th><td>$5,600 U</td></tr><tr><th scope="row">Labor rate</th><td>$2,520 U</td></tr><tr><th scope="row">Labor efficiency</th><td>$4,500 U</td></tr><tr><th scope="row">Variable overhead rate</th><td>$1,890 U</td></tr><tr><th scope="row">Variable overhead efficiency</th><td>$1,200 U</td></tr><tr><th scope="row"><strong>Total variance</strong></th><td><strong>$11,750 U</strong></td></tr></tbody></table><p>Check: $225,750 − $214,000 = $11,750.</p><p class="final-answer">Total variance = <strong>$11,750 U</strong></p>
+      </div>
+      </div></div>
+    <div class="example"><div class="ex-label">Example 2 — Who Is Responsible?</div><p>Match each variance with the manager who usually has the most control over it.</p>
+      <div class="q">
+      
+      
+      <div class="input-col"><div class="sel-row"><label for="sel-5-2-0">Materials price variance</label><select id="sel-5-2-0"><option value="">Choose…</option><option>Purchasing manager</option><option>Production manager</option></select></div><div class="sel-row"><label for="sel-5-2-1">Materials quantity variance</label><select id="sel-5-2-1"><option value="">Choose…</option><option>Purchasing manager</option><option>Production manager</option></select></div><div class="sel-row"><label for="sel-5-2-2">Labor efficiency variance</label><select id="sel-5-2-2"><option value="">Choose…</option><option>Purchasing manager</option><option>Production manager</option></select></div>
+        <div><button type="button" onclick='checkSelects("5-2", [[&quot;sel-5-2-0&quot;, &quot;Purchasing manager&quot;], [&quot;sel-5-2-1&quot;, &quot;Production manager&quot;], [&quot;sel-5-2-2&quot;, &quot;Production manager&quot;]])'>Check my answers</button></div>
+      </div>
+      <div class="feedback" id="fb-5-2" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-5-2" hidden>
+        <div class="solution-label">Solution</div>
+        <p>The purchasing manager controls what is paid for materials. Production managers control how much material and labor are used. Standards should be used to find <em>causes</em> and fix problems, not to assign blame.</p>
+      </div>
+      </div></div>
+
+  </section>
+
+  <section class="lo-block" aria-labelledby="wrap-h">
+    <span class="lo-tag">Wrap-up</span>
+    <h2 id="wrap-h">Chapter 10 at a Glance</h2>
+
+    <ul><li><strong>Price variances:</strong> (actual price − standard price) × actual quantity. <strong>Quantity/efficiency variances:</strong> (actual − standard allowed) × standard price.</li>
+    <li>Standard quantity/hours allowed are based on <em>actual output</em>.</li>
+    <li>Positive results (actual higher) are unfavorable for costs; negative are favorable.</li>
+    <li>The individual variances add up to the total variance.</li></ul>
+  </section>
+
+</main>
+<footer>ACCT 252 · Chapter 10 Chapter Walkthrough · Standard Costs and Variances (Ungraded)</footer>
+<script>
+var CHECKED = {};
+var TOTAL = 12;
+function updateProgress(){
+  var c = Object.keys(CHECKED).length;
+  document.getElementById('progressLabel').textContent = c + ' of ' + TOTAL + ' checked';
+  document.getElementById('progressFill').style.width = (c / TOTAL * 100) + '%';
+  document.getElementById('progressBar').setAttribute('aria-valuenow', c);
+}
+function parseNum(s){
+  s = String(s).replace(/\$/g,'').trim();
+  var neg = /^\(.*\)$/.test(s) || /^-/.test(s);
+  var t = s.replace(/[$,\s()]/g, '').replace(/^-/, '');
+  if (t === '' || isNaN(Number(t))) return NaN;
+  var v = parseFloat(t);
+  return neg ? -v : v;
+}
+function setFb(fb, cls, text){ fb.className = 'feedback ' + cls; fb.textContent = text; }
+function checkAnswer(id, correct, tol){
+  var input = document.getElementById('ans-' + id);
+  var fb = document.getElementById('fb-' + id);
+  var sol = document.getElementById('sol-' + id);
+  var val = parseNum(input.value);
+  if (isNaN(val)) { setFb(fb, 'warn', 'Enter a number first, then choose Check my answer.'); return; }
+  if (tol === null || tol === undefined) { tol = Math.max(1, Math.abs(correct) * 0.005); }
+  if (Math.abs(val - correct) <= tol) {
+    setFb(fb, 'good', '\u2713 Correct! Here is the full solution for reference.');
+  } else {
+    setFb(fb, 'bad', '\u2717 Not quite. Here is the full solution; compare it with your work to see where things diverged.');
+  }
+  sol.hidden = false;
+  CHECKED[id] = true;
+  updateProgress();
+}
+function checkSelects(id, pairs){
+  var fb = document.getElementById('fb-' + id);
+  var sol = document.getElementById('sol-' + id);
+  var ok = 0, blank = 0;
+  for (var i = 0; i < pairs.length; i++) {
+    var el = document.getElementById(pairs[i][0]);
+    if (!el.value) { blank++; continue; }
+    if (el.value === pairs[i][1]) ok++;
+  }
+  if (blank) { setFb(fb, 'warn', 'Choose an answer for every item first, then choose Check my answers.'); return; }
+  if (ok === pairs.length) setFb(fb, 'good', '\u2713 Correct! ' + ok + ' of ' + pairs.length + '. Here is the explanation.');
+  else setFb(fb, 'bad', '\u2717 ' + ok + ' of ' + pairs.length + ' correct. Review the explanation below.');
+  sol.hidden = false;
+  CHECKED[id] = true;
+  updateProgress();
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ACCT 252 Chapter 3 Chapter Walkthrough</title>
+<meta name="description" content="Chapter 3 Chapter Walkthrough: step-by-step guided practice on Job-Order Costing">
+<style>
+:root{
+  --bg:#fffbe8; --card:#fffef6; --ink:#1b2a21; --muted:#4f5a49; --line:#e0d59c;
+  --purple:#1f5136; --purple-dark:#163d29; --gold:#f5e68a; --tint:#f8f0c2; --edge:#c9a500;
+  --good-bg:#e7f5ea; --good-ink:#14532d; --good-line:#2e7d32;
+  --bad-bg:#fdebe4; --bad-ink:#7a2a0b; --bad-line:#b4481a;
+  --warn-bg:#fff3de; --warn-ink:#5e3300; --warn-line:#b86b00;
+  --focus:#0b57d0;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0f1f17; --card:#16291f; --ink:#f6f1d0; --muted:#c3c9a8; --line:#2f4a3a;
+    --purple:#f2e48a; --purple-dark:#0b1a12; --tint:#1e3829; --edge:#f2e48a;
+    --good-bg:#16301d; --good-ink:#bfe8c8; --good-line:#58b46c;
+    --bad-bg:#3b1f14; --bad-ink:#ffd2bf; --bad-line:#e08a5e;
+    --warn-bg:#3a2a10; --warn-ink:#ffe0b3; --warn-line:#e0a040;
+    --focus:#8ab4ff;
+  }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.55;font-size:1.0625rem}
+.skip{position:absolute;left:-999px;top:0;background:var(--gold);color:#163d29;padding:.6rem 1rem;z-index:10;font-weight:700}
+.skip:focus{left:8px;top:8px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+header.site{background:var(--purple-dark);color:#fff;border-bottom:6px solid var(--gold)}
+header.site .wrap{max-width:52rem;margin:0 auto;padding:1.3rem 1rem}
+header.site .eyebrow{margin:0;font-size:.9rem;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);font-weight:700}
+header.site h1{margin:.2rem 0 .3rem;font-size:1.7rem;line-height:1.2}
+header.site p.sub{margin:0;color:#e6efd9}
+.back{margin:.7rem 0 0;font-size:.95rem}
+.back a{color:var(--gold);font-weight:600}
+.progress{max-width:52rem;margin:0 auto;padding:.8rem 1rem 0;display:flex;align-items:center;gap:1rem;position:sticky;top:0;background:var(--bg);z-index:5}
+.progress .track{flex:1;height:10px;background:var(--line);border-radius:5px;overflow:hidden}
+.progress .fill{height:100%;width:0;background:var(--purple);transition:width .3s}
+.progress .lab{font-size:.9rem;color:var(--muted);white-space:nowrap}
+main{max-width:52rem;margin:0 auto;padding:.8rem 1rem 3rem}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+h2{font-size:1.45rem;margin:.2rem 0 .7rem;color:var(--purple);border-bottom:2px solid var(--line);padding-bottom:.35rem}
+h3{font-size:1.02rem;margin:1rem 0 .3rem}
+p{margin:.55rem 0}
+.lo-block{margin:2.2rem 0}
+.lo-tag{display:inline-block;font-size:.8rem;font-weight:700;letter-spacing:.04em;color:#fff;background:var(--purple-dark);padding:.2rem .6rem;border-radius:4px;margin-bottom:.4rem}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .lo-tag{background:var(--purple);color:#0b1a12}}
+.key-idea{background:var(--tint);border-left:5px solid var(--edge);padding:.8rem 1rem;border-radius:0 8px 8px 0;margin:.9rem 0}
+.key-idea ol,.key-idea ul{margin:.4rem 0 .2rem;padding-left:1.3rem}
+.note{color:var(--muted);font-size:.95rem}
+.example{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:1rem 1.1rem 1.1rem;margin:1.1rem 0}
+.ex-label{font-size:.82rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--purple);margin-bottom:.3rem}
+.q{margin:.3rem 0}
+table.mini{border-collapse:collapse;width:100%;margin:.6rem 0;font-size:.92rem;font-variant-numeric:tabular-nums}
+table.mini th,table.mini td{border:1px solid var(--line);padding:.35rem .55rem;text-align:right;vertical-align:top}
+table.mini thead th{background:var(--tint);color:var(--ink)}
+table.mini th[scope="row"]{text-align:left;font-weight:600;background:transparent}
+table.mini thead th:first-child{text-align:left}
+.tablewrap{overflow-x:auto}
+.input-row{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:.8rem 0 .4rem;padding:.7rem;background:var(--tint);border-radius:8px}
+.input-row label{font-weight:700}
+.input-row input{font:inherit;font-variant-numeric:tabular-nums;padding:.45rem .6rem;border:2px solid var(--line);border-radius:6px;width:11rem;background:var(--card);color:var(--ink)}
+.input-col{display:grid;gap:.5rem;margin:.8rem 0 .4rem;padding:.7rem;background:var(--tint);border-radius:8px}
+.sel-row{display:grid;grid-template-columns:1fr minmax(11rem,15rem);gap:.6rem;align-items:center}
+.sel-row label{font-weight:600}
+@media (max-width:34rem){.sel-row{grid-template-columns:1fr}}
+select{font:inherit;padding:.45rem .5rem;border:2px solid var(--line);border-radius:6px;background:var(--card);color:var(--ink)}
+button{font:inherit;font-weight:700;color:#fff;background:var(--purple-dark);border:2px solid var(--purple-dark);padding:.5rem 1rem;border-radius:6px;cursor:pointer}
+button:hover{background:var(--purple);border-color:var(--purple)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) button{background:var(--purple);color:#0b1a12;border-color:var(--purple)}}
+.feedback{margin:.4rem 0;font-weight:600}
+.feedback:not(:empty){padding:.6rem .85rem;border-radius:6px;border-left:5px solid}
+.feedback.good{color:var(--good-ink);background:var(--good-bg);border-color:var(--good-line)}
+.feedback.bad{color:var(--bad-ink);background:var(--bad-bg);border-color:var(--bad-line)}
+.feedback.warn{color:var(--warn-ink);background:var(--warn-bg);border-color:var(--warn-line)}
+.solution{margin-top:.7rem;padding-top:.8rem;border-top:2px dashed var(--line)}
+.solution-label{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--purple);margin-bottom:.4rem}
+.final-answer{margin-top:.6rem}
+.final-answer strong{color:var(--purple);font-size:1.08rem}
+details.hint{margin:.4rem 0}
+details.hint summary,details.data summary{cursor:pointer;font-weight:600;color:var(--purple)}
+details.hint div{padding:.4rem .8rem;border-left:4px solid var(--line);margin-top:.3rem}
+details.data{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:.7rem 1rem;margin:1rem 0}
+ol.steps{margin:.3rem 0;padding-left:1.3rem}
+.data-inline{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:.2rem 1rem;margin:.8rem 0}
+footer{text-align:center;color:var(--muted);font-size:.85rem;padding:1.5rem 1rem 2.5rem}
+@media (max-width:40rem){table.mini{display:block;overflow-x:auto}}
+@media (prefers-reduced-motion:reduce){.progress .fill{transition:none}}
+
+.sel-row select{max-width:100%;min-width:0}
+.sel-row{flex-wrap:wrap}
+
+.back{margin:.7rem 0 0;font-size:.95rem}
+.back a{color:var(--gold);font-weight:600}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="site"><div class="wrap">
+  <p class="eyebrow">ACCT 252 · Managerial Accounting</p>
+  <h1>Chapter 3 Chapter Walkthrough</h1>
+  <p class="sub">Job-Order Costing: Calculating Unit Product Costs · Practice each step, then check yourself.</p>
+  <p class="back"><a href="../courses/acct-252-chapter-walkthroughs.html">&larr; Back to ACCT 252 Chapter Walkthroughs</a></p>
+</div></header>
+<div class="progress" id="progressBar" role="progressbar" aria-label="Questions checked" aria-valuemin="0" aria-valuemax="13" aria-valuenow="0">
+  <div class="track"><div class="fill" id="progressFill"></div></div>
+  <div class="lab" id="progressLabel">0 of 13 checked</div>
+</div>
+<main id="main" tabindex="-1">
+  <div class="key-idea"><strong>How this works.</strong> Work each problem by hand or with a calculator, type your answer, and choose <strong>Check my answer</strong>. You will see right away whether you are correct, plus the full solution either way. Use <em>Need a hint?</em> if you get stuck. This page is for practice only: it is not graded and nothing is submitted.</div>
+
+  <section class="lo-block" aria-labelledby="s1-h">
+    <span class="lo-tag">Predetermined rate</span>
+    <h2 id="s1-h">The Predetermined Overhead Rate</h2>
+
+    <p><strong>Brasstown Custom Furniture</strong> in Brasstown, North Carolina, builds one-of-a-kind furniture for clients, so it uses <strong>job-order costing</strong>: each job gets its own cost sheet with direct materials, direct labor and applied manufacturing overhead.</p>
+    <p>Overhead can't be known until the year ends, so jobs are charged overhead with a <strong>predetermined overhead rate</strong> set before the year starts:</p>
+    <div class="key-idea">Predetermined overhead rate = Estimated total manufacturing overhead ÷ Estimated total amount of the allocation base<br>Overhead applied to a job = Predetermined rate × <em>Actual</em> amount of the allocation base used by the job</div>
+    <p>Brasstown's plantwide allocation base is direct labor-hours (DLH). It estimates fixed manufacturing overhead of $120,000 plus variable overhead of $2.50 per DLH, and expects 20,000 direct labor-hours for the year.</p>
+    <div class="example"><div class="ex-label">Example 1 — Estimated Total Overhead</div><p>Use Y = a + bX to estimate total manufacturing overhead for the year.</p>
+      <div class="q">
+      
+      <details class="hint"><summary>Need a hint?</summary><div>Fixed overhead plus variable rate × estimated DLH.</div></details>
+      <div class="input-row">
+        <label for="ans-1-1">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-1-1" placeholder="0" aria-describedby="fb-1-1">
+        <button type="button" onclick="checkAnswer('1-1', 170000.0, null)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-1-1" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-1-1" hidden>
+        <div class="solution-label">Solution</div>
+        <p>Y = $120,000 + ($2.50 × 20,000) = $120,000 + $50,000 = $170,000.</p><p class="final-answer">Estimated overhead = <strong>$170,000</strong></p>
+      </div>
+      </div></div>
+    <div class="example"><div class="ex-label">Example 2 — The Rate</div><p>What is the plantwide predetermined overhead rate per direct labor-hour?</p>
+      <div class="q">
+      
+      
+      <div class="input-row">
+        <label for="ans-1-2">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-1-2" placeholder="0.00" aria-describedby="fb-1-2"><span aria-hidden="true"> per DLH</span>
+        <button type="button" onclick="checkAnswer('1-2', 8.5, 0.01)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-1-2" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-1-2" hidden>
+        <div class="solution-label">Solution</div>
+        <p>$170,000 ÷ 20,000 DLH = $8.50 per DLH.</p><p class="final-answer">Rate = <strong>$8.50 per DLH</strong></p>
+      </div>
+      </div></div>
+    <div class="example"><div class="ex-label">Example 3 — Why Predetermined?</div><p>Why not just wait and use actual overhead and actual hours?</p>
+      <div class="q">
+      
+      
+      <div class="input-col"><div class="sel-row"><label for="sel-1-3-0">Best reason to use a predetermined rate</label><select id="sel-1-3-0"><option value="">Choose…</option><option>Jobs can be costed as they are completed, not after year-end</option><option>It guarantees every job earns a profit</option><option>It makes applied overhead exactly equal actual overhead</option></select></div>
+        <div><button type="button" onclick='checkSelects("1-3", [[&quot;sel-1-3-0&quot;, &quot;Jobs can be costed as they are completed, not after year-end&quot;]])'>Check my answers</button></div>
+      </div>
+      <div class="feedback" id="fb-1-3" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-1-3" hidden>
+        <div class="solution-label">Solution</div>
+        <p>A predetermined rate lets a company cost jobs and quote prices during the year. It does not guarantee profit, and because it is based on estimates, applied overhead will usually differ from actual overhead.</p>
+      </div>
+      </div></div>
+
+  </section>
+
+  <section class="lo-block" aria-labelledby="s2-h">
+    <span class="lo-tag">Job cost</span>
+    <h2 id="s2-h">Costing a Job</h2>
+
+    <p>Job 301 is a set of 10 dining chairs. It used $9,000 of direct materials (lumber and hardware), and 500 direct labor-hours at $18 per hour.</p>
+    <div class="example"><div class="ex-label">Example 1 — Applied Overhead</div><p>How much manufacturing overhead is applied to Job 301?</p>
+      <div class="q">
+      
+      <details class="hint"><summary>Need a hint?</summary><div>Predetermined rate × actual DLH on the job.</div></details>
+      <div class="input-row">
+        <label for="ans-2-1">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-2-1" placeholder="0" aria-describedby="fb-2-1">
+        <button type="button" onclick="checkAnswer('2-1', 4250.0, null)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-2-1" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-2-1" hidden>
+        <div class="solution-label">Solution</div>
+        <p>500 DLH × $8.50 = $4,250.</p><p class="final-answer">Applied overhead = <strong>$4,250</strong></p>
+      </div>
+      </div></div>
+    <div class="example"><div class="ex-label">Example 2 — Total Job Cost</div><p>What is the total manufacturing cost of Job 301?</p>
+      <div class="q">
+      
+      
+      <div class="input-row">
+        <label for="ans-2-2">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-2-2" placeholder="0" aria-describedby="fb-2-2">
+        <button type="button" onclick="checkAnswer('2-2', 22250.0, null)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-2-2" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-2-2" hidden>
+        <div class="solution-label">Solution</div>
+        <table class="mini"><caption class="sr">Job cost sheet: Job 301</caption><thead><tr><th scope="col">Cost</th><th scope="col">Amount</th></tr></thead><tbody><tr><th scope="row">Direct materials</th><td>$9,000</td></tr><tr><th scope="row">Direct labor (500 hrs × $18)</th><td>$9,000</td></tr><tr><th scope="row">Manufacturing overhead applied</th><td>$4,250</td></tr><tr><th scope="row"><strong>Total manufacturing cost</strong></th><td><strong>$22,250</strong></td></tr></tbody></table><p class="final-answer">Total job cost = <strong>$22,250</strong></p>
+      </div>
+      </div></div>
+    <div class="example"><div class="ex-label">Example 3 — Unit Product Cost</div><p>What is the unit product cost per chair?</p>
+      <div class="q">
+      
+      
+      <div class="input-row">
+        <label for="ans-2-3">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-2-3" placeholder="0" aria-describedby="fb-2-3">
+        <button type="button" onclick="checkAnswer('2-3', 2225.0, 0.5)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-2-3" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-2-3" hidden>
+        <div class="solution-label">Solution</div>
+        <p>$22,250 ÷ 10 chairs = $2,225 per chair.</p><p class="final-answer">Unit product cost = <strong>$2,225</strong></p>
+      </div>
+      </div></div>
+    <div class="example"><div class="ex-label">Example 4 — Selling Price</div><p>Brasstown prices jobs at manufacturing cost plus a 60% markup. What is the selling price <em>per chair</em>?</p>
+      <div class="q">
+      
+      <details class="hint"><summary>Need a hint?</summary><div>Total price = total manufacturing cost × 1.60; then divide by the number of chairs.</div></details>
+      <div class="input-row">
+        <label for="ans-2-4">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-2-4" placeholder="0" aria-describedby="fb-2-4">
+        <button type="button" onclick="checkAnswer('2-4', 3560.0, 0.5)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-2-4" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-2-4" hidden>
+        <div class="solution-label">Solution</div>
+        <p>Markup: $22,250 × 60% = $13,350.<br>Total price: $22,250 + $13,350 = $35,600.<br>Per chair: $35,600 ÷ 10 = $3,560.</p><p class="final-answer">Selling price = <strong>$3,560 per chair</strong></p>
+      </div>
+      </div></div>
+    <div class="example"><div class="ex-label">Example 5 — Cost of Goods Sold</div><p>Job 302 (a bookcase set of 5 units) has direct materials of $5,000 and 300 DLH at $18 per hour. If both jobs are completed and sold, what is cost of goods sold for the two jobs?</p>
+      <div class="q">
+      
+      <details class="hint"><summary>Need a hint?</summary><div>Find Job 302's total cost the same way, then add the two jobs.</div></details>
+      <div class="input-row">
+        <label for="ans-2-5">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-2-5" placeholder="0" aria-describedby="fb-2-5">
+        <button type="button" onclick="checkAnswer('2-5', 35200.0, null)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-2-5" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-2-5" hidden>
+        <div class="solution-label">Solution</div>
+        <table class="mini"><caption class="sr">Job 302</caption><thead><tr><th scope="col">Cost</th><th scope="col">Amount</th></tr></thead><tbody><tr><th scope="row">Direct materials</th><td>$5,000</td></tr><tr><th scope="row">Direct labor</th><td>$5,400</td></tr><tr><th scope="row">Overhead applied (300 × $8.50)</th><td>$2,550</td></tr><tr><th scope="row"><strong>Total</strong></th><td><strong>$12,950</strong></td></tr></tbody></table><p>COGS = $22,250 + $12,950 = $35,200.</p><p class="final-answer">Cost of goods sold = <strong>$35,200</strong></p>
+      </div>
+      </div></div>
+
+  </section>
+
+  <section class="lo-block" aria-labelledby="s3-h">
+    <span class="lo-tag">Over / underapplied</span>
+    <h2 id="s3-h">Underapplied and Overapplied Overhead</h2>
+
+    <p>At year-end Brasstown's records show actual manufacturing overhead of $175,000 and 20,500 actual direct labor-hours.</p>
+    <div class="key-idea">Overhead applied = Predetermined rate × Actual hours. If <strong>actual overhead &gt; applied</strong>, overhead is <strong>underapplied</strong>. If applied &gt; actual, it is <strong>overapplied</strong>.</div>
+    <div class="example"><div class="ex-label">Example 1 — Overhead Applied for the Year</div><p>How much overhead was applied to jobs during the year?</p>
+      <div class="q">
+      
+      
+      <div class="input-row">
+        <label for="ans-3-1">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-3-1" placeholder="0" aria-describedby="fb-3-1">
+        <button type="button" onclick="checkAnswer('3-1', 174250.0, null)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-3-1" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-3-1" hidden>
+        <div class="solution-label">Solution</div>
+        <p>20,500 DLH × $8.50 = $174,250.</p><p class="final-answer">Applied overhead = <strong>$174,250</strong></p>
+      </div>
+      </div></div>
+    <div class="example"><div class="ex-label">Example 2 — The Difference</div><p>Is overhead underapplied or overapplied, and by how much? Enter the amount of the difference; the solution explains the direction.</p>
+      <div class="q">
+      
+      <details class="hint"><summary>Need a hint?</summary><div>Compare actual overhead with applied overhead.</div></details>
+      <div class="input-row">
+        <label for="ans-3-2">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-3-2" placeholder="0" aria-describedby="fb-3-2">
+        <button type="button" onclick="checkAnswer('3-2', 750.0, null)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-3-2" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-3-2" hidden>
+        <div class="solution-label">Solution</div>
+        <p>Actual $175,000 − applied $174,250 = $750. Applied was <em>less</em> than actual, so overhead is <strong>underapplied</strong> by $750.</p><p class="final-answer">Underapplied by <strong>$750</strong></p><div class="key-idea">Underapplied overhead means jobs were under-costed. It is usually closed to cost of goods sold, which reduces income.</div>
+      </div>
+      </div></div>
+
+  </section>
+
+  <section class="lo-block" aria-labelledby="s4-h">
+    <span class="lo-tag">Departmental rates</span>
+    <h2 id="s4-h">Multiple (Departmental) Overhead Rates</h2>
+
+    <p>Brasstown considers using separate rates in its two departments instead of one plantwide rate. Estimated data:</p>
+    <table class="mini"><caption class="sr">Departmental overhead data</caption><thead><tr><th scope="col">Department</th><th scope="col">Allocation base</th><th scope="col">Estimated overhead</th><th scope="col">Estimated base</th></tr></thead><tbody><tr><th scope="row">Cutting</th><td>Machine-hours (MH)</td><td>$80,000</td><td>5,000 MH</td></tr><tr><th scope="row">Finishing</th><td>Direct labor-hours (DLH)</td><td>$90,000</td><td>10,000 DLH</td></tr></tbody></table>
+    <div class="example"><div class="ex-label">Example 1 — Cutting Department Rate</div><p>What is the predetermined rate per machine-hour in Cutting?</p>
+      <div class="q">
+      
+      
+      <div class="input-row">
+        <label for="ans-4-1">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-4-1" placeholder="0.00" aria-describedby="fb-4-1"><span aria-hidden="true"> per MH</span>
+        <button type="button" onclick="checkAnswer('4-1', 16.0, 0.01)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-4-1" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-4-1" hidden>
+        <div class="solution-label">Solution</div>
+        <p>$80,000 ÷ 5,000 MH = $16.00 per MH. (Finishing: $90,000 ÷ 10,000 DLH = $9.00 per DLH.)</p><p class="final-answer">Cutting rate = <strong>$16.00 per MH</strong></p>
+      </div>
+      </div></div>
+    <div class="example"><div class="ex-label">Example 2 — Job 301 Under Two Rates</div><p>Job 301 used 150 machine-hours in Cutting and 300 direct labor-hours in Finishing. How much overhead is applied to Job 301 using departmental rates?</p>
+      <div class="q">
+      
+      <details class="hint"><summary>Need a hint?</summary><div>Apply each department's rate to the job's activity in that department, then add.</div></details>
+      <div class="input-row">
+        <label for="ans-4-2">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-4-2" placeholder="0" aria-describedby="fb-4-2">
+        <button type="button" onclick="checkAnswer('4-2', 5100.0, null)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-4-2" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-4-2" hidden>
+        <div class="solution-label">Solution</div>
+        <p>Cutting: 150 × $16.00 = $2,400.<br>Finishing: 300 × $9.00 = $2,700.<br>Total: $5,100.</p><p class="final-answer">Overhead applied = <strong>$5,100</strong></p>
+      </div>
+      </div></div>
+    <div class="example"><div class="ex-label">Example 3 — New Unit Cost</div><p>Using that overhead and the same direct materials and direct labor as before, what is Job 301's new unit product cost per chair?</p>
+      <div class="q">
+      
+      
+      <div class="input-row">
+        <label for="ans-4-3">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-4-3" placeholder="0" aria-describedby="fb-4-3">
+        <button type="button" onclick="checkAnswer('4-3', 2310.0, 0.5)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-4-3" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-4-3" hidden>
+        <div class="solution-label">Solution</div>
+        <p>Total: $9,000 + $9,000 + $5,100 = $23,100. ÷ 10 = $2,310 per chair (up from $2,225).</p><p class="final-answer">Unit product cost = <strong>$2,310</strong></p><div class="key-idea">Departmental rates better reflect jobs that use departments differently. Job 301 is machine-intensive, so it picks up more overhead than under the single plantwide rate.</div>
+      </div>
+      </div></div>
+
+  </section>
+
+  <section class="lo-block" aria-labelledby="wrap-h">
+    <span class="lo-tag">Wrap-up</span>
+    <h2 id="wrap-h">Chapter 3 at a Glance</h2>
+
+    <ul><li><strong>Rate</strong> = estimated overhead ÷ estimated base. <strong>Applied</strong> = rate × actual base used.</li>
+    <li><strong>Job cost</strong> = direct materials + direct labor + applied overhead; <strong>unit cost</strong> = job cost ÷ units.</li>
+    <li><strong>Underapplied</strong> = actual &gt; applied; <strong>overapplied</strong> = applied &gt; actual.</li>
+    <li>Multiple rates can improve accuracy when departments use overhead differently.</li></ul>
+  </section>
+
+</main>
+<footer>ACCT 252 · Chapter 3 Chapter Walkthrough · Job-Order Costing (Ungraded)</footer>
+<script>
+var CHECKED = {};
+var TOTAL = 13;
+function updateProgress(){
+  var c = Object.keys(CHECKED).length;
+  document.getElementById('progressLabel').textContent = c + ' of ' + TOTAL + ' checked';
+  document.getElementById('progressFill').style.width = (c / TOTAL * 100) + '%';
+  document.getElementById('progressBar').setAttribute('aria-valuenow', c);
+}
+function parseNum(s){
+  s = String(s).replace(/\$/g,'').trim();
+  var neg = /^\(.*\)$/.test(s) || /^-/.test(s);
+  var t = s.replace(/[$,\s()]/g, '').replace(/^-/, '');
+  if (t === '' || isNaN(Number(t))) return NaN;
+  var v = parseFloat(t);
+  return neg ? -v : v;
+}
+function setFb(fb, cls, text){ fb.className = 'feedback ' + cls; fb.textContent = text; }
+function checkAnswer(id, correct, tol){
+  var input = document.getElementById('ans-' + id);
+  var fb = document.getElementById('fb-' + id);
+  var sol = document.getElementById('sol-' + id);
+  var val = parseNum(input.value);
+  if (isNaN(val)) { setFb(fb, 'warn', 'Enter a number first, then choose Check my answer.'); return; }
+  if (tol === null || tol === undefined) { tol = Math.max(1, Math.abs(correct) * 0.005); }
+  if (Math.abs(val - correct) <= tol) {
+    setFb(fb, 'good', '\u2713 Correct! Here is the full solution for reference.');
+  } else {
+    setFb(fb, 'bad', '\u2717 Not quite. Here is the full solution; compare it with your work to see where things diverged.');
+  }
+  sol.hidden = false;
+  CHECKED[id] = true;
+  updateProgress();
+}
+function checkSelects(id, pairs){
+  var fb = document.getElementById('fb-' + id);
+  var sol = document.getElementById('sol-' + id);
+  var ok = 0, blank = 0;
+  for (var i = 0; i < pairs.length; i++) {
+    var el = document.getElementById(pairs[i][0]);
+    if (!el.value) { blank++; continue; }
+    if (el.value === pairs[i][1]) ok++;
+  }
+  if (blank) { setFb(fb, 'warn', 'Choose an answer for every item first, then choose Check my answers.'); return; }
+  if (ok === pairs.length) setFb(fb, 'good', '\u2713 Correct! ' + ok + ' of ' + pairs.length + '. Here is the explanation.');
+  else setFb(fb, 'bad', '\u2717 ' + ok + ' of ' + pairs.length + ' correct. Review the explanation below.');
+  sol.hidden = false;
+  CHECKED[id] = true;
+  updateProgress();
+}
+</script>
+</body>
+</html>

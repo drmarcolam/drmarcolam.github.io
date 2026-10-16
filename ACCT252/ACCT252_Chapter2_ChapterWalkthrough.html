@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ACCT 252 Chapter 2 Chapter Walkthrough</title>
+<meta name="description" content="Chapter 2 Chapter Walkthrough: step-by-step guided practice on Cost-Volume-Profit Relationships">
+<style>
+:root{
+  --bg:#fffbe8; --card:#fffef6; --ink:#1b2a21; --muted:#4f5a49; --line:#e0d59c;
+  --purple:#1f5136; --purple-dark:#163d29; --gold:#f5e68a; --tint:#f8f0c2; --edge:#c9a500;
+  --good-bg:#e7f5ea; --good-ink:#14532d; --good-line:#2e7d32;
+  --bad-bg:#fdebe4; --bad-ink:#7a2a0b; --bad-line:#b4481a;
+  --warn-bg:#fff3de; --warn-ink:#5e3300; --warn-line:#b86b00;
+  --focus:#0b57d0;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0f1f17; --card:#16291f; --ink:#f6f1d0; --muted:#c3c9a8; --line:#2f4a3a;
+    --purple:#f2e48a; --purple-dark:#0b1a12; --tint:#1e3829; --edge:#f2e48a;
+    --good-bg:#16301d; --good-ink:#bfe8c8; --good-line:#58b46c;
+    --bad-bg:#3b1f14; --bad-ink:#ffd2bf; --bad-line:#e08a5e;
+    --warn-bg:#3a2a10; --warn-ink:#ffe0b3; --warn-line:#e0a040;
+    --focus:#8ab4ff;
+  }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.55;font-size:1.0625rem}
+.skip{position:absolute;left:-999px;top:0;background:var(--gold);color:#163d29;padding:.6rem 1rem;z-index:10;font-weight:700}
+.skip:focus{left:8px;top:8px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+header.site{background:var(--purple-dark);color:#fff;border-bottom:6px solid var(--gold)}
+header.site .wrap{max-width:52rem;margin:0 auto;padding:1.3rem 1rem}
+header.site .eyebrow{margin:0;font-size:.9rem;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);font-weight:700}
+header.site h1{margin:.2rem 0 .3rem;font-size:1.7rem;line-height:1.2}
+header.site p.sub{margin:0;color:#e6efd9}
+.back{margin:.7rem 0 0;font-size:.95rem}
+.back a{color:var(--gold);font-weight:600}
+.progress{max-width:52rem;margin:0 auto;padding:.8rem 1rem 0;display:flex;align-items:center;gap:1rem;position:sticky;top:0;background:var(--bg);z-index:5}
+.progress .track{flex:1;height:10px;background:var(--line);border-radius:5px;overflow:hidden}
+.progress .fill{height:100%;width:0;background:var(--purple);transition:width .3s}
+.progress .lab{font-size:.9rem;color:var(--muted);white-space:nowrap}
+main{max-width:52rem;margin:0 auto;padding:.8rem 1rem 3rem}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+h2{font-size:1.45rem;margin:.2rem 0 .7rem;color:var(--purple);border-bottom:2px solid var(--line);padding-bottom:.35rem}
+h3{font-size:1.02rem;margin:1rem 0 .3rem}
+p{margin:.55rem 0}
+.lo-block{margin:2.2rem 0}
+.lo-tag{display:inline-block;font-size:.8rem;font-weight:700;letter-spacing:.04em;color:#fff;background:var(--purple-dark);padding:.2rem .6rem;border-radius:4px;margin-bottom:.4rem}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .lo-tag{background:var(--purple);color:#0b1a12}}
+.key-idea{background:var(--tint);border-left:5px solid var(--edge);padding:.8rem 1rem;border-radius:0 8px 8px 0;margin:.9rem 0}
+.key-idea ol,.key-idea ul{margin:.4rem 0 .2rem;padding-left:1.3rem}
+.note{color:var(--muted);font-size:.95rem}
+.example{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:1rem 1.1rem 1.1rem;margin:1.1rem 0}
+.ex-label{font-size:.82rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--purple);margin-bottom:.3rem}
+.q{margin:.3rem 0}
+table.mini{border-collapse:collapse;width:100%;margin:.6rem 0;font-size:.92rem;font-variant-numeric:tabular-nums}
+table.mini th,table.mini td{border:1px solid var(--line);padding:.35rem .55rem;text-align:right;vertical-align:top}
+table.mini thead th{background:var(--tint);color:var(--ink)}
+table.mini th[scope="row"]{text-align:left;font-weight:600;background:transparent}
+table.mini thead th:first-child{text-align:left}
+.tablewrap{overflow-x:auto}
+.input-row{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:.8rem 0 .4rem;padding:.7rem;background:var(--tint);border-radius:8px}
+.input-row label{font-weight:700}
+.input-row input{font:inherit;font-variant-numeric:tabular-nums;padding:.45rem .6rem;border:2px solid var(--line);border-radius:6px;width:11rem;background:var(--card);color:var(--ink)}
+.input-col{display:grid;gap:.5rem;margin:.8rem 0 .4rem;padding:.7rem;background:var(--tint);border-radius:8px}
+.sel-row{display:grid;grid-template-columns:1fr minmax(11rem,15rem);gap:.6rem;align-items:center}
+.sel-row label{font-weight:600}
+@media (max-width:34rem){.sel-row{grid-template-columns:1fr}}
+select{font:inherit;padding:.45rem .5rem;border:2px solid var(--line);border-radius:6px;background:var(--card);color:var(--ink)}
+button{font:inherit;font-weight:700;color:#fff;background:var(--purple-dark);border:2px solid var(--purple-dark);padding:.5rem 1rem;border-radius:6px;cursor:pointer}
+button:hover{background:var(--purple);border-color:var(--purple)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) button{background:var(--purple);color:#0b1a12;border-color:var(--purple)}}
+.feedback{margin:.4rem 0;font-weight:600}
+.feedback:not(:empty){padding:.6rem .85rem;border-radius:6px;border-left:5px solid}
+.feedback.good{color:var(--good-ink);background:var(--good-bg);border-color:var(--good-line)}
+.feedback.bad{color:var(--bad-ink);background:var(--bad-bg);border-color:var(--bad-line)}
+.feedback.warn{color:var(--warn-ink);background:var(--warn-bg);border-color:var(--warn-line)}
+.solution{margin-top:.7rem;padding-top:.8rem;border-top:2px dashed var(--line)}
+.solution-label{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--purple);margin-bottom:.4rem}
+.final-answer{margin-top:.6rem}
+.final-answer strong{color:var(--purple);font-size:1.08rem}
+details.hint{margin:.4rem 0}
+details.hint summary,details.data summary{cursor:pointer;font-weight:600;color:var(--purple)}
+details.hint div{padding:.4rem .8rem;border-left:4px solid var(--line);margin-top:.3rem}
+details.data{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:.7rem 1rem;margin:1rem 0}
+ol.steps{margin:.3rem 0;padding-left:1.3rem}
+.data-inline{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:.2rem 1rem;margin:.8rem 0}
+footer{text-align:center;color:var(--muted);font-size:.85rem;padding:1.5rem 1rem 2.5rem}
+@media (max-width:40rem){table.mini{display:block;overflow-x:auto}}
+@media (prefers-reduced-motion:reduce){.progress .fill{transition:none}}
+
+.sel-row select{max-width:100%;min-width:0}
+.sel-row{flex-wrap:wrap}
+
+.back{margin:.7rem 0 0;font-size:.95rem}
+.back a{color:var(--gold);font-weight:600}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="site"><div class="wrap">
+  <p class="eyebrow">ACCT 252 · Managerial Accounting</p>
+  <h1>Chapter 2 Chapter Walkthrough</h1>
+  <p class="sub">Cost-Volume-Profit Relationships · Practice each step, then check yourself.</p>
+  <p class="back"><a href="../courses/acct-252-chapter-walkthroughs.html">&larr; Back to ACCT 252 Chapter Walkthroughs</a></p>
+</div></header>
+<div class="progress" id="progressBar" role="progressbar" aria-label="Questions checked" aria-valuemin="0" aria-valuemax="15" aria-valuenow="0">
+  <div class="track"><div class="fill" id="progressFill"></div></div>
+  <div class="lab" id="progressLabel">0 of 15 checked</div>
+</div>
+<main id="main" tabindex="-1">
+  <div class="key-idea"><strong>How this works.</strong> Work each problem by hand or with a calculator, type your answer, and choose <strong>Check my answer</strong>. You will see right away whether you are correct, plus the full solution either way. Use <em>Need a hint?</em> if you get stuck. This page is for practice only: it is not graded and nothing is submitted.</div>
+
+  <section class="lo-block" aria-labelledby="s1-h">
+    <span class="lo-tag">Contribution margin</span>
+    <h2 id="s1-h">Contribution Margin and CM Ratio</h2>
+
+    <p><strong>Blue Ridge Bike Works</strong> in Asheville sells a trail bike for $250. Variable cost is $150 per bike (parts, assembly labor, sales commission). Fixed costs are $150,000 per year.</p>
+    <div class="key-idea"><ul><li>Contribution margin (CM) per unit = Selling price − Variable cost per unit</li><li>CM ratio = CM per unit ÷ Selling price</li></ul>Each unit sold contributes its CM first toward covering fixed costs, and after that toward profit.</div>
+    <div class="example"><div class="ex-label">Example 1 — CM per Unit</div><p>What is the contribution margin per bike?</p>
+      <div class="q">
+      
+      
+      <div class="input-row">
+        <label for="ans-1-1">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-1-1" placeholder="0" aria-describedby="fb-1-1">
+        <button type="button" onclick="checkAnswer('1-1', 100, null)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-1-1" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-1-1" hidden>
+        <div class="solution-label">Solution</div>
+        <p>$250 − $150 = $100 per bike.</p><p class="final-answer">CM per bike = <strong>$100</strong></p>
+      </div>
+      </div></div>
+    <div class="example"><div class="ex-label">Example 2 — CM Ratio</div><p>What is the CM ratio? Enter it as a percent (for example, 25 for 25%).</p>
+      <div class="q">
+      
+      <details class="hint"><summary>Need a hint?</summary><div>CM per unit ÷ selling price, then multiply by 100.</div></details>
+      <div class="input-row">
+        <label for="ans-1-2">Your answer:</label>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-1-2" placeholder="0" aria-describedby="fb-1-2"><span aria-hidden="true">%</span>
+        <button type="button" onclick="checkAnswer('1-2', 40.0, 0.1)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-1-2" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-1-2" hidden>
+        <div class="solution-label">Solution</div>
+        <p>$100 ÷ $250 = 0.40, or 40%.</p><p class="final-answer">CM ratio = <strong>40%</strong></p><div class="key-idea">Every sales dollar produces 40 cents of contribution margin. The CM ratio is handy when you only know sales <em>dollars</em>.</div>
+      </div>
+      </div></div>
+
+  </section>
+
+  <section class="lo-block" aria-labelledby="s2-h">
+    <span class="lo-tag">Break-even</span>
+    <h2 id="s2-h">Break-Even Analysis</h2>
+
+    <div class="key-idea"><ul><li>Break-even in units = Fixed expenses ÷ CM per unit</li><li>Break-even in sales dollars = Fixed expenses ÷ CM ratio</li></ul>At break-even, net operating income is zero: total contribution margin equals fixed expenses.</div>
+    <div class="example"><div class="ex-label">Example 1 — Break-Even Units</div><p>How many bikes must Blue Ridge sell to break even?</p>
+      <div class="q">
+      
+      <details class="hint"><summary>Need a hint?</summary><div>Fixed expenses ÷ CM per unit.</div></details>
+      <div class="input-row">
+        <label for="ans-2-1">Your answer:</label>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-2-1" placeholder="0" aria-describedby="fb-2-1"><span aria-hidden="true"> bikes</span>
+        <button type="button" onclick="checkAnswer('2-1', 1500.0, 0.5)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-2-1" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-2-1" hidden>
+        <div class="solution-label">Solution</div>
+        <p>$150,000 ÷ $100 = 1,500 bikes.</p><p class="final-answer">Break-even = <strong>1,500 bikes</strong></p>
+      </div>
+      </div></div>
+    <div class="example"><div class="ex-label">Example 2 — Break-Even Sales Dollars</div><p>What is break-even in sales dollars?</p>
+      <div class="q">
+      
+      <details class="hint"><summary>Need a hint?</summary><div>You can use the CM ratio, or multiply break-even units by the selling price.</div></details>
+      <div class="input-row">
+        <label for="ans-2-2">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-2-2" placeholder="0" aria-describedby="fb-2-2">
+        <button type="button" onclick="checkAnswer('2-2', 375000.0, null)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-2-2" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-2-2" hidden>
+        <div class="solution-label">Solution</div>
+        <p>$150,000 ÷ 0.40 = $375,000.<br>Check: 1,500 bikes × $250 = $375,000.</p><p class="final-answer">Break-even sales = <strong>$375,000</strong></p>
+      </div>
+      </div></div>
+    <div class="example"><div class="ex-label">Example 3 — Direction of Change</div><p>For each change (considered alone), will break-even units go up or down?</p>
+      <div class="q">
+      
+      
+      <div class="input-col"><div class="sel-row"><label for="sel-2-3-0">Fixed costs increase</label><select id="sel-2-3-0"><option value="">Choose…</option><option>Increase</option><option>Decrease</option></select></div><div class="sel-row"><label for="sel-2-3-1">Variable cost per unit decreases</label><select id="sel-2-3-1"><option value="">Choose…</option><option>Increase</option><option>Decrease</option></select></div><div class="sel-row"><label for="sel-2-3-2">Selling price decreases</label><select id="sel-2-3-2"><option value="">Choose…</option><option>Increase</option><option>Decrease</option></select></div>
+        <div><button type="button" onclick='checkSelects("2-3", [[&quot;sel-2-3-0&quot;, &quot;Increase&quot;], [&quot;sel-2-3-1&quot;, &quot;Decrease&quot;], [&quot;sel-2-3-2&quot;, &quot;Increase&quot;]])'>Check my answers</button></div>
+      </div>
+      <div class="feedback" id="fb-2-3" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-2-3" hidden>
+        <div class="solution-label">Solution</div>
+        <p>Break-even = fixed costs ÷ CM per unit. Higher fixed costs raise the numerator, so break-even rises. A lower variable cost raises CM per unit, so break-even falls. A lower selling price cuts CM per unit, so break-even rises.</p>
+      </div>
+      </div></div>
+    <div class="example"><div class="ex-label">Example 4 — A Price Cut</div><p>Suppose Blue Ridge cuts its price to $230 with variable cost still $150. How many bikes are needed to break even now?</p>
+      <div class="q">
+      
+      <details class="hint"><summary>Need a hint?</summary><div>New CM per unit first.</div></details>
+      <div class="input-row">
+        <label for="ans-2-4">Your answer:</label>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-2-4" placeholder="0" aria-describedby="fb-2-4"><span aria-hidden="true"> bikes</span>
+        <button type="button" onclick="checkAnswer('2-4', 1875.0, 0.5)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-2-4" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-2-4" hidden>
+        <div class="solution-label">Solution</div>
+        <p>New CM = $230 − $150 = $80. $150,000 ÷ $80 = 1,875 bikes.</p><p class="final-answer">New break-even = <strong>1,875 bikes</strong></p>
+      </div>
+      </div></div>
+
+  </section>
+
+  <section class="lo-block" aria-labelledby="s3-h">
+    <span class="lo-tag">Target profit</span>
+    <h2 id="s3-h">Target Profit Analysis</h2>
+
+    <div class="key-idea">Required units = (Fixed expenses + Target profit) ÷ CM per unit. Required sales dollars = (Fixed expenses + Target profit) ÷ CM ratio.</div>
+    <div class="example"><div class="ex-label">Example 1 — Units for a Target Profit</div><p>Blue Ridge wants a net operating income of $80,000. How many bikes must it sell?</p>
+      <div class="q">
+      
+      <details class="hint"><summary>Need a hint?</summary><div>Add the target profit to fixed expenses before dividing.</div></details>
+      <div class="input-row">
+        <label for="ans-3-1">Your answer:</label>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-3-1" placeholder="0" aria-describedby="fb-3-1"><span aria-hidden="true"> bikes</span>
+        <button type="button" onclick="checkAnswer('3-1', 2300.0, 0.5)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-3-1" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-3-1" hidden>
+        <div class="solution-label">Solution</div>
+        <p>($150,000 + $80,000) ÷ $100 = $230,000 ÷ $100 = 2,300 bikes.</p><p class="final-answer">Required sales = <strong>2,300 bikes</strong></p>
+      </div>
+      </div></div>
+    <div class="example"><div class="ex-label">Example 2 — Dollar Sales for a Target Profit</div><p>Using the CM ratio, what sales <em>dollars</em> are required for the same target profit?</p>
+      <div class="q">
+      
+      
+      <div class="input-row">
+        <label for="ans-3-2">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-3-2" placeholder="0" aria-describedby="fb-3-2">
+        <button type="button" onclick="checkAnswer('3-2', 575000.0, null)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-3-2" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-3-2" hidden>
+        <div class="solution-label">Solution</div>
+        <p>$230,000 ÷ 0.40 = $575,000.<br>Check: 2,300 × $250 = $575,000.</p><p class="final-answer">Required sales = <strong>$575,000</strong></p>
+      </div>
+      </div></div>
+
+  </section>
+
+  <section class="lo-block" aria-labelledby="s4-h">
+    <span class="lo-tag">Margin of safety & leverage</span>
+    <h2 id="s4-h">Margin of Safety and Operating Leverage</h2>
+
+    <p>Suppose Blue Ridge actually sells 2,500 bikes ($625,000 in sales), so net operating income is 2,500 × $100 − $150,000 = $100,000.</p>
+    <div class="key-idea"><ul><li>Margin of safety (dollars) = Total sales − Break-even sales. As a percentage = Margin of safety ÷ Total sales.</li><li>Degree of operating leverage = Contribution margin ÷ Net operating income. A given % change in sales changes net operating income by that % × the degree of operating leverage.</li></ul></div>
+    <div class="example"><div class="ex-label">Example 1 — Margin of Safety (Dollars)</div><p>What is the margin of safety in dollars?</p>
+      <div class="q">
+      
+      
+      <div class="input-row">
+        <label for="ans-4-1">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-4-1" placeholder="0" aria-describedby="fb-4-1">
+        <button type="button" onclick="checkAnswer('4-1', 250000.0, null)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-4-1" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-4-1" hidden>
+        <div class="solution-label">Solution</div>
+        <p>$625,000 − $375,000 = $250,000.</p><p class="final-answer">Margin of safety = <strong>$250,000</strong></p>
+      </div>
+      </div></div>
+    <div class="example"><div class="ex-label">Example 2 — Margin of Safety (Percent)</div><p>Express the margin of safety as a percent of sales.</p>
+      <div class="q">
+      
+      
+      <div class="input-row">
+        <label for="ans-4-2">Your answer:</label>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-4-2" placeholder="0" aria-describedby="fb-4-2"><span aria-hidden="true">%</span>
+        <button type="button" onclick="checkAnswer('4-2', 40.0, 0.1)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-4-2" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-4-2" hidden>
+        <div class="solution-label">Solution</div>
+        <p>$250,000 ÷ $625,000 = 40%. Sales could fall 40% before Blue Ridge starts losing money.</p><p class="final-answer">Margin of safety = <strong>40%</strong></p>
+      </div>
+      </div></div>
+    <div class="example"><div class="ex-label">Example 3 — Degree of Operating Leverage</div><p>Total contribution margin is 2,500 × $100 = $250,000. What is the degree of operating leverage?</p>
+      <div class="q">
+      
+      <details class="hint"><summary>Need a hint?</summary><div>Contribution margin ÷ net operating income.</div></details>
+      <div class="input-row">
+        <label for="ans-4-3">Your answer:</label>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-4-3" placeholder="0.00" aria-describedby="fb-4-3">
+        <button type="button" onclick="checkAnswer('4-3', 2.5, 0.01)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-4-3" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-4-3" hidden>
+        <div class="solution-label">Solution</div>
+        <p>$250,000 ÷ $100,000 = 2.5.</p><p class="final-answer">Degree of operating leverage = <strong>2.5</strong></p>
+      </div>
+      </div></div>
+    <div class="example"><div class="ex-label">Example 4 — Predicting the Effect of a Sales Increase</div><p>If sales rise 10% (and fixed costs do not change), what will net operating income be? Use the degree of operating leverage.</p>
+      <div class="q">
+      
+      <details class="hint"><summary>Need a hint?</summary><div>% change in net operating income = degree of operating leverage × % change in sales.</div></details>
+      <div class="input-row">
+        <label for="ans-4-4">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-4-4" placeholder="0" aria-describedby="fb-4-4">
+        <button type="button" onclick="checkAnswer('4-4', 125000.0, null)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-4-4" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-4-4" hidden>
+        <div class="solution-label">Solution</div>
+        <p>NOI increases by 2.5 × 10% = 25%. $100,000 × 1.25 = $125,000.<br>Check: 2,750 bikes × $100 = $275,000 − $150,000 = $125,000.</p><p class="final-answer">Net operating income = <strong>$125,000</strong></p><div class="key-idea">Because fixed costs stay the same, a 10% sales increase produced a 25% profit increase. Operating leverage works in reverse too: a 10% sales <em>drop</em> would cut profit by 25%.</div>
+      </div>
+      </div></div>
+
+  </section>
+
+  <section class="lo-block" aria-labelledby="s5-h">
+    <span class="lo-tag">Sales mix</span>
+    <h2 id="s5-h">Break-Even with More Than One Product</h2>
+
+    <p>Blue Ridge adds a second model. Fixed costs for the company are now $230,000. Sales are expected to be 75% Trail bikes and 25% Summit bikes (by units).</p>
+    <table class="mini"><caption class="sr">Product data</caption><thead><tr><th scope="col"></th><th scope="col">Price</th><th scope="col">Variable cost</th><th scope="col">CM per unit</th></tr></thead><tbody><tr><th scope="row">Trail</th><td>$250</td><td>$150</td><td>$100</td></tr><tr><th scope="row">Summit</th><td>$400</td><td>$240</td><td>$160</td></tr></tbody></table>
+    <div class="key-idea">With a constant sales mix, compute the <strong>weighted-average CM per unit</strong>, then divide fixed costs by it to get total break-even units. Multiply by each product's share to get its break-even units.</div>
+    <div class="example"><div class="ex-label">Example 1 — Average CM per Unit</div><p>What is the weighted-average contribution margin per bike?</p>
+      <div class="q">
+      
+      <details class="hint"><summary>Need a hint?</summary><div>Weight each product's CM by its share of units sold.</div></details>
+      <div class="input-row">
+        <label for="ans-5-1">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-5-1" placeholder="0" aria-describedby="fb-5-1">
+        <button type="button" onclick="checkAnswer('5-1', 115.0, null)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-5-1" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-5-1" hidden>
+        <div class="solution-label">Solution</div>
+        <p>(75% × $100) + (25% × $160) = $75 + $40 = $115.</p><p class="final-answer">Average CM = <strong>$115 per bike</strong></p>
+      </div>
+      </div></div>
+    <div class="example"><div class="ex-label">Example 2 — Break-Even Units</div><p>How many bikes in total (both models) must be sold to break even?</p>
+      <div class="q">
+      
+      
+      <div class="input-row">
+        <label for="ans-5-2">Your answer:</label>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-5-2" placeholder="0" aria-describedby="fb-5-2"><span aria-hidden="true"> bikes</span>
+        <button type="button" onclick="checkAnswer('5-2', 2000.0, 0.5)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-5-2" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-5-2" hidden>
+        <div class="solution-label">Solution</div>
+        <p>$230,000 ÷ $115 = 2,000 bikes.<br>Trail: 75% × 2,000 = 1,500. Summit: 25% × 2,000 = 500.</p><p class="final-answer">Total break-even = <strong>2,000 bikes</strong></p>
+      </div>
+      </div></div>
+    <div class="example"><div class="ex-label">Example 3 — Break-Even Sales Dollars</div><p>At that mix, average revenue per bike is (75% × $250) + (25% × $400) = $287.50. What is break-even in sales dollars?</p>
+      <div class="q">
+      
+      
+      <div class="input-row">
+        <label for="ans-5-3">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-5-3" placeholder="0" aria-describedby="fb-5-3">
+        <button type="button" onclick="checkAnswer('5-3', 575000.0, null)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-5-3" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-5-3" hidden>
+        <div class="solution-label">Solution</div>
+        <p>2,000 bikes × $287.50 = $575,000.<br>Check with the CM ratio: $115 ÷ $287.50 = 40%, and $230,000 ÷ 0.40 = $575,000.</p><p class="final-answer">Break-even sales = <strong>$575,000</strong></p><div class="key-idea">The break-even point changes if the mix changes. Shifting toward the product with the lower CM ratio raises the break-even point.</div>
+      </div>
+      </div></div>
+
+  </section>
+
+  <section class="lo-block" aria-labelledby="wrap-h">
+    <span class="lo-tag">Wrap-up</span>
+    <h2 id="wrap-h">Chapter 2 at a Glance</h2>
+
+    <ul><li><strong>CM per unit</strong> = price − variable cost; <strong>CM ratio</strong> = CM ÷ price.</li>
+    <li><strong>Break-even</strong> = fixed costs ÷ CM (per unit or ratio). <strong>Target profit</strong>: add the profit to fixed costs first.</li>
+    <li><strong>Margin of safety</strong> = sales − break-even sales. <strong>Operating leverage</strong> = CM ÷ NOI.</li>
+    <li><strong>Sales mix:</strong> use the weighted-average CM, and assume the mix stays constant.</li></ul>
+  </section>
+
+</main>
+<footer>ACCT 252 · Chapter 2 Chapter Walkthrough · Cost-Volume-Profit Relationships (Ungraded)</footer>
+<script>
+var CHECKED = {};
+var TOTAL = 15;
+function updateProgress(){
+  var c = Object.keys(CHECKED).length;
+  document.getElementById('progressLabel').textContent = c + ' of ' + TOTAL + ' checked';
+  document.getElementById('progressFill').style.width = (c / TOTAL * 100) + '%';
+  document.getElementById('progressBar').setAttribute('aria-valuenow', c);
+}
+function parseNum(s){
+  s = String(s).replace(/\$/g,'').trim();
+  var neg = /^\(.*\)$/.test(s) || /^-/.test(s);
+  var t = s.replace(/[$,\s()]/g, '').replace(/^-/, '');
+  if (t === '' || isNaN(Number(t))) return NaN;
+  var v = parseFloat(t);
+  return neg ? -v : v;
+}
+function setFb(fb, cls, text){ fb.className = 'feedback ' + cls; fb.textContent = text; }
+function checkAnswer(id, correct, tol){
+  var input = document.getElementById('ans-' + id);
+  var fb = document.getElementById('fb-' + id);
+  var sol = document.getElementById('sol-' + id);
+  var val = parseNum(input.value);
+  if (isNaN(val)) { setFb(fb, 'warn', 'Enter a number first, then choose Check my answer.'); return; }
+  if (tol === null || tol === undefined) { tol = Math.max(1, Math.abs(correct) * 0.005); }
+  if (Math.abs(val - correct) <= tol) {
+    setFb(fb, 'good', '\u2713 Correct! Here is the full solution for reference.');
+  } else {
+    setFb(fb, 'bad', '\u2717 Not quite. Here is the full solution; compare it with your work to see where things diverged.');
+  }
+  sol.hidden = false;
+  CHECKED[id] = true;
+  updateProgress();
+}
+function checkSelects(id, pairs){
+  var fb = document.getElementById('fb-' + id);
+  var sol = document.getElementById('sol-' + id);
+  var ok = 0, blank = 0;
+  for (var i = 0; i < pairs.length; i++) {
+    var el = document.getElementById(pairs[i][0]);
+    if (!el.value) { blank++; continue; }
+    if (el.value === pairs[i][1]) ok++;
+  }
+  if (blank) { setFb(fb, 'warn', 'Choose an answer for every item first, then choose Check my answers.'); return; }
+  if (ok === pairs.length) setFb(fb, 'good', '\u2713 Correct! ' + ok + ' of ' + pairs.length + '. Here is the explanation.');
+  else setFb(fb, 'bad', '\u2717 ' + ok + ' of ' + pairs.length + ' correct. Review the explanation below.');
+  sol.hidden = false;
+  CHECKED[id] = true;
+  updateProgress();
+}
+</script>
+</body>
+</html>
