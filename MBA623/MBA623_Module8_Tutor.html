@@ -93,6 +93,12 @@ footer.site{max-width:60rem;margin:0 auto;padding:1rem;color:var(--muted);border
 @media (max-width:30rem){header.site h1{font-size:1.4rem}input[type=text]{width:100%}}
 @media print{header.site{background:#fff;color:#000}.menu-go,.toolbar,.actions{display:none}}
 
+
+.tutor-intro{display:flex;gap:1rem;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-left:6px solid var(--brand);border-radius:10px;padding:1rem 1.1rem;margin:0 0 1.25rem}
+.tutor-avatar{flex:none;width:3.4rem;height:3.4rem;border-radius:50%;background:var(--brand);color:var(--brand-ink);display:flex;align-items:center;justify-content:center;font-size:1.6rem;font-weight:700}
+.tutor-intro h2{margin:0 0 .35rem}
+.tutor-intro p{margin:.35rem 0;color:var(--ink)}
+@media (max-width:30rem){.tutor-intro{flex-direction:column}}
 </style>
 </head>
 <body>
@@ -405,6 +411,16 @@ footer.site{max-width:60rem;margin:0 auto;padding:1rem;color:var(--muted);border
   var M = window.MODULE;
   var app = document.getElementById('app');
   var state = null;
+  var TUTOR_NAMES = ['Kelly', 'Riley', 'Alex', 'Kai', 'Yamal', 'Taylor', 'Vanessa'];
+  var TUTOR = (function () {
+    var n = null;
+    try { n = window.sessionStorage.getItem('mba623TutorName'); } catch (e) { n = null; }
+    if (TUTOR_NAMES.indexOf(n) < 0) {
+      n = TUTOR_NAMES[Math.floor(Math.random() * TUTOR_NAMES.length)];
+      try { window.sessionStorage.setItem('mba623TutorName', n); } catch (e) {}
+    }
+    return n;
+  })();
 
   var PRAISE = ['Correct! Nice work.', 'Exactly right!', 'Well done, that is correct.', 'Great job, you got it!', 'Yes, that is right. Excellent!', 'Spot on!', 'That is correct. Keep it up!', 'Right on target!'];
   var WRONG1 = ['Not quite, but you are close to a good approach. Here is a hint.', 'That is not the answer we are looking for, but no worries. Here is a hint.', 'Not quite right. Take a look at this hint and try once more.', 'Almost there, but that is not it. Use this hint and give it another try.'];
@@ -416,8 +432,9 @@ footer.site{max-width:60rem;margin:0 auto;padding:1rem;color:var(--muted);border
   /* ---------- menu ---------- */
   function renderMenu() {
     state = null;
-    var h = '<h2 id="menu-h">Choose a problem type</h2>';
-    h += '<p class="lead">Pick the kind of problem you want to practice. You will get a new scenario with new numbers each time, and the tutor walks you through it one step at a time. On every step you get one hint and one more try before the solution appears.</p>';
+    var h = '<section class="tutor-intro" aria-labelledby="menu-h"><div class="tutor-avatar" aria-hidden="true">' + TUTOR.charAt(0) + '</div><div><h2 id="menu-h">Hi, I am ' + TUTOR + '. I am your personal tutor.</h2>';
+    h += '<p>Pick a type of problem below. You will get a new scenario with new numbers, and I will walk you through it one step at a time.</p>';
+    h += '<p>Type your answer for each step and press <strong>Check my answer</strong>. If you miss a step, no worries: you will get a hint and one more try. If you miss it again, you will see the solution for that step and then move on to the next one.</p></div></section>';
     h += '<ul class="menu" aria-labelledby="menu-h">';
     M.types.forEach(function (t, i) {
       h += '<li><button type="button" class="menu-btn" data-type="' + i + '"><span class="menu-title">' + t.label + '</span><span class="menu-desc">' + t.desc + '</span><span class="menu-go" aria-hidden="true">Start &rarr;</span></button></li>';
@@ -529,7 +546,7 @@ footer.site{max-width:60rem;margin:0 auto;padding:1rem;color:var(--muted);border
       lockAndNext();
     } else if (state.attempt === 1) {
       fb.className = 'fb warn';
-      fb.innerHTML = '<p class="fb-h"><span class="badge no">Not yet</span> ' + rndFrom(WRONG1, state.i) + '</p><div class="hint"><strong>Hint:</strong> ' + s.hint + '</div>';
+      fb.innerHTML = '<p class="fb-h"><span class="badge no">Not yet</span> ' + rndFrom(WRONG1, state.i) + '</p><div class="hint"><strong>Hint from ' + TUTOR + ':</strong> ' + s.hint + '</div>';
       document.getElementById('check').textContent = 'Try again';
       var inp = document.getElementById('ans'); if (inp) { inp.select(); inp.focus(); }
     } else {
@@ -566,7 +583,7 @@ footer.site{max-width:60rem;margin:0 auto;padding:1rem;color:var(--muted);border
     else msg = 'Thanks for sticking with it. Review the solutions below, look back at the module slides, and try a fresh problem. Practice makes this much easier.';
     var h = renderHeader();
     h += '<section class="summary" aria-labelledby="sum-h"><h3 id="sum-h" tabindex="-1">Your results</h3>';
-    h += '<p class="big">' + msg + '</p>';
+    h += '<p class="big"><strong>' + TUTOR + ' says:</strong> ' + msg + '</p>';
     h += '<ul class="score"><li><strong>' + state.first + '</strong> correct on the first try</li><li><strong>' + state.second + '</strong> correct on the second try</li><li><strong>' + state.shown + '</strong> solution' + (state.shown === 1 ? '' : 's') + ' shown</li></ul>';
     if (state.prob.takeaway) h += '<div class="takeaway"><strong>Key takeaway:</strong> ' + state.prob.takeaway + '</div>';
     h += '</section>';
