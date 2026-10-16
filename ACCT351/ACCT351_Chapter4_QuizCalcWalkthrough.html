@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ACCT 351 Chapter 4 Quiz Calculation Walkthrough</title>
+<meta name="description" content="Step-by-step walkthroughs of the five calculation questions on the ACCT 351 Chapter 4 Quiz: The Income Statement and Statement of Cash Flows.">
+<style>
+:root{--bg:#f4f8f5;--card:#fff;--text:#14201a;--muted:#41524a;--g900:#0b3b2a;--g800:#14513a;--g700:#1b6a4a;--g100:#e3f0e8;--g50:#f0f7f3;--border:#b4cdbf;--gold:#C1A875;--ok:#0d6137;--bad:#9b2415;--focus:#0a4fd1}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1814;--card:#15231d;--text:#e9f3ee;--muted:#b5c9bf;--g900:#0a2e21;--g800:#1d6a49;--g700:#58c08f;--g100:#1b3328;--g50:#122019;--border:#34503f;--ok:#6fdca3;--bad:#ff9f8f;--focus:#8db4ff}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:17px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+a{color:var(--g800)}:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.skip{position:absolute;left:-999px;top:0;background:#fff;color:#000;padding:.6rem 1rem;z-index:100}.skip:focus{left:8px;top:8px}
+header.site{background:var(--g900);color:#fff;padding:2rem 1rem 1.5rem;border-bottom:6px solid var(--gold)}
+.wrap{max-width:820px;margin:0 auto;padding:0 1rem}header.site .wrap{padding:0}
+.eyebrow{font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--gold);margin:0 0 .25rem}
+h1{font-size:2rem;line-height:1.2;margin:.1rem 0 .5rem}header.site p{margin:.25rem 0}
+.howto,.idbox{background:var(--g100);border-left:6px solid var(--g700);padding:.9rem 1.1rem;border-radius:6px;margin:1.25rem 0}
+.idbox label{font-weight:700}
+input[type=text]{font:inherit;color:var(--text);background:var(--card);border:2px solid var(--muted);border-radius:6px;padding:.4rem .6rem;min-height:2.6rem}
+button{font:inherit;font-weight:700;cursor:pointer;border-radius:6px;padding:.5rem 1rem;min-height:2.75rem;border:2px solid var(--g800)}
+button.primary{background:var(--g800);color:#fff}button.primary:hover{background:var(--g900)}button.ghost{background:transparent;color:var(--g800)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) button.primary{background:#e9f3ee;color:#0a2e21;border-color:#e9f3ee}:root:not([data-theme="light"]) button.ghost{color:var(--g700);border-color:var(--g700)}}
+section.calc{background:var(--card);border:1px solid var(--border);border-top:6px solid var(--g700);border-radius:8px;padding:1rem 1.2rem 1.2rem;margin:1.5rem 0}
+section.calc h2{margin:0 0 .4rem;font-size:1.25rem;color:var(--g800)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) section.calc h2{color:var(--g700)}}
+.formula{background:var(--g100);padding:.4rem .8rem;border-radius:6px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.92rem;overflow-x:auto}
+.ans{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center;margin:.8rem 0}
+.ans input{width:12rem;text-align:right}
+.fb{font-weight:700}.fb.ok{color:var(--ok)}.fb.bad{color:var(--bad)}
+details.walk{margin-top:.8rem;border:2px solid var(--g700);border-radius:8px;padding:.3rem 1rem .8rem;background:var(--g50)}
+details.walk summary{cursor:pointer;font-weight:700;padding:.4rem 0}
+ol.steps{padding-left:1.4rem}ol.steps li{margin:.5rem 0}
+.final{font-weight:700;background:var(--g100);padding:.4rem .8rem;border-radius:6px;display:inline-block}
+nav.toc{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:.8rem 1.1rem;margin:1rem 0}nav.toc ol{margin:0;padding-left:1.2rem}
+footer.site{border-top:1px solid var(--border);margin-top:3rem;padding:1.2rem 1rem 2.5rem;color:var(--muted);font-size:.9rem;text-align:center}
+@media print{.skip,.idbox button{display:none}details.walk{display:block}details.walk>summary{display:none}}
+</style>
+</head>
+<body>
+<a class="skip" href="#problems">Skip to the problems</a>
+<header class="site"><div class="wrap">
+<p class="eyebrow">ACCT 351 · Intermediate Accounting I</p>
+<h1>Chapter 4 Quiz Calculation Walkthrough</h1>
+<p>Chapter 4: The Income Statement and Statement of Cash Flows</p>
+</div></header>
+<main class="wrap" id="main">
+<div class="howto"><p><strong>How to use this page.</strong> Each problem below mirrors a calculation question on the Chapter 4 Quiz, with the same formula but numbers generated for you. Try the problem first, check your answer, then open the walkthrough to see every step. Your numbers on the real quiz will differ because Canvas generates its own values; the method is the same.</p></div>
+<div class="idbox"><p><label for="sid">Student ID (used only to generate your practice numbers; nothing is stored or sent):</label></p>
+<p><input type="text" id="sid" autocomplete="off"> <button class="primary" type="button" id="go">Generate my numbers</button> <button class="ghost" type="button" id="rand">New random numbers</button></p>
+<p id="seednote" role="status" aria-live="polite"></p></div>
+<nav class="toc" aria-label="Problems on this page"><strong>In this walkthrough</strong><ol><li>Mountain Laurel Candles</li><li>Black Mountain Printing</li><li>Maggie Valley Lodging</li><li>Sylva Timber Products</li><li>Murphy Creek Pharmacy</li></ol></nav>
+<div id="problems"></div>
+</main>
+<footer class="site">ACCT 351 · Intermediate Accounting I · Western Carolina University · <span id="yr"></span><br>These walkthroughs are for practice and are not graded.</footer>
+<script>window.__CH={"n":4,"items":[{"t":"Mountain Laurel Candles reported sales of $[s], sales returns of $[r], and cost of goods sold of $[c]. What is its gross profit? (Enter dollars, no commas.)","v":{"s":[300000,700000],"r":[5000,25000],"c":[120000,280000]},"f":"s - r - c","r":"$","s":["Gross profit = Net sales − Cost of goods sold, and Net sales = Sales − Sales returns.","Net sales: {{$:s}} − {{$:r}} = {{$:s-r}}.","Subtract COGS: {{$:s-r}} − {{$:c}}.","Gross profit = {{$:s-r-c}}."],"co":"Mountain Laurel Candles"},{"t":"Black Mountain Printing reported income before income taxes of $[ibt] and has an income tax rate of [t]%. What is its net income? (Enter dollars, rounded to the nearest dollar, no commas.)","v":{"ibt":[80000,250000],"t":[20,30,"n"]},"f":"ibt * (1 - t / 100)","r":"$","s":["Net income = Income before taxes − Income tax expense. Tax expense = Pretax income × Tax rate.","Income tax expense: {{$:ibt}} × {{n:t}}% = {{$:ibt*t/100}}.","Net income: {{$:ibt}} − {{$:ibt*t/100}}.","Shortcut check: {{$:ibt}} × (1 − {{n:t}}%) = {{$:ibt*(1-t/100)}}."],"co":"Black Mountain Printing"},{"t":"Using the indirect method, Maggie Valley Lodging reports net income of $[ni], depreciation expense of $[dep], an increase in accounts receivable of $[ar], and an increase in accounts payable of $[ap]. What is net cash provided by operating activities? (Enter dollars, no commas.)","v":{"ni":[60000,180000],"dep":[10000,40000],"ar":[5000,25000],"ap":[4000,20000]},"f":"ni + dep - ar + ap","r":"$","s":["Indirect method: start with net income, add back noncash expenses, then adjust for working-capital changes.","Add back depreciation (noncash): {{$:ni}} + {{$:dep}} = {{$:ni+dep}}.","An increase in receivables means sales not yet collected in cash, so subtract it: {{$:ni+dep}} − {{$:ar}} = {{$:ni+dep-ar}}.","An increase in payables means expenses not yet paid in cash, so add it: {{$:ni+dep-ar}} + {{$:ap}}.","Net cash provided by operating activities = {{$:ni+dep-ar+ap}}."],"co":"Maggie Valley Lodging"},{"t":"Sylva Timber Products reports net cash from operating activities of $[cfo] and capital expenditures of $[cx]. What is its free cash flow? (Enter dollars, no commas.)","v":{"cfo":[150000,400000],"cx":[40000,120000]},"f":"cfo - cx","r":"$","s":["Free cash flow = Net cash from operating activities − Capital expenditures.","Substitute: {{$:cfo}} − {{$:cx}}.","Free cash flow = {{$:cfo-cx}}."],"co":"Sylva Timber Products"},{"t":"Murphy Creek Pharmacy reported net income of $[ni], paid preferred dividends of $[pd], and had [sh] weighted-average common shares outstanding. What is basic earnings per share? Round to two decimal places.","v":{"ni":[200000,600000],"pd":[10000,40000],"sh":[50000,150000,"n"]},"f":"(ni - pd) / sh","r":"2","s":["Basic EPS = (Net income − Preferred dividends) ÷ Weighted-average common shares. Only common shareholders' share of earnings is used.","Income available to common: {{$:ni}} − {{$:pd}} = {{$:ni-pd}}.","Divide by shares: {{$:ni-pd}} ÷ {{n:sh}}.","Basic EPS = ${{2:(ni-pd)/sh}} per share."],"co":"Murphy Creek Pharmacy"}]};</script>
+<script>
+(function(){
+var CH=window.__CH;
+function mulberry(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+function hash(s){var h=2166136261;for(var i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)}return h>>>0}
+function commas(x){return Number(x).toLocaleString('en-US',{maximumFractionDigits:0})}
+function dec(x,d){return Number(x).toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d})}
+function fmt(code,x){
+  if(code==='$'){var r0=Math.round(x);return (r0<0?'-':'')+'$'+commas(Math.abs(r0))}
+  if(code==='p1')return dec(x,1)+'%';
+  if(code==='n')return commas(Math.round(x));
+  return dec(x,parseInt(code,10));
+}
+function gen(item,rnd){
+  var v={};
+  Object.keys(item.v).forEach(function(k){
+    var a=item.v[k],lo=a[0],hi=a[1],type=a[2]||'d',val;
+    if(type==='d'&&hi>=5000){var l=Math.ceil(lo/100),h=Math.floor(hi/100);val=(l+Math.floor(rnd()*(h-l+1)))*100}
+    else val=lo+Math.floor(rnd()*(hi-lo+1));
+    v[k]=val});
+  return v}
+function ev(expr,v){var names=Object.keys(v);return Function.apply(null,names.concat('return ('+expr+')')).apply(null,names.map(function(k){return v[k]}))}
+function answer(item,v){var x=ev(item.f.replace(/\^/g,'**'),v);
+  if(item.r==='$')return Math.round(x);if(item.r==='p1')return Math.round(x*10)/10;return Math.round(x*100)/100}
+function ansText(item,v){var a=answer(item,v);return item.r==='$'?fmt('$',a):item.r==='p1'?fmt('p1',a):'$'==item.r?'':fmt('2',a)}
+function text(item,v){return item.t.replace(/\[(\w+)\]/g,function(m,k){return commas(v[k])})}
+function step(s,v){return s.replace(/\{\{([^:]+):([^}]+)\}\}/g,function(m,f,e){return fmt(f,ev(e,v))})}
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+function render(seedStr){
+  var root=document.getElementById('problems');root.innerHTML='';
+  CH.items.forEach(function(item,i){
+    var rnd=mulberry(hash(seedStr+'|'+CH.n+'|'+i));
+    var v=gen(item,rnd),id='q'+i;
+    var steps=item.s.map(function(s){return '<li>'+esc(step(s,v))+'</li>'}).join('');
+    var sec=document.createElement('section');sec.className='calc';sec.setAttribute('aria-labelledby',id+'h');
+    sec.innerHTML='<h2 id="'+id+'h">Calculation '+(i+1)+' · '+esc(item.co)+'</h2><p>'+esc(text(item,v))+'</p>'+
+      '<div class="ans"><label for="'+id+'a"><strong>Your answer:</strong></label><input type="text" id="'+id+'a" inputmode="decimal" autocomplete="off"><button class="primary" type="button" id="'+id+'b">Check</button><span class="fb" id="'+id+'f" role="status" aria-live="polite"></span></div>'+
+      '<details class="walk"><summary>Show step-by-step walkthrough</summary><p class="formula">Canvas formula: '+esc(item.f)+'</p><ol class="steps">'+steps+'</ol><p class="final">Answer: '+esc(ansText(item,v))+'</p></details>';
+    root.appendChild(sec);
+    var a=answer(item,v),tol=item.r==='$'?1:item.r==='p1'?0.1:0.01;
+    document.getElementById(id+'b').onclick=function(){
+      var raw=document.getElementById(id+'a').value.replace(/[$,%\s]/g,'').replace(/,/g,''),x=parseFloat(raw),fb=document.getElementById(id+'f');
+      if(isNaN(x)){fb.className='fb bad';fb.textContent='Enter a number.';return}
+      if(Math.abs(x-a)<=tol+1e-9){fb.className='fb ok';fb.textContent='Correct.'}else{fb.className='fb bad';fb.textContent='Not quite. Open the walkthrough and compare each step.'}};
+  });
+}
+window.__render=render;window.__gen={gen:gen,answer:answer,ansText:ansText,step:step,text:text};
+var idEl=document.getElementById('sid'),note=document.getElementById('seednote');
+function useId(){var s=idEl.value.trim();if(!s){note.textContent='Showing sample numbers. Enter your student ID to get your own numbers.';render('sample')}else{note.textContent='Numbers generated for student ID '+s+'.';render(s)}}
+document.getElementById('go').onclick=useId;
+document.getElementById('rand').onclick=function(){var s='r'+Math.random();note.textContent='Random practice numbers. Use your student ID again to return to your own numbers.';render(s)};
+idEl.addEventListener('keydown',function(e){if(e.key==='Enter')useId()});
+document.getElementById('yr').textContent=new Date().getFullYear();
+useId();
+})();</script>
+</body>
+</html>
