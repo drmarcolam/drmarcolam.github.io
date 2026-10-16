@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MBA 623 · Financial &amp; Managerial Accounting for MBAs Module 15 Chapter Walkthrough</title>
+<meta name="description" content="Module 15 Chapter Walkthrough: step-by-step guided practice on Cost Definitions, Behavior, and Estimation">
+<style>
+:root{
+  --bg:#fbf9f4; --card:#fffefb; --ink:#231a2e; --muted:#5a5066; --line:#dccfe8;
+  --purple:#592C88; --purple-dark:#3f1d63; --gold:#C1A875; --tint:#f1e9f7; --edge:#C1A875;
+  --good-bg:#e7f5ea; --good-ink:#14532d; --good-line:#2e7d32;
+  --bad-bg:#fdebe4; --bad-ink:#7a2a0b; --bad-line:#b4481a;
+  --warn-bg:#fff3de; --warn-ink:#5e3300; --warn-line:#b86b00;
+  --focus:#0b57d0;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#17101f; --card:#211832; --ink:#f3ecf9; --muted:#c9bcd9; --line:#3d2d57;
+    --purple:#d9c3f2; --purple-dark:#120b1b; --tint:#2c2040; --edge:#C1A875;
+    --good-bg:#16301d; --good-ink:#bfe8c8; --good-line:#58b46c;
+    --bad-bg:#3b1f14; --bad-ink:#ffd2bf; --bad-line:#e08a5e;
+    --warn-bg:#3a2a10; --warn-ink:#ffe0b3; --warn-line:#e0a040;
+    --focus:#8ab4ff;
+  }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.55;font-size:1.0625rem}
+.skip{position:absolute;left:-999px;top:0;background:var(--gold);color:#3f1d63;padding:.6rem 1rem;z-index:10;font-weight:700}
+.skip:focus{left:8px;top:8px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+header.site{background:#3f1d63;color:#fff;border-bottom:6px solid var(--gold)}
+header.site .wrap{max-width:52rem;margin:0 auto;padding:1.3rem 1rem}
+header.site .eyebrow{margin:0;font-size:.9rem;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);font-weight:700}
+header.site h1{margin:.2rem 0 .3rem;font-size:1.7rem;line-height:1.2}
+header.site p.sub{margin:0;color:#ece3f5}
+.progress{max-width:52rem;margin:0 auto;padding:.8rem 1rem 0;display:flex;align-items:center;gap:1rem;position:sticky;top:0;background:var(--bg);z-index:5}
+.progress .track{flex:1;height:10px;background:var(--line);border-radius:5px;overflow:hidden}
+.progress .fill{height:100%;width:0;background:var(--purple);transition:width .3s}
+.progress .lab{font-size:.9rem;color:var(--muted);white-space:nowrap}
+main{max-width:52rem;margin:0 auto;padding:.8rem 1rem 3rem}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+h2{font-size:1.45rem;margin:.2rem 0 .7rem;color:var(--purple);border-bottom:2px solid var(--line);padding-bottom:.35rem}
+h3{font-size:1.02rem;margin:1rem 0 .3rem}
+p{margin:.55rem 0}
+.lo-block{margin:2.2rem 0}
+.lo-tag{display:inline-block;font-size:.8rem;font-weight:700;letter-spacing:.04em;color:#fff;background:#3f1d63;padding:.2rem .6rem;border-radius:4px;margin-bottom:.4rem}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .lo-tag{background:var(--purple);color:#120b1b}}
+.key-idea{background:var(--tint);border-left:5px solid var(--edge);padding:.8rem 1rem;border-radius:0 8px 8px 0;margin:.9rem 0}
+.key-idea ol,.key-idea ul{margin:.4rem 0 .2rem;padding-left:1.3rem}
+.note{color:var(--muted);font-size:.95rem}
+.example{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:1rem 1.1rem 1.1rem;margin:1.1rem 0}
+.ex-label{font-size:.82rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--purple);margin-bottom:.3rem}
+.q{margin:.3rem 0}
+table.mini{border-collapse:collapse;width:100%;margin:.6rem 0;font-size:.92rem;font-variant-numeric:tabular-nums}
+table.mini th,table.mini td{border:1px solid var(--line);padding:.35rem .55rem;text-align:right;vertical-align:top}
+table.mini thead th{background:var(--tint);color:var(--ink)}
+table.mini th[scope="row"]{text-align:left;font-weight:600;background:transparent}
+table.mini thead th:first-child{text-align:left}
+.input-row{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:.8rem 0 .4rem;padding:.7rem;background:var(--tint);border-radius:8px}
+.input-row label{font-weight:700}
+.input-row input{font:inherit;font-variant-numeric:tabular-nums;padding:.45rem .6rem;border:2px solid var(--line);border-radius:6px;width:11rem;background:var(--card);color:var(--ink)}
+.input-col{display:grid;gap:.5rem;margin:.8rem 0 .4rem;padding:.7rem;background:var(--tint);border-radius:8px}
+.sel-row{display:grid;grid-template-columns:1fr minmax(11rem,15rem);gap:.6rem;align-items:center}
+.sel-row label{font-weight:600}
+@media (max-width:34rem){.sel-row{grid-template-columns:1fr}}
+select{font:inherit;padding:.45rem .5rem;border:2px solid var(--line);border-radius:6px;background:var(--card);color:var(--ink)}
+button{font:inherit;font-weight:700;color:#fff;background:#3f1d63;border:2px solid #3f1d63;padding:.5rem 1rem;border-radius:6px;cursor:pointer}
+button:hover{background:var(--purple);border-color:var(--purple)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) button{background:var(--purple);color:#120b1b;border-color:var(--purple)}}
+.feedback{margin:.4rem 0;font-weight:600}
+.feedback:not(:empty){padding:.6rem .85rem;border-radius:6px;border-left:5px solid}
+.feedback.good{color:var(--good-ink);background:var(--good-bg);border-color:var(--good-line)}
+.feedback.bad{color:var(--bad-ink);background:var(--bad-bg);border-color:var(--bad-line)}
+.feedback.warn{color:var(--warn-ink);background:var(--warn-bg);border-color:var(--warn-line)}
+.solution{margin-top:.7rem;padding-top:.8rem;border-top:2px dashed var(--line)}
+.solution-label{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--purple);margin-bottom:.4rem}
+.final-answer{margin-top:.6rem}
+.final-answer strong{color:var(--purple);font-size:1.08rem}
+details.hint{margin:.4rem 0}
+details.hint summary{cursor:pointer;font-weight:600;color:var(--purple)}
+details.hint div{padding:.4rem .8rem;border-left:4px solid var(--line);margin-top:.3rem}
+footer{text-align:center;color:var(--muted);font-size:.85rem;padding:1.5rem 1rem 2.5rem}
+@media (max-width:40rem){table.mini{display:block;overflow-x:auto}}
+@media (prefers-reduced-motion:reduce){.progress .fill{transition:none}}
+.sel-row select{max-width:100%;min-width:0}
+.gate{position:fixed;inset:0;z-index:99999;background:var(--bg);display:flex;align-items:center;justify-content:center;padding:1.25rem}
+html.unlocked .gate{display:none}
+.gate-card{background:var(--card);color:var(--ink);border:1px solid var(--line);border-top:6px solid var(--gold);border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.18);padding:2rem 1.75rem;max-width:23rem;width:100%;text-align:center}
+.gate-card .eyebrow{margin:0 0 .4rem;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.gate-card h2{margin:0 0 .5rem;font-size:1.3rem;color:var(--purple);border:0}
+.gate-card p.sub{margin:0 0 1.2rem;color:var(--muted);font-size:.95rem}
+.gate-card label{display:block;text-align:left;font-weight:600;font-size:.9rem;margin-bottom:.3rem}
+.gate-card input{width:100%;font:inherit;font-size:1.05rem;letter-spacing:.06em;text-align:center;text-transform:uppercase;padding:.65rem .75rem;border:2px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);margin-bottom:.8rem}
+.gate-card button{width:100%;padding:.7rem}
+.gate-err{min-height:1.3em;margin:.7rem 0 0;color:#9c2b2b;font-size:.9rem;font-weight:600}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .gate-err{color:#ffb3a8}}
+@media print{.gate{display:none!important}}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to main content</a>
+<header class="site"><div class="wrap">
+  <p class="eyebrow">MBA 623 · Financial &amp; Managerial Accounting for MBAs</p>
+  <h1>Module 15 Chapter Walkthrough</h1>
+  <p class="sub">Cost Definitions, Behavior, and Estimation · Practice each step, then check yourself.</p>
+</div></header>
+<div class="progress" id="progressBar" role="progressbar" aria-label="Questions checked" aria-valuemin="0" aria-valuemax="12" aria-valuenow="0">
+  <div class="track"><div class="fill" id="progressFill"></div></div>
+  <div class="lab" id="progressLabel">0 of 12 checked</div>
+</div>
+<main id="main" tabindex="-1">
+  <div class="key-idea"><strong>How this works.</strong> Work each problem by hand or with a calculator, type your answer (or choose from the menus), and select <strong>Check my answer</strong>. You will see right away whether you are correct, plus the full solution either way. Use <em>Need a hint?</em> if you get stuck. This page is for practice only: it is not graded and nothing is submitted.</div>
+<section class="lo-block" aria-labelledby="s1-h"><span class="lo-tag">Cost behavior</span><h2 id="s1-h">Variable, Fixed, Mixed and Step Costs</h2><p>Cost behavior describes how total cost responds to changes in activity (such as sales volume).</p><div class="key-idea"><ul><li><strong>Variable:</strong> total changes in direct proportion to activity; zero at zero activity.</li><li><strong>Fixed:</strong> total does not change with activity.</li><li><strong>Mixed:</strong> a fixed element plus a variable element.</li><li><strong>Step:</strong> total jumps to a higher level when activity moves beyond a range.</li></ul></div><div class="example"><div class="ex-label">Example 1 — Cost Behavior</div><p>Classify each cost.</p><div class="q"><div class="input-col"><div class="sel-row"><label for="sel-1-1-0">Cost of ingredients in each cereal box</label><select id="sel-1-1-0"><option value="">Choose…</option><option>Variable</option><option>Fixed</option><option>Mixed</option><option>Step</option></select></div><div class="sel-row"><label for="sel-1-1-1">Monthly rent on the factory</label><select id="sel-1-1-1"><option value="">Choose…</option><option>Variable</option><option>Fixed</option><option>Mixed</option><option>Step</option></select></div><div class="sel-row"><label for="sel-1-1-2">Cell phone plan: monthly fee plus a charge per minute</label><select id="sel-1-1-2"><option value="">Choose…</option><option>Variable</option><option>Fixed</option><option>Mixed</option><option>Step</option></select></div><div class="sel-row"><label for="sel-1-1-3">One supervisor is needed for every 20 workers</label><select id="sel-1-1-3"><option value="">Choose…</option><option>Variable</option><option>Fixed</option><option>Mixed</option><option>Step</option></select></div><div class="sel-row"><label for="sel-1-1-4">Straight-line depreciation on equipment</label><select id="sel-1-1-4"><option value="">Choose…</option><option>Variable</option><option>Fixed</option><option>Mixed</option><option>Step</option></select></div><div><button type="button" onclick="checkSelects(&quot;1-1&quot;, [[&quot;sel-1-1-0&quot;, &quot;Variable&quot;], [&quot;sel-1-1-1&quot;, &quot;Fixed&quot;], [&quot;sel-1-1-2&quot;, &quot;Mixed&quot;], [&quot;sel-1-1-3&quot;, &quot;Step&quot;], [&quot;sel-1-1-4&quot;, &quot;Fixed&quot;]])">Check my answers</button></div></div><div class="feedback" id="fb-1-1" role="status" aria-live="polite"></div><div class="solution" id="sol-1-1" hidden><div class="solution-label">Solution</div><p>Ingredients vary with output; rent and straight-line depreciation do not. A monthly fee plus a usage charge is mixed. A cost that rises in blocks (supervisors) is a step cost.</p></div></div></div></section><section class="lo-block" aria-labelledby="s2-h"><span class="lo-tag">Total and average cost</span><h2 id="s2-h">Fixed Cost per Unit Falls as Volume Rises</h2><p>An order-fulfillment center has monthly <strong>fixed costs of $40,000</strong> and <strong>variable costs of $0.75 per order</strong>.</p><div class="key-idea"><p><strong>Total cost</strong> = Fixed + Variable cost per unit × Volume. <strong>Average cost</strong> = Total cost ÷ Volume. Average cost falls as volume grows because fixed costs are spread over more units.</p></div><div class="example"><div class="ex-label">Example 1 — Average Cost at 50,000 Orders</div><p>What is the average cost per order at 50,000 orders (two decimals)?</p><div class="q"><div class="input-row"><label for="ans-2-1">Your answer:</label><span aria-hidden="true">$</span><input type="text" inputmode="decimal" autocomplete="off" id="ans-2-1" placeholder="0" aria-describedby="fb-2-1"><button type="button" onclick="checkAnswer('2-1', 1.55, 0.01)">Check my answer</button></div><div class="feedback" id="fb-2-1" role="status" aria-live="polite"></div><div class="solution" id="sol-2-1" hidden><div class="solution-label">Solution</div><p>Total = $40,000 + 50,000 × $0.75 = $77,500. Average = $77,500 ÷ 50,000 = $1.55.</p><p class="final-answer">Average cost = <strong>$1.55</strong></p></div></div></div><div class="example"><div class="ex-label">Example 2 — Volume for a $2.35 Average Cost</div><p>At what monthly volume is the average cost $2.35 per order?</p><div class="q"><details class="hint"><summary>Need a hint?</summary><div>Average cost = fixed cost per order + $0.75.</div></details><div class="input-row"><label for="ans-2-2">Your answer:</label><input type="text" inputmode="decimal" autocomplete="off" id="ans-2-2" placeholder="0" aria-describedby="fb-2-2"><button type="button" onclick="checkAnswer('2-2', 25000, 1)">Check my answer</button></div><div class="feedback" id="fb-2-2" role="status" aria-live="polite"></div><div class="solution" id="sol-2-2" hidden><div class="solution-label">Solution</div><p>$2.35 = $40,000/X + $0.75, so $40,000/X = $1.60 and X = 25,000 orders.</p><p class="final-answer">Volume = <strong>25,000 orders</strong></p></div></div></div></section><section class="lo-block" aria-labelledby="s3-h"><span class="lo-tag">Cost estimation</span><h2 id="s3-h">The High-Low Method</h2><p>A delivery fleet's annual costs were <strong>$267,500 at 855,000 miles</strong> (highest activity) and <strong>$219,500 at 695,000 miles</strong> (lowest).</p><div class="key-idea"><ul><li><strong>Variable cost per unit</strong> = (High cost − Low cost) ÷ (High activity − Low activity)</li><li><strong>Fixed cost</strong> = Total cost − Variable cost per unit × Activity</li><li>Total cost: Y = a + bX</li></ul></div><div class="example"><div class="ex-label">Example 1 — Variable Cost per Mile</div><p>Compute the variable cost per mile (two decimals).</p><div class="q"><div class="input-row"><label for="ans-3-1">Your answer:</label><span aria-hidden="true">$</span><input type="text" inputmode="decimal" autocomplete="off" id="ans-3-1" placeholder="0" aria-describedby="fb-3-1"><button type="button" onclick="checkAnswer('3-1', 0.3, 0.005)">Check my answer</button></div><div class="feedback" id="fb-3-1" role="status" aria-live="polite"></div><div class="solution" id="sol-3-1" hidden><div class="solution-label">Solution</div><p>($267,500 − $219,500) ÷ (855,000 − 695,000) = $48,000 ÷ 160,000 = $0.30.</p><p class="final-answer">Variable cost = <strong>$0.30 per mile</strong></p></div></div></div><div class="example"><div class="ex-label">Example 2 — Fixed Cost</div><p>Compute the annual fixed cost.</p><div class="q"><div class="input-row"><label for="ans-3-2">Your answer:</label><span aria-hidden="true">$</span><input type="text" inputmode="decimal" autocomplete="off" id="ans-3-2" placeholder="0" aria-describedby="fb-3-2"><button type="button" onclick="checkAnswer('3-2', 11000, 1)">Check my answer</button></div><div class="feedback" id="fb-3-2" role="status" aria-live="polite"></div><div class="solution" id="sol-3-2" hidden><div class="solution-label">Solution</div><p>$267,500 − $0.30 × 855,000 = $267,500 − $256,500 = $11,000. (Check: $219,500 − $0.30 × 695,000 = $11,000.)</p><p class="final-answer">Fixed cost = <strong>$11,000</strong></p></div></div></div><div class="example"><div class="ex-label">Example 3 — Predicted Cost</div><p>Using Y = $11,000 + $0.30X, predict total cost for 800,000 miles.</p><div class="q"><div class="input-row"><label for="ans-3-3">Your answer:</label><span aria-hidden="true">$</span><input type="text" inputmode="decimal" autocomplete="off" id="ans-3-3" placeholder="0" aria-describedby="fb-3-3"><button type="button" onclick="checkAnswer('3-3', 251000, 1)">Check my answer</button></div><div class="feedback" id="fb-3-3" role="status" aria-live="polite"></div><div class="solution" id="sol-3-3" hidden><div class="solution-label">Solution</div><p>$11,000 + $0.30 × 800,000 = $11,000 + $240,000 = $251,000.</p><p class="final-answer">Predicted cost = <strong>$251,000</strong></p></div></div></div><div class="example"><div class="ex-label">Example 4 — Estimation Methods</div><p>Decide whether each statement is true or false.</p><div class="q"><div class="input-col"><div class="sel-row"><label for="sel-3-4-0">The high-low method uses only two data points.</label><select id="sel-3-4-0"><option value="">Choose…</option><option>True</option><option>False</option></select></div><div class="sel-row"><label for="sel-3-4-1">Least-squares regression uses all data points and statistical measures of fit.</label><select id="sel-3-4-1"><option value="">Choose…</option><option>True</option><option>False</option></select></div><div class="sel-row"><label for="sel-3-4-2">A regression equation makes the decision, so managers need not apply judgment.</label><select id="sel-3-4-2"><option value="">Choose…</option><option>True</option><option>False</option></select></div><div class="sel-row"><label for="sel-3-4-3">Predictions are most reliable inside the relevant range.</label><select id="sel-3-4-3"><option value="">Choose…</option><option>True</option><option>False</option></select></div><div><button type="button" onclick="checkSelects(&quot;3-4&quot;, [[&quot;sel-3-4-0&quot;, &quot;True&quot;], [&quot;sel-3-4-1&quot;, &quot;True&quot;], [&quot;sel-3-4-2&quot;, &quot;False&quot;], [&quot;sel-3-4-3&quot;, &quot;True&quot;]])">Check my answers</button></div></div><div class="feedback" id="fb-3-4" role="status" aria-live="polite"></div><div class="solution" id="sol-3-4" hidden><div class="solution-label">Solution</div><p>High-low is simple but uses two observations. Regression uses all data and measures fit, but models are tools to aid decisions. Linear estimates assume activity stays in the relevant range.</p></div></div></div></section><section class="lo-block" aria-labelledby="s4-h"><span class="lo-tag">Comparing cost structures</span><h2 id="s4-h">Fixed vs. Variable: The Crossover Volume</h2><p>A company can keep its <strong>current process</strong> (fixed $5,500 plus $0.15 per unit) or adopt a <strong>proposed automatic process</strong> (fixed $7,000 plus $0.05 per unit).</p><div class="example"><div class="ex-label">Example 1 — Equal-Cost Volume</div><p>At what volume do the two processes cost the same?</p><div class="q"><details class="hint"><summary>Need a hint?</summary><div>Set the two total cost equations equal.</div></details><div class="input-row"><label for="ans-4-1">Your answer:</label><input type="text" inputmode="decimal" autocomplete="off" id="ans-4-1" placeholder="0" aria-describedby="fb-4-1"><button type="button" onclick="checkAnswer('4-1', 15000, 1)">Check my answer</button></div><div class="feedback" id="fb-4-1" role="status" aria-live="polite"></div><div class="solution" id="sol-4-1" hidden><div class="solution-label">Solution</div><p>$5,500 + $0.15X = $7,000 + $0.05X, so $0.10X = $1,500 and X = 15,000 units.</p><p class="final-answer">Crossover volume = <strong>15,000 units</strong></p></div></div></div><div class="example"><div class="ex-label">Example 2 — Which Costs Less?</div><p>Choose the lower-cost process at each volume.</p><div class="q"><div class="input-col"><div class="sel-row"><label for="sel-4-2-0">Costs less at 10,000 units</label><select id="sel-4-2-0"><option value="">Choose…</option><option>Current process</option><option>Proposed process</option></select></div><div class="sel-row"><label for="sel-4-2-1">Costs less at 25,000 units</label><select id="sel-4-2-1"><option value="">Choose…</option><option>Current process</option><option>Proposed process</option></select></div><div><button type="button" onclick="checkSelects(&quot;4-2&quot;, [[&quot;sel-4-2-0&quot;, &quot;Current process&quot;], [&quot;sel-4-2-1&quot;, &quot;Proposed process&quot;]])">Check my answers</button></div></div><div class="feedback" id="fb-4-2" role="status" aria-live="polite"></div><div class="solution" id="sol-4-2" hidden><div class="solution-label">Solution</div><p>At 10,000 units: current $7,000 vs. proposed $7,500. At 25,000 units: current $9,250 vs. proposed $8,250. The higher-fixed, lower-variable process wins at high volume.</p></div></div></div></section><section class="lo-block" aria-labelledby="s5-h"><span class="lo-tag">Direct and indirect costs</span><h2 id="s5-h">Traceability and Cost Behavior Together</h2><p>A cost can be both a behavior type and a traceability type. A cost is <strong>direct</strong> if it can be traced to a cost object (such as a product) and <strong>indirect</strong> if it is shared.</p><div class="example"><div class="ex-label">Example 1 — Combine Behavior and Traceability</div><p>For a cereal company whose cost object is Frosted Flakes, classify each cost.</p><div class="q"><div class="input-col"><div class="sel-row"><label for="sel-5-1-0">Sugar in the cereal: behavior</label><select id="sel-5-1-0"><option value="">Choose…</option><option>Variable</option><option>Fixed</option></select></div><div class="sel-row"><label for="sel-5-1-1">Sugar in the cereal: traceability</label><select id="sel-5-1-1"><option value="">Choose…</option><option>Direct</option><option>Indirect</option></select></div><div class="sel-row"><label for="sel-5-1-2">Production manager for Frosted Flakes: behavior</label><select id="sel-5-1-2"><option value="">Choose…</option><option>Variable</option><option>Fixed</option></select></div><div class="sel-row"><label for="sel-5-1-3">Production manager for Frosted Flakes: traceability</label><select id="sel-5-1-3"><option value="">Choose…</option><option>Direct</option><option>Indirect</option></select></div><div class="sel-row"><label for="sel-5-1-4">Plant utilities: behavior</label><select id="sel-5-1-4"><option value="">Choose…</option><option>Variable</option><option>Fixed</option></select></div><div class="sel-row"><label for="sel-5-1-5">Plant utilities: traceability</label><select id="sel-5-1-5"><option value="">Choose…</option><option>Direct</option><option>Indirect</option></select></div><div class="sel-row"><label for="sel-5-1-6">Common-use machinery: behavior</label><select id="sel-5-1-6"><option value="">Choose…</option><option>Variable</option><option>Fixed</option></select></div><div class="sel-row"><label for="sel-5-1-7">Common-use machinery: traceability</label><select id="sel-5-1-7"><option value="">Choose…</option><option>Direct</option><option>Indirect</option></select></div><div><button type="button" onclick="checkSelects(&quot;5-1&quot;, [[&quot;sel-5-1-0&quot;, &quot;Variable&quot;], [&quot;sel-5-1-1&quot;, &quot;Direct&quot;], [&quot;sel-5-1-2&quot;, &quot;Fixed&quot;], [&quot;sel-5-1-3&quot;, &quot;Direct&quot;], [&quot;sel-5-1-4&quot;, &quot;Variable&quot;], [&quot;sel-5-1-5&quot;, &quot;Indirect&quot;], [&quot;sel-5-1-6&quot;, &quot;Fixed&quot;], [&quot;sel-5-1-7&quot;, &quot;Indirect&quot;]])">Check my answers</button></div></div><div class="feedback" id="fb-5-1" role="status" aria-live="polite"></div><div class="solution" id="sol-5-1" hidden><div class="solution-label">Solution</div><p>Sugar and a dedicated production manager trace directly to Frosted Flakes; utilities and shared machinery serve many products so they are indirect.</p></div></div></div><div class="example"><div class="ex-label">Example 2 — Manufacturing Costs</div><p>Classify each cost.</p><div class="q"><div class="input-col"><div class="sel-row"><label for="sel-5-2-0">Steel used to build a machine</label><select id="sel-5-2-0"><option value="">Choose…</option><option>Direct materials</option><option>Direct labor</option><option>Manufacturing overhead</option><option>Not a manufacturing cost</option></select></div><div class="sel-row"><label for="sel-5-2-1">Wages of assembly-line workers</label><select id="sel-5-2-1"><option value="">Choose…</option><option>Direct materials</option><option>Direct labor</option><option>Manufacturing overhead</option><option>Not a manufacturing cost</option></select></div><div class="sel-row"><label for="sel-5-2-2">Factory utilities</label><select id="sel-5-2-2"><option value="">Choose…</option><option>Direct materials</option><option>Direct labor</option><option>Manufacturing overhead</option><option>Not a manufacturing cost</option></select></div><div class="sel-row"><label for="sel-5-2-3">Sales commissions</label><select id="sel-5-2-3"><option value="">Choose…</option><option>Direct materials</option><option>Direct labor</option><option>Manufacturing overhead</option><option>Not a manufacturing cost</option></select></div><div><button type="button" onclick="checkSelects(&quot;5-2&quot;, [[&quot;sel-5-2-0&quot;, &quot;Direct materials&quot;], [&quot;sel-5-2-1&quot;, &quot;Direct labor&quot;], [&quot;sel-5-2-2&quot;, &quot;Manufacturing overhead&quot;], [&quot;sel-5-2-3&quot;, &quot;Not a manufacturing cost&quot;]])">Check my answers</button></div></div><div class="feedback" id="fb-5-2" role="status" aria-live="polite"></div><div class="solution" id="sol-5-2" hidden><div class="solution-label">Solution</div><p>Manufacturing cost = direct materials + direct labor + manufacturing overhead. Selling costs such as commissions are period costs.</p></div></div></div><div class="example"><div class="ex-label">Example 3 — Types of Fixed Cost</div><p>Classify each fixed cost.</p><div class="q"><div class="input-col"><div class="sel-row"><label for="sel-5-3-0">Rent under a ten-year building lease</label><select id="sel-5-3-0"><option value="">Choose…</option><option>Committed fixed cost</option><option>Discretionary fixed cost</option></select></div><div class="sel-row"><label for="sel-5-3-1">An advertising budget set by management each year</label><select id="sel-5-3-1"><option value="">Choose…</option><option>Committed fixed cost</option><option>Discretionary fixed cost</option></select></div><div><button type="button" onclick="checkSelects(&quot;5-3&quot;, [[&quot;sel-5-3-0&quot;, &quot;Committed fixed cost&quot;], [&quot;sel-5-3-1&quot;, &quot;Discretionary fixed cost&quot;]])">Check my answers</button></div></div><div class="feedback" id="fb-5-3" role="status" aria-live="polite"></div><div class="solution" id="sol-5-3" hidden><div class="solution-label">Solution</div><p>Committed (capacity) costs are needed to maintain current capacity; discretionary (managed) costs are set by management each period and can be changed.</p></div></div></div></section>
+<section class="lo-block" aria-labelledby="wrap-h"><span class="lo-tag">Wrap-up</span><h2 id="wrap-h">Module 15 at a Glance</h2><ul><li>Costs behave as <strong>variable, fixed, mixed or step</strong>; the linear model holds within the <strong>relevant range</strong>.</li><li><strong>Average cost</strong> per unit falls as volume rises because fixed costs are spread over more units.</li><li><strong>High-low</strong>: b = ΔCost ÷ ΔActivity, a = Cost − bX; regression uses all data.</li><li>Classify costs by <strong>behavior</strong> and <strong>traceability</strong>; use different costs for different decisions.</li></ul></section>
+</main>
+<footer>MBA 623 · Financial &amp; Managerial Accounting for MBAs · Module 15 Chapter Walkthrough · Cost Definitions, Behavior, and Estimation (Ungraded)</footer>
+<script>
+var CHECKED = {};
+var TOTAL = 12;
+function updateProgress(){
+  var c = Object.keys(CHECKED).length;
+  document.getElementById('progressLabel').textContent = c + ' of ' + TOTAL + ' checked';
+  document.getElementById('progressFill').style.width = (c / TOTAL * 100) + '%';
+  document.getElementById('progressBar').setAttribute('aria-valuenow', c);
+}
+function parseNum(s){
+  s = String(s).replace(/[$%]/g,'').trim();
+  var neg = /^\(.*\)$/.test(s) || /^-/.test(s);
+  var t = s.replace(/[$,\s()]/g, '').replace(/^-/, '');
+  if (t === '' || isNaN(Number(t))) return NaN;
+  var v = parseFloat(t);
+  return neg ? -v : v;
+}
+function setFb(fb, cls, text){ fb.className = 'feedback ' + cls; fb.textContent = text; }
+function checkAnswer(id, correct, tol){
+  var input = document.getElementById('ans-' + id);
+  var fb = document.getElementById('fb-' + id);
+  var sol = document.getElementById('sol-' + id);
+  var val = parseNum(input.value);
+  if (isNaN(val)) { setFb(fb, 'warn', 'Enter a number first, then choose Check my answer.'); return; }
+  if (tol === null || tol === undefined) { tol = Math.max(1, Math.abs(correct) * 0.005); }
+  if (Math.abs(val - correct) <= tol) {
+    setFb(fb, 'good', '✓ Correct! Here is the full solution for reference.');
+  } else {
+    setFb(fb, 'bad', '✗ Not quite. Here is the full solution; compare it with your work to see where things diverged.');
+  }
+  sol.hidden = false;
+  CHECKED[id] = true;
+  updateProgress();
+}
+function checkSelects(id, pairs){
+  var fb = document.getElementById('fb-' + id);
+  var sol = document.getElementById('sol-' + id);
+  var ok = 0, blank = 0;
+  for (var i = 0; i < pairs.length; i++) {
+    var el = document.getElementById(pairs[i][0]);
+    if (!el.value) { blank++; continue; }
+    if (el.value === pairs[i][1]) ok++;
+  }
+  if (blank) { setFb(fb, 'warn', 'Choose an answer for every item first, then choose Check my answers.'); return; }
+  if (ok === pairs.length) setFb(fb, 'good', '✓ Correct! ' + ok + ' of ' + pairs.length + '. Here is the explanation.');
+  else setFb(fb, 'bad', '✗ ' + ok + ' of ' + pairs.length + ' correct. Review the explanation below.');
+  sol.hidden = false;
+  CHECKED[id] = true;
+  updateProgress();
+}
+</script>
+</body></html>
