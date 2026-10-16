@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ACCT 351 Chapter 6 Chapter Walkthrough</title>
+<meta name="description" content="Chapter 6 Chapter Walkthrough: step-by-step guided practice on Revenue Recognition for Intermediate Accounting I.">
+<style>
+:root{
+  --bg:#f4f8f5; --card:#ffffff; --text:#14201a; --muted:#41524a;
+  --g900:#0b3b2a; --g800:#14513a; --g700:#1b6a4a; --g100:#e3f0e8; --g50:#f0f7f3;
+  --border:#b4cdbf; --accent:#8a5a00; --ok:#0d6137; --bad:#9b2415; --focus:#0a4fd1;
+  --warn-bg:#fff6df;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0e1814; --card:#15231d; --text:#e9f3ee; --muted:#b5c9bf;
+    --g900:#0a2e21; --g800:#1d6a49; --g700:#58c08f; --g100:#1b3328; --g50:#122019;
+    --border:#34503f; --accent:#f0c36a; --ok:#6fdca3; --bad:#ff9f8f; --focus:#8db4ff;
+    --warn-bg:#2b2410;
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font:17px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+.skip{position:absolute;left:-999px;top:0;background:#fff;color:#000;padding:.6rem 1rem;z-index:100;border:2px solid var(--focus)}
+.skip:focus{left:8px;top:8px}
+a{color:var(--g800)}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+header.site{background:var(--g900);color:#fff;padding:2rem 1rem 1.5rem}
+.wrap{max-width:820px;margin:0 auto;padding:0 1rem}
+header.site .wrap{padding:0}
+.eyebrow{font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:#bfe3cf;margin:0 0 .25rem}
+h1{font-size:2rem;line-height:1.2;margin:.1rem 0 .5rem}
+header.site p{margin:.25rem 0}
+.progress{display:inline-block;margin-top:.75rem;background:#fff;color:var(--g900);font-weight:700;padding:.35rem .8rem;border-radius:999px}
+.howto{background:var(--g100);border-left:6px solid var(--g700);padding:.9rem 1.1rem;border-radius:6px;margin:1.25rem 0}
+nav.toc{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:.8rem 1.1rem;margin:1rem 0}
+nav.toc h2{font-size:1rem;margin:0 0 .3rem}
+nav.toc ol{margin:0;padding-left:1.2rem}
+section.topic{margin:2.2rem 0}
+section.topic>h2{font-size:1.55rem;color:var(--g800);border-bottom:3px solid var(--g700);padding-bottom:.3rem;margin-bottom:.8rem}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) section.topic>h2{color:var(--g700)}}
+h3{font-size:1.15rem;margin:1.2rem 0 .4rem}
+.keyterms{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:.4rem 1.1rem .6rem;margin:1rem 0}
+.keyterms ul,.keyterms ol{margin:.4rem 0;padding-left:1.3rem}
+.keyterms li{margin:.3rem 0}
+.example{background:var(--card);border:1px solid var(--border);border-top:6px solid var(--g700);border-radius:8px;padding:1rem 1.2rem 1.2rem;margin:1.5rem 0}
+.example h3{margin-top:0;color:var(--g800)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .example h3{color:var(--g700)}}
+.scenario{background:var(--g50);border-radius:6px;padding:.6rem .9rem;margin:.6rem 0}
+details.hint{margin:.6rem 0}
+details.hint summary{cursor:pointer;font-weight:600;color:var(--g800);padding:.2rem 0}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) details.hint summary{color:var(--g700)}}
+details.hint div{border-left:4px solid var(--accent);padding:.3rem .9rem;margin:.4rem 0;background:var(--warn-bg)}
+.q{margin:.9rem 0}
+.q>label,.q>.lbl{display:block;font-weight:600;margin-bottom:.25rem}
+.field{display:inline-flex;align-items:center;gap:.3rem}
+.field .pre,.field .suf{font-weight:700}
+input[type=text],select{font:inherit;color:var(--text);background:var(--card);border:2px solid var(--muted);border-radius:6px;padding:.4rem .6rem;min-height:2.6rem}
+input[type=text]{width:12rem;text-align:right}
+select{max-width:100%}
+input[aria-invalid=true],select[aria-invalid=true]{border-color:var(--bad)}
+input.ok,select.ok{border-color:var(--ok)}
+.fb{display:block;margin-top:.25rem;font-weight:600;min-height:0}
+.fb.ok{color:var(--ok)} .fb.bad{color:var(--bad)}
+.btnrow{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1rem;align-items:center}
+button{font:inherit;font-weight:700;cursor:pointer;border-radius:6px;padding:.55rem 1.1rem;min-height:2.75rem;border:2px solid var(--g800)}
+button.check{background:var(--g800);color:#fff}
+button.check:hover{background:var(--g900)}
+button.reset{background:transparent;color:var(--g800)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) button.check{background:#e9f3ee;color:#0a2e21;border-color:#e9f3ee} :root:not([data-theme="light"]) button.reset{color:var(--g700);border-color:var(--g700)}}
+.result{font-weight:700}
+.solution{margin-top:1rem;border:2px solid var(--g700);border-radius:8px;padding:.3rem 1rem .8rem;background:var(--g50)}
+.solution h4{margin:.6rem 0 .3rem;color:var(--g800)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .solution h4{color:var(--g700)}}
+table{border-collapse:collapse;width:100%;margin:.7rem 0;font-size:.98rem}
+caption{text-align:left;font-weight:700;padding:.2rem 0 .4rem}
+th,td{border:1px solid var(--border);padding:.4rem .6rem;text-align:left;vertical-align:top}
+thead th{background:var(--g800);color:#fff}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+tr.tot td{font-weight:700;border-top:3px double var(--text)}
+.tablewrap{overflow-x:auto;position:relative}
+table.je td,table.je th{vertical-align:middle}
+table.je select{width:100%;min-width:13rem}
+table.je input{width:8.5rem}
+.rowfb{font-weight:600;white-space:nowrap}
+.formula{background:var(--g100);padding:.5rem .9rem;border-radius:6px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.95rem;overflow-x:auto}
+footer.site{border-top:1px solid var(--border);margin-top:3rem;padding:1.2rem 1rem 2.5rem;color:var(--muted);font-size:.9rem;text-align:center}
+@media print{.skip,.btnrow,nav.toc{display:none} body{background:#fff;color:#000} .example{break-inside:avoid} .solution[hidden]{display:none}}
+
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="site">
+<div class="wrap">
+<p class="eyebrow">ACCT 351 · Intermediate Accounting I</p>
+<h1>Chapter 6 Chapter Walkthrough</h1>
+<p>Revenue Recognition: step-by-step guided practice</p>
+<p class="progress" role="status" aria-live="polite"><span id="count">0</span> of <span id="total">15</span> checked</p>
+</div>
+</header>
+<main id="main" class="wrap">
+<div class="howto"><p><strong>How this works.</strong> This page is for practice only: it is not graded and nothing is submitted. Read each short review, try the example, and use <em>Check my answer</em> to see feedback and a worked solution. Numbers can be typed with or without dollar signs and commas. <em>Need a hint?</em> opens a nudge without giving the answer away. Company names are fictional.</p></div>
+<nav class="toc" aria-label="On this page"><h2>On this page</h2><ol>
+<li><a href="#s1">The five-step model and timing of revenue</a></li>
+<li><a href="#s2">Contracts with multiple performance obligations</a></li>
+<li><a href="#s3">Special issues in applying the five steps</a></li>
+<li><a href="#s4">Long-term contracts</a></li>
+<li><a href="#wrap">Wrap-up: Chapter 6 at a glance</a></li>
+</ol></nav>
+<section class="topic" id="s1" aria-labelledby="s1h">
+<h2 id="s1h">The five-step model and timing of revenue</h2>
+<p>Revenue recognition answers two questions: <em>how much</em> revenue to record and <em>when</em> to record it. Start with the core principle and the five steps, then decide whether each performance obligation is satisfied at a point in time or over time.</p>
+<div class="keyterms"><h3>Core principle and the five steps</h3>
+<p>Companies recognize revenue when goods or services are <strong>transferred to customers</strong>, in the amount the company expects to be <strong>entitled to receive</strong> in exchange.</p>
+<ol>
+<li><strong>Identify the contract</strong> with a customer.</li>
+<li><strong>Identify the performance obligation(s)</strong> in the contract.</li>
+<li><strong>Determine the transaction price.</strong></li>
+<li><strong>Allocate</strong> the transaction price to each performance obligation.</li>
+<li><strong>Recognize revenue</strong> when (or as) each performance obligation is satisfied.</li>
+</ol>
+<ul>
+<li><strong>Performance obligation:</strong> a promise to transfer a good or service to a customer. It is satisfied when the customer obtains <strong>control</strong>.</li>
+<li><strong>Control indicators (point in time):</strong> the customer has an obligation to pay, legal title, physical possession, the risks and rewards of ownership, and has accepted the asset.</li>
+<li><strong>Over time</strong> if any one of three criteria is met: (1) the customer consumes the benefit as the seller performs, (2) the customer controls the asset as it is created, or (3) the asset has no alternative use to the seller <em>and</em> the seller has a right to payment for progress to date.</li>
+<li><strong>Deferred revenue</strong> (a <strong>contract liability</strong>) is recorded when cash is received before the obligation is satisfied; revenue is recognized as the obligation is satisfied.</li>
+<li><strong>A contract exists</strong> only if it has commercial substance, is approved, identifies rights and payment terms, and collection is <strong>probable</strong>. Under IFRS, &ldquo;probable&rdquo; means more than 50%, a lower bar than U.S. GAAP.</li>
+</ul></div>
+<article class="example" id="ex1" aria-labelledby="ex1h">
+<h3 id="ex1h">Example 1 — Point in time or over time?</h3>
+<div class="scenario">For each situation, decide whether the seller recognizes revenue <strong>at a point in time</strong> or <strong>over time</strong>.<ol type="a"><li>Blue Ridge Outfitters in Asheville sells a tent from its shelf, and the customer takes it home today.</li><li>Cullowhee Fitness sells a 12-month membership. Members use the gym throughout the year.</li><li>Haywood Builders constructs a medical office on the customer&rsquo;s own land. The customer owns the work in process as it is built.</li><li>Smoky Mountain Furniture ships a standard sofa F.O.B. destination. Title and possession pass when the customer receives it.</li></ol></div>
+<details class="hint"><summary>Need a hint?</summary><div>Ask: when does the customer obtain control? Over time requires one of the three criteria (benefit consumed as performed, customer controls the asset as created, or no alternative use plus right to payment).</div></details>
+<div class="q"><label for="f1">a. Tent sold from the shelf</label><select id="f1" data-answer="At a point in time"><option value="">Choose…</option><option>At a point in time</option><option>Over time</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f2">b. 12-month gym membership</label><select id="f2" data-answer="Over time"><option value="">Choose…</option><option>At a point in time</option><option>Over time</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f3">c. Medical office built on the customer&rsquo;s land</label><select id="f3" data-answer="Over time"><option value="">Choose…</option><option>At a point in time</option><option>Over time</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f4">d. Standard sofa shipped F.O.B. destination</label><select id="f4" data-answer="At a point in time"><option value="">Choose…</option><option>At a point in time</option><option>Over time</option></select><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><ul><li><strong>a. Point in time.</strong> Control passes at the sale: possession, title, and acceptance all occur today.</li><li><strong>b. Over time.</strong> Criterion 1: the member consumes the benefit as access is provided.</li><li><strong>c. Over time.</strong> Criterion 2: the customer controls the asset as it is created.</li><li><strong>d. Point in time.</strong> With F.O.B. destination terms, control passes on receipt, so revenue waits until delivery.</li></ul></div>
+</article><article class="example" id="ex2" aria-labelledby="ex2h">
+<h3 id="ex2h">Example 2 — Revenue over time: annual subscriptions</h3>
+<div class="scenario">On January 1, <span data-yr="0"></span>, Pisgah Trail Co. sells 1,200 one-year trail-map app subscriptions at $60 each and collects cash immediately. Subscribers use the app evenly throughout the year, and Pisgah Trail uses the passage of time as its measure of progress.</div>
+<details class="hint"><summary>Need a hint?</summary><div>Cash arrives before any service is provided, so no revenue is earned on January 1. Divide the contract price by 12 for the monthly amount.</div></details>
+<div class="q"><div class="je" data-caption="Journal entry on January 1" data-rows="3" data-expected="[[&quot;Cash&quot;, &quot;D&quot;, 72000], [&quot;Deferred revenue&quot;, &quot;C&quot;, 72000]]"></div></div><div class="q"><label for="f5">Revenue recognized each month</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f5" inputmode="decimal" autocomplete="off" data-answer="6000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f6">Deferred revenue remaining after revenue is recognized through September 30</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f6" inputmode="decimal" autocomplete="off" data-answer="18000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><p>Transaction price: 1,200 × $60 = <strong>$72,000</strong>.</p><table class="je"><caption>January 1</caption><thead><tr><th scope="col">Account</th><th scope="col" class="n">Debit</th><th scope="col" class="n">Credit</th></tr></thead><tbody><tr><td>Cash</td><td class="n">72,000</td><td></td></tr><tr><td>&nbsp;&nbsp;&nbsp;Deferred revenue</td><td></td><td class="n">72,000</td></tr></tbody></table><p>Monthly revenue: $72,000 ÷ 12 = <strong>$6,000</strong> (debit Deferred revenue, credit Service revenue).</p><p>Through September 30, nine months have been recognized ($6,000 × 9 = $54,000), leaving $72,000 − $54,000 = <strong>$18,000</strong> (three months) of deferred revenue.</p></div>
+</article>
+</section>
+<section class="topic" id="s2" aria-labelledby="s2h">
+<h2 id="s2h">Contracts with multiple performance obligations</h2>
+<p>Many contracts bundle goods and services that are satisfied at different times. Separate the distinct pieces, allocate the price using relative stand-alone selling prices, and recognize each piece on its own timeline.</p>
+<div class="keyterms"><ul>
+<li><strong>Distinct</strong> goods or services become separate performance obligations. A good or service is distinct if it is both <strong>capable of being distinct</strong> (the customer could use it on its own) and <strong>separately identifiable</strong> (not highly interdependent or customized, and not just an input to a combined output).</li>
+<li><strong>Transaction price:</strong> the amount the seller expects to be entitled to receive from the customer.</li>
+<li><strong>Allocation:</strong> allocate the transaction price in proportion to each obligation&rsquo;s <strong>relative stand-alone selling price</strong> (SSP). A bundle discount is spread across the obligations unless evidence ties it to only one.</li>
+<li><strong>Estimating SSP:</strong> adjusted market assessment, expected cost plus margin, or the <strong>residual approach</strong> (only when the SSP is highly uncertain).</li>
+<li><strong>Not performance obligations:</strong> up-front prepayments and quality-assurance (assurance-type) warranties. <strong>Are performance obligations:</strong> extended (service-type) warranties and options that give the customer a <strong>material right</strong>.</li>
+</ul>
+<div class="formula">Allocation = Transaction price × (SSP of obligation ÷ Sum of all SSPs)</div></div>
+<article class="example" id="ex3" aria-labelledby="ex3h">
+<h3 id="ex3h">Example 1 — Identifying performance obligations</h3>
+<div class="scenario">For each contract, decide whether the promised items are <strong>separate performance obligations</strong> or <strong>one combined performance obligation</strong>.<ol type="a"><li>Cullowhee Cable &amp; Internet sells a router and 12 months of internet service. Each is also sold separately, and the router works with other providers.</li><li>Haywood Builders agrees to deliver a finished office building, which includes lumber, wiring, fixtures, and labor.</li><li>An online service sells access to a clip-art library. The only way to use the clip art is through the service&rsquo;s website.</li></ol></div>
+<details class="hint"><summary>Need a hint?</summary><div>Test both parts: capable of being distinct <em>and</em> separately identifiable in the context of the contract.</div></details>
+<div class="q"><label for="f7">a. Router and internet service</label><select id="f7" data-answer="Separate performance obligations"><option value="">Choose…</option><option>Separate performance obligations</option><option>One combined performance obligation</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f8">b. Finished office building</label><select id="f8" data-answer="One combined performance obligation"><option value="">Choose…</option><option>Separate performance obligations</option><option>One combined performance obligation</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f9">c. Clip-art library and online access</label><select id="f9" data-answer="One combined performance obligation"><option value="">Choose…</option><option>Separate performance obligations</option><option>One combined performance obligation</option></select><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><ul><li><strong>a. Separate.</strong> Each item is sold on its own and can be used with other providers, so each is capable of being distinct and separately identifiable.</li><li><strong>b. One combined.</strong> The materials are capable of being distinct, but the builder&rsquo;s promise is to combine them into one finished building, so they are not separately identifiable.</li><li><strong>c. One combined.</strong> The two items are so interdependent that the customer can only use one through the other.</li></ul></div>
+</article><article class="example" id="ex4" aria-labelledby="ex4h">
+<h3 id="ex4h">Example 2 — Allocating the transaction price to a bundle</h3>
+<div class="scenario">On January 1, <span data-yr="0"></span>, Cullowhee Cable &amp; Internet sells a bundle for <strong>$720</strong> cash: a wireless router and 12 months of internet service. Sold separately, the router is $200 and 12 months of service is $600. The router is delivered on January 1; the service is provided evenly over 12 months.</div>
+<details class="hint"><summary>Need a hint?</summary><div>Total stand-alone selling price = $200 + $600. Multiply the $720 price by each item&rsquo;s share of that total.</div></details>
+<div class="q"><label for="f10">Amount allocated to the router</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f10" inputmode="decimal" autocomplete="off" data-answer="180" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f11">Amount allocated to the internet service</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f11" inputmode="decimal" autocomplete="off" data-answer="540" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f12">Service revenue recognized each month</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f12" inputmode="decimal" autocomplete="off" data-answer="45" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><div class="je" data-caption="Journal entry on January 1" data-rows="3" data-expected="[[&quot;Cash&quot;, &quot;D&quot;, 720], [&quot;Sales revenue&quot;, &quot;C&quot;, 180], [&quot;Deferred revenue&quot;, &quot;C&quot;, 540]]"></div></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><div class="tablewrap"><table><caption>Allocation of the $720 transaction price</caption><thead><tr><th scope="col">Item</th><th scope="col" class=n>Stand-alone price</th><th scope="col" class=n>Share</th><th scope="col" class=n>Allocated</th></tr></thead><tbody><tr><th scope="row">Router</th><td class="n">$200</td><td class="n">25%</td><td class="n">$180</td></tr><tr><th scope="row">12-month service</th><td class="n">$600</td><td class="n">75%</td><td class="n">$540</td></tr><tr class="tot"><th scope="row">Total</th><td class="n">$800</td><td class="n">100%</td><td class="n">$720</td></tr></tbody></table></div><p>Router: $720 × ($200 ÷ $800) = <strong>$180</strong>. Service: $720 × ($600 ÷ $800) = <strong>$540</strong>. Monthly revenue: $540 ÷ 12 = <strong>$45</strong>.</p><table class="je"><caption>January 1</caption><thead><tr><th scope="col">Account</th><th scope="col" class="n">Debit</th><th scope="col" class="n">Credit</th></tr></thead><tbody><tr><td>Cash</td><td class="n">720</td><td></td></tr><tr><td>&nbsp;&nbsp;&nbsp;Sales revenue (router)</td><td></td><td class="n">180</td></tr><tr><td>&nbsp;&nbsp;&nbsp;Deferred revenue (service)</td><td></td><td class="n">540</td></tr></tbody></table><p>The bundle sells at a $80 discount ($800 − $720). Because nothing ties the discount to just one item, it is spread across both obligations.</p></div>
+</article><article class="example" id="ex5" aria-labelledby="ex5h">
+<h3 id="ex5h">Example 3 — A customer option (material right)</h3>
+<div class="scenario">On January 1, <span data-yr="0"></span>, Nantahala Paddle Supply sells <strong>20 kayaks for $300 each</strong> in cash. Each kayak includes a coupon for <strong>50% off a $150 paddle</strong>, redeemable within one year. Customers do not normally receive this discount, and Nantahala expects <strong>80%</strong> of coupons to be redeemed.</div>
+<details class="hint"><summary>Need a hint?</summary><div>The coupon is a material right, so it is a separate performance obligation. Its stand-alone selling price = discount value × probability of redemption.</div></details>
+<div class="q"><label for="f13">Estimated stand-alone selling price of one coupon</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f13" inputmode="decimal" autocomplete="off" data-answer="60" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f14">Sales revenue recognized for the 20 kayaks</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f14" inputmode="decimal" autocomplete="off" data-answer="5000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f15">Deferred revenue recorded for the coupons</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f15" inputmode="decimal" autocomplete="off" data-answer="1000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><p>Discount value: $150 × 50% = $75. Expected SSP of the coupon: $75 × 80% = <strong>$60</strong>.</p><p>Total SSP per kayak sale = $300 + $60 = $360. Kayak share = $300 ÷ $360 = 5/6; coupon share = $60 ÷ $360 = 1/6.</p><p>Kayaks: 20 × $300 × 5/6 = <strong>$5,000</strong> sales revenue. Coupons: 20 × $300 × 1/6 = <strong>$1,000</strong> deferred revenue.</p><p>Entry: Debit Cash $6,000; credit Sales revenue $5,000; credit Deferred revenue $1,000. Nantahala recognizes the $1,000 when coupons are redeemed or expire.</p></div>
+</article>
+</section>
+<section class="topic" id="s3" aria-labelledby="s3h">
+<h2 id="s3h">Special issues in applying the five steps</h2>
+<p>Real contracts add complications at each step: uncertain prices, returns, who is really the seller, financing, and special arrangements such as licenses and consignment.</p>
+<div class="keyterms"><ul>
+<li><strong>Variable consideration</strong> (bonuses, penalties, rebates, returns) is estimated using the <strong>expected value</strong> (many possible outcomes) or the <strong>most likely amount</strong> (two outcomes). The <strong>constraint</strong> limits revenue to the amount for which a significant reversal is probable not to occur. Estimates are updated each period.</li>
+<li><strong>Right of return:</strong> not a performance obligation. It is variable consideration, so revenue is reported <strong>net</strong> of estimated returns.</li>
+<li><strong>Principal vs. agent:</strong> a principal controls the good or service before transfer (primary responsibility, pricing discretion, inventory risk) and reports <strong>gross</strong> revenue. An agent reports only its <strong>commission</strong>.</li>
+<li><strong>Time value of money:</strong> if financing is significant, split the price into a delivery component (present value) and interest. As a practical matter, ignore financing when payment and delivery are within one year; the examples below use one year to practice the mechanics.</li>
+<li><strong>Licenses:</strong> functional IP (software, music, film) is recognized at a point in time; symbolic IP (brand names, logos, franchise rights) is recognized over the license period.</li>
+<li><strong>Bill-and-hold</strong> and <strong>consignment:</strong> usually no transfer of control until delivery (bill-and-hold) or sale to the end customer (consignment). <strong>Gift cards</strong> are deferred revenue until redeemed or redemption becomes remote (breakage).</li>
+</ul></div>
+<article class="example" id="ex6" aria-labelledby="ex6h">
+<h3 id="ex6h">Example 1 — Variable consideration</h3>
+<div class="scenario">Tuckasegee Software signs a six-month contract with Brevard Games on January 1, <span data-yr="0"></span>. Brevard pays a fixed fee of <strong>$200,000</strong> plus a <strong>$100,000 bonus</strong> if players log at least 20,000 hours. Tuckasegee estimates a <strong>60%</strong> chance of earning the bonus and has good evidence for that estimate (no constraint applies).</div>
+<details class="hint"><summary>Need a hint?</summary><div>Expected value = sum of (each possible price × its probability). Most likely amount = the outcome with the higher probability.</div></details>
+<div class="q"><label for="f16">Which estimation method best fits a contract with only two possible outcomes?</label><select id="f16" data-answer="Most likely amount"><option value="">Choose…</option><option>Expected value</option><option>Most likely amount</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f17">Transaction price using the expected value method</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f17" inputmode="decimal" autocomplete="off" data-answer="260000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f18">Transaction price using the most likely amount method</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f18" inputmode="decimal" autocomplete="off" data-answer="300000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f19">Monthly revenue if Tuckasegee uses the most likely amount (six-month contract)</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f19" inputmode="decimal" autocomplete="off" data-answer="50000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><p>Expected value: ($300,000 × 60%) + ($200,000 × 40%) = $180,000 + $80,000 = <strong>$260,000</strong>.</p><p>Most likely amount: the bonus has a 60% chance, so the more likely price is $200,000 + $100,000 = <strong>$300,000</strong>.</p><p>With only two outcomes, the most likely amount is usually the better predictor. Monthly revenue: $300,000 ÷ 6 = <strong>$50,000</strong>.</p><p>Each period Tuckasegee reassesses the estimate. If the bonus becomes unlikely, it reduces the receivable and records the adjustment in that period&rsquo;s revenue.</p></div>
+</article><article class="example" id="ex7" aria-labelledby="ex7h">
+<h3 id="ex7h">Example 2 — Right of return</h3>
+<div class="scenario">Blue Ridge Outfitters sells jackets to a retailer for <strong>$150,000</strong> in total. Based on past experience, it estimates that <strong>4%</strong> of the sales will be returned.</div>
+<details class="hint"><summary>Need a hint?</summary><div>A right of return is not a performance obligation. It makes the transaction price variable, so revenue is reduced by the estimated returns.</div></details>
+<div class="q"><label for="f20">Is the right of return a separate performance obligation?</label><select id="f20" data-answer="No, it is variable consideration"><option value="">Choose…</option><option>Yes, it is a separate performance obligation</option><option>No, it is variable consideration</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f21">Estimated sales returns</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f21" inputmode="decimal" autocomplete="off" data-answer="6000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f22">Net sales revenue reported</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f22" inputmode="decimal" autocomplete="off" data-answer="144000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><p>The right of return is <strong>variable consideration</strong>, not a performance obligation.</p><p>Estimated returns: $150,000 × 4% = <strong>$6,000</strong>. Net sales revenue: $150,000 − $6,000 = <strong>$144,000</strong>.</p><p>The seller also reports a refund liability for the amount it expects to refund.</p></div>
+</article><article class="example" id="ex8" aria-labelledby="ex8h">
+<h3 id="ex8h">Example 3 — Principal or agent?</h3>
+<div class="scenario">A hydration pack sells for <strong>$400</strong> online. <strong>Pisgah Gear Supply</strong> buys the pack for $340, stores it in its Sylva warehouse, sets its own price, and ships it. <strong>Blue Ridge Marketplace</strong> only lists the item on its website; the manufacturer ships directly and sets inventory terms, and Marketplace earns a <strong>$60 commission</strong>.</div>
+<details class="hint"><summary>Need a hint?</summary><div>A principal controls the item before it reaches the customer. An agent only arranges the sale.</div></details>
+<div class="q"><label for="f23">Pisgah Gear Supply is a…</label><select id="f23" data-answer="Principal"><option value="">Choose…</option><option>Principal</option><option>Agent</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f24">Blue Ridge Marketplace is a…</label><select id="f24" data-answer="Agent"><option value="">Choose…</option><option>Principal</option><option>Agent</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f25">Revenue reported by Pisgah Gear Supply</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f25" inputmode="decimal" autocomplete="off" data-answer="400" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f26">Revenue reported by Blue Ridge Marketplace</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f26" inputmode="decimal" autocomplete="off" data-answer="60" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><div class="tablewrap"><table><caption>Gross vs. net reporting for one $400 sale</caption><thead><tr><th scope="col"></th><th scope="col" class=n>Pisgah Gear (principal)</th><th scope="col" class=n>Blue Ridge Marketplace (agent)</th></tr></thead><tbody><tr><th scope="row">Revenue</th><td class="n">$400</td><td class="n">$60</td></tr><tr><th scope="row">Cost of goods sold</th><td class="n">(340)</td><td class="n">0</td></tr><tr class="tot"><th scope="row">Gross profit</th><td class="n">$60</td><td class="n">$60</td></tr></tbody></table></div><p>Pisgah Gear is responsible for fulfillment, holds inventory risk, and sets prices, so it is a <strong>principal</strong> and reports $400. Marketplace has none of those, so it is an <strong>agent</strong> and reports only its $60 commission. Gross profit is the same; the amounts reported as revenue and expense differ.</p></div>
+</article><article class="example" id="ex9" aria-labelledby="ex9h">
+<h3 id="ex9h">Example 4 — Significant financing component</h3>
+<div class="scenario">Brevard Kiln Works agrees to sell a kiln with a cash price of <strong>$50,000</strong>. The implicit interest rate is <strong>10%</strong> and the financing is significant.<br><strong>Case 1 (receivable):</strong> The kiln is delivered on January 1, <span data-yr="0"></span>, and the customer will pay <strong>$55,000</strong> one year later.<br><strong>Case 2 (prepayment):</strong> The customer pays <strong>$50,000</strong> on January 1, <span data-yr="0"></span>, and the kiln is delivered one year later.</div>
+<details class="hint"><summary>Need a hint?</summary><div>In Case 1 the seller is lending to the customer; in Case 2 the customer is lending to the seller. Interest accrues at 10% of the balance during the year.</div></details>
+<div class="q"><label for="f27">Case 1: Sales revenue recognized at delivery</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f27" inputmode="decimal" autocomplete="off" data-answer="50000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f28">Case 1: Interest revenue recognized during the year</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f28" inputmode="decimal" autocomplete="off" data-answer="5000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f29">Case 2: Sales revenue recognized at delivery</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f29" inputmode="decimal" autocomplete="off" data-answer="55000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f30">Case 2: Interest expense recognized during the year</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f30" inputmode="decimal" autocomplete="off" data-answer="5000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><p><strong>Case 1.</strong> $55,000 ÷ 1.10 = $50,000, so revenue at delivery is <strong>$50,000</strong>. During the year, interest revenue is $50,000 × 10% = <strong>$5,000</strong> and the note grows to $55,000 when collected.</p><p><strong>Case 2.</strong> Deferred revenue grows from $50,000 to $55,000 as interest expense of $50,000 × 10% = <strong>$5,000</strong> accrues, so revenue at delivery is <strong>$55,000</strong>.</p><p>The customer pays less when paying early and more when paying late, which is the compensation for the time value of money.</p></div>
+</article><article class="example" id="ex10" aria-labelledby="ex10h">
+<h3 id="ex10h">Example 5 — Licenses, bill-and-hold, consignment, and gift cards</h3>
+<div class="scenario">Choose when the seller recognizes revenue in each arrangement.</div>
+<details class="hint"><summary>Need a hint?</summary><div>Functional IP works on its own. Symbolic IP depends on the seller&rsquo;s ongoing activities. For goods, ask who controls them and where they physically are.</div></details>
+<div class="q"><label for="f31">a. A studio licenses a movie to a streaming service (functional IP)</label><select id="f31" data-answer="At a point in time, when the customer can use the IP"><option value="">Choose…</option><option>At a point in time, when the customer can use the IP</option><option>Over the license period</option><option>When the goods are delivered to the customer</option><option>When the consignee sells to an end customer</option><option>When the card is redeemed (or redemption becomes remote)</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f32">b. A five-year license to use a regional sports team&rsquo;s name and logo (symbolic IP)</label><select id="f32" data-answer="Over the license period"><option value="">Choose…</option><option>At a point in time, when the customer can use the IP</option><option>Over the license period</option><option>When the goods are delivered to the customer</option><option>When the consignee sells to an end customer</option><option>When the card is redeemed (or redemption becomes remote)</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f33">c. A customer asks the seller to hold goods in its warehouse. There is no substantive reason, and the goods are not set aside for the customer (bill-and-hold)</label><select id="f33" data-answer="When the goods are delivered to the customer"><option value="">Choose…</option><option>At a point in time, when the customer can use the IP</option><option>Over the license period</option><option>When the goods are delivered to the customer</option><option>When the consignee sells to an end customer</option><option>When the card is redeemed (or redemption becomes remote)</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f34">d. A manufacturer places furniture with a dealer, keeping title, until the dealer finds a buyer (consignment)</label><select id="f34" data-answer="When the consignee sells to an end customer"><option value="">Choose…</option><option>At a point in time, when the customer can use the IP</option><option>Over the license period</option><option>When the goods are delivered to the customer</option><option>When the consignee sells to an end customer</option><option>When the card is redeemed (or redemption becomes remote)</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f35">e. A coffee shop sells a gift card</label><select id="f35" data-answer="When the card is redeemed (or redemption becomes remote)"><option value="">Choose…</option><option>At a point in time, when the customer can use the IP</option><option>Over the license period</option><option>When the goods are delivered to the customer</option><option>When the consignee sells to an end customer</option><option>When the card is redeemed (or redemption becomes remote)</option></select><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><ul><li><strong>a. Point in time.</strong> Functional IP: the customer can use it as soon as it is available.</li><li><strong>b. Over the license period.</strong> Symbolic IP: the seller&rsquo;s ongoing activities (games, promotion) affect the value of the license.</li><li><strong>c. On delivery.</strong> The customer lacks physical possession and the SEC conditions for earlier recognition are not met.</li><li><strong>d. When the consignee sells to an end customer.</strong> The consignor keeps title and the risks and rewards of ownership.</li><li><strong>e. When redeemed (or when redemption is remote).</strong> The sale of the card is initially deferred revenue.</li></ul></div>
+</article>
+</section>
+<section class="topic" id="s4" aria-labelledby="s4h">
+<h2 id="s4h">Long-term contracts</h2>
+<p>Construction and other long-term projects usually meet the criteria for revenue over time. The contractor tracks progress with the cost-to-cost ratio, accumulates costs and profit in CIP, and reports a contract asset or liability.</p>
+<div class="keyterms"><ul>
+<li><strong>Construction in progress (CIP):</strong> the contractor&rsquo;s work-in-process asset. It holds costs incurred <em>plus</em> gross profit (or minus losses) recognized to date.</li>
+<li><strong>Billings on construction contract:</strong> a contra account to CIP that increases when the customer is billed. This prevents double counting the asset and the receivable.</li>
+<li><strong>Balance sheet:</strong> if CIP &gt; billings, report a <strong>contract asset</strong> (CIP in excess of billings). If billings &gt; CIP, report a <strong>contract liability</strong> (billings in excess of CIP). Amounts billed but not collected are <strong>accounts receivable</strong>.</li>
+<li><strong>Over time (most contracts):</strong> use the <strong>cost-to-cost</strong> measure of progress.</li>
+<li><strong>Upon completion:</strong> if the contract does not qualify for over-time recognition, all revenue and gross profit are deferred until completion. Total profit over the contract is the same under both methods; only timing differs.</li>
+<li><strong>Losses:</strong> a periodic loss on a profitable project is recognized using the same formulas. If an <strong>overall loss</strong> is projected, the entire loss is recognized immediately, under either method.</li>
+</ul>
+<div class="formula">Cumulative revenue = Contract price × (Costs to date ÷ Total estimated costs)<br>Revenue this period = Cumulative revenue − Revenue recognized in prior periods</div></div>
+<article class="example" id="ex11" aria-labelledby="ex11h">
+<h3 id="ex11h">Example 1 — Year 1 revenue and gross profit</h3>
+<div class="scenario"><p>Use this data for Examples 1 through 4. The customer owns the building as it is constructed, so Haywood recognizes revenue <strong>over time</strong> using the cost-to-cost ratio (except where Example 4 says otherwise).</p><div class="tablewrap"><table><caption>Haywood Builders: $6,000,000 contract, three years (Waynesville, NC)</caption><thead><tr><th scope="col"></th><th scope="col" class=n>Year 1</th><th scope="col" class=n>Year 2</th><th scope="col" class=n>Year 3</th></tr></thead><tbody><tr><th scope="row">Construction costs incurred during the year</th><td class="n">$1,200,000</td><td class="n">$1,800,000</td><td class="n">$1,000,000</td></tr><tr><th scope="row">Estimated costs to complete at year-end</th><td class="n">$2,800,000</td><td class="n">$1,000,000</td><td class="n">$0</td></tr><tr><th scope="row">Billings during the year</th><td class="n">$1,500,000</td><td class="n">$3,500,000</td><td class="n">$1,000,000</td></tr><tr><th scope="row">Cash collections during the year</th><td class="n">$1,100,000</td><td class="n">$3,000,000</td><td class="n">$1,900,000</td></tr></tbody></table></div></div>
+<details class="hint"><summary>Need a hint?</summary><div>Total estimated cost = costs to date + estimated costs to complete. Percentage complete = costs to date ÷ total estimated cost.</div></details>
+<div class="q"><label for="f36">Total estimated cost at the end of Year 1</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f36" inputmode="decimal" autocomplete="off" data-answer="4000000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f37">Percentage complete at the end of Year 1</label><div class="field"><input type="text" id="f37" inputmode="decimal" autocomplete="off" data-answer="30" data-unit="%" data-tol="0.05"><span class="suf" aria-hidden="true">%</span></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f38">Revenue recognized in Year 1</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f38" inputmode="decimal" autocomplete="off" data-answer="1800000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f39">Gross profit recognized in Year 1</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f39" inputmode="decimal" autocomplete="off" data-answer="600000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><p>Total estimated cost: $1,200,000 + $2,800,000 = <strong>$4,000,000</strong>.</p><p>Percentage complete: $1,200,000 ÷ $4,000,000 = <strong>30%</strong>.</p><p>Revenue: $6,000,000 × 30% = <strong>$1,800,000</strong>. Cost of construction: $1,200,000. Gross profit: $1,800,000 − $1,200,000 = <strong>$600,000</strong>.</p></div>
+</article><article class="example" id="ex12" aria-labelledby="ex12h">
+<h3 id="ex12h">Example 2 — Year 2 revenue, gross profit, and journal entry</h3>
+<div class="scenario">Use the Haywood Builders data above (Year 2).</div>
+<details class="hint"><summary>Need a hint?</summary><div>Cumulative revenue to date minus the revenue already recognized in Year 1 gives Year 2 revenue. Gross profit is debited to CIP.</div></details>
+<div class="q"><label for="f40">Percentage complete at the end of Year 2</label><div class="field"><input type="text" id="f40" inputmode="decimal" autocomplete="off" data-answer="75" data-unit="%" data-tol="0.05"><span class="suf" aria-hidden="true">%</span></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f41">Revenue recognized in Year 2</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f41" inputmode="decimal" autocomplete="off" data-answer="2700000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f42">Gross profit recognized in Year 2</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f42" inputmode="decimal" autocomplete="off" data-answer="900000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><div class="je" data-caption="Year 2 entry to recognize revenue and gross profit" data-rows="3" data-expected="[[&quot;Construction in progress (CIP)&quot;, &quot;D&quot;, 900000], [&quot;Cost of construction&quot;, &quot;D&quot;, 1800000], [&quot;Revenue from long-term contracts&quot;, &quot;C&quot;, 2700000]]"></div></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><div class="tablewrap"><table><caption>Year 2 calculation</caption><thead><tr><th scope="col">Step</th><th scope="col" class=n>Amount</th></tr></thead><tbody><tr><th scope="row">Costs to date ($1,200,000 + $1,800,000)</th><td class="n">$3,000,000</td></tr><tr><th scope="row">Total estimated cost ($3,000,000 + $1,000,000)</th><td class="n">$4,000,000</td></tr><tr><th scope="row">Percentage complete ($3,000,000 ÷ $4,000,000)</th><td class="n">75%</td></tr><tr><th scope="row">Cumulative revenue ($6,000,000 × 75%)</th><td class="n">$4,500,000</td></tr><tr><th scope="row">Less: Year 1 revenue</th><td class="n">(1,800,000)</td></tr><tr><th scope="row">Year 2 revenue</th><td class="n">$2,700,000</td></tr><tr><th scope="row">Less: Year 2 cost of construction</th><td class="n">(1,800,000)</td></tr><tr class="tot"><th scope="row">Year 2 gross profit</th><td class="n">$900,000</td></tr></tbody></table></div><table class="je"><caption>Year 2 entry</caption><thead><tr><th scope="col">Account</th><th scope="col" class="n">Debit</th><th scope="col" class="n">Credit</th></tr></thead><tbody><tr><td>Construction in progress (CIP)</td><td class="n">900,000</td><td></td></tr><tr><td>Cost of construction</td><td class="n">1,800,000</td><td></td></tr><tr><td>&nbsp;&nbsp;&nbsp;Revenue from long-term contracts</td><td></td><td class="n">2,700,000</td></tr></tbody></table></div>
+</article><article class="example" id="ex13" aria-labelledby="ex13h">
+<h3 id="ex13h">Example 3 — Balance sheet presentation</h3>
+<div class="scenario">Use the Haywood Builders data above and your gross profit results from Examples 1 and 2. CIP includes costs plus cumulative gross profit; billings are cumulative.</div>
+<details class="hint"><summary>Need a hint?</summary><div>Compare CIP (costs + gross profit to date) with cumulative billings. Accounts receivable = cumulative billings − cumulative collections.</div></details>
+<div class="q"><label for="f43">End of Year 1: net CIP and billings are reported as a…</label><select id="f43" data-answer="Contract asset (CIP in excess of billings)"><option value="">Choose…</option><option>Contract asset (CIP in excess of billings)</option><option>Contract liability (billings in excess of CIP)</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f44">End of Year 1: amount of the net balance</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f44" inputmode="decimal" autocomplete="off" data-answer="300000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f45">End of Year 1: accounts receivable</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f45" inputmode="decimal" autocomplete="off" data-answer="400000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f46">End of Year 2: net CIP and billings are reported as a…</label><select id="f46" data-answer="Contract liability (billings in excess of CIP)"><option value="">Choose…</option><option>Contract asset (CIP in excess of billings)</option><option>Contract liability (billings in excess of CIP)</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f47">End of Year 2: amount of the net balance</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f47" inputmode="decimal" autocomplete="off" data-answer="500000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><div class="tablewrap"><table><caption>Balance sheet accounts</caption><thead><tr><th scope="col"></th><th scope="col" class=n>End of Year 1</th><th scope="col" class=n>End of Year 2</th></tr></thead><tbody><tr><th scope="row">CIP (costs + cumulative gross profit)</th><td class="n">$1,800,000 ($1,200,000 + $600,000)</td><td class="n">$4,500,000 ($3,000,000 + $1,500,000)</td></tr><tr><th scope="row">Cumulative billings</th><td class="n">$1,500,000</td><td class="n">$5,000,000</td></tr><tr><th scope="row">Net position</th><td class="n">$300,000 CIP in excess of billings (asset)</td><td class="n">$500,000 billings in excess of CIP (liability)</td></tr><tr><th scope="row">Accounts receivable (billings − collections)</th><td class="n">$400,000 ($1,500,000 − $1,100,000)</td><td class="n">$900,000 ($5,000,000 − $4,100,000)</td></tr></tbody></table></div><p>Haywood has billed less than the work it has performed at the end of Year 1 (a contract asset), and billed more than the work performed at the end of Year 2 (a contract liability).</p></div>
+</article><article class="example" id="ex14" aria-labelledby="ex14h">
+<h3 id="ex14h">Example 4 — Recognizing revenue upon completion instead</h3>
+<div class="scenario">Suppose Haywood Builders&rsquo; contract does <strong>not</strong> qualify for revenue recognition over time, so revenue is recognized only when the building is completed in Year 3. Use the same cost and billing data.</div>
+<details class="hint"><summary>Need a hint?</summary><div>Under the completion method, CIP holds only costs until completion, and no gross profit is recognized earlier.</div></details>
+<div class="q"><label for="f48">Gross profit recognized in Year 2</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f48" inputmode="decimal" autocomplete="off" data-answer="0" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f49">Gross profit recognized in Year 3</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f49" inputmode="decimal" autocomplete="off" data-answer="2000000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f50">Total gross profit over the three years (both methods)</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f50" inputmode="decimal" autocomplete="off" data-answer="2000000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f51">End of Year 2: contract liability (billings in excess of CIP)</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f51" inputmode="decimal" autocomplete="off" data-answer="2000000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><div class="tablewrap"><table><caption>Gross profit by method</caption><thead><tr><th scope="col"></th><th scope="col" class=n>Over time</th><th scope="col" class=n>Upon completion</th></tr></thead><tbody><tr><th scope="row">Year 1</th><td class="n">$600,000</td><td class="n">$0</td></tr><tr><th scope="row">Year 2</th><td class="n">$900,000</td><td class="n">$0</td></tr><tr><th scope="row">Year 3</th><td class="n">$500,000</td><td class="n">$2,000,000</td></tr><tr class="tot"><th scope="row">Total</th><td class="n">$2,000,000</td><td class="n">$2,000,000</td></tr></tbody></table></div><p>Year 3 revenue is $6,000,000 and cost of construction is $4,000,000 ($1,200,000 + $1,800,000 + $1,000,000), for $2,000,000 of gross profit. Timing changes; the total does not.</p><p>At the end of Year 2, CIP contains only costs of $3,000,000, while cumulative billings are $5,000,000. The $2,000,000 difference is a <strong>contract liability</strong>.</p></div>
+</article><article class="example" id="ex15" aria-labelledby="ex15h">
+<h3 id="ex15h">Example 5 — A project that turns into a loss</h3>
+<div class="scenario">Tuckasegee Valley Paving has a <strong>$2,000,000</strong> contract and recognizes revenue over time.<br>Year 1: costs incurred $400,000; estimated costs to complete $1,200,000. Gross profit of $100,000 is recognized.<br>Year 2: costs incurred <strong>$750,000</strong> (cumulative $1,150,000); estimated costs to complete now <strong>$1,150,000</strong>.</div>
+<details class="hint"><summary>Need a hint?</summary><div>Total estimated cost at the end of Year 2 now exceeds the contract price, so the entire expected loss must be recognized in Year 2. Cost of construction = revenue + loss recognized.</div></details>
+<div class="q"><label for="f52">Expected total loss on the project</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f52" inputmode="decimal" autocomplete="off" data-answer="300000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f53">Year 2 percentage complete</label><div class="field"><input type="text" id="f53" inputmode="decimal" autocomplete="off" data-answer="50" data-unit="%" data-tol="0.05"><span class="suf" aria-hidden="true">%</span></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f54">Year 2 revenue recognized</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f54" inputmode="decimal" autocomplete="off" data-answer="500000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f55">Loss recognized in Year 2</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f55" inputmode="decimal" autocomplete="off" data-answer="400000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f56">Year 2 cost of construction</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f56" inputmode="decimal" autocomplete="off" data-answer="900000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f57">Loss recognized in Year 2 if the contract were recognized upon completion instead</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f57" inputmode="decimal" autocomplete="off" data-answer="300000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><p>Total estimated cost at the end of Year 2: $1,150,000 + $1,150,000 = $2,300,000. Expected loss: $2,000,000 − $2,300,000 = <strong>($300,000)</strong>.</p><p>Percentage complete: $1,150,000 ÷ $2,300,000 = <strong>50%</strong>. Cumulative revenue: $2,000,000 × 50% = $1,000,000. Year 2 revenue: $1,000,000 − $500,000 (Year 1) = <strong>$500,000</strong>.</p><p>Year 1 recognized a $100,000 profit, and the cumulative result must be a $300,000 loss, so Year 2 recognizes a loss of $300,000 + $100,000 = <strong>$400,000</strong>. This is treated as a change in estimate; Year 1 is not restated.</p><p>Cost of construction = revenue + loss = $500,000 + $400,000 = <strong>$900,000</strong>.</p><p>Under the completion method, no profit was recognized in Year 1, so the whole expected loss of <strong>$300,000</strong> is recognized in Year 2 (debit Loss on long-term contracts, credit CIP).</p></div>
+</article>
+</section>
+<section class="topic" id="wrap" aria-labelledby="wraph">
+<h2 id="wraph">Wrap-up: Chapter 6 at a glance</h2>
+<ul>
+<li><strong>Five steps:</strong> identify the contract, identify performance obligations, determine the transaction price, allocate it by relative stand-alone selling prices, and recognize revenue when (or as) each obligation is satisfied.</li>
+<li><strong>Timing:</strong> point in time when control transfers; over time if the customer consumes the benefit, controls the asset as created, or the asset has no alternative use and the seller has a right to payment.</li>
+<li><strong>Deferred revenue</strong> (contract liability) arises when cash is received first. <strong>Contract assets</strong> arise when work is done but payment depends on more than the passage of time.</li>
+<li><strong>Special issues:</strong> variable consideration and the constraint, returns (net sales), principal vs. agent (gross vs. net), significant financing, licenses, bill-and-hold, consignment, and gift cards.</li>
+<li><strong>Long-term contracts:</strong> cost-to-cost progress, CIP and billings accounts, the same total profit under both methods, and immediate recognition of an overall expected loss.</li>
+<li><strong>IFRS differences:</strong> a lower &ldquo;probable&rdquo; threshold for a contract to exist, &ldquo;highly probable&rdquo; in the constraint, and a different approach to licenses of symbolic IP.</li>
+</ul>
+<div class="tablewrap"><table><caption>Where each step shows up in the examples</caption><thead><tr><th scope="col">Step</th><th scope="col">Where to practice it</th></tr></thead><tbody>
+<tr><th scope="row">1. Identify the contract</th><td>Section 1 key terms (contract criteria)</td></tr>
+<tr><th scope="row">2. Identify performance obligations</th><td>Section 2, Examples 1 and 3</td></tr>
+<tr><th scope="row">3. Determine the transaction price</th><td>Section 3, Examples 1, 2, and 4</td></tr>
+<tr><th scope="row">4. Allocate the transaction price</th><td>Section 2, Examples 2 and 3</td></tr>
+<tr><th scope="row">5. Recognize revenue</th><td>Section 1, Examples 1 and 2; Section 3, Example 5; Section 4</td></tr>
+</tbody></table></div>
+</section>
+</main>
+<footer class="site">ACCT 351 · Chapter 6 Chapter Walkthrough · Revenue Recognition (Ungraded)</footer>
+<script>
+(function(){
+  var Y=new Date().getFullYear();
+  document.querySelectorAll('[data-yr]').forEach(function(e){e.textContent=String(Y+Number(e.getAttribute('data-yr')));});
+
+  var ACCOUNTS=["Accounts receivable","Billings on construction contract","Cash","Construction in progress (CIP)","Cost of construction","Cost of goods sold","Deferred revenue","Interest expense","Interest revenue","Inventory","Loss on long-term contracts","Refund liability","Revenue from long-term contracts","Sales returns","Sales revenue","Service revenue"];
+
+  function parseNum(s){
+    if(s==null) return NaN; s=String(s).trim(); if(!s) return NaN;
+    var neg=/^\(.*\)$/.test(s)||/^-/.test(s);
+    s=s.replace(/[$,%\s()\-]/g,''); var v=parseFloat(s);
+    return isNaN(v)?NaN:(neg?-v:v);
+  }
+  function fmt(v,unit){
+    var o=Math.abs(v)%1?{minimumFractionDigits:2,maximumFractionDigits:2}:{maximumFractionDigits:0};
+    var t=Math.abs(v).toLocaleString('en-US',o);
+    if(unit==='%') return t+'%';
+    if(unit==='$') return (v<0?'-':'')+'$'+t;
+    return (v<0?'-':'')+t;
+  }
+
+  /* Build journal entry tables */
+  document.querySelectorAll('div.je').forEach(function(box,idx){
+    var rows=Number(box.getAttribute('data-rows')||3);
+    var id='je'+idx;
+    var h='<div class="tablewrap"><table class="je"><caption>'+box.getAttribute('data-caption')+'</caption><thead><tr><th scope="col">Account title</th><th scope="col" class="n">Debit ($)</th><th scope="col" class="n">Credit ($)</th><th scope="col"><span class="sr">Result</span></th></tr></thead><tbody>';
+    for(var r=0;r<rows;r++){
+      h+='<tr><td><label class="sr" for="'+id+'a'+r+'">Account, line '+(r+1)+'</label><select id="'+id+'a'+r+'"><option value="">Choose…</option>'+ACCOUNTS.map(function(a){return '<option>'+a+'</option>';}).join('')+'</select></td>'+
+         '<td class="n"><label class="sr" for="'+id+'d'+r+'">Debit amount, line '+(r+1)+'</label><input type="text" inputmode="decimal" autocomplete="off" id="'+id+'d'+r+'"></td>'+
+         '<td class="n"><label class="sr" for="'+id+'c'+r+'">Credit amount, line '+(r+1)+'</label><input type="text" inputmode="decimal" autocomplete="off" id="'+id+'c'+r+'"></td>'+
+         '<td><span class="rowfb" aria-live="polite"></span></td></tr>';
+    }
+    h+='</tbody></table></div><span class="fb" aria-live="polite"></span>';
+    box.innerHTML=h;
+  });
+
+  var checked={}; var total=document.querySelectorAll('.example').length;
+  document.getElementById('total').textContent=total;
+  function updateProgress(){
+    document.getElementById('count').textContent=Object.keys(checked).length;
+  }
+
+  function gradeField(el){
+    var unit=el.getAttribute('data-unit')||'';
+    var fb=el.closest('.q').querySelector('.fb');
+    var ok;
+    if(el.tagName==='SELECT'){
+      ok=(el.value===el.getAttribute('data-answer'));
+      fb.textContent=ok?'✓ Correct':(el.value?'✗ Not quite. Answer: ':'✗ No answer chosen. Answer: ')+(ok?'':el.getAttribute('data-answer'));
+    } else {
+      var v=parseNum(el.value), a=Number(el.getAttribute('data-answer')), tol=Number(el.getAttribute('data-tol')||0.5);
+      ok=!isNaN(v)&&Math.abs(v-a)<=tol;
+      fb.textContent=ok?'✓ Correct':(isNaN(v)?'✗ No answer entered. Answer: ':'✗ Not quite. Answer: ')+fmt(a,unit);
+    }
+    fb.className='fb '+(ok?'ok':'bad');
+    el.setAttribute('aria-invalid',ok?'false':'true'); el.classList.toggle('ok',ok);
+    return ok;
+  }
+
+  function gradeJE(box){
+    var id=null, rows=Number(box.getAttribute('data-rows')||3);
+    var first=box.querySelector('select').id; id=first.replace(/a0$/,'');
+    var exp={}; JSON.parse(box.getAttribute('data-expected')).forEach(function(e){
+      exp[e[0]]=(exp[e[0]]||0)+(e[1]==='D'?e[2]:-e[2]);
+    });
+    var got={}, rowOk=true, anyBlankAcct=false;
+    for(var r=0;r<rows;r++){
+      var acct=document.getElementById(id+'a'+r).value;
+      var d=parseNum(document.getElementById(id+'d'+r).value), c=parseNum(document.getElementById(id+'c'+r).value);
+      var fbr=box.querySelectorAll('.rowfb')[r];
+      if(isNaN(d)) d=0; if(isNaN(c)) c=0;
+      if(!acct && (d||c)){ fbr.textContent='✗ Pick an account'; fbr.className='rowfb bad'; rowOk=false; continue; }
+      if(!acct){ fbr.textContent=''; continue; }
+      got[acct]=(got[acct]||0)+d-c;
+    }
+    var keys=Object.keys(exp).concat(Object.keys(got).filter(function(k){return !(k in exp);}));
+    var ok=rowOk;
+    keys.forEach(function(k){ if(Math.abs((exp[k]||0)-(got[k]||0))>0.5) ok=false; });
+    for(var r2=0;r2<rows;r2++){
+      var acct2=document.getElementById(id+'a'+r2).value; var fbr2=box.querySelectorAll('.rowfb')[r2];
+      if(!acct2) continue;
+      var good=Math.abs((exp[acct2]||0)-(got[acct2]||0))<=0.5 && (acct2 in exp);
+      fbr2.textContent=good?'✓':'✗'; fbr2.className='rowfb '+(good?'ok':'bad');
+    }
+    var fb=box.querySelector('.fb');
+    fb.textContent=ok?'✓ Journal entry is correct':'✗ Not quite. Compare your entry with the solution below.';
+    fb.className='fb '+(ok?'ok':'bad');
+    return ok;
+  }
+
+  document.querySelectorAll('.example').forEach(function(ex){
+    var btn=ex.querySelector('button.check'), rst=ex.querySelector('button.reset'), sol=ex.querySelector('.solution'), res=ex.querySelector('.result');
+    btn.addEventListener('click',function(){
+      var good=0,n=0;
+      ex.querySelectorAll('[data-answer]').forEach(function(el){ n++; if(gradeField(el)) good++; });
+      ex.querySelectorAll('div.je').forEach(function(box){ n++; if(gradeJE(box)) good++; });
+      res.textContent=good+' of '+n+' correct';
+      sol.hidden=false;
+      checked[ex.id]=true; updateProgress();
+    });
+    rst.addEventListener('click',function(){
+      ex.querySelectorAll('input[type=text]').forEach(function(i){i.value='';i.removeAttribute('aria-invalid');i.classList.remove('ok');});
+      ex.querySelectorAll('select').forEach(function(s){s.selectedIndex=0;s.removeAttribute('aria-invalid');s.classList.remove('ok');});
+      ex.querySelectorAll('.fb,.rowfb').forEach(function(f){f.textContent='';f.className=f.className.split(' ')[0];});
+      res.textContent=''; sol.hidden=true;
+    });
+  });
+})();
+</script>
+</body>
+</html>
