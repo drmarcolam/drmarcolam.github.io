@@ -95,9 +95,63 @@ footer{text-align:center;color:var(--muted);font-size:.85rem;padding:1.5rem 1rem
 
 .back{margin:.7rem 0 0;font-size:.95rem}
 .back a{color:var(--gold);font-weight:600}
+
+/* Access code gate */
+.gate{position:fixed;inset:0;z-index:99999;background:var(--bg);display:flex;align-items:center;justify-content:center;padding:1.25rem}
+html.unlocked .gate{display:none}
+.gate-card{background:var(--card);color:var(--ink);border:1px solid var(--line);border-top:6px solid var(--gold);border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.18);padding:2rem 1.75rem;max-width:23rem;width:100%;text-align:center}
+.gate-card .eyebrow{margin:0 0 .4rem;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.gate-card h2{margin:0 0 .5rem;font-size:1.3rem;color:var(--purple)}
+.gate-card p.sub{margin:0 0 1.2rem;color:var(--muted);font-size:.95rem}
+.gate-card label{display:block;text-align:left;font-weight:600;font-size:.9rem;margin-bottom:.3rem}
+.gate-card input{width:100%;font:inherit;font-size:1.05rem;letter-spacing:.06em;text-align:center;text-transform:uppercase;padding:.65rem .75rem;border:2px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);margin-bottom:.8rem}
+.gate-card input:focus-visible,.gate-card button:focus-visible{outline:3px solid var(--edge);outline-offset:2px}
+.gate-card button{width:100%;font:inherit;font-weight:700;padding:.7rem;border:0;border-radius:6px;background:var(--purple);color:var(--bg);cursor:pointer}
+.gate-card button:hover{background:var(--purple-dark);color:#fff}
+.gate-err{min-height:1.3em;margin:.7rem 0 0;color:#9c2b2b;font-size:.9rem;font-weight:600}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .gate-err{color:#ffb3a8}}
+@media print{.gate{display:none!important}}
 </style>
 </head>
 <body>
+<script>(function(){try{if(localStorage.getItem('wcu_acct252_cw_TR56YQ8')==='1'){document.documentElement.classList.add('unlocked');}}catch(e){}})();</script>
+<div class="gate" id="gate" role="dialog" aria-modal="true" aria-labelledby="gate-title">
+  <div class="gate-card">
+    <p class="eyebrow">ACCT 252 &middot; Chapter 2</p>
+    <h2 id="gate-title">Access Code Required</h2>
+    <p class="sub">Enter the access code to open this walkthrough.</p>
+    <form id="gate-form" autocomplete="off">
+      <label for="gate-input">Access code</label>
+      <input type="text" id="gate-input" autocapitalize="characters" autocomplete="off" spellcheck="false">
+      <button type="submit">Unlock</button>
+      <p class="gate-err" id="gate-err" role="alert"></p>
+    </form>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY='wcu_acct252_cw_TR56YQ8', CODE='TR56YQ8';
+  var root=document.documentElement;
+  var gate=document.getElementById('gate');
+  var others=[].filter.call(document.body.children,function(el){return el!==gate && el.tagName!=='SCRIPT';});
+  function setInert(on){others.forEach(function(el){if(on){el.setAttribute('inert','');}else{el.removeAttribute('inert');}});}
+  if(root.classList.contains('unlocked')){return;}
+  setInert(true);
+  var input=document.getElementById('gate-input');
+  if(input){input.focus();}
+  document.getElementById('gate-form').addEventListener('submit',function(e){
+    e.preventDefault();
+    var err=document.getElementById('gate-err');
+    if((input.value||'').trim().toUpperCase()===CODE){
+      try{localStorage.setItem(KEY,'1');}catch(x){}
+      root.classList.add('unlocked'); setInert(false); err.textContent='';
+      var m=document.getElementById('main'); if(m&&m.focus){m.setAttribute('tabindex','-1');m.focus();}
+    }else{
+      err.textContent='That code isn\u2019t correct. Please try again.'; input.value=''; input.focus();
+    }
+  });
+})();
+</script>
 <a class="skip" href="#main">Skip to main content</a>
 <header class="site"><div class="wrap">
   <p class="eyebrow">ACCT 252 · Managerial Accounting</p>
