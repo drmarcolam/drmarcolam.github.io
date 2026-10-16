@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#1B365D">
+<meta name="description" content="Chapter 4 walkthrough: step-by-step guided practice on An Introduction to General and Special Revenue Funds.">
+<title>ACCT 635 Chapter 4 Walkthrough</title>
+<link rel="stylesheet" href="walkthrough.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../../index.html">Courses</a> &nbsp;/&nbsp; <a href="../../acct-635.html">ACCT 635</a> &nbsp;/&nbsp; <a href="../chapter-walkthroughs.html">Chapter Walkthroughs</a> &nbsp;/&nbsp; Chapter 4</nav>
+<header class="banner"><div class="banner-inner">
+  <p class="eyebrow">ACCT 635 &middot; Chapter 4 Walkthrough</p>
+  <h1 class="title">Chapter 4: An Introduction to General and Special Revenue Funds</h1>
+  <p class="sub">TANs, the encumbrance cycle, property taxes and payroll, budgetary comparison, and closing entries.</p>
+</div></header>
+<div class="progress" id="progressBar" role="progressbar" aria-label="Questions checked" aria-valuemin="0" aria-valuemax="14" aria-valuenow="0">
+  <div class="track"><div class="fill" id="progressFill"></div></div>
+  <div class="lab" id="progressLabel">0 of 14 checked</div>
+</div>
+<main id="main" tabindex="-1">
+  <div class="key-idea"><strong>How this works.</strong> Work each problem by hand or with a calculator, then enter or choose your answer and select <strong>Check my answer</strong>. You will see right away whether you are correct, plus the full solution either way. Use <em>Need a hint?</em> if you get stuck. Numbers and names are made up for practice.</div>
+
+  <section class="lo-block" aria-labelledby="s1-h">
+    <span class="lo-tag">General vs. special revenue</span>
+    <h2 id="s1-h">General Fund or Special Revenue Fund?</h2>
+
+    <p><strong>Pinecrest County</strong> runs a General Fund and several Special Revenue Funds. A government has <em>one</em> General Fund, but zero or many Special Revenue Funds.</p>
+    <div class="example"><div class="ex-label">Example 1 &mdash; Choose the Fund</div><p>Where does each activity belong?</p>
+      <div class="q">
+      <div class="input-col"><div class="sel-row"><label for="sel-1-1-0">Sales tax and property tax for everyday county services</label><select id="sel-1-1-0"><option value="">Choose&hellip;</option><option>General Fund</option><option>Special Revenue Fund</option></select></div><div class="sel-row"><label for="sel-1-1-1">A hotel tax that must be spent on tourism promotion</label><select id="sel-1-1-1"><option value="">Choose&hellip;</option><option>General Fund</option><option>Special Revenue Fund</option></select></div><div class="sel-row"><label for="sel-1-1-2">A state drug-prevention grant restricted to a specific program</label><select id="sel-1-1-2"><option value="">Choose&hellip;</option><option>General Fund</option><option>Special Revenue Fund</option></select></div><div class="sel-row"><label for="sel-1-1-3">Police and fire protection</label><select id="sel-1-1-3"><option value="">Choose&hellip;</option><option>General Fund</option><option>Special Revenue Fund</option></select></div></div>
+      <div><button type="button" onclick="checkSelects(&quot;1-1&quot;, [[&quot;sel-1-1-0&quot;, &quot;General Fund&quot;], [&quot;sel-1-1-1&quot;, &quot;Special Revenue Fund&quot;], [&quot;sel-1-1-2&quot;, &quot;Special Revenue Fund&quot;], [&quot;sel-1-1-3&quot;, &quot;General Fund&quot;]])">Check my answers</button></div>
+      <div class="feedback" id="fb-1-1" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-1-1" hidden>
+        <div class="solution-label">Solution</div>
+        <p>The General Fund holds everything not required in another fund. Special Revenue Funds need a substantial restricted or committed revenue source.</p>
+      </div>
+      </div></div>
+  </section>
+
+  <section class="lo-block" aria-labelledby="s2-h">
+    <span class="lo-tag">Short-term borrowing</span>
+    <h2 id="s2-h">Borrowing on a Tax Anticipation Note</h2>
+
+    <p>Pinecrest borrows <strong>$450,000</strong> from a bank on a TAN to cover costs before property taxes arrive.</p>
+    <div class="key-idea"><p>Short-term notes are recorded as a <strong>liability</strong> in the fund (Tax Anticipation Notes Payable), not as an other financing source. Interest is an expenditure.</p></div>
+    <div class="example"><div class="ex-label">Example 1 &mdash; Record the Borrowing</div><p>Choose Debit or Credit for each account when the note proceeds are received.</p>
+      <div class="q">
+      <div class="input-col"><div class="sel-row"><label for="sel-2-1-0">Tax Anticipation Notes Payable</label><select id="sel-2-1-0"><option value="">Choose&hellip;</option><option>Debit</option><option>Credit</option></select></div><div class="sel-row"><label for="sel-2-1-1">Cash</label><select id="sel-2-1-1"><option value="">Choose&hellip;</option><option>Debit</option><option>Credit</option></select></div></div>
+      <div><button type="button" onclick="checkSelects(&quot;2-1&quot;, [[&quot;sel-2-1-0&quot;, &quot;Credit&quot;], [&quot;sel-2-1-1&quot;, &quot;Debit&quot;]])">Check my answers</button></div>
+      <div class="feedback" id="fb-2-1" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-2-1" hidden>
+        <div class="solution-label">Solution</div>
+        <p>Borrow on the TAN:</p><div class="tablewrap" role="region" aria-label="Table, scrollable" tabindex="0"><table>
+<tr><th scope="col">Event</th><th scope="col">Account</th><th scope="col" class="num">Debit ($)</th><th scope="col" class="num">Credit ($)</th></tr>
+<tr><td rowspan="2"><b>TAN</b><br>Borrow on the TAN</td><td>Cash</td><td class="num">450,000</td><td class="num"></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;Tax Anticipation Notes Payable</td><td class="num"></td><td class="num">450,000</td></tr>
+</table></div>
+<p>Short-term debt is a fund liability.</p>
+      </div>
+      </div></div>
+    <div class="example"><div class="ex-label">Example 2 &mdash; Interest Expenditure</div><p>The note is repaid after 8 months at 6% annual interest. What interest expenditure is recorded? (Round to the nearest dollar.)</p>
+      <div class="q">
+      <div class="input-row">
+        <label for="ans-2-2">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-2-2" placeholder="0" aria-describedby="fb-2-2">
+        <button type="button" onclick="checkAnswer('2-2', 18000, 1)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-2-2" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-2-2" hidden>
+        <div class="solution-label">Solution</div>
+        <p>$450,000 &times; 6% &times; 8/12 = $18,000.</p><p class="final-answer">Interest = <strong>$18,000</strong></p>
+      </div>
+      </div></div>
+  </section>
+
+  <section class="lo-block" aria-labelledby="s3-h">
+    <span class="lo-tag">Encumbrance cycle</span>
+    <h2 id="s3-h">Purchase Orders and Available Appropriations</h2>
+
+    <p>Pinecrest issues a purchase order for <strong>$32,000</strong> of equipment. The invoice arrives for <strong>$33,100</strong>.</p>
+    <div class="example"><div class="ex-label">Example 1 &mdash; Encumbrance Reversal</div><p>For what amount is the encumbrance reversed?</p>
+      <div class="q">
+      <div class="input-row">
+        <label for="ans-3-1">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-3-1" placeholder="0" aria-describedby="fb-3-1">
+        <button type="button" onclick="checkAnswer('3-1', 32000, null)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-3-1" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-3-1" hidden>
+        <div class="solution-label">Solution</div>
+        <p>The original encumbered amount: $32,000.</p><p class="final-answer">Reversal = <strong>$32,000</strong></p>
+      </div>
+      </div></div>
+    <div class="example"><div class="ex-label">Example 2 &mdash; Expenditure</div><p>What expenditure is recorded?</p>
+      <div class="q">
+      <div class="input-row">
+        <label for="ans-3-2">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-3-2" placeholder="0" aria-describedby="fb-3-2">
+        <button type="button" onclick="checkAnswer('3-2', 33100, null)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-3-2" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-3-2" hidden>
+        <div class="solution-label">Solution</div>
+        <p>The actual invoice: $33,100.</p><p class="final-answer">Expenditure = <strong>$33,100</strong></p>
+      </div>
+      </div></div>
+    <div class="example"><div class="ex-label">Example 3 &mdash; Available Appropriation</div><p>Appropriations total $150,000. Another open purchase order is $40,000, and expenditures to date are $62,500. What is the available appropriation?</p>
+      <div class="q">
+      <div class="input-row">
+        <label for="ans-3-3">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-3-3" placeholder="0" aria-describedby="fb-3-3">
+        <button type="button" onclick="checkAnswer('3-3', 47500, null)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-3-3" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-3-3" hidden>
+        <div class="solution-label">Solution</div>
+        <p>$150,000 &minus; $40,000 &minus; $62,500 = $47,500.</p><p class="final-answer">Available = <strong>$47,500</strong></p>
+      </div>
+      </div></div>
+  </section>
+
+  <section class="lo-block" aria-labelledby="s4-h">
+    <span class="lo-tag">Revenues and payroll</span>
+    <h2 id="s4-h">Property Taxes, Collections and Salaries</h2>
+
+    <p>Pinecrest levies <strong>$900,000</strong> of property taxes. During the year it collects $780,000 of taxes, $22,000 of licenses and $14,000 of fines, and pays $510,000 of salaries with $14,000 still owed at year-end.</p>
+    <div class="example"><div class="ex-label">Example 1 &mdash; Cash Received</div><p>How much cash was received from taxes, licenses and fines?</p>
+      <div class="q">
+      <div class="input-row">
+        <label for="ans-4-1">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-4-1" placeholder="0" aria-describedby="fb-4-1">
+        <button type="button" onclick="checkAnswer('4-1', 816000, null)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-4-1" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-4-1" hidden>
+        <div class="solution-label">Solution</div>
+        <p>$780,000 + $22,000 + $14,000 = $816,000.</p><p class="final-answer">Cash = <strong>$816,000</strong></p>
+      </div>
+      </div></div>
+    <div class="example"><div class="ex-label">Example 2 &mdash; Taxes Receivable</div><p>What is the year-end balance of Property Taxes Receivable?</p>
+      <div class="q">
+      <div class="input-row">
+        <label for="ans-4-2">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-4-2" placeholder="0" aria-describedby="fb-4-2">
+        <button type="button" onclick="checkAnswer('4-2', 120000, null)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-4-2" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-4-2" hidden>
+        <div class="solution-label">Solution</div>
+        <p>$900,000 levied &minus; $780,000 collected = $120,000.</p><p class="final-answer">Receivable = <strong>$120,000</strong></p>
+      </div>
+      </div></div>
+    <div class="example"><div class="ex-label">Example 3 &mdash; Salary Expenditure</div><p>What salary expenditure is reported?</p>
+      <div class="q">
+      <div class="input-row">
+        <label for="ans-4-3">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-4-3" placeholder="0" aria-describedby="fb-4-3">
+        <button type="button" onclick="checkAnswer('4-3', 524000, null)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-4-3" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-4-3" hidden>
+        <div class="solution-label">Solution</div>
+        <p>$510,000 paid + $14,000 accrued = $524,000.</p><p class="final-answer">Salary expenditure = <strong>$524,000</strong></p>
+      </div>
+      </div></div>
+  </section>
+
+  <section class="lo-block" aria-labelledby="s5-h">
+    <span class="lo-tag">Year-end closing</span>
+    <h2 id="s5-h">The Two Closing Entries</h2>
+
+    <p>Preclosing balances: Estimated Revenues $1,200,000, Appropriations $1,240,000, Budgetary Fund Balance $40,000 (debit), Revenues $1,215,000, Expenditures $1,172,000.</p>
+    <div class="key-idea"><p>Governmental funds use <strong>two</strong> closing entries: one for the <em>budgetary</em> accounts and one for the <em>actual</em> operating accounts. Never combine them.</p></div>
+    <div class="example"><div class="ex-label">Example 1 &mdash; Close the Budgetary Accounts</div><p>Choose Debit or Credit for each account in the entry that closes the budgetary accounts.</p>
+      <div class="q">
+      <div class="input-col"><div class="sel-row"><label for="sel-5-1-0">Estimated Revenues</label><select id="sel-5-1-0"><option value="">Choose&hellip;</option><option>Debit</option><option>Credit</option></select></div><div class="sel-row"><label for="sel-5-1-1">Appropriations</label><select id="sel-5-1-1"><option value="">Choose&hellip;</option><option>Debit</option><option>Credit</option></select></div><div class="sel-row"><label for="sel-5-1-2">Budgetary Fund Balance</label><select id="sel-5-1-2"><option value="">Choose&hellip;</option><option>Debit</option><option>Credit</option></select></div></div>
+      <div><button type="button" onclick="checkSelects(&quot;5-1&quot;, [[&quot;sel-5-1-0&quot;, &quot;Credit&quot;], [&quot;sel-5-1-1&quot;, &quot;Debit&quot;], [&quot;sel-5-1-2&quot;, &quot;Credit&quot;]])">Check my answers</button></div>
+      <div class="feedback" id="fb-5-1" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-5-1" hidden>
+        <div class="solution-label">Solution</div>
+        <p>Close the budgetary accounts:</p><div class="tablewrap" role="region" aria-label="Table, scrollable" tabindex="0"><table>
+<tr><th scope="col">Event</th><th scope="col">Account</th><th scope="col" class="num">Debit ($)</th><th scope="col" class="num">Credit ($)</th></tr>
+<tr><td rowspan="3"><b>1</b><br>Close the budgetary accounts</td><td>Appropriations</td><td class="num">1,240,000</td><td class="num"></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;Estimated Revenues</td><td class="num"></td><td class="num">1,200,000</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;Budgetary Fund Balance</td><td class="num"></td><td class="num">40,000</td></tr>
+</table></div>
+<p>This reverses the opening budget entry, so the Budgetary Fund Balance debit is cleared by a credit.</p>
+      </div>
+      </div></div>
+    <div class="example"><div class="ex-label">Example 2 &mdash; Closing Actual Accounts</div><p>Revenues are $1,215,000 and expenditures are $1,172,000. What amount is credited to Fund Balance in the second closing entry?</p>
+      <div class="q">
+      <div class="input-row">
+        <label for="ans-5-2">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-5-2" placeholder="0" aria-describedby="fb-5-2">
+        <button type="button" onclick="checkAnswer('5-2', 43000, null)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-5-2" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-5-2" hidden>
+        <div class="solution-label">Solution</div>
+        <p>$1,215,000 &minus; $1,172,000 = $43,000 excess of revenues over expenditures.</p><p class="final-answer">Credit to Fund Balance = <strong>$43,000</strong></p>
+      </div>
+      </div></div>
+    <div class="example"><div class="ex-label">Example 3 &mdash; Ending Fund Balance</div><p>Beginning fund balance was $85,000. What is ending fund balance?</p>
+      <div class="q">
+      <div class="input-row">
+        <label for="ans-5-3">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-5-3" placeholder="0" aria-describedby="fb-5-3">
+        <button type="button" onclick="checkAnswer('5-3', 128000, null)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-5-3" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-5-3" hidden>
+        <div class="solution-label">Solution</div>
+        <p>$85,000 + $43,000 = $128,000.</p><p class="final-answer">Ending fund balance = <strong>$128,000</strong></p>
+      </div>
+      </div></div>
+  </section>
+
+  <section class="lo-block" aria-labelledby="s6-h">
+    <span class="lo-tag">Budgetary comparison</span>
+    <h2 id="s6-h">Budgetary Comparison Schedule</h2>
+
+    <p>The original revenue budget was $1,200,000, the final budget $1,260,000, and actual revenues $1,215,000.</p>
+    <div class="example"><div class="ex-label">Example 1 &mdash; Original to Final</div><p>By how much did the final budget differ from the original?</p>
+      <div class="q">
+      <div class="input-row">
+        <label for="ans-6-1">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-6-1" placeholder="0" aria-describedby="fb-6-1">
+        <button type="button" onclick="checkAnswer('6-1', 60000, null)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-6-1" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-6-1" hidden>
+        <div class="solution-label">Solution</div>
+        <p>$1,260,000 &minus; $1,200,000 = $60,000.</p><p class="final-answer">Difference = <strong>$60,000</strong></p>
+      </div>
+      </div></div>
+    <div class="example"><div class="ex-label">Example 2 &mdash; Final to Actual</div><p>What is the variance between actual and the final budget? Enter a negative number if actual was below budget.</p>
+      <div class="q">
+      <div class="input-row">
+        <label for="ans-6-2">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-6-2" placeholder="0" aria-describedby="fb-6-2">
+        <button type="button" onclick="checkAnswer('6-2', -45000, null)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-6-2" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-6-2" hidden>
+        <div class="solution-label">Solution</div>
+        <p>$1,215,000 &minus; $1,260,000 = $(45,000). Actual revenue fell short of the final budget.</p><p class="final-answer">Variance = <strong>$(45,000)</strong></p>
+      </div>
+      </div></div>
+  </section>
+
+  <nav class="pager" aria-label="Chapter navigation"><a class="prev" href="ch-3.html"><small>&larr; Previous</small>Chapter 3: Budgetary Considerations in Governmental Accounting</a><a class="next" href="ch-5.html"><small>Next &rarr;</small>Chapter 5: General and Special Revenue Funds</a></nav>
+  <p class="totop-row"><a class="totop" href="#main">Back to top</a> &nbsp;|&nbsp; <a class="totop" href="../chapter-walkthroughs.html">All chapter walkthroughs</a> &nbsp;|&nbsp; <a class="totop" href="../chapter-notes/ch-4.html">Chapter 4 notes</a></p>
+</main>
+<footer>ACCT 635 &middot; Western Carolina University</footer>
+<script>
+var CHECKED = {};
+var TOTAL = 14;
+function updateProgress(){
+  var c = Object.keys(CHECKED).length;
+  document.getElementById('progressLabel').textContent = c + ' of ' + TOTAL + ' checked';
+  document.getElementById('progressFill').style.width = (c / TOTAL * 100) + '%';
+  document.getElementById('progressBar').setAttribute('aria-valuenow', c);
+}
+function parseNum(s){
+  s = String(s).replace(/\$/g,'').trim();
+  var neg = /^\(.*\)$/.test(s) || /^-/.test(s);
+  var t = s.replace(/[$,\s()%]/g, '').replace(/^-/, '');
+  if (t === '' || isNaN(Number(t))) return NaN;
+  var v = parseFloat(t);
+  return neg ? -v : v;
+}
+function setFb(fb, cls, text){ fb.className = 'feedback ' + cls; fb.textContent = text; }
+function checkAnswer(id, correct, tol){
+  var input = document.getElementById('ans-' + id);
+  var fb = document.getElementById('fb-' + id);
+  var sol = document.getElementById('sol-' + id);
+  var val = parseNum(input.value);
+  if (isNaN(val)) { setFb(fb, 'warn', 'Enter a number first, then choose Check my answer.'); return; }
+  if (tol === null || tol === undefined) { tol = Math.max(1, Math.abs(correct) * 0.005); }
+  if (Math.abs(val - correct) <= tol) {
+    setFb(fb, 'good', '\u2713 Correct! Here is the full solution for reference.');
+  } else {
+    setFb(fb, 'bad', '\u2717 Not quite. Here is the full solution; compare it with your work to see where things diverged.');
+  }
+  sol.hidden = false;
+  CHECKED[id] = true;
+  updateProgress();
+}
+function checkSelects(id, pairs){
+  var fb = document.getElementById('fb-' + id);
+  var sol = document.getElementById('sol-' + id);
+  var ok = 0, blank = 0;
+  for (var i = 0; i < pairs.length; i++) {
+    var el = document.getElementById(pairs[i][0]);
+    if (!el.value) { blank++; continue; }
+    if (el.value === pairs[i][1]) ok++;
+  }
+  if (blank) { setFb(fb, 'warn', 'Choose an answer for every item first, then choose Check my answers.'); return; }
+  if (ok === pairs.length) setFb(fb, 'good', '\u2713 Correct! ' + ok + ' of ' + pairs.length + '. Here is the explanation.');
+  else setFb(fb, 'bad', '\u2717 ' + ok + ' of ' + pairs.length + ' correct. Review the explanation below.');
+  sol.hidden = false;
+  CHECKED[id] = true;
+  updateProgress();
+}
+</script>
+</body>
+</html>

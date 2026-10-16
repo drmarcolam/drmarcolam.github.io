@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#1B365D">
+<meta name="description" content="Chapter 8 walkthrough: step-by-step guided practice on Fiduciary Funds.">
+<title>ACCT 635 Chapter 8 Walkthrough</title>
+<link rel="stylesheet" href="walkthrough.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../../index.html">Courses</a> &nbsp;/&nbsp; <a href="../../acct-635.html">ACCT 635</a> &nbsp;/&nbsp; <a href="../chapter-walkthroughs.html">Chapter Walkthroughs</a> &nbsp;/&nbsp; Chapter 8</nav>
+<header class="banner"><div class="banner-inner">
+  <p class="eyebrow">ACCT 635 &middot; Chapter 8 Walkthrough</p>
+  <h1 class="title">Chapter 8: Fiduciary Funds</h1>
+  <p class="sub">Pension and OPEB accounting, pension trust entries, and custodial tax clearing.</p>
+</div></header>
+<div class="progress" id="progressBar" role="progressbar" aria-label="Questions checked" aria-valuemin="0" aria-valuemax="12" aria-valuenow="0">
+  <div class="track"><div class="fill" id="progressFill"></div></div>
+  <div class="lab" id="progressLabel">0 of 12 checked</div>
+</div>
+<main id="main" tabindex="-1">
+  <div class="key-idea"><strong>How this works.</strong> Work each problem by hand or with a calculator, then enter or choose your answer and select <strong>Check my answer</strong>. You will see right away whether you are correct, plus the full solution either way. Use <em>Need a hint?</em> if you get stuck. Numbers and names are made up for practice.</div>
+
+  <section class="lo-block" aria-labelledby="s1-h">
+    <span class="lo-tag">Employer accounting</span>
+    <h2 id="s1-h">Defined Benefit Plans and the Net Pension Liability</h2>
+
+    <p>In a <strong>defined benefit</strong> plan the employer promises a specified benefit and bears the investment risk. In a <strong>defined contribution</strong> plan the employee bears the risk.</p>
+    <div class="key-idea"><p>Net pension liability = total pension liability &minus; plan fiduciary net position, but only if assets are in a trust that is irrevocable, dedicated to the benefits, and legally protected from creditors.</p></div>
+    <div class="example"><div class="ex-label">Example 1 &mdash; Annual Benefit</div><p>A retiree has a final average salary of $72,000, 25 years of service and a 1.8% multiplier. What is the annual benefit?</p>
+      <div class="q">
+      <div class="input-row">
+        <label for="ans-1-1">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-1-1" placeholder="0" aria-describedby="fb-1-1">
+        <button type="button" onclick="checkAnswer('1-1', 32400, null)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-1-1" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-1-1" hidden>
+        <div class="solution-label">Solution</div>
+        <p>$72,000 &times; 25 &times; 1.8% = $32,400.</p><p class="final-answer">Annual benefit = <strong>$32,400</strong></p>
+      </div>
+      </div></div>
+    <div class="example"><div class="ex-label">Example 2 &mdash; Net Pension Liability</div><p>The total pension liability is $8,400,000 and the plan's fiduciary net position is $6,150,000, held in a qualifying trust. What net pension liability does the employer report?</p>
+      <div class="q">
+      <div class="input-row">
+        <label for="ans-1-2">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-1-2" placeholder="0" aria-describedby="fb-1-2">
+        <button type="button" onclick="checkAnswer('1-2', 2250000, null)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-1-2" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-1-2" hidden>
+        <div class="solution-label">Solution</div>
+        <p>$8,400,000 &minus; $6,150,000 = $2,250,000. Without a qualifying trust, the employer would report the full $8,400,000.</p><p class="final-answer">Net pension liability = <strong>$2,250,000</strong></p>
+      </div>
+      </div></div>
+    <div class="example"><div class="ex-label">Example 3 &mdash; Who Bears the Risk?</div><p>Choose the party that bears investment risk.</p>
+      <div class="q">
+      <div class="input-col"><div class="sel-row"><label for="sel-1-3-0">Defined benefit plan</label><select id="sel-1-3-0"><option value="">Choose&hellip;</option><option>Employer</option><option>Employee</option></select></div><div class="sel-row"><label for="sel-1-3-1">Defined contribution plan</label><select id="sel-1-3-1"><option value="">Choose&hellip;</option><option>Employer</option><option>Employee</option></select></div></div>
+      <div><button type="button" onclick="checkSelects(&quot;1-3&quot;, [[&quot;sel-1-3-0&quot;, &quot;Employer&quot;], [&quot;sel-1-3-1&quot;, &quot;Employee&quot;]])">Check my answers</button></div>
+      <div class="feedback" id="fb-1-3" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-1-3" hidden>
+        <div class="solution-label">Solution</div>
+        <p>The employer bears investment, longevity and inflation risk in a defined benefit plan.</p>
+      </div>
+      </div></div>
+    <div class="example"><div class="ex-label">Example 4 &mdash; Investment Return Deferral</div><p>Actual investment earnings exceeded the projection by $150,000. The difference is amortized over 5 years. What is the annual amortization?</p>
+      <div class="q">
+      <div class="input-row">
+        <label for="ans-1-4">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-1-4" placeholder="0" aria-describedby="fb-1-4">
+        <button type="button" onclick="checkAnswer('1-4', 30000, null)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-1-4" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-1-4" hidden>
+        <div class="solution-label">Solution</div>
+        <p>$150,000 &divide; 5 = $30,000. The excess is a deferred inflow of resources.</p><p class="final-answer">Annual amortization = <strong>$30,000</strong></p>
+      </div>
+      </div></div>
+  </section>
+
+  <section class="lo-block" aria-labelledby="s2-h">
+    <span class="lo-tag">Pension trust</span>
+    <h2 id="s2-h">A Pension Trust Fund for the Year</h2>
+
+    <p>The Laurel Gap Pension Trust Fund records: employer contributions due $410,000, member contributions due $160,000, benefits paid $330,000, investment income $70,000, a $95,000 increase in fair value, and administrative costs of $18,000 owed to the General Fund.</p>
+    <div class="key-idea"><p>Fiduciary funds use full accrual, except that benefits and refunds are recognized when due and payable. Revenues are <strong>additions</strong> and expenses are <strong>deductions</strong>.</p></div>
+    <div class="example"><div class="ex-label">Example 1 &mdash; Contributions Due</div><p>Choose Debit or Credit for each account.</p>
+      <div class="q">
+      <div class="input-col"><div class="sel-row"><label for="sel-2-1-0">Additions&mdash;Member Contributions</label><select id="sel-2-1-0"><option value="">Choose&hellip;</option><option>Debit</option><option>Credit</option></select></div><div class="sel-row"><label for="sel-2-1-1">Due from General Fund</label><select id="sel-2-1-1"><option value="">Choose&hellip;</option><option>Debit</option><option>Credit</option></select></div><div class="sel-row"><label for="sel-2-1-2">Due from Plan Members</label><select id="sel-2-1-2"><option value="">Choose&hellip;</option><option>Debit</option><option>Credit</option></select></div><div class="sel-row"><label for="sel-2-1-3">Additions&mdash;Employer Contributions</label><select id="sel-2-1-3"><option value="">Choose&hellip;</option><option>Debit</option><option>Credit</option></select></div></div>
+      <div><button type="button" onclick="checkSelects(&quot;2-1&quot;, [[&quot;sel-2-1-0&quot;, &quot;Credit&quot;], [&quot;sel-2-1-1&quot;, &quot;Debit&quot;], [&quot;sel-2-1-2&quot;, &quot;Debit&quot;], [&quot;sel-2-1-3&quot;, &quot;Credit&quot;]])">Check my answers</button></div>
+      <div class="feedback" id="fb-2-1" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-2-1" hidden>
+        <div class="solution-label">Solution</div>
+        <p>Contributions due:</p><div class="tablewrap" role="region" aria-label="Table, scrollable" tabindex="0"><table>
+<tr><th scope="col">Event</th><th scope="col">Account</th><th scope="col" class="num">Debit ($)</th><th scope="col" class="num">Credit ($)</th></tr>
+<tr><td rowspan="4"><b>1</b><br>Contributions due</td><td>Due from General Fund</td><td class="num">410,000</td><td class="num"></td></tr>
+<tr><td>Due from Plan Members</td><td class="num">160,000</td><td class="num"></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;Additions&mdash;Employer Contributions</td><td class="num"></td><td class="num">410,000</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;Additions&mdash;Member Contributions</td><td class="num"></td><td class="num">160,000</td></tr>
+</table></div>
+<p>Contributions due are recorded as receivables and additions.</p>
+      </div>
+      </div></div>
+    <div class="example"><div class="ex-label">Example 2 &mdash; Total Additions</div><p>What are total additions?</p>
+      <div class="q">
+      <div class="input-row">
+        <label for="ans-2-2">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-2-2" placeholder="0" aria-describedby="fb-2-2">
+        <button type="button" onclick="checkAnswer('2-2', 735000, null)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-2-2" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-2-2" hidden>
+        <div class="solution-label">Solution</div>
+        <p>$410,000 + $160,000 + $70,000 + $95,000 = $735,000.</p><p class="final-answer">Additions = <strong>$735,000</strong></p>
+      </div>
+      </div></div>
+    <div class="example"><div class="ex-label">Example 3 &mdash; Total Deductions</div><p>What are total deductions?</p>
+      <div class="q">
+      <div class="input-row">
+        <label for="ans-2-3">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-2-3" placeholder="0" aria-describedby="fb-2-3">
+        <button type="button" onclick="checkAnswer('2-3', 348000, null)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-2-3" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-2-3" hidden>
+        <div class="solution-label">Solution</div>
+        <p>$330,000 + $18,000 = $348,000.</p><p class="final-answer">Deductions = <strong>$348,000</strong></p>
+      </div>
+      </div></div>
+    <div class="example"><div class="ex-label">Example 4 &mdash; Change in Net Position</div><p>What is the change in net position restricted for pensions?</p>
+      <div class="q">
+      <div class="input-row">
+        <label for="ans-2-4">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-2-4" placeholder="0" aria-describedby="fb-2-4">
+        <button type="button" onclick="checkAnswer('2-4', 387000, null)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-2-4" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-2-4" hidden>
+        <div class="solution-label">Solution</div>
+        <p>$735,000 &minus; $348,000 = $387,000.</p><p class="final-answer">Change = <strong>$387,000</strong></p>
+      </div>
+      </div></div>
+  </section>
+
+  <section class="lo-block" aria-labelledby="s3-h">
+    <span class="lo-tag">Other fiduciary funds</span>
+    <h2 id="s3-h">Choosing the Fiduciary Fund</h2>
+
+    <p>Fiduciary funds hold resources for people and organizations outside the government.</p>
+    <div class="example"><div class="ex-label">Example 1 &mdash; Which Fiduciary Fund?</div><p>Choose the fund type.</p>
+      <div class="q">
+      <div class="input-col"><div class="sel-row"><label for="sel-3-1-0">A city employees' retirement trust</label><select id="sel-3-1-0"><option value="">Choose&hellip;</option><option>Pension trust</option><option>Investment trust</option><option>Private-purpose trust</option><option>Custodial</option></select></div><div class="sel-row"><label for="sel-3-1-1">The outside governments' share of a county investment pool</label><select id="sel-3-1-1"><option value="">Choose&hellip;</option><option>Pension trust</option><option>Investment trust</option><option>Private-purpose trust</option><option>Custodial</option></select></div><div class="sel-row"><label for="sel-3-1-2">Unclaimed property held for its owners</label><select id="sel-3-1-2"><option value="">Choose&hellip;</option><option>Pension trust</option><option>Investment trust</option><option>Private-purpose trust</option><option>Custodial</option></select></div><div class="sel-row"><label for="sel-3-1-3">Taxes collected for a school district with no trust agreement</label><select id="sel-3-1-3"><option value="">Choose&hellip;</option><option>Pension trust</option><option>Investment trust</option><option>Private-purpose trust</option><option>Custodial</option></select></div></div>
+      <div><button type="button" onclick="checkSelects(&quot;3-1&quot;, [[&quot;sel-3-1-0&quot;, &quot;Pension trust&quot;], [&quot;sel-3-1-1&quot;, &quot;Investment trust&quot;], [&quot;sel-3-1-2&quot;, &quot;Private-purpose trust&quot;], [&quot;sel-3-1-3&quot;, &quot;Custodial&quot;]])">Check my answers</button></div>
+      <div class="feedback" id="fb-3-1" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-3-1" hidden>
+        <div class="solution-label">Solution</div>
+        <p>Pension and OPEB trusts hold employee benefit assets; investment trusts hold outside governments' pool shares; private-purpose trusts benefit outsiders; custodial funds are for other fiduciary activity.</p>
+      </div>
+      </div></div>
+  </section>
+
+  <section class="lo-block" aria-labelledby="s4-h">
+    <span class="lo-tag">Custodial funds</span>
+    <h2 id="s4-h">Collecting Taxes for Other Governments</h2>
+
+    <p>The county levies $2,000,000 for itself, $900,000 for the School Board and $300,000 for the Fire District. It collects 95% of each.</p>
+    <div class="key-idea"><p>The county's <strong>own</strong> portion is eliminated from the Custodial Fund statements. Only taxes held for <em>outside</em> governments are reported there.</p></div>
+    <div class="example"><div class="ex-label">Example 1 &mdash; Total Collected</div><p>How much is collected in total?</p>
+      <div class="q">
+      <div class="input-row">
+        <label for="ans-4-1">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-4-1" placeholder="0" aria-describedby="fb-4-1">
+        <button type="button" onclick="checkAnswer('4-1', 3040000, null)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-4-1" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-4-1" hidden>
+        <div class="solution-label">Solution</div>
+        <p>($2,000,000 + $900,000 + $300,000) &times; 95% = $3,040,000.</p><p class="final-answer">Total collected = <strong>$3,040,000</strong></p>
+      </div>
+      </div></div>
+    <div class="example"><div class="ex-label">Example 2 &mdash; Owed to Outside Governments</div><p>How much is owed to the School Board and Fire District?</p>
+      <div class="q">
+      <div class="input-row">
+        <label for="ans-4-2">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-4-2" placeholder="0" aria-describedby="fb-4-2">
+        <button type="button" onclick="checkAnswer('4-2', 1140000, null)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-4-2" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-4-2" hidden>
+        <div class="solution-label">Solution</div>
+        <p>($900,000 + $300,000) &times; 95% = $1,140,000.</p><p class="final-answer">Owed to outsiders = <strong>$1,140,000</strong></p>
+      </div>
+      </div></div>
+    <div class="example"><div class="ex-label">Example 3 &mdash; Where Does the County's Share Go?</div><p>Where is the county's own portion reported?</p>
+      <div class="q">
+      <div class="input-col"><div class="sel-row"><label for="sel-4-3-0">The county's own portion of collections</label><select id="sel-4-3-0"><option value="">Choose&hellip;</option><option>General Fund</option><option>Custodial Fund</option></select></div></div>
+      <div><button type="button" onclick="checkSelects(&quot;4-3&quot;, [[&quot;sel-4-3-0&quot;, &quot;General Fund&quot;]])">Check my answers</button></div>
+      <div class="feedback" id="fb-4-3" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-4-3" hidden>
+        <div class="solution-label">Solution</div>
+        <p>It is owed to the General Fund and is not reported as a Custodial Fund balance for outsiders.</p>
+      </div>
+      </div></div>
+  </section>
+
+  <nav class="pager" aria-label="Chapter navigation"><a class="prev" href="ch-7.html"><small>&larr; Previous</small>Chapter 7: Proprietary Funds: Enterprise and Internal Service Funds</a><a class="next" href="ch-10.html"><small>Next &rarr;</small>Chapter 10: Government-Wide Financial Statements</a></nav>
+  <p class="totop-row"><a class="totop" href="#main">Back to top</a> &nbsp;|&nbsp; <a class="totop" href="../chapter-walkthroughs.html">All chapter walkthroughs</a> &nbsp;|&nbsp; <a class="totop" href="../chapter-notes/ch-8.html">Chapter 8 notes</a></p>
+</main>
+<footer>ACCT 635 &middot; Western Carolina University</footer>
+<script>
+var CHECKED = {};
+var TOTAL = 12;
+function updateProgress(){
+  var c = Object.keys(CHECKED).length;
+  document.getElementById('progressLabel').textContent = c + ' of ' + TOTAL + ' checked';
+  document.getElementById('progressFill').style.width = (c / TOTAL * 100) + '%';
+  document.getElementById('progressBar').setAttribute('aria-valuenow', c);
+}
+function parseNum(s){
+  s = String(s).replace(/\$/g,'').trim();
+  var neg = /^\(.*\)$/.test(s) || /^-/.test(s);
+  var t = s.replace(/[$,\s()%]/g, '').replace(/^-/, '');
+  if (t === '' || isNaN(Number(t))) return NaN;
+  var v = parseFloat(t);
+  return neg ? -v : v;
+}
+function setFb(fb, cls, text){ fb.className = 'feedback ' + cls; fb.textContent = text; }
+function checkAnswer(id, correct, tol){
+  var input = document.getElementById('ans-' + id);
+  var fb = document.getElementById('fb-' + id);
+  var sol = document.getElementById('sol-' + id);
+  var val = parseNum(input.value);
+  if (isNaN(val)) { setFb(fb, 'warn', 'Enter a number first, then choose Check my answer.'); return; }
+  if (tol === null || tol === undefined) { tol = Math.max(1, Math.abs(correct) * 0.005); }
+  if (Math.abs(val - correct) <= tol) {
+    setFb(fb, 'good', '\u2713 Correct! Here is the full solution for reference.');
+  } else {
+    setFb(fb, 'bad', '\u2717 Not quite. Here is the full solution; compare it with your work to see where things diverged.');
+  }
+  sol.hidden = false;
+  CHECKED[id] = true;
+  updateProgress();
+}
+function checkSelects(id, pairs){
+  var fb = document.getElementById('fb-' + id);
+  var sol = document.getElementById('sol-' + id);
+  var ok = 0, blank = 0;
+  for (var i = 0; i < pairs.length; i++) {
+    var el = document.getElementById(pairs[i][0]);
+    if (!el.value) { blank++; continue; }
+    if (el.value === pairs[i][1]) ok++;
+  }
+  if (blank) { setFb(fb, 'warn', 'Choose an answer for every item first, then choose Check my answers.'); return; }
+  if (ok === pairs.length) setFb(fb, 'good', '\u2713 Correct! ' + ok + ' of ' + pairs.length + '. Here is the explanation.');
+  else setFb(fb, 'bad', '\u2717 ' + ok + ' of ' + pairs.length + ' correct. Review the explanation below.');
+  sol.hidden = false;
+  CHECKED[id] = true;
+  updateProgress();
+}
+</script>
+</body>
+</html>

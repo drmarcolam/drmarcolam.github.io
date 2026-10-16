@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#1B365D">
+<meta name="description" content="Chapter 5 walkthrough: step-by-step guided practice on General and Special Revenue Funds.">
+<title>ACCT 635 Chapter 5 Walkthrough</title>
+<link rel="stylesheet" href="walkthrough.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../../index.html">Courses</a> &nbsp;/&nbsp; <a href="../../acct-635.html">ACCT 635</a> &nbsp;/&nbsp; <a href="../chapter-walkthroughs.html">Chapter Walkthroughs</a> &nbsp;/&nbsp; Chapter 5</nav>
+<header class="banner"><div class="banner-inner">
+  <p class="eyebrow">ACCT 635 &middot; Chapter 5 Walkthrough</p>
+  <h1 class="title">Chapter 5: General and Special Revenue Funds</h1>
+  <p class="sub">Property tax accounting, deferrals, interfund transactions, inventory methods, and GASB 54 fund balance.</p>
+</div></header>
+<div class="progress" id="progressBar" role="progressbar" aria-label="Questions checked" aria-valuemin="0" aria-valuemax="14" aria-valuenow="0">
+  <div class="track"><div class="fill" id="progressFill"></div></div>
+  <div class="lab" id="progressLabel">0 of 14 checked</div>
+</div>
+<main id="main" tabindex="-1">
+  <div class="key-idea"><strong>How this works.</strong> Work each problem by hand or with a calculator, then enter or choose your answer and select <strong>Check my answer</strong>. You will see right away whether you are correct, plus the full solution either way. Use <em>Need a hint?</em> if you get stuck. Numbers and names are made up for practice.</div>
+
+  <section class="lo-block" aria-labelledby="s1-h">
+    <span class="lo-tag">Property taxes</span>
+    <h2 id="s1-h">Following a Levy from Start to Finish</h2>
+
+    <p>The <strong>Town of Laurel Gap</strong> levies <strong>$1,800,000</strong> of property taxes and estimates $36,000 will be uncollectible.</p>
+    <div class="key-idea"><ul><li>Governmental funds record <strong>no bad debt expense</strong>. Revenue is recorded net of estimated uncollectibles.</li><li>Unpaid taxes become delinquent at year-end.</li><li>Delinquent taxes not expected to be collected within 60 days are deferred.</li></ul></div>
+    <div class="example"><div class="ex-label">Example 1 &mdash; Record the Levy</div><p>Choose Debit or Credit for each account in the levy entry.</p>
+      <div class="q">
+      <div class="input-col"><div class="sel-row"><label for="sel-1-1-0">Revenues&mdash;Property Taxes</label><select id="sel-1-1-0"><option value="">Choose&hellip;</option><option>Debit</option><option>Credit</option></select></div><div class="sel-row"><label for="sel-1-1-1">Allowance for Refunds and Uncollectible Taxes</label><select id="sel-1-1-1"><option value="">Choose&hellip;</option><option>Debit</option><option>Credit</option></select></div><div class="sel-row"><label for="sel-1-1-2">Property Taxes Receivable</label><select id="sel-1-1-2"><option value="">Choose&hellip;</option><option>Debit</option><option>Credit</option></select></div></div>
+      <div><button type="button" onclick="checkSelects(&quot;1-1&quot;, [[&quot;sel-1-1-0&quot;, &quot;Credit&quot;], [&quot;sel-1-1-1&quot;, &quot;Credit&quot;], [&quot;sel-1-1-2&quot;, &quot;Debit&quot;]])">Check my answers</button></div>
+      <div class="feedback" id="fb-1-1" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-1-1" hidden>
+        <div class="solution-label">Solution</div>
+        <p>Levy:</p><div class="tablewrap" role="region" aria-label="Table, scrollable" tabindex="0"><table>
+<tr><th scope="col">Event</th><th scope="col">Account</th><th scope="col" class="num">Debit ($)</th><th scope="col" class="num">Credit ($)</th></tr>
+<tr><td rowspan="3"><b>1</b><br>Levy</td><td>Property Taxes Receivable</td><td class="num">1,800,000</td><td class="num"></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;Allowance for Refunds and Uncollectible Taxes</td><td class="num"></td><td class="num">36,000</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;Revenues&mdash;Property Taxes</td><td class="num"></td><td class="num">1,764,000</td></tr>
+</table></div>
+<p>Revenue is credited at the net collectible amount.</p>
+      </div>
+      </div></div>
+    <div class="example"><div class="ex-label">Example 2 &mdash; Revenue</div><p>How much revenue is recorded at the time of the levy?</p>
+      <div class="q">
+      <div class="input-row">
+        <label for="ans-1-2">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-1-2" placeholder="0" aria-describedby="fb-1-2">
+        <button type="button" onclick="checkAnswer('1-2', 1764000, null)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-1-2" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-1-2" hidden>
+        <div class="solution-label">Solution</div>
+        <p>$1,800,000 &minus; $36,000 = $1,764,000.</p><p class="final-answer">Revenue = <strong>$1,764,000</strong></p>
+      </div>
+      </div></div>
+    <div class="example"><div class="ex-label">Example 3 &mdash; Delinquent Taxes</div><p>During the year the town collects $1,650,000, and appeals reduce taxes by $14,000. How much of the gross receivable is declared delinquent at year-end?</p>
+      <div class="q">
+      <div class="input-row">
+        <label for="ans-1-3">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-1-3" placeholder="0" aria-describedby="fb-1-3">
+        <button type="button" onclick="checkAnswer('1-3', 136000, null)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-1-3" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-1-3" hidden>
+        <div class="solution-label">Solution</div>
+        <p>$1,800,000 &minus; $1,650,000 &minus; $14,000 = $136,000.</p><p class="final-answer">Delinquent receivable = <strong>$136,000</strong></p>
+      </div>
+      </div></div>
+    <div class="example"><div class="ex-label">Example 4 &mdash; Net Delinquent Taxes</div><p>The allowance was $36,000 and the appeals used $14,000 of it. What is the net delinquent taxes receivable?</p>
+      <div class="q">
+      <div class="input-row">
+        <label for="ans-1-4">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-1-4" placeholder="0" aria-describedby="fb-1-4">
+        <button type="button" onclick="checkAnswer('1-4', 114000, null)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-1-4" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-1-4" hidden>
+        <div class="solution-label">Solution</div>
+        <p>Remaining allowance = $36,000 &minus; $14,000 = $22,000. Net = $136,000 &minus; $22,000 = $114,000.</p><p class="final-answer">Net delinquent = <strong>$114,000</strong></p>
+      </div>
+      </div></div>
+    <div class="example"><div class="ex-label">Example 5 &mdash; Deferral</div><p>Only $90,000 of the net delinquent amount is expected within 60 days after year-end. How much is deferred as an unavailable (deferred inflow) amount?</p>
+      <div class="q">
+      <div class="input-row">
+        <label for="ans-1-5">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-1-5" placeholder="0" aria-describedby="fb-1-5">
+        <button type="button" onclick="checkAnswer('1-5', 24000, null)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-1-5" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-1-5" hidden>
+        <div class="solution-label">Solution</div>
+        <p>$114,000 &minus; $90,000 = $24,000. Entry: Dr Revenues&mdash;Property Taxes, Cr Deferred Inflow of Resources&mdash;Unavailable Property Taxes.</p><p class="final-answer">Deferred inflow = <strong>$24,000</strong></p>
+      </div>
+      </div></div>
+    <div class="example"><div class="ex-label">Example 6 &mdash; Later Recognition</div><p>In the following year, $9,000 of the deferred taxes is collected after the 60-day window. Choose Debit or Credit for the entry that recognizes the revenue.</p>
+      <div class="q">
+      <div class="input-col"><div class="sel-row"><label for="sel-1-6-0">Revenues&mdash;Property Taxes</label><select id="sel-1-6-0"><option value="">Choose&hellip;</option><option>Debit</option><option>Credit</option></select></div><div class="sel-row"><label for="sel-1-6-1">Deferred Inflow of Resources&mdash;Unavailable Property Taxes</label><select id="sel-1-6-1"><option value="">Choose&hellip;</option><option>Debit</option><option>Credit</option></select></div></div>
+      <div><button type="button" onclick="checkSelects(&quot;1-6&quot;, [[&quot;sel-1-6-0&quot;, &quot;Credit&quot;], [&quot;sel-1-6-1&quot;, &quot;Debit&quot;]])">Check my answers</button></div>
+      <div class="feedback" id="fb-1-6" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-1-6" hidden>
+        <div class="solution-label">Solution</div>
+        <p>Recognize deferred revenue:</p><div class="tablewrap" role="region" aria-label="Table, scrollable" tabindex="0"><table>
+<tr><th scope="col">Event</th><th scope="col">Account</th><th scope="col" class="num">Debit ($)</th><th scope="col" class="num">Credit ($)</th></tr>
+<tr><td rowspan="2"><b>2</b><br>Recognize deferred revenue</td><td>Deferred Inflow of Resources&mdash;Unavailable Property Taxes</td><td class="num">9,000</td><td class="num"></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;Revenues&mdash;Property Taxes</td><td class="num"></td><td class="num">9,000</td></tr>
+</table></div>
+<p>The cash entry (Dr Cash, Cr Property Taxes Receivable&mdash;Delinquent) is made separately.</p>
+      </div>
+      </div></div>
+  </section>
+
+  <section class="lo-block" aria-labelledby="s2-h">
+    <span class="lo-tag">Interfund activity</span>
+    <h2 id="s2-h">The Four Types of Interfund Transactions</h2>
+
+    <p>Interfund activity between funds of the same government falls into four types.</p>
+    <div class="key-idea"><ul><li><strong>Services provided and used:</strong> like an arm's-length sale.</li><li><strong>Transfers:</strong> one-way shifts with no repayment.</li><li><strong>Loans:</strong> short-term (Due to/from) or long-term (Advance to/from).</li><li><strong>Reimbursements:</strong> repayment for expenditures initially paid by another fund.</li></ul></div>
+    <div class="example"><div class="ex-label">Example 1 &mdash; Name the Type</div><p>Classify each transaction.</p>
+      <div class="q">
+      <div class="input-col"><div class="sel-row"><label for="sel-2-1-0">The General Fund pays the Water Fund $9,000 for water used at City Hall</label><select id="sel-2-1-0"><option value="">Choose&hellip;</option><option>Services provided and used</option><option>Transfer</option><option>Loan</option><option>Reimbursement</option></select></div><div class="sel-row"><label for="sel-2-1-1">The General Fund gives the Debt Service Fund $200,000 with no repayment expected</label><select id="sel-2-1-1"><option value="">Choose&hellip;</option><option>Services provided and used</option><option>Transfer</option><option>Loan</option><option>Reimbursement</option></select></div><div class="sel-row"><label for="sel-2-1-2">The General Fund lends the Capital Projects Fund $100,000 for three years</label><select id="sel-2-1-2"><option value="">Choose&hellip;</option><option>Services provided and used</option><option>Transfer</option><option>Loan</option><option>Reimbursement</option></select></div><div class="sel-row"><label for="sel-2-1-3">The General Fund pays $5,000 of consulting that belongs to the Capital Projects Fund</label><select id="sel-2-1-3"><option value="">Choose&hellip;</option><option>Services provided and used</option><option>Transfer</option><option>Loan</option><option>Reimbursement</option></select></div></div>
+      <div><button type="button" onclick="checkSelects(&quot;2-1&quot;, [[&quot;sel-2-1-0&quot;, &quot;Services provided and used&quot;], [&quot;sel-2-1-1&quot;, &quot;Transfer&quot;], [&quot;sel-2-1-2&quot;, &quot;Loan&quot;], [&quot;sel-2-1-3&quot;, &quot;Reimbursement&quot;]])">Check my answers</button></div>
+      <div class="feedback" id="fb-2-1" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-2-1" hidden>
+        <div class="solution-label">Solution</div>
+        <p>A long-term loan requires the lending General Fund to reclassify an equal amount of fund balance from Unassigned to Nonspendable, because the receivable is not a spendable resource.</p>
+      </div>
+      </div></div>
+    <div class="example"><div class="ex-label">Example 2 &mdash; Reclassify for a Long-Term Loan</div><p>The General Fund lends $100,000 for three years. Choose Debit or Credit for each account in the fund balance reclassification.</p>
+      <div class="q">
+      <div class="input-col"><div class="sel-row"><label for="sel-2-2-0">Nonspendable Fund Balance</label><select id="sel-2-2-0"><option value="">Choose&hellip;</option><option>Debit</option><option>Credit</option></select></div><div class="sel-row"><label for="sel-2-2-1">Unassigned Fund Balance</label><select id="sel-2-2-1"><option value="">Choose&hellip;</option><option>Debit</option><option>Credit</option></select></div></div>
+      <div><button type="button" onclick="checkSelects(&quot;2-2&quot;, [[&quot;sel-2-2-0&quot;, &quot;Credit&quot;], [&quot;sel-2-2-1&quot;, &quot;Debit&quot;]])">Check my answers</button></div>
+      <div class="feedback" id="fb-2-2" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-2-2" hidden>
+        <div class="solution-label">Solution</div>
+        <p>Reclassify fund balance:</p><div class="tablewrap" role="region" aria-label="Table, scrollable" tabindex="0"><table>
+<tr><th scope="col">Event</th><th scope="col">Account</th><th scope="col" class="num">Debit ($)</th><th scope="col" class="num">Credit ($)</th></tr>
+<tr><td rowspan="2"><b>3</b><br>Reclassify fund balance</td><td>Unassigned Fund Balance</td><td class="num">100,000</td><td class="num"></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;Nonspendable Fund Balance</td><td class="num"></td><td class="num">100,000</td></tr>
+</table></div>
+<p>The cash left the fund, so that amount can no longer be spent.</p>
+      </div>
+      </div></div>
+  </section>
+
+  <section class="lo-block" aria-labelledby="s3-h">
+    <span class="lo-tag">Inventory</span>
+    <h2 id="s3-h">Consumption Method vs. Purchases Method</h2>
+
+    <p>A fund buys $55,000 of supplies and uses $49,500 during the year.</p>
+    <div class="key-idea"><ul><li><strong>Consumption method:</strong> record the purchase as an asset, then expenditures as supplies are used.</li><li><strong>Purchases method:</strong> record the full purchase as an expenditure; add inventory at year-end only if it is material.</li></ul></div>
+    <div class="example"><div class="ex-label">Example 1 &mdash; Consumption Method Expenditure</div><p>How much supplies expenditure does the fund report under the consumption method?</p>
+      <div class="q">
+      <div class="input-row">
+        <label for="ans-3-1">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-3-1" placeholder="0" aria-describedby="fb-3-1">
+        <button type="button" onclick="checkAnswer('3-1', 49500, null)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-3-1" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-3-1" hidden>
+        <div class="solution-label">Solution</div>
+        <p>Only the $49,500 used is expended. The remaining $5,500 stays as an asset with a matching Nonspendable fund balance.</p><p class="final-answer">Expenditure = <strong>$49,500</strong></p>
+      </div>
+      </div></div>
+    <div class="example"><div class="ex-label">Example 2 &mdash; Purchases Method Expenditure</div><p>How much supplies expenditure does the fund report under the purchases method?</p>
+      <div class="q">
+      <div class="input-row">
+        <label for="ans-3-2">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-3-2" placeholder="0" aria-describedby="fb-3-2">
+        <button type="button" onclick="checkAnswer('3-2', 55000, null)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-3-2" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-3-2" hidden>
+        <div class="solution-label">Solution</div>
+        <p>The full purchase is an expenditure when bought: $55,000.</p><p class="final-answer">Expenditure = <strong>$55,000</strong></p>
+      </div>
+      </div></div>
+    <div class="example"><div class="ex-label">Example 3 &mdash; Nonspendable Fund Balance</div><p>How much Nonspendable fund balance is reported for inventory at year-end?</p>
+      <div class="q">
+      <div class="input-row">
+        <label for="ans-3-3">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-3-3" placeholder="0" aria-describedby="fb-3-3">
+        <button type="button" onclick="checkAnswer('3-3', 5500, null)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-3-3" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-3-3" hidden>
+        <div class="solution-label">Solution</div>
+        <p>$55,000 &minus; $49,500 = $5,500 on hand under either method.</p><p class="final-answer">Nonspendable = <strong>$5,500</strong></p>
+      </div>
+      </div></div>
+  </section>
+
+  <section class="lo-block" aria-labelledby="s4-h">
+    <span class="lo-tag">Expenditure accruals</span>
+    <h2 id="s4-h">How Much Is Accrued?</h2>
+
+    <p>At year-end, employees have earned $64,000 of vacation pay, of which $8,000 has matured (a retiree is owed it). The fund also owes $31,000 of salaries for work already performed.</p>
+    <div class="example"><div class="ex-label">Example 1 &mdash; Total Accrual</div><p>How much is accrued as a fund liability?</p>
+      <div class="q">
+      <div class="input-row">
+        <label for="ans-4-1">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-4-1" placeholder="0" aria-describedby="fb-4-1">
+        <button type="button" onclick="checkAnswer('4-1', 39000, null)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-4-1" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-4-1" hidden>
+        <div class="solution-label">Solution</div>
+        <p>Salaries are accrued in full ($31,000). For compensated absences, only the matured portion ($8,000) is accrued. Total = $39,000. The rest of the vacation liability appears only in the government-wide statements.</p><p class="final-answer">Accrued = <strong>$39,000</strong></p>
+      </div>
+      </div></div>
+  </section>
+
+  <section class="lo-block" aria-labelledby="s5-h">
+    <span class="lo-tag">Fund balance</span>
+    <h2 id="s5-h">GASB 54 Fund Balance Classifications</h2>
+
+    <p>Fund balance is classified by how strongly the spending of those resources is constrained.</p>
+    <div class="example"><div class="ex-label">Example 1 &mdash; Classify the Fund Balance</div><p>Choose the classification.</p>
+      <div class="q">
+      <div class="input-col"><div class="sel-row"><label for="sel-5-1-0">Supplies inventory on hand</label><select id="sel-5-1-0"><option value="">Choose&hellip;</option><option>Nonspendable</option><option>Restricted</option><option>Committed</option><option>Assigned</option><option>Unassigned</option></select></div><div class="sel-row"><label for="sel-5-1-1">An unspent state grant restricted to road repair</label><select id="sel-5-1-1"><option value="">Choose&hellip;</option><option>Nonspendable</option><option>Restricted</option><option>Committed</option><option>Assigned</option><option>Unassigned</option></select></div><div class="sel-row"><label for="sel-5-1-2">A disaster reserve created by council ordinance</label><select id="sel-5-1-2"><option value="">Choose&hellip;</option><option>Nonspendable</option><option>Restricted</option><option>Committed</option><option>Assigned</option><option>Unassigned</option></select></div><div class="sel-row"><label for="sel-5-1-3">The manager's intent to use funds for next year's budget</label><select id="sel-5-1-3"><option value="">Choose&hellip;</option><option>Nonspendable</option><option>Restricted</option><option>Committed</option><option>Assigned</option><option>Unassigned</option></select></div><div class="sel-row"><label for="sel-5-1-4">The residual amount available for any purpose</label><select id="sel-5-1-4"><option value="">Choose&hellip;</option><option>Nonspendable</option><option>Restricted</option><option>Committed</option><option>Assigned</option><option>Unassigned</option></select></div></div>
+      <div><button type="button" onclick="checkSelects(&quot;5-1&quot;, [[&quot;sel-5-1-0&quot;, &quot;Nonspendable&quot;], [&quot;sel-5-1-1&quot;, &quot;Restricted&quot;], [&quot;sel-5-1-2&quot;, &quot;Committed&quot;], [&quot;sel-5-1-3&quot;, &quot;Assigned&quot;], [&quot;sel-5-1-4&quot;, &quot;Unassigned&quot;]])">Check my answers</button></div>
+      <div class="feedback" id="fb-5-1" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-5-1" hidden>
+        <div class="solution-label">Solution</div>
+        <p>Nonspendable: not in spendable form. Restricted: external constraint. Committed: formal action by the highest decision-making body. Assigned: intent only. Unassigned: residual (only the General Fund can report a positive amount).</p>
+      </div>
+      </div></div>
+    <div class="example"><div class="ex-label">Example 2 &mdash; Total Fund Balance</div><p>A General Fund balance sheet shows assets of $410,000, liabilities of $96,000 and deferred inflows of resources of $24,000. What is total fund balance?</p>
+      <div class="q">
+      <div class="input-row">
+        <label for="ans-5-2">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-5-2" placeholder="0" aria-describedby="fb-5-2">
+        <button type="button" onclick="checkAnswer('5-2', 290000, null)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-5-2" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-5-2" hidden>
+        <div class="solution-label">Solution</div>
+        <p>$410,000 &minus; $96,000 &minus; $24,000 = $290,000.</p><p class="final-answer">Fund balance = <strong>$290,000</strong></p>
+      </div>
+      </div></div>
+  </section>
+
+  <nav class="pager" aria-label="Chapter navigation"><a class="prev" href="ch-4.html"><small>&larr; Previous</small>Chapter 4: An Introduction to General and Special Revenue Funds</a><a class="next" href="ch-6.html"><small>Next &rarr;</small>Chapter 6: Capital Projects Fund, Debt Service Fund, and Permanent Funds</a></nav>
+  <p class="totop-row"><a class="totop" href="#main">Back to top</a> &nbsp;|&nbsp; <a class="totop" href="../chapter-walkthroughs.html">All chapter walkthroughs</a> &nbsp;|&nbsp; <a class="totop" href="../chapter-notes/ch-5.html">Chapter 5 notes</a></p>
+</main>
+<footer>ACCT 635 &middot; Western Carolina University</footer>
+<script>
+var CHECKED = {};
+var TOTAL = 14;
+function updateProgress(){
+  var c = Object.keys(CHECKED).length;
+  document.getElementById('progressLabel').textContent = c + ' of ' + TOTAL + ' checked';
+  document.getElementById('progressFill').style.width = (c / TOTAL * 100) + '%';
+  document.getElementById('progressBar').setAttribute('aria-valuenow', c);
+}
+function parseNum(s){
+  s = String(s).replace(/\$/g,'').trim();
+  var neg = /^\(.*\)$/.test(s) || /^-/.test(s);
+  var t = s.replace(/[$,\s()%]/g, '').replace(/^-/, '');
+  if (t === '' || isNaN(Number(t))) return NaN;
+  var v = parseFloat(t);
+  return neg ? -v : v;
+}
+function setFb(fb, cls, text){ fb.className = 'feedback ' + cls; fb.textContent = text; }
+function checkAnswer(id, correct, tol){
+  var input = document.getElementById('ans-' + id);
+  var fb = document.getElementById('fb-' + id);
+  var sol = document.getElementById('sol-' + id);
+  var val = parseNum(input.value);
+  if (isNaN(val)) { setFb(fb, 'warn', 'Enter a number first, then choose Check my answer.'); return; }
+  if (tol === null || tol === undefined) { tol = Math.max(1, Math.abs(correct) * 0.005); }
+  if (Math.abs(val - correct) <= tol) {
+    setFb(fb, 'good', '\u2713 Correct! Here is the full solution for reference.');
+  } else {
+    setFb(fb, 'bad', '\u2717 Not quite. Here is the full solution; compare it with your work to see where things diverged.');
+  }
+  sol.hidden = false;
+  CHECKED[id] = true;
+  updateProgress();
+}
+function checkSelects(id, pairs){
+  var fb = document.getElementById('fb-' + id);
+  var sol = document.getElementById('sol-' + id);
+  var ok = 0, blank = 0;
+  for (var i = 0; i < pairs.length; i++) {
+    var el = document.getElementById(pairs[i][0]);
+    if (!el.value) { blank++; continue; }
+    if (el.value === pairs[i][1]) ok++;
+  }
+  if (blank) { setFb(fb, 'warn', 'Choose an answer for every item first, then choose Check my answers.'); return; }
+  if (ok === pairs.length) setFb(fb, 'good', '\u2713 Correct! ' + ok + ' of ' + pairs.length + '. Here is the explanation.');
+  else setFb(fb, 'bad', '\u2717 ' + ok + ' of ' + pairs.length + ' correct. Review the explanation below.');
+  sol.hidden = false;
+  CHECKED[id] = true;
+  updateProgress();
+}
+</script>
+</body>
+</html>
