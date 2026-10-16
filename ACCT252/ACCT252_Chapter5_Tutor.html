@@ -122,7 +122,7 @@ footer{max-width:60rem;margin:0 auto;padding:0 1rem 2rem;color:var(--muted);font
   <!-- MENU -->
   <section id="menu-view" aria-labelledby="menu-h">
     <h2 id="menu-h">Choose a problem type</h2>
-    <p class="lede">Pick a type of problem below. You will get a new scenario with new numbers, and I will walk you through it one step at a time. Type your answer for each step and press <strong>Check my answer</strong>. If you miss a step, no worries: you will get a hint and one more try. If you miss it again, you will see the solution for that step and then move on to the next one.</p>
+    <p class="lede"><span id="tutor-hi">Hi, I am your personal tutor.</span> Pick a type of problem below. You will get a new scenario with new numbers, and I will walk you through it one step at a time. Type your answer for each step and press <strong>Check my answer</strong>. If you miss a step, no worries: you will get a hint and one more try. If you miss it again, you will see the solution for that step and then move on to the next one.</p>
     <ul class="menu" id="menu"></ul>
   </section>
 
@@ -765,6 +765,7 @@ buildMenu();
 var m=/^#([a-z]+)-(\d+)$/.exec(location.hash);
 if(m&&TYPES.some(function(t){return t.id===m[1];})) startProblem(m[1],+m[2]);
 })();
+(function(){var N=['Blake','Riley','Alex','Kelly','Kai','Taylor','Dani','Cameron'];var n=N[Math.floor(Math.random()*N.length)];var e=document.getElementById('tutor-hi');if(e)e.textContent='Hi, I am '+n+'. I am your personal tutor.';})();
 </script>
 </body>
 </html>
