@@ -1,0 +1,588 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Module 1 Tutor: Financial Accounting for MBAs | MBA 623</title>
+<meta name="description" content="Interactive step-by-step practice tutor for MBA 623, Module 1: Financial Accounting for MBAs.">
+<style>
+:root{--bg:#f6f4ef;--card:#ffffff;--ink:#1d2433;--muted:#4a5568;--line:#d9d4c7;--brand:#4b2e83;--brand-ink:#ffffff;--brand-soft:#ece6f7;--gold:#8a5a00;--good:#12633a;--good-bg:#e5f4ea;--warn:#7a4a00;--warn-bg:#fff2d6;--bad:#8c1d1d;--bad-bg:#fbe7e7;--info-bg:#e8eef9;--focus:#0b57d0;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#14161c;--card:#1d212b;--ink:#eef0f5;--muted:#b6bdcc;--line:#363c4b;--brand:#b9a2ee;--brand-ink:#16121f;--brand-soft:#2a2340;--gold:#f0c46a;--good:#7fd9a2;--good-bg:#173626;--warn:#f3c978;--warn-bg:#3a2d12;--bad:#ff9d9d;--bad-bg:#3d1c1c;--info-bg:#1f2a44;--focus:#8ab4ff;}}
+*{box-sizing:border-box}
+html{font-size:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.55;font-size:1.0625rem}
+.skip{position:absolute;left:-999px;top:0;background:var(--brand);color:var(--brand-ink);padding:.6rem 1rem;z-index:10}
+.skip:focus{left:8px;top:8px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+header.site{background:var(--brand);color:var(--brand-ink);padding:1.1rem 1rem 1.4rem}
+header.site .wrap{max-width:60rem;margin:0 auto}
+header.site a{color:var(--brand-ink);font-weight:600}
+.eyebrow{margin:.5rem 0 0;font-size:.95rem;letter-spacing:.04em;text-transform:uppercase;opacity:.92}
+header.site h1{margin:.15rem 0 .2rem;font-size:1.7rem;line-height:1.2}
+header.site p.sub{margin:0;opacity:.95}
+main{max-width:60rem;margin:0 auto;padding:1.25rem 1rem 3rem}
+h2{font-size:1.45rem;margin:.2rem 0 .6rem;color:var(--ink)}
+h3{font-size:1.1rem;margin:.1rem 0 .5rem}
+.lead{color:var(--muted);max-width:46rem}
+ul.menu{list-style:none;margin:1rem 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(17rem,1fr));gap:.85rem}
+.menu-btn{width:100%;height:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-left:6px solid var(--brand);border-radius:10px;padding:.9rem 1rem;color:var(--ink);font:inherit;cursor:pointer;display:flex;flex-direction:column;gap:.35rem}
+.menu-btn:hover{box-shadow:0 2px 10px rgba(0,0,0,.15);border-color:var(--brand)}
+.menu-title{font-weight:700;font-size:1.08rem}
+.menu-desc{color:var(--muted);font-size:.95rem}
+.menu-go{margin-top:auto;color:var(--brand);font-weight:700;font-size:.95rem}
+.toolbar{margin-bottom:.5rem}
+.link-btn{background:none;border:0;color:var(--brand);font:inherit;font-weight:600;text-decoration:underline;cursor:pointer;padding:.25rem 0}
+.scenario,.step,.worklog,.summary{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:1rem 1.1rem;margin:0 0 1rem}
+.scenario{border-left:6px solid var(--gold)}
+.scenario p{margin:.3rem 0}
+.step{border-left:6px solid var(--brand)}
+.stepno{margin:0 0 .35rem;font-weight:700;color:var(--brand)}
+.bar{height:8px;background:var(--brand-soft);border-radius:6px;overflow:hidden;margin:0 0 .8rem}
+.bar span{display:block;height:100%;background:var(--brand)}
+.q{font-size:1.1rem;margin:0 0 .7rem}
+.q p{margin:.3rem 0}
+.ans-row{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+.aff{font-weight:700;color:var(--muted)}
+input[type=text]{font:inherit;font-size:1.15rem;padding:.55rem .7rem;border:2px solid var(--muted);border-radius:8px;background:var(--bg);color:var(--ink);width:13rem;max-width:100%}
+.fmt{margin:.4rem 0 0;color:var(--muted);font-size:.93rem}
+fieldset.choices{border:0;padding:0;margin:0;display:grid;gap:.5rem}
+.choice{display:flex;gap:.65rem;align-items:flex-start;padding:.6rem .75rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);cursor:pointer}
+.choice:hover{border-color:var(--brand)}
+.choice input{margin-top:.3rem;width:1.1rem;height:1.1rem;flex:none}
+.actions{margin-top:.9rem}
+.actions.row{display:flex;gap:.75rem;flex-wrap:wrap}
+button.primary,button.secondary{font:inherit;font-weight:700;border-radius:8px;padding:.65rem 1.2rem;cursor:pointer;border:2px solid var(--brand)}
+button.primary{background:var(--brand);color:var(--brand-ink)}
+button.secondary{background:transparent;color:var(--brand)}
+button:disabled{opacity:.55;cursor:not-allowed}
+.fb{margin-top:.9rem}
+.fb.good,.fb.warn,.fb.bad,.fb.info{padding:.8rem 1rem;border-radius:8px;border:1px solid var(--line)}
+.fb.good{background:var(--good-bg);border-color:var(--good)}
+.fb.warn{background:var(--warn-bg);border-color:var(--warn)}
+.fb.bad{background:var(--bad-bg);border-color:var(--bad)}
+.fb.info{background:var(--info-bg)}
+.fb p{margin:.25rem 0}
+.fb-h{font-weight:600}
+.badge{display:inline-block;font-size:.8rem;font-weight:800;padding:.1rem .5rem;border-radius:99px;border:1.5px solid currentColor;margin-right:.35rem;vertical-align:.05em}
+.badge.ok{color:var(--good)}.badge.no{color:var(--bad)}
+.fb.warn .badge.no{color:var(--warn)}
+.hint,.sol{margin:.4rem 0}
+.ans-line{margin-top:.5rem}
+.worklog ol{margin:.2rem 0 0;padding-left:1.3rem}
+.worklog li{margin:.45rem 0}
+.log-q{display:block;color:var(--muted);font-size:.95rem}
+.log-a.good{color:var(--good)}
+.log-a.bad{color:var(--bad)}
+.log-a .badge{font-size:.72rem}
+.yours{color:var(--muted)}
+.summary .big{font-size:1.15rem;font-weight:600}
+.score{list-style:none;padding:0;margin:.5rem 0;display:flex;gap:1.4rem;flex-wrap:wrap}
+.score strong{font-size:1.4rem;color:var(--brand)}
+.takeaway{background:var(--brand-soft);border-radius:8px;padding:.7rem .9rem;margin-top:.6rem}
+.tbl-wrap{overflow-x:auto;margin:.6rem 0}
+table.data{border-collapse:collapse;min-width:16rem;font-size:.98rem}
+table.data caption{text-align:left;font-weight:700;padding-bottom:.3rem}
+table.data th,table.data td{border:1px solid var(--line);padding:.35rem .65rem;text-align:left;vertical-align:top}
+table.data thead th{background:var(--brand-soft)}
+table.data .r,table.data td.r{text-align:right;font-variant-numeric:tabular-nums}
+table.data tr.tot th,table.data tr.tot td{font-weight:700;border-top:2px solid var(--ink)}
+table.data tbody th{font-weight:500}
+.eq{display:inline-block;background:var(--brand-soft);padding:.1rem .5rem;border-radius:6px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.95em}
+footer.site{max-width:60rem;margin:0 auto;padding:1rem;color:var(--muted);border-top:1px solid var(--line);font-size:.92rem}
+@media (max-width:30rem){header.site h1{font-size:1.4rem}input[type=text]{width:100%}}
+@media print{header.site{background:#fff;color:#000}.menu-go,.toolbar,.actions{display:none}}
+
+</style>
+</head>
+<body>
+<a class="skip" href="#app">Skip to main content</a>
+<header class="site">
+  <div class="wrap">
+    <a href="https://drmarcolam.github.io/courses/mba-623-tutors.html">&larr; Back to MBA 623 Tutors</a>
+    <p class="eyebrow">MBA 623 &middot; <span id="mod-num">Module 1</span></p>
+    <h1><span id="mod-title">Financial Accounting for MBAs</span> Tutor</h1>
+    <p class="sub" id="mod-sub">The accounting equation, the four financial statements, and basic profitability analysis (ROA and ROE).</p>
+  </div>
+</header>
+<main id="app" tabindex="-1"></main>
+<footer class="site">MBA 623 &middot; Western Carolina University &middot; Practice problems use fictional companies and randomly generated numbers. Nothing you enter here is saved or graded.</footer>
+<script>
+/* MBA 623 tutor library: random helpers, formatting, answer checking (no DOM) */
+(function (root) {
+  'use strict';
+  function makeRNG(seed) {
+    let a = seed >>> 0;
+    const next = function () {
+      a = (a + 0x6D2B79F5) | 0;
+      let t = Math.imul(a ^ (a >>> 15), 1 | a);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+    const R = {
+      next: next,
+      int: function (lo, hi) { return lo + Math.floor(next() * (hi - lo + 1)); },
+      step: function (lo, hi, s) { return lo + s * Math.floor(next() * ((hi - lo) / s + 1)); },
+      pick: function (arr) { return arr[Math.floor(next() * arr.length)]; },
+      chance: function (p) { return next() < p; },
+      shuffle: function (arr) {
+        const b = arr.slice();
+        for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(next() * (i + 1)); const t = b[i]; b[i] = b[j]; b[j] = t; }
+        return b;
+      },
+      sample: function (arr, n) { return R.shuffle(arr).slice(0, n); }
+    };
+    return R;
+  }
+
+  const COMPANIES = ['Alder Ridge Foods', 'Bluewater Outfitters', 'Cedar Point Instruments', 'Dunmore Apparel', 'Eastgate Medical', 'Fairhaven Home Goods', 'Granite Peak Tools', 'Harborview Software', 'Ironwood Furniture', 'Juniper Labs', 'Kestrel Logistics', 'Lakeshore Beverages', 'Maple Hollow Bakery', 'Northfield Electronics', 'Oakmont Pharmaceuticals', 'Pinecrest Sports', 'Quarry Lane Builders', 'Redstone Retail', 'Silverline Networks', 'Tamarack Outdoor', 'Union Square Coffee', 'Valley Forge Machining', 'Westbrook Toys', 'Yellowfin Seafood', 'Zephyr Cycles'];
+
+  function addCommas(s) { return s.replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+  function num(x, d) {
+    d = d || 0;
+    const neg = x < 0 && Math.round(Math.abs(x) * Math.pow(10, d)) !== 0;
+    const s = Math.abs(x).toFixed(d).split('.');
+    return (neg ? '-' : '') + addCommas(s[0]) + (s[1] ? '.' + s[1] : '');
+  }
+  function money(x, d) {
+    d = d || 0;
+    const s = num(Math.abs(x), d);
+    const isZero = Math.round(Math.abs(x) * Math.pow(10, d)) === 0;
+    return (x < 0 && !isZero) ? '($' + s + ')' : '$' + s;
+  }
+  function sgn(x, d) { return (x < 0 ? ' &minus; ' : ' + ') + money(Math.abs(x), d); }
+  function pct(x, d) { d = (d === undefined) ? 1 : d; return num(x, d) + '%'; }
+  function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+
+  /* table(headers, rows, opts) rows: array of arrays; first column left aligned, others right aligned */
+  function table(head, rows, opts) {
+    opts = opts || {};
+    let h = '<div class="tbl-wrap"><table class="data"' + (opts.caption ? '' : '') + '>';
+    if (opts.caption) h += '<caption>' + opts.caption + '</caption>';
+    if (head && head.length) {
+      h += '<thead><tr>';
+      head.forEach(function (c, i) { h += '<th scope="col"' + (i === 0 ? '' : ' class="r"') + '>' + c + '</th>'; });
+      h += '</tr></thead>';
+    }
+    h += '<tbody>';
+    rows.forEach(function (r) {
+      let cls = '';
+      if (r && r.cls) { cls = ' class="' + r.cls + '"'; r = r.cells; }
+      h += '<tr' + cls + '>';
+      r.forEach(function (c, i) {
+        if (i === 0) h += '<th scope="row">' + c + '</th>';
+        else h += '<td class="r">' + c + '</td>';
+      });
+      h += '</tr>';
+    });
+    return h + '</tbody></table></div>';
+  }
+
+  function parseAnswer(raw) {
+    if (raw === null || raw === undefined) return NaN;
+    let s = String(raw).trim().toLowerCase();
+    if (!s) return NaN;
+    let neg = false;
+    if (/^\(.*\)$/.test(s)) { neg = true; s = s.slice(1, -1); }
+    s = s.replace(/[−–]/g, '-');
+    if (s.charAt(0) === '-') { neg = true; s = s.slice(1); }
+    s = s.replace(/[\$,\s]/g, '').replace(/%$/, '');
+    s = s.replace(/(units?|days?|times|x|shares?|batches|hours|hrs|years?|yrs?|dollars)$/, '');
+    if (s.charAt(0) === '-') { neg = true; s = s.slice(1); }
+    if (!/^[0-9]*\.?[0-9]+$|^[0-9]+\.$/.test(s)) return NaN;
+    const v = parseFloat(s);
+    return neg ? -v : v;
+  }
+
+  function isCorrectNumber(step, raw) {
+    const u = parseAnswer(raw);
+    if (!isFinite(u)) return false;
+    const a = step.ans;
+    const dec = step.dec || 0;
+    const rel = (step.tol === undefined) ? 0.003 : step.tol;
+    const absTol = 0.5 * Math.pow(10, -dec) + 1e-9;
+    const ok = function (v) { return Math.abs(v - a) <= Math.max(absTol, rel * Math.abs(a)); };
+    if (ok(u)) return true;
+    if (step.unit === '%' && Math.abs(u) <= 1.5 && Math.abs(a) > 1.5 && ok(u * 100)) return true;
+    return false;
+  }
+
+  function fmtAnswer(step) {
+    const d = step.dec || 0;
+    switch (step.unit) {
+      case '$': return money(step.ans, d);
+      case '%': return pct(step.ans, d);
+      case 'x': return num(step.ans, d) + 'x';
+      case 'days': return num(step.ans, d) + ' days';
+      case 'units': return num(step.ans, d) + ' units';
+      default: return num(step.ans, d) + (step.suffix ? ' ' + step.suffix : '');
+    }
+  }
+
+
+  /* step builders */
+  function ns(q, short, ans, unit, dec, hint, sol, extra) {
+    var o = { q: '<p>' + q + '</p>', short: short, ans: ans, unit: unit || '', dec: dec || 0, hint: hint, sol: sol };
+    if (extra) { for (var k in extra) o[k] = extra[k]; }
+    return o;
+  }
+  function cs(q, short, choices, correct, hint, sol) {
+    return { q: '<p>' + q + '</p>', short: short, choices: choices, correct: correct, hint: hint, sol: sol };
+  }
+  /* shuffle choices but keep track of the correct one */
+  function csr(R, q, short, choices, correctIdx, hint, sol) {
+    var order = R.shuffle(choices.map(function (c, i) { return i; }));
+    return cs(q, short, order.map(function (i) { return choices[i]; }), order.indexOf(correctIdx), hint, sol);
+  }
+
+  root.TutorLib = { sgn: sgn, ns: ns, cs: cs, csr: csr, makeRNG: makeRNG, COMPANIES: COMPANIES, num: num, money: money, pct: pct, esc: esc, table: table, parseAnswer: parseAnswer, isCorrectNumber: isCorrectNumber, fmtAnswer: fmtAnswer };
+})(typeof window !== 'undefined' ? window : globalThis);
+
+</script>
+<script>
+(function () {
+  var L = window.TutorLib, $ = L.money, N = L.num, P = L.pct, T = L.table, G = L.sgn;
+  function co(R) { return R.pick(L.COMPANIES); }
+
+  /* 1. Accounting equation / balance sheet */
+  function genEquation(R) {
+    var name = co(R);
+    var cash = R.step(300, 900, 10), ar = R.step(200, 700, 10), inv = R.step(250, 800, 10), ppe = R.step(900, 2400, 10), oth = R.step(100, 400, 10);
+    var ap = R.step(250, 600, 10), acc = R.step(100, 300, 10), debt = R.step(600, 1500, 10);
+    var ta = cash + ar + inv + ppe + oth, tl = ap + acc + debt;
+    var cc = R.step(400, 900, 10);
+    var eq = ta - tl, re = eq - cc;
+    var rows = [['Cash', $(cash)], ['Accounts receivable', $(ar)], ['Inventories', $(inv)], ['Property, plant, and equipment, net', $(ppe)], ['Other assets', $(oth)], ['Accounts payable', $(ap)], ['Accrued liabilities', $(acc)], ['Long-term debt', $(debt)], ['Contributed capital (common stock and paid-in capital)', $(cc)]];
+    var intro = '<p><strong>' + name + '</strong> reports the following account balances at year-end ($ millions). Retained earnings is not listed.</p>' + T(['Account', 'Balance'], rows);
+    return {
+      intro: intro,
+      takeaway: 'Assets = Liabilities + Stockholders&rsquo; Equity. Equity has two pieces: what owners contributed and what the company has earned and kept (retained earnings).',
+      steps: [
+        { q: '<p>What are <strong>total assets</strong> ($ millions)?</p>', short: 'Total assets ($ millions)', ans: ta, unit: '$', tol: 0, hint: 'Add the five asset accounts: cash, accounts receivable, inventories, PP&amp;E (net), and other assets.', sol: 'Total assets = ' + [cash, ar, inv, ppe, oth].map(function (x) { return $(x); }).join(' + ') + ' = <strong>' + $(ta) + '</strong>.' },
+        { q: '<p>What are <strong>total liabilities</strong> ($ millions)?</p>', short: 'Total liabilities ($ millions)', ans: tl, unit: '$', tol: 0, hint: 'Liabilities are what the company owes: accounts payable, accrued liabilities, and long-term debt.', sol: 'Total liabilities = ' + [ap, acc, debt].map(function (x) { return $(x); }).join(' + ') + ' = <strong>' + $(tl) + '</strong>.' },
+        { q: '<p>Use the accounting equation to find <strong>total stockholders&rsquo; equity</strong> ($ millions).</p>', short: 'Stockholders’ equity ($ millions)', ans: eq, unit: '$', tol: 0, hint: 'Rearrange <span class="eq">Assets = Liabilities + Equity</span> so that <span class="eq">Equity = Assets &minus; Liabilities</span>.', sol: 'Equity = ' + $(ta) + ' &minus; ' + $(tl) + ' = <strong>' + $(eq) + '</strong>.' },
+        { q: '<p>Equity is made up of contributed capital and retained earnings. What is the balance of <strong>retained earnings</strong> ($ millions)?</p>', short: 'Retained earnings ($ millions)', ans: re, unit: '$', tol: 0, hint: 'Retained earnings = total equity &minus; contributed capital.', sol: 'Retained earnings = ' + $(eq) + ' &minus; ' + $(cc) + ' = <strong>' + $(re) + '</strong>.' },
+        { q: '<p>What percent of total assets is financed by <strong>nonowner financing</strong> (liabilities)? Round to one decimal place.</p>', short: 'Liabilities as % of total assets', ans: 100 * tl / ta, dec: 1, unit: '%', hint: 'Divide total liabilities by total assets and multiply by 100.', sol: $(tl) + ' &divide; ' + $(ta) + ' = <strong>' + P(100 * tl / ta, 1) + '</strong>. The rest of the assets are financed by owners.' }
+      ]
+    };
+  }
+
+  /* 2. Income statement */
+  function genIncome(R) {
+    var name = co(R);
+    var rev = R.step(8000, 24000, 100);
+    var cogs = Math.round(rev * R.step(55, 72, 1) / 100 / 10) * 10;
+    var sga = Math.round(rev * R.step(12, 22, 1) / 100 / 10) * 10;
+    var rd = Math.round(rev * R.step(2, 7, 1) / 100 / 10) * 10;
+    var intx = R.step(40, 220, 10);
+    var tr = R.pick([21, 22, 24, 25]);
+    var gp = rev - cogs, oi = gp - sga - rd, pti = oi - intx, tax = pti * tr / 100, ni = pti - tax;
+    var intro = '<p><strong>' + name + '</strong> reports the following for the year ($ millions). The company&rsquo;s tax rate is ' + tr + '%.</p>' + T(['Item', 'Amount'], [['Net sales', $(rev)], ['Cost of goods sold', $(cogs)], ['Selling, general, and administrative expense', $(sga)], ['Research and development expense', $(rd)], ['Interest expense', $(intx)]]);
+    return {
+      intro: intro,
+      takeaway: 'Revenues &minus; expenses = net income. Gross profit shows what is left after the cost of the products sold; operating income shows profit from core operations before financing costs and taxes.',
+      steps: [
+        { q: '<p>Compute <strong>gross profit</strong> ($ millions).</p>', short: 'Gross profit', ans: gp, unit: '$', tol: 0, hint: 'Gross profit = Net sales &minus; Cost of goods sold.', sol: $(rev) + ' &minus; ' + $(cogs) + ' = <strong>' + $(gp) + '</strong>.' },
+        { q: '<p>Compute <strong>operating income</strong> ($ millions).</p>', short: 'Operating income', ans: oi, unit: '$', tol: 0, hint: 'Start with gross profit and subtract the operating expenses (SG&amp;A and R&amp;D). Interest is not an operating expense.', sol: $(gp) + ' &minus; ' + $(sga) + ' &minus; ' + $(rd) + ' = <strong>' + $(oi) + '</strong>.' },
+        { q: '<p>Compute <strong>income before income taxes</strong> ($ millions).</p>', short: 'Pretax income', ans: pti, unit: '$', tol: 0, hint: 'Subtract interest expense from operating income.', sol: $(oi) + ' &minus; ' + $(intx) + ' = <strong>' + $(pti) + '</strong>.' },
+        { q: '<p>Compute <strong>income tax expense</strong> ($ millions, round to one decimal).</p>', short: 'Income tax expense', ans: tax, dec: 1, unit: '$', hint: 'Multiply pretax income by the tax rate (' + tr + '%).', sol: $(pti) + ' &times; ' + tr + '% = <strong>' + $(tax, 1) + '</strong>.' },
+        { q: '<p>Compute <strong>net income</strong> ($ millions, round to one decimal).</p>', short: 'Net income', ans: ni, dec: 1, unit: '$', hint: 'Net income = pretax income &minus; income tax expense.', sol: $(pti) + ' &minus; ' + $(tax, 1) + ' = <strong>' + $(ni, 1) + '</strong>.' },
+        { q: '<p>What is the <strong>net profit margin</strong> (net income &divide; net sales)? Round to one decimal place.</p>', short: 'Net profit margin', ans: 100 * ni / rev, dec: 1, unit: '%', hint: 'Divide net income by net sales and multiply by 100.', sol: $(ni, 1) + ' &divide; ' + $(rev) + ' = <strong>' + P(100 * ni / rev, 1) + '</strong>. For every dollar of sales the company keeps about ' + N(ni / rev, 2) + ' dollars as profit.' }
+      ]
+    };
+  }
+
+  /* 3. ROA and ROE */
+  function genROA(R) {
+    var name = co(R);
+    var a0 = R.step(4000, 12000, 100), a1 = a0 + R.step(-300, 900, 100);
+    var lev = R.step(15, 28, 1) / 10; // assets/equity
+    var e0 = Math.round(a0 / lev / 10) * 10, e1 = Math.round(a1 / lev / 10) * 10 + R.step(-50, 50, 10);
+    var sales = Math.round(((a0 + a1) / 2) * R.step(8, 20, 1) / 10 / 10) * 10;
+    var ni = Math.round(sales * R.step(4, 14, 1) / 100);
+    var aa = (a0 + a1) / 2, ae = (e0 + e1) / 2, pm = 100 * ni / sales, at = sales / aa, roa = 100 * ni / aa, roe = 100 * ni / ae;
+    var intro = '<p><strong>' + name + '</strong> reports the following ($ millions).</p>' + T(['', 'Beginning of year', 'End of year'], [['Total assets', $(a0), $(a1)], ["Total stockholders' equity", $(e0), $(e1)]]) + '<p>For the year, net sales were ' + $(sales) + ' and net income was ' + $(ni) + '.</p>';
+    return {
+      intro: intro,
+      takeaway: 'ROA = profit margin &times; asset turnover. ROE is larger than ROA when the company uses debt (financial leverage), because the same profit is spread over a smaller equity base.',
+      steps: [
+        { q: '<p>Compute <strong>average total assets</strong> ($ millions, one decimal).</p>', short: 'Average total assets', ans: aa, dec: 1, unit: '$', hint: 'Average = (beginning + ending) &divide; 2.', sol: '(' + $(a0) + ' + ' + $(a1) + ') &divide; 2 = <strong>' + $(aa, 1) + '</strong>.' },
+        { q: '<p>Compute the <strong>profit margin</strong> (net income &divide; net sales). Round to one decimal place.</p>', short: 'Profit margin', ans: pm, dec: 1, unit: '%', hint: 'Net income divided by net sales, times 100.', sol: $(ni) + ' &divide; ' + $(sales) + ' = <strong>' + P(pm, 1) + '</strong>.' },
+        { q: '<p>Compute <strong>asset turnover</strong> (net sales &divide; average total assets). Round to two decimals.</p>', short: 'Asset turnover', ans: at, dec: 2, unit: 'x', hint: 'Divide net sales by the average total assets you computed in step 1.', sol: $(sales) + ' &divide; ' + $(aa, 1) + ' = <strong>' + N(at, 2) + 'x</strong>. Each dollar of assets generated about ' + $(at, 2) + ' of sales.' },
+        { q: '<p>Compute <strong>return on assets (ROA)</strong> (net income &divide; average total assets). Round to one decimal place.</p>', short: 'ROA', ans: roa, dec: 1, unit: '%', hint: 'You can divide net income by average assets, or multiply profit margin by asset turnover. Both give the same answer.', sol: $(ni) + ' &divide; ' + $(aa, 1) + ' = <strong>' + P(roa, 1) + '</strong>.' },
+        { q: '<p>Compute <strong>return on equity (ROE)</strong> (net income &divide; average stockholders&rsquo; equity). Round to one decimal place.</p>', short: 'ROE', ans: roe, dec: 1, unit: '%', hint: 'First find average equity: (' + $(e0) + ' + ' + $(e1) + ') &divide; 2. Then divide net income by it.', sol: 'Average equity = ' + $(ae, 1) + '. ROE = ' + $(ni) + ' &divide; ' + $(ae, 1) + ' = <strong>' + P(roe, 1) + '</strong>.' },
+        { q: '<p>ROE is higher than ROA for this company. What best explains why?</p>', short: 'Why ROE exceeds ROA', choices: ['Part of the assets are financed with liabilities, so equity is smaller than assets', 'The company pays no income taxes', 'Net income is larger than net sales', 'Equity is larger than total assets'], correct: 0, hint: 'Compare the denominators: average assets versus average equity. Which is smaller, and why?', sol: 'Because liabilities finance part of the assets, equity is smaller than assets. The same net income divided by a smaller base gives a higher return. This is financial leverage.' }
+      ]
+    };
+  }
+
+  /* 4. Classify cash flows */
+  var OP = [['collected cash from customers', 1], ['paid cash to suppliers for inventory', -1], ['paid wages to employees', -1], ['paid income taxes', -1], ['paid interest on bank debt', -1], ['received cash for services performed', 1]];
+  var INV = [['purchased new equipment', -1], ['sold an old building for cash', 1], ['bought marketable securities', -1], ['acquired a smaller company for cash', -1], ['sold marketable securities', 1]];
+  var FIN = [['issued common stock for cash', 1], ['repurchased its own shares', -1], ['paid cash dividends', -1], ['borrowed cash from a bank', 1], ['issued bonds for cash', 1], ['repaid the principal of a bank loan', -1]];
+  function genClassify(R) {
+    var name = co(R);
+    var op = R.sample(OP, 2), inv = R.sample(INV, 1), fin = R.sample(FIN, 2);
+    var items = R.shuffle([[op[0], 'Operating'], [op[1], 'Operating'], [inv[0], 'Investing'], [fin[0], 'Financing'], [fin[1], 'Financing']]);
+    items = items.map(function (it) { var amt = R.step(20, 400, 5); return { txt: it[0][0], sign: it[0][1], amt: amt, cat: it[1] }; });
+    var rows = items.map(function (it, i) { return [(i + 1) + '. ' + name + ' ' + it.txt, $(it.amt)]; });
+    var intro = '<p>During the year, <strong>' + name + '</strong> had the following cash transactions ($ millions).</p>' + T(['Transaction', 'Cash amount'], rows);
+    var cats = ['Operating activities', 'Investing activities', 'Financing activities'];
+    var catMap = { Operating: 0, Investing: 1, Financing: 2 };
+    var steps = items.map(function (it, i) {
+      return { q: '<p>In the statement of cash flows, where is transaction ' + (i + 1) + ' reported? <em>The company ' + it.txt + '.</em></p>', short: 'Transaction ' + (i + 1) + ': ' + it.txt, choices: cats, correct: catMap[it.cat], hint: 'Operating = day-to-day business (customers, suppliers, employees, taxes, interest). Investing = buying or selling long-term assets and investments. Financing = transactions with owners and lenders (stock, dividends, debt principal).', sol: 'The company ' + it.txt + ', which is reported in <strong>' + cats[catMap[it.cat]].toLowerCase() + '</strong>.' };
+    });
+    var fins = items.filter(function (it) { return it.cat === 'Financing'; });
+    var tot = fins.reduce(function (s, it) { return s + it.sign * it.amt; }, 0);
+    steps.push({ q: '<p>Compute <strong>net cash from financing activities</strong> ($ millions). Enter net cash outflows as a negative number.</p>', short: 'Net cash from financing ($ millions)', ans: tot, unit: '$', tol: 0, hint: 'Identify the two financing transactions. Cash received from owners or lenders is positive; cash paid to them is negative. Then add.', sol: fins.map(function (it) { return (it.sign > 0 ? '+' : '&minus;') + $(it.amt); }).join(' ') + ' = <strong>' + $(tot) + '</strong>.', note: 'Enter a negative number if the net result is a cash outflow, for example -125.' });
+    return { intro: intro, steps: steps, takeaway: 'Operating = running the business. Investing = long-term assets and investments. Financing = owners and lenders. Cash inflows add and cash outflows subtract within each category.' };
+  }
+
+  /* 5. Statement of cash flows math */
+  function genCF(R) {
+    var name = co(R);
+    var beg = R.step(300, 1200, 10), cfo = R.step(600, 2200, 10), capex = R.step(200, 1500, 10), sale = R.step(0, 150, 10), cff = -R.step(100, 1200, 10) + (R.chance(0.3) ? R.step(300, 600, 10) : 0);
+    var cfi = -capex + sale;
+    var net = cfo + cfi + cff, end = beg + net, fcf = cfo - capex;
+    var intro = '<p><strong>' + name + '</strong> reports the following ($ millions). Cash at the beginning of the year was ' + $(beg) + '.</p>' + T(['Item', 'Amount'], [['Net cash provided by operating activities', $(cfo)], ['Purchases of property and equipment', $(-capex)], ['Proceeds from sale of equipment', $(sale)], ['Net cash from financing activities (dividends, share repurchases, and debt)', $(cff)]]);
+    return {
+      intro: intro,
+      takeaway: 'Net change in cash = operating + investing + financing cash flows, and beginning cash plus the net change equals ending cash on the balance sheet. Free cash flow shows cash left after the investments needed to sustain the business.',
+      steps: [
+        { q: '<p>What is <strong>net cash from investing activities</strong> ($ millions)? Enter outflows as negative numbers.</p>', short: 'Net cash from investing', ans: cfi, unit: '$', tol: 0, hint: 'Add the cash paid for equipment (negative) and the proceeds from the equipment sale (positive).', sol: '&minus;' + $(capex) + ' + ' + $(sale) + ' = <strong>' + $(cfi) + '</strong>.' },
+        { q: '<p>What is the <strong>net change in cash</strong> for the year ($ millions)? Enter a decrease as a negative number.</p>', short: 'Net change in cash', ans: net, unit: '$', tol: 0, hint: 'Add the three categories: operating + investing + financing.', sol: $(cfo) + G(cfi) + G(cff) + ' = <strong>' + $(net) + '</strong>.' },
+        { q: '<p>What is the <strong>ending cash balance</strong> ($ millions)?</p>', short: 'Ending cash', ans: end, unit: '$', tol: 0, hint: 'Ending cash = beginning cash + net change in cash.', sol: $(beg) + G(net) + ' = <strong>' + $(end) + '</strong>. This amount appears as cash on the year-end balance sheet.' },
+        { q: '<p>Compute <strong>free cash flow</strong> (operating cash flow minus purchases of property and equipment), in $ millions.</p>', short: 'Free cash flow', ans: fcf, unit: '$', tol: 0, hint: 'Use operating cash flow and subtract only the capital expenditures (purchases of property and equipment).', sol: $(cfo) + ' &minus; ' + $(capex) + ' = <strong>' + $(fcf) + '</strong>.' },
+        { q: '<p>' + (fcf >= 0 ? 'Free cash flow is positive.' : 'Free cash flow is negative.') + ' What does that tell you?</p>', short: 'Interpreting free cash flow', choices: ['Operations generated enough cash to pay for the equipment purchases without needing outside financing', 'Operations did not generate enough cash to pay for the equipment purchases, so outside financing or existing cash was needed', 'The company must have reported a net loss', 'The company has no debt'], correct: fcf >= 0 ? 0 : 1, hint: 'Compare cash generated by operations with cash spent on capital expenditures.', sol: fcf >= 0 ? 'Operating cash flow of ' + $(cfo) + ' exceeds capital spending of ' + $(capex) + ', so operations funded the investments, leaving ' + $(fcf) + ' for dividends, buybacks, or debt repayment.' : 'Capital spending of ' + $(capex) + ' exceeded operating cash flow of ' + $(cfo) + ', so the gap had to be funded with cash on hand or outside financing.' }
+      ]
+    };
+  }
+
+  /* 6. Which statement */
+  var STM = ['Balance sheet', 'Income statement', 'Statement of stockholders’ equity', 'Statement of cash flows'];
+  var ITEMS = [
+    ['Inventories', 0], ['Accounts payable', 0], ['Accumulated depreciation', 0], ['Long-term debt', 0], ['The retained earnings balance at year-end', 0],
+    ['Net sales', 1], ['Cost of goods sold', 1], ['Interest expense', 1], ['Income tax expense', 1], ['Research and development expense', 1],
+    ['The reconciliation of beginning and ending retained earnings', 2], ['Shares issued and dividends declared during the year, by equity account', 2], ['Share repurchases shown by equity account', 2],
+    ['Cash paid to purchase equipment', 3], ['Cash received from issuing bonds', 3], ['Net increase (decrease) in cash for the year', 3], ['Cash paid for dividends', 3]
+  ];
+  function genWhich(R) {
+    var name = co(R);
+    var picks = [R.pick(ITEMS.filter(function (x) { return x[1] === 0; })), R.pick(ITEMS.filter(function (x) { return x[1] === 1; })), R.pick(ITEMS.filter(function (x) { return x[1] === 2; })), R.pick(ITEMS.filter(function (x) { return x[1] === 3; })), R.pick(ITEMS)];
+    var seen = {}; picks = picks.filter(function (x) { if (seen[x[0]]) return false; seen[x[0]] = 1; return true; });
+    picks = R.shuffle(picks);
+    var intro = '<p><strong>' + name + '</strong> prepares four financial statements each year: the balance sheet, the income statement, the statement of stockholders&rsquo; equity, and the statement of cash flows. For each item below, identify the <strong>primary</strong> statement where it is reported.</p>';
+    var steps = picks.map(function (x, i) {
+      return { q: '<p>Item ' + (i + 1) + ': <strong>' + x[0] + '</strong></p>', short: x[0], choices: STM, correct: x[1], hint: ['The balance sheet reports resources and financing at a <em>point in time</em>.', 'The income statement reports revenues and expenses over a <em>period</em>.', 'The statement of stockholders’ equity reconciles beginning and ending balances of the equity accounts.', 'The statement of cash flows reports cash inflows and outflows by operating, investing, and financing activity.'][x[1]] + ' Which one fits this item?', sol: '<strong>' + x[0] + '</strong> is reported in the <strong>' + STM[x[1]].toLowerCase() + '</strong>.' };
+    });
+    return { intro: intro, steps: steps, takeaway: 'The balance sheet is a snapshot; the other three statements explain what happened over a period. They are linked: net income flows into retained earnings, and the cash flow statement explains the change in the cash balance.' };
+  }
+
+  window.MODULE = {
+    num: 1,
+    title: 'Financial Accounting for MBAs',
+    subtitle: 'The accounting equation, the four financial statements, and basic profitability analysis (ROA and ROE).',
+    types: [
+      { label: 'Accounting Equation and Balance Sheet', desc: 'Find total assets, liabilities, equity, and retained earnings from a list of balances.', gen: genEquation },
+      { label: 'Build an Income Statement', desc: 'Gross profit, operating income, pretax income, net income, and profit margin.', gen: genIncome },
+      { label: 'ROA and ROE', desc: 'Profit margin, asset turnover, return on assets, return on equity, and the role of leverage.', gen: genROA },
+      { label: 'Classify Cash Flows', desc: 'Sort transactions into operating, investing, and financing activities.', gen: genClassify },
+      { label: 'Statement of Cash Flows', desc: 'Net change in cash, ending cash, and free cash flow.', gen: genCF },
+      { label: 'Which Financial Statement?', desc: 'Match items to the balance sheet, income statement, equity statement, or cash flow statement.', gen: genWhich }
+    ]
+  };
+})();
+
+</script>
+<script>
+/* MBA 623 tutor UI engine */
+(function () {
+  'use strict';
+  var L = window.TutorLib;
+  var M = window.MODULE;
+  var app = document.getElementById('app');
+  var state = null;
+
+  var PRAISE = ['Correct! Nice work.', 'Exactly right!', 'Well done, that is correct.', 'Great job, you got it!', 'Yes, that is right. Excellent!', 'Spot on!', 'That is correct. Keep it up!', 'Right on target!'];
+  var WRONG1 = ['Not quite, but you are close to a good approach. Here is a hint.', 'That is not the answer we are looking for, but no worries. Here is a hint.', 'Not quite right. Take a look at this hint and try once more.', 'Almost there, but that is not it. Use this hint and give it another try.'];
+  var WRONG2 = ['That is still not it, and that is okay. Here is the solution for this step.', 'Not this time, but this is how you learn. Here is the solution.', 'Still not quite. Let us walk through the solution together.'];
+
+  function el(html) { var d = document.createElement('div'); d.innerHTML = html; return d.firstElementChild; }
+  function rndFrom(arr, i) { return arr[i % arr.length]; }
+
+  /* ---------- menu ---------- */
+  function renderMenu() {
+    state = null;
+    var h = '<h2 id="menu-h">Choose a problem type</h2>';
+    h += '<p class="lead">Pick the kind of problem you want to practice. You will get a new scenario with new numbers each time, and the tutor walks you through it one step at a time. On every step you get one hint and one more try before the solution appears.</p>';
+    h += '<ul class="menu" aria-labelledby="menu-h">';
+    M.types.forEach(function (t, i) {
+      h += '<li><button type="button" class="menu-btn" data-type="' + i + '"><span class="menu-title">' + t.label + '</span><span class="menu-desc">' + t.desc + '</span><span class="menu-go" aria-hidden="true">Start &rarr;</span></button></li>';
+    });
+    h += '</ul>';
+    app.innerHTML = h;
+    var btns = app.querySelectorAll('.menu-btn');
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].addEventListener('click', function (e) { startProblem(parseInt(e.currentTarget.getAttribute('data-type'), 10)); });
+    }
+    document.title = 'Module ' + M.num + ' Tutor | MBA 623';
+  }
+
+  /* ---------- problem ---------- */
+  function startProblem(typeIdx) {
+    var seed = (Math.floor(Math.random() * 4294967295) ^ Date.now()) >>> 0;
+    var R = L.makeRNG(seed);
+    var t = M.types[typeIdx];
+    var prob = t.gen(R, L);
+    state = { typeIdx: typeIdx, type: t, prob: prob, i: 0, attempt: 0, log: [], first: 0, second: 0, shown: 0 };
+    renderProblem(true);
+  }
+
+  function renderHeader() {
+    var p = state.prob;
+    var h = '<div class="toolbar"><button type="button" class="link-btn" id="to-menu">&larr; Choose a different problem type</button></div>';
+    h += '<h2 id="prob-h" tabindex="-1">' + state.type.label + '</h2>';
+    h += '<section class="scenario" aria-labelledby="scen-h"><h3 id="scen-h">The problem</h3>' + p.intro + '</section>';
+    return h;
+  }
+
+  function renderLog() {
+    if (!state.log.length) return '';
+    var h = '<section class="worklog" aria-labelledby="log-h"><h3 id="log-h">Your work so far</h3><ol>';
+    state.log.forEach(function (e) {
+      h += '<li><span class="log-q">' + e.q + '</span><span class="log-a ' + e.cls + '"><span class="badge">' + e.badge + '</span> ' + e.text + '</span></li>';
+    });
+    return h + '</ol></section>';
+  }
+
+  function renderProblem(focusHeading) {
+    var p = state.prob, s = p.steps[state.i], n = p.steps.length;
+    var h = renderHeader();
+    h += renderLog();
+    h += '<section class="step" aria-labelledby="step-h">';
+    h += '<p class="stepno" id="step-h">Step ' + (state.i + 1) + ' of ' + n + '</p>';
+    h += '<div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="' + n + '" aria-valuenow="' + state.i + '" aria-label="Progress"><span style="width:' + Math.round(100 * state.i / n) + '%"></span></div>';
+    h += '<div class="q" id="q">' + s.q + '</div>';
+    h += '<form id="f" novalidate>';
+    if (s.choices) {
+      h += '<fieldset class="choices"><legend class="sr-only">Choose one answer</legend>';
+      s.choices.forEach(function (c, k) {
+        h += '<label class="choice"><input type="radio" name="c" value="' + k + '"><span>' + c + '</span></label>';
+      });
+      h += '</fieldset>';
+    } else {
+      h += '<div class="ans-row"><label class="sr-only" for="ans">Your answer</label>';
+      if (s.unit === '$') h += '<span class="aff" aria-hidden="true">$</span>';
+      h += '<input id="ans" name="ans" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" aria-describedby="q">';
+      if (s.unit === '%') h += '<span class="aff" aria-hidden="true">%</span>';
+      else if (s.unit === 'x') h += '<span class="aff" aria-hidden="true">times</span>';
+      else if (s.unit === 'days') h += '<span class="aff" aria-hidden="true">days</span>';
+      else if (s.unit === 'units') h += '<span class="aff" aria-hidden="true">units</span>';
+      else if (s.suffix) h += '<span class="aff" aria-hidden="true">' + s.suffix + '</span>';
+      h += '</div>';
+      if (s.note) h += '<p class="fmt">' + s.note + '</p>';
+    }
+    h += '<div class="actions"><button type="submit" class="primary" id="check">Check my answer</button></div>';
+    h += '</form>';
+    h += '<div id="fb" class="fb" role="status" aria-live="polite"></div>';
+    h += '</section>';
+    app.innerHTML = h;
+    document.getElementById('to-menu').addEventListener('click', renderMenu);
+    document.getElementById('f').addEventListener('submit', onCheck);
+    if (focusHeading) { var hd = document.getElementById('prob-h'); hd.focus(); window.scrollTo(0, 0); }
+    else { var inp = document.getElementById('ans') || document.querySelector('input[name=c]'); if (inp) inp.focus(); }
+  }
+
+  function currentUserAnswer(s) {
+    if (s.choices) {
+      var r = document.querySelector('input[name=c]:checked');
+      return r ? parseInt(r.value, 10) : null;
+    }
+    return document.getElementById('ans').value;
+  }
+
+  function onCheck(ev) {
+    ev.preventDefault();
+    var s = state.prob.steps[state.i];
+    var ua = currentUserAnswer(s);
+    var fb = document.getElementById('fb');
+    var correct;
+    if (s.choices) {
+      if (ua === null) { fb.className = 'fb info'; fb.innerHTML = '<p>Please choose an answer first.</p>'; return; }
+      correct = (ua === s.correct);
+    } else {
+      if (!String(ua).trim() || !isFinite(L.parseAnswer(ua))) { fb.className = 'fb info'; fb.innerHTML = '<p>Please enter a number (for example 1,250 or 12.5). Do not include words.</p>'; document.getElementById('ans').focus(); return; }
+      correct = L.isCorrectNumber(s, ua);
+    }
+    state.attempt++;
+    var correctText = s.choices ? s.choices[s.correct] : L.fmtAnswer(s);
+    var yourText = s.choices ? s.choices[ua] : L.esc(String(ua).trim());
+    var qShort = s.short || s.q;
+    if (correct) {
+      if (state.attempt === 1) state.first++; else state.second++;
+      fb.className = 'fb good';
+      fb.innerHTML = '<p class="fb-h"><span class="badge ok">Correct</span> ' + rndFrom(PRAISE, state.i + state.prob.steps.length) + '</p>' + (s.sol ? '<div class="sol"><strong>Why:</strong> ' + s.sol + '</div>' : '') + '<p class="ans-line">Answer: <strong>' + correctText + '</strong></p>';
+      state.log.push({ q: qShort, text: correctText, cls: 'good', badge: state.attempt === 1 ? 'Correct' : 'Correct (2nd try)' });
+      lockAndNext();
+    } else if (state.attempt === 1) {
+      fb.className = 'fb warn';
+      fb.innerHTML = '<p class="fb-h"><span class="badge no">Not yet</span> ' + rndFrom(WRONG1, state.i) + '</p><div class="hint"><strong>Hint:</strong> ' + s.hint + '</div>';
+      document.getElementById('check').textContent = 'Try again';
+      var inp = document.getElementById('ans'); if (inp) { inp.select(); inp.focus(); }
+    } else {
+      state.shown++;
+      fb.className = 'fb bad';
+      fb.innerHTML = '<p class="fb-h"><span class="badge no">Solution</span> ' + rndFrom(WRONG2, state.i) + '</p><div class="sol">' + s.sol + '</div><p class="ans-line">Answer: <strong>' + correctText + '</strong></p>';
+      state.log.push({ q: qShort, text: correctText + ' <span class="yours">(you entered ' + yourText + ')</span>', cls: 'bad', badge: 'Solution shown' });
+      lockAndNext();
+    }
+  }
+
+  function lockAndNext() {
+    var f = document.getElementById('f');
+    var ctrls = f.querySelectorAll('input,button');
+    for (var i = 0; i < ctrls.length; i++) ctrls[i].disabled = true;
+    var last = state.i === state.prob.steps.length - 1;
+    var btn = el('<div class="actions"><button type="button" class="primary" id="next">' + (last ? 'See my results' : 'Next step &rarr;') + '</button></div>');
+    document.getElementById('fb').appendChild(btn);
+    var nb = document.getElementById('next');
+    nb.addEventListener('click', function () {
+      state.i++; state.attempt = 0;
+      if (state.i >= state.prob.steps.length) renderSummary(); else renderProblem(false);
+    });
+    nb.focus();
+  }
+
+  function renderSummary() {
+    var n = state.prob.steps.length;
+    var perfect = state.first === n;
+    var msg;
+    if (perfect) msg = 'Outstanding! You got every step right on the first try.';
+    else if (state.shown === 0) msg = 'Nice work! You solved every step, and you learned from the hints along the way.';
+    else if (state.first + state.second >= n / 2) msg = 'Good effort! You solved most of this problem. Review the steps marked "Solution shown" and try a new problem to lock it in.';
+    else msg = 'Thanks for sticking with it. Review the solutions below, look back at the module slides, and try a fresh problem. Practice makes this much easier.';
+    var h = renderHeader();
+    h += '<section class="summary" aria-labelledby="sum-h"><h3 id="sum-h" tabindex="-1">Your results</h3>';
+    h += '<p class="big">' + msg + '</p>';
+    h += '<ul class="score"><li><strong>' + state.first + '</strong> correct on the first try</li><li><strong>' + state.second + '</strong> correct on the second try</li><li><strong>' + state.shown + '</strong> solution' + (state.shown === 1 ? '' : 's') + ' shown</li></ul>';
+    if (state.prob.takeaway) h += '<div class="takeaway"><strong>Key takeaway:</strong> ' + state.prob.takeaway + '</div>';
+    h += '</section>';
+    h += renderLog();
+    h += '<div class="actions row"><button type="button" class="primary" id="again">Try another problem like this</button><button type="button" class="secondary" id="menu2">Choose a different problem type</button></div>';
+    app.innerHTML = h;
+    document.getElementById('to-menu').addEventListener('click', renderMenu);
+    document.getElementById('menu2').addEventListener('click', renderMenu);
+    var ti = state.typeIdx;
+    document.getElementById('again').addEventListener('click', function () { startProblem(ti); });
+    var sh = document.getElementById('sum-h'); sh.focus(); window.scrollTo(0, 0);
+  }
+
+  document.getElementById('mod-title').textContent = M.title;
+  document.getElementById('mod-sub').textContent = M.subtitle;
+  document.getElementById('mod-num').textContent = 'Module ' + M.num;
+  renderMenu();
+})();
+
+</script>
+</body>
+</html>

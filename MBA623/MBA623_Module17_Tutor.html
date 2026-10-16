@@ -1,0 +1,594 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Module 17 Tutor: Using Relevant Costs and Differential Analysis for Decision-Making | MBA 623</title>
+<meta name="description" content="Interactive step-by-step practice tutor for MBA 623, Module 17: Using Relevant Costs and Differential Analysis for Decision-Making.">
+<style>
+:root{--bg:#f6f4ef;--card:#ffffff;--ink:#1d2433;--muted:#4a5568;--line:#d9d4c7;--brand:#4b2e83;--brand-ink:#ffffff;--brand-soft:#ece6f7;--gold:#8a5a00;--good:#12633a;--good-bg:#e5f4ea;--warn:#7a4a00;--warn-bg:#fff2d6;--bad:#8c1d1d;--bad-bg:#fbe7e7;--info-bg:#e8eef9;--focus:#0b57d0;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#14161c;--card:#1d212b;--ink:#eef0f5;--muted:#b6bdcc;--line:#363c4b;--brand:#b9a2ee;--brand-ink:#16121f;--brand-soft:#2a2340;--gold:#f0c46a;--good:#7fd9a2;--good-bg:#173626;--warn:#f3c978;--warn-bg:#3a2d12;--bad:#ff9d9d;--bad-bg:#3d1c1c;--info-bg:#1f2a44;--focus:#8ab4ff;}}
+*{box-sizing:border-box}
+html{font-size:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.55;font-size:1.0625rem}
+.skip{position:absolute;left:-999px;top:0;background:var(--brand);color:var(--brand-ink);padding:.6rem 1rem;z-index:10}
+.skip:focus{left:8px;top:8px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+header.site{background:var(--brand);color:var(--brand-ink);padding:1.1rem 1rem 1.4rem}
+header.site .wrap{max-width:60rem;margin:0 auto}
+header.site a{color:var(--brand-ink);font-weight:600}
+.eyebrow{margin:.5rem 0 0;font-size:.95rem;letter-spacing:.04em;text-transform:uppercase;opacity:.92}
+header.site h1{margin:.15rem 0 .2rem;font-size:1.7rem;line-height:1.2}
+header.site p.sub{margin:0;opacity:.95}
+main{max-width:60rem;margin:0 auto;padding:1.25rem 1rem 3rem}
+h2{font-size:1.45rem;margin:.2rem 0 .6rem;color:var(--ink)}
+h3{font-size:1.1rem;margin:.1rem 0 .5rem}
+.lead{color:var(--muted);max-width:46rem}
+ul.menu{list-style:none;margin:1rem 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(17rem,1fr));gap:.85rem}
+.menu-btn{width:100%;height:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-left:6px solid var(--brand);border-radius:10px;padding:.9rem 1rem;color:var(--ink);font:inherit;cursor:pointer;display:flex;flex-direction:column;gap:.35rem}
+.menu-btn:hover{box-shadow:0 2px 10px rgba(0,0,0,.15);border-color:var(--brand)}
+.menu-title{font-weight:700;font-size:1.08rem}
+.menu-desc{color:var(--muted);font-size:.95rem}
+.menu-go{margin-top:auto;color:var(--brand);font-weight:700;font-size:.95rem}
+.toolbar{margin-bottom:.5rem}
+.link-btn{background:none;border:0;color:var(--brand);font:inherit;font-weight:600;text-decoration:underline;cursor:pointer;padding:.25rem 0}
+.scenario,.step,.worklog,.summary{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:1rem 1.1rem;margin:0 0 1rem}
+.scenario{border-left:6px solid var(--gold)}
+.scenario p{margin:.3rem 0}
+.step{border-left:6px solid var(--brand)}
+.stepno{margin:0 0 .35rem;font-weight:700;color:var(--brand)}
+.bar{height:8px;background:var(--brand-soft);border-radius:6px;overflow:hidden;margin:0 0 .8rem}
+.bar span{display:block;height:100%;background:var(--brand)}
+.q{font-size:1.1rem;margin:0 0 .7rem}
+.q p{margin:.3rem 0}
+.ans-row{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+.aff{font-weight:700;color:var(--muted)}
+input[type=text]{font:inherit;font-size:1.15rem;padding:.55rem .7rem;border:2px solid var(--muted);border-radius:8px;background:var(--bg);color:var(--ink);width:13rem;max-width:100%}
+.fmt{margin:.4rem 0 0;color:var(--muted);font-size:.93rem}
+fieldset.choices{border:0;padding:0;margin:0;display:grid;gap:.5rem}
+.choice{display:flex;gap:.65rem;align-items:flex-start;padding:.6rem .75rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);cursor:pointer}
+.choice:hover{border-color:var(--brand)}
+.choice input{margin-top:.3rem;width:1.1rem;height:1.1rem;flex:none}
+.actions{margin-top:.9rem}
+.actions.row{display:flex;gap:.75rem;flex-wrap:wrap}
+button.primary,button.secondary{font:inherit;font-weight:700;border-radius:8px;padding:.65rem 1.2rem;cursor:pointer;border:2px solid var(--brand)}
+button.primary{background:var(--brand);color:var(--brand-ink)}
+button.secondary{background:transparent;color:var(--brand)}
+button:disabled{opacity:.55;cursor:not-allowed}
+.fb{margin-top:.9rem}
+.fb.good,.fb.warn,.fb.bad,.fb.info{padding:.8rem 1rem;border-radius:8px;border:1px solid var(--line)}
+.fb.good{background:var(--good-bg);border-color:var(--good)}
+.fb.warn{background:var(--warn-bg);border-color:var(--warn)}
+.fb.bad{background:var(--bad-bg);border-color:var(--bad)}
+.fb.info{background:var(--info-bg)}
+.fb p{margin:.25rem 0}
+.fb-h{font-weight:600}
+.badge{display:inline-block;font-size:.8rem;font-weight:800;padding:.1rem .5rem;border-radius:99px;border:1.5px solid currentColor;margin-right:.35rem;vertical-align:.05em}
+.badge.ok{color:var(--good)}.badge.no{color:var(--bad)}
+.fb.warn .badge.no{color:var(--warn)}
+.hint,.sol{margin:.4rem 0}
+.ans-line{margin-top:.5rem}
+.worklog ol{margin:.2rem 0 0;padding-left:1.3rem}
+.worklog li{margin:.45rem 0}
+.log-q{display:block;color:var(--muted);font-size:.95rem}
+.log-a.good{color:var(--good)}
+.log-a.bad{color:var(--bad)}
+.log-a .badge{font-size:.72rem}
+.yours{color:var(--muted)}
+.summary .big{font-size:1.15rem;font-weight:600}
+.score{list-style:none;padding:0;margin:.5rem 0;display:flex;gap:1.4rem;flex-wrap:wrap}
+.score strong{font-size:1.4rem;color:var(--brand)}
+.takeaway{background:var(--brand-soft);border-radius:8px;padding:.7rem .9rem;margin-top:.6rem}
+.tbl-wrap{overflow-x:auto;margin:.6rem 0}
+table.data{border-collapse:collapse;min-width:16rem;font-size:.98rem}
+table.data caption{text-align:left;font-weight:700;padding-bottom:.3rem}
+table.data th,table.data td{border:1px solid var(--line);padding:.35rem .65rem;text-align:left;vertical-align:top}
+table.data thead th{background:var(--brand-soft)}
+table.data .r,table.data td.r{text-align:right;font-variant-numeric:tabular-nums}
+table.data tr.tot th,table.data tr.tot td{font-weight:700;border-top:2px solid var(--ink)}
+table.data tbody th{font-weight:500}
+.eq{display:inline-block;background:var(--brand-soft);padding:.1rem .5rem;border-radius:6px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.95em}
+footer.site{max-width:60rem;margin:0 auto;padding:1rem;color:var(--muted);border-top:1px solid var(--line);font-size:.92rem}
+@media (max-width:30rem){header.site h1{font-size:1.4rem}input[type=text]{width:100%}}
+@media print{header.site{background:#fff;color:#000}.menu-go,.toolbar,.actions{display:none}}
+
+</style>
+</head>
+<body>
+<a class="skip" href="#app">Skip to main content</a>
+<header class="site">
+  <div class="wrap">
+    <a href="https://drmarcolam.github.io/courses/mba-623-tutors.html">&larr; Back to MBA 623 Tutors</a>
+    <p class="eyebrow">MBA 623 &middot; <span id="mod-num">Module 17</span></p>
+    <h1><span id="mod-title">Using Relevant Costs and Differential Analysis for Decision-Making</span> Tutor</h1>
+    <p class="sub" id="mod-sub">Relevant and sunk costs, equipment replacement, profit plans, special orders, outsourcing, and dropping a product.</p>
+  </div>
+</header>
+<main id="app" tabindex="-1"></main>
+<footer class="site">MBA 623 &middot; Western Carolina University &middot; Practice problems use fictional companies and randomly generated numbers. Nothing you enter here is saved or graded.</footer>
+<script>
+/* MBA 623 tutor library: random helpers, formatting, answer checking (no DOM) */
+(function (root) {
+  'use strict';
+  function makeRNG(seed) {
+    let a = seed >>> 0;
+    const next = function () {
+      a = (a + 0x6D2B79F5) | 0;
+      let t = Math.imul(a ^ (a >>> 15), 1 | a);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+    const R = {
+      next: next,
+      int: function (lo, hi) { return lo + Math.floor(next() * (hi - lo + 1)); },
+      step: function (lo, hi, s) { return lo + s * Math.floor(next() * ((hi - lo) / s + 1)); },
+      pick: function (arr) { return arr[Math.floor(next() * arr.length)]; },
+      chance: function (p) { return next() < p; },
+      shuffle: function (arr) {
+        const b = arr.slice();
+        for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(next() * (i + 1)); const t = b[i]; b[i] = b[j]; b[j] = t; }
+        return b;
+      },
+      sample: function (arr, n) { return R.shuffle(arr).slice(0, n); }
+    };
+    return R;
+  }
+
+  const COMPANIES = ['Alder Ridge Foods', 'Bluewater Outfitters', 'Cedar Point Instruments', 'Dunmore Apparel', 'Eastgate Medical', 'Fairhaven Home Goods', 'Granite Peak Tools', 'Harborview Software', 'Ironwood Furniture', 'Juniper Labs', 'Kestrel Logistics', 'Lakeshore Beverages', 'Maple Hollow Bakery', 'Northfield Electronics', 'Oakmont Pharmaceuticals', 'Pinecrest Sports', 'Quarry Lane Builders', 'Redstone Retail', 'Silverline Networks', 'Tamarack Outdoor', 'Union Square Coffee', 'Valley Forge Machining', 'Westbrook Toys', 'Yellowfin Seafood', 'Zephyr Cycles'];
+
+  function addCommas(s) { return s.replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+  function num(x, d) {
+    d = d || 0;
+    const neg = x < 0 && Math.round(Math.abs(x) * Math.pow(10, d)) !== 0;
+    const s = Math.abs(x).toFixed(d).split('.');
+    return (neg ? '-' : '') + addCommas(s[0]) + (s[1] ? '.' + s[1] : '');
+  }
+  function money(x, d) {
+    d = d || 0;
+    const s = num(Math.abs(x), d);
+    const isZero = Math.round(Math.abs(x) * Math.pow(10, d)) === 0;
+    return (x < 0 && !isZero) ? '($' + s + ')' : '$' + s;
+  }
+  function sgn(x, d) { return (x < 0 ? ' &minus; ' : ' + ') + money(Math.abs(x), d); }
+  function pct(x, d) { d = (d === undefined) ? 1 : d; return num(x, d) + '%'; }
+  function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+
+  /* table(headers, rows, opts) rows: array of arrays; first column left aligned, others right aligned */
+  function table(head, rows, opts) {
+    opts = opts || {};
+    let h = '<div class="tbl-wrap"><table class="data"' + (opts.caption ? '' : '') + '>';
+    if (opts.caption) h += '<caption>' + opts.caption + '</caption>';
+    if (head && head.length) {
+      h += '<thead><tr>';
+      head.forEach(function (c, i) { h += '<th scope="col"' + (i === 0 ? '' : ' class="r"') + '>' + c + '</th>'; });
+      h += '</tr></thead>';
+    }
+    h += '<tbody>';
+    rows.forEach(function (r) {
+      let cls = '';
+      if (r && r.cls) { cls = ' class="' + r.cls + '"'; r = r.cells; }
+      h += '<tr' + cls + '>';
+      r.forEach(function (c, i) {
+        if (i === 0) h += '<th scope="row">' + c + '</th>';
+        else h += '<td class="r">' + c + '</td>';
+      });
+      h += '</tr>';
+    });
+    return h + '</tbody></table></div>';
+  }
+
+  function parseAnswer(raw) {
+    if (raw === null || raw === undefined) return NaN;
+    let s = String(raw).trim().toLowerCase();
+    if (!s) return NaN;
+    let neg = false;
+    if (/^\(.*\)$/.test(s)) { neg = true; s = s.slice(1, -1); }
+    s = s.replace(/[−–]/g, '-');
+    if (s.charAt(0) === '-') { neg = true; s = s.slice(1); }
+    s = s.replace(/[\$,\s]/g, '').replace(/%$/, '');
+    s = s.replace(/(units?|days?|times|x|shares?|batches|hours|hrs|years?|yrs?|dollars)$/, '');
+    if (s.charAt(0) === '-') { neg = true; s = s.slice(1); }
+    if (!/^[0-9]*\.?[0-9]+$|^[0-9]+\.$/.test(s)) return NaN;
+    const v = parseFloat(s);
+    return neg ? -v : v;
+  }
+
+  function isCorrectNumber(step, raw) {
+    const u = parseAnswer(raw);
+    if (!isFinite(u)) return false;
+    const a = step.ans;
+    const dec = step.dec || 0;
+    const rel = (step.tol === undefined) ? 0.003 : step.tol;
+    const absTol = 0.5 * Math.pow(10, -dec) + 1e-9;
+    const ok = function (v) { return Math.abs(v - a) <= Math.max(absTol, rel * Math.abs(a)); };
+    if (ok(u)) return true;
+    if (step.unit === '%' && Math.abs(u) <= 1.5 && Math.abs(a) > 1.5 && ok(u * 100)) return true;
+    return false;
+  }
+
+  function fmtAnswer(step) {
+    const d = step.dec || 0;
+    switch (step.unit) {
+      case '$': return money(step.ans, d);
+      case '%': return pct(step.ans, d);
+      case 'x': return num(step.ans, d) + 'x';
+      case 'days': return num(step.ans, d) + ' days';
+      case 'units': return num(step.ans, d) + ' units';
+      default: return num(step.ans, d) + (step.suffix ? ' ' + step.suffix : '');
+    }
+  }
+
+
+  /* step builders */
+  function ns(q, short, ans, unit, dec, hint, sol, extra) {
+    var o = { q: '<p>' + q + '</p>', short: short, ans: ans, unit: unit || '', dec: dec || 0, hint: hint, sol: sol };
+    if (extra) { for (var k in extra) o[k] = extra[k]; }
+    return o;
+  }
+  function cs(q, short, choices, correct, hint, sol) {
+    return { q: '<p>' + q + '</p>', short: short, choices: choices, correct: correct, hint: hint, sol: sol };
+  }
+  /* shuffle choices but keep track of the correct one */
+  function csr(R, q, short, choices, correctIdx, hint, sol) {
+    var order = R.shuffle(choices.map(function (c, i) { return i; }));
+    return cs(q, short, order.map(function (i) { return choices[i]; }), order.indexOf(correctIdx), hint, sol);
+  }
+
+  root.TutorLib = { sgn: sgn, ns: ns, cs: cs, csr: csr, makeRNG: makeRNG, COMPANIES: COMPANIES, num: num, money: money, pct: pct, esc: esc, table: table, parseAnswer: parseAnswer, isCorrectNumber: isCorrectNumber, fmtAnswer: fmtAnswer };
+})(typeof window !== 'undefined' ? window : globalThis);
+
+</script>
+<script>
+(function () {
+  var L = window.TutorLib, $ = L.money, N = L.num, P = L.pct, T = L.table, ns = L.ns, cs = L.cs, csr = L.csr, G = L.sgn;
+  function co(R) { return R.pick(L.COMPANIES); }
+  function fmt(n) { return Math.round(n).toLocaleString('en-US'); }
+
+  function costs(R) {
+    var dm = R.step(2, 6, 1), dl = R.step(3, 7, 1), mo = R.step(1, 4, 1), sa = R.step(1, 3, 1) * 1;
+    var price = dm + dl + mo + sa + R.step(6, 14, 1);
+    return { dm: dm, dl: dl, mo: mo, sa: sa, vc: dm + dl + mo + sa, price: price, cm: price - (dm + dl + mo + sa), fm: R.step(10, 30, 2) * 1000, fs: R.step(4, 12, 1) * 1000, prod: R.pick(['computer adapters', 'phone chargers', 'travel mugs', 'desk lamps', 'bike lights']), name: co(R) };
+  }
+  function cTable(c) {
+    return T(['Variable costs per unit', '', 'Fixed costs per month', ''], [['Direct materials', $(c.dm), 'Manufacturing overhead', $(c.fm)], ['Direct labor', $(c.dl), 'Selling and administrative', $(c.fs)], ['Manufacturing overhead', $(c.mo), '', ''], ['Selling and administrative', $(c.sa), '', '']]);
+  }
+
+  /* A. Relevant vs irrelevant */
+  var RELC = ['Relevant', 'Irrelevant'];
+  var RP = [
+    ['The cost of leather already purchased and in inventory (a supplier decision)', 1, 'This is a <strong>sunk cost</strong> from a past decision. It is never relevant.'],
+    ['Direct materials cost per unit that will be $2 lower with the new machine', 0, 'The future cost differs between alternatives: <strong>relevant</strong>.'],
+    ['Depreciation on the old machine (book value is a past cost)', 1, 'Depreciation on a past purchase is a sunk cost: <strong>irrelevant</strong>.'],
+    ['The cash the old machine could be sold for today if replaced', 0, 'A disposal value is a cash inflow that occurs only if the replacement alternative is chosen: <strong>relevant</strong>.'],
+    ['The profit that would be earned from regular customers if capacity is used for a special order instead', 0, 'A benefit forgone is an <strong>opportunity cost</strong>, always relevant.'],
+    ['Selling price of the product when it will be the same under both alternatives', 1, 'It does not differ between alternatives: <strong>irrelevant</strong>.'],
+    ['Fixed rent on the building that will not change under either alternative', 1, 'Future cost that does not differ: <strong>irrelevant</strong>.'],
+    ['Supervisor salaries that can be eliminated if the company outsources production', 0, 'Future cost that differs between alternatives: <strong>relevant</strong>.'],
+    ['The cost of a new machine that is purchased only under the replacement alternative', 0, 'Future outlay that differs between alternatives: <strong>relevant</strong>.'],
+    ['Inspection costs that are identical under both alternatives', 1, 'No difference between alternatives: <strong>irrelevant</strong>.']
+  ];
+  function genRel(R) {
+    var name = co(R), picks = R.sample(RP, 6);
+    return {
+      intro: '<p><strong>' + name + '</strong> is making a decision between competing alternatives. A cost or revenue is <em>relevant</em> if it is a <strong>future</strong> amount that <strong>differs</strong> among the alternatives. Decide whether each item is relevant or irrelevant.</p>',
+      steps: picks.map(function (p, i) { return cs('Relevant or irrelevant? <em>' + p[0] + '</em>', 'Item ' + (i + 1), RELC, p[1], 'Is it a future amount, and does it differ between alternatives? Sunk costs are never relevant; opportunity costs are always relevant.', p[2]); }),
+      takeaway: 'Only relevant (future, differing) revenues and costs belong in the decision. Sunk costs are never relevant; opportunity costs are always relevant.'
+    };
+  }
+
+  /* B. Equipment replacement */
+  function genEquip(R) {
+    var name = co(R), units = R.step(8, 20, 1) * 1000, years = R.pick([3, 4, 5]);
+    var oldVC = R.step(55, 85, 1) / 10 * 1, newVC = oldVC - R.step(8, 25, 1) / 10;
+    oldVC = Math.round(oldVC * 10) / 10; newVC = Math.round(newVC * 10) / 10;
+    var cost = R.step(40, 70, 5) * 1000, disp = R.step(5, 15, 1) * 1000, salOld = R.step(0, 3, 1) * 1000, salNew = R.step(0, 3, 1) * 500;
+    var oldBook = R.step(20, 40, 5) * 1000;
+    var annual = (oldVC - newVC) * units, tot = annual * years, netCost = cost - disp, salDiff = salNew - salOld;
+    var adv = tot - netCost + salDiff;
+    return {
+      intro: '<p><strong>' + name + '</strong> makes ' + fmt(units) + ' units per year. It is considering replacing its old machine with a new one. Both would be used for the next <strong>' + years + ' years</strong>.</p>' + T(['', 'Old machine', 'New machine'], [['Variable cost per unit', '$' + oldVC.toFixed(2), '$' + newVC.toFixed(2)], ['Purchase cost', 'Already owned (book value ' + $(oldBook) + ')', $(cost)], ['Disposal value today', $(disp), '&mdash;'], ['Salvage value in ' + years + ' years', $(salOld), $(salNew)]]) + '<p>Selling price and all other costs are the same under either alternative.</p>',
+      takeaway: 'Differential analysis includes only the amounts that differ: operating savings, the new machine&rsquo;s cost net of the old machine&rsquo;s disposal value, and the difference in salvage values. The old machine&rsquo;s book value is a sunk cost and is ignored.',
+      steps: [
+        cs('Which item is <strong>irrelevant</strong> to the replacement decision?', 'Irrelevant item', ['Variable cost per unit', 'The old machine&rsquo;s book value (' + $(oldBook) + ')', 'The new machine&rsquo;s purchase cost', 'The old machine&rsquo;s disposal value today'], 1, 'A sunk cost is a past cost that cannot be changed.', 'The book value reflects a past purchase, so it is a sunk cost and is <strong>irrelevant</strong>.'),
+        ns('What are the <strong>annual variable cost savings</strong> from the new machine?', 'Annual savings', annual, '$', 0, '(Old variable cost per unit &minus; new variable cost per unit) &times; units.', '($' + oldVC.toFixed(2) + ' &minus; $' + newVC.toFixed(2) + ') &times; ' + fmt(units) + ' = <strong>' + $(annual) + '</strong>.', { tol: 0.005 }),
+        ns('What are the <strong>total savings over ' + years + ' years</strong>?', 'Total savings', tot, '$', 0, 'Annual savings times the number of years.', $(annual) + ' &times; ' + years + ' = <strong>' + $(tot) + '</strong>.', { tol: 0.005 }),
+        ns('What is the <strong>net cost of replacing</strong> (new machine cost minus the old machine&rsquo;s disposal value today)?', 'Net cost of new machine', netCost, '$', 0, 'The disposal value is a cash inflow only if you replace.', $(cost) + ' &minus; ' + $(disp) + ' = <strong>' + $(netCost) + '</strong>.', { tol: 0 }),
+        ns('What is the <strong>net advantage (disadvantage) of replacing</strong> over ' + years + ' years? Include the difference in salvage values (new &minus; old). Enter a disadvantage as a negative number.', 'Net advantage of replacing', adv, '$', 0, 'Total savings &minus; net cost of replacing + (new salvage &minus; old salvage).', $(tot) + ' &minus; ' + $(netCost) + ' + (' + $(salNew) + ' &minus; ' + $(salOld) + ') = <strong>' + $(adv) + '</strong>.', { tol: 0.005 }),
+        cs('Based on the financial analysis, should the company replace the machine?', 'Decision', ['Yes, replace', 'No, keep the old machine'], adv > 0 ? 0 : 1, 'Replace only if the net advantage is positive.', 'The net ' + (adv > 0 ? 'advantage' : 'disadvantage') + ' is ' + $(adv) + ', so ' + (adv > 0 ? '<strong>replace</strong> the machine.' : '<strong>keep the old machine</strong>.'))
+      ]
+    };
+  }
+
+  /* C. Changes in profit plans */
+  function genPlans(R) {
+    var c = costs(R), cur = R.step(30, 50, 2) * 100, ad = R.step(5, 20, 1) * 100, inc1 = R.step(2, 5, 1) * 100;
+    var up = R.pick([1, 2]), dec2 = R.step(2, 5, 1) * 100 * 1;
+    var alt1 = inc1 * c.cm - ad;
+    var alt2 = (cur - dec2) * up - dec2 * c.cm;
+    return {
+      intro: '<p><strong>' + c.name + '</strong> sells ' + c.prod + ' for <strong>' + $(c.price) + '</strong> each and now sells <strong>' + fmt(cur) + '</strong> units per month.</p>' + cTable(c) + '<p>Management is considering two alternatives:</p><ul><li><strong>Alternative 1:</strong> Increase advertising by ' + $(ad) + ' per month. Sales would increase by ' + fmt(inc1) + ' units.</li><li><strong>Alternative 2:</strong> Raise the selling price by ' + $(up) + '. Sales would decrease by ' + fmt(dec2) + ' units.</li></ul>',
+      takeaway: 'Differential analysis for profit plans: (units gained or lost &times; contribution margin) plus any change in price on the units still sold, less any added fixed costs. Choose the alternative with the greatest increase in profit.',
+      steps: [
+        ns('What is the <strong>contribution margin per unit</strong> today?', 'CM per unit', c.cm, '$', 0, 'Selling price minus all variable costs per unit (including selling and administrative).', $(c.price) + ' &minus; (' + $(c.dm) + ' + ' + $(c.dl) + ' + ' + $(c.mo) + ' + ' + $(c.sa) + ') = <strong>' + $(c.cm) + '</strong>.', { tol: 0 }),
+        ns('Alternative 1: what is the <strong>increase in monthly profit</strong>? Enter a decrease as a negative number.', 'Alt 1 profit change', alt1, '$', 0, 'Additional units &times; contribution margin, minus the added advertising.', fmt(inc1) + ' &times; ' + $(c.cm) + ' &minus; ' + $(ad) + ' = <strong>' + $(alt1) + '</strong>.', { tol: 0 }),
+        ns('Alternative 2: what is the <strong>profit lost on the units no longer sold</strong>? (Enter as a positive number.)', 'Lost contribution', dec2 * c.cm, '$', 0, 'Units lost &times; contribution margin per unit.', fmt(dec2) + ' &times; ' + $(c.cm) + ' = <strong>' + $(dec2 * c.cm) + '</strong>.', { tol: 0 }),
+        ns('Alternative 2: what is the <strong>extra revenue from the higher price</strong> on the units still sold?', 'Extra revenue', (cur - dec2) * up, '$', 0, 'Units still sold (' + fmt(cur) + ' &minus; ' + fmt(dec2) + ') times the price increase of ' + $(up) + '.', fmt(cur - dec2) + ' &times; ' + $(up) + ' = <strong>' + $((cur - dec2) * up) + '</strong>.', { tol: 0 }),
+        ns('Alternative 2: what is the <strong>increase in monthly profit</strong>? Enter a decrease as a negative number.', 'Alt 2 profit change', alt2, '$', 0, 'Extra revenue minus lost contribution margin.', $((cur - dec2) * up) + ' &minus; ' + $(dec2 * c.cm) + ' = <strong>' + $(alt2) + '</strong>.', { tol: 0 }),
+        cs('Which alternative should management choose?', 'Best alternative', ['Alternative 1', 'Alternative 2', 'Neither (both reduce profit)'], Math.max(alt1, alt2) <= 0 ? 2 : (alt1 >= alt2 ? 0 : 1), 'Pick the one with the larger increase in profit (and only if it is positive).', 'Alt 1: ' + $(alt1) + '; Alt 2: ' + $(alt2) + '. ' + (Math.max(alt1, alt2) <= 0 ? '<strong>Neither</strong> increases profit.' : 'The best is <strong>Alternative ' + (alt1 >= alt2 ? '1' : '2') + '</strong>.'))
+      ]
+    };
+  }
+
+  /* D. Special order */
+  function genSpecial(R) {
+    var c = costs(R), cap = R.step(50, 80, 5) * 100, normal = cap - R.step(5, 15, 1) * 100, qty = R.step(5, 12, 1) * 100;
+    var sp = c.price - R.step(2, 5, 1), save = R.pick([25, 50]);
+    var saSave = c.sa * (100 - save) / 100;
+    var unitCost = c.dm + c.dl + c.mo + saSave, inc = qty * (sp - unitCost);
+    var atCap = normal;  // at capacity scenario: lose qty regular units
+    var opp = qty * c.cm, net = inc - opp;
+    return {
+      intro: '<p>A customer of <strong>' + c.name + '</strong> offers to place a one-time order for <strong>' + fmt(qty) + '</strong> ' + c.prod + ' at <strong>' + $(sp) + '</strong> per unit (regular price ' + $(c.price) + '). The plant can produce ' + fmt(cap) + ' units and currently produces ' + fmt(normal) + '. The company would save ' + save + '% of its variable selling and administrative cost on the special order.</p>' + cTable(c),
+      takeaway: 'For a special order with spare capacity, only the added revenue and the added variable costs are relevant; fixed costs do not change. If the plant is at capacity, the contribution margin lost on regular sales is an opportunity cost.',
+      steps: [
+        cs('Which costs are <strong>relevant</strong> to the special order decision with spare capacity?', 'Relevant costs', ['All variable costs (adjusted for the selling and administrative savings) and no fixed costs', 'Variable and fixed costs', 'Only direct materials and direct labor', 'Only fixed costs'], 0, 'With idle capacity, fixed costs are the same whether or not the order is accepted.', 'Only the added variable costs differ, so they are relevant; fixed costs are not.'),
+        ns('What is the <strong>variable selling and administrative cost per unit</strong> on the special order? Round to two decimals.', 'Variable S&A per unit', saSave, '$', 2, 'Regular variable S&A cost per unit (' + $(c.sa) + ') times ' + (100 - save) + '% (the portion not saved).', $(c.sa) + ' &times; ' + (100 - save) + '% = <strong>' + $(saSave, 2) + '</strong>.', { tol: 0.005 }),
+        ns('What is the <strong>increase in revenues</strong> from the special order?', 'Increase in revenue', qty * sp, '$', 0, 'Units times special price.', fmt(qty) + ' &times; ' + $(sp) + ' = <strong>' + $(qty * sp) + '</strong>.', { tol: 0 }),
+        ns('What is the <strong>increase in costs</strong> from the special order?', 'Increase in costs', qty * unitCost, '$', 0, 'Units times (direct materials + direct labor + manufacturing overhead + adjusted S&A).', fmt(qty) + ' &times; (' + $(c.dm) + ' + ' + $(c.dl) + ' + ' + $(c.mo) + ' + ' + $(saSave, 2) + ') = <strong>' + $(qty * unitCost) + '</strong>.', { tol: 0.002 }),
+        ns('What is the <strong>increase in profit</strong> if the order is accepted with spare capacity? Enter a decrease as a negative number.', 'Increase in profit', inc, '$', 0, 'Increase in revenue minus increase in costs.', $(qty * sp) + ' &minus; ' + $(qty * unitCost) + ' = <strong>' + $(inc) + '</strong>.', { tol: 0.01 }),
+        ns('Now suppose the plant is <em>at capacity</em> and accepting the order means giving up <strong>' + fmt(qty) + '</strong> regular sales. What is the <strong>opportunity cost</strong> (regular contribution margin lost)?', 'Opportunity cost', opp, '$', 0, 'Lost units times the regular contribution margin per unit (' + $(c.cm) + ').', fmt(qty) + ' &times; ' + $(c.cm) + ' = <strong>' + $(opp) + '</strong>.', { tol: 0 }),
+        ns('What is the <strong>net change in profit</strong> if accepted at capacity? Enter a decrease as a negative number.', 'Net change at capacity', net, '$', 0, 'Increase in profit from the order minus the opportunity cost.', $(inc) + ' &minus; ' + $(opp) + ' = <strong>' + $(net) + '</strong>.', { tol: 0.01 })
+      ]
+    };
+  }
+
+  /* E. Outsourcing */
+  function genOut(R) {
+    var c = costs(R), units = R.step(30, 60, 5) * 100, sup = R.step(5, 25, 1) * 100;
+    var mc = c.dm + c.dl + c.mo; var buy = Math.round((mc + R.step(-8, 8, 1) / 10) * 100) / 100;
+    var months = 12;
+    var make = (c.dm + c.dl + c.mo) * units * months + sup * months;
+    var buyT = buy * units * months, adv = make - buyT;
+    return {
+      intro: '<p><strong>' + c.name + '</strong> makes ' + fmt(units) + ' ' + c.prod + ' per month at the costs below. A supplier offers to provide all the units needed for one year at <strong>' + $(buy, 2) + '</strong> each. If the company outsources, it can eliminate production supervisor salaries of <strong>' + $(sup) + '</strong> per month; no other fixed costs would be avoided.</p>' + cTable(c),
+      takeaway: 'In a make-or-buy decision there are no relevant revenues. Compare the cost to buy with the avoidable costs of making: variable production costs plus any avoidable fixed costs. Unavoidable fixed costs and selling and administrative costs are irrelevant.',
+      steps: [
+        ns('What is the <strong>annual cost to buy</strong>?', 'Cost to buy', buyT, '$', 0, 'Purchase price &times; units per month &times; 12 months.', $(buy, 2) + ' &times; ' + fmt(units) + ' &times; 12 = <strong>' + $(buyT) + '</strong>.', { tol: 0 }),
+        ns('What is the <strong>annual variable cost to make</strong> (direct materials, direct labor, and variable manufacturing overhead)?', 'Variable cost to make', mc * units * months, '$', 0, 'Use ' + $(c.dm) + ' + ' + $(c.dl) + ' + ' + $(c.mo) + ' = ' + $(mc) + ' per unit. Selling and administrative costs are the same either way.', $(mc) + ' &times; ' + fmt(units) + ' &times; 12 = <strong>' + $(mc * units * months) + '</strong>.', { tol: 0 }),
+        ns('What is the <strong>avoidable fixed cost</strong> per year (supervisor salaries)?', 'Avoidable fixed cost', sup * months, '$', 0, 'Monthly supervisor salaries &times; 12.', $(sup) + ' &times; 12 = <strong>' + $(sup * months) + '</strong>.', { tol: 0 }),
+        ns('What is the <strong>total relevant cost to make</strong>?', 'Cost to make', make, '$', 0, 'Variable cost to make plus avoidable fixed cost.', $(mc * units * months) + ' + ' + $(sup * months) + ' = <strong>' + $(make) + '</strong>.', { tol: 0 }),
+        ns('What is the <strong>advantage of buying</strong> (cost to make minus cost to buy)? Enter a disadvantage as a negative number.', 'Advantage of buying', adv, '$', 0, 'Cost to make &minus; cost to buy.', $(make) + ' &minus; ' + $(buyT) + ' = <strong>' + $(adv) + '</strong>.', { tol: 0.005 }),
+        cs('Based on cost alone, what should the company do?', 'Decision', ['Make the product', 'Outsource (buy from the supplier)'], adv > 0 ? 1 : 0, 'Choose the lower relevant cost.', adv > 0 ? 'Buying is cheaper by ' + $(adv) + ': <strong>outsource</strong>.' : 'Making is cheaper by ' + $(-adv) + ': <strong>keep making</strong> it.')
+      ]
+    };
+  }
+
+  /* F. Discontinue a product */
+  function genDisc(R) {
+    var name = co(R), sales = R.step(60, 150, 5) * 1000, vcR = R.step(55, 75, 1) / 100;
+    var vc = Math.round(sales * vcR / 1000) * 1000, avoid = R.step(5, 15, 1) * 1000, common = R.step(8, 25, 1) * 1000;
+    var cm = sales - vc, segMargin = cm - avoid;
+    var other = R.step(5, 30, 5) * 1000;
+    var prodProfit = cm - avoid - common;
+    return {
+      intro: '<p><strong>' + name + '</strong> is considering dropping a product line. Last year&rsquo;s results for the line:</p>' + T(['', 'Amount'], [['Sales', $(sales)], ['Variable costs', '(' + $(vc) + ')'], ['Fixed costs that can be avoided if dropped', '(' + $(avoid) + ')'], ['Allocated common fixed costs (continue regardless)', '(' + $(common) + ')'], ['Reported profit (loss)', $(prodProfit)]]),
+      takeaway: 'Compare the revenues and costs that disappear if the line is dropped. Allocated common costs continue and are irrelevant, so a line with a negative reported profit may still be worth keeping if its contribution margin exceeds its avoidable fixed costs.',
+      steps: [
+        ns('What is the line&rsquo;s <strong>contribution margin</strong>?', 'Contribution margin', cm, '$', 0, 'Sales minus variable costs.', $(sales) + ' &minus; ' + $(vc) + ' = <strong>' + $(cm) + '</strong>.', { tol: 0 }),
+        cs('Which fixed costs are <strong>relevant</strong> to the decision to drop the line?', 'Relevant fixed costs', ['The avoidable fixed costs (' + $(avoid) + ')', 'The allocated common fixed costs (' + $(common) + ')', 'Both', 'Neither'], 0, 'Which fixed costs actually disappear if the line is dropped?', 'Only the avoidable fixed costs go away. The allocated common costs continue, so they are <strong>irrelevant</strong>.'),
+        ns('What is the <strong>change in profit if the line is dropped</strong>? (Lost contribution margin plus avoided fixed costs.) Enter a decrease as a negative number.', 'Change in profit if dropped', -(cm - avoid), '$', 0, 'Dropping loses the contribution margin but saves the avoidable fixed costs.', '&minus;' + $(cm) + ' + ' + $(avoid) + ' = <strong>' + $(-(cm - avoid)) + '</strong>.', { tol: 0 }),
+        cs('Should the company drop the line (ignoring non-financial factors)?', 'Decision', ['Drop the line', 'Keep the line'], segMargin > 0 ? 1 : 0, 'Drop only if profit rises when the line is dropped, i.e., the contribution margin is less than the avoidable fixed costs.', 'The line earns a segment margin of ' + $(segMargin) + ' after avoidable costs, so ' + (segMargin > 0 ? '<strong>keep</strong> it (dropping reduces profit by ' + $(segMargin) + ').' : '<strong>drop</strong> it (dropping raises profit by ' + $(-segMargin) + ').')),
+        ns('Suppose dropping the line would also reduce contribution margin on <em>other</em> products by <strong>' + $(other) + '</strong> (customers buy them together). What is the change in profit from dropping the line now? Enter a decrease as a negative number.', 'Change including other products', -(cm - avoid) - other, '$', 0, 'Add the lost contribution margin on the other products.', $(-(cm - avoid)) + ' &minus; ' + $(other) + ' = <strong>' + $(-(cm - avoid) - other) + '</strong>.', { tol: 0 })
+      ]
+    };
+  }
+
+  window.MODULE = {
+    num: 17,
+    title: 'Using Relevant Costs and Differential Analysis for Decision-Making',
+    subtitle: 'Relevant and sunk costs, equipment replacement, profit plans, special orders, outsourcing, and dropping a product.',
+    types: [
+      { label: 'Relevant and Irrelevant Costs', desc: 'Sunk costs, opportunity costs, and what differs between alternatives.', gen: genRel },
+      { label: 'Equipment Replacement', desc: 'Differential analysis of replacing an old machine.', gen: genEquip },
+      { label: 'Changes in Profit Plans', desc: 'Compare advertising and pricing alternatives.', gen: genPlans },
+      { label: 'Special Order', desc: 'Accept or reject a one-time order, with and without spare capacity.', gen: genSpecial },
+      { label: 'Outsourcing (Make or Buy)', desc: 'Compare the cost to make with the cost to buy.', gen: genOut },
+      { label: 'Discontinue a Product Line', desc: 'Avoidable costs, lost contribution margin, and the decision to drop.', gen: genDisc }
+    ]
+  };
+})();
+
+</script>
+<script>
+/* MBA 623 tutor UI engine */
+(function () {
+  'use strict';
+  var L = window.TutorLib;
+  var M = window.MODULE;
+  var app = document.getElementById('app');
+  var state = null;
+
+  var PRAISE = ['Correct! Nice work.', 'Exactly right!', 'Well done, that is correct.', 'Great job, you got it!', 'Yes, that is right. Excellent!', 'Spot on!', 'That is correct. Keep it up!', 'Right on target!'];
+  var WRONG1 = ['Not quite, but you are close to a good approach. Here is a hint.', 'That is not the answer we are looking for, but no worries. Here is a hint.', 'Not quite right. Take a look at this hint and try once more.', 'Almost there, but that is not it. Use this hint and give it another try.'];
+  var WRONG2 = ['That is still not it, and that is okay. Here is the solution for this step.', 'Not this time, but this is how you learn. Here is the solution.', 'Still not quite. Let us walk through the solution together.'];
+
+  function el(html) { var d = document.createElement('div'); d.innerHTML = html; return d.firstElementChild; }
+  function rndFrom(arr, i) { return arr[i % arr.length]; }
+
+  /* ---------- menu ---------- */
+  function renderMenu() {
+    state = null;
+    var h = '<h2 id="menu-h">Choose a problem type</h2>';
+    h += '<p class="lead">Pick the kind of problem you want to practice. You will get a new scenario with new numbers each time, and the tutor walks you through it one step at a time. On every step you get one hint and one more try before the solution appears.</p>';
+    h += '<ul class="menu" aria-labelledby="menu-h">';
+    M.types.forEach(function (t, i) {
+      h += '<li><button type="button" class="menu-btn" data-type="' + i + '"><span class="menu-title">' + t.label + '</span><span class="menu-desc">' + t.desc + '</span><span class="menu-go" aria-hidden="true">Start &rarr;</span></button></li>';
+    });
+    h += '</ul>';
+    app.innerHTML = h;
+    var btns = app.querySelectorAll('.menu-btn');
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].addEventListener('click', function (e) { startProblem(parseInt(e.currentTarget.getAttribute('data-type'), 10)); });
+    }
+    document.title = 'Module ' + M.num + ' Tutor | MBA 623';
+  }
+
+  /* ---------- problem ---------- */
+  function startProblem(typeIdx) {
+    var seed = (Math.floor(Math.random() * 4294967295) ^ Date.now()) >>> 0;
+    var R = L.makeRNG(seed);
+    var t = M.types[typeIdx];
+    var prob = t.gen(R, L);
+    state = { typeIdx: typeIdx, type: t, prob: prob, i: 0, attempt: 0, log: [], first: 0, second: 0, shown: 0 };
+    renderProblem(true);
+  }
+
+  function renderHeader() {
+    var p = state.prob;
+    var h = '<div class="toolbar"><button type="button" class="link-btn" id="to-menu">&larr; Choose a different problem type</button></div>';
+    h += '<h2 id="prob-h" tabindex="-1">' + state.type.label + '</h2>';
+    h += '<section class="scenario" aria-labelledby="scen-h"><h3 id="scen-h">The problem</h3>' + p.intro + '</section>';
+    return h;
+  }
+
+  function renderLog() {
+    if (!state.log.length) return '';
+    var h = '<section class="worklog" aria-labelledby="log-h"><h3 id="log-h">Your work so far</h3><ol>';
+    state.log.forEach(function (e) {
+      h += '<li><span class="log-q">' + e.q + '</span><span class="log-a ' + e.cls + '"><span class="badge">' + e.badge + '</span> ' + e.text + '</span></li>';
+    });
+    return h + '</ol></section>';
+  }
+
+  function renderProblem(focusHeading) {
+    var p = state.prob, s = p.steps[state.i], n = p.steps.length;
+    var h = renderHeader();
+    h += renderLog();
+    h += '<section class="step" aria-labelledby="step-h">';
+    h += '<p class="stepno" id="step-h">Step ' + (state.i + 1) + ' of ' + n + '</p>';
+    h += '<div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="' + n + '" aria-valuenow="' + state.i + '" aria-label="Progress"><span style="width:' + Math.round(100 * state.i / n) + '%"></span></div>';
+    h += '<div class="q" id="q">' + s.q + '</div>';
+    h += '<form id="f" novalidate>';
+    if (s.choices) {
+      h += '<fieldset class="choices"><legend class="sr-only">Choose one answer</legend>';
+      s.choices.forEach(function (c, k) {
+        h += '<label class="choice"><input type="radio" name="c" value="' + k + '"><span>' + c + '</span></label>';
+      });
+      h += '</fieldset>';
+    } else {
+      h += '<div class="ans-row"><label class="sr-only" for="ans">Your answer</label>';
+      if (s.unit === '$') h += '<span class="aff" aria-hidden="true">$</span>';
+      h += '<input id="ans" name="ans" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" aria-describedby="q">';
+      if (s.unit === '%') h += '<span class="aff" aria-hidden="true">%</span>';
+      else if (s.unit === 'x') h += '<span class="aff" aria-hidden="true">times</span>';
+      else if (s.unit === 'days') h += '<span class="aff" aria-hidden="true">days</span>';
+      else if (s.unit === 'units') h += '<span class="aff" aria-hidden="true">units</span>';
+      else if (s.suffix) h += '<span class="aff" aria-hidden="true">' + s.suffix + '</span>';
+      h += '</div>';
+      if (s.note) h += '<p class="fmt">' + s.note + '</p>';
+    }
+    h += '<div class="actions"><button type="submit" class="primary" id="check">Check my answer</button></div>';
+    h += '</form>';
+    h += '<div id="fb" class="fb" role="status" aria-live="polite"></div>';
+    h += '</section>';
+    app.innerHTML = h;
+    document.getElementById('to-menu').addEventListener('click', renderMenu);
+    document.getElementById('f').addEventListener('submit', onCheck);
+    if (focusHeading) { var hd = document.getElementById('prob-h'); hd.focus(); window.scrollTo(0, 0); }
+    else { var inp = document.getElementById('ans') || document.querySelector('input[name=c]'); if (inp) inp.focus(); }
+  }
+
+  function currentUserAnswer(s) {
+    if (s.choices) {
+      var r = document.querySelector('input[name=c]:checked');
+      return r ? parseInt(r.value, 10) : null;
+    }
+    return document.getElementById('ans').value;
+  }
+
+  function onCheck(ev) {
+    ev.preventDefault();
+    var s = state.prob.steps[state.i];
+    var ua = currentUserAnswer(s);
+    var fb = document.getElementById('fb');
+    var correct;
+    if (s.choices) {
+      if (ua === null) { fb.className = 'fb info'; fb.innerHTML = '<p>Please choose an answer first.</p>'; return; }
+      correct = (ua === s.correct);
+    } else {
+      if (!String(ua).trim() || !isFinite(L.parseAnswer(ua))) { fb.className = 'fb info'; fb.innerHTML = '<p>Please enter a number (for example 1,250 or 12.5). Do not include words.</p>'; document.getElementById('ans').focus(); return; }
+      correct = L.isCorrectNumber(s, ua);
+    }
+    state.attempt++;
+    var correctText = s.choices ? s.choices[s.correct] : L.fmtAnswer(s);
+    var yourText = s.choices ? s.choices[ua] : L.esc(String(ua).trim());
+    var qShort = s.short || s.q;
+    if (correct) {
+      if (state.attempt === 1) state.first++; else state.second++;
+      fb.className = 'fb good';
+      fb.innerHTML = '<p class="fb-h"><span class="badge ok">Correct</span> ' + rndFrom(PRAISE, state.i + state.prob.steps.length) + '</p>' + (s.sol ? '<div class="sol"><strong>Why:</strong> ' + s.sol + '</div>' : '') + '<p class="ans-line">Answer: <strong>' + correctText + '</strong></p>';
+      state.log.push({ q: qShort, text: correctText, cls: 'good', badge: state.attempt === 1 ? 'Correct' : 'Correct (2nd try)' });
+      lockAndNext();
+    } else if (state.attempt === 1) {
+      fb.className = 'fb warn';
+      fb.innerHTML = '<p class="fb-h"><span class="badge no">Not yet</span> ' + rndFrom(WRONG1, state.i) + '</p><div class="hint"><strong>Hint:</strong> ' + s.hint + '</div>';
+      document.getElementById('check').textContent = 'Try again';
+      var inp = document.getElementById('ans'); if (inp) { inp.select(); inp.focus(); }
+    } else {
+      state.shown++;
+      fb.className = 'fb bad';
+      fb.innerHTML = '<p class="fb-h"><span class="badge no">Solution</span> ' + rndFrom(WRONG2, state.i) + '</p><div class="sol">' + s.sol + '</div><p class="ans-line">Answer: <strong>' + correctText + '</strong></p>';
+      state.log.push({ q: qShort, text: correctText + ' <span class="yours">(you entered ' + yourText + ')</span>', cls: 'bad', badge: 'Solution shown' });
+      lockAndNext();
+    }
+  }
+
+  function lockAndNext() {
+    var f = document.getElementById('f');
+    var ctrls = f.querySelectorAll('input,button');
+    for (var i = 0; i < ctrls.length; i++) ctrls[i].disabled = true;
+    var last = state.i === state.prob.steps.length - 1;
+    var btn = el('<div class="actions"><button type="button" class="primary" id="next">' + (last ? 'See my results' : 'Next step &rarr;') + '</button></div>');
+    document.getElementById('fb').appendChild(btn);
+    var nb = document.getElementById('next');
+    nb.addEventListener('click', function () {
+      state.i++; state.attempt = 0;
+      if (state.i >= state.prob.steps.length) renderSummary(); else renderProblem(false);
+    });
+    nb.focus();
+  }
+
+  function renderSummary() {
+    var n = state.prob.steps.length;
+    var perfect = state.first === n;
+    var msg;
+    if (perfect) msg = 'Outstanding! You got every step right on the first try.';
+    else if (state.shown === 0) msg = 'Nice work! You solved every step, and you learned from the hints along the way.';
+    else if (state.first + state.second >= n / 2) msg = 'Good effort! You solved most of this problem. Review the steps marked "Solution shown" and try a new problem to lock it in.';
+    else msg = 'Thanks for sticking with it. Review the solutions below, look back at the module slides, and try a fresh problem. Practice makes this much easier.';
+    var h = renderHeader();
+    h += '<section class="summary" aria-labelledby="sum-h"><h3 id="sum-h" tabindex="-1">Your results</h3>';
+    h += '<p class="big">' + msg + '</p>';
+    h += '<ul class="score"><li><strong>' + state.first + '</strong> correct on the first try</li><li><strong>' + state.second + '</strong> correct on the second try</li><li><strong>' + state.shown + '</strong> solution' + (state.shown === 1 ? '' : 's') + ' shown</li></ul>';
+    if (state.prob.takeaway) h += '<div class="takeaway"><strong>Key takeaway:</strong> ' + state.prob.takeaway + '</div>';
+    h += '</section>';
+    h += renderLog();
+    h += '<div class="actions row"><button type="button" class="primary" id="again">Try another problem like this</button><button type="button" class="secondary" id="menu2">Choose a different problem type</button></div>';
+    app.innerHTML = h;
+    document.getElementById('to-menu').addEventListener('click', renderMenu);
+    document.getElementById('menu2').addEventListener('click', renderMenu);
+    var ti = state.typeIdx;
+    document.getElementById('again').addEventListener('click', function () { startProblem(ti); });
+    var sh = document.getElementById('sum-h'); sh.focus(); window.scrollTo(0, 0);
+  }
+
+  document.getElementById('mod-title').textContent = M.title;
+  document.getElementById('mod-sub').textContent = M.subtitle;
+  document.getElementById('mod-num').textContent = 'Module ' + M.num;
+  renderMenu();
+})();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,579 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Module 7 Tutor: Current and Long-Term Liabilities | MBA 623</title>
+<meta name="description" content="Interactive step-by-step practice tutor for MBA 623, Module 7: Current and Long-Term Liabilities.">
+<style>
+:root{--bg:#f6f4ef;--card:#ffffff;--ink:#1d2433;--muted:#4a5568;--line:#d9d4c7;--brand:#4b2e83;--brand-ink:#ffffff;--brand-soft:#ece6f7;--gold:#8a5a00;--good:#12633a;--good-bg:#e5f4ea;--warn:#7a4a00;--warn-bg:#fff2d6;--bad:#8c1d1d;--bad-bg:#fbe7e7;--info-bg:#e8eef9;--focus:#0b57d0;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#14161c;--card:#1d212b;--ink:#eef0f5;--muted:#b6bdcc;--line:#363c4b;--brand:#b9a2ee;--brand-ink:#16121f;--brand-soft:#2a2340;--gold:#f0c46a;--good:#7fd9a2;--good-bg:#173626;--warn:#f3c978;--warn-bg:#3a2d12;--bad:#ff9d9d;--bad-bg:#3d1c1c;--info-bg:#1f2a44;--focus:#8ab4ff;}}
+*{box-sizing:border-box}
+html{font-size:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.55;font-size:1.0625rem}
+.skip{position:absolute;left:-999px;top:0;background:var(--brand);color:var(--brand-ink);padding:.6rem 1rem;z-index:10}
+.skip:focus{left:8px;top:8px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+header.site{background:var(--brand);color:var(--brand-ink);padding:1.1rem 1rem 1.4rem}
+header.site .wrap{max-width:60rem;margin:0 auto}
+header.site a{color:var(--brand-ink);font-weight:600}
+.eyebrow{margin:.5rem 0 0;font-size:.95rem;letter-spacing:.04em;text-transform:uppercase;opacity:.92}
+header.site h1{margin:.15rem 0 .2rem;font-size:1.7rem;line-height:1.2}
+header.site p.sub{margin:0;opacity:.95}
+main{max-width:60rem;margin:0 auto;padding:1.25rem 1rem 3rem}
+h2{font-size:1.45rem;margin:.2rem 0 .6rem;color:var(--ink)}
+h3{font-size:1.1rem;margin:.1rem 0 .5rem}
+.lead{color:var(--muted);max-width:46rem}
+ul.menu{list-style:none;margin:1rem 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(17rem,1fr));gap:.85rem}
+.menu-btn{width:100%;height:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-left:6px solid var(--brand);border-radius:10px;padding:.9rem 1rem;color:var(--ink);font:inherit;cursor:pointer;display:flex;flex-direction:column;gap:.35rem}
+.menu-btn:hover{box-shadow:0 2px 10px rgba(0,0,0,.15);border-color:var(--brand)}
+.menu-title{font-weight:700;font-size:1.08rem}
+.menu-desc{color:var(--muted);font-size:.95rem}
+.menu-go{margin-top:auto;color:var(--brand);font-weight:700;font-size:.95rem}
+.toolbar{margin-bottom:.5rem}
+.link-btn{background:none;border:0;color:var(--brand);font:inherit;font-weight:600;text-decoration:underline;cursor:pointer;padding:.25rem 0}
+.scenario,.step,.worklog,.summary{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:1rem 1.1rem;margin:0 0 1rem}
+.scenario{border-left:6px solid var(--gold)}
+.scenario p{margin:.3rem 0}
+.step{border-left:6px solid var(--brand)}
+.stepno{margin:0 0 .35rem;font-weight:700;color:var(--brand)}
+.bar{height:8px;background:var(--brand-soft);border-radius:6px;overflow:hidden;margin:0 0 .8rem}
+.bar span{display:block;height:100%;background:var(--brand)}
+.q{font-size:1.1rem;margin:0 0 .7rem}
+.q p{margin:.3rem 0}
+.ans-row{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+.aff{font-weight:700;color:var(--muted)}
+input[type=text]{font:inherit;font-size:1.15rem;padding:.55rem .7rem;border:2px solid var(--muted);border-radius:8px;background:var(--bg);color:var(--ink);width:13rem;max-width:100%}
+.fmt{margin:.4rem 0 0;color:var(--muted);font-size:.93rem}
+fieldset.choices{border:0;padding:0;margin:0;display:grid;gap:.5rem}
+.choice{display:flex;gap:.65rem;align-items:flex-start;padding:.6rem .75rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);cursor:pointer}
+.choice:hover{border-color:var(--brand)}
+.choice input{margin-top:.3rem;width:1.1rem;height:1.1rem;flex:none}
+.actions{margin-top:.9rem}
+.actions.row{display:flex;gap:.75rem;flex-wrap:wrap}
+button.primary,button.secondary{font:inherit;font-weight:700;border-radius:8px;padding:.65rem 1.2rem;cursor:pointer;border:2px solid var(--brand)}
+button.primary{background:var(--brand);color:var(--brand-ink)}
+button.secondary{background:transparent;color:var(--brand)}
+button:disabled{opacity:.55;cursor:not-allowed}
+.fb{margin-top:.9rem}
+.fb.good,.fb.warn,.fb.bad,.fb.info{padding:.8rem 1rem;border-radius:8px;border:1px solid var(--line)}
+.fb.good{background:var(--good-bg);border-color:var(--good)}
+.fb.warn{background:var(--warn-bg);border-color:var(--warn)}
+.fb.bad{background:var(--bad-bg);border-color:var(--bad)}
+.fb.info{background:var(--info-bg)}
+.fb p{margin:.25rem 0}
+.fb-h{font-weight:600}
+.badge{display:inline-block;font-size:.8rem;font-weight:800;padding:.1rem .5rem;border-radius:99px;border:1.5px solid currentColor;margin-right:.35rem;vertical-align:.05em}
+.badge.ok{color:var(--good)}.badge.no{color:var(--bad)}
+.fb.warn .badge.no{color:var(--warn)}
+.hint,.sol{margin:.4rem 0}
+.ans-line{margin-top:.5rem}
+.worklog ol{margin:.2rem 0 0;padding-left:1.3rem}
+.worklog li{margin:.45rem 0}
+.log-q{display:block;color:var(--muted);font-size:.95rem}
+.log-a.good{color:var(--good)}
+.log-a.bad{color:var(--bad)}
+.log-a .badge{font-size:.72rem}
+.yours{color:var(--muted)}
+.summary .big{font-size:1.15rem;font-weight:600}
+.score{list-style:none;padding:0;margin:.5rem 0;display:flex;gap:1.4rem;flex-wrap:wrap}
+.score strong{font-size:1.4rem;color:var(--brand)}
+.takeaway{background:var(--brand-soft);border-radius:8px;padding:.7rem .9rem;margin-top:.6rem}
+.tbl-wrap{overflow-x:auto;margin:.6rem 0}
+table.data{border-collapse:collapse;min-width:16rem;font-size:.98rem}
+table.data caption{text-align:left;font-weight:700;padding-bottom:.3rem}
+table.data th,table.data td{border:1px solid var(--line);padding:.35rem .65rem;text-align:left;vertical-align:top}
+table.data thead th{background:var(--brand-soft)}
+table.data .r,table.data td.r{text-align:right;font-variant-numeric:tabular-nums}
+table.data tr.tot th,table.data tr.tot td{font-weight:700;border-top:2px solid var(--ink)}
+table.data tbody th{font-weight:500}
+.eq{display:inline-block;background:var(--brand-soft);padding:.1rem .5rem;border-radius:6px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.95em}
+footer.site{max-width:60rem;margin:0 auto;padding:1rem;color:var(--muted);border-top:1px solid var(--line);font-size:.92rem}
+@media (max-width:30rem){header.site h1{font-size:1.4rem}input[type=text]{width:100%}}
+@media print{header.site{background:#fff;color:#000}.menu-go,.toolbar,.actions{display:none}}
+
+</style>
+</head>
+<body>
+<a class="skip" href="#app">Skip to main content</a>
+<header class="site">
+  <div class="wrap">
+    <a href="https://drmarcolam.github.io/courses/mba-623-tutors.html">&larr; Back to MBA 623 Tutors</a>
+    <p class="eyebrow">MBA 623 &middot; <span id="mod-num">Module 7</span></p>
+    <h1><span id="mod-title">Current and Long-Term Liabilities</span> Tutor</h1>
+    <p class="sub" id="mod-sub">Accrued liabilities and warranties, short-term notes, bond pricing, effective interest, bond retirement, and time value of money.</p>
+  </div>
+</header>
+<main id="app" tabindex="-1"></main>
+<footer class="site">MBA 623 &middot; Western Carolina University &middot; Practice problems use fictional companies and randomly generated numbers. Nothing you enter here is saved or graded.</footer>
+<script>
+/* MBA 623 tutor library: random helpers, formatting, answer checking (no DOM) */
+(function (root) {
+  'use strict';
+  function makeRNG(seed) {
+    let a = seed >>> 0;
+    const next = function () {
+      a = (a + 0x6D2B79F5) | 0;
+      let t = Math.imul(a ^ (a >>> 15), 1 | a);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+    const R = {
+      next: next,
+      int: function (lo, hi) { return lo + Math.floor(next() * (hi - lo + 1)); },
+      step: function (lo, hi, s) { return lo + s * Math.floor(next() * ((hi - lo) / s + 1)); },
+      pick: function (arr) { return arr[Math.floor(next() * arr.length)]; },
+      chance: function (p) { return next() < p; },
+      shuffle: function (arr) {
+        const b = arr.slice();
+        for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(next() * (i + 1)); const t = b[i]; b[i] = b[j]; b[j] = t; }
+        return b;
+      },
+      sample: function (arr, n) { return R.shuffle(arr).slice(0, n); }
+    };
+    return R;
+  }
+
+  const COMPANIES = ['Alder Ridge Foods', 'Bluewater Outfitters', 'Cedar Point Instruments', 'Dunmore Apparel', 'Eastgate Medical', 'Fairhaven Home Goods', 'Granite Peak Tools', 'Harborview Software', 'Ironwood Furniture', 'Juniper Labs', 'Kestrel Logistics', 'Lakeshore Beverages', 'Maple Hollow Bakery', 'Northfield Electronics', 'Oakmont Pharmaceuticals', 'Pinecrest Sports', 'Quarry Lane Builders', 'Redstone Retail', 'Silverline Networks', 'Tamarack Outdoor', 'Union Square Coffee', 'Valley Forge Machining', 'Westbrook Toys', 'Yellowfin Seafood', 'Zephyr Cycles'];
+
+  function addCommas(s) { return s.replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+  function num(x, d) {
+    d = d || 0;
+    const neg = x < 0 && Math.round(Math.abs(x) * Math.pow(10, d)) !== 0;
+    const s = Math.abs(x).toFixed(d).split('.');
+    return (neg ? '-' : '') + addCommas(s[0]) + (s[1] ? '.' + s[1] : '');
+  }
+  function money(x, d) {
+    d = d || 0;
+    const s = num(Math.abs(x), d);
+    const isZero = Math.round(Math.abs(x) * Math.pow(10, d)) === 0;
+    return (x < 0 && !isZero) ? '($' + s + ')' : '$' + s;
+  }
+  function sgn(x, d) { return (x < 0 ? ' &minus; ' : ' + ') + money(Math.abs(x), d); }
+  function pct(x, d) { d = (d === undefined) ? 1 : d; return num(x, d) + '%'; }
+  function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+
+  /* table(headers, rows, opts) rows: array of arrays; first column left aligned, others right aligned */
+  function table(head, rows, opts) {
+    opts = opts || {};
+    let h = '<div class="tbl-wrap"><table class="data"' + (opts.caption ? '' : '') + '>';
+    if (opts.caption) h += '<caption>' + opts.caption + '</caption>';
+    if (head && head.length) {
+      h += '<thead><tr>';
+      head.forEach(function (c, i) { h += '<th scope="col"' + (i === 0 ? '' : ' class="r"') + '>' + c + '</th>'; });
+      h += '</tr></thead>';
+    }
+    h += '<tbody>';
+    rows.forEach(function (r) {
+      let cls = '';
+      if (r && r.cls) { cls = ' class="' + r.cls + '"'; r = r.cells; }
+      h += '<tr' + cls + '>';
+      r.forEach(function (c, i) {
+        if (i === 0) h += '<th scope="row">' + c + '</th>';
+        else h += '<td class="r">' + c + '</td>';
+      });
+      h += '</tr>';
+    });
+    return h + '</tbody></table></div>';
+  }
+
+  function parseAnswer(raw) {
+    if (raw === null || raw === undefined) return NaN;
+    let s = String(raw).trim().toLowerCase();
+    if (!s) return NaN;
+    let neg = false;
+    if (/^\(.*\)$/.test(s)) { neg = true; s = s.slice(1, -1); }
+    s = s.replace(/[−–]/g, '-');
+    if (s.charAt(0) === '-') { neg = true; s = s.slice(1); }
+    s = s.replace(/[\$,\s]/g, '').replace(/%$/, '');
+    s = s.replace(/(units?|days?|times|x|shares?|batches|hours|hrs|years?|yrs?|dollars)$/, '');
+    if (s.charAt(0) === '-') { neg = true; s = s.slice(1); }
+    if (!/^[0-9]*\.?[0-9]+$|^[0-9]+\.$/.test(s)) return NaN;
+    const v = parseFloat(s);
+    return neg ? -v : v;
+  }
+
+  function isCorrectNumber(step, raw) {
+    const u = parseAnswer(raw);
+    if (!isFinite(u)) return false;
+    const a = step.ans;
+    const dec = step.dec || 0;
+    const rel = (step.tol === undefined) ? 0.003 : step.tol;
+    const absTol = 0.5 * Math.pow(10, -dec) + 1e-9;
+    const ok = function (v) { return Math.abs(v - a) <= Math.max(absTol, rel * Math.abs(a)); };
+    if (ok(u)) return true;
+    if (step.unit === '%' && Math.abs(u) <= 1.5 && Math.abs(a) > 1.5 && ok(u * 100)) return true;
+    return false;
+  }
+
+  function fmtAnswer(step) {
+    const d = step.dec || 0;
+    switch (step.unit) {
+      case '$': return money(step.ans, d);
+      case '%': return pct(step.ans, d);
+      case 'x': return num(step.ans, d) + 'x';
+      case 'days': return num(step.ans, d) + ' days';
+      case 'units': return num(step.ans, d) + ' units';
+      default: return num(step.ans, d) + (step.suffix ? ' ' + step.suffix : '');
+    }
+  }
+
+
+  /* step builders */
+  function ns(q, short, ans, unit, dec, hint, sol, extra) {
+    var o = { q: '<p>' + q + '</p>', short: short, ans: ans, unit: unit || '', dec: dec || 0, hint: hint, sol: sol };
+    if (extra) { for (var k in extra) o[k] = extra[k]; }
+    return o;
+  }
+  function cs(q, short, choices, correct, hint, sol) {
+    return { q: '<p>' + q + '</p>', short: short, choices: choices, correct: correct, hint: hint, sol: sol };
+  }
+  /* shuffle choices but keep track of the correct one */
+  function csr(R, q, short, choices, correctIdx, hint, sol) {
+    var order = R.shuffle(choices.map(function (c, i) { return i; }));
+    return cs(q, short, order.map(function (i) { return choices[i]; }), order.indexOf(correctIdx), hint, sol);
+  }
+
+  root.TutorLib = { sgn: sgn, ns: ns, cs: cs, csr: csr, makeRNG: makeRNG, COMPANIES: COMPANIES, num: num, money: money, pct: pct, esc: esc, table: table, parseAnswer: parseAnswer, isCorrectNumber: isCorrectNumber, fmtAnswer: fmtAnswer };
+})(typeof window !== 'undefined' ? window : globalThis);
+
+</script>
+<script>
+(function () {
+  var L = window.TutorLib, $ = L.money, N = L.num, P = L.pct, T = L.table, ns = L.ns, cs = L.cs, csr = L.csr, G = L.sgn;
+  function co(R) { return R.pick(L.COMPANIES); }
+  function pvf(r, n) { return 1 / Math.pow(1 + r, n); }
+  function pva(r, n) { return (1 - pvf(r, n)) / r; }
+  function bondPrice(F, c, m, n) { var r = m / 2 / 100, k = 2 * n; return F * c / 200 * pva(r, k) + F * pvf(r, k); }
+
+  /* A. Warranty */
+  function genWarranty(R) {
+    var name = co(R);
+    var units = R.step(20, 80, 5) * 1000, rate = R.pick([2, 3, 4, 5]), cost = R.step(40, 150, 5);
+    var beg = R.step(300, 1500, 10) * 1000 / 10, paid = Math.round(units * rate / 100 * cost * R.step(70, 130, 5) / 100 / 1000) * 1000;
+    var exp = units * rate / 100 * cost, end = beg + exp - paid;
+    var intro = '<p><strong>' + name + '</strong> sold ' + N(units) + ' products this year, each with a one-year warranty. Based on experience, ' + rate + '% of the units sold will need repair at an average cost of ' + $(cost) + ' per repair. The warranty liability was ' + $(beg) + ' at the beginning of the year, and the company paid ' + $(paid) + ' in warranty claims during the year.</p>';
+    return {
+      intro: intro,
+      takeaway: 'Warranty expense is recorded when the product is sold (matching principle). The liability rolls forward: beginning + new accruals &minus; claims paid = ending. A persistently growing or shrinking reserve relative to claims may signal under- or over-estimation.',
+      steps: [
+        ns('How many units are <strong>expected to need repair</strong> under warranty?', 'Expected repairs', units * rate / 100, 'units', 0, 'Units sold &times; ' + rate + '%.', N(units) + ' &times; ' + rate + '% = <strong>' + N(units * rate / 100) + ' units</strong>.', { tol: 0 }),
+        ns('What is the <strong>warranty expense</strong> for the year?', 'Warranty expense', exp, '$', 0, 'Expected repairs &times; cost per repair.', N(units * rate / 100) + ' &times; ' + $(cost) + ' = <strong>' + $(exp) + '</strong>.', { tol: 0 }),
+        ns('What is the <strong>ending warranty liability</strong>?', 'Ending warranty liability', end, '$', 0, 'Beginning liability + warranty expense accrued &minus; claims paid.', $(beg) + ' + ' + $(exp) + ' &minus; ' + $(paid) + ' = <strong>' + $(end) + '</strong>.', { tol: 0 }),
+        ns('Claims paid were what <strong>percent of the warranty expense</strong> accrued this year? Round to one decimal.', 'Claims paid as % of expense', 100 * paid / exp, '%', 1, 'Claims paid divided by warranty expense.', $(paid) + ' &divide; ' + $(exp) + ' = <strong>' + P(100 * paid / exp, 1) + '</strong>.', { tol: 0.01 }),
+        cs('If claims paid are persistently <em>well below</em> the expense accrued each year, what might an analyst conclude?', 'Interpreting the warranty roll-forward', ['The company may be over-accruing warranty costs, which could be a source of "cookie jar" reserves', 'The company is understating warranty expense', 'Product quality must be declining', 'The warranty liability must be shrinking'], 0, 'If expense exceeds actual claims, the liability grows. What might management be doing with the extra reserve?', 'Accruing more than is paid out builds a reserve that can later be released to boost income. Analysts compare accruals with claims over time.')
+      ]
+    };
+  }
+
+  /* B. Short-term note */
+  function genNote(R) {
+    var name = co(R);
+    var p = R.step(20, 90, 10) * 1000, r = R.pick([6, 8, 9, 10, 12]), term = R.pick([6, 9, 12]), m1 = R.pick([2, 3, 4]);
+    if (m1 >= term) m1 = term - 2;
+    var i1 = p * r / 100 * m1 / 12, itot = p * r / 100 * term / 12, i2 = itot - i1, cash = p + itot;
+    var intro = '<p><strong>' + name + '</strong> borrowed ' + $(p) + ' on a ' + term + '-month note payable that bears interest at ' + r + '% per year. The principal and all interest are due at maturity. The company’s fiscal year ends ' + m1 + ' months after the note was signed.</p>';
+    return {
+      intro: intro,
+      takeaway: 'Interest expense accrues with the passage of time, even though no cash is paid until maturity. At year-end the company records interest expense and interest payable for the months the note has been outstanding.',
+      steps: [
+        ns('How much <strong>interest should be accrued at fiscal year-end</strong>?', 'Interest accrued at year-end', i1, '$', 0, 'Principal &times; annual rate &times; months outstanding &divide; 12.', $(p) + ' &times; ' + r + '% &times; ' + m1 + '/12 = <strong>' + $(i1) + '</strong>.', { tol: 0.002 }),
+        ns('What is the total <strong>liability for the note (principal plus accrued interest)</strong> at fiscal year-end?', 'Note liability at year-end', p + i1, '$', 0, 'Principal plus the interest accrued in the previous step.', $(p) + ' + ' + $(i1) + ' = <strong>' + $(p + i1) + '</strong>.', { tol: 0.002 }),
+        ns('How much <strong>interest expense</strong> is recorded in the <em>next</em> fiscal year?', 'Interest expense in the next year', i2, '$', 0, 'Interest for the remaining months of the term: ' + (term - m1) + ' months.', $(p) + ' &times; ' + r + '% &times; ' + (term - m1) + '/12 = <strong>' + $(i2) + '</strong>.', { tol: 0.002 }),
+        ns('How much <strong>cash is paid at maturity</strong>?', 'Cash paid at maturity', cash, '$', 0, 'Principal plus total interest for the full ' + term + ' months.', $(p) + ' + ' + $(itot) + ' = <strong>' + $(cash) + '</strong>.', { tol: 0.002 })
+      ]
+    };
+  }
+
+  /* C. Bond pricing */
+  function genBondPrice(R) {
+    var name = co(R);
+    var F = R.pick([5000, 10000, 20000, 50000]), n = R.pick([5, 8, 10]), c = R.pick([4, 5, 6, 7]), m = c + R.pick([-2, -1, 1, 2]);
+    var r = m / 2 / 100, k = 2 * n, cpn = F * c / 200;
+    var pvp = F * pvf(r, k), pvi = cpn * pva(r, k), price = pvp + pvi;
+    var intro = '<p><strong>' + name + '</strong> issues bonds with a face value of ' + $(F) + ' thousand. The bonds have a <strong>' + c + '%</strong> annual coupon rate paid semiannually and mature in <strong>' + n + ' years</strong>. At the issue date, investors require a market yield of <strong>' + m + '%</strong> per year (' + N(m / 2, 2).replace(/\.?0+$/, '') + '% per semiannual period). Amounts are in $ thousands.</p>';
+    return {
+      intro: intro,
+      takeaway: 'A bond&rsquo;s price is the present value of its cash flows (semiannual interest annuity + principal) discounted at the market rate. If the market rate is above the coupon rate, the bond sells at a discount; below the coupon rate, at a premium.',
+      steps: [
+        ns('What is the <strong>semiannual interest (coupon) payment</strong> ($ thousands)?', 'Semiannual interest payment', cpn, '$', 0, 'Face value &times; annual coupon rate &divide; 2.', $(F) + ' &times; ' + c + '% &divide; 2 = <strong>' + $(cpn) + '</strong>.', { tol: 0 }),
+        ns('What is the <strong>present value of the principal</strong> to be repaid at maturity ($ thousands)? Discount over ' + k + ' semiannual periods at ' + N(m / 2, 2) + '%.', 'PV of principal', pvp, '$', 0, 'PV = face &divide; (1 + semiannual market rate)<sup>' + k + '</sup>.', $(F) + ' &divide; (1 + ' + (r).toFixed(4) + ')<sup>' + k + '</sup> = <strong>' + $(pvp) + '</strong>.', { tol: 0.004 }),
+        ns('What is the <strong>present value of the interest payments</strong> ($ thousands)?', 'PV of interest payments', pvi, '$', 0, 'The ' + k + ' equal payments are an annuity: payment &times; [1 &minus; (1 + r)<sup>&minus;' + k + '</sup>] &divide; r, using r = ' + (r * 100).toFixed(2) + '%. You can use a financial calculator or Excel&rsquo;s PV function.', $(cpn) + ' &times; ' + N(pva(r, k), 4) + ' = <strong>' + $(pvi) + '</strong>.', { tol: 0.004 }),
+        ns('What is the <strong>issue price of the bonds</strong> ($ thousands)?', 'Bond issue price', price, '$', 0, 'Add the present value of the principal and the present value of the interest payments.', $(pvp) + ' + ' + $(pvi) + ' = <strong>' + $(price) + '</strong> (' + N(100 * price / F, 2) + '% of face).', { tol: 0.004 }),
+        cs('The bonds are issued at a ...', 'Discount or premium?', ['Discount, because the market rate exceeds the coupon rate', 'Premium, because the market rate exceeds the coupon rate', 'Discount, because the coupon rate exceeds the market rate', 'Premium, because the coupon rate exceeds the market rate'], m > c ? 0 : 3, 'Compare the market yield (' + m + '%) with the coupon rate (' + c + '%). Investors pay less than face when the bond pays less than they demand.', m > c ? 'Market rate ' + m + '% &gt; coupon rate ' + c + '%, so investors pay less than face: a <strong>discount</strong>.' : 'Coupon rate ' + c + '% &gt; market rate ' + m + '%, so investors pay more than face: a <strong>premium</strong>.')
+      ]
+    };
+  }
+
+  /* D. Interest expense vs interest payment */
+  function genEIR(R) {
+    var name = co(R);
+    var F = R.pick([10000, 20000, 50000]), n = R.pick([5, 8, 10]), c = R.pick([4, 5, 6]), m = c + R.pick([-2, -1, 1, 2]);
+    var price = Math.round(bondPrice(F, c, m, n));
+    var cash = F * c / 200, ie = price * m / 200, am = ie - cash, cv = price + am;
+    var disc = price < F;
+    var intro = '<p><strong>' + name + '</strong> issued ' + n + '-year bonds with a face value of ' + $(F) + ' thousand and a ' + c + '% annual coupon (paid semiannually). The market yield at issuance was ' + m + '% per year, so the bonds were sold for <strong>' + $(price) + ' thousand</strong>. The company uses the effective interest method.</p>';
+    return {
+      intro: intro,
+      takeaway: 'Interest expense = carrying amount &times; market (effective) rate, which differs from the cash coupon paid. The difference amortizes the discount (carrying amount rises to face) or premium (carrying amount falls to face).',
+      steps: [
+        ns('How much <strong>cash interest</strong> is paid at the end of the first six months ($ thousands)?', 'Cash interest, first period', cash, '$', 0, 'Face value &times; coupon rate &divide; 2.', $(F) + ' &times; ' + c + '% &divide; 2 = <strong>' + $(cash) + '</strong>.', { tol: 0 }),
+        ns('How much <strong>interest expense</strong> is recorded for the first six months ($ thousands, one decimal)?', 'Interest expense, first period', ie, '$', 1, 'Carrying amount at the start of the period &times; market rate &divide; 2.', $(price) + ' &times; ' + m + '% &divide; 2 = <strong>' + $(ie, 1) + '</strong>.', { tol: 0.002 }),
+        ns('How much <strong>' + (disc ? 'discount' : 'premium') + ' is amortized</strong> in the first period ($ thousands, one decimal)? Enter the amount as a positive number.', (disc ? 'Discount' : 'Premium') + ' amortization', Math.abs(am), '$', 1, 'Compare interest expense with the cash interest paid. The difference is the amortization.', 'Interest expense ' + $(ie, 1) + ' vs. cash interest ' + $(cash) + ': difference = <strong>' + $(Math.abs(am), 1) + '</strong>.', { tol: 0.01 }),
+        ns('What is the bonds&rsquo; <strong>carrying amount after the first interest payment</strong> ($ thousands, one decimal)?', 'Carrying amount after first payment', cv, '$', 1, disc ? 'Discount amortization increases the carrying amount.' : 'Premium amortization decreases the carrying amount.', $(price) + (disc ? ' + ' : ' &minus; ') + $(Math.abs(am), 1) + ' = <strong>' + $(cv, 1) + '</strong>.', { tol: 0.002 }),
+        cs('How does interest <strong>expense</strong> compare with the cash <strong>interest paid</strong> for these bonds?', 'Expense vs. cash interest', ['Expense is greater than cash interest because the bonds were issued at a discount', 'Expense is less than cash interest because the bonds were issued at a premium', 'They are always equal', 'Expense is greater than cash interest because the bonds were issued at a premium'], disc ? 0 : 1, 'Is the carrying amount below or above face? The effective rate is applied to the carrying amount.', disc ? 'Issued at a discount: the market rate applies to a carrying amount below face, but the discount is added to expense over time, so expense exceeds the coupon.' : 'Issued at a premium: the premium reduces interest expense below the cash coupon.')
+      ]
+    };
+  }
+
+  /* E. Bond retirement */
+  function genRetire(R) {
+    var name = co(R);
+    var F = R.pick([10000, 20000, 40000]), disc = R.chance(0.6), ud = Math.round(F * R.step(1, 6, 1) / 100 / 10) * 10;
+    var f = R.pick([0.25, 0.4, 0.5, 1]), pr = R.pick([94, 96, 98, 101, 103, 105]);
+    var net = disc ? F - ud : F + ud;
+    var retiredFace = F * f, retiredNet = net * f, pay = retiredFace * pr / 100, gl = retiredNet - pay;
+    var intro = '<p><strong>' + name + '</strong> has bonds payable with a face value of ' + $(F) + ' thousand and an unamortized ' + (disc ? 'discount' : 'premium') + ' of ' + $(ud) + ' thousand. The company repurchases bonds with a face value of ' + $(retiredFace) + ' thousand (' + Math.round(f * 100) + '% of the issue) at <strong>' + pr + '%</strong> of face value.</p>';
+    return {
+      intro: intro,
+      takeaway: 'Gain or loss on retirement = net bonds payable (carrying amount) retired &minus; cash paid. A positive result is a gain; a negative result is a loss. The principal repayment is a financing cash outflow.',
+      steps: [
+        ns('What is the <strong>net carrying amount of the bonds retired</strong> ($ thousands)?', 'Carrying amount retired', retiredNet, '$', 0, 'Net bonds payable = face &plusmn; unamortized premium or discount. Take the retired share (' + Math.round(f * 100) + '%) of the total.', 'Net bonds payable = ' + $(F) + (disc ? ' &minus; ' : ' + ') + $(ud) + ' = ' + $(net) + '. &times; ' + Math.round(f * 100) + '% = <strong>' + $(retiredNet) + '</strong>.', { tol: 0 }),
+        ns('How much <strong>cash is paid</strong> to repurchase the bonds ($ thousands)?', 'Cash paid to repurchase', pay, '$', 0, 'Face value retired &times; repurchase price percent.', $(retiredFace) + ' &times; ' + pr + '% = <strong>' + $(pay) + '</strong>.', { tol: 0 }),
+        ns('What is the <strong>gain or loss on the repurchase</strong> ($ thousands)? Enter a loss as a negative number.', 'Gain (loss) on repurchase', gl, '$', 0, 'Carrying amount retired &minus; cash paid.', $(retiredNet) + ' &minus; ' + $(pay) + ' = <strong>' + $(gl) + '</strong>, a ' + (gl >= 0 ? 'gain' : 'loss') + '.', { tol: 0 }),
+        cs('How is the principal portion of this repurchase shown in the statement of cash flows?', 'Cash flow classification', ['As a financing cash outflow', 'As an operating cash outflow', 'As an investing cash outflow', 'It is not reported in the statement of cash flows'], 0, 'Repaying debt is a transaction with lenders.', 'Repaying bond principal is a financing activity. The gain or loss is included in net income, and is removed from operating cash flow in the indirect method.')
+      ]
+    };
+  }
+
+  /* F. Time value of money */
+  function genTVM(R) {
+    var name = co(R);
+    var r = R.pick([4, 5, 6, 8, 10]), n = R.pick([3, 4, 5, 6, 8]), L1 = R.step(10, 90, 5) * 1000, K = R.step(10, 90, 5) * 1000;
+    var Y = R.step(5, 25, 1) * 1000, offerA = Math.round(Y * pva(r / 100, n) * R.pick([0.9, 0.97, 1.03, 1.1]) / 1000) * 1000;
+    var loan = R.step(50, 300, 10) * 1000;
+    var pv1 = L1 * pvf(r / 100, n), fv1 = K * Math.pow(1 + r / 100, n), pvAnn = Y * pva(r / 100, n), pmt = loan / pva(r / 100, n);
+    var better = offerA > pvAnn ? 0 : 1;
+    var intro = '<p>Use an annual discount rate of <strong>' + r + '%</strong> and a horizon of <strong>' + n + ' years</strong> for the questions below. <strong>' + name + '</strong> is evaluating the following.</p><ul><li>Receive ' + $(L1) + ' in ' + n + ' years.</li><li>Invest ' + $(K) + ' today at ' + r + '% compounded annually.</li><li>Option A: receive ' + $(offerA) + ' today. Option B: receive ' + $(Y) + ' at the end of each of the next ' + n + ' years.</li><li>Borrow ' + $(loan) + ' and repay it with equal annual payments at the end of each of the next ' + n + ' years.</li></ul>';
+    return {
+      intro: intro,
+      takeaway: 'A dollar today is worth more than a dollar later. Present value discounts future cash flows; future value compounds today&rsquo;s cash; an annuity is a series of equal payments, valued with the annuity factor [1 &minus; (1 + r)<sup>&minus;n</sup>] &divide; r.',
+      steps: [
+        ns('What is the <strong>present value of ' + $(L1) + ' received in ' + n + ' years</strong>?', 'PV of the lump sum', pv1, '$', 0, 'PV = future amount &divide; (1 + r)<sup>n</sup>.', $(L1) + ' &divide; (1.' + (r < 10 ? '0' : '') + r + ')<sup>' + n + '</sup> = <strong>' + $(pv1) + '</strong>.', { tol: 0.003 }),
+        ns('What is the <strong>future value in ' + n + ' years of ' + $(K) + ' invested today</strong>?', 'FV of the investment', fv1, '$', 0, 'FV = amount &times; (1 + r)<sup>n</sup>.', $(K) + ' &times; (1.' + (r < 10 ? '0' : '') + r + ')<sup>' + n + '</sup> = <strong>' + $(fv1) + '</strong>.', { tol: 0.003 }),
+        ns('What is the <strong>present value of Option B</strong> (the annuity of ' + $(Y) + ' per year)?', 'PV of the annuity (Option B)', pvAnn, '$', 0, 'PV of annuity = payment &times; annuity factor, where factor = [1 &minus; (1 + r)<sup>&minus;n</sup>] &divide; r.', 'Annuity factor = ' + N(pva(r / 100, n), 4) + '. ' + $(Y) + ' &times; ' + N(pva(r / 100, n), 4) + ' = <strong>' + $(pvAnn) + '</strong>.', { tol: 0.003 }),
+        cs('Which option is worth more in present value terms?', 'Option A or B', ['Option A (' + $(offerA) + ' today)', 'Option B (the annuity)', 'They are equal'], better, 'Compare ' + $(offerA) + ' with the present value of Option B from the previous step.', better === 0 ? 'Option A is worth ' + $(offerA) + ' today, which exceeds the annuity&rsquo;s present value of ' + $(pvAnn) + '.' : 'The annuity&rsquo;s present value of ' + $(pvAnn) + ' exceeds Option A&rsquo;s ' + $(offerA) + '.'),
+        ns('What is the <strong>equal annual payment</strong> needed to repay the ' + $(loan) + ' loan over ' + n + ' years?', 'Annual loan payment', pmt, '$', 0, 'Payment = loan amount &divide; annuity factor (' + N(pva(r / 100, n), 4) + ').', $(loan) + ' &divide; ' + N(pva(r / 100, n), 4) + ' = <strong>' + $(pmt) + '</strong> per year.', { tol: 0.003 })
+      ]
+    };
+  }
+
+  window.MODULE = {
+    num: 7,
+    title: 'Current and Long-Term Liabilities',
+    subtitle: 'Accrued liabilities and warranties, short-term notes, bond pricing, effective interest, bond retirement, and time value of money.',
+    types: [
+      { label: 'Warranty Liability', desc: 'Warranty expense, the liability roll-forward, and interpretation.', gen: genWarranty },
+      { label: 'Short-Term Note and Accrued Interest', desc: 'Accrue interest at year-end and compute cash at maturity.', gen: genNote },
+      { label: 'Bond Pricing', desc: 'Present value of principal and interest; discount or premium.', gen: genBondPrice },
+      { label: 'Effective Interest Method', desc: 'Interest expense vs. cash interest and amortization of discount or premium.', gen: genEIR },
+      { label: 'Bond Retirement', desc: 'Gain or loss on repurchasing bonds before maturity.', gen: genRetire },
+      { label: 'Time Value of Money', desc: 'Present value, future value, annuities, and loan payments.', gen: genTVM }
+    ]
+  };
+})();
+
+</script>
+<script>
+/* MBA 623 tutor UI engine */
+(function () {
+  'use strict';
+  var L = window.TutorLib;
+  var M = window.MODULE;
+  var app = document.getElementById('app');
+  var state = null;
+
+  var PRAISE = ['Correct! Nice work.', 'Exactly right!', 'Well done, that is correct.', 'Great job, you got it!', 'Yes, that is right. Excellent!', 'Spot on!', 'That is correct. Keep it up!', 'Right on target!'];
+  var WRONG1 = ['Not quite, but you are close to a good approach. Here is a hint.', 'That is not the answer we are looking for, but no worries. Here is a hint.', 'Not quite right. Take a look at this hint and try once more.', 'Almost there, but that is not it. Use this hint and give it another try.'];
+  var WRONG2 = ['That is still not it, and that is okay. Here is the solution for this step.', 'Not this time, but this is how you learn. Here is the solution.', 'Still not quite. Let us walk through the solution together.'];
+
+  function el(html) { var d = document.createElement('div'); d.innerHTML = html; return d.firstElementChild; }
+  function rndFrom(arr, i) { return arr[i % arr.length]; }
+
+  /* ---------- menu ---------- */
+  function renderMenu() {
+    state = null;
+    var h = '<h2 id="menu-h">Choose a problem type</h2>';
+    h += '<p class="lead">Pick the kind of problem you want to practice. You will get a new scenario with new numbers each time, and the tutor walks you through it one step at a time. On every step you get one hint and one more try before the solution appears.</p>';
+    h += '<ul class="menu" aria-labelledby="menu-h">';
+    M.types.forEach(function (t, i) {
+      h += '<li><button type="button" class="menu-btn" data-type="' + i + '"><span class="menu-title">' + t.label + '</span><span class="menu-desc">' + t.desc + '</span><span class="menu-go" aria-hidden="true">Start &rarr;</span></button></li>';
+    });
+    h += '</ul>';
+    app.innerHTML = h;
+    var btns = app.querySelectorAll('.menu-btn');
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].addEventListener('click', function (e) { startProblem(parseInt(e.currentTarget.getAttribute('data-type'), 10)); });
+    }
+    document.title = 'Module ' + M.num + ' Tutor | MBA 623';
+  }
+
+  /* ---------- problem ---------- */
+  function startProblem(typeIdx) {
+    var seed = (Math.floor(Math.random() * 4294967295) ^ Date.now()) >>> 0;
+    var R = L.makeRNG(seed);
+    var t = M.types[typeIdx];
+    var prob = t.gen(R, L);
+    state = { typeIdx: typeIdx, type: t, prob: prob, i: 0, attempt: 0, log: [], first: 0, second: 0, shown: 0 };
+    renderProblem(true);
+  }
+
+  function renderHeader() {
+    var p = state.prob;
+    var h = '<div class="toolbar"><button type="button" class="link-btn" id="to-menu">&larr; Choose a different problem type</button></div>';
+    h += '<h2 id="prob-h" tabindex="-1">' + state.type.label + '</h2>';
+    h += '<section class="scenario" aria-labelledby="scen-h"><h3 id="scen-h">The problem</h3>' + p.intro + '</section>';
+    return h;
+  }
+
+  function renderLog() {
+    if (!state.log.length) return '';
+    var h = '<section class="worklog" aria-labelledby="log-h"><h3 id="log-h">Your work so far</h3><ol>';
+    state.log.forEach(function (e) {
+      h += '<li><span class="log-q">' + e.q + '</span><span class="log-a ' + e.cls + '"><span class="badge">' + e.badge + '</span> ' + e.text + '</span></li>';
+    });
+    return h + '</ol></section>';
+  }
+
+  function renderProblem(focusHeading) {
+    var p = state.prob, s = p.steps[state.i], n = p.steps.length;
+    var h = renderHeader();
+    h += renderLog();
+    h += '<section class="step" aria-labelledby="step-h">';
+    h += '<p class="stepno" id="step-h">Step ' + (state.i + 1) + ' of ' + n + '</p>';
+    h += '<div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="' + n + '" aria-valuenow="' + state.i + '" aria-label="Progress"><span style="width:' + Math.round(100 * state.i / n) + '%"></span></div>';
+    h += '<div class="q" id="q">' + s.q + '</div>';
+    h += '<form id="f" novalidate>';
+    if (s.choices) {
+      h += '<fieldset class="choices"><legend class="sr-only">Choose one answer</legend>';
+      s.choices.forEach(function (c, k) {
+        h += '<label class="choice"><input type="radio" name="c" value="' + k + '"><span>' + c + '</span></label>';
+      });
+      h += '</fieldset>';
+    } else {
+      h += '<div class="ans-row"><label class="sr-only" for="ans">Your answer</label>';
+      if (s.unit === '$') h += '<span class="aff" aria-hidden="true">$</span>';
+      h += '<input id="ans" name="ans" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" aria-describedby="q">';
+      if (s.unit === '%') h += '<span class="aff" aria-hidden="true">%</span>';
+      else if (s.unit === 'x') h += '<span class="aff" aria-hidden="true">times</span>';
+      else if (s.unit === 'days') h += '<span class="aff" aria-hidden="true">days</span>';
+      else if (s.unit === 'units') h += '<span class="aff" aria-hidden="true">units</span>';
+      else if (s.suffix) h += '<span class="aff" aria-hidden="true">' + s.suffix + '</span>';
+      h += '</div>';
+      if (s.note) h += '<p class="fmt">' + s.note + '</p>';
+    }
+    h += '<div class="actions"><button type="submit" class="primary" id="check">Check my answer</button></div>';
+    h += '</form>';
+    h += '<div id="fb" class="fb" role="status" aria-live="polite"></div>';
+    h += '</section>';
+    app.innerHTML = h;
+    document.getElementById('to-menu').addEventListener('click', renderMenu);
+    document.getElementById('f').addEventListener('submit', onCheck);
+    if (focusHeading) { var hd = document.getElementById('prob-h'); hd.focus(); window.scrollTo(0, 0); }
+    else { var inp = document.getElementById('ans') || document.querySelector('input[name=c]'); if (inp) inp.focus(); }
+  }
+
+  function currentUserAnswer(s) {
+    if (s.choices) {
+      var r = document.querySelector('input[name=c]:checked');
+      return r ? parseInt(r.value, 10) : null;
+    }
+    return document.getElementById('ans').value;
+  }
+
+  function onCheck(ev) {
+    ev.preventDefault();
+    var s = state.prob.steps[state.i];
+    var ua = currentUserAnswer(s);
+    var fb = document.getElementById('fb');
+    var correct;
+    if (s.choices) {
+      if (ua === null) { fb.className = 'fb info'; fb.innerHTML = '<p>Please choose an answer first.</p>'; return; }
+      correct = (ua === s.correct);
+    } else {
+      if (!String(ua).trim() || !isFinite(L.parseAnswer(ua))) { fb.className = 'fb info'; fb.innerHTML = '<p>Please enter a number (for example 1,250 or 12.5). Do not include words.</p>'; document.getElementById('ans').focus(); return; }
+      correct = L.isCorrectNumber(s, ua);
+    }
+    state.attempt++;
+    var correctText = s.choices ? s.choices[s.correct] : L.fmtAnswer(s);
+    var yourText = s.choices ? s.choices[ua] : L.esc(String(ua).trim());
+    var qShort = s.short || s.q;
+    if (correct) {
+      if (state.attempt === 1) state.first++; else state.second++;
+      fb.className = 'fb good';
+      fb.innerHTML = '<p class="fb-h"><span class="badge ok">Correct</span> ' + rndFrom(PRAISE, state.i + state.prob.steps.length) + '</p>' + (s.sol ? '<div class="sol"><strong>Why:</strong> ' + s.sol + '</div>' : '') + '<p class="ans-line">Answer: <strong>' + correctText + '</strong></p>';
+      state.log.push({ q: qShort, text: correctText, cls: 'good', badge: state.attempt === 1 ? 'Correct' : 'Correct (2nd try)' });
+      lockAndNext();
+    } else if (state.attempt === 1) {
+      fb.className = 'fb warn';
+      fb.innerHTML = '<p class="fb-h"><span class="badge no">Not yet</span> ' + rndFrom(WRONG1, state.i) + '</p><div class="hint"><strong>Hint:</strong> ' + s.hint + '</div>';
+      document.getElementById('check').textContent = 'Try again';
+      var inp = document.getElementById('ans'); if (inp) { inp.select(); inp.focus(); }
+    } else {
+      state.shown++;
+      fb.className = 'fb bad';
+      fb.innerHTML = '<p class="fb-h"><span class="badge no">Solution</span> ' + rndFrom(WRONG2, state.i) + '</p><div class="sol">' + s.sol + '</div><p class="ans-line">Answer: <strong>' + correctText + '</strong></p>';
+      state.log.push({ q: qShort, text: correctText + ' <span class="yours">(you entered ' + yourText + ')</span>', cls: 'bad', badge: 'Solution shown' });
+      lockAndNext();
+    }
+  }
+
+  function lockAndNext() {
+    var f = document.getElementById('f');
+    var ctrls = f.querySelectorAll('input,button');
+    for (var i = 0; i < ctrls.length; i++) ctrls[i].disabled = true;
+    var last = state.i === state.prob.steps.length - 1;
+    var btn = el('<div class="actions"><button type="button" class="primary" id="next">' + (last ? 'See my results' : 'Next step &rarr;') + '</button></div>');
+    document.getElementById('fb').appendChild(btn);
+    var nb = document.getElementById('next');
+    nb.addEventListener('click', function () {
+      state.i++; state.attempt = 0;
+      if (state.i >= state.prob.steps.length) renderSummary(); else renderProblem(false);
+    });
+    nb.focus();
+  }
+
+  function renderSummary() {
+    var n = state.prob.steps.length;
+    var perfect = state.first === n;
+    var msg;
+    if (perfect) msg = 'Outstanding! You got every step right on the first try.';
+    else if (state.shown === 0) msg = 'Nice work! You solved every step, and you learned from the hints along the way.';
+    else if (state.first + state.second >= n / 2) msg = 'Good effort! You solved most of this problem. Review the steps marked "Solution shown" and try a new problem to lock it in.';
+    else msg = 'Thanks for sticking with it. Review the solutions below, look back at the module slides, and try a fresh problem. Practice makes this much easier.';
+    var h = renderHeader();
+    h += '<section class="summary" aria-labelledby="sum-h"><h3 id="sum-h" tabindex="-1">Your results</h3>';
+    h += '<p class="big">' + msg + '</p>';
+    h += '<ul class="score"><li><strong>' + state.first + '</strong> correct on the first try</li><li><strong>' + state.second + '</strong> correct on the second try</li><li><strong>' + state.shown + '</strong> solution' + (state.shown === 1 ? '' : 's') + ' shown</li></ul>';
+    if (state.prob.takeaway) h += '<div class="takeaway"><strong>Key takeaway:</strong> ' + state.prob.takeaway + '</div>';
+    h += '</section>';
+    h += renderLog();
+    h += '<div class="actions row"><button type="button" class="primary" id="again">Try another problem like this</button><button type="button" class="secondary" id="menu2">Choose a different problem type</button></div>';
+    app.innerHTML = h;
+    document.getElementById('to-menu').addEventListener('click', renderMenu);
+    document.getElementById('menu2').addEventListener('click', renderMenu);
+    var ti = state.typeIdx;
+    document.getElementById('again').addEventListener('click', function () { startProblem(ti); });
+    var sh = document.getElementById('sum-h'); sh.focus(); window.scrollTo(0, 0);
+  }
+
+  document.getElementById('mod-title').textContent = M.title;
+  document.getElementById('mod-sub').textContent = M.subtitle;
+  document.getElementById('mod-num').textContent = 'Module ' + M.num;
+  renderMenu();
+})();
+
+</script>
+</body>
+</html>

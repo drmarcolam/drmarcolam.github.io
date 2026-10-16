@@ -1,0 +1,532 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Module 15 Tutor: Cost Definitions, Behavior, and Estimation | MBA 623</title>
+<meta name="description" content="Interactive step-by-step practice tutor for MBA 623, Module 15: Cost Definitions, Behavior, and Estimation.">
+<style>
+:root{--bg:#f6f4ef;--card:#ffffff;--ink:#1d2433;--muted:#4a5568;--line:#d9d4c7;--brand:#4b2e83;--brand-ink:#ffffff;--brand-soft:#ece6f7;--gold:#8a5a00;--good:#12633a;--good-bg:#e5f4ea;--warn:#7a4a00;--warn-bg:#fff2d6;--bad:#8c1d1d;--bad-bg:#fbe7e7;--info-bg:#e8eef9;--focus:#0b57d0;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#14161c;--card:#1d212b;--ink:#eef0f5;--muted:#b6bdcc;--line:#363c4b;--brand:#b9a2ee;--brand-ink:#16121f;--brand-soft:#2a2340;--gold:#f0c46a;--good:#7fd9a2;--good-bg:#173626;--warn:#f3c978;--warn-bg:#3a2d12;--bad:#ff9d9d;--bad-bg:#3d1c1c;--info-bg:#1f2a44;--focus:#8ab4ff;}}
+*{box-sizing:border-box}
+html{font-size:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.55;font-size:1.0625rem}
+.skip{position:absolute;left:-999px;top:0;background:var(--brand);color:var(--brand-ink);padding:.6rem 1rem;z-index:10}
+.skip:focus{left:8px;top:8px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+header.site{background:var(--brand);color:var(--brand-ink);padding:1.1rem 1rem 1.4rem}
+header.site .wrap{max-width:60rem;margin:0 auto}
+header.site a{color:var(--brand-ink);font-weight:600}
+.eyebrow{margin:.5rem 0 0;font-size:.95rem;letter-spacing:.04em;text-transform:uppercase;opacity:.92}
+header.site h1{margin:.15rem 0 .2rem;font-size:1.7rem;line-height:1.2}
+header.site p.sub{margin:0;opacity:.95}
+main{max-width:60rem;margin:0 auto;padding:1.25rem 1rem 3rem}
+h2{font-size:1.45rem;margin:.2rem 0 .6rem;color:var(--ink)}
+h3{font-size:1.1rem;margin:.1rem 0 .5rem}
+.lead{color:var(--muted);max-width:46rem}
+ul.menu{list-style:none;margin:1rem 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(17rem,1fr));gap:.85rem}
+.menu-btn{width:100%;height:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-left:6px solid var(--brand);border-radius:10px;padding:.9rem 1rem;color:var(--ink);font:inherit;cursor:pointer;display:flex;flex-direction:column;gap:.35rem}
+.menu-btn:hover{box-shadow:0 2px 10px rgba(0,0,0,.15);border-color:var(--brand)}
+.menu-title{font-weight:700;font-size:1.08rem}
+.menu-desc{color:var(--muted);font-size:.95rem}
+.menu-go{margin-top:auto;color:var(--brand);font-weight:700;font-size:.95rem}
+.toolbar{margin-bottom:.5rem}
+.link-btn{background:none;border:0;color:var(--brand);font:inherit;font-weight:600;text-decoration:underline;cursor:pointer;padding:.25rem 0}
+.scenario,.step,.worklog,.summary{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:1rem 1.1rem;margin:0 0 1rem}
+.scenario{border-left:6px solid var(--gold)}
+.scenario p{margin:.3rem 0}
+.step{border-left:6px solid var(--brand)}
+.stepno{margin:0 0 .35rem;font-weight:700;color:var(--brand)}
+.bar{height:8px;background:var(--brand-soft);border-radius:6px;overflow:hidden;margin:0 0 .8rem}
+.bar span{display:block;height:100%;background:var(--brand)}
+.q{font-size:1.1rem;margin:0 0 .7rem}
+.q p{margin:.3rem 0}
+.ans-row{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+.aff{font-weight:700;color:var(--muted)}
+input[type=text]{font:inherit;font-size:1.15rem;padding:.55rem .7rem;border:2px solid var(--muted);border-radius:8px;background:var(--bg);color:var(--ink);width:13rem;max-width:100%}
+.fmt{margin:.4rem 0 0;color:var(--muted);font-size:.93rem}
+fieldset.choices{border:0;padding:0;margin:0;display:grid;gap:.5rem}
+.choice{display:flex;gap:.65rem;align-items:flex-start;padding:.6rem .75rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);cursor:pointer}
+.choice:hover{border-color:var(--brand)}
+.choice input{margin-top:.3rem;width:1.1rem;height:1.1rem;flex:none}
+.actions{margin-top:.9rem}
+.actions.row{display:flex;gap:.75rem;flex-wrap:wrap}
+button.primary,button.secondary{font:inherit;font-weight:700;border-radius:8px;padding:.65rem 1.2rem;cursor:pointer;border:2px solid var(--brand)}
+button.primary{background:var(--brand);color:var(--brand-ink)}
+button.secondary{background:transparent;color:var(--brand)}
+button:disabled{opacity:.55;cursor:not-allowed}
+.fb{margin-top:.9rem}
+.fb.good,.fb.warn,.fb.bad,.fb.info{padding:.8rem 1rem;border-radius:8px;border:1px solid var(--line)}
+.fb.good{background:var(--good-bg);border-color:var(--good)}
+.fb.warn{background:var(--warn-bg);border-color:var(--warn)}
+.fb.bad{background:var(--bad-bg);border-color:var(--bad)}
+.fb.info{background:var(--info-bg)}
+.fb p{margin:.25rem 0}
+.fb-h{font-weight:600}
+.badge{display:inline-block;font-size:.8rem;font-weight:800;padding:.1rem .5rem;border-radius:99px;border:1.5px solid currentColor;margin-right:.35rem;vertical-align:.05em}
+.badge.ok{color:var(--good)}.badge.no{color:var(--bad)}
+.fb.warn .badge.no{color:var(--warn)}
+.hint,.sol{margin:.4rem 0}
+.ans-line{margin-top:.5rem}
+.worklog ol{margin:.2rem 0 0;padding-left:1.3rem}
+.worklog li{margin:.45rem 0}
+.log-q{display:block;color:var(--muted);font-size:.95rem}
+.log-a.good{color:var(--good)}
+.log-a.bad{color:var(--bad)}
+.log-a .badge{font-size:.72rem}
+.yours{color:var(--muted)}
+.summary .big{font-size:1.15rem;font-weight:600}
+.score{list-style:none;padding:0;margin:.5rem 0;display:flex;gap:1.4rem;flex-wrap:wrap}
+.score strong{font-size:1.4rem;color:var(--brand)}
+.takeaway{background:var(--brand-soft);border-radius:8px;padding:.7rem .9rem;margin-top:.6rem}
+.tbl-wrap{overflow-x:auto;margin:.6rem 0}
+table.data{border-collapse:collapse;min-width:16rem;font-size:.98rem}
+table.data caption{text-align:left;font-weight:700;padding-bottom:.3rem}
+table.data th,table.data td{border:1px solid var(--line);padding:.35rem .65rem;text-align:left;vertical-align:top}
+table.data thead th{background:var(--brand-soft)}
+table.data .r,table.data td.r{text-align:right;font-variant-numeric:tabular-nums}
+table.data tr.tot th,table.data tr.tot td{font-weight:700;border-top:2px solid var(--ink)}
+table.data tbody th{font-weight:500}
+.eq{display:inline-block;background:var(--brand-soft);padding:.1rem .5rem;border-radius:6px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.95em}
+footer.site{max-width:60rem;margin:0 auto;padding:1rem;color:var(--muted);border-top:1px solid var(--line);font-size:.92rem}
+@media (max-width:30rem){header.site h1{font-size:1.4rem}input[type=text]{width:100%}}
+@media print{header.site{background:#fff;color:#000}.menu-go,.toolbar,.actions{display:none}}
+
+</style>
+</head>
+<body>
+<a class="skip" href="#app">Skip to main content</a>
+<header class="site">
+  <div class="wrap">
+    <a href="https://drmarcolam.github.io/courses/mba-623-tutors.html">&larr; Back to MBA 623 Tutors</a>
+    <p class="eyebrow">MBA 623 &middot; <span id="mod-num">Module 15</span></p>
+    <h1><span id="mod-title">Cost Definitions, Behavior, and Estimation</span> Tutor</h1>
+    <p class="sub" id="mod-sub">Variable, fixed, mixed, and step costs; total and average cost; the high-low method; and direct vs. indirect costs.</p>
+  </div>
+</header>
+<main id="app" tabindex="-1"></main>
+<footer class="site">MBA 623 &middot; Western Carolina University &middot; Practice problems use fictional companies and randomly generated numbers. Nothing you enter here is saved or graded.</footer>
+<script>
+/* MBA 623 tutor library: random helpers, formatting, answer checking (no DOM) */
+(function (root) {
+  'use strict';
+  function makeRNG(seed) {
+    let a = seed >>> 0;
+    const next = function () {
+      a = (a + 0x6D2B79F5) | 0;
+      let t = Math.imul(a ^ (a >>> 15), 1 | a);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+    const R = {
+      next: next,
+      int: function (lo, hi) { return lo + Math.floor(next() * (hi - lo + 1)); },
+      step: function (lo, hi, s) { return lo + s * Math.floor(next() * ((hi - lo) / s + 1)); },
+      pick: function (arr) { return arr[Math.floor(next() * arr.length)]; },
+      chance: function (p) { return next() < p; },
+      shuffle: function (arr) {
+        const b = arr.slice();
+        for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(next() * (i + 1)); const t = b[i]; b[i] = b[j]; b[j] = t; }
+        return b;
+      },
+      sample: function (arr, n) { return R.shuffle(arr).slice(0, n); }
+    };
+    return R;
+  }
+
+  const COMPANIES = ['Alder Ridge Foods', 'Bluewater Outfitters', 'Cedar Point Instruments', 'Dunmore Apparel', 'Eastgate Medical', 'Fairhaven Home Goods', 'Granite Peak Tools', 'Harborview Software', 'Ironwood Furniture', 'Juniper Labs', 'Kestrel Logistics', 'Lakeshore Beverages', 'Maple Hollow Bakery', 'Northfield Electronics', 'Oakmont Pharmaceuticals', 'Pinecrest Sports', 'Quarry Lane Builders', 'Redstone Retail', 'Silverline Networks', 'Tamarack Outdoor', 'Union Square Coffee', 'Valley Forge Machining', 'Westbrook Toys', 'Yellowfin Seafood', 'Zephyr Cycles'];
+
+  function addCommas(s) { return s.replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+  function num(x, d) {
+    d = d || 0;
+    const neg = x < 0 && Math.round(Math.abs(x) * Math.pow(10, d)) !== 0;
+    const s = Math.abs(x).toFixed(d).split('.');
+    return (neg ? '-' : '') + addCommas(s[0]) + (s[1] ? '.' + s[1] : '');
+  }
+  function money(x, d) {
+    d = d || 0;
+    const s = num(Math.abs(x), d);
+    const isZero = Math.round(Math.abs(x) * Math.pow(10, d)) === 0;
+    return (x < 0 && !isZero) ? '($' + s + ')' : '$' + s;
+  }
+  function sgn(x, d) { return (x < 0 ? ' &minus; ' : ' + ') + money(Math.abs(x), d); }
+  function pct(x, d) { d = (d === undefined) ? 1 : d; return num(x, d) + '%'; }
+  function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+
+  /* table(headers, rows, opts) rows: array of arrays; first column left aligned, others right aligned */
+  function table(head, rows, opts) {
+    opts = opts || {};
+    let h = '<div class="tbl-wrap"><table class="data"' + (opts.caption ? '' : '') + '>';
+    if (opts.caption) h += '<caption>' + opts.caption + '</caption>';
+    if (head && head.length) {
+      h += '<thead><tr>';
+      head.forEach(function (c, i) { h += '<th scope="col"' + (i === 0 ? '' : ' class="r"') + '>' + c + '</th>'; });
+      h += '</tr></thead>';
+    }
+    h += '<tbody>';
+    rows.forEach(function (r) {
+      let cls = '';
+      if (r && r.cls) { cls = ' class="' + r.cls + '"'; r = r.cells; }
+      h += '<tr' + cls + '>';
+      r.forEach(function (c, i) {
+        if (i === 0) h += '<th scope="row">' + c + '</th>';
+        else h += '<td class="r">' + c + '</td>';
+      });
+      h += '</tr>';
+    });
+    return h + '</tbody></table></div>';
+  }
+
+  function parseAnswer(raw) {
+    if (raw === null || raw === undefined) return NaN;
+    let s = String(raw).trim().toLowerCase();
+    if (!s) return NaN;
+    let neg = false;
+    if (/^\(.*\)$/.test(s)) { neg = true; s = s.slice(1, -1); }
+    s = s.replace(/[−–]/g, '-');
+    if (s.charAt(0) === '-') { neg = true; s = s.slice(1); }
+    s = s.replace(/[\$,\s]/g, '').replace(/%$/, '');
+    s = s.replace(/(units?|days?|times|x|shares?|batches|hours|hrs|years?|yrs?|dollars)$/, '');
+    if (s.charAt(0) === '-') { neg = true; s = s.slice(1); }
+    if (!/^[0-9]*\.?[0-9]+$|^[0-9]+\.$/.test(s)) return NaN;
+    const v = parseFloat(s);
+    return neg ? -v : v;
+  }
+
+  function isCorrectNumber(step, raw) {
+    const u = parseAnswer(raw);
+    if (!isFinite(u)) return false;
+    const a = step.ans;
+    const dec = step.dec || 0;
+    const rel = (step.tol === undefined) ? 0.003 : step.tol;
+    const absTol = 0.5 * Math.pow(10, -dec) + 1e-9;
+    const ok = function (v) { return Math.abs(v - a) <= Math.max(absTol, rel * Math.abs(a)); };
+    if (ok(u)) return true;
+    if (step.unit === '%' && Math.abs(u) <= 1.5 && Math.abs(a) > 1.5 && ok(u * 100)) return true;
+    return false;
+  }
+
+  function fmtAnswer(step) {
+    const d = step.dec || 0;
+    switch (step.unit) {
+      case '$': return money(step.ans, d);
+      case '%': return pct(step.ans, d);
+      case 'x': return num(step.ans, d) + 'x';
+      case 'days': return num(step.ans, d) + ' days';
+      case 'units': return num(step.ans, d) + ' units';
+      default: return num(step.ans, d) + (step.suffix ? ' ' + step.suffix : '');
+    }
+  }
+
+
+  /* step builders */
+  function ns(q, short, ans, unit, dec, hint, sol, extra) {
+    var o = { q: '<p>' + q + '</p>', short: short, ans: ans, unit: unit || '', dec: dec || 0, hint: hint, sol: sol };
+    if (extra) { for (var k in extra) o[k] = extra[k]; }
+    return o;
+  }
+  function cs(q, short, choices, correct, hint, sol) {
+    return { q: '<p>' + q + '</p>', short: short, choices: choices, correct: correct, hint: hint, sol: sol };
+  }
+  /* shuffle choices but keep track of the correct one */
+  function csr(R, q, short, choices, correctIdx, hint, sol) {
+    var order = R.shuffle(choices.map(function (c, i) { return i; }));
+    return cs(q, short, order.map(function (i) { return choices[i]; }), order.indexOf(correctIdx), hint, sol);
+  }
+
+  root.TutorLib = { sgn: sgn, ns: ns, cs: cs, csr: csr, makeRNG: makeRNG, COMPANIES: COMPANIES, num: num, money: money, pct: pct, esc: esc, table: table, parseAnswer: parseAnswer, isCorrectNumber: isCorrectNumber, fmtAnswer: fmtAnswer };
+})(typeof window !== 'undefined' ? window : globalThis);
+
+</script>
+<script>
+(function () {
+  var L = window.TutorLib, $ = L.money, N = L.num, P = L.pct, T = L.table, ns = L.ns, cs = L.cs, csr = L.csr, G = L.sgn;
+  function co(R) { return R.pick(L.COMPANIES); }
+  function fmt(n) { return n.toLocaleString('en-US'); }
+
+  var BEH = ['Variable', 'Fixed', 'Mixed', 'Step'];
+  var BP = [
+    ['Direct materials used in production (total changes in proportion to units made)', 0, 'Total cost changes in direct proportion to activity: <strong>variable</strong>.'],
+    ['Straight-line depreciation on a factory building', 1, 'Total stays constant as volume changes: <strong>fixed</strong>.'],
+    ['Annual rent on the factory', 1, 'Rent does not change with short-run volume: <strong>fixed</strong>.'],
+    ['A sales representative paid a monthly salary plus a commission on each sale', 2, 'A fixed salary plus a variable commission: <strong>mixed</strong>.'],
+    ['A utility bill with a monthly connection charge plus a charge per kilowatt hour', 2, 'Fixed charge plus variable charge: <strong>mixed</strong>.'],
+    ['One supervisor is needed for each 500 units of output; more supervisors are hired as output grows', 3, 'Constant within a range, then jumps to a higher level: <strong>step</strong>.'],
+    ['Packaging costs per unit shipped', 0, 'Total changes in proportion to units: <strong>variable</strong>.'],
+    ['Sales commissions equal to 5% of sales', 0, 'Total moves in proportion to sales: <strong>variable</strong>.'],
+    ['An additional inspection station that must be added for every 2,000 units produced', 3, 'Cost shifts up in chunks as activity passes each range: <strong>step</strong>.'],
+    ['Insurance on factory equipment', 1, 'Does not respond to volume: <strong>fixed</strong>.']
+  ];
+  function genBehavior(R) {
+    var name = co(R), picks = R.sample(BP, 5);
+    return {
+      intro: '<p>Cost behavior describes how a cost changes, in total, when activity changes. <strong>' + name + '</strong> wants to classify its costs as <strong>variable</strong>, <strong>fixed</strong>, <strong>mixed</strong>, or <strong>step</strong>.</p>',
+      steps: picks.map(function (p, i) { return cs('How does this cost behave? <em>' + p[0] + '</em>', 'Cost ' + (i + 1), BEH, p[1], 'Variable: proportional to activity. Fixed: no change. Mixed: both a fixed and a variable part. Step: constant in a range, then jumps.', p[2]); }),
+      takeaway: 'Variable costs are zero when activity is zero; fixed costs are unchanged in total; mixed costs have a positive amount at zero activity and rise linearly; step costs jump when activity leaves a range.'
+    };
+  }
+
+  function genTotalAvg(R) {
+    var name = co(R), fixed = R.step(2000, 9000, 500), vc = R.step(6, 30, 1) / 2 * 2 / 1;
+    vc = R.step(8, 40, 1) / 2; var q1 = R.step(100, 300, 50), q2 = q1 + R.step(100, 250, 50);
+    var tc1 = fixed + vc * q1, tc2 = fixed + vc * q2;
+    var avg1 = tc1 / q1, avg2 = tc2 / q2;
+    return {
+      intro: '<p><strong>' + name + '</strong> repairs devices. Each month it incurs <strong>' + $(fixed) + '</strong> in fixed costs (rent and depreciation) and <strong>' + $(vc, 2) + '</strong> of variable cost (labor and parts) per repair.</p>',
+      takeaway: 'Total cost = fixed costs + (variable cost per unit &times; units). Variable cost per unit stays the same, but average cost per unit falls as volume rises because fixed costs are spread over more units.',
+      steps: [
+        ns('What is the <strong>total cost</strong> of ' + fmt(q1) + ' repairs?', 'Total cost', tc1, '$', 0, 'Total cost = fixed costs + variable cost per repair &times; repairs.', $(fixed) + ' + (' + $(vc, 2) + ' &times; ' + fmt(q1) + ') = <strong>' + $(tc1) + '</strong>.', { tol: 0 }),
+        ns('What is the <strong>average cost per repair</strong> at ' + fmt(q1) + ' repairs? Round to two decimals.', 'Average cost per repair', avg1, '$', 2, 'Divide total cost by the number of repairs.', $(tc1) + ' &divide; ' + fmt(q1) + ' = <strong>' + $(avg1, 2) + '</strong>.', { tol: 0.005 }),
+        ns('What is the <strong>total cost</strong> of ' + fmt(q2) + ' repairs?', 'Total cost', tc2, '$', 0, 'Fixed costs stay the same; only variable cost changes.', $(fixed) + ' + (' + $(vc, 2) + ' &times; ' + fmt(q2) + ') = <strong>' + $(tc2) + '</strong>.', { tol: 0 }),
+        ns('What is the <strong>average cost per repair</strong> at ' + fmt(q2) + ' repairs? Round to two decimals.', 'Average cost per repair', avg2, '$', 2, 'Divide total cost by the number of repairs.', $(tc2) + ' &divide; ' + fmt(q2) + ' = <strong>' + $(avg2, 2) + '</strong>.', { tol: 0.005 }),
+        cs('As repairs increase, what happens to the <strong>variable cost per repair</strong> and to the <strong>average cost per repair</strong>?', 'Behavior per unit', ['Both stay constant', 'Variable cost per repair stays constant; average cost per repair falls', 'Variable cost per repair falls; average cost per repair stays constant', 'Both rise'], 1, 'Think about which cost is spread over more units.', 'Variable cost per unit is constant at ' + $(vc, 2) + '. Average cost falls (' + $(avg1, 2) + ' to ' + $(avg2, 2) + ') because fixed costs are spread over more repairs.')
+      ]
+    };
+  }
+
+  function genHighLow(R) {
+    var name = co(R), b = R.step(15, 60, 1) / 10 * 1, a = R.step(40, 120, 5) * 100;
+    b = Math.round(b * 10) / 10 + 0;
+    var months = ['January', 'February', 'March', 'April', 'May', 'June'];
+    var units = [], used = {};
+    while (units.length < 6) { var u = R.step(80, 140, 1) * 100; if (!used[u]) { used[u] = 1; units.push(u); } }
+    var costs = units.map(function (u) { return Math.round(a + b * u); });
+    var hi = 0, lo = 0; units.forEach(function (u, i) { if (u > units[hi]) hi = i; if (u < units[lo]) lo = i; });
+    var vcu = (costs[hi] - costs[lo]) / (units[hi] - units[lo]);
+    var vcr = Math.round(vcu * 100) / 100;
+    var fixed = costs[hi] - vcr * units[hi];
+    var fixedLo = costs[lo] - vcr * units[lo];
+    var plan = R.step(95, 135, 1) * 100, pred = fixed + vcr * plan;
+    return {
+      intro: '<p><strong>' + name + '</strong> produces cereal boxes. Monthly activity and total production costs follow.</p>' + T(['Month', 'Boxes produced', 'Total cost'], months.map(function (m, i) { return [m, fmt(units[i]), $(costs[i])]; })) + '<p>Use the <strong>high-low method</strong>.</p>',
+      takeaway: 'High-low: variable cost per unit = change in cost &divide; change in activity, using the highest and lowest activity levels. Then fixed cost = total cost &minus; variable cost at either point.',
+      steps: [
+        cs('Which two months are used in the high-low method?', 'High and low months', [months[hi] + ' (high) and ' + months[lo] + ' (low)', months[lo] + ' (high) and ' + months[hi] + ' (low)', 'The months with the highest and lowest total cost, whichever they are', 'The first and last months'], 0, 'The method uses the highest and lowest <em>activity</em> levels.', 'Highest activity is ' + months[hi] + ' (' + fmt(units[hi]) + ' boxes); lowest is ' + months[lo] + ' (' + fmt(units[lo]) + ').'),
+        ns('What is the <strong>change in total cost</strong> between the high and low activity levels?', 'Change in cost', costs[hi] - costs[lo], '$', 0, 'High-activity cost minus low-activity cost.', $(costs[hi]) + ' &minus; ' + $(costs[lo]) + ' = <strong>' + $(costs[hi] - costs[lo]) + '</strong>.', { tol: 0 }),
+        ns('What is the <strong>variable cost per box</strong>? Round to two decimals.', 'Variable cost per box', vcu, '$', 2, 'Change in cost divided by change in boxes.', $(costs[hi] - costs[lo]) + ' &divide; (' + fmt(units[hi]) + ' &minus; ' + fmt(units[lo]) + ') = <strong>' + $(vcu, 2) + '</strong>.', { tol: 0.005 }),
+        ns('Using the variable cost per box (rounded to two decimals) and the high-activity month, what are the <strong>total monthly fixed costs</strong>?', 'Fixed costs', fixed, '$', 0, 'Fixed cost = total cost &minus; (variable cost per box &times; boxes).', $(costs[hi]) + ' &minus; (' + $(vcr, 2) + ' &times; ' + fmt(units[hi]) + ') = <strong>' + $(fixed) + '</strong>.', { tol: 0.005 }),
+        ns('Next month, ' + name + ' expects to produce <strong>' + fmt(plan) + '</strong> boxes. Using your cost equation, what is the <strong>predicted total cost</strong>?', 'Predicted cost', pred, '$', 0, 'Total cost = fixed costs + variable cost per box &times; boxes.', $(fixed) + ' + (' + $(vcr, 2) + ' &times; ' + fmt(plan) + ') = <strong>' + $(pred) + '</strong>.', { tol: 0.005 })
+      ]
+    };
+  }
+
+  var DI = ['Direct', 'Indirect'];
+  var DP = [
+    ['Sugar in a cereal manufacturer&rsquo;s product (cost object: a box of cereal)', 0], ['Wages of an assembly worker building the product', 0], ['Factory utilities (cost object: one product)', 1], ['Common-use machinery depreciation shared by many products', 1],
+    ['The salary of the production manager for one specific product line (cost object: that product line)', 0], ['Factory insurance covering all products', 1]
+  ];
+  function genDI(R) {
+    var name = co(R), picks = R.sample(DP, 4);
+    var steps = picks.map(function (p, i) { return cs('For <strong>' + name + '</strong>, is this a direct or indirect cost of the product? <em>' + p[0] + '</em>', 'Cost ' + (i + 1), DI, p[1], 'A direct cost is easily and directly traceable to the product; an indirect cost is shared by several products.', p[1] === 0 ? 'Easily traced to the product: <strong>direct</strong>.' : 'Shared across products and not easily traced: <strong>indirect</strong> (overhead).'); });
+    var v = R.pick([['sugar', 'Variable and direct'], ['utilities', 'Variable and indirect'], ['the production manager&rsquo;s salary', 'Fixed and direct'], ['common-use machinery depreciation', 'Fixed and indirect']]);
+    steps.push(cs('Cost behavior (variable/fixed) and traceability (direct/indirect) are separate classifications. Which combination best describes <strong>' + v[0] + '</strong> for a cereal product?', 'Combine the two', ['Variable and direct', 'Variable and indirect', 'Fixed and direct', 'Fixed and indirect'], ['Variable and direct', 'Variable and indirect', 'Fixed and direct', 'Fixed and indirect'].indexOf(v[1]), 'Ask two questions: does the total change with volume, and can it be traced to this product?', 'Answer: <strong>' + v[1] + '</strong>.'));
+    return { intro: '<p>Costs can be classified by <em>behavior</em> (variable or fixed) and by <em>traceability</em> (direct or indirect). Manufacturing costs are direct materials, direct labor, and manufacturing overhead.</p>', steps: steps, takeaway: 'Any cost can be a combination of variable or fixed and direct or indirect. Different purposes use different classifications: break-even analysis uses variable/fixed; full product cost uses direct/indirect.' };
+  }
+
+  window.MODULE = {
+    num: 15,
+    title: 'Cost Definitions, Behavior, and Estimation',
+    subtitle: 'Variable, fixed, mixed, and step costs; total and average cost; the high-low method; and direct vs. indirect costs.',
+    types: [
+      { label: 'Cost Behavior Patterns', desc: 'Classify costs as variable, fixed, mixed, or step.', gen: genBehavior },
+      { label: 'Total and Average Cost', desc: 'Compute total and average cost per unit at two activity levels.', gen: genTotalAvg },
+      { label: 'High-Low Cost Estimation', desc: 'Estimate variable and fixed costs, then predict total cost.', gen: genHighLow },
+      { label: 'Direct vs. Indirect Costs', desc: 'Trace costs to a product and combine with cost behavior.', gen: genDI }
+    ]
+  };
+})();
+
+</script>
+<script>
+/* MBA 623 tutor UI engine */
+(function () {
+  'use strict';
+  var L = window.TutorLib;
+  var M = window.MODULE;
+  var app = document.getElementById('app');
+  var state = null;
+
+  var PRAISE = ['Correct! Nice work.', 'Exactly right!', 'Well done, that is correct.', 'Great job, you got it!', 'Yes, that is right. Excellent!', 'Spot on!', 'That is correct. Keep it up!', 'Right on target!'];
+  var WRONG1 = ['Not quite, but you are close to a good approach. Here is a hint.', 'That is not the answer we are looking for, but no worries. Here is a hint.', 'Not quite right. Take a look at this hint and try once more.', 'Almost there, but that is not it. Use this hint and give it another try.'];
+  var WRONG2 = ['That is still not it, and that is okay. Here is the solution for this step.', 'Not this time, but this is how you learn. Here is the solution.', 'Still not quite. Let us walk through the solution together.'];
+
+  function el(html) { var d = document.createElement('div'); d.innerHTML = html; return d.firstElementChild; }
+  function rndFrom(arr, i) { return arr[i % arr.length]; }
+
+  /* ---------- menu ---------- */
+  function renderMenu() {
+    state = null;
+    var h = '<h2 id="menu-h">Choose a problem type</h2>';
+    h += '<p class="lead">Pick the kind of problem you want to practice. You will get a new scenario with new numbers each time, and the tutor walks you through it one step at a time. On every step you get one hint and one more try before the solution appears.</p>';
+    h += '<ul class="menu" aria-labelledby="menu-h">';
+    M.types.forEach(function (t, i) {
+      h += '<li><button type="button" class="menu-btn" data-type="' + i + '"><span class="menu-title">' + t.label + '</span><span class="menu-desc">' + t.desc + '</span><span class="menu-go" aria-hidden="true">Start &rarr;</span></button></li>';
+    });
+    h += '</ul>';
+    app.innerHTML = h;
+    var btns = app.querySelectorAll('.menu-btn');
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].addEventListener('click', function (e) { startProblem(parseInt(e.currentTarget.getAttribute('data-type'), 10)); });
+    }
+    document.title = 'Module ' + M.num + ' Tutor | MBA 623';
+  }
+
+  /* ---------- problem ---------- */
+  function startProblem(typeIdx) {
+    var seed = (Math.floor(Math.random() * 4294967295) ^ Date.now()) >>> 0;
+    var R = L.makeRNG(seed);
+    var t = M.types[typeIdx];
+    var prob = t.gen(R, L);
+    state = { typeIdx: typeIdx, type: t, prob: prob, i: 0, attempt: 0, log: [], first: 0, second: 0, shown: 0 };
+    renderProblem(true);
+  }
+
+  function renderHeader() {
+    var p = state.prob;
+    var h = '<div class="toolbar"><button type="button" class="link-btn" id="to-menu">&larr; Choose a different problem type</button></div>';
+    h += '<h2 id="prob-h" tabindex="-1">' + state.type.label + '</h2>';
+    h += '<section class="scenario" aria-labelledby="scen-h"><h3 id="scen-h">The problem</h3>' + p.intro + '</section>';
+    return h;
+  }
+
+  function renderLog() {
+    if (!state.log.length) return '';
+    var h = '<section class="worklog" aria-labelledby="log-h"><h3 id="log-h">Your work so far</h3><ol>';
+    state.log.forEach(function (e) {
+      h += '<li><span class="log-q">' + e.q + '</span><span class="log-a ' + e.cls + '"><span class="badge">' + e.badge + '</span> ' + e.text + '</span></li>';
+    });
+    return h + '</ol></section>';
+  }
+
+  function renderProblem(focusHeading) {
+    var p = state.prob, s = p.steps[state.i], n = p.steps.length;
+    var h = renderHeader();
+    h += renderLog();
+    h += '<section class="step" aria-labelledby="step-h">';
+    h += '<p class="stepno" id="step-h">Step ' + (state.i + 1) + ' of ' + n + '</p>';
+    h += '<div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="' + n + '" aria-valuenow="' + state.i + '" aria-label="Progress"><span style="width:' + Math.round(100 * state.i / n) + '%"></span></div>';
+    h += '<div class="q" id="q">' + s.q + '</div>';
+    h += '<form id="f" novalidate>';
+    if (s.choices) {
+      h += '<fieldset class="choices"><legend class="sr-only">Choose one answer</legend>';
+      s.choices.forEach(function (c, k) {
+        h += '<label class="choice"><input type="radio" name="c" value="' + k + '"><span>' + c + '</span></label>';
+      });
+      h += '</fieldset>';
+    } else {
+      h += '<div class="ans-row"><label class="sr-only" for="ans">Your answer</label>';
+      if (s.unit === '$') h += '<span class="aff" aria-hidden="true">$</span>';
+      h += '<input id="ans" name="ans" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" aria-describedby="q">';
+      if (s.unit === '%') h += '<span class="aff" aria-hidden="true">%</span>';
+      else if (s.unit === 'x') h += '<span class="aff" aria-hidden="true">times</span>';
+      else if (s.unit === 'days') h += '<span class="aff" aria-hidden="true">days</span>';
+      else if (s.unit === 'units') h += '<span class="aff" aria-hidden="true">units</span>';
+      else if (s.suffix) h += '<span class="aff" aria-hidden="true">' + s.suffix + '</span>';
+      h += '</div>';
+      if (s.note) h += '<p class="fmt">' + s.note + '</p>';
+    }
+    h += '<div class="actions"><button type="submit" class="primary" id="check">Check my answer</button></div>';
+    h += '</form>';
+    h += '<div id="fb" class="fb" role="status" aria-live="polite"></div>';
+    h += '</section>';
+    app.innerHTML = h;
+    document.getElementById('to-menu').addEventListener('click', renderMenu);
+    document.getElementById('f').addEventListener('submit', onCheck);
+    if (focusHeading) { var hd = document.getElementById('prob-h'); hd.focus(); window.scrollTo(0, 0); }
+    else { var inp = document.getElementById('ans') || document.querySelector('input[name=c]'); if (inp) inp.focus(); }
+  }
+
+  function currentUserAnswer(s) {
+    if (s.choices) {
+      var r = document.querySelector('input[name=c]:checked');
+      return r ? parseInt(r.value, 10) : null;
+    }
+    return document.getElementById('ans').value;
+  }
+
+  function onCheck(ev) {
+    ev.preventDefault();
+    var s = state.prob.steps[state.i];
+    var ua = currentUserAnswer(s);
+    var fb = document.getElementById('fb');
+    var correct;
+    if (s.choices) {
+      if (ua === null) { fb.className = 'fb info'; fb.innerHTML = '<p>Please choose an answer first.</p>'; return; }
+      correct = (ua === s.correct);
+    } else {
+      if (!String(ua).trim() || !isFinite(L.parseAnswer(ua))) { fb.className = 'fb info'; fb.innerHTML = '<p>Please enter a number (for example 1,250 or 12.5). Do not include words.</p>'; document.getElementById('ans').focus(); return; }
+      correct = L.isCorrectNumber(s, ua);
+    }
+    state.attempt++;
+    var correctText = s.choices ? s.choices[s.correct] : L.fmtAnswer(s);
+    var yourText = s.choices ? s.choices[ua] : L.esc(String(ua).trim());
+    var qShort = s.short || s.q;
+    if (correct) {
+      if (state.attempt === 1) state.first++; else state.second++;
+      fb.className = 'fb good';
+      fb.innerHTML = '<p class="fb-h"><span class="badge ok">Correct</span> ' + rndFrom(PRAISE, state.i + state.prob.steps.length) + '</p>' + (s.sol ? '<div class="sol"><strong>Why:</strong> ' + s.sol + '</div>' : '') + '<p class="ans-line">Answer: <strong>' + correctText + '</strong></p>';
+      state.log.push({ q: qShort, text: correctText, cls: 'good', badge: state.attempt === 1 ? 'Correct' : 'Correct (2nd try)' });
+      lockAndNext();
+    } else if (state.attempt === 1) {
+      fb.className = 'fb warn';
+      fb.innerHTML = '<p class="fb-h"><span class="badge no">Not yet</span> ' + rndFrom(WRONG1, state.i) + '</p><div class="hint"><strong>Hint:</strong> ' + s.hint + '</div>';
+      document.getElementById('check').textContent = 'Try again';
+      var inp = document.getElementById('ans'); if (inp) { inp.select(); inp.focus(); }
+    } else {
+      state.shown++;
+      fb.className = 'fb bad';
+      fb.innerHTML = '<p class="fb-h"><span class="badge no">Solution</span> ' + rndFrom(WRONG2, state.i) + '</p><div class="sol">' + s.sol + '</div><p class="ans-line">Answer: <strong>' + correctText + '</strong></p>';
+      state.log.push({ q: qShort, text: correctText + ' <span class="yours">(you entered ' + yourText + ')</span>', cls: 'bad', badge: 'Solution shown' });
+      lockAndNext();
+    }
+  }
+
+  function lockAndNext() {
+    var f = document.getElementById('f');
+    var ctrls = f.querySelectorAll('input,button');
+    for (var i = 0; i < ctrls.length; i++) ctrls[i].disabled = true;
+    var last = state.i === state.prob.steps.length - 1;
+    var btn = el('<div class="actions"><button type="button" class="primary" id="next">' + (last ? 'See my results' : 'Next step &rarr;') + '</button></div>');
+    document.getElementById('fb').appendChild(btn);
+    var nb = document.getElementById('next');
+    nb.addEventListener('click', function () {
+      state.i++; state.attempt = 0;
+      if (state.i >= state.prob.steps.length) renderSummary(); else renderProblem(false);
+    });
+    nb.focus();
+  }
+
+  function renderSummary() {
+    var n = state.prob.steps.length;
+    var perfect = state.first === n;
+    var msg;
+    if (perfect) msg = 'Outstanding! You got every step right on the first try.';
+    else if (state.shown === 0) msg = 'Nice work! You solved every step, and you learned from the hints along the way.';
+    else if (state.first + state.second >= n / 2) msg = 'Good effort! You solved most of this problem. Review the steps marked "Solution shown" and try a new problem to lock it in.';
+    else msg = 'Thanks for sticking with it. Review the solutions below, look back at the module slides, and try a fresh problem. Practice makes this much easier.';
+    var h = renderHeader();
+    h += '<section class="summary" aria-labelledby="sum-h"><h3 id="sum-h" tabindex="-1">Your results</h3>';
+    h += '<p class="big">' + msg + '</p>';
+    h += '<ul class="score"><li><strong>' + state.first + '</strong> correct on the first try</li><li><strong>' + state.second + '</strong> correct on the second try</li><li><strong>' + state.shown + '</strong> solution' + (state.shown === 1 ? '' : 's') + ' shown</li></ul>';
+    if (state.prob.takeaway) h += '<div class="takeaway"><strong>Key takeaway:</strong> ' + state.prob.takeaway + '</div>';
+    h += '</section>';
+    h += renderLog();
+    h += '<div class="actions row"><button type="button" class="primary" id="again">Try another problem like this</button><button type="button" class="secondary" id="menu2">Choose a different problem type</button></div>';
+    app.innerHTML = h;
+    document.getElementById('to-menu').addEventListener('click', renderMenu);
+    document.getElementById('menu2').addEventListener('click', renderMenu);
+    var ti = state.typeIdx;
+    document.getElementById('again').addEventListener('click', function () { startProblem(ti); });
+    var sh = document.getElementById('sum-h'); sh.focus(); window.scrollTo(0, 0);
+  }
+
+  document.getElementById('mod-title').textContent = M.title;
+  document.getElementById('mod-sub').textContent = M.subtitle;
+  document.getElementById('mod-num').textContent = 'Module ' + M.num;
+  renderMenu();
+})();
+
+</script>
+</body>
+</html>

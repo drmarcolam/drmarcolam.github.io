@@ -1,0 +1,593 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Module 14 Tutor: Managerial Accounting: Tools for Decision Making | MBA 623</title>
+<meta name="description" content="Interactive step-by-step practice tutor for MBA 623, Module 14: Managerial Accounting: Tools for Decision Making.">
+<style>
+:root{--bg:#f6f4ef;--card:#ffffff;--ink:#1d2433;--muted:#4a5568;--line:#d9d4c7;--brand:#4b2e83;--brand-ink:#ffffff;--brand-soft:#ece6f7;--gold:#8a5a00;--good:#12633a;--good-bg:#e5f4ea;--warn:#7a4a00;--warn-bg:#fff2d6;--bad:#8c1d1d;--bad-bg:#fbe7e7;--info-bg:#e8eef9;--focus:#0b57d0;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#14161c;--card:#1d212b;--ink:#eef0f5;--muted:#b6bdcc;--line:#363c4b;--brand:#b9a2ee;--brand-ink:#16121f;--brand-soft:#2a2340;--gold:#f0c46a;--good:#7fd9a2;--good-bg:#173626;--warn:#f3c978;--warn-bg:#3a2d12;--bad:#ff9d9d;--bad-bg:#3d1c1c;--info-bg:#1f2a44;--focus:#8ab4ff;}}
+*{box-sizing:border-box}
+html{font-size:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.55;font-size:1.0625rem}
+.skip{position:absolute;left:-999px;top:0;background:var(--brand);color:var(--brand-ink);padding:.6rem 1rem;z-index:10}
+.skip:focus{left:8px;top:8px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+header.site{background:var(--brand);color:var(--brand-ink);padding:1.1rem 1rem 1.4rem}
+header.site .wrap{max-width:60rem;margin:0 auto}
+header.site a{color:var(--brand-ink);font-weight:600}
+.eyebrow{margin:.5rem 0 0;font-size:.95rem;letter-spacing:.04em;text-transform:uppercase;opacity:.92}
+header.site h1{margin:.15rem 0 .2rem;font-size:1.7rem;line-height:1.2}
+header.site p.sub{margin:0;opacity:.95}
+main{max-width:60rem;margin:0 auto;padding:1.25rem 1rem 3rem}
+h2{font-size:1.45rem;margin:.2rem 0 .6rem;color:var(--ink)}
+h3{font-size:1.1rem;margin:.1rem 0 .5rem}
+.lead{color:var(--muted);max-width:46rem}
+ul.menu{list-style:none;margin:1rem 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(17rem,1fr));gap:.85rem}
+.menu-btn{width:100%;height:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-left:6px solid var(--brand);border-radius:10px;padding:.9rem 1rem;color:var(--ink);font:inherit;cursor:pointer;display:flex;flex-direction:column;gap:.35rem}
+.menu-btn:hover{box-shadow:0 2px 10px rgba(0,0,0,.15);border-color:var(--brand)}
+.menu-title{font-weight:700;font-size:1.08rem}
+.menu-desc{color:var(--muted);font-size:.95rem}
+.menu-go{margin-top:auto;color:var(--brand);font-weight:700;font-size:.95rem}
+.toolbar{margin-bottom:.5rem}
+.link-btn{background:none;border:0;color:var(--brand);font:inherit;font-weight:600;text-decoration:underline;cursor:pointer;padding:.25rem 0}
+.scenario,.step,.worklog,.summary{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:1rem 1.1rem;margin:0 0 1rem}
+.scenario{border-left:6px solid var(--gold)}
+.scenario p{margin:.3rem 0}
+.step{border-left:6px solid var(--brand)}
+.stepno{margin:0 0 .35rem;font-weight:700;color:var(--brand)}
+.bar{height:8px;background:var(--brand-soft);border-radius:6px;overflow:hidden;margin:0 0 .8rem}
+.bar span{display:block;height:100%;background:var(--brand)}
+.q{font-size:1.1rem;margin:0 0 .7rem}
+.q p{margin:.3rem 0}
+.ans-row{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+.aff{font-weight:700;color:var(--muted)}
+input[type=text]{font:inherit;font-size:1.15rem;padding:.55rem .7rem;border:2px solid var(--muted);border-radius:8px;background:var(--bg);color:var(--ink);width:13rem;max-width:100%}
+.fmt{margin:.4rem 0 0;color:var(--muted);font-size:.93rem}
+fieldset.choices{border:0;padding:0;margin:0;display:grid;gap:.5rem}
+.choice{display:flex;gap:.65rem;align-items:flex-start;padding:.6rem .75rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);cursor:pointer}
+.choice:hover{border-color:var(--brand)}
+.choice input{margin-top:.3rem;width:1.1rem;height:1.1rem;flex:none}
+.actions{margin-top:.9rem}
+.actions.row{display:flex;gap:.75rem;flex-wrap:wrap}
+button.primary,button.secondary{font:inherit;font-weight:700;border-radius:8px;padding:.65rem 1.2rem;cursor:pointer;border:2px solid var(--brand)}
+button.primary{background:var(--brand);color:var(--brand-ink)}
+button.secondary{background:transparent;color:var(--brand)}
+button:disabled{opacity:.55;cursor:not-allowed}
+.fb{margin-top:.9rem}
+.fb.good,.fb.warn,.fb.bad,.fb.info{padding:.8rem 1rem;border-radius:8px;border:1px solid var(--line)}
+.fb.good{background:var(--good-bg);border-color:var(--good)}
+.fb.warn{background:var(--warn-bg);border-color:var(--warn)}
+.fb.bad{background:var(--bad-bg);border-color:var(--bad)}
+.fb.info{background:var(--info-bg)}
+.fb p{margin:.25rem 0}
+.fb-h{font-weight:600}
+.badge{display:inline-block;font-size:.8rem;font-weight:800;padding:.1rem .5rem;border-radius:99px;border:1.5px solid currentColor;margin-right:.35rem;vertical-align:.05em}
+.badge.ok{color:var(--good)}.badge.no{color:var(--bad)}
+.fb.warn .badge.no{color:var(--warn)}
+.hint,.sol{margin:.4rem 0}
+.ans-line{margin-top:.5rem}
+.worklog ol{margin:.2rem 0 0;padding-left:1.3rem}
+.worklog li{margin:.45rem 0}
+.log-q{display:block;color:var(--muted);font-size:.95rem}
+.log-a.good{color:var(--good)}
+.log-a.bad{color:var(--bad)}
+.log-a .badge{font-size:.72rem}
+.yours{color:var(--muted)}
+.summary .big{font-size:1.15rem;font-weight:600}
+.score{list-style:none;padding:0;margin:.5rem 0;display:flex;gap:1.4rem;flex-wrap:wrap}
+.score strong{font-size:1.4rem;color:var(--brand)}
+.takeaway{background:var(--brand-soft);border-radius:8px;padding:.7rem .9rem;margin-top:.6rem}
+.tbl-wrap{overflow-x:auto;margin:.6rem 0}
+table.data{border-collapse:collapse;min-width:16rem;font-size:.98rem}
+table.data caption{text-align:left;font-weight:700;padding-bottom:.3rem}
+table.data th,table.data td{border:1px solid var(--line);padding:.35rem .65rem;text-align:left;vertical-align:top}
+table.data thead th{background:var(--brand-soft)}
+table.data .r,table.data td.r{text-align:right;font-variant-numeric:tabular-nums}
+table.data tr.tot th,table.data tr.tot td{font-weight:700;border-top:2px solid var(--ink)}
+table.data tbody th{font-weight:500}
+.eq{display:inline-block;background:var(--brand-soft);padding:.1rem .5rem;border-radius:6px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.95em}
+footer.site{max-width:60rem;margin:0 auto;padding:1rem;color:var(--muted);border-top:1px solid var(--line);font-size:.92rem}
+@media (max-width:30rem){header.site h1{font-size:1.4rem}input[type=text]{width:100%}}
+@media print{header.site{background:#fff;color:#000}.menu-go,.toolbar,.actions{display:none}}
+
+</style>
+</head>
+<body>
+<a class="skip" href="#app">Skip to main content</a>
+<header class="site">
+  <div class="wrap">
+    <a href="https://drmarcolam.github.io/courses/mba-623-tutors.html">&larr; Back to MBA 623 Tutors</a>
+    <p class="eyebrow">MBA 623 &middot; <span id="mod-num">Module 14</span></p>
+    <h1><span id="mod-title">Managerial Accounting: Tools for Decision Making</span> Tutor</h1>
+    <p class="sub" id="mod-sub">Financial vs. managerial accounting, strategy, performance reports, the value chain, business trends, and ethics.</p>
+  </div>
+</header>
+<main id="app" tabindex="-1"></main>
+<footer class="site">MBA 623 &middot; Western Carolina University &middot; Practice problems use fictional companies and randomly generated numbers. Nothing you enter here is saved or graded.</footer>
+<script>
+/* MBA 623 tutor library: random helpers, formatting, answer checking (no DOM) */
+(function (root) {
+  'use strict';
+  function makeRNG(seed) {
+    let a = seed >>> 0;
+    const next = function () {
+      a = (a + 0x6D2B79F5) | 0;
+      let t = Math.imul(a ^ (a >>> 15), 1 | a);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+    const R = {
+      next: next,
+      int: function (lo, hi) { return lo + Math.floor(next() * (hi - lo + 1)); },
+      step: function (lo, hi, s) { return lo + s * Math.floor(next() * ((hi - lo) / s + 1)); },
+      pick: function (arr) { return arr[Math.floor(next() * arr.length)]; },
+      chance: function (p) { return next() < p; },
+      shuffle: function (arr) {
+        const b = arr.slice();
+        for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(next() * (i + 1)); const t = b[i]; b[i] = b[j]; b[j] = t; }
+        return b;
+      },
+      sample: function (arr, n) { return R.shuffle(arr).slice(0, n); }
+    };
+    return R;
+  }
+
+  const COMPANIES = ['Alder Ridge Foods', 'Bluewater Outfitters', 'Cedar Point Instruments', 'Dunmore Apparel', 'Eastgate Medical', 'Fairhaven Home Goods', 'Granite Peak Tools', 'Harborview Software', 'Ironwood Furniture', 'Juniper Labs', 'Kestrel Logistics', 'Lakeshore Beverages', 'Maple Hollow Bakery', 'Northfield Electronics', 'Oakmont Pharmaceuticals', 'Pinecrest Sports', 'Quarry Lane Builders', 'Redstone Retail', 'Silverline Networks', 'Tamarack Outdoor', 'Union Square Coffee', 'Valley Forge Machining', 'Westbrook Toys', 'Yellowfin Seafood', 'Zephyr Cycles'];
+
+  function addCommas(s) { return s.replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+  function num(x, d) {
+    d = d || 0;
+    const neg = x < 0 && Math.round(Math.abs(x) * Math.pow(10, d)) !== 0;
+    const s = Math.abs(x).toFixed(d).split('.');
+    return (neg ? '-' : '') + addCommas(s[0]) + (s[1] ? '.' + s[1] : '');
+  }
+  function money(x, d) {
+    d = d || 0;
+    const s = num(Math.abs(x), d);
+    const isZero = Math.round(Math.abs(x) * Math.pow(10, d)) === 0;
+    return (x < 0 && !isZero) ? '($' + s + ')' : '$' + s;
+  }
+  function sgn(x, d) { return (x < 0 ? ' &minus; ' : ' + ') + money(Math.abs(x), d); }
+  function pct(x, d) { d = (d === undefined) ? 1 : d; return num(x, d) + '%'; }
+  function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+
+  /* table(headers, rows, opts) rows: array of arrays; first column left aligned, others right aligned */
+  function table(head, rows, opts) {
+    opts = opts || {};
+    let h = '<div class="tbl-wrap"><table class="data"' + (opts.caption ? '' : '') + '>';
+    if (opts.caption) h += '<caption>' + opts.caption + '</caption>';
+    if (head && head.length) {
+      h += '<thead><tr>';
+      head.forEach(function (c, i) { h += '<th scope="col"' + (i === 0 ? '' : ' class="r"') + '>' + c + '</th>'; });
+      h += '</tr></thead>';
+    }
+    h += '<tbody>';
+    rows.forEach(function (r) {
+      let cls = '';
+      if (r && r.cls) { cls = ' class="' + r.cls + '"'; r = r.cells; }
+      h += '<tr' + cls + '>';
+      r.forEach(function (c, i) {
+        if (i === 0) h += '<th scope="row">' + c + '</th>';
+        else h += '<td class="r">' + c + '</td>';
+      });
+      h += '</tr>';
+    });
+    return h + '</tbody></table></div>';
+  }
+
+  function parseAnswer(raw) {
+    if (raw === null || raw === undefined) return NaN;
+    let s = String(raw).trim().toLowerCase();
+    if (!s) return NaN;
+    let neg = false;
+    if (/^\(.*\)$/.test(s)) { neg = true; s = s.slice(1, -1); }
+    s = s.replace(/[−–]/g, '-');
+    if (s.charAt(0) === '-') { neg = true; s = s.slice(1); }
+    s = s.replace(/[\$,\s]/g, '').replace(/%$/, '');
+    s = s.replace(/(units?|days?|times|x|shares?|batches|hours|hrs|years?|yrs?|dollars)$/, '');
+    if (s.charAt(0) === '-') { neg = true; s = s.slice(1); }
+    if (!/^[0-9]*\.?[0-9]+$|^[0-9]+\.$/.test(s)) return NaN;
+    const v = parseFloat(s);
+    return neg ? -v : v;
+  }
+
+  function isCorrectNumber(step, raw) {
+    const u = parseAnswer(raw);
+    if (!isFinite(u)) return false;
+    const a = step.ans;
+    const dec = step.dec || 0;
+    const rel = (step.tol === undefined) ? 0.003 : step.tol;
+    const absTol = 0.5 * Math.pow(10, -dec) + 1e-9;
+    const ok = function (v) { return Math.abs(v - a) <= Math.max(absTol, rel * Math.abs(a)); };
+    if (ok(u)) return true;
+    if (step.unit === '%' && Math.abs(u) <= 1.5 && Math.abs(a) > 1.5 && ok(u * 100)) return true;
+    return false;
+  }
+
+  function fmtAnswer(step) {
+    const d = step.dec || 0;
+    switch (step.unit) {
+      case '$': return money(step.ans, d);
+      case '%': return pct(step.ans, d);
+      case 'x': return num(step.ans, d) + 'x';
+      case 'days': return num(step.ans, d) + ' days';
+      case 'units': return num(step.ans, d) + ' units';
+      default: return num(step.ans, d) + (step.suffix ? ' ' + step.suffix : '');
+    }
+  }
+
+
+  /* step builders */
+  function ns(q, short, ans, unit, dec, hint, sol, extra) {
+    var o = { q: '<p>' + q + '</p>', short: short, ans: ans, unit: unit || '', dec: dec || 0, hint: hint, sol: sol };
+    if (extra) { for (var k in extra) o[k] = extra[k]; }
+    return o;
+  }
+  function cs(q, short, choices, correct, hint, sol) {
+    return { q: '<p>' + q + '</p>', short: short, choices: choices, correct: correct, hint: hint, sol: sol };
+  }
+  /* shuffle choices but keep track of the correct one */
+  function csr(R, q, short, choices, correctIdx, hint, sol) {
+    var order = R.shuffle(choices.map(function (c, i) { return i; }));
+    return cs(q, short, order.map(function (i) { return choices[i]; }), order.indexOf(correctIdx), hint, sol);
+  }
+
+  root.TutorLib = { sgn: sgn, ns: ns, cs: cs, csr: csr, makeRNG: makeRNG, COMPANIES: COMPANIES, num: num, money: money, pct: pct, esc: esc, table: table, parseAnswer: parseAnswer, isCorrectNumber: isCorrectNumber, fmtAnswer: fmtAnswer };
+})(typeof window !== 'undefined' ? window : globalThis);
+
+</script>
+<script>
+(function () {
+  var L = window.TutorLib, $ = L.money, N = L.num, P = L.pct, T = L.table, ns = L.ns, cs = L.cs, csr = L.csr, G = L.sgn;
+  function co(R) { return R.pick(L.COMPANIES); }
+
+  /* helper: classification quiz built from a pool [text, answerIndex, explanation] */
+  function quiz(R, intro, pool, choices, count, qLead, takeaway, hint) {
+    var picks = R.sample(pool, count);
+    return {
+      intro: intro,
+      takeaway: takeaway,
+      steps: picks.map(function (p, i) {
+        return cs(qLead + ' <em>' + p[0] + '</em>', 'Item ' + (i + 1), choices, p[1], hint, p[2]);
+      })
+    };
+  }
+
+  /* A. Performance report */
+  function genPerf(R) {
+    var name = co(R);
+    var items = [['Direct materials', R.step(80, 220, 5) * 1000], ['Direct labor', R.step(50, 150, 5) * 1000], ['Manufacturing overhead', R.step(40, 120, 5) * 1000], ['Selling and administrative', R.step(30, 90, 5) * 1000]];
+    var acts, tries = 0;
+    do {
+      acts = items.map(function (it) { return Math.round(it[1] * (1 + R.step(-6, 8, 1) / 100) / 100) * 100; });
+      tries++;
+    } while (tries < 50 && !(acts.some(function (a, i) { return a > items[i][1]; }) && acts.some(function (a, i) { return a < items[i][1]; })));
+    var bt = items.reduce(function (s, it) { return s + it[1]; }, 0), at = acts.reduce(function (s, a) { return s + a; }, 0);
+    var dev = bt - at, pc = 100 * dev / bt;
+    var devs = items.map(function (it, i) { return it[1] - acts[i]; });
+    var worst = 0; devs.forEach(function (d, i) { if (d < devs[worst]) worst = i; });
+    var intro = '<p><strong>' + name + '</strong> compares its budgeted and actual costs for the month in a performance report.</p>' + T(['Cost', 'Budgeted', 'Actual'], items.map(function (it, i) { return [it[0], $(it[1]), $(acts[i])]; }));
+    return {
+      intro: intro,
+      takeaway: 'A performance report shows budgeted costs, actual costs, and the deviation. For costs, actual below budget is favorable and actual above budget is unfavorable. Percent deviation = deviation &divide; budget.',
+      steps: [
+        ns('What are the <strong>total budgeted costs</strong>?', 'Total budgeted costs', bt, '$', 0, 'Add the four budgeted amounts.', items.map(function (it) { return $(it[1]); }).join(' + ') + ' = <strong>' + $(bt) + '</strong>.', { tol: 0 }),
+        ns('What are the <strong>total actual costs</strong>?', 'Total actual costs', at, '$', 0, 'Add the four actual amounts.', acts.map(function (a) { return $(a); }).join(' + ') + ' = <strong>' + $(at) + '</strong>.', { tol: 0 }),
+        ns('What is the <strong>total deviation from budget</strong> (budgeted &minus; actual)? A positive number is favorable; enter an unfavorable deviation as a negative number.', 'Total deviation from budget', dev, '$', 0, 'Budgeted costs minus actual costs.', $(bt) + ' &minus; ' + $(at) + ' = <strong>' + $(dev) + '</strong> (' + (dev >= 0 ? 'favorable' : 'unfavorable') + ').', { tol: 0 }),
+        ns('What is the <strong>percent deviation</strong> (deviation &divide; budgeted costs)? Enter an unfavorable deviation as a negative number. Round to two decimals.', 'Percent deviation', pc, '%', 2, 'Total deviation divided by total budgeted costs.', $(dev) + ' &divide; ' + $(bt) + ' = <strong>' + P(pc, 2) + '</strong>.', { tol: 0.01 }),
+        cs('Which cost category had the <strong>largest unfavorable deviation</strong> (actual most above budget, in dollars)?', 'Largest unfavorable deviation', items.map(function (it) { return it[0]; }), devs[worst] < 0 ? worst : 0, 'Compute budgeted &minus; actual for each category. The most negative amount is the largest unfavorable deviation.', items.map(function (it, i) { return it[0] + ': ' + $(devs[i]); }).join('; ') + '. Largest unfavorable: <strong>' + items[worst][0] + '</strong>.')
+      ]
+    };
+  }
+
+  /* B. Financial vs managerial accounting */
+  var FM = [
+    ['Reports are prepared following GAAP set by external standard setters.', 0, 'Financial accounting follows externally developed standards (GAAP or IFRS).'],
+    ['The primary users are investors, lenders, and regulators.', 0, 'Financial accounting serves mainly external users.'],
+    ['Reports are highly aggregated and cover a past period such as a quarter or a year.', 0, 'Financial statements summarize past performance for a whole company.'],
+    ['The balance sheet and income statement included in the Form 10-K.', 0, 'The Form 10-K is an external financial report.'],
+    ['Public company statements that must be audited by an independent accounting firm.', 0, 'Independent audits apply to external financial statements of public companies.'],
+    ['Reports are prepared in whatever format best supports a decision; no external standards are imposed.', 1, 'Managerial reports are special-purpose and have no required format.'],
+    ['The primary users are managers and employees inside the company.', 1, 'Managerial accounting serves internal decision makers.'],
+    ['Reports focus on current or future decisions, such as budgets and forecasts.', 1, 'Managerial accounting is oriented toward current and future decisions.'],
+    ['A department performance report comparing budgeted and actual costs.', 1, 'Performance reports are internal management tools.'],
+    ['A cost-volume-profit analysis to help price a new product.', 1, 'CVP analysis supports internal planning decisions.'],
+    ['A report that classifies each product&rsquo;s costs into variable and fixed components.', 1, 'Cost behavior information is used internally for decision making.']
+  ];
+  function genFM(R) {
+    var name = co(R);
+    return quiz(R, '<p>Managers at <strong>' + name + '</strong> use two broad kinds of accounting information. For each item, decide whether it describes <strong>financial accounting</strong> or <strong>managerial accounting</strong>.</p>', FM, ['Financial accounting', 'Managerial accounting'], 5, 'Which kind of accounting does this describe?', 'Financial accounting communicates to external parties using GAAP; managerial accounting supports internal planning and decision making with no required format.', 'Ask: who uses it (outsiders or insiders), and is it required to follow external standards?');
+  }
+
+  /* C. Strategy */
+  var STRAT = [
+    ['A retailer keeps prices low by running lean stores, buying in bulk, and offering minimal service.', 0, 'Low costs let the retailer price low: <strong>cost leadership</strong>.'],
+    ['A consumer electronics company invests heavily in design and branding so that customers pay a premium price.', 1, 'Perceived uniqueness supports a premium price: <strong>product differentiation</strong>.'],
+    ['A firm makes specialty gluten-free baking mixes sold only to health-focused customers.', 2, 'Serving a specific, specialized segment is a <strong>market niche</strong> strategy.'],
+    ['An airline wins customers with the lowest base fares and charges extra for optional services.', 0, 'Competing mainly on low cost and price is <strong>cost leadership</strong>.'],
+    ['A hotel chain stresses unique luxury service and exclusive amenities to justify higher room rates.', 1, 'Unique service justifying higher rates is <strong>differentiation</strong>.'],
+    ['A manufacturer builds custom saddles for competitive equestrian riders.', 2, 'A specialty product for a narrow customer group is a <strong>market niche</strong>.'],
+    ['A grocery discounter limits its selection and uses no-frills stores to keep operating costs minimal.', 0, 'Minimizing costs to offer low prices is <strong>cost leadership</strong>.'],
+    ['A software company sells accounting tools designed specifically for veterinary clinics.', 2, 'Targeting one specialized market is a <strong>market niche</strong> strategy.']
+  ];
+  function genStrat(R) {
+    var name = co(R);
+    return quiz(R, '<p>A company&rsquo;s strategy is a unique course of action to achieve its goals. Managerial accounting informs which strategy to choose and whether it is working. For each company below, identify its <strong>strategic positioning</strong>.</p>', STRAT, ['Cost leadership', 'Product or service differentiation', 'Market niche'], 4, 'Which positioning strategy does this company use?', 'Cost leadership competes on low cost; differentiation on perceived uniqueness and a premium price; a niche focuses on a specialty market.', 'Ask whether the company competes on low cost, on being unique, or on serving a narrow specialty market.');
+  }
+
+  /* D. Value chain */
+  var VC = ['Inbound logistics', 'Operations', 'Outbound logistics', 'Marketing and sales', 'Service', 'Support process (accounting, design, finance, HR, maintenance)'];
+  var VCP = [
+    ['Receiving and storing raw materials from suppliers', 0, 'Receiving and storing inputs is <strong>inbound logistics</strong>.'],
+    ['Assembling and packaging the product on the production line', 1, 'Transforming inputs into finished goods is <strong>operations</strong>.'],
+    ['Shipping finished goods to customers', 2, 'Delivering products to customers is <strong>outbound logistics</strong>.'],
+    ['Advertising and sales promotion', 3, 'Promotion and selling are <strong>marketing and sales</strong>.'],
+    ['Repairing products under warranty and answering customer questions', 4, 'After-sale support is <strong>service</strong>.'],
+    ['Recruiting and training employees', 5, 'Human resources is a <strong>support process</strong>.'],
+    ['Designing new products', 5, 'Design supports the primary processes and is a <strong>support process</strong>.'],
+    ['Preventive maintenance of machines', 5, 'Maintenance is a <strong>support process</strong>.'],
+    ['Preparing financial reports and processing payroll', 5, 'Accounting is a <strong>support process</strong>.']
+  ];
+  function genVC(R) {
+    var name = co(R);
+    return quiz(R, '<p>A <em>value chain</em> is the set of value-producing activities from raw materials to the final customer. Within a company&rsquo;s internal value chain, five <strong>primary processes</strong> (inbound logistics, operations, outbound logistics, marketing and sales, and service) are supported by <strong>support processes</strong>. Classify each activity at <strong>' + name + '</strong>.</p>', VCP, VC, 5, 'Where does this activity fit in the internal value chain?', 'Primary processes move the product from inputs to the customer; support processes like accounting, design, finance, HR, and maintenance enable them.', 'Is the activity part of the direct flow from suppliers to the customer, or does it support that flow?');
+  }
+
+  /* E. Ethics, ESG, governance */
+  var IMA = ['Competence', 'Confidentiality', 'Integrity', 'Credibility'];
+  var ETH = [
+    ['An accountant is asked to value complex derivatives, has no training in them, and goes ahead without seeking guidance.', 0, 'Performing duties without the necessary knowledge or skill violates <strong>competence</strong>.'],
+    ['A cost analyst tells a friend at a competitor about confidential product cost data.', 1, 'Disclosing confidential information without authorization violates <strong>confidentiality</strong>.'],
+    ['A controller feels pressure to lowball the budget so the CEO&rsquo;s bonus target is easier to hit.', 2, 'Managing conflicts of interest and not subverting the organization&rsquo;s legitimate objectives is part of <strong>integrity</strong>.'],
+    ['An accountant leaves unfavorable data out of an internal report so a project looks better.', 3, 'Presenting information fairly and completely is the standard of <strong>credibility</strong>.'],
+    ['A purchasing accountant accepts lavish gifts from a supplier that influence buying decisions.', 2, 'Refusing gifts that could influence judgment is part of <strong>integrity</strong>.'],
+    ['An accountant uses out-of-date tax rules without refreshing their knowledge.', 0, 'Maintaining professional knowledge through continuing education is part of <strong>competence</strong>.'],
+    ['An accountant posts the company&rsquo;s confidential strategic plan on social media.', 1, 'Keeping information confidential unless authorized is <strong>confidentiality</strong>.'],
+    ['An analyst presents financial projections without disclosing key assumptions and limitations.', 3, 'Disclosing all relevant information, including assumptions and limitations, is <strong>credibility</strong>.']
+  ];
+  var ESGC = ['Environmental', 'Social', 'Governance'];
+  var ESGP = [
+    ['Reducing greenhouse gas emissions from the company&rsquo;s plants.', 0, 'Emissions are an <strong>environmental</strong> issue.'],
+    ['Fair wages, workplace safety, and community investment.', 1, 'Treatment of employees and communities is a <strong>social</strong> issue.'],
+    ['An independent audit committee and strong internal controls.', 2, 'Oversight and controls are <strong>governance</strong>.'],
+    ['Conserving energy and water in operations.', 0, 'Resource use is an <strong>environmental</strong> issue.'],
+    ['Supply chain labor standards and diversity programs.', 1, 'Labor practices and inclusion are <strong>social</strong> issues.'],
+    ['CEO and CFO certification of financial statements required by the Sarbanes-Oxley Act.', 2, 'SOX responsibilities are <strong>governance</strong> (policies and laws governing how a company is directed and controlled).']
+  ];
+  function genEthics(R) {
+    var name = co(R);
+    var e = R.sample(ETH, 3), g = R.sample(ESGP, 2);
+    var steps = e.map(function (p, i) { return cs('Which IMA ethical standard is most directly involved? <em>' + p[0] + '</em>', 'Ethics scenario ' + (i + 1), IMA, p[1], 'IMA standards: Competence (knowledge and skills), Confidentiality (protect information), Integrity (avoid conflicts, be honest), Credibility (communicate fairly and completely).', p[2]); });
+    g.forEach(function (p, i) { steps.push(cs('Is the following an environmental, social, or governance consideration? <em>' + p[0] + '</em>', 'ESG item ' + (i + 1), ESGC, p[1], 'Environmental: natural resources and climate. Social: people and communities. Governance: policies, controls, and oversight.', p[2])); });
+    return {
+      intro: '<p>Management accountants at <strong>' + name + '</strong> follow the Institute of Management Accountants (IMA) Statement of Ethical Professional Practice, which is built on four standards: competence, confidentiality, integrity, and credibility. Companies are also increasingly evaluated on environmental, social, and governance (ESG) considerations.</p>',
+      steps: steps,
+      takeaway: 'Ethics goes beyond what is legal. Small compromises can grow into patterns that are hard to reverse, so management accountants should recognize and act on early warning signs.'
+    };
+  }
+
+  /* F. Business environment trends */
+  var TR = ['Big data and analytics', 'Robotic process automation (RPA)', 'Artificial intelligence and cognitive technology', 'Enterprise risk management (ERM)', 'Global competition'];
+  var TRP = [
+    ['Software bots automatically post routine journal entries and reconcile accounts.', 1, 'Software that automates rule-based tasks is <strong>robotic process automation</strong>.'],
+    ['The company mines large volumes of customer and transaction data to find patterns and predict demand.', 0, 'Gathering and analyzing very large data sets is <strong>big data and analytics</strong>.'],
+    ['A model learns from past invoices and flags unusual items for human review.', 2, 'Systems that learn and make judgments are <strong>artificial intelligence or cognitive technology</strong>.'],
+    ['Management identifies events that could disrupt the business and decides how much risk it is willing to bear (COSO framework).', 3, 'Identifying and managing risk within the company&rsquo;s risk appetite is <strong>enterprise risk management</strong>.'],
+    ['Improved telecommunications and transportation let foreign competitors enter the company&rsquo;s home market.', 4, 'An interdependent worldwide economy creates <strong>global competition</strong>.']
+  ];
+  function genTrends(R) {
+    var name = co(R);
+    return quiz(R, '<p>The business environment has changed the work of management accountants at <strong>' + name + '</strong>. For each situation, identify the trend it illustrates.</p>', TRP, TR, 5, 'Which business environment trend does this describe?', 'Technology, data, risk, and global competition all expand the role of management accountants from record keeping to analysis and decision support.', 'Match the key idea in the description (data, automation, learning, risk, or competition) to a trend.');
+  }
+
+  window.MODULE = {
+    num: 14,
+    title: 'Managerial Accounting: Tools for Decision Making',
+    subtitle: 'Financial vs. managerial accounting, strategy, performance reports, the value chain, business trends, and ethics.',
+    types: [
+      { label: 'Performance Report', desc: 'Compare budgeted and actual costs: deviations, percent deviation, and favorable or unfavorable.', gen: genPerf },
+      { label: 'Financial vs. Managerial Accounting', desc: 'Decide which kind of accounting each description fits.', gen: genFM },
+      { label: 'Strategy and Positioning', desc: 'Cost leadership, differentiation, or market niche?', gen: genStrat },
+      { label: 'The Value Chain', desc: 'Classify activities as primary processes or support processes.', gen: genVC },
+      { label: 'Ethics, ESG, and Governance', desc: 'Apply the IMA ethical standards and classify ESG considerations.', gen: genEthics },
+      { label: 'Trends in the Business Environment', desc: 'Big data, automation, AI, risk management, and global competition.', gen: genTrends }
+    ]
+  };
+})();
+
+</script>
+<script>
+/* MBA 623 tutor UI engine */
+(function () {
+  'use strict';
+  var L = window.TutorLib;
+  var M = window.MODULE;
+  var app = document.getElementById('app');
+  var state = null;
+
+  var PRAISE = ['Correct! Nice work.', 'Exactly right!', 'Well done, that is correct.', 'Great job, you got it!', 'Yes, that is right. Excellent!', 'Spot on!', 'That is correct. Keep it up!', 'Right on target!'];
+  var WRONG1 = ['Not quite, but you are close to a good approach. Here is a hint.', 'That is not the answer we are looking for, but no worries. Here is a hint.', 'Not quite right. Take a look at this hint and try once more.', 'Almost there, but that is not it. Use this hint and give it another try.'];
+  var WRONG2 = ['That is still not it, and that is okay. Here is the solution for this step.', 'Not this time, but this is how you learn. Here is the solution.', 'Still not quite. Let us walk through the solution together.'];
+
+  function el(html) { var d = document.createElement('div'); d.innerHTML = html; return d.firstElementChild; }
+  function rndFrom(arr, i) { return arr[i % arr.length]; }
+
+  /* ---------- menu ---------- */
+  function renderMenu() {
+    state = null;
+    var h = '<h2 id="menu-h">Choose a problem type</h2>';
+    h += '<p class="lead">Pick the kind of problem you want to practice. You will get a new scenario with new numbers each time, and the tutor walks you through it one step at a time. On every step you get one hint and one more try before the solution appears.</p>';
+    h += '<ul class="menu" aria-labelledby="menu-h">';
+    M.types.forEach(function (t, i) {
+      h += '<li><button type="button" class="menu-btn" data-type="' + i + '"><span class="menu-title">' + t.label + '</span><span class="menu-desc">' + t.desc + '</span><span class="menu-go" aria-hidden="true">Start &rarr;</span></button></li>';
+    });
+    h += '</ul>';
+    app.innerHTML = h;
+    var btns = app.querySelectorAll('.menu-btn');
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].addEventListener('click', function (e) { startProblem(parseInt(e.currentTarget.getAttribute('data-type'), 10)); });
+    }
+    document.title = 'Module ' + M.num + ' Tutor | MBA 623';
+  }
+
+  /* ---------- problem ---------- */
+  function startProblem(typeIdx) {
+    var seed = (Math.floor(Math.random() * 4294967295) ^ Date.now()) >>> 0;
+    var R = L.makeRNG(seed);
+    var t = M.types[typeIdx];
+    var prob = t.gen(R, L);
+    state = { typeIdx: typeIdx, type: t, prob: prob, i: 0, attempt: 0, log: [], first: 0, second: 0, shown: 0 };
+    renderProblem(true);
+  }
+
+  function renderHeader() {
+    var p = state.prob;
+    var h = '<div class="toolbar"><button type="button" class="link-btn" id="to-menu">&larr; Choose a different problem type</button></div>';
+    h += '<h2 id="prob-h" tabindex="-1">' + state.type.label + '</h2>';
+    h += '<section class="scenario" aria-labelledby="scen-h"><h3 id="scen-h">The problem</h3>' + p.intro + '</section>';
+    return h;
+  }
+
+  function renderLog() {
+    if (!state.log.length) return '';
+    var h = '<section class="worklog" aria-labelledby="log-h"><h3 id="log-h">Your work so far</h3><ol>';
+    state.log.forEach(function (e) {
+      h += '<li><span class="log-q">' + e.q + '</span><span class="log-a ' + e.cls + '"><span class="badge">' + e.badge + '</span> ' + e.text + '</span></li>';
+    });
+    return h + '</ol></section>';
+  }
+
+  function renderProblem(focusHeading) {
+    var p = state.prob, s = p.steps[state.i], n = p.steps.length;
+    var h = renderHeader();
+    h += renderLog();
+    h += '<section class="step" aria-labelledby="step-h">';
+    h += '<p class="stepno" id="step-h">Step ' + (state.i + 1) + ' of ' + n + '</p>';
+    h += '<div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="' + n + '" aria-valuenow="' + state.i + '" aria-label="Progress"><span style="width:' + Math.round(100 * state.i / n) + '%"></span></div>';
+    h += '<div class="q" id="q">' + s.q + '</div>';
+    h += '<form id="f" novalidate>';
+    if (s.choices) {
+      h += '<fieldset class="choices"><legend class="sr-only">Choose one answer</legend>';
+      s.choices.forEach(function (c, k) {
+        h += '<label class="choice"><input type="radio" name="c" value="' + k + '"><span>' + c + '</span></label>';
+      });
+      h += '</fieldset>';
+    } else {
+      h += '<div class="ans-row"><label class="sr-only" for="ans">Your answer</label>';
+      if (s.unit === '$') h += '<span class="aff" aria-hidden="true">$</span>';
+      h += '<input id="ans" name="ans" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" aria-describedby="q">';
+      if (s.unit === '%') h += '<span class="aff" aria-hidden="true">%</span>';
+      else if (s.unit === 'x') h += '<span class="aff" aria-hidden="true">times</span>';
+      else if (s.unit === 'days') h += '<span class="aff" aria-hidden="true">days</span>';
+      else if (s.unit === 'units') h += '<span class="aff" aria-hidden="true">units</span>';
+      else if (s.suffix) h += '<span class="aff" aria-hidden="true">' + s.suffix + '</span>';
+      h += '</div>';
+      if (s.note) h += '<p class="fmt">' + s.note + '</p>';
+    }
+    h += '<div class="actions"><button type="submit" class="primary" id="check">Check my answer</button></div>';
+    h += '</form>';
+    h += '<div id="fb" class="fb" role="status" aria-live="polite"></div>';
+    h += '</section>';
+    app.innerHTML = h;
+    document.getElementById('to-menu').addEventListener('click', renderMenu);
+    document.getElementById('f').addEventListener('submit', onCheck);
+    if (focusHeading) { var hd = document.getElementById('prob-h'); hd.focus(); window.scrollTo(0, 0); }
+    else { var inp = document.getElementById('ans') || document.querySelector('input[name=c]'); if (inp) inp.focus(); }
+  }
+
+  function currentUserAnswer(s) {
+    if (s.choices) {
+      var r = document.querySelector('input[name=c]:checked');
+      return r ? parseInt(r.value, 10) : null;
+    }
+    return document.getElementById('ans').value;
+  }
+
+  function onCheck(ev) {
+    ev.preventDefault();
+    var s = state.prob.steps[state.i];
+    var ua = currentUserAnswer(s);
+    var fb = document.getElementById('fb');
+    var correct;
+    if (s.choices) {
+      if (ua === null) { fb.className = 'fb info'; fb.innerHTML = '<p>Please choose an answer first.</p>'; return; }
+      correct = (ua === s.correct);
+    } else {
+      if (!String(ua).trim() || !isFinite(L.parseAnswer(ua))) { fb.className = 'fb info'; fb.innerHTML = '<p>Please enter a number (for example 1,250 or 12.5). Do not include words.</p>'; document.getElementById('ans').focus(); return; }
+      correct = L.isCorrectNumber(s, ua);
+    }
+    state.attempt++;
+    var correctText = s.choices ? s.choices[s.correct] : L.fmtAnswer(s);
+    var yourText = s.choices ? s.choices[ua] : L.esc(String(ua).trim());
+    var qShort = s.short || s.q;
+    if (correct) {
+      if (state.attempt === 1) state.first++; else state.second++;
+      fb.className = 'fb good';
+      fb.innerHTML = '<p class="fb-h"><span class="badge ok">Correct</span> ' + rndFrom(PRAISE, state.i + state.prob.steps.length) + '</p>' + (s.sol ? '<div class="sol"><strong>Why:</strong> ' + s.sol + '</div>' : '') + '<p class="ans-line">Answer: <strong>' + correctText + '</strong></p>';
+      state.log.push({ q: qShort, text: correctText, cls: 'good', badge: state.attempt === 1 ? 'Correct' : 'Correct (2nd try)' });
+      lockAndNext();
+    } else if (state.attempt === 1) {
+      fb.className = 'fb warn';
+      fb.innerHTML = '<p class="fb-h"><span class="badge no">Not yet</span> ' + rndFrom(WRONG1, state.i) + '</p><div class="hint"><strong>Hint:</strong> ' + s.hint + '</div>';
+      document.getElementById('check').textContent = 'Try again';
+      var inp = document.getElementById('ans'); if (inp) { inp.select(); inp.focus(); }
+    } else {
+      state.shown++;
+      fb.className = 'fb bad';
+      fb.innerHTML = '<p class="fb-h"><span class="badge no">Solution</span> ' + rndFrom(WRONG2, state.i) + '</p><div class="sol">' + s.sol + '</div><p class="ans-line">Answer: <strong>' + correctText + '</strong></p>';
+      state.log.push({ q: qShort, text: correctText + ' <span class="yours">(you entered ' + yourText + ')</span>', cls: 'bad', badge: 'Solution shown' });
+      lockAndNext();
+    }
+  }
+
+  function lockAndNext() {
+    var f = document.getElementById('f');
+    var ctrls = f.querySelectorAll('input,button');
+    for (var i = 0; i < ctrls.length; i++) ctrls[i].disabled = true;
+    var last = state.i === state.prob.steps.length - 1;
+    var btn = el('<div class="actions"><button type="button" class="primary" id="next">' + (last ? 'See my results' : 'Next step &rarr;') + '</button></div>');
+    document.getElementById('fb').appendChild(btn);
+    var nb = document.getElementById('next');
+    nb.addEventListener('click', function () {
+      state.i++; state.attempt = 0;
+      if (state.i >= state.prob.steps.length) renderSummary(); else renderProblem(false);
+    });
+    nb.focus();
+  }
+
+  function renderSummary() {
+    var n = state.prob.steps.length;
+    var perfect = state.first === n;
+    var msg;
+    if (perfect) msg = 'Outstanding! You got every step right on the first try.';
+    else if (state.shown === 0) msg = 'Nice work! You solved every step, and you learned from the hints along the way.';
+    else if (state.first + state.second >= n / 2) msg = 'Good effort! You solved most of this problem. Review the steps marked "Solution shown" and try a new problem to lock it in.';
+    else msg = 'Thanks for sticking with it. Review the solutions below, look back at the module slides, and try a fresh problem. Practice makes this much easier.';
+    var h = renderHeader();
+    h += '<section class="summary" aria-labelledby="sum-h"><h3 id="sum-h" tabindex="-1">Your results</h3>';
+    h += '<p class="big">' + msg + '</p>';
+    h += '<ul class="score"><li><strong>' + state.first + '</strong> correct on the first try</li><li><strong>' + state.second + '</strong> correct on the second try</li><li><strong>' + state.shown + '</strong> solution' + (state.shown === 1 ? '' : 's') + ' shown</li></ul>';
+    if (state.prob.takeaway) h += '<div class="takeaway"><strong>Key takeaway:</strong> ' + state.prob.takeaway + '</div>';
+    h += '</section>';
+    h += renderLog();
+    h += '<div class="actions row"><button type="button" class="primary" id="again">Try another problem like this</button><button type="button" class="secondary" id="menu2">Choose a different problem type</button></div>';
+    app.innerHTML = h;
+    document.getElementById('to-menu').addEventListener('click', renderMenu);
+    document.getElementById('menu2').addEventListener('click', renderMenu);
+    var ti = state.typeIdx;
+    document.getElementById('again').addEventListener('click', function () { startProblem(ti); });
+    var sh = document.getElementById('sum-h'); sh.focus(); window.scrollTo(0, 0);
+  }
+
+  document.getElementById('mod-title').textContent = M.title;
+  document.getElementById('mod-sub').textContent = M.subtitle;
+  document.getElementById('mod-num').textContent = 'Module ' + M.num;
+  renderMenu();
+})();
+
+</script>
+</body>
+</html>
