@@ -1,0 +1,1788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phase 3: Financial Statements &amp; Closing Entries &mdash; Llama Productions, Inc.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --purple:#2C5F5A;
+    --purple-deep:#173330;
+    --purple-mid:#3F8078;
+    --gold:#B0925C;
+    --gold-soft:#D6C398;
+    --gold-pale:#F1E9D6;
+    --parchment:#F5F3EC;
+    --paper:#FFFEFA;
+    --ink:#20231F;
+    --slate:#5C6259;
+    --line:#D9DED2;
+    --line-soft:#E8ECE2;
+    --answer:#1E5C34;
+    --answer-bg:#E7F1E9;
+    --danger:#9C3B34;
+    --shadow: 0 1px 2px rgba(23,51,48,0.07), 0 6px 18px rgba(23,51,48,0.08);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--parchment);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ color:inherit; }
+
+  header{
+    background: linear-gradient(180deg, var(--purple) 0%, var(--purple-deep) 100%);
+    color:#F1E9D6;
+    padding: 30px 6vw 24px;
+    position:relative;
+  }
+  header::after{
+    content:"";
+    position:absolute; left:0; right:0; bottom:0; height:4px;
+    background: linear-gradient(90deg, var(--gold-soft), var(--gold) 40%, var(--gold-soft) 70%, var(--gold));
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--gold-soft); margin:0 0 10px;
+  }
+  h1.title{
+    font-family:'Source Serif 4', serif; font-weight:600;
+    font-size:clamp(24px,3.4vw,34px); margin:0 0 8px; letter-spacing:-0.01em;
+  }
+  .subtitle{ font-size:14.5px; color:#DCE5D9; max-width:720px; margin:0; }
+
+  .phase-nav{
+    max-width:960px; margin:0 auto; padding:14px 6vw 0; display:flex; gap:8px; flex-wrap:wrap;
+  }
+  .phase-nav a{
+    font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:.03em;
+    padding:6px 12px; border-radius:20px; border:1px solid var(--line);
+    background:var(--paper); color:var(--slate); text-decoration:none;
+  }
+  .phase-nav a.current{ background:var(--purple); color:#fff; border-color:var(--purple); font-weight:600; }
+
+  .id-bar{
+    max-width:960px; margin:0 auto; padding:18px 6vw 0;
+    display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+  }
+  .id-bar label{ font-size:13px; font-weight:600; color:var(--slate); }
+  .id-bar input[type="text"]{
+    font-family:'Inter',sans-serif; font-size:13.5px; padding:8px 11px;
+    border:1px solid var(--line); border-radius:5px; background:var(--paper); color:var(--ink);
+    width:220px;
+  }
+  .id-bar input:focus{ outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(44,95,90,0.10); }
+  .id-bar .id-hint{ font-size:12px; color:var(--slate); width:100%; }
+  .id-bar button{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:9px 16px; border:1px solid var(--purple);
+    background:var(--purple); color:#fff; cursor:pointer;
+  }
+  .id-bar button:hover{ background:var(--purple-mid); }
+
+  .score-area{ max-width:960px; margin:0 auto; padding:14px 6vw 0; }
+
+  .rounding-note{
+    max-width:960px; margin:14px auto 0; padding:12px 6vw;
+    font-size:12.5px; color:var(--slate); line-height:1.5;
+  }
+  .rounding-note strong{ color:var(--purple); font-weight:600; }
+
+  main{ max-width:960px; margin:0 auto; padding:22px 6vw 90px; }
+
+  .part{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    box-shadow:var(--shadow);
+    padding:24px 26px 26px;
+    margin-top:26px;
+  }
+  .part-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; color:var(--gold); background:var(--purple);
+    display:inline-block; padding:3px 9px; border-radius:4px; letter-spacing:.04em;
+    margin-bottom:12px;
+  }
+  .part h2{
+    font-family:'Source Serif 4', serif; font-size:21px; font-weight:600;
+    color:var(--purple); margin:0 0 12px;
+  }
+  .part h3{
+    font-family:'Source Serif 4', serif; font-size:16.5px; font-weight:600;
+    color:var(--purple-deep); margin:20px 0 8px;
+  }
+  .scenario{
+    background:var(--parchment);
+    border-left:3px solid var(--gold);
+    padding:14px 18px;
+    border-radius:0 6px 6px 0;
+    font-size:14.5px;
+    color:var(--ink);
+    margin-bottom:16px;
+  }
+  .scenario p{ margin:0 0 10px; }
+  .scenario p:last-child{ margin-bottom:0; }
+  .scenario span.val{ font-weight:700; color:var(--purple-deep); }
+
+  details.ref{
+    background:var(--parchment); border:1px solid var(--line); border-radius:8px;
+    padding:10px 16px; margin-bottom:16px;
+  }
+  details.ref > summary{
+    cursor:pointer; font-weight:600; font-size:13.5px; color:var(--purple);
+    font-family:'Inter',sans-serif;
+  }
+  details.ref[open] > summary{ margin-bottom:10px; }
+
+  .req{
+    font-weight:600;
+    font-size:14.5px;
+    color:var(--ink);
+    margin:20px 0 10px;
+  }
+  .req span.reqlabel{ color:var(--purple); }
+
+  h4.subsection{
+    font-family:'Source Serif 4',serif; font-size:15px; color:var(--purple); margin:22px 0 6px;
+    border-bottom:1px solid var(--line-soft); padding-bottom:4px;
+  }
+
+  .footnote{ font-size:12px; color:var(--slate); margin:2px 0 14px; font-style:italic; }
+  .hint{ font-size:12.5px; color:var(--slate); margin:4px 0 10px; }
+
+  table.given{ width:100%; border-collapse:collapse; font-size:13px; margin:6px 0 14px; }
+  table.given th{ text-align:left; font-size:10.5px; text-transform:uppercase; letter-spacing:.03em; color:var(--slate); border-bottom:2px solid var(--purple); padding:6px 8px; }
+  table.given td{ border-bottom:1px solid var(--line); padding:5px 8px; }
+  table.given td.mono{ font-family:'IBM Plex Mono', monospace; }
+  table.given td.lbl{ font-family:'Inter',sans-serif; }
+  table.given td.num, table.given th.num{ text-align:right; font-family:'IBM Plex Mono', monospace; }
+  table.given tr.given-total td{ border-top:1.6px solid var(--purple); font-weight:600; }
+  table.given tr.given-sub td{ font-family:'Inter',sans-serif; padding-left:22px; }
+  table.given tr.txn-row td{ vertical-align:top; }
+
+  table.worksheet{
+    width:100%;
+    border-collapse:collapse;
+    font-size:13.5px;
+    margin:10px 0 4px;
+  }
+  table.worksheet th{
+    text-align:left;
+    font-size:11.5px;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+    color:var(--slate);
+    border-bottom:2px solid var(--purple);
+    padding:8px 8px;
+  }
+  table.worksheet th.num{ text-align:right; }
+  table.worksheet td{
+    border-bottom:1px solid var(--line);
+    padding:9px 8px;
+    vertical-align:middle;
+  }
+  table.worksheet td.sub{ padding-left:24px; }
+  table.worksheet td.amt{ width:130px; text-align:right; font-family:'IBM Plex Mono',monospace; }
+  table.worksheet td.txnhead{ font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--slate); padding-top:16px; }
+  table.worksheet tr.txn-first td{ border-top:1.4px solid var(--purple-mid); padding-top:16px; }
+  table.worksheet input[type="text"]{
+    width:100%;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13.5px;
+    padding:6px 8px;
+    border:1px solid var(--line);
+    border-radius:5px;
+    background:var(--parchment);
+    color:var(--ink);
+    text-align:right;
+  }
+  table.worksheet input[type="text"]:focus{
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(44,95,90,0.10); background:var(--paper);
+  }
+  table.worksheet select.acct{
+    width:100%;
+    font-family:'Inter',sans-serif;
+    font-size:13.5px;
+    font-weight:400;
+    padding:6px 8px;
+    border:1px solid var(--line);
+    border-radius:5px;
+    background:var(--parchment);
+    color:var(--ink);
+  }
+  table.worksheet select.acct:focus{
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(44,95,90,0.10); background:var(--paper);
+  }
+  table.worksheet td.acctcell{ padding-right:14px; }
+  table.worksheet td.entrytag{ font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--gold); background:var(--purple); border-radius:4px; padding:2px 7px; display:inline-block; }
+  table.worksheet td.acctlabel{ font-family:'Inter',sans-serif; }
+
+  .score-panel{
+    display:flex; align-items:center; gap:18px;
+    margin:0 0 4px; padding:14px 18px;
+    background:var(--parchment);
+    border:1px solid var(--line);
+    border-radius:8px;
+  }
+  .score-panel.scored-good{ background:var(--answer-bg); border-color:#B7D3BE; }
+  .score-panel.scored-bad{ background:#F8F0EF; border-color:#E2C6C2; }
+  .score-pct{
+    font-family:'Source Serif 4', serif;
+    font-size:30px; font-weight:700; line-height:1.05;
+    color:var(--slate); min-width:96px; text-align:center;
+  }
+  .score-panel.scored-good .score-pct{ color:var(--answer); }
+  .score-panel.scored-bad .score-pct{ color:var(--danger); }
+  .score-detail{ flex:1; min-width:0; }
+  .score-meta{ font-size:13.5px; font-weight:600; color:var(--ink); margin:0 0 7px; }
+  .score-bar{ height:8px; border-radius:4px; background:var(--line-soft); overflow:hidden; }
+  .score-bar span{ display:block; height:100%; width:0; background:var(--purple-mid); transition:width .35s ease; }
+  .score-panel.scored-good .score-bar span{ background:var(--answer); }
+  .score-panel.scored-bad .score-bar span{ background:var(--danger); }
+  .score-sub{ font-size:11.5px; color:var(--slate); margin:7px 0 0; }
+
+  .check-bar{
+    margin-top:20px;
+    padding-top:16px;
+    border-top:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .btn-check{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:9px 18px; border:1px solid var(--purple);
+    background:var(--purple); color:#fff; cursor:pointer;
+  }
+  .btn-check:hover{ background:var(--purple-mid); }
+  .check-summary{ font-size:13.5px; font-weight:600; }
+  .check-summary.good{ color:var(--answer); }
+  .check-summary.bad{ color:var(--danger); }
+  .check-disclaimer{ font-size:11.5px; color:var(--slate); width:100%; margin-top:2px; font-style:italic; }
+
+  input.field-correct, select.field-correct{
+    border-color:var(--answer) !important;
+    background:var(--answer-bg) !important;
+  }
+  input.field-incorrect, select.field-incorrect{
+    border-color:var(--danger) !important;
+    background:#F3E1DE !important;
+  }
+
+  .submit-bar{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    box-shadow:var(--shadow);
+    padding:22px 26px 24px;
+    margin-top:26px;
+  }
+  .submit-bar h2{
+    font-family:'Source Serif 4', serif; font-size:19px; font-weight:600;
+    color:var(--purple); margin:0 0 14px;
+  }
+  .submit-row{ display:flex; align-items:center; gap:10px; margin-bottom:12px; flex-wrap:wrap; }
+  .submit-row label{ font-size:13px; font-weight:600; color:var(--slate); }
+  .btn-submit{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:10px 18px; border:1px solid var(--purple);
+    background:var(--purple); color:#fff; cursor:pointer;
+  }
+  .btn-submit:hover{ background:var(--purple-mid); }
+  .submit-hint{ font-size:12px; color:var(--slate); margin:6px 0 0; }
+
+  @media print{
+    .print-hide, .id-bar, .check-bar, .rounding-note, .phase-nav{ display:none !important; }
+    header{ background:none !important; color:var(--ink) !important; padding:0 0 14px !important; }
+    header::after{ display:none !important; }
+    .eyebrow{ color:var(--purple) !important; }
+    .subtitle{ color:var(--slate) !important; }
+    body{ background:#fff !important; }
+    .part{ box-shadow:none !important; border:1px solid #999 !important; break-inside:auto; }
+    .score-panel{ background:#fff !important; border:1.5px solid #000 !important; break-inside:avoid; }
+    .score-bar{ display:none !important; }
+    .score-pct, .score-panel.scored-good .score-pct, .score-panel.scored-bad .score-pct{ color:#000 !important; }
+    .part h2, .part-label, .scenario, h4.subsection{ break-after:avoid; break-inside:avoid; }
+    table.given, table.worksheet{ break-inside:auto; }
+    table.given tr, table.worksheet tr{ break-inside:avoid; }
+    .submit-bar{ break-before:avoid; }
+    details.ref{ break-inside:avoid; }
+    input[type="text"], select.acct{
+      border:none !important;
+      border-bottom:1px solid #000 !important;
+      background:transparent !important;
+      border-radius:0 !important;
+      color:#000 !important;
+      -webkit-appearance:none;
+      -moz-appearance:none;
+      appearance:none;
+      padding:2px 4px !important;
+    }
+    .print-name-line{ display:block !important; }
+  }
+  .print-name-line{ display:none; font-size:13px; color:var(--ink); padding:0 6vw; margin:0 0 10px; }
+
+  footer{ text-align:center; padding:26px 6vw 40px; font-size:12px; color:var(--slate); }
+
+  @media (max-width:600px){
+    header, main, .id-bar, .phase-nav{ padding-left:5vw; padding-right:5vw; }
+    table.worksheet{ font-size:12.5px; }
+  }
+
+  textarea.memo{
+    width:100%; min-height:160px; font-family:'Inter',sans-serif; font-size:13.5px;
+    padding:10px 12px; border:1px solid var(--line); border-radius:6px; background:var(--parchment); color:var(--ink);
+    resize:vertical;
+  }
+  textarea.memo:focus{ outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(44,95,90,0.10); background:var(--paper); }
+</style>
+</head>
+<body>
+
+<header>
+  <p class="eyebrow">ACCT 351 &middot; Comprehensive Accounting Cycle Case &middot; Llama Productions, Inc.</p>
+  <h1 class="title">Phase 3: Financial Statements, Closing Entries &amp; Post-Closing Trial Balance</h1>
+  <p class="subtitle">Prepare the financial statements from the adjusted trial balance, then close the temporary accounts and prepare the post-closing trial balance. Enter the same student ID you used in Phases 1 and 2.</p>
+</header>
+<div class="phase-nav print-hide">
+  <a href="Llama-Productions-Phase1-Journal-Ledger-UTB.html">Phase 1 &middot; Journal, Ledger &amp; Unadjusted TB</a>
+  <a href="Llama-Productions-Phase2-Adjusting-Entries.html">Phase 2 &middot; Adjusting Entries &amp; Adjusted TB</a>
+  <a href="Llama-Productions-Phase3-Financial-Statements.html" class="current">Phase 3 &middot; Financial Statements &amp; Closing</a>
+</div>
+
+<p class="print-name-line" id="printNameLine"></p>
+
+<div class="id-bar">
+  <label for="studentName">Name</label>
+  <input type="text" id="studentName" placeholder="First and last name">
+  <label for="studentId">Student ID</label>
+  <input type="text" id="studentId" placeholder="e.g. 920410165">
+  <button id="genBtn" type="button">Generate my scenario</button>
+  <span class="id-hint">Use the same student ID you used on Phases 1 and 2. Leave the ID blank to see the plain textbook figures.</span>
+</div>
+
+<div class="score-area" id="scoreArea"></div>
+
+<div class="rounding-note">
+  <strong>Before you start:</strong> the adjusted trial balance below is provided as your starting point for this phase, computed correctly for your student ID. Classify interest paid and income taxes paid as operating activities and prepare the cash flow statement using the indirect method. Round to the nearest dollar.
+</div>
+
+<main>
+
+  <div class="part">
+    <span class="part-label">Background</span>
+    <h2>Llama Productions, Inc. &mdash; Financial Statements</h2>
+
+    <h3>Reference: Chart of Accounts</h3>
+    <details class="ref">
+      <summary>Show the full chart of accounts (use these exact titles in every dropdown)</summary>
+      
+<table class="given">
+  <thead><tr><th style="width:60px;">No.</th><th>Account</th><th>Classification</th></tr></thead>
+  <tbody>
+    <tr><td class="mono">101</td><td class="lbl">Cash</td><td class="lbl">Asset</td></tr>
+    <tr><td class="mono">110</td><td class="lbl">Accounts Receivable</td><td class="lbl">Asset</td></tr>
+    <tr><td class="mono">111</td><td class="lbl">Allowance for Doubtful Accounts</td><td class="lbl">Contra-asset</td></tr>
+    <tr><td class="mono">120</td><td class="lbl">Inventory</td><td class="lbl">Asset</td></tr>
+    <tr><td class="mono">125</td><td class="lbl">Supplies</td><td class="lbl">Asset</td></tr>
+    <tr><td class="mono">130</td><td class="lbl">Prepaid Insurance</td><td class="lbl">Asset</td></tr>
+    <tr><td class="mono">135</td><td class="lbl">Prepaid Rent</td><td class="lbl">Asset</td></tr>
+    <tr><td class="mono">150</td><td class="lbl">Equipment</td><td class="lbl">Asset</td></tr>
+    <tr><td class="mono">151</td><td class="lbl">Accumulated Depreciation - Equipment</td><td class="lbl">Contra-asset</td></tr>
+    <tr><td class="mono">201</td><td class="lbl">Accounts Payable</td><td class="lbl">Liability</td></tr>
+    <tr><td class="mono">205</td><td class="lbl">Wages Payable</td><td class="lbl">Liability</td></tr>
+    <tr><td class="mono">210</td><td class="lbl">Interest Payable</td><td class="lbl">Liability</td></tr>
+    <tr><td class="mono">215</td><td class="lbl">Income Taxes Payable</td><td class="lbl">Liability</td></tr>
+    <tr><td class="mono">220</td><td class="lbl">Unearned Sponsorship Revenue</td><td class="lbl">Liability</td></tr>
+    <tr><td class="mono">230</td><td class="lbl">Notes Payable</td><td class="lbl">Liability</td></tr>
+    <tr><td class="mono">301</td><td class="lbl">Common Stock</td><td class="lbl">Equity</td></tr>
+    <tr><td class="mono">310</td><td class="lbl">Retained Earnings</td><td class="lbl">Equity</td></tr>
+    <tr><td class="mono">320</td><td class="lbl">Dividends</td><td class="lbl">Contra-equity</td></tr>
+    <tr><td class="mono">401</td><td class="lbl">Merchandise Sales Revenue</td><td class="lbl">Revenue</td></tr>
+    <tr><td class="mono">410</td><td class="lbl">Service Revenue</td><td class="lbl">Revenue</td></tr>
+    <tr><td class="mono">420</td><td class="lbl">Sponsorship Revenue</td><td class="lbl">Revenue</td></tr>
+    <tr><td class="mono">430</td><td class="lbl">Gain on Sale of Equipment</td><td class="lbl">Gain</td></tr>
+    <tr><td class="mono">501</td><td class="lbl">Cost of Goods Sold</td><td class="lbl">Expense</td></tr>
+    <tr><td class="mono">510</td><td class="lbl">Wages Expense</td><td class="lbl">Expense</td></tr>
+    <tr><td class="mono">520</td><td class="lbl">Utilities Expense</td><td class="lbl">Expense</td></tr>
+    <tr><td class="mono">530</td><td class="lbl">Insurance Expense</td><td class="lbl">Expense</td></tr>
+    <tr><td class="mono">540</td><td class="lbl">Rent Expense</td><td class="lbl">Expense</td></tr>
+    <tr><td class="mono">550</td><td class="lbl">Supplies Expense</td><td class="lbl">Expense</td></tr>
+    <tr><td class="mono">560</td><td class="lbl">Depreciation Expense</td><td class="lbl">Expense</td></tr>
+    <tr><td class="mono">570</td><td class="lbl">Bad Debt Expense</td><td class="lbl">Expense</td></tr>
+    <tr><td class="mono">580</td><td class="lbl">Interest Expense</td><td class="lbl">Expense</td></tr>
+    <tr><td class="mono">590</td><td class="lbl">Income Tax Expense</td><td class="lbl">Expense</td></tr>
+    <tr><td class="mono">999</td><td class="lbl">Income Summary</td><td class="lbl">Closing</td></tr>
+  </tbody>
+</table>
+
+    </details>
+
+    <h3>Given: January 1, <span class="yr">2026</span> Beginning Balances</h3>
+    <details class="ref">
+      <summary>Show the January 1, <span class="yr">2026</span> beginning trial balance (needed for the "Balance, January 1" row of the equity statement and the "Cash, January 1" line of the cash flow statement &mdash; the same for every student)</summary>
+      <table class="given">
+        <thead><tr><th>Account</th><th class="num">Debit</th><th class="num">Credit</th></tr></thead>
+        <tbody>
+          <tr><td class="lbl">Cash</td><td class="num">$120,000</td><td class="num"></td></tr>
+          <tr><td class="lbl">Accounts Receivable</td><td class="num">$48,000</td><td class="num"></td></tr>
+          <tr><td class="lbl">Allowance for Doubtful Accounts</td><td class="num"></td><td class="num">$2,000</td></tr>
+          <tr><td class="lbl">Inventory</td><td class="num">$55,000</td><td class="num"></td></tr>
+          <tr><td class="lbl">Prepaid Insurance</td><td class="num">$6,000</td><td class="num"></td></tr>
+          <tr><td class="lbl">Equipment</td><td class="num">$180,000</td><td class="num"></td></tr>
+          <tr><td class="lbl">Accumulated Depreciation - Equipment</td><td class="num"></td><td class="num">$60,000</td></tr>
+          <tr><td class="lbl">Accounts Payable</td><td class="num"></td><td class="num">$34,000</td></tr>
+          <tr><td class="lbl">Notes Payable</td><td class="num"></td><td class="num">$80,000</td></tr>
+          <tr><td class="lbl">Common Stock</td><td class="num"></td><td class="num">$150,000</td></tr>
+          <tr><td class="lbl">Retained Earnings</td><td class="num"></td><td class="num">$83,000</td></tr>
+          <tr class="given-total"><td class="lbl">Total</td><td class="num">$409,000</td><td class="num">$409,000</td></tr>
+        </tbody>
+      </table>
+    </details>
+
+    <h3>Given: December 31, <span class="yr">2026</span> Adjusted Trial Balance</h3>
+    <details class="ref" open>
+      <summary>Show the adjusted trial balance for your student ID (your Phase 3 starting point)</summary>
+      <table class="given">
+        <thead><tr><th>Account</th><th class="num">Debit</th><th class="num">Credit</th></tr></thead>
+        <tbody id="given-adjtb-body"></tbody>
+      </table>
+    </details>
+
+    <h3>Given: <span class="yr">2026</span> Investing &amp; Financing Facts</h3>
+    <details class="ref" open>
+      <summary>Show the transaction-level facts you'll need for the cash flow statement (these amounts are not visible in the trial balances above)</summary>
+      <div class="scenario">
+        <p>During <span class="yr">2026</span>, Llama Productions (1) received <span class="val" id="cff-t1cash">$0</span> cash from the sale of equipment (Transaction 1), (2) paid <span class="val" id="cff-t8">$0</span> cash for new production equipment (Transaction 8), and (3) purchased camera equipment for <span class="val" id="cff-t27">$0</span> entirely on account (Transaction 27). That third item is a noncash investing and financing activity &mdash; it belongs in the supplemental disclosure at the bottom of the statement, not in the investing section, and it is also the reason the change in Accounts Payable cannot be used as-is in the operating section.</p>
+      </div>
+    </details>
+  </div>
+
+  <!-- INCOME STATEMENT -->
+<div class="part">
+  <span class="part-label">Requirement 1</span>
+  <h2>Multi-Step Income Statement &mdash; Year Ended December 31, <span class="yr">2026</span></h2>
+  <div class="req"><span class="reqlabel">Required:</span> Prepare a multi-step income statement from the adjusted trial balance above. Enter each amount as a positive whole dollar figure (the layout below already shows what is added or subtracted).</div>
+  <table class="worksheet">
+    <thead><tr><th>Line</th><th class="num">Amount</th></tr></thead>
+    <tbody>
+      <tr><td class="acctlabel">Merchandise sales revenue</td><td class="amt"><input type="text" id="is-merch"></td></tr>
+      <tr><td class="acctlabel">Service revenue</td><td class="amt"><input type="text" id="is-service"></td></tr>
+      <tr><td class="acctlabel">Sponsorship revenue</td><td class="amt"><input type="text" id="is-sponsor"></td></tr>
+      <tr><td class="acctlabel" style="font-weight:600;">Total revenues</td><td class="amt"><input type="text" id="is-totalrev"></td></tr>
+      <tr><td class="acctlabel">Cost of goods sold</td><td class="amt"><input type="text" id="is-cogs"></td></tr>
+      <tr><td class="acctlabel" style="font-weight:600;">Gross profit</td><td class="amt"><input type="text" id="is-grossprofit"></td></tr>
+      <tr><td class="acctlabel sub">Wages expense</td><td class="amt"><input type="text" id="is-wages"></td></tr>
+      <tr><td class="acctlabel sub">Utilities expense</td><td class="amt"><input type="text" id="is-utilities"></td></tr>
+      <tr><td class="acctlabel sub">Insurance expense</td><td class="amt"><input type="text" id="is-insurance"></td></tr>
+      <tr><td class="acctlabel sub">Rent expense</td><td class="amt"><input type="text" id="is-rent"></td></tr>
+      <tr><td class="acctlabel sub">Supplies expense</td><td class="amt"><input type="text" id="is-supplies"></td></tr>
+      <tr><td class="acctlabel sub">Depreciation expense</td><td class="amt"><input type="text" id="is-depreciation"></td></tr>
+      <tr><td class="acctlabel sub">Bad debt expense</td><td class="amt"><input type="text" id="is-baddebt"></td></tr>
+      <tr><td class="acctlabel" style="font-weight:600;">Total operating expenses</td><td class="amt"><input type="text" id="is-totalopex"></td></tr>
+      <tr><td class="acctlabel" style="font-weight:600;">Operating income</td><td class="amt"><input type="text" id="is-opinc"></td></tr>
+      <tr><td class="acctlabel sub">Gain on sale of equipment</td><td class="amt"><input type="text" id="is-gain"></td></tr>
+      <tr><td class="acctlabel sub">Interest expense</td><td class="amt"><input type="text" id="is-interest"></td></tr>
+      <tr><td class="acctlabel" style="font-weight:600;">Income before income taxes</td><td class="amt"><input type="text" id="is-pretax"></td></tr>
+      <tr><td class="acctlabel">Income tax expense</td><td class="amt"><input type="text" id="is-tax"></td></tr>
+      <tr><td class="acctlabel" style="font-weight:600;">Net income</td><td class="amt"><input type="text" id="is-netincome"></td></tr>
+    </tbody>
+  </table>
+  <div class="check-bar">
+    <button class="btn-check" id="check-is" type="button">Check my work</button>
+    <span class="check-summary" id="sum-is"></span>
+    <span class="check-disclaimer">This checks each line against the key within a small tolerance.</span>
+  </div>
+</div>
+
+<!-- STATEMENT OF STOCKHOLDERS' EQUITY -->
+<div class="part">
+  <span class="part-label">Requirement 2</span>
+  <h2>Statement of Stockholders&rsquo; Equity &mdash; Year Ended December 31, <span class="yr">2026</span></h2>
+  <div class="req"><span class="reqlabel">Required:</span> Prepare the statement of stockholders' equity. Enter a reduction (dividends) as a negative amount, e.g. <span class="mono">-12000</span> or <span class="mono">(12000)</span>.</div>
+  <table class="worksheet">
+    <thead><tr><th>Line</th><th class="num">Common Stock</th><th class="num">Retained Earnings</th></tr></thead>
+    <tbody>
+      <tr><td class="acctlabel">Balance, January 1, <span class="yr">2026</span></td><td class="amt"><input type="text" id="se-begcs"></td><td class="amt"><input type="text" id="se-begre"></td></tr>
+      <tr><td class="acctlabel">Common stock issued</td><td class="amt"><input type="text" id="se-stockcs"></td><td class="amt"></td></tr>
+      <tr><td class="acctlabel">Net income</td><td class="amt"></td><td class="amt"><input type="text" id="se-nire"></td></tr>
+      <tr><td class="acctlabel">Dividends</td><td class="amt"></td><td class="amt"><input type="text" id="se-divre"></td></tr>
+      <tr><td class="acctlabel" style="font-weight:600;">Balance, December 31, <span class="yr">2026</span></td><td class="amt"><input type="text" id="se-endcs"></td><td class="amt"><input type="text" id="se-endre"></td></tr>
+    </tbody>
+  </table>
+  <h4 class="subsection" style="margin-top:14px;">Total column</h4>
+  <table class="worksheet">
+    <thead><tr><th>Line</th><th class="num">Total</th></tr></thead>
+    <tbody>
+      <tr><td class="acctlabel">Balance, January 1, <span class="yr">2026</span></td><td class="amt"><input type="text" id="se-begtotal"></td></tr>
+      <tr><td class="acctlabel">Common stock issued</td><td class="amt"><input type="text" id="se-stocktotal"></td></tr>
+      <tr><td class="acctlabel">Net income</td><td class="amt"><input type="text" id="se-nitotal"></td></tr>
+      <tr><td class="acctlabel">Dividends</td><td class="amt"><input type="text" id="se-divtotal"></td></tr>
+      <tr><td class="acctlabel" style="font-weight:600;">Balance, December 31, <span class="yr">2026</span></td><td class="amt"><input type="text" id="se-endtotal"></td></tr>
+    </tbody>
+  </table>
+  <div class="check-bar">
+    <button class="btn-check" id="check-se" type="button">Check my work</button>
+    <span class="check-summary" id="sum-se"></span>
+    <span class="check-disclaimer">This checks each cell against the key within a small tolerance.</span>
+  </div>
+</div>
+
+<!-- CLASSIFIED BALANCE SHEET -->
+<div class="part">
+  <span class="part-label">Requirement 3</span>
+  <h2>Classified Balance Sheet &mdash; December 31, <span class="yr">2026</span></h2>
+  <div class="req"><span class="reqlabel">Required:</span> Prepare the classified balance sheet. Enter contra-asset amounts (allowance, accumulated depreciation) as negative numbers.</div>
+  <table class="worksheet">
+    <thead><tr><th>Line</th><th class="num">Amount</th></tr></thead>
+    <tbody>
+      <tr><td class="acctlabel" style="font-weight:600;">Assets</td><td class="amt"></td></tr>
+      <tr><td class="acctlabel sub">Cash</td><td class="amt"><input type="text" id="bs-cash"></td></tr>
+      <tr><td class="acctlabel sub">Accounts receivable</td><td class="amt"><input type="text" id="bs-ar"></td></tr>
+      <tr><td class="acctlabel sub">Less: allowance for doubtful accounts</td><td class="amt"><input type="text" id="bs-allow"></td></tr>
+      <tr><td class="acctlabel sub" style="font-style:italic;">Net accounts receivable</td><td class="amt"><input type="text" id="bs-netar"></td></tr>
+      <tr><td class="acctlabel sub">Inventory</td><td class="amt"><input type="text" id="bs-inv"></td></tr>
+      <tr><td class="acctlabel sub">Supplies</td><td class="amt"><input type="text" id="bs-supplies"></td></tr>
+      <tr><td class="acctlabel sub">Prepaid insurance</td><td class="amt"><input type="text" id="bs-pi"></td></tr>
+      <tr><td class="acctlabel sub">Prepaid rent</td><td class="amt"><input type="text" id="bs-pr"></td></tr>
+      <tr><td class="acctlabel" style="font-weight:600;">Total current assets</td><td class="amt"><input type="text" id="bs-tca"></td></tr>
+      <tr><td class="acctlabel sub">Equipment</td><td class="amt"><input type="text" id="bs-equip"></td></tr>
+      <tr><td class="acctlabel sub">Less: accumulated depreciation</td><td class="amt"><input type="text" id="bs-ad"></td></tr>
+      <tr><td class="acctlabel" style="font-weight:600;">Net property and equipment</td><td class="amt"><input type="text" id="bs-netequip"></td></tr>
+      <tr><td class="acctlabel" style="font-weight:600;">Total assets</td><td class="amt"><input type="text" id="bs-totalassets"></td></tr>
+      <tr><td class="acctlabel" style="font-weight:600;">Liabilities and Stockholders&rsquo; Equity</td><td class="amt"></td></tr>
+      <tr><td class="acctlabel sub">Accounts payable</td><td class="amt"><input type="text" id="bs-ap"></td></tr>
+      <tr><td class="acctlabel sub">Wages payable</td><td class="amt"><input type="text" id="bs-wagespay"></td></tr>
+      <tr><td class="acctlabel sub">Interest payable</td><td class="amt"><input type="text" id="bs-intpay"></td></tr>
+      <tr><td class="acctlabel sub">Income taxes payable</td><td class="amt"><input type="text" id="bs-taxpay"></td></tr>
+      <tr><td class="acctlabel sub">Unearned sponsorship revenue</td><td class="amt"><input type="text" id="bs-usr"></td></tr>
+      <tr><td class="acctlabel" style="font-weight:600;">Total current liabilities</td><td class="amt"><input type="text" id="bs-tcl"></td></tr>
+      <tr><td class="acctlabel sub">Notes payable</td><td class="amt"><input type="text" id="bs-np"></td></tr>
+      <tr><td class="acctlabel" style="font-weight:600;">Total liabilities</td><td class="amt"><input type="text" id="bs-totalliab"></td></tr>
+      <tr><td class="acctlabel sub">Common stock</td><td class="amt"><input type="text" id="bs-cs"></td></tr>
+      <tr><td class="acctlabel sub">Retained earnings</td><td class="amt"><input type="text" id="bs-re"></td></tr>
+      <tr><td class="acctlabel" style="font-weight:600;">Total stockholders&rsquo; equity</td><td class="amt"><input type="text" id="bs-totalequity"></td></tr>
+      <tr><td class="acctlabel" style="font-weight:600;">Total liabilities and stockholders&rsquo; equity</td><td class="amt"><input type="text" id="bs-totalliabequity"></td></tr>
+    </tbody>
+  </table>
+  <div class="check-bar">
+    <button class="btn-check" id="check-bs" type="button">Check my work</button>
+    <span class="check-summary" id="sum-bs"></span>
+    <span class="check-disclaimer">This checks each line against the key within a small tolerance.</span>
+  </div>
+</div>
+
+<!-- STATEMENT OF CASH FLOWS -->
+<div class="part">
+  <span class="part-label">Requirement 4</span>
+  <h2>Statement of Cash Flows &mdash; Year Ended December 31, <span class="yr">2026</span> (Indirect Method)</h2>
+  <div class="req"><span class="reqlabel">Required:</span> Prepare the statement of cash flows. Enter a use of cash or a subtraction as a negative amount.</div>
+  <table class="worksheet">
+    <thead><tr><th>Line</th><th class="num">Amount</th></tr></thead>
+    <tbody>
+      <tr><td class="acctlabel" style="font-weight:600;">Cash flows from operating activities</td><td class="amt"></td></tr>
+      <tr><td class="acctlabel sub">Net income</td><td class="amt"><input type="text" id="cf-ni"></td></tr>
+      <tr><td class="acctlabel sub">Depreciation expense</td><td class="amt"><input type="text" id="cf-dep"></td></tr>
+      <tr><td class="acctlabel sub">Bad debt expense</td><td class="amt"><input type="text" id="cf-baddebt"></td></tr>
+      <tr><td class="acctlabel sub">Gain on sale of equipment</td><td class="amt"><input type="text" id="cf-gain"></td></tr>
+      <tr><td class="acctlabel sub">Increase in accounts receivable (gross)</td><td class="amt"><input type="text" id="cf-ar"></td></tr>
+      <tr><td class="acctlabel sub">Increase in inventory</td><td class="amt"><input type="text" id="cf-inv"></td></tr>
+      <tr><td class="acctlabel sub">Increase in prepaid insurance and rent</td><td class="amt"><input type="text" id="cf-prepaid"></td></tr>
+      <tr><td class="acctlabel sub">Increase in supplies</td><td class="amt"><input type="text" id="cf-supplies"></td></tr>
+      <tr><td class="acctlabel sub">Change in accounts payable related to operations</td><td class="amt"><input type="text" id="cf-ap"></td></tr>
+      <tr><td class="acctlabel sub">Increase in unearned sponsorship revenue</td><td class="amt"><input type="text" id="cf-usr"></td></tr>
+      <tr><td class="acctlabel sub">Increase in wages payable</td><td class="amt"><input type="text" id="cf-wagespay"></td></tr>
+      <tr><td class="acctlabel sub">Increase in interest payable</td><td class="amt"><input type="text" id="cf-intpay"></td></tr>
+      <tr><td class="acctlabel sub">Increase in income taxes payable</td><td class="amt"><input type="text" id="cf-taxpay"></td></tr>
+      <tr><td class="acctlabel" style="font-weight:600;">Net cash provided by operating activities</td><td class="amt"><input type="text" id="cf-operating"></td></tr>
+      <tr><td class="acctlabel" style="font-weight:600;">Cash flows from investing activities</td><td class="amt"></td></tr>
+      <tr><td class="acctlabel sub">Proceeds from sale of equipment</td><td class="amt"><input type="text" id="cf-proceeds"></td></tr>
+      <tr><td class="acctlabel sub">Purchase of equipment for cash</td><td class="amt"><input type="text" id="cf-purchase"></td></tr>
+      <tr><td class="acctlabel" style="font-weight:600;">Net cash used in investing activities</td><td class="amt"><input type="text" id="cf-investing"></td></tr>
+      <tr><td class="acctlabel" style="font-weight:600;">Cash flows from financing activities</td><td class="amt"></td></tr>
+      <tr><td class="acctlabel sub">Issuance of common stock</td><td class="amt"><input type="text" id="cf-stock"></td></tr>
+      <tr><td class="acctlabel sub">Proceeds from note payable</td><td class="amt"><input type="text" id="cf-note"></td></tr>
+      <tr><td class="acctlabel sub">Dividends paid</td><td class="amt"><input type="text" id="cf-div"></td></tr>
+      <tr><td class="acctlabel" style="font-weight:600;">Net cash provided by financing activities</td><td class="amt"><input type="text" id="cf-financing"></td></tr>
+      <tr><td class="acctlabel" style="font-weight:600;">Net increase in cash</td><td class="amt"><input type="text" id="cf-netchange"></td></tr>
+      <tr><td class="acctlabel">Cash, January 1, <span class="yr">2026</span></td><td class="amt"><input type="text" id="cf-begcash"></td></tr>
+      <tr><td class="acctlabel" style="font-weight:600;">Cash, December 31, <span class="yr">2026</span></td><td class="amt"><input type="text" id="cf-endcash"></td></tr>
+      <tr><td class="acctlabel" style="font-weight:600;">Supplemental noncash investing and financing activity</td><td class="amt"></td></tr>
+      <tr><td class="acctlabel sub">Equipment purchased on account</td><td class="amt"><input type="text" id="cf-noncash"></td></tr>
+    </tbody>
+  </table>
+  <div class="check-bar">
+    <button class="btn-check" id="check-cf" type="button">Check my work</button>
+    <span class="check-summary" id="sum-cf"></span>
+    <span class="check-disclaimer">This checks each line against the key within a small tolerance.</span>
+  </div>
+</div>
+
+
+  <!-- CLOSING ENTRIES -->
+  <div class="part">
+    <span class="part-label">Requirement 5</span>
+    <h2>Closing Entries</h2>
+    <div class="req"><span class="reqlabel">Required:</span> Close the temporary accounts in the appropriate sequence using the Income Summary account.</div>
+    <table class="worksheet">
+      <thead><tr><th>Account</th><th class="num">Debit</th><th class="num">Credit</th></tr></thead>
+      <tbody id="closing-body"></tbody>
+    </table>
+    <div class="check-bar">
+      <button class="btn-check" id="check-closing" type="button">Check my work</button>
+      <span class="check-summary" id="sum-closing"></span>
+      <span class="check-disclaimer">This checks your account selections and amounts against the key within a small tolerance.</span>
+    </div>
+  </div>
+
+  <!-- POST-CLOSING TRIAL BALANCE -->
+  <div class="part">
+    <span class="part-label">Requirement 6</span>
+    <h2>December 31, <span class="yr">2026</span> Post-Closing Trial Balance</h2>
+    <div class="req"><span class="reqlabel">Required:</span> Prepare the post-closing trial balance. Only balance sheet accounts should remain open.</div>
+    <table class="worksheet">
+      <thead><tr><th>Account</th><th class="num">Debit</th><th class="num">Credit</th></tr></thead>
+      <tbody id="pctb-body"></tbody>
+    </table>
+    <div class="check-bar">
+      <button class="btn-check" id="check-pctb" type="button">Check my work</button>
+      <span class="check-summary" id="sum-pctb"></span>
+      <span class="check-disclaimer">This checks your account balances (and totals) against the key within a small tolerance.</span>
+    </div>
+  </div>
+
+  <!-- CONTROLLER MEMO (not auto-graded) -->
+  <div class="part">
+    <span class="part-label">Requirement 7</span>
+    <h2>Controller Memo</h2>
+    <div class="req"><span class="reqlabel">Required:</span> In no more than one page, address a memo to the Controller of Llama Productions, Inc. identifying three year-end issues that required significant accounting analysis. For each issue: (1) describe the underlying fact pattern, (2) explain the accounting treatment, and (3) quantify the effect on at least one financial statement account. This memo is not auto-graded &mdash; your instructor will review it directly.</div>
+    <textarea class="memo" id="memo-text" placeholder="To: Controller, Llama Productions, Inc.&#10;From:&#10;Re: Significant Year-End Accounting Judgments&#10;&#10;1. ...&#10;2. ...&#10;3. ..."></textarea>
+  </div>
+
+  <div class="submit-bar print-hide">
+    <h2>Ready to submit?</h2>
+    <p class="submit-hint" style="margin:0 0 12px;">Your name is taken from the top of the page.</p>
+    <div class="submit-row submit-actions">
+      <button class="btn-submit" id="printBtn" type="button">Print / Save as PDF</button>
+    </div>
+    <p class="submit-hint">This captures exactly what's currently filled in above and works offline.</p>
+  </div>
+</main>
+
+<footer>Llama Productions, Inc. &middot; Comprehensive Accounting Cycle Case &middot; Phase 3 of 3</footer>
+
+<script>
+// ---------- seeded pseudo-random (same approach as ACCT635 example) ----------
+function hashSeed(str){
+  var h = 2166136261;
+  for(var i=0;i<str.length;i++){
+    h ^= str.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return h >>> 0;
+}
+function mulberry32(seed){
+  return function(){
+    seed |= 0; seed = seed + 0x6D2B79F5 | 0;
+    var t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+    t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+    return ((t ^ t >>> 14) >>> 0) / 4294967296;
+  };
+}
+function pick(rand, arr){ return arr[Math.floor(rand() * arr.length)]; }
+
+// The case year always tracks the browser's current year (like the ACCT 635 example):
+// a given student ID produces the same scenario all year, then automatically refreshes
+// once the calendar turns over, because CURRENT_YEAR is folded into the random seed.
+var CURRENT_YEAR = new Date().getFullYear();
+var NEXT_YEAR = CURRENT_YEAR + 1;
+
+function generateScenario(seedStr){
+  var seedTrim = (seedStr || '').trim();
+  var isBaseline = seedTrim === ''; // blank ID -> the original, unrandomized textbook figures
+  var rand = isBaseline ? null : mulberry32(hashSeed(seedTrim.toLowerCase() + '-' + CURRENT_YEAR));
+  function choose(baselineVal, arr){ return isBaseline ? baselineVal : pick(rand, arr); }
+
+  // ---- fixed beginning trial balance (given, not randomized) ----
+  var beg = {
+    Cash:120000, AR:48000, Allow:2000, Inv:55000, PI:6000,
+    Equip:180000, AD:60000, AP:34000, NP:80000, CS:150000, RE:83000
+  };
+
+  // ---- transaction inputs (randomized per student+year, or the fixed baseline case) ----
+  var p = {};
+
+  // T1 Jan3 disposal
+  p.T1_cost = choose(20000, [18000,20000,22000,24000,26000]);
+  p.T1_bookValue = choose(4000, [2000,3000,4000,5000]);
+  p.T1_accumDep = p.T1_cost - p.T1_bookValue;
+  p.T1_gain = choose(1000, [500,1000,1500,2000,2500]);
+  p.T1_cash = p.T1_bookValue + p.T1_gain;
+
+  p.T2 = choose(35000, [28000,30000,32000,34000,35000,38000]);          // Jan5 collect
+  p.T3 = choose(24000, [20000,22000,24000,26000,28000]);                // Jan8 pay AP
+  p.T4 = choose(40000, [35000,38000,40000,42000,45000]);                // Jan15 inv on acct
+
+  p.T5_rev = choose(32000, [28000,30000,32000,34000,36000]);            // Jan20 cash sale
+  p.T5_margin = choose(0.5625, [0.52,0.55,0.56,0.58,0.60]);
+  p.T5_cost = isBaseline ? 18000 : Math.round(p.T5_rev * p.T5_margin / 1000) * 1000;
+
+  var monthlyIns = choose(1000, [800,900,1000,1100,1200,1300]);
+  p.T6 = monthlyIns * 12;                                           // Feb1 insurance
+
+  p.T7 = choose(50000, [45000,48000,50000,52000,55000]);                // Feb15 stock issued
+
+  var monthlyDep8 = choose(800, [700,800,900,1000]);
+  p.T8 = monthlyDep8 * 60;                                          // Mar1 equipment (5yr)
+
+  p.T9 = choose(42000, [38000,40000,42000,44000,46000]);                // Mar15 services on acct
+  p.T10 = choose(30000, [26000,28000,30000,32000,34000]);               // Apr5 collect
+  p.T11 = choose(28000, [24000,26000,28000,30000]);                     // Apr15 wages
+  p.T12 = choose(30000, [26000,28000,30000,32000]);                     // May1 inv cash
+
+  p.T13_rev = choose(45000, [40000,42000,45000,48000]);                 // May10 credit sale
+  p.T13_margin = choose(0.5556, [0.52,0.55,0.56,0.58]);
+  p.T13_cost = isBaseline ? 25000 : Math.round(p.T13_rev * p.T13_margin / 1000) * 1000;
+
+  p.T14 = choose(60000, [48000,60000,72000,84000,96000]);               // Jun1 note (mult of 12000)
+  p.rate = choose(6, [5,6,7,8]);                                        // note rate %
+
+  p.T15 = choose(35000, [30000,32000,35000,38000]);                     // Jun15 pay AP
+
+  var monthlyRent = choose(2000, [1000,1500,2000,2500,3000]);
+  p.T16 = monthlyRent * 12;                                          // Jul1 rent (12mo)
+
+  p.T17 = choose(38000, [34000,36000,38000,40000]);                     // Jul10 cash services
+  p.T18 = choose(8000, [6000,7000,8000,9000,10000]);                   // Jul25 supplies cash
+  p.T19 = choose(32000, [28000,30000,32000,34000]);                     // Aug20 wages
+  p.T20 = choose(28000, [24000,26000,28000,30000]);                     // Sep5 inv on acct
+
+  p.T21_rev = choose(50000, [45000,48000,50000,52000]);                 // Sep15 cash sale
+  p.T21_margin = choose(0.58, [0.54,0.56,0.58,0.60]);
+  p.T21_cost = isBaseline ? 29000 : Math.round(p.T21_rev * p.T21_margin / 1000) * 1000;
+
+  p.T22 = choose(55000, [50000,52000,55000,58000]);                     // Oct1 services on acct
+  p.T23 = choose(40000, [36000,38000,40000,42000]);                     // Oct10 collect
+  p.T24 = choose(9000, [7000,8000,9000,10000]);                        // Oct15 utilities
+
+  var monthlySponsor = choose(10000, [8000,9000,10000,11000,12000]);
+  p.T25 = monthlySponsor * 6;                                        // Nov1 sponsorship cash
+  p.sponsorMonthly = monthlySponsor;
+
+  p.T26 = choose(30000, [26000,28000,30000,32000]);                     // Nov15 wages
+
+  var monthlyDep27 = choose(500, [400,500,600,700]);
+  p.T27 = monthlyDep27 * 48;                                         // Nov20 camera (4yr, on acct)
+
+  p.T28_rev = choose(36000, [32000,34000,36000,38000]);                 // Dec1 credit sale
+  p.T28_margin = choose(0.5556, [0.52,0.55,0.56,0.58]);
+  p.T28_cost = isBaseline ? 20000 : Math.round(p.T28_rev * p.T28_margin / 1000) * 1000;
+
+  p.T29 = choose(25000, [22000,24000,25000,26000,28000]);               // Dec10 collect
+  p.T30 = choose(20000, [16000,18000,20000,22000]);                     // Dec15 pay AP
+  p.T31 = choose(12000, [8000,10000,12000,14000]);                      // Dec20 dividend
+  p.T32 = choose(18000, [15000,16000,18000,20000]);                     // Dec22 cash services
+  p.T33 = choose(4000, [3000,4000,5000,6000]);                         // Dec28 utilities (adjusted below)
+
+  // ---- unadjusted (perpetual) balances, before evidence items ----
+  function unadjusted(pp){
+    var AR = beg.AR - pp.T2 + pp.T9 - pp.T10 + pp.T13_rev + pp.T22 - pp.T23 + pp.T28_rev - pp.T29;
+    var Inv = beg.Inv + pp.T4 - pp.T5_cost + pp.T12 - pp.T13_cost + pp.T20 - pp.T21_cost - pp.T28_cost;
+    var Supplies = pp.T18;
+    var PI = beg.PI + pp.T6;
+    var PR = pp.T16;
+    var Equip = beg.Equip - pp.T1_cost + pp.T8 + pp.T27;
+    var AD = beg.AD - pp.T1_accumDep;
+    var AP = beg.AP - pp.T3 + pp.T4 - pp.T15 + pp.T20 - pp.T30 + pp.T27;
+    var USR = pp.T25;
+    var NP = beg.NP + pp.T14;
+    var CS = beg.CS + pp.T7;
+    var MerchRev = pp.T5_rev + pp.T13_rev + pp.T21_rev + pp.T28_rev;
+    var COGS = pp.T5_cost + pp.T13_cost + pp.T21_cost + pp.T28_cost;
+    var SvcRev = pp.T9 + pp.T17 + pp.T22 + pp.T32;
+    var Gain = pp.T1_gain;
+    var Wages = pp.T11 + pp.T19 + pp.T26;
+    var Util = pp.T24 + pp.T33;
+    var Div = pp.T31;
+
+    var cashDeltas = pp.T1_cash + pp.T2 - pp.T3 + pp.T5_rev - pp.T6 + pp.T7 - pp.T8
+      + pp.T10 - pp.T11 - pp.T12 + pp.T14 - pp.T15 - pp.T16 + pp.T17 - pp.T18 - pp.T19
+      + pp.T21_rev + pp.T23 - pp.T24 + pp.T25 - pp.T26 + pp.T29 - pp.T30 - pp.T31 + pp.T32 - pp.T33;
+    var Cash = beg.Cash + cashDeltas;
+
+    return {AR:AR,Inv:Inv,Supplies:Supplies,PI:PI,PR:PR,Equip:Equip,AD:AD,AP:AP,USR:USR,NP:NP,CS:CS,
+      MerchRev:MerchRev,COGS:COGS,SvcRev:SvcRev,Gain:Gain,Wages:Wages,Util:Util,Div:Div,Cash:Cash,
+      Allow: beg.Allow};
+  }
+
+  var u = unadjusted(p);
+
+  // ---- year-end evidence, Items A-K ----
+  var ev = {};
+  ev.A_earned = p.sponsorMonthly * 2;              // Nov+Dec earned
+  ev.B_insExp = monthlyIns * 11;                    // 11 months of new policy
+  ev.C_rentExp = monthlyRent * 6;                   // 6 months of new rent
+  var suppFraction = choose(0.2875, [0.20,0.25,0.28,0.30,0.35,0.40]);
+  ev.D_onHand = isBaseline ? 2300 : Math.round(p.T18 * suppFraction / 50) * 50;
+  ev.D_suppExp = p.T18 - ev.D_onHand;
+  ev.E_legacyAnnual = choose(30000, [24000,27000,30000,33000,36000]);
+  ev.E_marchDep = monthlyDep8 * 10;
+  ev.E_decDep = monthlyDep27 * 1;
+  ev.E_totalDep = ev.E_legacyAnnual + ev.E_marchDep + ev.E_decDep;
+  ev.F_targetAllow = choose(8500, [6500,7500,8500,9500,10500]);
+  ev.F_badDebt = ev.F_targetAllow - beg.Allow;
+  var shrinkAmt = isBaseline ? 2700 : choose(2700, [1500,2000,2500,3000,3500]);
+  ev.G_physCount = u.Inv - shrinkAmt;
+  ev.G_nrvCost = choose(7500, [5000,6000,7000,7500,8000]);
+  ev.G_nrvLoss = choose(1200, [800,1000,1200,1500,1800]);
+  ev.G_nrvValue = ev.G_nrvCost - ev.G_nrvLoss;
+  ev.G_cogsAdj = shrinkAmt + ev.G_nrvLoss;
+  ev.H_accrWages = choose(9400, [7000,8000,9400,10000,11000,12000]);
+  ev.I_interest = Math.round(p.T14 * p.rate * 7 / 1200);
+  ev.J_unbilled = choose(14000, [10000,12000,14000,16000,18000]);
+
+  // ---- pretax income before tax (whole-dollar guard for K) ----
+  function computePretax(pp, u, ev){
+    var totalRev = u.MerchRev + (u.SvcRev + ev.J_unbilled) + ev.A_earned;
+    var cogsAdj = u.COGS + ev.G_cogsAdj;
+    var grossProfit = totalRev - cogsAdj;
+    var opEx = (u.Wages + ev.H_accrWages) + u.Util + ev.B_insExp + ev.C_rentExp + ev.D_suppExp + ev.E_totalDep + ev.F_badDebt;
+    var opInc = grossProfit - opEx;
+    var pretax = opInc + u.Gain - ev.I_interest;
+    return pretax;
+  }
+  var pretaxRaw = computePretax(p, u, ev);
+  var rem = ((pretaxRaw % 4) + 4) % 4;
+  if(rem !== 0){
+    // nudge Dec28 utilities (T33) up by `rem` dollars so pretax income divides evenly by 4
+    p.T33 += rem;
+    u = unadjusted(p);
+  }
+  var pretax = computePretax(p, u, ev);
+  var K_tax = Math.round(pretax * 0.25);
+
+  // ---- adjusted balances ----
+  var adj = {};
+  adj.AR = u.AR + ev.J_unbilled;
+  adj.Allow = ev.F_targetAllow;
+  adj.Inv = u.Inv - ev.G_cogsAdj;
+  adj.Supplies = ev.D_onHand;
+  adj.PI = u.PI - ev.B_insExp;
+  adj.PR = u.PR - ev.C_rentExp;
+  adj.Equip = u.Equip;
+  adj.AD = u.AD + ev.E_totalDep;
+  adj.AP = u.AP;
+  adj.WagesPayable = ev.H_accrWages;
+  adj.InterestPayable = ev.I_interest;
+  adj.TaxPayable = K_tax;
+  adj.USR = u.USR - ev.A_earned;
+  adj.NP = u.NP;
+  adj.CS = u.CS;
+  adj.RE = beg.RE;
+  adj.Div = u.Div;
+  adj.MerchRev = u.MerchRev;
+  adj.COGS = u.COGS + ev.G_cogsAdj;
+  adj.SvcRev = u.SvcRev + ev.J_unbilled;
+  adj.SponsorRev = ev.A_earned;
+  adj.Gain = u.Gain;
+  adj.Wages = u.Wages + ev.H_accrWages;
+  adj.Util = u.Util;
+  adj.Ins = ev.B_insExp;
+  adj.Rent = ev.C_rentExp;
+  adj.Supp = ev.D_suppExp;
+  adj.Dep = ev.E_totalDep;
+  adj.BadDebt = ev.F_badDebt;
+  adj.Interest = ev.I_interest;
+  adj.Tax = K_tax;
+  adj.Cash = u.Cash;
+
+  // ---- income statement ----
+  var IS = {};
+  IS.totalRev = adj.MerchRev + adj.SvcRev + adj.SponsorRev;
+  IS.grossProfit = IS.totalRev - adj.COGS;
+  IS.opEx = adj.Wages + adj.Util + adj.Ins + adj.Rent + adj.Supp + adj.Dep + adj.BadDebt;
+  IS.opInc = IS.grossProfit - IS.opEx;
+  IS.otherIncome = adj.Gain - adj.Interest;
+  IS.pretax = IS.opInc + IS.otherIncome;
+  IS.tax = adj.Tax;
+  IS.netIncome = IS.pretax - IS.tax;
+
+  // ---- statement of stockholders' equity ----
+  var SE = {
+    begCS: beg.CS, begRE: beg.RE,
+    stockIssued: p.T7,
+    netIncome: IS.netIncome,
+    dividends: p.T31,
+    endCS: beg.CS + p.T7,
+    endRE: beg.RE + IS.netIncome - p.T31
+  };
+
+  // ---- balance sheet ----
+  var BS = {
+    cash: adj.Cash, ar: adj.AR, allow: adj.Allow, netAR: adj.AR - adj.Allow,
+    inv: adj.Inv, supplies: adj.Supplies, pi: adj.PI, pr: adj.PR,
+    equip: adj.Equip, ad: adj.AD, netEquip: adj.Equip - adj.AD,
+    ap: adj.AP, wagesPay: adj.WagesPayable, intPay: adj.InterestPayable, taxPay: adj.TaxPayable, usr: adj.USR,
+    np: adj.NP, cs: SE.endCS, re: SE.endRE
+  };
+  BS.totalCurrentAssets = BS.cash + BS.netAR + BS.inv + BS.supplies + BS.pi + BS.pr;
+  BS.totalAssets = BS.totalCurrentAssets + BS.netEquip;
+  BS.totalCurrentLiab = BS.ap + BS.wagesPay + BS.intPay + BS.taxPay + BS.usr;
+  BS.totalLiab = BS.totalCurrentLiab + BS.np;
+  BS.totalEquity = BS.cs + BS.re;
+  BS.totalLiabEquity = BS.totalLiab + BS.totalEquity;
+
+  // ---- statement of cash flows (indirect) ----
+  var CF = {};
+  CF.netIncome = IS.netIncome;
+  CF.dep = adj.Dep;
+  CF.badDebt = adj.BadDebt;
+  CF.gain = -adj.Gain;
+  CF.incAR = -(adj.AR - beg.AR);
+  CF.incInv = -(adj.Inv - beg.Inv);
+  CF.incPrepaid = -((adj.PI - beg.PI) + (adj.PR - 0));
+  CF.incSupplies = -(adj.Supplies - 0);
+  CF.decAPops = (adj.AP - beg.AP) - p.T27; // strip out noncash camera-equipment purchase on account
+  CF.incUSR = adj.USR - 0;
+  CF.incWagesPay = adj.WagesPayable - 0;
+  CF.incIntPay = adj.InterestPayable - 0;
+  CF.incTaxPay = adj.TaxPayable - 0;
+  CF.operating = CF.netIncome + CF.dep + CF.badDebt + CF.gain + CF.incAR + CF.incInv + CF.incPrepaid +
+    CF.incSupplies + CF.decAPops + CF.incUSR + CF.incWagesPay + CF.incIntPay + CF.incTaxPay;
+
+  CF.proceedsSaleEquip = p.T1_cash;
+  CF.purchaseEquipCash = -p.T8;
+  CF.investing = CF.proceedsSaleEquip + CF.purchaseEquipCash;
+
+  CF.stockIssued = p.T7;
+  CF.noteBorrowed = p.T14;
+  CF.dividendsPaid = -p.T31;
+  CF.financing = CF.stockIssued + CF.noteBorrowed + CF.dividendsPaid;
+
+  CF.netChange = CF.operating + CF.investing + CF.financing;
+  CF.begCash = beg.Cash;
+  CF.endCash = beg.Cash + CF.netChange;
+  CF.noncashEquip = p.T27;
+
+  // ---- post-closing trial balance ----
+  var PC = {
+    Cash: BS.cash, AR: BS.ar, Allow: BS.allow, Inv: BS.inv, Supplies: BS.supplies, PI: BS.pi, PR: BS.pr,
+    Equip: BS.equip, AD: BS.ad, AP: BS.ap, WagesPay: BS.wagesPay, IntPay: BS.intPay, TaxPay: BS.taxPay,
+    USR: BS.usr, NP: BS.np, CS: BS.cs, RE: BS.re
+  };
+
+  return {
+    beg: beg, p: p, u: u, ev: ev, adj: adj, IS: IS, SE: SE, BS: BS, CF: CF, PC: PC, isBaseline: isBaseline
+  };
+}
+
+// Builds the 33-transaction general journal entry definitions from a scenario object `s`
+// (as returned by generateScenario). Each line: {acct, side:'Dr'|'Cr', amt}
+function buildJournal(s){
+  var p = s.p;
+  var J = [];
+  function add(num, date, desc, lines){ J.push({num:num, date:date, desc:desc, lines:lines}); }
+
+  add(1,'Jan. 3','Sold obsolete editing equipment for cash.',[
+    {acct:'Cash', side:'Dr', amt:p.T1_cash},
+    {acct:'Accumulated Depreciation - Equipment', side:'Dr', amt:p.T1_accumDep},
+    {acct:'Equipment', side:'Cr', amt:p.T1_cost},
+    {acct:'Gain on Sale of Equipment', side:'Cr', amt:p.T1_gain}
+  ]);
+  add(2,'Jan. 5','Collected cash from customers on account.',[
+    {acct:'Cash', side:'Dr', amt:p.T2},
+    {acct:'Accounts Receivable', side:'Cr', amt:p.T2}
+  ]);
+  add(3,'Jan. 8','Paid cash on outstanding accounts payable.',[
+    {acct:'Accounts Payable', side:'Dr', amt:p.T3},
+    {acct:'Cash', side:'Cr', amt:p.T3}
+  ]);
+  add(4,'Jan. 15','Purchased merchandise inventory on account.',[
+    {acct:'Inventory', side:'Dr', amt:p.T4},
+    {acct:'Accounts Payable', side:'Cr', amt:p.T4}
+  ]);
+  add(5,'Jan. 20','Sold merchandise for cash (perpetual inventory).',[
+    {acct:'Cash', side:'Dr', amt:p.T5_rev},
+    {acct:'Merchandise Sales Revenue', side:'Cr', amt:p.T5_rev},
+    {acct:'Cost of Goods Sold', side:'Dr', amt:p.T5_cost},
+    {acct:'Inventory', side:'Cr', amt:p.T5_cost}
+  ]);
+  add(6,'Feb. 1','Paid for a 12-month insurance policy.',[
+    {acct:'Prepaid Insurance', side:'Dr', amt:p.T6},
+    {acct:'Cash', side:'Cr', amt:p.T6}
+  ]);
+  add(7,'Feb. 15','Issued common stock for cash.',[
+    {acct:'Cash', side:'Dr', amt:p.T7},
+    {acct:'Common Stock', side:'Cr', amt:p.T7}
+  ]);
+  add(8,'Mar. 1','Purchased new production equipment for cash; placed in service immediately.',[
+    {acct:'Equipment', side:'Dr', amt:p.T8},
+    {acct:'Cash', side:'Cr', amt:p.T8}
+  ]);
+  add(9,'Mar. 15','Provided production services on account.',[
+    {acct:'Accounts Receivable', side:'Dr', amt:p.T9},
+    {acct:'Service Revenue', side:'Cr', amt:p.T9}
+  ]);
+  add(10,'Apr. 5','Collected cash from customers on account.',[
+    {acct:'Cash', side:'Dr', amt:p.T10},
+    {acct:'Accounts Receivable', side:'Cr', amt:p.T10}
+  ]);
+  add(11,'Apr. 15','Paid employee wages.',[
+    {acct:'Wages Expense', side:'Dr', amt:p.T11},
+    {acct:'Cash', side:'Cr', amt:p.T11}
+  ]);
+  add(12,'May 1','Purchased merchandise inventory for cash.',[
+    {acct:'Inventory', side:'Dr', amt:p.T12},
+    {acct:'Cash', side:'Cr', amt:p.T12}
+  ]);
+  add(13,'May 10','Sold merchandise on account (perpetual inventory).',[
+    {acct:'Accounts Receivable', side:'Dr', amt:p.T13_rev},
+    {acct:'Merchandise Sales Revenue', side:'Cr', amt:p.T13_rev},
+    {acct:'Cost of Goods Sold', side:'Dr', amt:p.T13_cost},
+    {acct:'Inventory', side:'Cr', amt:p.T13_cost}
+  ]);
+  add(14,'Jun. 1','Borrowed cash by signing a note payable.',[
+    {acct:'Cash', side:'Dr', amt:p.T14},
+    {acct:'Notes Payable', side:'Cr', amt:p.T14}
+  ]);
+  add(15,'Jun. 15','Paid cash on accounts payable.',[
+    {acct:'Accounts Payable', side:'Dr', amt:p.T15},
+    {acct:'Cash', side:'Cr', amt:p.T15}
+  ]);
+  add(16,'Jul. 1','Paid for 12 months of studio rent.',[
+    {acct:'Prepaid Rent', side:'Dr', amt:p.T16},
+    {acct:'Cash', side:'Cr', amt:p.T16}
+  ]);
+  add(17,'Jul. 10','Received cash for production services completed.',[
+    {acct:'Cash', side:'Dr', amt:p.T17},
+    {acct:'Service Revenue', side:'Cr', amt:p.T17}
+  ]);
+  add(18,'Jul. 25','Purchased production supplies for cash (recorded as an asset).',[
+    {acct:'Supplies', side:'Dr', amt:p.T18},
+    {acct:'Cash', side:'Cr', amt:p.T18}
+  ]);
+  add(19,'Aug. 20','Paid employee wages.',[
+    {acct:'Wages Expense', side:'Dr', amt:p.T19},
+    {acct:'Cash', side:'Cr', amt:p.T19}
+  ]);
+  add(20,'Sep. 5','Purchased merchandise inventory on account.',[
+    {acct:'Inventory', side:'Dr', amt:p.T20},
+    {acct:'Accounts Payable', side:'Cr', amt:p.T20}
+  ]);
+  add(21,'Sep. 15','Sold merchandise for cash (perpetual inventory).',[
+    {acct:'Cash', side:'Dr', amt:p.T21_rev},
+    {acct:'Merchandise Sales Revenue', side:'Cr', amt:p.T21_rev},
+    {acct:'Cost of Goods Sold', side:'Dr', amt:p.T21_cost},
+    {acct:'Inventory', side:'Cr', amt:p.T21_cost}
+  ]);
+  add(22,'Oct. 1','Provided production services on account.',[
+    {acct:'Accounts Receivable', side:'Dr', amt:p.T22},
+    {acct:'Service Revenue', side:'Cr', amt:p.T22}
+  ]);
+  add(23,'Oct. 10','Collected cash from customers on account.',[
+    {acct:'Cash', side:'Dr', amt:p.T23},
+    {acct:'Accounts Receivable', side:'Cr', amt:p.T23}
+  ]);
+  add(24,'Oct. 15','Paid utilities.',[
+    {acct:'Utilities Expense', side:'Dr', amt:p.T24},
+    {acct:'Cash', side:'Cr', amt:p.T24}
+  ]);
+  add(25,'Nov. 1','Received cash in advance for a six-video sponsorship campaign (do not anticipate revenue).',[
+    {acct:'Cash', side:'Dr', amt:p.T25},
+    {acct:'Unearned Sponsorship Revenue', side:'Cr', amt:p.T25}
+  ]);
+  add(26,'Nov. 15','Paid employee wages.',[
+    {acct:'Wages Expense', side:'Dr', amt:p.T26},
+    {acct:'Cash', side:'Cr', amt:p.T26}
+  ]);
+  add(27,'Nov. 20','Purchased camera equipment on account; installed and placed in service December 1.',[
+    {acct:'Equipment', side:'Dr', amt:p.T27},
+    {acct:'Accounts Payable', side:'Cr', amt:p.T27}
+  ]);
+  add(28,'Dec. 1','Sold merchandise on account (perpetual inventory).',[
+    {acct:'Accounts Receivable', side:'Dr', amt:p.T28_rev},
+    {acct:'Merchandise Sales Revenue', side:'Cr', amt:p.T28_rev},
+    {acct:'Cost of Goods Sold', side:'Dr', amt:p.T28_cost},
+    {acct:'Inventory', side:'Cr', amt:p.T28_cost}
+  ]);
+  add(29,'Dec. 10','Collected cash from customers on account.',[
+    {acct:'Cash', side:'Dr', amt:p.T29},
+    {acct:'Accounts Receivable', side:'Cr', amt:p.T29}
+  ]);
+  add(30,'Dec. 15','Paid cash on accounts payable.',[
+    {acct:'Accounts Payable', side:'Dr', amt:p.T30},
+    {acct:'Cash', side:'Cr', amt:p.T30}
+  ]);
+  add(31,'Dec. 20','Declared and paid a cash dividend.',[
+    {acct:'Dividends', side:'Dr', amt:p.T31},
+    {acct:'Cash', side:'Cr', amt:p.T31}
+  ]);
+  add(32,'Dec. 22','Received cash for production services completed.',[
+    {acct:'Cash', side:'Dr', amt:p.T32},
+    {acct:'Service Revenue', side:'Cr', amt:p.T32}
+  ]);
+  add(33,'Dec. 28','Paid utilities.',[
+    {acct:'Utilities Expense', side:'Dr', amt:p.T33},
+    {acct:'Cash', side:'Cr', amt:p.T33}
+  ]);
+
+  return J;
+}
+
+function buildAdjusting(s){
+  var ev = s.ev, adj = s.adj;
+  var A = [];
+  function add(item, topic, lines){ A.push({item:item, topic:topic, lines:lines}); }
+  add('A','Sponsorship campaign earned',[
+    {acct:'Unearned Sponsorship Revenue', side:'Dr', amt:ev.A_earned},
+    {acct:'Sponsorship Revenue', side:'Cr', amt:ev.A_earned}
+  ]);
+  add('B','Insurance expired',[
+    {acct:'Insurance Expense', side:'Dr', amt:ev.B_insExp},
+    {acct:'Prepaid Insurance', side:'Cr', amt:ev.B_insExp}
+  ]);
+  add('C','Rent expired',[
+    {acct:'Rent Expense', side:'Dr', amt:ev.C_rentExp},
+    {acct:'Prepaid Rent', side:'Cr', amt:ev.C_rentExp}
+  ]);
+  add('D','Supplies used',[
+    {acct:'Supplies Expense', side:'Dr', amt:ev.D_suppExp},
+    {acct:'Supplies', side:'Cr', amt:ev.D_suppExp}
+  ]);
+  add('E','Depreciation',[
+    {acct:'Depreciation Expense', side:'Dr', amt:ev.E_totalDep},
+    {acct:'Accumulated Depreciation - Equipment', side:'Cr', amt:ev.E_totalDep}
+  ]);
+  add('F','Credit losses (allowance)',[
+    {acct:'Bad Debt Expense', side:'Dr', amt:ev.F_badDebt},
+    {acct:'Allowance for Doubtful Accounts', side:'Cr', amt:ev.F_badDebt}
+  ]);
+  add('G','Inventory shrinkage & NRV write-down',[
+    {acct:'Cost of Goods Sold', side:'Dr', amt:ev.G_cogsAdj},
+    {acct:'Inventory', side:'Cr', amt:ev.G_cogsAdj}
+  ]);
+  add('H','Accrued wages',[
+    {acct:'Wages Expense', side:'Dr', amt:ev.H_accrWages},
+    {acct:'Wages Payable', side:'Cr', amt:ev.H_accrWages}
+  ]);
+  add('I','Accrued interest',[
+    {acct:'Interest Expense', side:'Dr', amt:ev.I_interest},
+    {acct:'Interest Payable', side:'Cr', amt:ev.I_interest}
+  ]);
+  add('J','Unbilled services',[
+    {acct:'Accounts Receivable', side:'Dr', amt:ev.J_unbilled},
+    {acct:'Service Revenue', side:'Cr', amt:ev.J_unbilled}
+  ]);
+  add('K','Income taxes',[
+    {acct:'Income Tax Expense', side:'Dr', amt:adj.Tax},
+    {acct:'Income Taxes Payable', side:'Cr', amt:adj.Tax}
+  ]);
+  return A;
+}
+
+function buildClosing(s){
+  var adj = s.adj, IS = s.IS, SE = s.SE;
+  var revTotal = adj.MerchRev + adj.SvcRev + adj.SponsorRev + adj.Gain;
+  var expTotal = adj.COGS + adj.Wages + adj.Util + adj.Ins + adj.Rent + adj.Supp + adj.Dep + adj.BadDebt + adj.Interest + adj.Tax;
+  var C = [];
+  C.push({num:1, label:'Close revenues and gain', lines:[
+    {acct:'Merchandise Sales Revenue', side:'Dr', amt:adj.MerchRev},
+    {acct:'Service Revenue', side:'Dr', amt:adj.SvcRev},
+    {acct:'Sponsorship Revenue', side:'Dr', amt:adj.SponsorRev},
+    {acct:'Gain on Sale of Equipment', side:'Dr', amt:adj.Gain},
+    {acct:'Income Summary', side:'Cr', amt:revTotal}
+  ]});
+  C.push({num:2, label:'Close expenses', lines:[
+    {acct:'Income Summary', side:'Dr', amt:expTotal},
+    {acct:'Cost of Goods Sold', side:'Cr', amt:adj.COGS},
+    {acct:'Wages Expense', side:'Cr', amt:adj.Wages},
+    {acct:'Utilities Expense', side:'Cr', amt:adj.Util},
+    {acct:'Insurance Expense', side:'Cr', amt:adj.Ins},
+    {acct:'Rent Expense', side:'Cr', amt:adj.Rent},
+    {acct:'Supplies Expense', side:'Cr', amt:adj.Supp},
+    {acct:'Depreciation Expense', side:'Cr', amt:adj.Dep},
+    {acct:'Bad Debt Expense', side:'Cr', amt:adj.BadDebt},
+    {acct:'Interest Expense', side:'Cr', amt:adj.Interest},
+    {acct:'Income Tax Expense', side:'Cr', amt:adj.Tax}
+  ]});
+  C.push({num:3, label:'Close income summary to retained earnings', lines:[
+    {acct:'Income Summary', side:'Dr', amt:IS.netIncome},
+    {acct:'Retained Earnings', side:'Cr', amt:IS.netIncome}
+  ]});
+  C.push({num:4, label:'Close dividends', lines:[
+    {acct:'Retained Earnings', side:'Dr', amt:adj.Div},
+    {acct:'Dividends', side:'Cr', amt:adj.Div}
+  ]});
+  return C;
+}
+
+var ACCOUNTS = [
+  'Cash',
+  'Accounts Receivable',
+  'Allowance for Doubtful Accounts',
+  'Inventory',
+  'Supplies',
+  'Prepaid Insurance',
+  'Prepaid Rent',
+  'Equipment',
+  'Accumulated Depreciation - Equipment',
+  'Accounts Payable',
+  'Wages Payable',
+  'Interest Payable',
+  'Income Taxes Payable',
+  'Unearned Sponsorship Revenue',
+  'Notes Payable',
+  'Common Stock',
+  'Retained Earnings',
+  'Dividends',
+  'Merchandise Sales Revenue',
+  'Service Revenue',
+  'Sponsorship Revenue',
+  'Gain on Sale of Equipment',
+  'Cost of Goods Sold',
+  'Wages Expense',
+  'Utilities Expense',
+  'Insurance Expense',
+  'Rent Expense',
+  'Supplies Expense',
+  'Depreciation Expense',
+  'Bad Debt Expense',
+  'Interest Expense',
+  'Income Tax Expense',
+  'Income Summary'
+];
+
+function acctOptionsHtml(){
+  var html = '<option value="">— select account —</option>';
+  ACCOUNTS.forEach(function(a){
+    html += '<option value="' + a.replace(/"/g,'&quot;') + '">' + a + '</option>';
+  });
+  return html;
+}
+
+function money0(n){
+  var v = Number(n);
+  var s = Math.abs(v).toLocaleString('en-US', {minimumFractionDigits:0, maximumFractionDigits:0});
+  return v < 0 ? '$(' + s + ')' : '$' + s;
+}
+function plainNum(n){
+  var v = Number(n);
+  return Math.abs(v).toLocaleString('en-US', {minimumFractionDigits:0, maximumFractionDigits:0});
+}
+function setText(id, text){
+  var el = document.getElementById(id);
+  if(el) el.textContent = text;
+}
+function setHtml(id, html){
+  var el = document.getElementById(id);
+  if(el) el.innerHTML = html;
+}
+
+var TOL = { dollars: 1 };
+
+function parseMoney(s){
+  if(s === null || s === undefined) return 0;
+  var raw = String(s).trim();
+  if(raw === '') return 0; // a blank cell is graded as $0 (a trial balance leaves inactive accounts blank)
+  var neg = /^\(.*\)$/.test(raw) || /^-/.test(raw) || /^−/.test(raw);
+  var cleaned = raw.replace(/[^0-9.]/g, '');
+  if(cleaned === '') return NaN;
+  var v = parseFloat(cleaned);
+  if(isNaN(v)) return NaN;
+  return neg ? -v : v;
+}
+function near(a, b, tol){
+  if(isNaN(a) || isNaN(b)) return false;
+  return Math.abs(a - b) <= tol;
+}
+function clearFieldState(el){
+  if(!el) return;
+  el.classList.remove('field-correct', 'field-incorrect');
+}
+function clearAllFieldStates(){
+  document.querySelectorAll('.field-correct, .field-incorrect').forEach(function(el){
+    el.classList.remove('field-correct', 'field-incorrect');
+  });
+  document.querySelectorAll('.check-summary').forEach(function(el){
+    el.textContent = ''; el.classList.remove('good','bad');
+  });
+}
+function bindClear(el){
+  if(!el || el.dataset.clearBound) return;
+  var evt = (el.tagName === 'SELECT') ? 'change' : 'input';
+  el.addEventListener(evt, function(){ clearFieldState(el); });
+  el.dataset.clearBound = '1';
+}
+function markSelect(id, expected){
+  var el = document.getElementById(id);
+  if(!el) return null;
+  el.classList.remove('field-correct', 'field-incorrect');
+  var ok = el.value === expected;
+  el.classList.add(ok ? 'field-correct' : 'field-incorrect');
+  bindClear(el);
+  return ok;
+}
+function markField(id, correct, tol){
+  var el = document.getElementById(id);
+  if(!el) return null;
+  el.classList.remove('field-correct', 'field-incorrect');
+  var ok = near(parseMoney(el.value), correct, tol);
+  el.classList.add(ok ? 'field-correct' : 'field-incorrect');
+  bindClear(el);
+  return ok;
+}
+// A journal-entry row's amount belongs in exactly one of the two columns (Debit or
+// Credit, per `side`). The other column should be left blank.
+function markAmountPair(rowId, side, correct, tol){
+  var debitEl = document.getElementById(rowId + '-debit');
+  var creditEl = document.getElementById(rowId + '-credit');
+  if(!debitEl || !creditEl) return null;
+  clearFieldState(debitEl);
+  clearFieldState(creditEl);
+  bindClear(debitEl);
+  bindClear(creditEl);
+
+  var debitBlank = debitEl.value.trim() === '';
+  var creditBlank = creditEl.value.trim() === '';
+  var ok;
+  if(side === 'Dr'){
+    var debitOk = near(parseMoney(debitEl.value), correct, tol);
+    debitEl.classList.add(debitOk ? 'field-correct' : 'field-incorrect');
+    if(!creditBlank) creditEl.classList.add('field-incorrect');
+    ok = debitOk && creditBlank;
+  } else {
+    var creditOk = near(parseMoney(creditEl.value), correct, tol);
+    creditEl.classList.add(creditOk ? 'field-correct' : 'field-incorrect');
+    if(!debitBlank) debitEl.classList.add('field-incorrect');
+    ok = creditOk && debitBlank;
+  }
+  return ok;
+}
+function updateSummary(elId, results){
+  var el = document.getElementById(elId);
+  if(!el) return;
+  var graded = results.filter(function(r){ return r !== null; }).length;
+  var correct = results.filter(function(r){ return r === true; }).length;
+  el.textContent = correct + ' of ' + graded + ' correct';
+  el.classList.remove('good', 'bad');
+  el.classList.add(correct === graded && graded > 0 ? 'good' : 'bad');
+}
+
+var SCORES = {};
+function scoreState(key){
+  if(!SCORES[key]) SCORES[key] = { correct:0, graded:0, attempts:0, checked:false };
+  return SCORES[key];
+}
+function resetScore(key){
+  SCORES[key] = { correct:0, graded:0, attempts:0, checked:false };
+}
+var SCORE_PROMPT = 'Fill in the fields below, then choose <strong>Check my work</strong>. Every blank counts as incorrect.';
+
+function renderOverall(){
+  var area = document.getElementById('scoreArea');
+  if(!area) return;
+  var panel = area.querySelector('.score-panel[data-for="overall"]');
+  if(!panel){
+    panel = document.createElement('div');
+    panel.className = 'score-panel';
+    panel.setAttribute('data-for', 'overall');
+    panel.innerHTML =
+      '<div class="score-pct">&mdash;</div>' +
+      '<div class="score-detail">' +
+        '<p class="score-meta">Overall score</p>' +
+        '<div class="score-bar"><span></span></div>' +
+        '<p class="score-sub">Check each section below; this rolls up every section you have checked so far.</p>' +
+      '</div>';
+    area.appendChild(panel);
+  }
+  var totalCorrect = 0, totalGraded = 0, anyChecked = false;
+  Object.keys(SCORES).forEach(function(k){
+    var s = SCORES[k];
+    if(s.checked){ anyChecked = true; totalCorrect += s.correct; totalGraded += s.graded; }
+  });
+  var pctEl = panel.querySelector('.score-pct');
+  var metaEl = panel.querySelector('.score-meta');
+  var fillEl = panel.querySelector('.score-bar span');
+  var subEl = panel.querySelector('.score-sub');
+  panel.classList.remove('scored-good','scored-bad');
+  if(!anyChecked){
+    pctEl.innerHTML = '&mdash;';
+    metaEl.textContent = 'Overall score';
+    fillEl.style.width = '0%';
+    subEl.textContent = 'Check each section below; this rolls up every section you have checked so far.';
+    return;
+  }
+  var pct = totalGraded ? Math.round(totalCorrect/totalGraded*100) : 0;
+  pctEl.textContent = pct + '%';
+  metaEl.textContent = 'Overall: ' + totalCorrect + ' of ' + totalGraded + ' correct (checked sections only)';
+  fillEl.style.width = pct + '%';
+  if(totalCorrect === totalGraded){
+    subEl.textContent = 'All checked sections match the key.';
+    panel.classList.add('scored-good');
+  } else {
+    subEl.textContent = (totalGraded-totalCorrect) + ' field(s) still to fix across the sections you have checked.';
+    panel.classList.add('scored-bad');
+  }
+}
+
+function wireCheckButton(btnId, summaryId, gradeFn){
+  var btn = document.getElementById(btnId);
+  if(!btn) return;
+  var part = btn.closest('.part');
+  if(part){
+    part.addEventListener('input', function(e){
+      if(e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT')){
+        // handled per-field via bindClear
+      }
+    });
+  }
+  btn.addEventListener('click', function(){
+    var results = gradeFn();
+    updateSummary(summaryId, results);
+    var s = scoreState(btnId);
+    s.graded = results.filter(function(r){ return r !== null; }).length;
+    s.correct = results.filter(function(r){ return r === true; }).length;
+    s.attempts += 1;
+    s.checked = true;
+    renderOverall();
+  });
+}
+
+// ---------------- Print / Save as PDF ----------------
+function wirePrintButton(fileSlug, studentIdInputId){
+  var btn = document.getElementById('printBtn');
+  if(!btn) return;
+  btn.addEventListener('click', function(){
+    var name = (document.getElementById('studentName')||{}).value || '';
+    var id = (document.getElementById(studentIdInputId)||{}).value || '';
+    var line = document.getElementById('printNameLine');
+    if(line){
+      line.textContent = 'Name: ' + (name.trim() || '_______________________') +
+                         '     Student ID: ' + (id.trim() || '_______________________');
+    }
+    var oldTitle = document.title;
+    document.title = fileSlug + '-' + (id.trim() || 'submission');
+    window.print();
+    document.title = oldTitle;
+  });
+}
+
+// ---------------- Dynamic year labels ----------------
+// Populates any .yr / .yr1 spans with the current/next calendar year, based on
+// the browser's clock (CURRENT_YEAR / NEXT_YEAR come from core_engine.js).
+// This is independent of the student-ID scenario seed, so it's applied once
+// on load rather than as part of regenerate().
+function applyYearLabels(){
+  document.querySelectorAll('.yr').forEach(function(el){ el.textContent = CURRENT_YEAR; });
+  document.querySelectorAll('.yr1').forEach(function(el){ el.textContent = NEXT_YEAR; });
+}
+
+
+(function(){
+  var FILE_SLUG = "Llama-Productions-Phase3-Financial-Statements";
+
+  var ADJ_TB_ACCTS = [
+    {name:'Cash', side:'Dr', val:function(s){return s.adj.Cash;}},
+    {name:'Accounts Receivable', side:'Dr', val:function(s){return s.adj.AR;}},
+    {name:'Allowance for Doubtful Accounts', side:'Cr', val:function(s){return s.adj.Allow;}},
+    {name:'Inventory', side:'Dr', val:function(s){return s.adj.Inv;}},
+    {name:'Supplies', side:'Dr', val:function(s){return s.adj.Supplies;}},
+    {name:'Prepaid Insurance', side:'Dr', val:function(s){return s.adj.PI;}},
+    {name:'Prepaid Rent', side:'Dr', val:function(s){return s.adj.PR;}},
+    {name:'Equipment', side:'Dr', val:function(s){return s.adj.Equip;}},
+    {name:'Accumulated Depreciation - Equipment', side:'Cr', val:function(s){return s.adj.AD;}},
+    {name:'Accounts Payable', side:'Cr', val:function(s){return s.adj.AP;}},
+    {name:'Wages Payable', side:'Cr', val:function(s){return s.adj.WagesPayable;}},
+    {name:'Interest Payable', side:'Cr', val:function(s){return s.adj.InterestPayable;}},
+    {name:'Income Taxes Payable', side:'Cr', val:function(s){return s.adj.TaxPayable;}},
+    {name:'Unearned Sponsorship Revenue', side:'Cr', val:function(s){return s.adj.USR;}},
+    {name:'Notes Payable', side:'Cr', val:function(s){return s.adj.NP;}},
+    {name:'Common Stock', side:'Cr', val:function(s){return s.adj.CS;}},
+    {name:'Retained Earnings', side:'Cr', val:function(s){return s.adj.RE;}},
+    {name:'Dividends', side:'Dr', val:function(s){return s.adj.Div;}},
+    {name:'Merchandise Sales Revenue', side:'Cr', val:function(s){return s.adj.MerchRev;}},
+    {name:'Service Revenue', side:'Cr', val:function(s){return s.adj.SvcRev;}},
+    {name:'Sponsorship Revenue', side:'Cr', val:function(s){return s.adj.SponsorRev;}},
+    {name:'Gain on Sale of Equipment', side:'Cr', val:function(s){return s.adj.Gain;}},
+    {name:'Cost of Goods Sold', side:'Dr', val:function(s){return s.adj.COGS;}},
+    {name:'Wages Expense', side:'Dr', val:function(s){return s.adj.Wages;}},
+    {name:'Utilities Expense', side:'Dr', val:function(s){return s.adj.Util;}},
+    {name:'Insurance Expense', side:'Dr', val:function(s){return s.adj.Ins;}},
+    {name:'Rent Expense', side:'Dr', val:function(s){return s.adj.Rent;}},
+    {name:'Supplies Expense', side:'Dr', val:function(s){return s.adj.Supp;}},
+    {name:'Depreciation Expense', side:'Dr', val:function(s){return s.adj.Dep;}},
+    {name:'Bad Debt Expense', side:'Dr', val:function(s){return s.adj.BadDebt;}},
+    {name:'Interest Expense', side:'Dr', val:function(s){return s.adj.Interest;}},
+    {name:'Income Tax Expense', side:'Dr', val:function(s){return s.adj.Tax;}}
+  ];
+
+  var PC_ACCTS = [
+    {name:'Cash', side:'Dr', val:function(s){return s.PC.Cash;}},
+    {name:'Accounts Receivable', side:'Dr', val:function(s){return s.PC.AR;}},
+    {name:'Allowance for Doubtful Accounts', side:'Cr', val:function(s){return s.PC.Allow;}},
+    {name:'Inventory', side:'Dr', val:function(s){return s.PC.Inv;}},
+    {name:'Supplies', side:'Dr', val:function(s){return s.PC.Supplies;}},
+    {name:'Prepaid Insurance', side:'Dr', val:function(s){return s.PC.PI;}},
+    {name:'Prepaid Rent', side:'Dr', val:function(s){return s.PC.PR;}},
+    {name:'Equipment', side:'Dr', val:function(s){return s.PC.Equip;}},
+    {name:'Accumulated Depreciation - Equipment', side:'Cr', val:function(s){return s.PC.AD;}},
+    {name:'Accounts Payable', side:'Cr', val:function(s){return s.PC.AP;}},
+    {name:'Wages Payable', side:'Cr', val:function(s){return s.PC.WagesPay;}},
+    {name:'Interest Payable', side:'Cr', val:function(s){return s.PC.IntPay;}},
+    {name:'Income Taxes Payable', side:'Cr', val:function(s){return s.PC.TaxPay;}},
+    {name:'Unearned Sponsorship Revenue', side:'Cr', val:function(s){return s.PC.USR;}},
+    {name:'Notes Payable', side:'Cr', val:function(s){return s.PC.NP;}},
+    {name:'Common Stock', side:'Cr', val:function(s){return s.PC.CS;}},
+    {name:'Retained Earnings', side:'Cr', val:function(s){return s.PC.RE;}}
+  ];
+
+  function slug(name){ return name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,''); }
+
+  function renderGivenAdjTb(s){
+    var body = document.getElementById('given-adjtb-body');
+    body.innerHTML = '';
+    var totalDr = 0, totalCr = 0;
+    ADJ_TB_ACCTS.forEach(function(a){
+      var v = Math.abs(a.val(s));
+      var tr = document.createElement('tr');
+      tr.innerHTML = '<td class="lbl">' + a.name + '</td>' +
+        '<td class="num">' + (a.side==='Dr' && v ? money0(v) : '') + '</td>' +
+        '<td class="num">' + (a.side==='Cr' && v ? money0(v) : '') + '</td>';
+      body.appendChild(tr);
+      if(a.side==='Dr') totalDr += v; else totalCr += v;
+    });
+    var trT = document.createElement('tr');
+    trT.className = 'given-total';
+    trT.innerHTML = '<td class="lbl">Total</td><td class="num">' + money0(totalDr) + '</td><td class="num">' + money0(totalCr) + '</td>';
+    body.appendChild(trT);
+  }
+
+  function buildClosingTable(closingEntries){
+    var body = document.getElementById('closing-body');
+    body.innerHTML = '';
+    closingEntries.forEach(function(ce){
+      var headTr = document.createElement('tr');
+      headTr.innerHTML = '<td colspan="3" class="txnhead">Closing Entry ' + ce.num + ' &mdash; ' + ce.label + '</td>';
+      body.appendChild(headTr);
+      ce.lines.forEach(function(line, li){
+        var rowId = 'ce-' + ce.num + '-r' + li;
+        var tr = document.createElement('tr');
+        tr.innerHTML =
+          '<td class="acctcell"><select class="acct" id="' + rowId + '-acct">' + acctOptionsHtml() + '</select></td>' +
+          '<td class="amt"><input type="text" placeholder="$" id="' + rowId + '-debit"></td>' +
+          '<td class="amt"><input type="text" placeholder="$" id="' + rowId + '-credit"></td>';
+        body.appendChild(tr);
+      });
+    });
+  }
+
+  function buildPcTable(){
+    var body = document.getElementById('pctb-body');
+    body.innerHTML = '';
+    PC_ACCTS.forEach(function(a){
+      var rowId = 'pctb-' + slug(a.name);
+      var tr = document.createElement('tr');
+      tr.innerHTML =
+        '<td class="acctlabel">' + a.name + '</td>' +
+        '<td class="amt"><input type="text" placeholder="$" id="' + rowId + '-debit"></td>' +
+        '<td class="amt"><input type="text" placeholder="$" id="' + rowId + '-credit"></td>';
+      body.appendChild(tr);
+    });
+    var tr2 = document.createElement('tr');
+    tr2.style.borderTop = '1.6px solid var(--purple)';
+    tr2.innerHTML =
+      '<td class="acctlabel" style="font-weight:600;">Total</td>' +
+      '<td class="amt"><input type="text" placeholder="$" id="pctb-total-debit"></td>' +
+      '<td class="amt"><input type="text" placeholder="$" id="pctb-total-credit"></td>';
+    body.appendChild(tr2);
+  }
+
+  function applyCfFacts(s){
+    setText('cff-t1cash', money0(s.p.T1_cash));
+    setText('cff-t8', money0(s.p.T8));
+    setText('cff-t27', money0(s.p.T27));
+  }
+
+  var currentScenario = null;
+  var currentClosing = null;
+
+  function regenerate(seed){
+    currentScenario = generateScenario(seed);
+    currentClosing = buildClosing(currentScenario);
+    renderGivenAdjTb(currentScenario);
+    applyCfFacts(currentScenario);
+    clearAllFieldStates();
+    ['check-is','check-se','check-bs','check-cf','check-closing','check-pctb'].forEach(resetScore);
+    renderOverall();
+  }
+
+  var bootstrapScenario = generateScenario('');
+  buildClosingTable(buildClosing(bootstrapScenario));
+  buildPcTable();
+
+  applyYearLabels();
+
+  var idInput = document.getElementById('studentId');
+  var genBtn = document.getElementById('genBtn');
+  genBtn.addEventListener('click', function(){ regenerate(idInput.value); });
+  idInput.addEventListener('keydown', function(e){
+    if(e.key === 'Enter'){ e.preventDefault(); regenerate(idInput.value); }
+  });
+  regenerate('');
+
+  // ---- Income Statement ----
+  wireCheckButton('check-is', 'sum-is', function(){
+    var IS = currentScenario.IS, adj = currentScenario.adj;
+    var results = [];
+    results.push(markField('is-merch', adj.MerchRev, TOL.dollars));
+    results.push(markField('is-service', adj.SvcRev, TOL.dollars));
+    results.push(markField('is-sponsor', adj.SponsorRev, TOL.dollars));
+    results.push(markField('is-totalrev', IS.totalRev, TOL.dollars));
+    results.push(markField('is-cogs', adj.COGS, TOL.dollars));
+    results.push(markField('is-grossprofit', IS.grossProfit, TOL.dollars));
+    results.push(markField('is-wages', adj.Wages, TOL.dollars));
+    results.push(markField('is-utilities', adj.Util, TOL.dollars));
+    results.push(markField('is-insurance', adj.Ins, TOL.dollars));
+    results.push(markField('is-rent', adj.Rent, TOL.dollars));
+    results.push(markField('is-supplies', adj.Supp, TOL.dollars));
+    results.push(markField('is-depreciation', adj.Dep, TOL.dollars));
+    results.push(markField('is-baddebt', adj.BadDebt, TOL.dollars));
+    results.push(markField('is-totalopex', IS.opEx, TOL.dollars));
+    results.push(markField('is-opinc', IS.opInc, TOL.dollars));
+    results.push(markField('is-gain', adj.Gain, TOL.dollars));
+    results.push(markField('is-interest', adj.Interest, TOL.dollars));
+    results.push(markField('is-pretax', IS.pretax, TOL.dollars));
+    results.push(markField('is-tax', IS.tax, TOL.dollars));
+    results.push(markField('is-netincome', IS.netIncome, TOL.dollars));
+    return results;
+  });
+
+  // ---- Statement of Stockholders' Equity ----
+  wireCheckButton('check-se', 'sum-se', function(){
+    var SE = currentScenario.SE, p = currentScenario.p;
+    var results = [];
+    results.push(markField('se-begcs', SE.begCS, TOL.dollars));
+    results.push(markField('se-begre', SE.begRE, TOL.dollars));
+    results.push(markField('se-begtotal', SE.begCS + SE.begRE, TOL.dollars));
+    results.push(markField('se-stockcs', SE.stockIssued, TOL.dollars));
+    results.push(markField('se-stocktotal', SE.stockIssued, TOL.dollars));
+    results.push(markField('se-nire', SE.netIncome, TOL.dollars));
+    results.push(markField('se-nitotal', SE.netIncome, TOL.dollars));
+    results.push(markField('se-divre', -p.T31, TOL.dollars));
+    results.push(markField('se-divtotal', -p.T31, TOL.dollars));
+    results.push(markField('se-endcs', SE.endCS, TOL.dollars));
+    results.push(markField('se-endre', SE.endRE, TOL.dollars));
+    results.push(markField('se-endtotal', SE.endCS + SE.endRE, TOL.dollars));
+    return results;
+  });
+
+  // ---- Balance Sheet ----
+  wireCheckButton('check-bs', 'sum-bs', function(){
+    var BS = currentScenario.BS;
+    var results = [];
+    results.push(markField('bs-cash', BS.cash, TOL.dollars));
+    results.push(markField('bs-ar', BS.ar, TOL.dollars));
+    results.push(markField('bs-allow', -BS.allow, TOL.dollars));
+    results.push(markField('bs-netar', BS.netAR, TOL.dollars));
+    results.push(markField('bs-inv', BS.inv, TOL.dollars));
+    results.push(markField('bs-supplies', BS.supplies, TOL.dollars));
+    results.push(markField('bs-pi', BS.pi, TOL.dollars));
+    results.push(markField('bs-pr', BS.pr, TOL.dollars));
+    results.push(markField('bs-tca', BS.totalCurrentAssets, TOL.dollars));
+    results.push(markField('bs-equip', BS.equip, TOL.dollars));
+    results.push(markField('bs-ad', -BS.ad, TOL.dollars));
+    results.push(markField('bs-netequip', BS.netEquip, TOL.dollars));
+    results.push(markField('bs-totalassets', BS.totalAssets, TOL.dollars));
+    results.push(markField('bs-ap', BS.ap, TOL.dollars));
+    results.push(markField('bs-wagespay', BS.wagesPay, TOL.dollars));
+    results.push(markField('bs-intpay', BS.intPay, TOL.dollars));
+    results.push(markField('bs-taxpay', BS.taxPay, TOL.dollars));
+    results.push(markField('bs-usr', BS.usr, TOL.dollars));
+    results.push(markField('bs-tcl', BS.totalCurrentLiab, TOL.dollars));
+    results.push(markField('bs-np', BS.np, TOL.dollars));
+    results.push(markField('bs-totalliab', BS.totalLiab, TOL.dollars));
+    results.push(markField('bs-cs', BS.cs, TOL.dollars));
+    results.push(markField('bs-re', BS.re, TOL.dollars));
+    results.push(markField('bs-totalequity', BS.totalEquity, TOL.dollars));
+    results.push(markField('bs-totalliabequity', BS.totalLiabEquity, TOL.dollars));
+    return results;
+  });
+
+  // ---- Statement of Cash Flows ----
+  wireCheckButton('check-cf', 'sum-cf', function(){
+    var CF = currentScenario.CF;
+    var results = [];
+    results.push(markField('cf-ni', CF.netIncome, TOL.dollars));
+    results.push(markField('cf-dep', CF.dep, TOL.dollars));
+    results.push(markField('cf-baddebt', CF.badDebt, TOL.dollars));
+    results.push(markField('cf-gain', CF.gain, TOL.dollars));
+    results.push(markField('cf-ar', CF.incAR, TOL.dollars));
+    results.push(markField('cf-inv', CF.incInv, TOL.dollars));
+    results.push(markField('cf-prepaid', CF.incPrepaid, TOL.dollars));
+    results.push(markField('cf-supplies', CF.incSupplies, TOL.dollars));
+    results.push(markField('cf-ap', CF.decAPops, TOL.dollars));
+    results.push(markField('cf-usr', CF.incUSR, TOL.dollars));
+    results.push(markField('cf-wagespay', CF.incWagesPay, TOL.dollars));
+    results.push(markField('cf-intpay', CF.incIntPay, TOL.dollars));
+    results.push(markField('cf-taxpay', CF.incTaxPay, TOL.dollars));
+    results.push(markField('cf-operating', CF.operating, TOL.dollars));
+    results.push(markField('cf-proceeds', CF.proceedsSaleEquip, TOL.dollars));
+    results.push(markField('cf-purchase', CF.purchaseEquipCash, TOL.dollars));
+    results.push(markField('cf-investing', CF.investing, TOL.dollars));
+    results.push(markField('cf-stock', CF.stockIssued, TOL.dollars));
+    results.push(markField('cf-note', CF.noteBorrowed, TOL.dollars));
+    results.push(markField('cf-div', CF.dividendsPaid, TOL.dollars));
+    results.push(markField('cf-financing', CF.financing, TOL.dollars));
+    results.push(markField('cf-netchange', CF.netChange, TOL.dollars));
+    results.push(markField('cf-begcash', CF.begCash, TOL.dollars));
+    results.push(markField('cf-endcash', CF.endCash, TOL.dollars));
+    results.push(markField('cf-noncash', CF.noncashEquip, TOL.dollars));
+    return results;
+  });
+
+  // ---- Closing Entries ----
+  wireCheckButton('check-closing', 'sum-closing', function(){
+    var results = [];
+    currentClosing.forEach(function(ce){
+      ce.lines.forEach(function(line, li){
+        var rowId = 'ce-' + ce.num + '-r' + li;
+        results.push(markSelect(rowId + '-acct', line.acct));
+        results.push(markAmountPair(rowId, line.side, line.amt, TOL.dollars));
+      });
+    });
+    return results;
+  });
+
+  // ---- Post-Closing Trial Balance ----
+  wireCheckButton('check-pctb', 'sum-pctb', function(){
+    var results = [];
+    var totalDr = 0, totalCr = 0;
+    PC_ACCTS.forEach(function(a){
+      var rowId = 'pctb-' + slug(a.name);
+      var v = Math.abs(a.val(currentScenario));
+      results.push(markAmountPair(rowId, a.side, v, TOL.dollars));
+      if(a.side === 'Dr') totalDr += v; else totalCr += v;
+    });
+    results.push(markField('pctb-total-debit', totalDr, TOL.dollars));
+    results.push(markField('pctb-total-credit', totalCr, TOL.dollars));
+    return results;
+  });
+
+  wirePrintButton(FILE_SLUG, 'studentId');
+})();
+
+</script>
+
+</body>
+</html>
