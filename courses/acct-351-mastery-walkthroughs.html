@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>ACCT 351 Mastery Walkthroughs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --purple:#592C88;
+    --purple-deep:#38195A;
+    --purple-mid:#6E3FA3;
+    --gold:#B0925C;
+    --gold-soft:#D6C398;
+    --gold-pale:#F1E9D6;
+    --parchment:#F7F4EC;
+    --paper:#FFFEFA;
+    --ink:#221B2E;
+    --slate:#5F5A6B;
+    --line:#DBD3E0;
+    --line-soft:#EAE4EF;
+    --shadow: 0 1px 2px rgba(56,25,90,0.07), 0 6px 18px rgba(56,25,90,0.08);
+    color-scheme: light;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--parchment);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ color:inherit; }
+
+  .crumbs{
+    max-width:1100px; margin:0 auto; padding:16px 6vw 0;
+    font-size:12.5px; color:var(--slate);
+  }
+  .crumbs a{ color:var(--purple); text-decoration:none; font-weight:600; }
+  .crumbs a:hover{ text-decoration:underline; }
+
+  header.banner{
+    max-width:1100px; margin:14px auto 0; padding:0 6vw;
+  }
+  .banner-inner{
+    background: linear-gradient(120deg, var(--purple) 0%, var(--purple-deep) 100%);
+    color:#F1E9D6;
+    border-radius:14px;
+    padding: 38px 6vw 34px;
+    position:relative;
+    overflow:hidden;
+  }
+  .banner-inner::after{
+    content:"";
+    position:absolute; left:0; right:0; bottom:0; height:4px;
+    background: linear-gradient(90deg, var(--gold-soft), var(--gold) 40%, var(--gold-soft) 70%, var(--gold));
+  }
+  .banner-motif{
+    position:absolute; right:-4vw; top:50%; transform:translateY(-50%);
+    width:30vw; max-width:320px; min-width:160px; opacity:.85; pointer-events:none;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--gold-soft); margin:0 0 10px;
+  }
+  h1.title{
+    font-family:'Source Serif 4', serif; font-weight:600;
+    font-size:clamp(26px,3.6vw,38px); margin:0 0 12px; letter-spacing:-0.01em;
+    max-width:640px; text-wrap:balance;
+  }
+  .subtitle{ font-size:14.5px; color:#D9CDE5; max-width:600px; margin:0; }
+
+  main{ max-width:1100px; margin:0 auto; padding:30px 6vw 90px; }
+
+  .instructor-card{
+    background:var(--paper); border:1px solid var(--line); border-radius:10px;
+    box-shadow:var(--shadow); padding:18px 22px;
+    display:flex; align-items:center; gap:22px; flex-wrap:wrap;
+    margin-bottom:8px;
+  }
+  .instructor-label{
+    font-family:'IBM Plex Mono', monospace; font-size:10.5px; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--gold); margin:0;
+  }
+  .instructor-row{ display:flex; align-items:center; gap:10px; }
+  .instructor-avatar{
+    width:38px; height:38px; border-radius:50%;
+    background:linear-gradient(135deg, var(--purple), var(--purple-mid));
+    display:flex; align-items:center; justify-content:center;
+    color:#F1E9D6; font-family:'Source Serif 4',serif; font-weight:600; font-size:14px;
+    flex-shrink:0;
+  }
+  .instructor-name{ font-family:'Source Serif 4',serif; font-size:15px; font-weight:600; color:var(--purple-deep); }
+  .instructor-detail{ font-size:12.5px; color:var(--slate); margin:0; display:flex; gap:8px; }
+
+  .welcome{
+    background:var(--paper); border:1px solid var(--line); border-radius:10px;
+    box-shadow:var(--shadow); padding:26px 28px; margin-top:22px;
+    display:grid; grid-template-columns:1.1fr 1.4fr; gap:28px;
+  }
+  .welcome h2{
+    font-family:'Source Serif 4',serif; font-size:23px; font-weight:600;
+    color:var(--purple-deep); margin:0 0 12px;
+    border-left:3px solid var(--gold); padding-left:14px;
+  }
+  .welcome p{ font-size:13.5px; color:var(--ink); margin:0; padding-left:17px; }
+  .pillars{ display:grid; grid-template-columns:repeat(4, 1fr); gap:14px; }
+  .pillar{ text-align:center; }
+  .pillar-icon{
+    width:44px; height:44px; border-radius:50%; margin:0 auto 10px;
+    background:var(--gold-pale); color:var(--purple);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Source Serif 4',serif; font-weight:700; font-size:17px;
+  }
+  .pillar h4{ font-family:'Source Serif 4',serif; font-size:13.5px; color:var(--purple); margin:0 0 5px; }
+  .pillar p{ font-size:11.5px; color:var(--slate); margin:0; padding:0; }
+
+  .problems-section{ margin-top:40px; }
+  .section-label{
+    font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--gold); margin:0 0 6px;
+  }
+  h2.section-title{
+    font-family:'Source Serif 4', serif; font-size:24px; font-weight:600;
+    color:var(--purple-deep); margin:0 0 6px;
+  }
+  .section-sub{ font-size:13.5px; color:var(--slate); margin:0 0 24px; max-width:640px; }
+
+  .problem-list{ display:flex; flex-direction:column; gap:12px; }
+  .problem-row{
+    display:flex; align-items:center; gap:16px;
+    background:var(--paper); border:1px solid var(--line); border-radius:10px;
+    box-shadow:var(--shadow); padding:16px 20px; text-decoration:none; color:inherit;
+    transition:transform .12s ease, box-shadow .12s ease;
+  }
+  .problem-row:hover{
+    transform:translateX(3px);
+    box-shadow:0 4px 8px rgba(56,25,90,0.10), 0 14px 24px rgba(56,25,90,0.12);
+  }
+  .problem-num{
+    font-family:'IBM Plex Mono', monospace; font-size:12.5px; font-weight:600;
+    color:var(--purple); background:var(--gold-pale);
+    border-radius:6px; padding:6px 10px; flex-shrink:0; min-width:52px; text-align:center;
+  }
+  .problem-info{ flex:1; min-width:0; }
+  .problem-title{ font-family:'Source Serif 4',serif; font-size:15.5px; font-weight:600; color:var(--purple-deep); margin:0 0 3px; }
+  .problem-topic{ font-size:12px; color:var(--slate); margin:0; }
+  .problem-go{ font-size:13px; font-weight:600; color:var(--purple); flex-shrink:0; }
+
+  .empty-problem{
+    border:1.5px dashed var(--line); border-radius:10px; padding:18px 20px;
+    color:var(--slate); font-size:13px; text-align:center;
+  }
+
+  footer{ text-align:center; padding:34px 6vw 46px; font-size:12px; color:var(--slate); }
+
+  @media (max-width:860px){
+    .welcome{ grid-template-columns:1fr; }
+    .pillars{ grid-template-columns:repeat(2, 1fr); }
+  }
+  @media (max-width:560px){
+    .banner-motif{ display:none; }
+    .banner-inner{ padding:32px 5vw 28px; }
+    main{ padding:24px 5vw 70px; }
+    .instructor-card{ gap:6px 22px; }
+  }
+
+
+  .tabs{ background:var(--paper,#FFFEFA); border-bottom:1px solid var(--line,#DBD3E0); }
+  .tabs-inner{ max-width:1040px; margin:0 auto; padding:0 6vw; display:flex; gap:4px; }
+  .tabs a{ font-family:'Inter',sans-serif; font-size:14px; font-weight:600; color:var(--slate,#5F5A6B); text-decoration:none; padding:14px 18px 12px; border-bottom:3px solid transparent; }
+  .tabs a:hover{ color:var(--purple,#592C88); }
+  .tabs a[aria-current="page"]{ color:var(--purple-deep,#38195A); border-bottom-color:var(--gold,#B0925C); }
+</style>
+</head>
+<body>
+<p class="crumbs"><a href="../index.html">Courses</a> &nbsp;/&nbsp; <a href="acct-351.html">ACCT 351</a> &nbsp;/&nbsp; Mastery Walkthroughs</p>
+
+<header class="banner">
+  <div class="banner-inner">
+    <svg class="banner-motif" viewBox="0 0 220 220" aria-hidden="true">
+      <circle cx="110" cy="110" r="100" fill="none" stroke="#D6C398" stroke-opacity="0.35" stroke-width="1.5"/>
+      <path d="M40 150 L70 110 L95 130 L130 75 L160 95 L185 55" fill="none" stroke="#D6C398" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.85"/>
+      <circle cx="185" cy="55" r="5" fill="#B0925C"/>
+    </svg>
+    <p class="eyebrow">ACCT 351</p>
+    <h1 class="title">Intermediate Accounting I</h1>
+    <p class="subtitle">Build a rigorous understanding of financial accounting under U.S. GAAP, from the conceptual framework through the recognition, measurement, and reporting of assets.</p>
+  </div>
+</header>
+<nav class="tabs" aria-label="ACCT 351 sections"><div class="tabs-inner"><a href="acct-351.html">Course Page</a><a href="acct-351-walkthroughs.html">Walkthroughs</a><a href="acct-351-mastery-walkthroughs.html" aria-current="page">Mastery Walkthroughs</a></div></nav>
+
+<main>
+  <div class="problems-section" id="masteryWalkthroughSection">
+    <p class="section-label">Mastery Path</p>
+    <h2 class="section-title">Mastery Walkthroughs</h2>
+    <p class="section-sub">Step-by-step walkthroughs of the calculation questions on each Chapter Quiz. Generate a fresh set of numbers, work the problem, and check each step. Your attempt log records your score and time on each try, and you can print it as a PDF to submit with your Mastery Assignment.</p>
+    <div class="problem-list" id="walkList"></div>
+  </div>
+</main>
+
+<footer>ACCT 351 &middot; Western Carolina University</footer>
+
+<script>
+(function(){
+  // Add a new chapter walkthrough by adding an entry here; the list renders itself.
+  var WALKTHROUGHS = [
+    {
+      num: 'Ch. 1',
+      title: 'Chapter 1 Mastery Walkthrough',
+      topic: 'The Environment of Financial Accounting \u00b7 5 dynamic calculation problems with step-by-step solutions, an attempt log, and a printable score report',
+      href: '../ACCT351/ACCT351_Chapter1_QuizCalcWalkthrough.html'
+    },
+    {
+      num: 'Ch. 2',
+      title: 'Chapter 2 Mastery Walkthrough',
+      topic: 'Review of the Accounting Process \u00b7 5 dynamic calculation problems with step-by-step solutions, an attempt log, and a printable score report',
+      href: '../ACCT351/ACCT351_Chapter2_QuizCalcWalkthrough.html'
+    },
+    {
+      num: 'Ch. 3',
+      title: 'Chapter 3 Mastery Walkthrough',
+      topic: 'The Balance Sheet and Financial Disclosures \u00b7 5 dynamic calculation problems with step-by-step solutions, an attempt log, and a printable score report',
+      href: '../ACCT351/ACCT351_Chapter3_QuizCalcWalkthrough.html'
+    },
+    {
+      num: 'Ch. 4',
+      title: 'Chapter 4 Mastery Walkthrough',
+      topic: 'The Income Statement and Statement of Cash Flows \u00b7 5 dynamic calculation problems with step-by-step solutions, an attempt log, and a printable score report',
+      href: '../ACCT351/ACCT351_Chapter4_QuizCalcWalkthrough.html'
+    },
+    {
+      num: 'Ch. 5',
+      title: 'Chapter 5 Mastery Walkthrough',
+      topic: 'The Time Value of Money \u00b7 5 dynamic calculation problems with step-by-step solutions, an attempt log, and a printable score report',
+      href: '../ACCT351/ACCT351_Chapter5_QuizCalcWalkthrough.html'
+    },
+    {
+      num: 'Ch. 6',
+      title: 'Chapter 6 Mastery Walkthrough',
+      topic: 'Revenue Recognition \u00b7 5 dynamic calculation problems with step-by-step solutions, an attempt log, and a printable score report',
+      href: '../ACCT351/ACCT351_Chapter6_QuizCalcWalkthrough.html'
+    },
+    {
+      num: 'Ch. 7',
+      title: 'Chapter 7 Mastery Walkthrough',
+      topic: 'Cash and Receivables \u00b7 5 dynamic calculation problems with step-by-step solutions, an attempt log, and a printable score report',
+      href: '../ACCT351/ACCT351_Chapter7_QuizCalcWalkthrough.html'
+    },
+    {
+      num: 'Ch. 8',
+      title: 'Chapter 8 Mastery Walkthrough',
+      topic: 'Inventories: Measurement \u00b7 5 dynamic calculation problems with step-by-step solutions, an attempt log, and a printable score report',
+      href: '../ACCT351/ACCT351_Chapter8_QuizCalcWalkthrough.html'
+    },
+    {
+      num: 'Ch. 9',
+      title: 'Chapter 9 Mastery Walkthrough',
+      topic: 'Inventories: Additional Issues \u00b7 5 dynamic calculation problems with step-by-step solutions, an attempt log, and a printable score report',
+      href: '../ACCT351/ACCT351_Chapter9_QuizCalcWalkthrough.html'
+    },
+    {
+      num: 'Ch. 10',
+      title: 'Chapter 10 Mastery Walkthrough',
+      topic: 'Operational Assets: Acquisition \u00b7 5 dynamic calculation problems with step-by-step solutions, an attempt log, and a printable score report',
+      href: '../ACCT351/ACCT351_Chapter10_QuizCalcWalkthrough.html'
+    },
+    {
+      num: 'Ch. 11',
+      title: 'Chapter 11 Mastery Walkthrough',
+      topic: 'Operational Assets: Utilization and Impairment \u00b7 5 dynamic calculation problems with step-by-step solutions, an attempt log, and a printable score report',
+      href: '../ACCT351/ACCT351_Chapter11_QuizCalcWalkthrough.html'
+    }
+  ];
+  function rowHTML(p){
+    return '<a class="problem-row" href="' + p.href + '">' +
+      '<span class="problem-num">' + p.num + '</span>' +
+      '<span class="problem-info">' +
+        '<p class="problem-title">' + p.title + '</p>' +
+        '<p class="problem-topic">' + p.topic + '</p>' +
+      '</span>' +
+      '<span class="problem-go">Open &rarr;</span>' +
+    '</a>';
+  }
+  document.getElementById('walkList').innerHTML = WALKTHROUGHS.map(rowHTML).join('');
+})();
+</script>
+
+</body>
+</html>
