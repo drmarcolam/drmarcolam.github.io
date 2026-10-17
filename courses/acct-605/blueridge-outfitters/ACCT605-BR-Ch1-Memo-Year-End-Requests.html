@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Year-End Requests &mdash; Blue Ridge Outfitters</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --green:#592C88;
+    --green-deep:#38195A;
+    --green-mid:#6E3FA3;
+    --gold:#B0925C;
+    --gold-soft:#D6C398;
+    --gold-pale:#F1E9D6;
+    --parchment:#F7F4EC;
+    --paper:#FFFEFA;
+    --ink:#221B2E;
+    --slate:#5F5A6B;
+    --line:#DBD3E0;
+    --line-soft:#EBE5F0;
+    --answer:#0F7A3D;
+    --answer-bg:#DFF5E6;
+    --danger:#9C3B34;
+    --shadow: 0 1px 2px rgba(56,25,90,0.07), 0 6px 18px rgba(56,25,90,0.08);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--parchment);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ color:inherit; }
+
+  header{
+    background: linear-gradient(180deg, var(--green) 0%, var(--green-deep) 100%);
+    color:#F1E9D6;
+    padding: 30px 6vw 24px;
+    position:relative;
+  }
+  header::after{
+    content:"";
+    position:absolute; left:0; right:0; bottom:0; height:4px;
+    background: linear-gradient(90deg, var(--gold-soft), var(--gold) 40%, var(--gold-soft) 70%, var(--gold));
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--gold-soft); margin:0 0 10px;
+  }
+  h1.title{
+    font-family:'Source Serif 4', serif; font-weight:600;
+    font-size:clamp(24px,3.4vw,34px); margin:0 0 8px; letter-spacing:-0.01em;
+  }
+  .subtitle{ font-size:14.5px; color:#DCD2EC; max-width:680px; margin:0; }
+
+  .id-bar{
+    max-width:900px; margin:0 auto; padding:18px 6vw 0;
+    display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+  }
+  .id-bar label{ font-size:13px; font-weight:600; color:var(--slate); }
+  .id-bar input[type="text"]{
+    font-family:'IBM Plex Mono', monospace; font-size:13.5px; padding:8px 11px;
+    border:1px solid var(--line); border-radius:5px; background:var(--paper); color:var(--ink);
+    width:180px;
+  }
+  .id-bar input#studentName{ width:220px; font-family:'Inter',sans-serif; }
+  .id-bar input:focus{ outline:none; border-color:var(--green-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.16); }
+  .id-bar button{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:8px 15px; border:1px solid var(--green);
+    background:var(--green); color:#fff; cursor:pointer;
+  }
+  .id-bar button:hover{ background:var(--green-mid); }
+  .id-bar .id-hint{ font-size:12px; color:var(--slate); }
+
+  .score-area{ max-width:900px; margin:0 auto; padding:14px 6vw 0; }
+
+  .rounding-note{
+    max-width:900px; margin:14px auto 0; padding:12px 6vw;
+    font-size:12.5px; color:var(--slate); line-height:1.5;
+  }
+  .rounding-note strong{ color:var(--green); font-weight:600; }
+
+  main{ max-width:900px; margin:0 auto; padding:22px 6vw 90px; }
+
+  .part{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    box-shadow:var(--shadow);
+    padding:24px 26px 26px;
+    margin-top:26px;
+  }
+  .part-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; color:var(--gold); background:var(--green);
+    display:inline-block; padding:3px 9px; border-radius:4px; letter-spacing:.04em;
+    margin-bottom:12px;
+  }
+  .part h2{
+    font-family:'Source Serif 4', serif; font-size:21px; font-weight:600;
+    color:var(--green); margin:0 0 12px;
+  }
+  .scenario{
+    background:var(--parchment);
+    border-left:3px solid var(--gold);
+    padding:14px 18px;
+    border-radius:0 6px 6px 0;
+    font-size:14.5px;
+    color:var(--ink);
+    margin-bottom:16px;
+  }
+  .scenario p{ margin:0 0 10px; }
+  .scenario p:last-child{ margin-bottom:0; }
+  .scenario span.val{ font-weight:700; color:var(--green-deep); }
+
+  .req{ font-weight:600; font-size:14.5px; color:var(--ink); margin:20px 0 10px; }
+  .req span.reqlabel{ color:var(--green); }
+
+  h4.subsection{
+    font-family:'Source Serif 4',serif; font-size:15px; color:var(--green); margin:22px 0 6px;
+    border-bottom:1px solid var(--line-soft); padding-bottom:4px;
+  }
+
+  ol.choices{ margin:8px 0 14px; padding-left:20px; font-size:13.5px; }
+  ol.choices li{ margin:5px 0; }
+  .footnote{ font-size:12px; color:var(--slate); margin:2px 0 14px; font-style:italic; }
+  .hint{ font-size:12.5px; color:var(--slate); margin:4px 0 10px; }
+
+  table.given{ width:100%; border-collapse:collapse; font-size:13px; margin:6px 0 14px; }
+  table.given th{ text-align:left; font-size:10.5px; text-transform:uppercase; letter-spacing:.03em; color:var(--slate); border-bottom:2px solid var(--green); padding:6px 8px; }
+  table.given td{ border-bottom:1px solid var(--line); padding:5px 8px; font-family:'IBM Plex Mono', monospace; }
+  table.given td.lbl{ font-family:'Inter',sans-serif; }
+  table.given td.num, table.given th.num{ text-align:right; }
+  table.given tr.given-total td{ border-top:1.3px solid var(--green); font-weight:600; }
+  table.given tr.given-head td{ font-family:'Source Serif 4',serif; font-weight:600; color:var(--green); }
+
+  table.worksheet{ width:100%; border-collapse:collapse; font-size:13.5px; margin:10px 0 4px; }
+  table.worksheet th{
+    text-align:left; font-size:11.5px; text-transform:uppercase; letter-spacing:.03em;
+    color:var(--slate); border-bottom:2px solid var(--green); padding:8px 8px;
+  }
+  table.worksheet th.num{ text-align:right; }
+  table.worksheet td{ border-bottom:1px solid var(--line); padding:9px 8px; vertical-align:middle; }
+  table.worksheet td.method{ font-weight:600; }
+  table.worksheet td.item{ font-weight:500; }
+  table.worksheet td.amt{ width:170px; }
+  table.worksheet td.pickcell{ width:300px; }
+  table.worksheet tr.ws-total td{ border-top:1.6px solid var(--green); font-weight:600; }
+  table.worksheet input[type="text"]{
+    width:100%; font-family:'IBM Plex Mono', monospace; font-size:13.5px;
+    padding:6px 8px; border:1px solid var(--line); border-radius:5px;
+    background:var(--parchment); color:var(--ink);
+  }
+  table.worksheet input[type="text"]:focus{
+    outline:none; border-color:var(--green-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.16); background:var(--paper);
+  }
+  select.pick{
+    width:100%; font-family:'Inter',sans-serif; font-size:13px;
+    padding:6px 8px; border:1px solid var(--line); border-radius:5px;
+    background:var(--parchment); color:var(--ink); cursor:pointer;
+  }
+  select.pick:focus{
+    outline:none; border-color:var(--green-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.16); background:var(--paper);
+  }
+
+  table.je{ width:100%; border-collapse:collapse; font-size:13.5px; margin-top:6px; }
+  table.je th{
+    text-align:left; font-size:11.5px; text-transform:uppercase; letter-spacing:.03em;
+    color:var(--slate); border-bottom:2px solid var(--green); padding:8px 8px;
+  }
+  table.je th.num{ text-align:right; }
+  table.je td{ border-bottom:1px solid var(--line); padding:8px 8px; }
+  table.je input[type="text"]{
+    width:100%; font-family:'IBM Plex Mono', monospace; font-size:13.5px;
+    padding:6px 8px; border:1px solid var(--line); border-radius:5px;
+    background:var(--parchment); color:var(--ink);
+  }
+  table.je input[type="text"]:focus{
+    outline:none; border-color:var(--green-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.16); background:var(--paper);
+  }
+  table.je select.acct{
+    width:100%; font-family:'Inter', sans-serif; font-size:13px;
+    padding:6px 8px; border:1px solid var(--line); border-radius:5px;
+    background:var(--parchment); color:var(--ink); cursor:pointer;
+  }
+  table.je select.acct:focus{
+    outline:none; border-color:var(--green-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.16); background:var(--paper);
+  }
+  table.je tr.je-total td{ border-top:2px solid var(--green); border-bottom:none; font-weight:600; padding-top:10px; }
+  .je-block{ margin-top:22px; }
+  .je-block-title{ font-weight:600; font-size:14px; color:var(--green-deep); margin:0 0 6px; }
+  .je-block-desc{ font-size:13px; color:var(--slate); margin:0 0 8px; }
+  .je-status{ font-size:12.5px; font-weight:600; margin:8px 0 0; min-height:15px; }
+  .je-status.good{ color:var(--answer); }
+  .je-status.bad{ color:var(--danger); }
+
+  .score-panel{
+    display:flex; align-items:center; gap:18px;
+    margin:0 0 4px; padding:14px 18px;
+    background:var(--parchment); border:1px solid var(--line); border-radius:8px;
+  }
+  .score-panel.scored-good{ background:var(--answer-bg); border-color:#9ADBB0; }
+  .score-panel.scored-bad{ background:#F8F0EF; border-color:#E2C6C2; }
+  .score-pct{
+    font-family:'Source Serif 4', serif; font-size:30px; font-weight:700; line-height:1.05;
+    color:var(--slate); min-width:96px; text-align:center;
+  }
+  .score-panel.scored-good .score-pct{ color:var(--answer); }
+  .score-panel.scored-bad .score-pct{ color:var(--danger); }
+  .score-detail{ flex:1; min-width:0; }
+  .score-meta{ font-size:13.5px; font-weight:600; color:var(--ink); margin:0 0 7px; }
+  .score-bar{ height:8px; border-radius:4px; background:var(--line-soft); overflow:hidden; }
+  .score-bar span{ display:block; height:100%; width:0; background:var(--green-mid); transition:width .35s ease; }
+  .score-panel.scored-good .score-bar span{ background:var(--answer); }
+  .score-panel.scored-bad .score-bar span{ background:var(--danger); }
+  .score-sub{ font-size:11.5px; color:var(--slate); margin:7px 0 0; }
+
+  .check-bar{
+    margin-top:20px; padding-top:16px; border-top:1px solid var(--line);
+    display:flex; align-items:center; gap:12px; flex-wrap:wrap;
+  }
+  .btn-check{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:9px 18px; border:1px solid var(--green);
+    background:var(--green); color:#fff; cursor:pointer;
+  }
+  .btn-check:hover{ background:var(--green-mid); }
+  .check-summary{ font-size:13.5px; font-weight:600; }
+  .check-summary.good{ color:var(--answer); }
+  .check-summary.bad{ color:var(--danger); }
+  .check-disclaimer{ font-size:11.5px; color:var(--slate); width:100%; margin-top:2px; font-style:italic; }
+
+  input.field-correct, select.field-correct{
+    border-color:var(--answer) !important; background:var(--answer-bg) !important;
+  }
+  input.field-incorrect, select.field-incorrect{
+    border-color:var(--danger) !important; background:#F3E1DE !important;
+  }
+
+  .submit-bar{
+    background:var(--paper); border:1px solid var(--line); border-radius:10px;
+    box-shadow:var(--shadow); padding:22px 26px 24px; margin-top:26px;
+  }
+  .submit-bar h2{
+    font-family:'Source Serif 4', serif; font-size:19px; font-weight:600;
+    color:var(--green); margin:0 0 14px;
+  }
+  .submit-row{ display:flex; align-items:center; gap:10px; margin-bottom:12px; flex-wrap:wrap; }
+  .btn-submit{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    border-radius:5px; padding:10px 18px; border:1px solid var(--green);
+    background:var(--green); color:#fff; cursor:pointer;
+  }
+  .btn-submit:hover{ background:var(--green-mid); }
+  .btn-submit-outline{ background:var(--paper); color:var(--green); }
+  .btn-submit-outline:hover{ background:var(--parchment); }
+  .submit-status{ font-size:13px; font-weight:600; min-height:18px; margin:10px 0 0; color:var(--answer); }
+  .submit-status.error{ color:var(--danger); }
+  .submit-hint{ font-size:12px; color:var(--slate); margin:6px 0 0; }
+
+  @media print{
+    .print-hide, .id-bar, .check-bar, .rounding-note{ display:none !important; }
+    header{ background:none !important; color:var(--ink) !important; padding:0 0 14px !important; }
+    header::after{ display:none !important; }
+    .eyebrow{ color:var(--green) !important; }
+    .subtitle{ color:var(--slate) !important; }
+    body{ background:#fff !important; }
+    .part{ box-shadow:none !important; border:1px solid #999 !important; break-inside:auto; }
+    .score-panel{ background:#fff !important; border:1.5px solid #000 !important; break-inside:avoid; }
+    .score-bar{ display:none !important; }
+    .score-pct, .score-panel.scored-good .score-pct, .score-panel.scored-bad .score-pct{ color:#000 !important; }
+    .part h2, .part-label, .scenario, h4.subsection{ break-after:avoid; break-inside:avoid; }
+    table.given, table.worksheet{ break-inside:auto; }
+    table.given tr, table.worksheet tr{ break-inside:avoid; }
+    .submit-bar{ break-before:avoid; }
+    .je-block{ break-inside:avoid; }
+    .je-block-title{ break-after:avoid; }
+    table.je tr{ break-inside:avoid; }
+    .je-status{ color:#000 !important; }
+    input[type="text"], select.pick, table.je select.acct{
+      border:none !important; border-bottom:1px solid #000 !important;
+      background:transparent !important; border-radius:0 !important; color:#000 !important;
+      -webkit-appearance:none; appearance:none; padding:2px 4px !important;
+    }
+    .print-name-line{ display:block !important; }
+  }
+  .print-name-line{ display:none; font-size:13px; color:var(--ink); padding:0 6vw; margin:0 0 10px; }
+
+  footer{ text-align:center; padding:26px 6vw 40px; font-size:12px; color:var(--slate); }
+
+  @media (max-width:600px){
+    header, main, .id-bar{ padding-left:5vw; padding-right:5vw; }
+    table.worksheet{ font-size:12.5px; }
+    table.worksheet td.pickcell{ width:auto; }
+  }
+
+  .no-entry-note{
+    background:var(--parchment); border:1px dashed var(--gold);
+    border-radius:6px; padding:14px 18px; margin:24px 0 0;
+    font-size:13.5px; color:var(--slate);
+  }
+  .no-entry-note p{ margin:0; }
+  .no-entry-note strong{ color:var(--green-deep); }
+
+  table.worksheet tr.ws-head td{
+    font-family:'Source Serif 4',serif; font-weight:600; color:var(--green);
+    background:var(--parchment); font-size:13.5px; padding:7px 8px;
+  }
+  table.worksheet tr.ws-gap td{ border-bottom:none; padding:3px 0; }
+  table.worksheet td.given-amt{
+    font-family:'IBM Plex Mono', monospace; text-align:right; color:var(--slate);
+  }
+  table.given td.sub{ padding-left:26px; }
+  table.given tr.given-sub td{ font-style:normal; }
+  .blankcell{ color:var(--gold); font-weight:700; }
+
+
+  select.pick{ min-width:260px; }
+  table.worksheet td.lbl{ font-weight:500; }
+  .req-num{ color:var(--gold); }
+
+  .case-block{ margin-bottom:18px; }
+  .vbox{ border:2px solid var(--gold); border-radius:10px; padding:14px 18px; background:#fffdf6; margin:14px 0; }
+  .vbox .vtag{ display:inline-block; background:var(--gold); color:#fff; font-weight:700; padding:2px 10px; border-radius:99px; font-size:13px; margin-bottom:8px; }
+  table.data{ border-collapse:collapse; width:100%; margin:12px 0; font-size:15px; }
+  table.data th, table.data td{ border:1px solid #DBD3E0; padding:7px 10px; text-align:left; vertical-align:top; }
+  table.data th{ background:#EBE5F0; }
+  .vA, .vB{ display:none; } body.showA .vA, body.showB .vB{ display:block; }
+  ol.qs li, ul.plain li{ margin-bottom:8px; line-height:1.55; }
+  h3.sub{ font-size:17px; margin:16px 0 6px; }
+  @media print{ .print-hide{ display:none !important; } }
+</style></head>
+<body class="showA">
+<header><p class="eyebrow">ACCT 605 &middot; Advanced Financial Accounting &middot; Chapter 1 · A Framework for Financial Accounting</p>
+<h1 class="title">The Year-End Requests</h1><p class="subtitle">The CFO wants two year-end entries handled her way before the bank tests the loan covenant. Advise the controller: what do the facts support, and what should he do?</p></header>
+<p class="print-name-line" id="printNameLine"></p>
+<div class="id-bar"><label for="studentName">Name</label><input type="text" id="studentName" placeholder="First and last name">
+<label for="studentId">Student ID</label><input type="text" id="studentId" placeholder="e.g. 920410165">
+<button id="genBtn" type="button">Show my version</button></div>
+<main>
+  <section class="card case-block"><h2>The situation</h2>
+    <p><em>Blue Ridge Outfitters, Asheville, NC. Outdoor gear retailer with four stores. You are on the accounting staff; your reader is <strong>Luis Caldwell, Controller</strong>.</em></p>
+    <p>It is January 6. Mountain Credit Bank (MCB) will test the loan covenant on the audited December 31 statements, and the audit starts next week. Dana Whitfield, the CFO, has given Luis Caldwell, the controller, two instructions about the year-end books. Luis is uneasy about both. He asks you, a staff accountant, for a memo he can use before he answers her.</p>
+    <h3 class="sub">Where Blue Ridge stands</h3><table class="data"><thead><tr><th>Item</th><th>Amount</th></tr></thead><tbody><tr><td>Total liabilities</td><td>$2,900,000</td></tr><tr><td>Total equity</td><td>$1,500,000</td></tr><tr><td>Total liabilities divided by total equity</td><td>1.93</td></tr><tr><td>Bank covenant limit (must be 2.00 or lower)</td><td>2.00</td></tr></tbody></table>
+<p>These are the amounts <strong>before</strong> the events described below are recorded. Ignore income taxes. Round ratios to two decimals. Use only the facts in your own version: the other version differs on purpose, so another group may reach a different, equally well-supported conclusion.</p>
+  </section>
+  <section class="card case-block"><h2>The facts</h2>
+    <h3 class="sub">Dana&#x27;s two instructions</h3>
+<p><strong>Instruction 1.</strong> “Do not record a loss on the Smoky Ridge Guides receivable. The court will not rule until March and a lot can change. We can deal with it next year.”</p>
+<p><strong>Instruction 2.</strong> “Record the Pisgah Trail Co. sale in December. They ordered it in December, so December is the right month.”</p>
+<p>Neither instruction has been carried out yet. The books show the standing position above. Pisgah Trail Co.&#x27;s invoice is for $120,000; the goods cost Blue Ridge $72,000. Ignore sales tax.</p>
+    <div class="vbox"><span class="vtag">Your version: <span id="verLabel">A</span></span>
+      <div class="vA"><p><strong>Smoky Ridge Guides.</strong> Smoky Ridge owes Blue Ridge <strong>$150,000</strong> for gear delivered in September. It filed for bankruptcy protection on <strong>December 18</strong>. Its attorney&#x27;s letter, dated December 29, says unsecured creditors should expect to receive <strong>nothing</strong>.</p>
+<p><strong>Pisgah Trail Co.</strong> The goods left the Asheville warehouse on <strong>January 3</strong>. The terms are <strong>FOB shipping point</strong>, and a Pisgah Trail driver picked the goods up on January 3.</p></div><div class="vB"><p><strong>Smoky Ridge Guides.</strong> Smoky Ridge owes Blue Ridge <strong>$60,000</strong> for gear delivered in September. It filed for bankruptcy protection on <strong>December 18</strong>. Its attorney&#x27;s letter, dated December 29, says unsecured creditors should expect to receive about <strong>25 cents on the dollar</strong>.</p>
+<p><strong>Pisgah Trail Co.</strong> The goods were delivered to Pisgah Trail&#x27;s store and signed for on <strong>December 30</strong>. The terms are <strong>FOB destination</strong>. The invoice is dated January 2 only because the billing system was closed on December 31.</p></div>
+      <p style="font-size:14px;color:#5F5A6B;margin:8px 0 0;">Your version is set by your Student ID. Do not use facts from the other version.</p>
+    </div>
+  </section>
+  <section class="card case-block"><h2>Questions to answer</h2><ol class="qs"><li>For each instruction, what is the accounting question, and what does GAAP require on the facts in your version? Which facts decide it?</li><li>Which qualities of useful financial information (Concepts Statement No. 8) would Luis compromise by following each instruction, and which would he serve?</li><li>Compute total liabilities divided by total equity (a) if Luis follows both instructions and (b) if the books follow GAAP on your facts. Does the covenant hold in (b)?</li><li>What should Luis do? Consider his professional responsibilities, who relies on the statements, his alternatives (including a conversation with MCB), and how he should escalate if Dana insists.</li></ol></section>
+  <section class="card case-block"><h2>What to submit (two-page memo)</h2><p><strong>A memo of about two pages</strong> (one file, Word or PDF). Use the headings <strong>To, From, Date, Re</strong>, then: <strong>Summary of your recommendation</strong> (3 to 4 sentences), <strong>Analysis</strong> (one short section per question), <strong>Calculations</strong> (a table), and <strong>Recommendation and next steps</strong>. Write for a reader who knows accounting but has not seen your work.</p>
+<ul class="plain"><li>Cite the authority you rely on (textbook section or Codification reference) next to each conclusion.</li><li>Show your arithmetic in a table with a header row; do not paste a picture of a spreadsheet.</li><li>Use heading styles, real tables, and plain language so the memo is readable with a screen reader. Add alt text to any picture.</li></ul></section>
+  <section class="card case-block"><h2>Authority to start with</h2><ul class="plain"><li>Textbook Chapter 1: the conceptual framework, qualitative characteristics, and the discussion of ethics in accounting.</li><li>FASB Concepts Statement No. 8, Chapter 3 (relevance, faithful representation: complete, neutral, free from error).</li><li>ASC 606-10-25-23 and 25-30 (when control transfers) and Chapter 6 for the sale; ASC 326-20 and Chapter 7 for the receivable.</li><li>ASC 855-10 (subsequent events): is a December 18 bankruptcy a subsequent event at all?</li><li>IMA Statement of Ethical Professional Practice and the AICPA Code of Professional Conduct (integrity, objectivity, resolving ethical conflict).</li></ul>
+    <p style="font-size:14px;color:#5F5A6B;">Check paragraph numbers against the FASB Codification yourself before you cite them.</p></section>
+  <section class="card case-block"><h2>How this is graded (100 points)</h2><table class="data"><thead><tr><th>Criterion</th><th>Points</th><th>What earns full credit</th></tr></thead><tbody><tr><td>Issues and deciding facts</td><td>20</td><td>Identifies both accounting questions and ties each conclusion to specific facts in the student&#x27;s own version.</td></tr><tr><td>Framework and authority</td><td>20</td><td>Uses faithful representation (completeness, neutrality, freedom from error) and the recognition guidance correctly, with citations.</td></tr><tr><td>Calculations</td><td>15</td><td>Both ratios computed from the right equity amounts and the covenant conclusion stated.</td></tr><tr><td>Ethics and recommendation</td><td>30</td><td>Names stakeholders, the professional standards, realistic alternatives and an escalation path; does not let the covenant outcome change the answer.</td></tr><tr><td>Writing, format and accessibility</td><td>15</td><td>Memo format, clear summary, real headings and tables, concise.</td></tr><tr><td><strong>Total</strong></td><td><strong>100</strong></td><td></td></tr></tbody></table></section>
+  <div class="submit-bar print-hide"><h2>Ready to submit?</h2>
+    <p class="submit-hint" style="margin:0 0 12px;">Upload your two-page memo to Canvas. Printing this page saves your version of the case for your records.</p>
+    <div class="submit-row submit-actions"><button class="btn-submit" id="printBtn" type="button">Print / Save as PDF</button></div></div>
+</main>
+<footer>The Year-End Requests &middot; ACCT 605 &middot; Western Carolina University</footer>
+<script>
+(function(){
+  var body=document.body, idEl=document.getElementById('studentId'), nm=document.getElementById('studentName');
+  function pick(){
+    var q=(location.search.match(/[?&]v=([AaBb])/)||[])[1];
+    if(q) return q.toUpperCase();
+    var d=(idEl.value||'').replace(/\D/g,'');
+    if(!d) return 'A';
+    var s=0; for(var i=0;i<d.length;i++) s+=+d[i];
+    return (s%2===0)?'A':'B';
+  }
+  function show(){
+    var v=pick(); body.classList.remove('showA','showB'); body.classList.add('show'+v);
+    document.getElementById('verLabel').textContent=v;
+    var pl=document.getElementById('printNameLine');
+    pl.textContent='Name: '+(nm.value||'')+'   Student ID: '+(idEl.value||'')+'   Version: '+v;
+  }
+  document.getElementById('genBtn').addEventListener('click',show);
+  idEl.addEventListener('input',show); nm.addEventListener('input',show);
+  document.getElementById('printBtn').addEventListener('click',function(){window.print();});
+  show();
+  window.__acct605={version:pick};
+})();
+</script></body></html>
