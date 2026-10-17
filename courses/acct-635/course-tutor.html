@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#1B365D">
+<meta name="description" content="ACCT 635 Course Tutor: choose a problem type, get a new scenario with new numbers, and work through it one step at a time with hints and feedback.">
+<title>ACCT 635 Course Tutor</title>
+<style>
+:root{
+  --navy:#1F4E79; --navy-deep:#1B365D; --navy-dark:#002060;
+  --band:#F9FAFC; --tint:#EDF2F8; --page:#F4F6F9; --paper:#FFFFFF;
+  --ink:#1A2233; --muted:#4F5B6E; --line:#D5DCE6; --accent:#B0925C; --focus:#C77700;
+  --good-bg:#E7F5EA; --good-ink:#14532D; --good-line:#2E7D32;
+  --bad-bg:#FDEBE4; --bad-ink:#7A2A0B; --bad-line:#B4481A;
+  --warn-bg:#FFF3DE; --warn-ink:#5E3300; --warn-line:#B86B00;
+  --hint-bg:#E8F0FC; --hint-ink:#0B3A75; --hint-line:#3B78C9;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --navy:#8DB8E3; --navy-deep:#0F2342; --navy-dark:#0A1830;
+    --band:#1A2230; --tint:#1B2B42; --page:#10151F; --paper:#161D2A;
+    --ink:#E6EBF2; --muted:#B3BCC9; --line:#2C3748; --focus:#FFB84D;
+    --good-bg:#16301D; --good-ink:#BFE8C8; --good-line:#58B46C;
+    --bad-bg:#3B1F14; --bad-ink:#FFD2BF; --bad-line:#E08A5E;
+    --warn-bg:#3A2A10; --warn-ink:#FFE0B3; --warn-line:#E0A040;
+    --hint-bg:#14263F; --hint-ink:#CFE0FF; --hint-line:#6F9FE6;
+  }
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+@media (prefers-reduced-motion: no-preference){html{scroll-behavior:smooth;}}
+body{margin:0;background:var(--page);color:var(--ink);font:17px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;padding-bottom:env(safe-area-inset-bottom);}
+a{color:var(--navy);text-underline-offset:2px;}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:3px;}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
+.skip{position:absolute;left:-999px;top:0;background:var(--navy-deep);color:#fff;padding:10px 14px;z-index:10;}
+.skip:focus{left:8px;top:8px;}
+.crumbs{max-width:880px;margin:0 auto;padding:14px 16px 0;font-size:14px;color:var(--muted);}
+.crumbs a{font-weight:600;}
+header.banner{max-width:880px;margin:10px auto 0;padding:0 16px;}
+.banner-inner{background:linear-gradient(120deg,var(--navy) 0%,var(--navy-deep) 100%);color:#fff;border-radius:12px;padding:24px 20px 22px;position:relative;overflow:hidden;}
+@media (prefers-color-scheme: dark){.banner-inner{background:linear-gradient(120deg,#1F4E79 0%,var(--navy-dark) 100%);}}
+.banner-inner::after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;background:var(--accent);}
+.eyebrow{font:600 12px/1.2 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.12em;text-transform:uppercase;color:#D6E4F5;margin:0 0 8px;}
+h1.title{font:700 clamp(24px,5.5vw,34px)/1.25 Georgia,"Times New Roman",serif;margin:0 0 8px;text-wrap:balance;}
+.banner-inner .sub{margin:0;color:#E3ECF7;font-size:15px;max-width:60ch;}
+main{max-width:880px;margin:0 auto;padding:14px 16px 56px;}
+main:focus{outline:none;}
+h2{font:700 clamp(20px,4.6vw,25px)/1.3 Georgia,"Times New Roman",serif;color:var(--navy);margin:.2rem 0 .7rem;padding-bottom:6px;border-bottom:3px solid var(--navy);}
+h3{font:700 18px/1.35 Georgia,"Times New Roman",serif;color:var(--navy);margin:1.6rem 0 .5rem;}
+p{margin:.55rem 0;}
+.key-idea{background:var(--tint);border-left:5px solid var(--navy);padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0;overflow-wrap:anywhere;}
+.key-idea ol,.key-idea ul{margin:.4rem 0 .2rem;padding-left:1.3rem;}
+.key-idea li{margin:.2rem 0;}
+
+/* menu */
+.picker{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:18px 0 4px;padding:12px;background:var(--tint);border-radius:8px;}
+.picker label{font-weight:700;}
+select{font:inherit;padding:8px;min-height:44px;border:2px solid var(--line);border-radius:6px;background:var(--paper);color:var(--ink);max-width:100%;min-width:0;}
+.menu{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;}
+.tcard{display:flex;flex-direction:column;align-items:flex-start;gap:4px;width:100%;height:100%;text-align:left;font:inherit;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-left:6px solid var(--navy);border-radius:10px;padding:14px 16px;min-height:44px;cursor:pointer;}
+.tcard:hover{border-color:var(--navy);box-shadow:0 2px 10px rgba(27,54,93,.14);}
+.tcard .t{font:700 17px/1.3 Georgia,"Times New Roman",serif;color:var(--navy);}
+.tcard .d{font-size:15px;color:var(--ink);}
+.tcard .m{font-size:13.5px;color:var(--muted);margin-top:auto;padding-top:6px;}
+
+/* buttons */
+button{font:inherit;}
+.btn{font-weight:700;color:#fff;background:var(--navy-deep);border:2px solid var(--navy-deep);padding:8px 18px;min-height:44px;border-radius:6px;cursor:pointer;}
+.btn:hover{background:var(--navy);border-color:var(--navy);}
+@media (prefers-color-scheme: dark){.btn{background:var(--navy);color:#0A1830;border-color:var(--navy);}.btn:hover{background:#B5D1EE;border-color:#B5D1EE;}}
+.btn.secondary{background:transparent;color:var(--navy);border-color:var(--navy);}
+.btn.secondary:hover{background:var(--tint);}
+.btn[disabled]{opacity:.6;cursor:default;}
+
+/* problem view */
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin:8px 0 6px;}
+.badge{display:inline-block;background:var(--tint);color:var(--navy);border-radius:999px;padding:2px 12px;font-size:14px;font-weight:600;}
+.progress{position:sticky;top:0;z-index:5;background:var(--page);padding:8px 0 8px;margin-bottom:6px;}
+.progress .track{height:10px;background:var(--line);border-radius:5px;overflow:hidden;}
+.progress .fill{height:100%;width:0;background:var(--navy);transition:width .3s;}
+@media (prefers-reduced-motion: reduce){.progress .fill{transition:none;}}
+.progress .txt{display:flex;justify-content:space-between;gap:12px;font-size:14px;color:var(--muted);flex-wrap:wrap;margin-top:4px;}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:16px 16px 18px;margin:16px 0;}
+.card.scenario{border-top:5px solid var(--accent);}
+details.ref{margin:12px 0 0;border:1px dashed var(--line);border-radius:8px;padding:2px 12px;background:var(--band);}
+details.ref summary{cursor:pointer;font-weight:600;color:var(--navy);min-height:44px;display:flex;align-items:center;}
+details.ref ul{margin:.2rem 0 .6rem;padding-left:1.2rem;}
+details.ref li{margin:.25rem 0;}
+.tablewrap{overflow-x:auto;margin:12px 0;border:1px solid var(--line);border-radius:8px;background:var(--paper);-webkit-overflow-scrolling:touch;}
+table{border-collapse:collapse;width:100%;min-width:300px;font-size:15px;line-height:1.45;font-variant-numeric:tabular-nums;}
+caption{text-align:left;font-weight:700;padding:8px 10px;color:var(--navy);}
+th,td{padding:8px 10px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line);}
+thead th{background:var(--navy);color:#fff;font-weight:700;}
+@media (prefers-color-scheme: dark){thead th{background:#1F4E79;}}
+tbody th{font-weight:600;background:var(--paper);}
+tbody tr:nth-child(even) td,tbody tr:nth-child(even) th{background:var(--band);}
+tr:last-child td,tr:last-child th{border-bottom:0;}
+td.num,th.num{text-align:right;white-space:nowrap;}
+tr.tot th,tr.tot td{border-top:2px solid var(--ink);font-weight:700;}
+table.je th.cr{padding-left:34px;font-weight:400;}
+
+.step{border-left:6px solid var(--line);}
+.step.active{border-left-color:var(--navy);}
+.step.correct{border-left-color:var(--good-line);}
+.step.missed{border-left-color:var(--warn-line);}
+.step .num{font:700 13px/1.3 system-ui,sans-serif;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin:0 0 4px;border:0;padding:0;}
+.step .num:focus{outline:none;}
+.step .q{font-weight:600;margin:.2rem 0 .6rem;overflow-wrap:anywhere;}
+.ansrow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:12px;background:var(--tint);border-radius:8px;}
+.ansrow label{font-weight:700;}
+.ansrow .affix{font-weight:700;}
+.ansrow input[type=text]{font:inherit;font-variant-numeric:tabular-nums;padding:8px 10px;min-height:44px;border:2px solid var(--line);border-radius:6px;width:12rem;max-width:100%;background:var(--paper);color:var(--ink);}
+.rhint{font-size:14px;color:var(--muted);margin:.4rem 0 0;}
+.opts{display:grid;gap:8px;padding:12px;background:var(--tint);border-radius:8px;}
+.opt{display:flex;gap:10px;align-items:flex-start;padding:8px 10px;min-height:44px;border:2px solid var(--line);border-radius:8px;background:var(--paper);cursor:pointer;}
+.opt:hover{border-color:var(--navy);}
+.opt input{margin-top:.35rem;width:1.15rem;height:1.15rem;accent-color:var(--navy);flex:none;}
+.opt span{overflow-wrap:anywhere;}
+.selrows{display:grid;gap:10px;padding:12px;background:var(--tint);border-radius:8px;}
+.selrow{display:grid;grid-template-columns:1fr minmax(11rem,16rem);gap:10px;align-items:center;}
+.selrow label{font-weight:600;overflow-wrap:anywhere;}
+.selrow .mark{grid-column:1/-1;font-size:14.5px;font-weight:600;}
+@media (max-width:34rem){.selrow{grid-template-columns:1fr;}}
+.actions{margin:12px 0 0;display:flex;gap:10px;flex-wrap:wrap;}
+.fb{border-radius:6px;padding:10px 14px;margin:10px 0;border-left:5px solid;overflow-wrap:anywhere;}
+.fb .lead{display:block;font-weight:700;font-size:1.04em;}
+.fb.good{color:var(--good-ink);background:var(--good-bg);border-color:var(--good-line);}
+.fb.bad{color:var(--bad-ink);background:var(--bad-bg);border-color:var(--bad-line);}
+.fb.warn{color:var(--warn-ink);background:var(--warn-bg);border-color:var(--warn-line);}
+.fb.hint{color:var(--hint-ink);background:var(--hint-bg);border-color:var(--hint-line);}
+.solbox{margin-top:12px;padding-top:12px;border-top:2px dashed var(--line);}
+.solbox .lab{font-size:12.5px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--navy);margin-bottom:6px;}
+.sol{padding:10px 12px;background:var(--band);border:1px solid var(--line);border-radius:8px;}
+.sol .line{display:block;margin:.2rem 0;}
+.sol .final{font-weight:700;color:var(--navy);}
+.summary h2{margin-top:0;}
+.summary .actions{margin-top:16px;}
+.summary .links{margin-top:14px;font-size:15px;}
+footer{max-width:880px;margin:0 auto;padding:0 16px 32px;font-size:13px;color:var(--muted);}
+
+@media print{
+  body{background:#fff;color:#000;font-size:11pt;}
+  .skip,.progress,.toolbar,.actions,.crumbs,.picker{display:none !important;}
+  .banner-inner{background:#1B365D;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to main content</a>
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Courses</a> &nbsp;/&nbsp; <a href="../acct-635.html">ACCT 635</a> &nbsp;/&nbsp; Course Tutor</nav>
+<header class="banner"><div class="banner-inner">
+  <p class="eyebrow">ACCT 635 &middot; Governmental and Nonprofit Accounting</p>
+  <h1 class="title">Course Tutor</h1>
+  <p class="sub">Pick a type of problem and get a new scenario with new numbers. Your tutor walks you through it one step at a time, with hints when you need them.</p>
+</div></header>
+
+<main id="main" tabindex="-1">
+  <section id="menu-view" aria-labelledby="menu-h">
+    <h2 id="menu-h">Choose a problem type</h2>
+    <div class="key-idea"><strong>How the tutor works.</strong>
+      <ol>
+        <li>Pick a chapter and a type of problem below. Every problem is new, with new names and numbers.</li>
+        <li>You answer <strong>one step at a time</strong>. Type a number or choose an answer, then select <strong>Check my answer</strong>.</li>
+        <li>If you are right, you get praise and the next step.</li>
+        <li>If you are not, you get a friendly hint and one more try. If you miss it again, you will see the solution for that step and then move on to the next one.</li>
+      </ol>
+      Round as each step says. Enter a negative amount with a minus sign or in parentheses, for example -4,000 or (4,000).
+    </div>
+    <div class="picker">
+      <label for="chSel">Chapter</label>
+      <select id="chSel"></select>
+    </div>
+    <div id="menu"></div>
+  </section>
+
+  <section id="problem-view" hidden aria-labelledby="prob-h">
+    <div class="toolbar">
+      <button type="button" class="btn secondary" id="back-btn">&larr; All problem types</button>
+      <span class="badge" id="seed-badge"></span>
+    </div>
+    <div class="progress">
+      <div class="track" role="progressbar" id="prog" aria-label="Progress through this problem" aria-valuemin="0" aria-valuemax="1" aria-valuenow="0"><div class="fill" id="prog-fill"></div></div>
+      <div class="txt"><span id="prog-left"></span><span id="prog-right"></span></div>
+    </div>
+    <h2 id="prob-h" tabindex="-1"></h2>
+    <div class="card scenario" id="scenario"></div>
+    <div id="steps"></div>
+    <div class="card summary" id="summary" hidden></div>
+  </section>
+</main>
+
+<div id="live" class="sr-only" role="status" aria-live="polite"></div>
+
+<footer>
+  <p>Practice problems are modeled on the ACCT 635 chapter notes, chapter walkthroughs, and textbook problems. All names and numbers are fictional and are generated at random each time, so you can try as many problems as you like. &middot; ACCT 635 &middot; Western Carolina University</p>
+</footer>
+
+<script>
+/* ACCT 635 Course Tutor: engine (part A: utilities, step helpers, checking, Chapters 1-5). No DOM access here. */
+(function(){
+'use strict';
+
+/* ================= utilities ================= */
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+function makeRng(seed){
+  var f=mulberry32(seed);
+  var r={
+    f:f,
+    int:function(a,b){return a+Math.floor(f()*(b-a+1));},
+    step:function(lo,hi,st){var n=Math.round((hi-lo)/st);var k=Math.floor(f()*(n+1));return Math.round((lo+k*st)*1e6)/1e6;},
+    pick:function(a){return a[Math.floor(f()*a.length)];},
+    shuffle:function(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(f()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;},
+    sample:function(a,n){return r.shuffle(a).slice(0,n);},
+    until:function(gen,ok,max){var v;for(var i=0;i<(max||200);i++){v=gen();if(ok(v))return v;}return v;}
+  };
+  return r;
+}
+function mk(R,o){return function(k,fn){return (o&&o[k]!==undefined)?o[k]:fn();};}
+function nf(x,d){d=d||0;return Math.abs(x).toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});}
+function money(x,d){d=d||0;var s=nf(x,d);var z=Number(s.replace(/,/g,''))===0;return (x<0&&!z)?'$('+s+')':'$'+s;}
+function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function rd(x){return Math.round(x);}
+
+function tbl(caption,head,rows,opts){
+  opts=opts||{};
+  var h='<div class="tablewrap" tabindex="0" role="region" aria-label="'+esc(caption)+' (scrollable table)"><table><caption>'+esc(caption)+'</caption><thead><tr>';
+  head.forEach(function(x,i){h+='<th scope="col"'+(i?' class="num"':'')+'>'+x+'</th>';});
+  h+='</tr></thead><tbody>';
+  rows.forEach(function(r,ri){
+    var tot=opts.totalLast&&ri===rows.length-1;
+    h+='<tr'+(tot?' class="tot"':'')+'><th scope="row">'+r[0]+'</th>';
+    for(var i=1;i<r.length;i++){h+='<td class="num">'+r[i]+'</td>';}
+    h+='</tr>';
+  });
+  return h+'</tbody></table></div>';
+}
+/* journal entry table: rows are [account, debit, credit]; amounts are numbers or null */
+function je(label,rows){
+  var h='<div class="tablewrap" tabindex="0" role="region" aria-label="'+esc(label)+' (scrollable table)"><table class="je"><caption>'+esc(label)+'</caption><thead><tr><th scope="col">Account</th><th scope="col" class="num">Debit</th><th scope="col" class="num">Credit</th></tr></thead><tbody>';
+  rows.forEach(function(r){
+    var cr=r[1]==null;
+    h+='<tr><th scope="row"'+(cr?' class="cr"':'')+'>'+(cr?'<span class="sr-only">Credit: </span>':'')+r[0]+'</th><td class="num">'+(r[1]==null?'':nf(r[1]))+'</td><td class="num">'+(r[2]==null?'':nf(r[2]))+'</td></tr>';
+  });
+  return h+'</tbody></table></div>';
+}
+function sol(lines,final){
+  var h='<div class="sol">';
+  lines.forEach(function(l){h+='<span class="line">'+l+'</span>';});
+  if(final)h+='<span class="line final">'+final+'</span>';
+  return h+'</div>';
+}
+function bullets(a){return '<ul>'+a.map(function(x){return '<li>'+x+'</li>';}).join('')+'</ul>';}
+
+/* ================= wording ================= */
+var PRAISE=['Correct! Nice work.','Exactly right. Great job!','Spot on! You are getting the hang of this.','Yes, that is right. Well done!','Correct, and nicely done!','That is right. Keep it up!','Excellent. That is exactly it.','Right on target. Nicely reasoned!'];
+var HINTLEAD=['Not quite, and that is okay! Here is a hint. Take another look and try once more.','Close, but not yet. Read the hint below and give it one more try.','Good effort! That is not it yet. Here is a hint to help you try again.','Not quite. No worries, here is a hint, and then you get one more try.'];
+var MISS=['Not quite, and that is okay! Here is how this step works.','Good effort, but that is not the right answer. Let us walk through it.','That one is tricky. Here is the solution so you can see how it works.','Not this time. Take a look at the solution, then try the next step.'];
+var PRAISE2=['Correct this time. The hint paid off!','Yes, that is right. Nice recovery!','That is it! Good job sticking with it.'];
+var DC=['Debit','Credit'];
+var FUNDS=['General Fund','Special Revenue Fund','Capital Projects Fund','Debt Service Fund','Permanent Fund','Enterprise Fund','Internal Service Fund','Pension Trust Fund','Investment Trust Fund','Private-Purpose Trust Fund','Custodial Fund'];
+var TOWNS=['Waynesville','Sylva','Brevard','Hendersonville','Boone','Franklin','Bryson City','Black Mountain','Canton','Marion','Highlands','Dillsboro','Spruce Pine','Lenoir','Morganton','Mars Hill'];
+var COUNTIES=['Jackson','Haywood','Macon','Transylvania','Watauga','Swain','Henderson','Madison','Yancey','McDowell','Burke','Cherokee','Graham','Clay'];
+function townOf(R){return 'Town of '+R.pick(TOWNS);}
+function cityOf(R){return 'City of '+R.pick(TOWNS);}
+function countyOf(R){return R.pick(COUNTIES)+' County';}
+
+/* ---- step helpers ---- */
+function N(q,ans,o){o=o||{};return {kind:'num',q:q,ans:ans,fmt:o.fmt||'money',dec:o.dec||0,unit:o.unit||'',tol:o.tol,hint:o.hint||'',exp:o.exp||''};}
+function C(q,options,ans,hint,exp){return {kind:'choice',q:q,options:options,ans:ans,hint:hint||'',exp:exp||''};}
+function M(q,rows,options,hint,exp){return {kind:'multi',q:q,options:options,rows:rows.map(function(r){return {t:r[0],a:r[1],o:r[2]||options};}),hint:hint||'',exp:exp||''};}
+function yn(x){return x?'Yes':'No';}
+
+/* ================= Chapter 1: Governmental and Nonprofit Accounting Environment ================= */
+var SETTERS=[
+['a state government','GASB','State and local governments follow GASB.'],
+['a county school district','GASB','School districts are governmental, so GASB applies.'],
+['a city-owned water utility','GASB','A government-owned utility is governmental, so GASB applies.'],
+['a public community college','GASB','Public colleges and universities are governmental, so GASB applies.'],
+['a private nonprofit hospital','FASB','Private nonprofits follow FASB (ASC Topic 958).'],
+['a charitable food bank governed by its own board','FASB','Private nonprofits follow FASB (ASC Topic 958).'],
+['a for-profit furniture manufacturer','FASB','Businesses follow FASB GAAP.'],
+['a private university','FASB','A private university is a nonprofit, so it follows FASB (ASC Topic 958).'],
+['the U.S. Forest Service','FASAB','Federal agencies follow standards issued by FASAB.'],
+['the U.S. Department of Transportation','FASAB','Federal agencies follow standards issued by FASAB.']
+];
+var HIER=[
+['A GASB Statement','Category A','Official GASB Statements are the most authoritative (Category A).'],
+['A GASB Technical Bulletin','Category B','Technical Bulletins, Implementation Guides, and cleared AICPA literature are Category B.'],
+['A GASB Implementation Guide','Category B','Technical Bulletins, Implementation Guides, and cleared AICPA literature are Category B.'],
+['A FASB pronouncement used by analogy','Nonauthoritative','Sources such as FASB pronouncements by analogy and GASB Concept Statements are nonauthoritative.'],
+['A GASB Concept Statement','Nonauthoritative','Sources such as FASB pronouncements by analogy and GASB Concept Statements are nonauthoritative.']
+];
+function g1setters(R){
+  var gs=R.sample(SETTERS.filter(function(x){return x[1]==='GASB';}),1)[0];
+  var fs=R.sample(SETTERS.filter(function(x){return x[1]==='FASB';}),1)[0];
+  var as=R.sample(SETTERS.filter(function(x){return x[1]==='FASAB';}),1)[0];
+  var rest=SETTERS.filter(function(x){return x!==gs&&x!==fs&&x!==as;});
+  var items=R.shuffle([gs,fs,as,R.pick(rest)]);
+  var hs=R.sample(HIER,2);
+  var intro='<p>The accountants in <strong>'+esc(townOf(R))+'</strong> work with many kinds of organizations. They need to know which standard setter writes GAAP for each one, and where a source of guidance falls in the GAAP hierarchy.</p>';
+  var ref=bullets(['<strong>GASB</strong> sets GAAP for state and local governments, including public universities and utilities.','<strong>FASB</strong> sets GAAP for businesses and private nonprofits (ASC Topic 958).','<strong>FASAB</strong> sets standards for the federal government.','<strong>Hierarchy:</strong> Category A (GASB Statements), Category B (Technical Bulletins, Implementation Guides, cleared AICPA literature), then nonauthoritative sources.']);
+  var steps=[];
+  items.forEach(function(it){steps.push(C('Which board issues the accounting standards for <em>'+it[0]+'</em>?',['GASB','FASB','FASAB'],it[1],'Ask two questions: is it governmental, and if not, is it a nonprofit or a business? The federal government has its own board.',sol(['<strong>'+it[1]+'.</strong> '+it[2]])));});
+  hs.forEach(function(h){steps.push(C('A town has no GASB Statement that covers a transaction. Where does <em>'+h[0].toLowerCase()+'</em> fall in the GAAP hierarchy?',['Category A','Category B','Nonauthoritative'],h[1],'Category A is the official GASB Statements. Category B is the next level of GASB and cleared AICPA guidance. Everything else is nonauthoritative.',sol(['<strong>'+h[1]+'.</strong> '+h[2]])));});
+  return {intro:intro,ref:ref,steps:steps};
+}
+
+function g1gov(R){
+  var nm=R.pick(['Pisgah Regional Water Authority','Tuckasegee Valley Recreation Board','Nantahala Community Health Corporation','Qualla Area Transit Corporation','Blue Ridge Library Foundation','Smoky Mountain Housing Corporation','Cullowhee Valley Airport Authority','Balsam Heritage Arts Council']);
+  var k=R.pick([0,0,1,1,2]);
+  var flags=[false,false,false,false];
+  R.shuffle([0,1,2,3]).slice(0,k).forEach(function(i){flags[i]=true;});
+  var county=countyOf(R);
+  var S0=[
+   ['A majority of its governing board is appointed by the '+county+' commissioners.','Its governing board is chosen by its own members, and no government official appoints or approves them.'],
+   ['It has the power to levy property taxes.','It has no power to levy or enforce any tax.'],
+   ['It can directly issue debt whose interest is exempt from federal income tax.','It cannot directly issue tax-exempt debt.'],
+   ['The '+county+' government can unilaterally dissolve it and take its net assets.','No government can unilaterally dissolve it or take its net assets.']
+  ];
+  var facts=S0.map(function(s,i){return flags[i]?s[0]:s[1];});
+  var gov=flags.some(function(x){return x;});
+  var intro='<p><strong>'+esc(nm)+'</strong> is a nonprofit corporation. An accountant must decide whether it is a governmental entity. Here is what she learns:</p>'+bullets(facts);
+  var ref=bullets(['A nonprofit corporation or statutory body is <strong>governmental</strong> if it meets <strong>at least one</strong> of four criteria.','(1) Officers are popularly elected, or a controlling majority of the board is appointed or approved by government officials.','(2) It can enact or enforce a tax levy.','(3) It can directly issue debt whose interest is tax-exempt.','(4) Another government can unilaterally dissolve it and take its net assets.','Receiving a government grant does not, by itself, make an organization governmental.']);
+  var qs=[
+   ['Criterion 1: Are its officers popularly elected, or is a controlling majority of its board appointed or approved by government officials?','Look at what the facts say about who selects the board.'],
+   ['Criterion 2: Does it have the power to enact or enforce a tax levy?','Look at what the facts say about taxes.'],
+   ['Criterion 3: Can it directly issue debt whose interest is tax-exempt?','Look at what the facts say about debt.'],
+   ['Criterion 4: Can another government unilaterally dissolve it and take its net assets?','Look at what the facts say about dissolution.']
+  ];
+  var steps=qs.map(function(q,i){return C(q[0],['Yes','No'],yn(flags[i]),q[1],sol(['<strong>'+yn(flags[i])+'.</strong> '+facts[i]]));});
+  steps.push(C('Is this entity a governmental entity?',['Yes, governmental','No, not governmental'],gov?'Yes, governmental':'No, not governmental','It is governmental if it meets at least one of the four criteria.',sol([gov?'<strong>Governmental.</strong> At least one criterion is met.':'<strong>Not governmental.</strong> None of the four criteria is met.'])));
+  steps.push(C('Which board issues the accounting standards that apply to it?',['GASB','FASB'],gov?'GASB':'FASB','Governmental entities follow GASB. Private nonprofits follow FASB.',sol([gov?'<strong>GASB.</strong> It is governmental.':'<strong>FASB.</strong> It is a private nonprofit, so it follows ASC Topic 958.'])));
+  return {intro:intro,ref:ref,steps:steps};
+}
+
+function g1equity(R){
+  var tn=townOf(R);
+  var rev=R.step(2800000,5200000,50000);
+  var diff=R.until(function(){return R.step(-300000,300000,25000);},function(x){return x!==0;});
+  var cost=rev-diff;           // diff = revenues - cost
+  var ok=diff>=0;
+  var pr=R.sample([
+    ['Borrowing to pay this year’s routine salaries',true,'Borrowing for routine operating costs pushes the bill to future taxpayers.'],
+    ['Raising current taxes to pay for this year’s services',false,'Paying from current taxes keeps the cost with the people who received the service.'],
+    ['Skipping the annual pension contribution for current employees',true,'Underfunding long-term obligations defers the cost to the future.'],
+    ['Using this year’s fees to pay for this year’s trash collection',false,'Paying from current fees keeps the cost with the people who received the service.']
+  ],2);
+  var intro='<p>The <strong>'+esc(tn)+'</strong> council is reviewing the year. Current-year revenues were <strong>'+money(rev)+'</strong>. The cost of services provided to citizens this year was <strong>'+money(cost)+'</strong>.</p>';
+  var ref=bullets(['<strong>Interperiod equity</strong> is the GASB’s key reporting objective: did current-year revenues pay for current-year services?','If revenues are less than the cost of services, the shortfall is pushed to future taxpayers.','Borrowing for routine costs and underfunding long-term obligations both defer cost to the future.']);
+  var steps=[
+   N('What is the difference between current-year revenues and the cost of current services? (Enter a negative number if revenues fell short.)',diff,{hint:'Subtract the cost of services from revenues. A negative answer means revenues were not enough.',exp:sol([money(rev)+' − '+money(cost)],'Difference = '+money(diff)+(diff<0?' (a shortfall)':' (a surplus)'))}),
+   C('Was interperiod equity achieved this year?',['Yes, current citizens paid for current services','No, cost was shifted to future taxpayers'],ok?'Yes, current citizens paid for current services':'No, cost was shifted to future taxpayers','Interperiod equity is achieved only if revenues were at least as large as the cost of current services.',sol([ok?'Revenues covered the cost of services, so current citizens paid their own way.':'Revenues fell short by '+money(-diff)+', so that amount shifts to future taxpayers.']))
+  ];
+  pr.forEach(function(p){steps.push(C('Does this practice shift the cost of current services to future taxpayers? <em>'+esc(p[0])+'</em>',['Shifts cost to the future','Pays its own way'],p[1]?'Shifts cost to the future':'Pays its own way','Ask who ends up paying for the services that were received this year.',sol(['<strong>'+(p[1]?'Shifts cost to the future.':'Pays its own way.')+'</strong> '+p[2]])));});
+  return {intro:intro,ref:ref,steps:steps};
+}
+
+/* ================= Chapter 2: The Use of Funds ================= */
+var FUNDITEMS=[
+['A motor fuel tax that must be spent on road repair','Special Revenue Fund','A restricted revenue source dedicated to a specific purpose.'],
+['A hotel occupancy tax that must be spent on tourism promotion','Special Revenue Fund','A restricted revenue source dedicated to a specific purpose.'],
+['Proceeds of general obligation bonds to build a fire station','Capital Projects Fund','Resources for acquiring or building major capital assets.'],
+['Dedicated property taxes accumulated to pay bond principal and interest','Debt Service Fund','Resources accumulated to pay general long-term debt.'],
+['A cemetery endowment where only the earnings may be spent on cemetery care','Permanent Fund','Principal must be preserved and earnings support the government’s own programs.'],
+['Property taxes, fees, and fines that support police, fire, and parks','General Fund','The General Fund is the residual fund for everything not required in another fund.'],
+['A city-owned parking garage that charges the public','Enterprise Fund','An activity that serves outside customers who pay fees.'],
+['A town water and sewer utility that bills residents','Enterprise Fund','An activity that serves outside customers who pay fees.'],
+['A print shop that bills city departments at cost','Internal Service Fund','The customers are other departments of the same government.'],
+['A city motor pool that serves only city departments','Internal Service Fund','The customers are other departments of the same government.'],
+['An irrevocable trust holding city employee retirement assets','Pension Trust Fund','Fiduciary: assets held in trust for employee retirement benefits.'],
+['A scholarship trust for local students (not a government program)','Private-Purpose Trust Fund','Fiduciary: a trust that benefits individuals or organizations outside the government.'],
+['Property taxes a county collects on behalf of the school district','Custodial Fund','Fiduciary: resources held for other governments with no trust agreement.'],
+['The outside governments’ share of a county investment pool','Investment Trust Fund','Fiduciary: the external participants’ share of an investment pool.']
+];
+function g2fund(R){
+  var seen={},pool=R.shuffle(FUNDITEMS),items=[];
+  pool.forEach(function(x){if(items.length<5&&!seen[x[1]]){seen[x[1]]=1;items.push(x);}});
+  var intro='<p>The <strong>'+esc(countyOf(R))+'</strong> finance director is deciding which fund should be used for several activities. Governments use 11 fund types in three categories, so think about the <em>purpose</em> of the resources, not just where the money comes from.</p>';
+  var ref=bullets(['<strong>Governmental:</strong> General, Special Revenue, Capital Projects, Debt Service, Permanent.','<strong>Proprietary:</strong> Enterprise (outside customers), Internal Service (other departments).','<strong>Fiduciary:</strong> Pension Trust, Investment Trust, Private-Purpose Trust, Custodial.','The General Fund is the residual fund: everything not required in another fund.']);
+  var steps=items.map(function(it){return C('Which fund should be used for this activity? <em>'+esc(it[0])+'</em>',FUNDS,it[1],'Think about the purpose of the resources. Is it for the government’s own programs, for outside customers, for other departments, or held for someone else?',sol(['<strong>'+it[1]+'.</strong> '+it[2]]));});
+  return {intro:intro,ref:ref,steps:steps};
+}
+
+var FOCUSFUNDS=[
+['General Fund','Governmental','gov'],['Special Revenue Fund','Governmental','gov'],['Capital Projects Fund','Governmental','gov'],['Debt Service Fund','Governmental','gov'],['Permanent Fund','Governmental','gov'],
+['Enterprise Fund','Proprietary','prop'],['Internal Service Fund','Proprietary','prop']
+];
+function g2focus(R){
+  var f=R.pick(FOCUSFUNDS),gov=f[2]==='gov',tn=townOf(R);
+  var intro='<p>The <strong>'+esc(tn)+'</strong> reports a <strong>'+f[0]+'</strong>. Each fund category measures different things and recognizes transactions at different times. Work out how this fund is reported.</p>';
+  var ref=bullets(['<strong>Governmental funds:</strong> current financial resources focus, modified accrual basis. Report expenditures, and do not report capital assets or unmatured long-term debt.','<strong>Proprietary funds:</strong> economic resources focus, full accrual basis. Report expenses, capital assets with depreciation, and long-term debt.','<strong>Fiduciary funds:</strong> economic resources focus, full accrual basis.']);
+  var steps=[
+   C('Which fund category does the '+f[0]+' belong to?',['Governmental','Proprietary','Fiduciary'],f[1],'Governmental funds are General, Special Revenue, Capital Projects, Debt Service, and Permanent. Enterprise and Internal Service funds are proprietary.',sol(['<strong>'+f[1]+'.</strong> The '+f[0]+' is a '+f[1].toLowerCase()+' fund type.'])),
+   C('What measurement focus does this fund use?',['Current financial resources','Economic resources'],gov?'Current financial resources':'Economic resources','Governmental funds track spendable financial resources. Proprietary and fiduciary funds track all economic resources.',sol([gov?'<strong>Current financial resources.</strong> Governmental funds focus on resources available to spend.':'<strong>Economic resources.</strong> Proprietary funds measure all economic resources, like a business.'])),
+   C('What basis of accounting does this fund use?',['Modified accrual','Full accrual'],gov?'Modified accrual':'Full accrual','The basis of accounting follows the measurement focus.',sol([gov?'<strong>Modified accrual.</strong> Revenue must be measurable and available.':'<strong>Full accrual.</strong> Revenue is recognized when earned and expenses when incurred.'])),
+   C('Would this fund report <em>bonds payable that are not yet due</em> as a liability on its own balance sheet?',['Yes','No'],gov?'No':'Yes','Think about which funds report long-term debt and which leave it for the government-wide statements.',sol([gov?'<strong>No.</strong> Governmental funds report only matured liabilities. Unmatured long-term debt appears in the government-wide statements.':'<strong>Yes.</strong> A fund using full accrual reports its long-term debt as a fund liability.'])),
+   C('The fund buys a $120,000 piece of equipment. How is the purchase reported in the year it is acquired?',['As an expenditure for the full cost','As a capital asset, depreciated over its life'],gov?'As an expenditure for the full cost':'As a capital asset, depreciated over its life','Governmental funds report outlays of current financial resources. Proprietary funds capitalize assets and depreciate them.',sol([gov?'<strong>An expenditure for the full cost.</strong> A governmental fund reports capital outlay as an expenditure.':'<strong>A capital asset, depreciated over its life.</strong> A proprietary fund capitalizes the asset and records depreciation.']))
+  ];
+  return {intro:intro,ref:ref,steps:steps};
+}
+
+function g2same(R){
+  var tn=townOf(R);
+  var paid=R.step(300000,600000,10000),accr=R.step(8000,30000,1000);
+  var cost=R.pick([120000,160000,200000,240000]),life=R.pick([5,8,10]);
+  var dep=cost/life;
+  var intPay=R.step(8000,30000,1000),prinPay=R.step(30000,80000,5000),tot=intPay+prinPay;
+  var L=R.step(600000,1200000,50000),u=L*0.02,exp=L-u;
+  var C0=R.step(6000,20000,1000),B0=R.step(15000,40000,1000),A0=exp-B0-C0;
+  var intro='<p>The <strong>'+esc(tn)+'</strong> records the same kinds of events in a governmental fund (modified accrual) and in its water Enterprise Fund (full accrual). Work through each one.</p>'+
+    '<ul><li>The General Fund paid <strong>'+money(paid)+'</strong> of salaries during the year and owes <strong>'+money(accr)+'</strong> more for work already done at year-end.</li>'+
+    '<li>The Enterprise Fund bought equipment on the first day of the year for <strong>'+money(cost)+'</strong> with a <strong>'+life+'-year</strong> life (straight-line, no salvage).</li>'+
+    '<li>A debt payment of <strong>'+money(tot)+'</strong> includes <strong>'+money(prinPay)+'</strong> of principal and <strong>'+money(intPay)+'</strong> of interest.</li>'+
+    '<li>The General Fund levied <strong>'+money(L)+'</strong> of property taxes and expects <strong>'+money(u)+'</strong> to be uncollectible. Of the <strong>'+money(exp)+'</strong> expected, <strong>'+money(A0)+'</strong> arrives during the year, <strong>'+money(B0)+'</strong> within 60 days after year-end, and <strong>'+money(C0)+'</strong> later than that.</li></ul>';
+  var ref=bullets(['Governmental funds accrue liabilities for services already received (expenditures) and expense capital assets in full when acquired.','Full accrual funds report expenses, capitalize assets, and record depreciation. Only interest is an expense; principal reduces the liability.','Under modified accrual, revenue must be measurable and <strong>available</strong>: collected within the period or within 60 days after.']);
+  var steps=[
+   N('What <strong>salary expenditure</strong> does the General Fund report?',paid+accr,{hint:'Include what was paid and what is owed for work already performed.',exp:sol([money(paid)+' paid + '+money(accr)+' accrued'],'Salary expenditure = '+money(paid+accr))}),
+   N('How much <strong>depreciation expense</strong> does the Enterprise Fund record for the year?',dep,{hint:'Divide the cost by the useful life (straight-line, no salvage).',exp:sol([money(cost)+' ÷ '+life+' years'],'Depreciation expense = '+money(dep))}),
+   N('How much <strong>capital outlay expenditure</strong> would a governmental fund report for the same equipment in the year of purchase?',cost,{hint:'A governmental fund does not capitalize or depreciate. It reports the outlay of current financial resources.',exp:sol(['A governmental fund reports the full cost as an expenditure when the equipment is acquired.'],'Capital outlay expenditure = '+money(cost))}),
+   N('How much <strong>expense</strong> does the Enterprise Fund record for this debt payment?',intPay,{hint:'In a full accrual fund, only one part of the payment is an expense.',exp:sol(['Only interest is an expense. The '+money(prinPay)+' of principal reduces the liability. A Debt Service Fund would report the whole '+money(tot)+' as an expenditure.'],'Interest expense = '+money(intPay))}),
+   N('How much <strong>property tax revenue</strong> does the General Fund report under modified accrual?',A0+B0,{hint:'Only amounts collected within the year or within the 60 days after year-end pass the availability test.',exp:sol([money(A0)+' + '+money(B0)],'Modified accrual revenue = '+money(A0+B0))}),
+   N('How much is reported as a <strong>deferred inflow of resources</strong> for the taxes that are not available?',C0,{hint:'Taxes expected to be collected after the 60-day window are not available. They are deferred until they are.',exp:sol([money(exp)+' expected − '+money(A0+B0)+' available'],'Deferred inflow = '+money(C0)+'. Under full accrual, revenue would be '+money(exp)+'.')})
+  ];
+  return {intro:intro,ref:ref,steps:steps};
+}
+
+/* ================= Chapter 3: Budgetary Considerations ================= */
+function g3rate(R,o){var P=mk(R,o);
+  var co=P('co',function(){return countyOf(R);});
+  var B=P('B',function(){return R.step(600000,1500000,50000);});
+  var V=P('V',function(){return R.step(40e6,90e6,5e6);});
+  var Nx=P('N',function(){return R.step(5e6,12e6,1e6);});
+  var hs=P('hs',function(){return R.step(1500000,3000000,500000);});
+  var vet=P('vet',function(){return R.step(500000,1500000,500000);});
+  var old=P('old',function(){return R.step(250000,1000000,250000);});
+  var u=P('u',function(){return R.pick([2,3,4,5]);});
+  var prop=P('prop',function(){return R.step(80000,250000,10000);});
+  var E=hs+vet+old,net=V-Nx-E,levy=B/(1-u/100),rate=levy/net*1000,tax=prop/1000*rate,unc=levy*u/100;
+  var intro='<p>The <strong>'+esc(co)+'</strong> board of commissioners approved the budget. Property tax revenue is budgeted at <strong>'+money(B)+'</strong>. The tax assessor reports total assessed valuation of <strong>'+money(V)+'</strong>. Of this, <strong>'+money(Nx)+'</strong> belongs to the federal government or religious organizations and is not subject to tax. Exemption certificates were also filed:</p>'+
+    tbl('Exemptions filed',['Exemption','Amount'],[['Homestead',money(hs)],['Veterans',money(vet)],['Old age, blindness, etc.',money(old)],['Total exemptions',money(E)]],{totalLast:true})+
+    '<p>Uncollectible property taxes have averaged <strong>'+u+'%</strong> of the levy and are expected to stay there.</p>';
+  var ref=bullets(['<strong>Net taxable valuation</strong> = total assessed valuation − property not subject to tax − exemptions.','<strong>Required levy</strong> = budgeted revenue ÷ (1 − uncollectible rate).','<strong>Tax rate per $1,000</strong> = levy ÷ (net taxable valuation ÷ 1,000).']);
+  var steps=[
+   N('What is the <strong>net taxable assessed valuation</strong>?',net,{hint:'Start with total assessed valuation. Subtract the property that is not subject to tax and the exemptions that were filed.',exp:sol([money(V)+' − '+money(Nx)+' − '+money(E)],'Net taxable valuation = '+money(net))}),
+   N('What <strong>property tax levy</strong> is required? (Round to the nearest dollar.)',levy,{tol:1,hint:'Divide the budgeted revenue by the percentage expected to be collected (100% minus the uncollectible rate), so the levy also covers the taxes that will not be collected.',exp:sol([money(B)+' ÷ '+(100-u)+'% = '+money(levy,2)],'Required levy = '+money(levy))}),
+   N('What <strong>tax rate per $1,000</strong> of net taxable valuation is needed? (Carry it to four decimal places.)',rate,{fmt:'num',dec:4,tol:0.0051,unit:'per $1,000',hint:'Divide the levy by net taxable valuation, then multiply by 1,000.',exp:sol([money(levy,2)+' ÷ '+money(net)+' × 1,000'],'Tax rate = '+nf(rate,4)+' per $1,000')}),
+   N('What is the <strong>tax levy on a property</strong> assessed at '+money(prop)+' after exemptions? (Dollars and cents.)',tax,{dec:2,tol:0.03,hint:'Divide the assessed value by 1,000 and multiply by the tax rate.',exp:sol(['('+money(prop)+' ÷ 1,000) × '+nf(rate,4)],'Tax on the property = '+money(tax,2))}),
+   N('How much of the total levy is <strong>expected to be uncollectible</strong>? (Nearest dollar.)',unc,{tol:1,hint:'Multiply the levy by the uncollectible rate.',exp:sol([money(levy,2)+' × '+u+'%'],'Expected uncollectible = '+money(unc)+'. The collectible levy, '+money(levy-unc)+', equals the budgeted revenue.')})
+  ];
+  return {intro:intro,ref:ref,steps:steps};
+}
+
+function g3cash(R){
+  var tn=townOf(R);
+  var b=R.step(10000,40000,2000),rc=R.step(40000,90000,5000),m=R.step(8000,20000,2000),need=R.step(20000,80000,5000);
+  var d=b+rc+need-m;
+  var r=R.pick([4,5,6]),t=R.pick([3,4,6,8]);
+  var avail=b+rc,intr=need*r/100*t/12;
+  var intro='<p>The <strong>'+esc(tn)+'</strong> General Fund starts the quarter with <strong>'+money(b)+'</strong> of cash. It expects <strong>'+money(rc)+'</strong> of receipts and <strong>'+money(d)+'</strong> of disbursements, and policy requires a minimum cash balance of <strong>'+money(m)+'</strong>. The town will borrow the difference on a tax anticipation note (TAN) at <strong>'+r+'%</strong> annual interest. The note will be outstanding for <strong>'+t+' months</strong>.</p>';
+  var ref=bullets(['Tax receipts are lumpy but spending is steady, so a <strong>TAN</strong> bridges the gap until taxes arrive.','Amount to borrow = disbursements + minimum balance − (beginning cash + receipts).','Interest = principal × annual rate × months ÷ 12.']);
+  var steps=[
+   N('How much cash will be available before borrowing (beginning cash plus receipts)?',avail,{hint:'Add the beginning cash and the expected receipts.',exp:sol([money(b)+' + '+money(rc)],'Cash available = '+money(avail))}),
+   N('How much must the town <strong>borrow on the TAN</strong>?',need,{hint:'The town needs enough cash to cover disbursements and still keep the minimum balance. Subtract the cash available from that total need.',exp:sol(['Total need = '+money(d)+' + '+money(m)+' = '+money(d+m),money(d+m)+' − '+money(avail)],'TAN borrowing = '+money(need))}),
+   N('What is the <strong>interest</strong> on the TAN? (Round to the nearest dollar.)',intr,{hint:'Principal × annual rate × (months ÷ 12).',exp:sol([money(need)+' × '+r+'% × '+t+'/12 = '+money(intr,2)],'Interest = '+money(intr))}),
+   C('How are the TAN proceeds reported in the General Fund?',['As an other financing source','As a fund liability (Tax Anticipation Notes Payable)','As revenue'],'As a fund liability (Tax Anticipation Notes Payable)','Short-term debt that will be repaid from the same year’s taxes stays on the fund’s books as a liability.',sol(['<strong>A fund liability.</strong> Short-term notes are liabilities of the fund, not other financing sources.'])),
+   C('How is the TAN interest reported?',['An expenditure','A reduction of Tax Anticipation Notes Payable','An other financing use'],'An expenditure','Interest is a cost of current operations in a governmental fund.',sol(['<strong>An expenditure.</strong> Interest on short-term debt is reported as an expenditure.']))
+  ];
+  return {intro:intro,ref:ref,steps:steps};
+}
+
+function g3budget(R){
+  var tn=townOf(R);
+  var ER=R.step(3500000,6000000,100000);
+  var diff=R.step(50000,250000,10000),surplus=R.f()<0.6;
+  var AP=surplus?ER-diff:ER+diff;
+  var up=R.step(10000,40000,5000);
+  var bud=ER-AP,newBud=bud-up;
+  var pool=[
+   ['Shift $X of authority from Supplies to Salaries','Interchange'],
+   ['Council adds $X to Salaries and raises estimated revenues by $X','Revision'],
+   ['Move $X from Travel to Training','Interchange'],
+   ['Council cuts total appropriations by $X','Revision'],
+   ['Transfer $X of appropriation from Printing to Equipment','Interchange'],
+   ['Council approves $X of additional appropriations funded by a new state grant','Revision']
+  ];
+  var its=R.shuffle(R.sample(pool.filter(function(x){return x[1]==='Interchange';}),2).concat(R.sample(pool.filter(function(x){return x[1]==='Revision';}),2)));
+  its=its.map(function(x){return [x[0].replace(/\$X/g,money(R.step(5000,25000,1000))),x[1]];});
+  var intro='<p>The <strong>'+esc(tn)+'</strong> council adopts its General Fund budget. <strong>Estimated revenues</strong> are <strong>'+money(ER)+'</strong> and <strong>appropriations</strong> are <strong>'+money(AP)+'</strong>.</p>';
+  var ref=bullets(['Adopting the budget: Dr <strong>Estimated Revenues</strong>, Cr <strong>Appropriations</strong>, and the difference goes to <strong>Budgetary Fund Balance</strong>.','A budgeted surplus is a credit to Budgetary Fund Balance. A budgeted deficit is a debit.','An <strong>interchange</strong> moves authority between appropriations (the total stays the same). A <strong>revision</strong> changes the total budget.']);
+  var rows=[['Estimated Revenues','Debit'],['Appropriations','Credit'],['Budgetary Fund Balance',surplus?'Credit':'Debit']];
+  var jerows=surplus?[['Estimated Revenues',ER,null],['Appropriations',null,AP],['Budgetary Fund Balance',null,diff]]:[['Estimated Revenues',ER,null],['Budgetary Fund Balance',diff,null],['Appropriations',null,AP]];
+  var steps=[
+   M('Choose <strong>Debit</strong> or <strong>Credit</strong> for each account in the entry that records the adopted budget.',rows,DC,'Estimated revenues are a debit and appropriations are a credit. The balancing amount goes to Budgetary Fund Balance. Compare the two totals to decide which side.',je('Adopt the budget',jerows)+sol([surplus?'Estimated revenues exceed appropriations, so the budgeted surplus is credited to Budgetary Fund Balance.':'Appropriations exceed estimated revenues, so the budgeted deficit is debited to Budgetary Fund Balance.'])),
+   N('What <strong>amount</strong> is recorded in Budgetary Fund Balance?',diff,{hint:'It is the difference between estimated revenues and appropriations.',exp:sol([money(Math.max(ER,AP))+' − '+money(Math.min(ER,AP))],'Budgetary Fund Balance = '+money(diff)+(surplus?' (credit)':' (debit)'))}),
+   M('Is each change a budgetary <strong>interchange</strong> or a <strong>revision</strong>?',its.map(function(x){return [x[0],x[1]];}),['Interchange','Revision'],'An interchange moves authority from one appropriation to another, so the total does not change. A revision changes the total budget.',sol(its.map(function(x){return '<strong>'+x[1]+':</strong> '+x[0];}))),
+   N('Suppose the council then raises <strong>appropriations by '+money(up)+'</strong> with no change in estimated revenues. What is the new budgeted surplus? (Enter a deficit as a negative number.)',newBud,{hint:'Start with the original budgeted surplus (deficit) and subtract the added appropriations.',exp:sol([(bud<0?money(bud):money(bud))+' − '+money(up)],'New budgeted surplus (deficit) = '+money(newBud))})
+  ];
+  return {intro:intro,ref:ref,steps:steps};
+}
+
+function g3enc(R){
+  var tn=townOf(R);
+  var PO=R.step(12000,60000,500),delta=R.pick([-800,-500,-300,300,500,800]),inv=PO+delta;
+  var E=R.step(40000,100000,5000),O=R.step(10000,40000,5000),gap=R.step(20000,80000,5000);
+  var A=E+O+inv+gap,avail=A-E-inv-O;
+  var item=R.pick(['road salt','police radios','a mower','office computers','water meters','playground equipment']);
+  var intro='<p>The <strong>'+esc(tn)+'</strong> General Fund uses encumbrance accounting. Public Works issues a purchase order for '+item+' for <strong>'+money(PO)+'</strong>. When the goods arrive, the invoice is for <strong>'+money(inv)+'</strong>. The related appropriation is <strong>'+money(A)+'</strong>. Before this purchase, expenditures to date were <strong>'+money(E)+'</strong>, and <strong>'+money(O)+'</strong> of other purchase orders are still outstanding.</p>';
+  var ref=bullets(['An <strong>encumbrance</strong> commits appropriation authority when a purchase order is issued. It is not a liability.','When the goods arrive, reverse the <strong>original encumbered amount</strong>, then record the <strong>actual invoice</strong> as an expenditure.','Available appropriation = appropriation − expenditures − outstanding encumbrances.']);
+  var steps=[
+   M('Choose <strong>Debit</strong> or <strong>Credit</strong> for each account when the purchase order is issued.',[['Encumbrances','Debit'],['Budgetary Fund Balance Reserved for Encumbrances','Credit']],DC,'The entry is a budgetary commitment. Encumbrances act like an expenditure-in-waiting, and the reserve is the offsetting budgetary account.',je('Issue the purchase order',[['Encumbrances',PO,null],['Budgetary Fund Balance Reserved for Encumbrances',null,PO]])+sol(['The encumbrance is a budgetary commitment, not a liability.'])),
+   N('When the goods arrive, for what <strong>amount is the encumbrance reversed</strong>?',PO,{hint:'Reverse the original amount that was encumbered, even if the invoice is different.',exp:je('Reverse the encumbrance',[['Budgetary Fund Balance Reserved for Encumbrances',PO,null],['Encumbrances',null,PO]])+sol(['Always reverse the original encumbered amount, '+money(PO)+', even though the invoice is '+money(inv)+'.'])}),
+   N('What <strong>expenditure</strong> is recorded?',inv,{hint:'Expenditures are recorded at the actual invoice amount.',exp:je('Record the expenditure',[['Expenditures',inv,null],['Vouchers Payable',null,inv]])+sol(['The actual invoice amount is recorded as the expenditure and a liability.'])}),
+   N('After this purchase order is filled, how much of the <strong>appropriation is still available</strong>?',avail,{hint:'Subtract expenditures to date (including this invoice) and the other outstanding encumbrances from the appropriation.',exp:sol(['Expenditures to date including this invoice: '+money(E)+' + '+money(inv)+' = '+money(E+inv),money(A)+' − '+money(E+inv)+' − '+money(O)+' other encumbrances'],'Available appropriation = '+money(avail))}),
+   C('An encumbrance is…',['A liability of the fund','A budgetary commitment of appropriation authority','An expenditure'],'A budgetary commitment of appropriation authority','A purchase order is a promise to buy, not a purchase. Nothing has been received yet.',sol(['<strong>A budgetary commitment.</strong> The liability and expenditure are recorded only when the goods or services are received.']))
+  ];
+  return {intro:intro,ref:ref,steps:steps};
+}
+
+/* ================= Chapter 4: General and Special Revenue Funds ================= */
+function g4gf(R){
+  var co=countyOf(R);
+  var L=R.step(700000,1200000,50000),recv=R.step(60000,160000,10000),T=L-recv;
+  var lic=R.step(15000,40000,1000),fin=R.step(8000,25000,1000);
+  var paid=R.step(400000,700000,10000),accr=R.step(8000,30000,2000);
+  var intro='<p>The <strong>'+esc(co)+'</strong> General Fund levies <strong>'+money(L)+'</strong> of property taxes. During the year it collects <strong>'+money(T)+'</strong> of those taxes, <strong>'+money(lic)+'</strong> of licenses and permits, and <strong>'+money(fin)+'</strong> of fines. It pays <strong>'+money(paid)+'</strong> of salaries and still owes <strong>'+money(accr)+'</strong> of salaries for work done in the last week of the year.</p>';
+  var ref=bullets(['The levy creates a receivable. Collections reduce it.','Governmental funds accrue expenditures when the liability is incurred, even if cash has not been paid.','Accrue salaries: Dr Expenditures—Salaries, Cr Accrued Salaries Payable.']);
+  var steps=[
+   N('How much <strong>cash</strong> was received from taxes, licenses, and fines?',T+lic+fin,{hint:'Add the three amounts collected.',exp:sol([money(T)+' + '+money(lic)+' + '+money(fin)],'Cash received = '+money(T+lic+fin))}),
+   N('What is the year-end balance of <strong>Property Taxes Receivable</strong>?',recv,{hint:'The balance is what was levied less what was collected.',exp:sol([money(L)+' levied − '+money(T)+' collected'],'Receivable = '+money(recv))}),
+   N('What <strong>salary expenditure</strong> is reported?',paid+accr,{hint:'Add the salaries owed at year-end to the salaries paid.',exp:sol([money(paid)+' paid + '+money(accr)+' accrued'],'Salary expenditure = '+money(paid+accr))}),
+   M('Choose <strong>Debit</strong> or <strong>Credit</strong> for each account in the year-end entry that accrues the unpaid salaries.',[['Expenditures—Salaries','Debit'],['Accrued Salaries Payable','Credit']],DC,'The expenditure increases with a debit. The amount owed is a liability.',je('Accrue unpaid salaries',[['Expenditures—Salaries',accr,null],['Accrued Salaries Payable',null,accr]])+sol(['Salaries earned but unpaid are a liability of the fund, so the expenditure is recorded now.']))
+  ];
+  return {intro:intro,ref:ref,steps:steps};
+}
+
+function g4close(R){
+  var tn=townOf(R);
+  var ER=R.step(1000000,3000000,50000),d=R.step(10000,80000,5000),defi=R.f()<0.5;
+  var AP=defi?ER+d:ER-d;
+  var Rev=ER+R.until(function(){return R.step(-30000,30000,5000);},function(x){return x!==0;});
+  var Exp=AP+R.step(-60000,20000,5000);
+  var b=R.step(150000,300000,5000),net=Rev-Exp,end=b+net;
+  var intro='<p>The <strong>'+esc(tn)+'</strong> General Fund has these balances before closing for the year.</p>'+
+   tbl('Preclosing balances',['Account','Balance'],[['Estimated Revenues (Dr)',money(ER)],['Appropriations (Cr)',money(AP)],['Budgetary Fund Balance ('+(defi?'Dr':'Cr')+')',money(d)],['Revenues (Cr)',money(Rev)],['Expenditures (Dr)',money(Exp)],['Fund Balance, beginning (Cr)',money(b)]])+
+   '<p>Governmental funds use <strong>two closing entries</strong>: one for the budgetary accounts and one for the actual operating accounts. Never combine them.</p>';
+  var ref=bullets(['Closing the budgetary accounts reverses the opening budget entry.','Closing the actual accounts: Dr Revenues, Cr Expenditures, and the difference goes to Fund Balance.','Ending fund balance = beginning fund balance + (revenues − expenditures).']);
+  var r1=[['Appropriations','Debit'],['Estimated Revenues','Credit'],['Budgetary Fund Balance',defi?'Credit':'Debit']];
+  var j1=defi?[['Appropriations',AP,null],['Estimated Revenues',null,ER],['Budgetary Fund Balance',null,d]]:[['Appropriations',AP,null],['Budgetary Fund Balance',d,null],['Estimated Revenues',null,ER]];
+  var r2=[['Revenues','Debit'],['Expenditures','Credit'],['Fund Balance',net>=0?'Credit':'Debit']];
+  var j2=net>=0?[['Revenues',Rev,null],['Expenditures',null,Exp],['Fund Balance',null,net]]:[['Revenues',Rev,null],['Fund Balance',-net,null],['Expenditures',null,Exp]];
+  var steps=[
+   M('Choose <strong>Debit</strong> or <strong>Credit</strong> for each account in the entry that <strong>closes the budgetary accounts</strong>.',r1,DC,'Reverse the original budget entry. Appropriations were credited, estimated revenues debited, and Budgetary Fund Balance has the balance shown above.',je('Close the budgetary accounts',j1)+sol(['This reverses the opening budget entry, which clears the Budgetary Fund Balance.'])),
+   N('What <strong>amount</strong> is recorded for Budgetary Fund Balance in that entry?',d,{hint:'It is the same amount shown in the preclosing balances.',exp:sol(['Budgetary Fund Balance equals the difference between appropriations and estimated revenues: '+money(Math.max(ER,AP))+' − '+money(Math.min(ER,AP))],'Amount = '+money(d))}),
+   N('What is the <strong>excess of revenues over expenditures</strong>? (Enter a deficiency as a negative number.)',net,{hint:'Subtract expenditures from revenues.',exp:sol([money(Rev)+' − '+money(Exp)],'Excess (deficiency) = '+money(net))}),
+   M('Choose <strong>Debit</strong> or <strong>Credit</strong> for each account in the second entry that <strong>closes the actual accounts</strong>.',r2,DC,'Revenues have credit balances and expenditures have debit balances. Fund Balance takes the difference: a credit if revenues were larger, a debit if expenditures were larger.',je('Close the actual accounts',j2)+sol([net>=0?'Revenues exceeded expenditures, so Fund Balance is credited for the excess.':'Expenditures exceeded revenues, so Fund Balance is debited for the deficiency.'])),
+   N('What is the <strong>ending fund balance</strong>?',end,{hint:'Add the excess (or subtract the deficiency) to the beginning fund balance.',exp:sol([money(b)+' '+(net>=0?'+ ':'− ')+money(Math.abs(net))],'Ending fund balance = '+money(end))})
+  ];
+  return {intro:intro,ref:ref,steps:steps};
+}
+
+function g4bc(R){
+  var tn=townOf(R);
+  var OB=R.step(1000000,3000000,50000);
+  var FB=OB+R.until(function(){return R.step(-40000,80000,10000);},function(x){return x!==0;});
+  var AR=FB+R.until(function(){return R.step(-60000,40000,5000);},function(x){return x!==0;});
+  var FA=R.step(1000000,3000000,50000);
+  var AE=FA-R.until(function(){return R.step(-20000,60000,5000);},function(x){return x!==0;});
+  var chg=FB-OB,rv=AR-FB,ev=FA-AE;
+  var intro='<p>The <strong>'+esc(tn)+'</strong> is preparing its budgetary comparison schedule for the General Fund.</p>'+
+   tbl('Budget and actual',['Item','Original budget','Final budget','Actual'],[['Revenues',money(OB),money(FB),money(AR)],['Expenditures',money(FA),money(FA),money(AE)]]);
+  var ref=bullets(['<strong>Revenue variance</strong> = actual − final budget. Positive is favorable.','<strong>Expenditure variance</strong> = final budget − actual. Positive (spending below budget) is favorable.','Final budget includes amendments made during the year.']);
+  var fav=function(x){return x>0?'Favorable':'Unfavorable';};
+  var steps=[
+   N('By how much did the <strong>final revenue budget differ from the original</strong>? (Enter a decrease as a negative number.)',chg,{hint:'Subtract the original budget from the final budget.',exp:sol([money(FB)+' − '+money(OB)],'Change = '+money(chg))}),
+   N('What is the <strong>revenue variance</strong> (actual minus final budget)? Enter a negative number if actual revenue was below budget.',rv,{hint:'Compare actual revenues with the <em>final</em> budget, not the original.',exp:sol([money(AR)+' − '+money(FB)],'Revenue variance = '+money(rv))}),
+   C('Is the revenue variance favorable or unfavorable?',['Favorable','Unfavorable'],fav(rv),'Collecting more revenue than budgeted is favorable.',sol(['<strong>'+fav(rv)+'.</strong> Actual revenue was '+(rv>0?'above':'below')+' the final budget.'])),
+   N('What is the <strong>expenditure variance</strong> (final budget minus actual)? Enter a negative number if spending exceeded the budget.',ev,{hint:'Subtract actual expenditures from the final budget. A positive answer means the fund spent less than authorized.',exp:sol([money(FA)+' − '+money(AE)],'Expenditure variance = '+money(ev))}),
+   C('Is the expenditure variance favorable or unfavorable?',['Favorable','Unfavorable'],fav(ev),'Spending less than the budget is favorable.',sol(['<strong>'+fav(ev)+'.</strong> Actual expenditures were '+(ev>0?'below':'above')+' the final budget.']))
+  ];
+  return {intro:intro,ref:ref,steps:steps};
+}
+
+function g4tan(R){
+  var tn=townOf(R);
+  var pr=R.step(200000,600000,50000),r=R.pick([4,5,6]),t=R.pick([3,6,8,9]);
+  var intr=pr*r/100*t/12;
+  var intro='<p>The <strong>'+esc(tn)+'</strong> borrows <strong>'+money(pr)+'</strong> from a bank on a tax anticipation note (TAN) to pay costs before property taxes arrive. The note carries <strong>'+r+'%</strong> annual interest and is repaid after <strong>'+t+' months</strong>.</p>';
+  var ref=bullets(['A short-term note is a <strong>liability of the fund</strong> (Tax Anticipation Notes Payable). It is not an other financing source.','Interest is an <strong>expenditure</strong>.','Interest = principal × annual rate × months ÷ 12.']);
+  var steps=[
+   M('Choose <strong>Debit</strong> or <strong>Credit</strong> for each account when the note proceeds are received.',[['Cash','Debit'],['Tax Anticipation Notes Payable','Credit']],DC,'The fund receives cash and takes on a liability.',je('Borrow on the TAN',[['Cash',pr,null],['Tax Anticipation Notes Payable',null,pr]])+sol(['Short-term debt is a fund liability.'])),
+   N('What <strong>interest expenditure</strong> is recorded when the note is repaid? (Round to the nearest dollar.)',intr,{hint:'Principal × annual rate × (months ÷ 12).',exp:sol([money(pr)+' × '+r+'% × '+t+'/12 = '+money(intr,2)],'Interest = '+money(intr))}),
+   N('How much <strong>cash</strong> is paid to the bank at repayment (principal plus interest)? (Nearest dollar.)',pr+intr,{hint:'Add the interest to the principal.',exp:sol([money(pr)+' + '+money(intr,2)],'Cash paid = '+money(pr+intr))}),
+   M('Choose <strong>Debit</strong> or <strong>Credit</strong> for each account in the repayment entry.',[['Tax Anticipation Notes Payable','Debit'],['Expenditures—Interest','Debit'],['Cash','Credit']],DC,'The liability is removed, the interest is an expenditure, and cash decreases.',je('Repay the TAN',[['Tax Anticipation Notes Payable',pr,null],['Expenditures—Interest',rd(intr),null],['Cash',null,pr+rd(intr)]])+sol(['Principal reduces the liability. Interest is an expenditure. (Amounts are shown to the nearest dollar.)']))
+  ];
+  return {intro:intro,ref:ref,steps:steps};
+}
+
+/* ================= Chapter 5: General and Special Revenue Funds ================= */
+var GASB54=[
+['Supplies inventory on hand','Nonspendable','It is not in spendable form.'],
+['A prepaid insurance balance','Nonspendable','It is not in spendable form.'],
+['An unspent state grant restricted to road repair','Restricted','An external party restricts how it can be used.'],
+['Property tax revenue that state law requires to be spent on debt service','Restricted','Law (an external constraint) restricts its use.'],
+['A disaster reserve created by council ordinance','Committed','The highest decision-making body formally limited its use.'],
+['Funds set aside by a formal council vote for a future park','Committed','The highest decision-making body formally limited its use.'],
+['The manager’s intent to use funds for next year’s budget','Assigned','Intent only, with no formal commitment.'],
+['The residual amount available for any purpose','Unassigned','It is what is left over, with no constraint.']
+];
+function g5ptax(R,o){var P=mk(R,o);
+  var tn=P('tn',function(){return townOf(R);});
+  var L=P('L',function(){return R.step(1200000,2400000,100000);});
+  var U=P('U',function(){return L*0.02;});
+  var A=P('A',function(){return R.step(8000,16000,2000);});
+  var dq=P('dq',function(){return R.step(80000,160000,10000);});
+  var Cc=L-dq-A;
+  var net=dq-(U-A);
+  var df=P('df',function(){return R.step(10000,30000,2000);});
+  var D=net-df;
+  var X=P('X',function(){return R.step(3000,df-2000,1000);});
+  var intro='<p>The <strong>'+esc(tn)+'</strong> levies <strong>'+money(L)+'</strong> of property taxes and estimates that <strong>'+money(U)+'</strong> will be uncollectible. During the year it collects <strong>'+money(Cc)+'</strong>, and appeals reduce taxes by <strong>'+money(A)+'</strong> (charged to the allowance). Taxes still unpaid at year-end are declared delinquent. Of the net delinquent amount, only <strong>'+money(D)+'</strong> is expected to be collected within 60 days after year-end.</p>';
+  var ref=bullets(['Governmental funds record <strong>no bad debt expense</strong>. Revenue is recorded net of estimated uncollectibles.','Delinquent taxes expected after the 60-day window are reported as a <strong>deferred inflow of resources</strong>.','Net delinquent taxes = delinquent taxes − remaining allowance.']);
+  var steps=[
+   M('Choose <strong>Debit</strong> or <strong>Credit</strong> for each account in the <strong>levy</strong> entry.',[['Property Taxes Receivable','Debit'],['Allowance for Refunds and Uncollectible Taxes','Credit'],['Revenues—Property Taxes','Credit']],DC,'The levy is recorded gross as a receivable. The estimated uncollectible amount reduces it, and revenue is recorded for the net amount.',je('Levy',[['Property Taxes Receivable',L,null],['Allowance for Refunds and Uncollectible Taxes',null,U],['Revenues—Property Taxes',null,L-U]])+sol(['Revenue is credited at the net collectible amount.'])),
+   N('How much <strong>revenue</strong> is recorded when the levy is made?',L-U,{hint:'Revenue is the levy less the estimated uncollectible amount.',exp:sol([money(L)+' − '+money(U)],'Revenue = '+money(L-U))}),
+   N('How much of the gross receivable is declared <strong>delinquent</strong> at year-end?',dq,{hint:'Start with the levy. Subtract what was collected and the amount of appeals.',exp:sol([money(L)+' − '+money(Cc)+' − '+money(A)],'Delinquent receivable = '+money(dq))}),
+   N('What is the <strong>net delinquent taxes receivable</strong>? (The appeals used up part of the allowance.)',net,{hint:'First find the remaining allowance (original allowance less the appeals). Then subtract it from the delinquent receivable.',exp:sol(['Remaining allowance = '+money(U)+' − '+money(A)+' = '+money(U-A),money(dq)+' − '+money(U-A)],'Net delinquent = '+money(net))}),
+   N('How much is deferred as an <strong>unavailable (deferred inflow)</strong> amount?',df,{hint:'Only the part expected within 60 days is available. The rest is deferred.',exp:sol([money(net)+' − '+money(D)],'Deferred inflow = '+money(df)+'. Entry: Dr Revenues—Property Taxes, Cr Deferred Inflow of Resources—Unavailable Property Taxes.')}),
+   M('In the following year, <strong>'+money(X)+'</strong> of the deferred taxes is collected after the 60-day window. Choose <strong>Debit</strong> or <strong>Credit</strong> for the entry that recognizes the revenue.',[['Deferred Inflow of Resources—Unavailable Property Taxes','Debit'],['Revenues—Property Taxes','Credit']],DC,'The deferred inflow is removed and revenue is recognized.',je('Recognize deferred revenue',[['Deferred Inflow of Resources—Unavailable Property Taxes',X,null],['Revenues—Property Taxes',null,X]])+sol(['The cash entry (Dr Cash, Cr Property Taxes Receivable—Delinquent) is made separately.']))
+  ];
+  return {intro:intro,ref:ref,steps:steps};
+}
+
+var ITYPES=['Services provided and used','Transfer','Loan','Reimbursement'];
+function g5inter(R){
+  var tn=townOf(R),Lx=R.step(50000,250000,10000);
+  function A(){return money(R.step(4000,60000,1000));}
+  var S=[R.pick([
+    'The General Fund pays the Water Fund '+A()+' for water used at City Hall',
+    'The General Fund pays the Motor Pool '+A()+' for vehicle charges'
+   ]),R.pick([
+    'The General Fund gives the Debt Service Fund '+A()+' with no repayment expected',
+    'A Special Revenue Fund sends the General Fund '+A()+' as a one-way subsidy'
+   ]),'The General Fund lends the Capital Projects Fund '+money(Lx)+' for three years',R.pick([
+    'The Capital Projects Fund repays the General Fund '+A()+' for consulting the General Fund paid on its behalf',
+    'A Special Revenue Fund repays the General Fund '+A()+' for payroll the General Fund paid on its behalf'
+   ])];
+  var order=R.shuffle([0,1,2,3]);
+  var rows=order.map(function(i){return [S[i],ITYPES[i]];});
+  var intro='<p>The <strong>'+esc(tn)+'</strong> has several interfund transactions this year. Interfund activity falls into four types.</p>';
+  var ref=bullets(['<strong>Services provided and used:</strong> treated like an arm’s-length sale.','<strong>Transfer:</strong> a one-way shift of resources with no repayment.','<strong>Loan:</strong> short-term (Due to/Due from) or long-term (Advance to/Advance from).','<strong>Reimbursement:</strong> repayment for expenditures initially paid by another fund.','A long-term loan requires the lending General Fund to reclassify fund balance from Unassigned to Nonspendable.']);
+  var steps=[
+   M('Classify each interfund transaction.',rows,ITYPES,'Ask: is something received in return (service), is it repaid (loan), is it a one-way shift (transfer), or is one fund paying back what another fund covered (reimbursement)?',sol(rows.map(function(r){return '<strong>'+r[1]+':</strong> '+r[0]+'.';}))),
+   C('How is an interfund <strong>transfer</strong> reported in the governmental fund statements?',['As revenue and expenditure','As an other financing source (in) and other financing use (out)','As Due to/Due from other funds'],'As an other financing source (in) and other financing use (out)','A transfer is not revenue or an expenditure because nothing is earned or consumed.',sol(['<strong>Other financing source (in) and other financing use (out).</strong> A transfer is reported below the operating results.'])),
+   N('The General Fund lends <strong>'+money(Lx)+'</strong> to the Capital Projects Fund for three years. How much <strong>Unassigned fund balance</strong> must be reclassified to Nonspendable?',Lx,{hint:'The cash left the fund, so that amount can no longer be spent. How much was lent?',exp:sol(['The long-term receivable is not a spendable resource, so an equal amount of fund balance becomes Nonspendable.'],'Reclassify '+money(Lx))}),
+   M('Choose <strong>Debit</strong> or <strong>Credit</strong> for each account in the fund balance reclassification.',[['Unassigned Fund Balance','Debit'],['Nonspendable Fund Balance','Credit']],DC,'Unassigned fund balance decreases and Nonspendable increases.',je('Reclassify fund balance',[['Unassigned Fund Balance',Lx,null],['Nonspendable Fund Balance',null,Lx]])+sol(['The loan receivable is not spendable, so that part of fund balance is Nonspendable.'])),
+   C('A <strong>short-term</strong> interfund loan is recorded using which accounts?',['Due to/Due from other funds','Advance to/Advance from other funds','Transfers in/Transfers out'],'Due to/Due from other funds','Long-term loans use “Advance.” Short-term loans use a different pair of accounts.',sol(['<strong>Due to/Due from other funds.</strong> Advance to/Advance from is used for long-term loans.']))
+  ];
+  return {intro:intro,ref:ref,steps:steps};
+}
+
+function g5inv(R){
+  var tn=townOf(R);
+  var P0=R.step(40000,90000,5000),rem=R.step(3000,12000,1000),Us=P0-rem;
+  var intro='<p>A <strong>'+esc(tn)+'</strong> fund buys <strong>'+money(P0)+'</strong> of supplies during the year and uses <strong>'+money(Us)+'</strong> of them.</p>';
+  var ref=bullets(['<strong>Consumption method:</strong> record the purchase as an asset, then record expenditures as supplies are used.','<strong>Purchases method:</strong> record the full purchase as an expenditure. Add inventory at year-end only if it is material.','Unused supplies are an asset with a matching <strong>Nonspendable</strong> fund balance.']);
+  var steps=[
+   N('How much <strong>supplies expenditure</strong> does the fund report under the <strong>consumption method</strong>?',Us,{hint:'Only the amount actually used is expended. The rest stays as an asset.',exp:sol(['Only the '+money(Us)+' that was used is expended. The remaining '+money(rem)+' stays as an asset with a matching Nonspendable fund balance.'],'Expenditure = '+money(Us))}),
+   N('How much <strong>supplies expenditure</strong> does the fund report under the <strong>purchases method</strong>?',P0,{hint:'Under this method, the full cost of what was bought is expended when it is purchased.',exp:sol(['The full purchase is an expenditure when bought.'],'Expenditure = '+money(P0))}),
+   N('How much <strong>Nonspendable fund balance</strong> is reported for supplies inventory at year-end?',rem,{hint:'It is the supplies purchased but not yet used.',exp:sol([money(P0)+' − '+money(Us)],'Nonspendable = '+money(rem)+' (on hand under either method)')}),
+   C('Which method records the expenditure <strong>as supplies are used</strong>?',['Consumption method','Purchases method'],'Consumption method','One method records the cost when buying. The other waits until the supplies are consumed.',sol(['<strong>Consumption method.</strong> The purchases method records the expenditure when the supplies are bought.']))
+  ];
+  return {intro:intro,ref:ref,steps:steps};
+}
+
+function g5accr(R){
+  var tn=townOf(R);
+  var S=R.step(20000,60000,2000),V=R.step(50000,120000,5000),Mv=R.step(4000,12000,1000);
+  var X=R.step(40000,90000,5000),DI=R.step(10000,40000,2000),A=R.step(300000,500000,10000);
+  var Lb=X+S+Mv,fb=A-Lb-DI;
+  var seen={},pick4=[];
+  R.shuffle(GASB54).forEach(function(x){if(pick4.length<4&&!seen[x[1]]){seen[x[1]]=1;pick4.push(x);}});
+  var intro='<p>At year-end, employees of the <strong>'+esc(tn)+'</strong> have earned <strong>'+money(V)+'</strong> of vacation pay. Of that, <strong>'+money(Mv)+'</strong> has matured (a retiring employee is owed it). The General Fund also owes <strong>'+money(S)+'</strong> of salaries for work already performed. Its balance sheet shows:</p>'+
+   tbl('General Fund balance sheet',['Item','Amount'],[['Total assets',money(A)],['Other liabilities (accounts payable, etc.)',money(X)],['Accrued salaries payable',money(S)],['Compensated absences payable (matured)',money(Mv)],['Total liabilities',money(Lb)],['Deferred inflows of resources',money(DI)]]);
+  var ref=bullets(['Salaries earned but unpaid are accrued in full.','For <strong>compensated absences</strong>, only the matured portion is a fund liability. The rest appears only in the government-wide statements.','Fund balance = assets − liabilities − deferred inflows of resources.','GASB 54: Nonspendable, Restricted, Committed, Assigned, Unassigned.']);
+  var rows=pick4.map(function(x){return [x[0],x[1]];});
+  var steps=[
+   N('How much is accrued as a <strong>fund liability</strong> for salaries and compensated absences?',S+Mv,{hint:'Salaries are accrued in full. For vacation pay, accrue only the matured portion.',exp:sol([money(S)+' + '+money(Mv)],'Accrued = '+money(S+Mv))}),
+   N('How much of the vacation pay liability appears <strong>only in the government-wide statements</strong>?',V-Mv,{hint:'Take the total earned vacation pay and subtract the matured portion.',exp:sol([money(V)+' − '+money(Mv)],'Government-wide only = '+money(V-Mv))}),
+   N('What is <strong>total fund balance</strong>?',fb,{hint:'Subtract total liabilities and deferred inflows of resources from total assets.',exp:sol([money(A)+' − '+money(Lb)+' − '+money(DI)],'Fund balance = '+money(fb))}),
+   M('Choose the <strong>GASB 54 classification</strong> for each fund balance item.',rows,['Nonspendable','Restricted','Committed','Assigned','Unassigned'],'Nonspendable: not in spendable form. Restricted: an outside party or law limits it. Committed: formal action by the highest decision-making body. Assigned: intent only. Unassigned: the residual.',sol(pick4.map(function(x){return '<strong>'+x[1]+':</strong> '+x[0]+'. '+x[2];})))
+  ];
+  return {intro:intro,ref:ref,steps:steps};
+}
+
+var CH_A={g1setters:g1setters,g1gov:g1gov,g1equity:g1equity,g2fund:g2fund,g2focus:g2focus,g2same:g2same,g3rate:g3rate,g3cash:g3cash,g3budget:g3budget,g3enc:g3enc,g4gf:g4gf,g4close:g4close,g4bc:g4bc,g4tan:g4tan,g5ptax:g5ptax,g5inter:g5inter,g5inv:g5inv,g5accr:g5accr};
+var LIB={mulberry32:mulberry32,makeRng:makeRng,mk:mk,nf:nf,money:money,esc:esc,rd:rd,tbl:tbl,je:je,sol:sol,bullets:bullets,N:N,C:C,M:M,yn:yn,DC:DC,FUNDS:FUNDS,townOf:townOf,cityOf:cityOf,countyOf:countyOf,PRAISE:PRAISE,PRAISE2:PRAISE2,HINTLEAD:HINTLEAD,MISS:MISS};
+window.ACCT635_A={gens:CH_A,lib:LIB};
+})();
+
+</script>
+<script>
+/* ACCT 635 Course Tutor: engine (part B: Chapters 6-13, problem-type list, answer checking). No DOM access here. */
+(function(){
+'use strict';
+var L=window.ACCT635_A.lib,G=window.ACCT635_A.gens;
+var mk=L.mk,nf=L.nf,money=L.money,esc=L.esc,rd=L.rd,tbl=L.tbl,je=L.je,sol=L.sol,bullets=L.bullets,N=L.N,C=L.C,M=L.M,DC=L.DC,townOf=L.townOf,cityOf=L.cityOf,countyOf=L.countyOf,makeRng=L.makeRng;
+function pvAnn(pmt,n,i){ /* annuity due: first payment now, n-1 more discounted */
+  var f=0,k;for(k=1;k<=n-1;k++){f+=Math.pow(1+i,-k);}
+  return {factor:1+f,pv:pmt*(1+f)};
+}
+
+/* ================= Chapter 6: Capital Projects, Debt Service, Permanent Funds ================= */
+function g6cap(R,o){var P=mk(R,o);
+  var tn=P('tn',function(){return townOf(R);});
+  var Ct=P('Ct',function(){return R.step(1500000,4000000,100000);});
+  var B=P('B',function(){return R.step(300000,800000,50000);});
+  var rr=P('rr',function(){return R.pick([5,10]);});
+  var Gt=P('Gt',function(){return R.step(200000,600000,50000);});
+  var ret=B*rr/100,pay=B-ret,rem=Ct-B;
+  var intro='<p>The <strong>'+esc(tn)+'</strong> signs a <strong>'+money(Ct)+'</strong> construction contract for a community center, accounted for in a Capital Projects Fund. The contractor’s first progress billing is <strong>'+money(B)+'</strong>, with <strong>'+rr+'% retainage</strong>. The town also receives a <strong>'+money(Gt)+'</strong> state grant before it has spent anything on qualifying costs.</p>';
+  var ref=bullets(['Record an <strong>encumbrance</strong> when the contract is signed. Reverse it for the amount billed.','The full billing is an expenditure. <strong>Retainage Payable</strong> is credited for the amount held back and paid after final approval.','Grant cash received before eligibility requirements are met is a <strong>liability</strong>.']);
+  var steps=[
+   M('Choose <strong>Debit</strong> or <strong>Credit</strong> for each account in the entry for the first progress billing.',[['Expenditures—Construction Costs','Debit'],['Retainage Payable','Credit'],['Construction Contracts Payable','Credit']],DC,'The full billing is an expenditure. Part is held back as retainage, and the rest is owed to the contractor now.',je('Contractor’s first billing',[['Expenditures—Construction Costs',B,null],['Retainage Payable',null,ret],['Construction Contracts Payable',null,pay]])+sol(['The full billing is an expenditure; '+rr+'% is held back as retainage.'])),
+   N('How much <strong>retainage</strong> is held back?',ret,{hint:'Multiply the billing by the retainage percentage.',exp:sol([money(B)+' × '+rr+'%'],'Retainage = '+money(ret))}),
+   N('How much is <strong>currently payable</strong> to the contractor?',pay,{hint:'The contractor is paid the billing less the retainage.',exp:sol([money(B)+' − '+money(ret)],'Currently payable = '+money(pay))}),
+   N('After reversing the encumbrance for this billing, how much <strong>remains encumbered</strong>?',rem,{hint:'Start with the contract amount and subtract the amount billed.',exp:sol([money(Ct)+' − '+money(B)],'Open encumbrance = '+money(rem))}),
+   C('How is the '+money(Gt)+' grant cash reported until eligibility requirements are met?',['Revenue','Liability (advance)'],'Liability (advance)','Revenue is recognized when the eligibility requirements are met, which has not happened yet.',sol(['<strong>Liability (advance).</strong> It becomes revenue as qualifying expenditures are made.']))
+  ];
+  return {intro:intro,ref:ref,steps:steps};
+}
+
+function g6bond(R){
+  var tn=townOf(R);
+  var F=R.step(2000000,6000000,500000),price=R.pick([98,99,101,102,103]),fees=R.step(20000,60000,5000);
+  var cash=F*price/100,prem=price>100,amt=Math.abs(cash-F);
+  var intro='<p>The <strong>'+esc(tn)+'</strong> sells <strong>'+money(F)+'</strong> of general obligation bonds at <strong>'+price+'</strong> to finance a fire station. It also pays <strong>'+money(fees)+'</strong> of legal and underwriting fees. The proceeds go into a Capital Projects Fund.</p>';
+  var ref=bullets(['Bond proceeds are an <strong>other financing source</strong>, never revenue.','A <strong>premium</strong> is an other financing source. A <strong>discount</strong> is an other financing use.','Issuance costs are <strong>expenditures</strong>.']);
+  var saleRows=prem?[['Cash','Debit'],['Other Financing Source—Long-Term Debt Issued','Credit'],['Other Financing Source—Bond Issue Premium','Credit']]:[['Cash','Debit'],['Other Financing Use—Bond Issue Discount','Debit'],['Other Financing Source—Long-Term Debt Issued','Credit']];
+  var saleJE=prem?[['Cash',cash,null],['Other Financing Source—Long-Term Debt Issued',null,F],['Other Financing Source—Bond Issue Premium',null,amt]]:[['Cash',cash,null],['Other Financing Use—Bond Issue Discount',amt,null],['Other Financing Source—Long-Term Debt Issued',null,F]];
+  var cls=R.shuffle([['Face amount of the bonds','Other financing source'],[prem?'The bond premium':'The bond discount',prem?'Other financing source':'Other financing use'],['The legal and underwriting fees','Expenditure'],['Property taxes collected to repay the bonds (reported in the Debt Service Fund)','Revenue']]);
+  var steps=[
+   N('How much <strong>cash</strong> does the fund receive from the sale?',cash,{hint:'Multiply the face amount by the selling price as a percentage of face.',exp:sol([money(F)+' × '+(price/100).toFixed(2)],'Cash = '+money(cash))}),
+   N('What is the amount of the bond <strong>'+(prem?'premium':'discount')+'</strong>?',amt,{hint:'Compare the cash received with the face amount.',exp:sol([prem?money(cash)+' − '+money(F):money(F)+' − '+money(cash)],(prem?'Premium':'Discount')+' = '+money(amt))}),
+   M('Choose <strong>Debit</strong> or <strong>Credit</strong> for each account in the entry that records the sale.',saleRows,DC,prem?'Cash is received. The face amount and the premium are each reported as other financing sources.':'Cash is received. The discount is an other financing use, and the face amount is an other financing source.',je('Sell the bonds at '+price,saleJE)+sol(['The '+(prem?'premium':'discount')+' is reported separately from the face amount.'])),
+   M('How is each item reported in the Capital Projects Fund?',cls,['Revenue','Other financing source','Other financing use','Expenditure'],'Governmental funds do not record revenue for borrowing. Premiums are sources, discounts are uses, and issuance costs are expenditures.',sol(cls.map(function(x){return '<strong>'+x[1]+':</strong> '+x[0]+'.';})))
+  ];
+  return {intro:intro,ref:ref,steps:steps};
+}
+
+function g6debt(R){
+  var tn=townOf(R);
+  var B=R.step(4000000,10000000,500000),r=R.pick([4,4.5,5,6]),I=B*r/100/2,Pn=R.step(200000,500000,50000),T=R.step(50000,250000,25000);
+  var tot=2*I+Pn,diff=R.until(function(){return R.step(-40000,60000,5000);},function(x){return x!==0;}),Rv=tot-T+diff,net=Rv+T-tot;
+  var intro='<p>The <strong>'+esc(tn)+'</strong> Debt Service Fund services <strong>'+money(B)+'</strong> of general obligation bonds paying <strong>'+r+'%</strong> interest, paid semiannually. This year two interest payments and <strong>'+money(Pn)+'</strong> of serial bond principal come due. The fund collects <strong>'+money(Rv)+'</strong> of property taxes (revenue) and receives a <strong>'+money(T)+'</strong> transfer in from the General Fund.</p>';
+  var ref=bullets(['A Debt Service Fund records debt service when it is <strong>due and payable</strong>, not before.','Long-term debt is not a fund liability until it matures.','Net change in fund balance = revenues + transfers in − debt service expenditures.']);
+  var steps=[
+   N('What is <strong>one semiannual interest payment</strong>?',I,{hint:'Multiply the bonds outstanding by the annual rate, then divide by two.',exp:sol([money(B)+' × '+r+'% ÷ 2'],'Semiannual interest = '+money(I))}),
+   M('Interest of <strong>'+money(I)+'</strong> becomes due and payable. Choose <strong>Debit</strong> or <strong>Credit</strong> for each account.',[['Expenditures—Interest','Debit'],['Matured Interest Payable','Credit']],DC,'The interest is an expenditure, and since it is now due the fund owes it.',je('Interest comes due',[['Expenditures—Interest',I,null],['Matured Interest Payable',null,I]])+sol(['The liability is recorded because the interest is now due.'])),
+   N('What are <strong>total debt service expenditures</strong> for the year?',tot,{hint:'Two interest payments plus the principal that came due.',exp:sol(['2 × '+money(I)+' + '+money(Pn)],'Total = '+money(tot))}),
+   N('What is the <strong>net change in fund balance</strong>? (Enter a decrease as a negative number.)',net,{hint:'Revenues plus the transfer in, minus total debt service expenditures. The transfer is not revenue, but it still increases fund balance.',exp:sol([money(Rv)+' + '+money(T)+' − '+money(tot)],'Net change = '+money(net))}),
+   C('When is long-term debt a liability of the Debt Service Fund?',['When the bonds are issued','Only when principal or interest matures (is due and payable)'],'Only when principal or interest matures (is due and payable)','Governmental funds report only liabilities that call for the use of current financial resources.',sol(['<strong>Only when it matures.</strong> Unmatured long-term debt is reported in the government-wide statements.']))
+  ];
+  return {intro:intro,ref:ref,steps:steps};
+}
+
+function g6lease(R,o){var P=mk(R,o);
+  var tn=P('tn',function(){return townOf(R);});
+  var n=P('n',function(){return R.pick([4,5,6]);});
+  var pmt=P('pmt',function(){return R.step(10000,40000,5000);});
+  var r=P('r',function(){return R.pick([5,6,7,8]);});
+  var i=r/100,a=pvAnn(pmt,n,i),PV=rd(a.pv),liab=PV-pmt,int2=rd(liab*i),prin2=pmt-int2;
+  var intro='<p>The <strong>'+esc(tn)+'</strong> signs a noncancellable <strong>'+n+'-year</strong> equipment lease. Payments of <strong>'+money(pmt)+'</strong> are due at the <strong>start of each year</strong>, with the first payment made the day the lease is signed. The town’s incremental borrowing rate is <strong>'+r+'%</strong>. The lease is recorded in the General Fund (a governmental fund). Use the present value rounded to the nearest dollar in later steps.</p>';
+  var ref=bullets(['A lease over 12 months is a <strong>financing</strong> under GASB 87.','Payments at the start of each period are an <strong>annuity due</strong>: the first payment is not discounted.','Present value = payment × (1 + ordinary annuity factor for n − 1 periods).','A governmental fund records <strong>capital outlay</strong> for the present value and an <strong>other financing source</strong>, then principal and interest expenditures as paid.']);
+  var steps=[
+   N('What is the <strong>present value</strong> of the lease payments? (Round to the nearest dollar.)',PV,{tol:1,hint:'The first payment is made immediately, so it is not discounted. Add it to the present value of the remaining '+(n-1)+' payments, which is the payment times the ordinary annuity factor for '+(n-1)+' periods at '+r+'%.',exp:sol(['Annuity due factor = 1 + '+nf(a.factor-1,5)+' = '+nf(a.factor,5),money(pmt)+' × '+nf(a.factor,5)+' = '+money(a.pv,2)],'Present value = '+money(PV))}),
+   M('Choose <strong>Debit</strong> or <strong>Credit</strong> for each account at lease inception.',[['Expenditures—Capital Outlay','Debit'],['Other Financing Source—Long-Term Leases','Credit']],DC,'The fund reports an expenditure for the asset acquired and an other financing source for the lease financing.',je('Lease begins',[['Expenditures—Capital Outlay',PV,null],['Other Financing Source—Long-Term Leases',null,PV]])+sol(['The governmental fund does not record the intangible asset or the lease liability. Those appear in the government-wide statements.'])),
+   N('The first payment of '+money(pmt)+' is all principal. What is the <strong>lease liability afterward</strong>?',liab,{hint:'Subtract the first payment from the present value.',exp:sol([money(PV)+' − '+money(pmt)],'Liability = '+money(liab))}),
+   N('What is the <strong>interest</strong> on the second payment, one year later? (Round to the nearest dollar.)',int2,{tol:1,hint:'Interest is the rate times the liability that has been outstanding for the year.',exp:sol([money(liab)+' × '+r+'%'],'Interest = '+money(int2))}),
+   N('How much of the second payment is <strong>principal</strong>?',prin2,{tol:1,hint:'The payment is split between interest and principal. Subtract the interest.',exp:sol([money(pmt)+' − '+money(int2)],'Principal = '+money(prin2))})
+  ];
+  return {intro:intro,ref:ref,steps:steps};
+}
+
+function g6perm(R){
+  var tn=townOf(R);
+  var Gv=R.step(100000,400000,25000),I=R.step(6000,20000,1000),rem=R.step(500,3000,500),T=I-rem;
+  var perm=[['A cemetery endowment whose earnings maintain the town’s cemeteries','Permanent Fund'],['An endowment whose earnings pay for the town library','Permanent Fund']];
+  var ppt=[['A scholarship trust for students who are not part of the government','Private-Purpose Trust Fund'],['A trust whose earnings provide aid to local families (not a government program)','Private-Purpose Trust Fund']];
+  var rows=R.shuffle([R.pick(perm),R.pick(ppt)]);
+  var ref2=R.shuffle([['New bond proceeds immediately pay off the old bonds','Current refunding'],['Proceeds are placed with an escrow agent until the old bonds can be called','Advance refunding']]);
+  var intro='<p>A donor gives the <strong>'+esc(tn)+'</strong> <strong>'+money(Gv)+'</strong> for a library endowment. Only earnings may be spent. This year investment income is <strong>'+money(I)+'</strong>, and <strong>'+money(T)+'</strong> is transferred to the Library Special Revenue Fund.</p>';
+  var ref=bullets(['In a <strong>Permanent Fund</strong>, principal is preserved (Nonspendable) and earnings support the government’s own programs (Restricted).','A <strong>Private-Purpose Trust Fund</strong> benefits individuals, organizations, or other governments outside the government.','An <strong>advance refunding</strong> uses an escrow agent. A <strong>current refunding</strong> pays off the old debt right away.']);
+  var steps=[
+   N('How much <strong>Nonspendable</strong> fund balance does the Permanent Fund report?',Gv,{hint:'The principal must be preserved.',exp:sol(['The donor’s principal must be preserved, so it is Nonspendable.'],'Nonspendable = '+money(Gv))}),
+   N('How much <strong>earnings cash remains</strong> in the Permanent Fund at year-end?',rem,{hint:'Income less the amount transferred out.',exp:sol([money(I)+' − '+money(T)],'Remaining earnings = '+money(rem)+' (Restricted)')}),
+   M('Which fund fits each situation?',rows,['Permanent Fund','Private-Purpose Trust Fund'],'The difference is who benefits: the government’s own programs or outside parties.',sol(rows.map(function(x){return '<strong>'+x[1]+':</strong> '+x[0]+'.';}))),
+   M('Which type of refunding fits each description?',ref2,['Current refunding','Advance refunding'],'One uses an escrow agent to hold proceeds until the old bonds are callable.',sol(ref2.map(function(x){return '<strong>'+x[1]+':</strong> '+x[0]+'.';})))
+  ];
+  return {intro:intro,ref:ref,steps:steps};
+}
+
+/* ================= Chapter 7: Proprietary Funds ================= */
+function g7isf(R){
+  var tn=cityOf(R);
+  var ISF=['A central print shop that bills city departments at cost','A city motor pool that serves only city departments','A central IT department that bills all city departments','A self-insurance fund that pays city employee health claims'];
+  var EF=['A municipal water utility that bills residents','A public golf course that charges greens fees','A city-owned airport that charges landing fees','A town landfill that charges tipping fees'];
+  var a=R.sample(ISF,2).map(function(x){return [x,'Internal Service Fund'];}),b=R.sample(EF,2).map(function(x){return [x,'Enterprise Fund'];});
+  var rows=R.shuffle(a.concat(b));
+  var REQ=[['Bonds are backed only by the net revenues of the activity','Required'],['State law requires the activity to recover its costs through fees','Required'],['A pricing policy is intended to recover the activity’s costs','Required'],['An activity paid for mainly with general tax revenues, with no debt secured by its revenues','Not required'],['A small activity with no debt, no legal cost-recovery requirement, and no cost-recovery pricing policy','Not required']];
+  var rq=R.shuffle(R.sample(REQ.filter(function(x){return x[1]==='Required';}),2).concat(R.sample(REQ.filter(function(x){return x[1]==='Not required';}),2)));
+  var intro='<p>The <strong>'+esc(tn)+'</strong> operates several activities that may belong in proprietary funds. Both proprietary fund types use the economic resources focus and full accrual, so the key question is <em>who the customers are</em>.</p>';
+  var ref=bullets(['An <strong>Enterprise Fund</strong> serves outside customers who pay fees.','An <strong>Internal Service Fund</strong> serves other departments of the same government.','An Enterprise Fund is <strong>required</strong> for a significant activity if any one is true: debt secured only by the activity’s net revenues, laws require cost recovery through fees, or pricing policies are meant to recover costs.']);
+  var steps=[
+   M('Which proprietary fund fits each activity?',rows,['Internal Service Fund','Enterprise Fund'],'Ask who pays: city departments (Internal Service) or outside customers (Enterprise).',sol(rows.map(function(x){return '<strong>'+x[1]+':</strong> '+x[0]+'.';}))),
+   M('Does each situation require an Enterprise Fund?',rq,['Required','Not required'],'Any one of three criteria requires an Enterprise Fund: revenue-bond debt, a legal requirement to recover costs, or a cost-recovery pricing policy.',sol(rq.map(function(x){return '<strong>'+x[1]+':</strong> '+x[0]+'.';}))),
+   C('Which measurement focus and basis of accounting do both proprietary fund types use?',['Current financial resources, modified accrual','Economic resources, full accrual'],'Economic resources, full accrual','Proprietary funds are reported like businesses.',sol(['<strong>Economic resources, full accrual.</strong> They report expenses, capital assets, depreciation, and long-term debt.']))
+  ];
+  return {intro:intro,ref:ref,steps:steps};
+}
+
+function g7motor(R,o){var P=mk(R,o);
+  var tn=P('tn',function(){return cityOf(R);});
+  var V=P('V',function(){return R.pick([160000,200000,240000,280000]);});
+  var n=P('n',function(){return R.pick([5,8,10]);});
+  var T=P('T',function(){return V+R.step(40000,100000,10000);});
+  var Cc=P('Cc',function(){return R.step(30000,80000,5000);});
+  var rcv=P('rcv',function(){return R.step(2000,10000,2000);});
+  var F=P('F',function(){return R.step(8000,16000,1000);});
+  var U=P('U',function(){return R.step(1000,4000,1000);});
+  var S=P('S',function(){return R.step(6000,14000,1000);});
+  var D=P('D',function(){return V/n;});
+  var K=Cc-rcv,op=Cc-F-S-D,chg=op+T,neti=V-D,unr=chg-neti,ocf=K-(F-U)-S;
+  var intro='<p>The <strong>'+esc(tn)+'</strong> Motor Pool (an Internal Service Fund) is created with a <strong>'+money(T)+'</strong> transfer from the General Fund. It buys vehicles for <strong>'+money(V)+'</strong> cash and charges departments <strong>'+money(Cc)+'</strong> for the year, of which <strong>'+money(K)+'</strong> is collected. It incurs <strong>'+money(F)+'</strong> of fuel and maintenance (<strong>'+money(U)+'</strong> still unpaid), pays <strong>'+money(S)+'</strong> of salaries, and records <strong>'+money(D)+'</strong> of depreciation. There is no related debt and no beginning net position.</p>';
+  var ref=bullets(['Charges for services are <strong>operating revenue</strong>. A transfer in is <strong>nonoperating</strong>.','Net investment in capital assets = capital assets, net of depreciation (less related debt).','Unrestricted net position = total net position − net investment in capital assets.','Direct method: cash from customers − cash paid to suppliers − cash paid to employees.']);
+  var steps=[
+   M('Choose <strong>Debit</strong> or <strong>Credit</strong> for each account in the entry that charges the departments.',[['Due from General Fund','Debit'],['Revenues—Vehicle Charges','Credit']],DC,'The Motor Pool earns revenue and is owed the money by the departments.',je('Charge the General Fund',[['Due from General Fund',Cc,null],['Revenues—Vehicle Charges',null,Cc]])+sol(['Charges for services are operating revenue.'])),
+   C('How is the '+money(T)+' transfer from the General Fund reported?',['Operating revenue','Nonoperating revenue (transfer in)','An expenditure'],'Nonoperating revenue (transfer in)','It is not earned by providing a service to customers.',sol(['<strong>Nonoperating (transfer in).</strong> It is reported after operating income.'])),
+   N('What is <strong>operating income</strong>? (Enter a loss as a negative number.)',op,{hint:'Operating expenses are fuel and maintenance, salaries, and depreciation. The transfer is nonoperating, so leave it out.',exp:sol(['Operating expenses = '+money(F)+' + '+money(S)+' + '+money(D)+' = '+money(F+S+D),money(Cc)+' − '+money(F+S+D)],'Operating income = '+money(op))}),
+   N('What is the <strong>change in fund net position</strong>? (Enter a decrease as a negative number.)',chg,{hint:'Add the nonoperating transfer in to operating income.',exp:sol([money(op)+' + '+money(T)],'Change in net position = '+money(chg))}),
+   N('What is <strong>net investment in capital assets</strong>?',neti,{hint:'Vehicles at cost less the depreciation recorded.',exp:sol([money(V)+' − '+money(D)],'Net investment = '+money(neti))}),
+   N('What is <strong>unrestricted net position</strong>?',unr,{hint:'Total net position less net investment in capital assets. Since the fund started this year, total net position equals the change in net position.',exp:sol([money(chg)+' − '+money(neti)],'Unrestricted = '+money(unr))}),
+   N('What is <strong>net cash from operating activities</strong> (direct method)? (Enter a negative number for a net outflow.)',ocf,{hint:'Cash from customers is only what was collected. Fuel paid in cash is only the amount not left unpaid. Depreciation is not a cash cost.',exp:sol(['Receipts '+money(K)+' − suppliers '+money(F-U)+' − employees '+money(S)],'Operating cash flow = '+money(ocf))})
+  ];
+  return {intro:intro,ref:ref,steps:steps};
+}
+
+function g7bonds(R){
+  var tn=cityOf(R);
+  var F,r,m,I;
+  do{F=R.step(1000000,4000000,500000);r=R.pick([4,5,6]);m=R.pick([2,3,4,5]);I=F*r/100*m/12;}while(Math.abs(I-Math.round(I))>1e-9);
+  var intro='<p>The <strong>'+esc(tn)+'</strong> Water Utility Enterprise Fund issues <strong>'+money(F)+'</strong> of <strong>'+r+'%</strong> revenue bonds at par. Interest is paid every six months, and <strong>'+m+' months</strong> of interest have built up by year-end.</p>';
+  var ref=bullets(['In an Enterprise Fund, long-term debt is a <strong>fund liability</strong>, not an other financing source.','Interest is accrued at year-end (full accrual): Dr Interest Expense, Cr Interest Payable.','Special assessments to property owners create receivables and revenues in an Enterprise Fund.']);
+  var steps=[
+   M('Choose <strong>Debit</strong> or <strong>Credit</strong> for each account when the bonds are issued.',[['Cash','Debit'],['Revenue Bonds Payable','Credit']],DC,'The utility receives cash and takes on a liability.',je('Issue revenue bonds',[['Cash',F,null],['Revenue Bonds Payable',null,F]])+sol(['In an Enterprise Fund the debt is a fund liability.'])),
+   N('How much <strong>interest expense</strong> is accrued at year-end?',I,{hint:'Principal × annual rate × months ÷ 12.',exp:sol([money(F)+' × '+r+'% × '+m+'/12'],'Accrued interest = '+money(I))}),
+   M('Choose <strong>Debit</strong> or <strong>Credit</strong> for each account in the year-end accrual.',[['Interest Expense','Debit'],['Interest Payable','Credit']],DC,'The expense is incurred but not yet paid.',je('Accrue interest',[['Interest Expense',I,null],['Interest Payable',null,I]])+sol(['A fund using full accrual records interest as it is incurred.'])),
+   C('How are the bond <strong>proceeds</strong> reported in the Enterprise Fund?',['A fund liability','An other financing source','Revenue'],'A fund liability','Think about what the utility owes.',sol(['<strong>A fund liability.</strong> Other financing sources are used in governmental funds.'])),
+   C('Special assessments levied on property owners who benefit from an improvement are reported in an Enterprise Fund as…',['Receivable and revenue','An other financing source'],'Receivable and revenue','Assessments to taxpayers are earned by the utility.',sol(['<strong>Receivable and revenue.</strong>']))
+  ];
+  return {intro:intro,ref:ref,steps:steps};
+}
+
+function g7lease(R,o){var P=mk(R,o);
+  var tn=P('tn',function(){return cityOf(R);});
+  var n=P('n',function(){return R.pick([3,4,5]);});
+  var pmt=P('pmt',function(){return R.step(30000,80000,10000);});
+  var r=P('r',function(){return R.pick([5,6,7,8]);});
+  var i=r/100,a=pvAnn(pmt,n,i),PV=rd(a.pv),am=rd(PV/n),liab=PV-pmt,int1=rd(liab*i);
+  var intro='<p>The <strong>'+esc(tn)+'</strong> Utility Fund (a proprietary fund) signs a <strong>'+n+'-year</strong> equipment lease with payments of <strong>'+money(pmt)+'</strong> due at the <strong>start of each year</strong> (first payment at signing), at <strong>'+r+'%</strong>. Use the present value rounded to the nearest dollar in later steps.</p>';
+  var ref=bullets(['A proprietary fund uses full accrual: it records the <strong>intangible right-to-use asset</strong> and the <strong>lease payable</strong>.','Then it records <strong>amortization</strong> (straight-line over the lease term) and <strong>interest expense</strong>.','Present value of an annuity due = payment × (1 + ordinary annuity factor for n − 1 periods).']);
+  var steps=[
+   N('What is the <strong>present value</strong> of the lease payments? (Round to the nearest dollar.)',PV,{tol:1,hint:'The first payment is not discounted. Add it to the present value of the other '+(n-1)+' payments at '+r+'%.',exp:sol(['Factor = 1 + '+nf(a.factor-1,5)+' = '+nf(a.factor,5),money(pmt)+' × '+nf(a.factor,5)+' = '+money(a.pv,2)],'Present value = '+money(PV))}),
+   M('Choose <strong>Debit</strong> or <strong>Credit</strong> for each account when the lease begins.',[['Intangible Right-to-Use Asset','Debit'],['Lease Payable','Credit']],DC,'The fund records the asset it can use and the obligation to pay.',je('Lease begins',[['Intangible Right-to-Use Asset',PV,null],['Lease Payable',null,PV]])+sol(['A proprietary fund records both the asset and the liability.'])),
+   N('What <strong>amortization expense</strong> is recorded each year (straight-line over the '+n+'-year term)? (Nearest dollar.)',am,{tol:1,hint:'Divide the recorded asset by the lease term.',exp:sol([money(PV)+' ÷ '+n],'Amortization = '+money(am))}),
+   N('After the first '+money(pmt)+' payment the liability is '+money(liab)+'. What <strong>interest expense</strong> accrues for the year? (Nearest dollar.)',int1,{tol:1,hint:'Interest is the rate times the remaining liability.',exp:sol([money(liab)+' × '+r+'%'],'Interest expense = '+money(int1))})
+  ];
+  return {intro:intro,ref:ref,steps:steps};
+}
+
+/* ================= Chapter 8: Fiduciary Funds ================= */
+function g8pension(R){
+  var tn=townOf(R);
+  var FAS=R.step(50000,90000,5000),yrs=R.step(20,35,1),mult=R.pick([1.5,1.8,2.0]);
+  var benefit=FAS*yrs*mult/100;
+  var TPL=R.step(5000000,12000000,100000),FNP=TPL-R.step(1000000,3500000,50000),q=R.f()<0.75;
+  var NPL=q?TPL-FNP:TPL;
+  var E=R.step(100000,300000,50000),amort=E/5;
+  var intro='<p>The <strong>'+esc(tn)+'</strong> sponsors a defined benefit pension plan. A retiree has a final average salary of <strong>'+money(FAS)+'</strong>, <strong>'+yrs+' years</strong> of service, and a <strong>'+mult.toFixed(1)+'%</strong> multiplier. The plan’s total pension liability is <strong>'+money(TPL)+'</strong> and its fiduciary net position is <strong>'+money(FNP)+'</strong>. The plan’s assets '+(q?'<strong>are</strong> held in a trust that is irrevocable, dedicated to the benefits, and legally protected from creditors.':'<strong>are not</strong> held in a qualifying trust.')+' This year actual investment earnings exceeded the projection by <strong>'+money(E)+'</strong>, which is amortized over 5 years.</p>';
+  var ref=bullets(['<strong>Annual benefit</strong> = final average salary × years of service × multiplier.','<strong>Net pension liability</strong> = total pension liability − plan fiduciary net position, but only if the assets are in a trust that is irrevocable, dedicated to the benefits, and legally protected from creditors. Otherwise the employer reports the full total pension liability.','In a defined benefit plan the <strong>employer</strong> bears the investment risk. In a defined contribution plan the <strong>employee</strong> does.','Investment earnings above the projection are deferred and amortized (a deferred inflow of resources).']);
+  var steps=[
+   N('What is the retiree’s <strong>annual benefit</strong>?',benefit,{hint:'Multiply the final average salary by the years of service and by the multiplier percentage.',exp:sol([money(FAS)+' × '+yrs+' × '+mult.toFixed(1)+'%'],'Annual benefit = '+money(benefit))}),
+   N('What <strong>net pension liability</strong> does the employer report?',NPL,{hint:'Check whether the plan assets are held in a qualifying trust. If they are, subtract them from the total pension liability. If not, the employer reports the full total pension liability.',exp:sol([q?money(TPL)+' − '+money(FNP):'No qualifying trust, so the employer reports the full '+money(TPL)],'Net pension liability = '+money(NPL))}),
+   M('Who bears the investment risk?',[['A defined benefit plan','Employer'],['A defined contribution plan','Employee']],['Employer','Employee'],'In one type of plan the benefit is promised. In the other, the retirement amount depends on investment results.',sol(['<strong>Employer:</strong> defined benefit plan. The employer bears investment, longevity, and inflation risk.','<strong>Employee:</strong> defined contribution plan.'])),
+   N('What is the <strong>annual amortization</strong> of the investment earnings in excess of the projection?',amort,{hint:'Divide the excess earnings by the 5-year amortization period.',exp:sol([money(E)+' ÷ 5'],'Annual amortization = '+money(amort))}),
+   C('How is the unamortized excess investment return reported?',['A deferred inflow of resources','A deferred outflow of resources','Revenue in the current year only'],'A deferred inflow of resources','Earnings better than projected are a gain that is recognized over time.',sol(['<strong>A deferred inflow of resources.</strong> The excess is amortized into pension expense over 5 years.']))
+  ];
+  return {intro:intro,ref:ref,steps:steps};
+}
+
+function g8trust(R){
+  var tn=townOf(R);
+  var EC=R.step(300000,600000,10000),MC=R.step(100000,250000,10000),BP=R.step(250000,450000,10000),II=R.step(40000,120000,5000),FV=R.step(40000,150000,5000),AC=R.step(10000,30000,2000),B0=R.step(5000000,9000000,100000);
+  var add=EC+MC+II+FV,ded=BP+AC,chg=add-ded;
+  var intro='<p>The <strong>'+esc(tn)+'</strong> Pension Trust Fund records these items for the year: employer contributions due <strong>'+money(EC)+'</strong> (from the General Fund), member contributions due <strong>'+money(MC)+'</strong> (from plan members), benefits paid <strong>'+money(BP)+'</strong>, investment income <strong>'+money(II)+'</strong>, a <strong>'+money(FV)+'</strong> increase in the fair value of investments, and administrative costs of <strong>'+money(AC)+'</strong>. Net position restricted for pensions was <strong>'+money(B0)+'</strong> at the beginning of the year.</p>';
+  var ref=bullets(['Fiduciary funds use full accrual, except that benefits and refunds are recognized when due and payable.','Revenues are called <strong>additions</strong>. Expenses are called <strong>deductions</strong>.','Contributions due are recorded as receivables and additions.']);
+  var steps=[
+   M('Choose <strong>Debit</strong> or <strong>Credit</strong> for each account when the contributions come due.',[['Due from General Fund','Debit'],['Due from Plan Members','Debit'],['Additions—Employer Contributions','Credit'],['Additions—Member Contributions','Credit']],DC,'The trust is owed the money (receivables), and the contributions are additions.',je('Contributions due',[['Due from General Fund',EC,null],['Due from Plan Members',MC,null],['Additions—Employer Contributions',null,EC],['Additions—Member Contributions',null,MC]])+sol(['Contributions due are recorded as receivables and additions.'])),
+   N('What are <strong>total additions</strong>?',add,{hint:'Include both kinds of contributions, investment income, and the increase in fair value.',exp:sol([money(EC)+' + '+money(MC)+' + '+money(II)+' + '+money(FV)],'Additions = '+money(add))}),
+   N('What are <strong>total deductions</strong>?',ded,{hint:'Benefits paid plus administrative costs.',exp:sol([money(BP)+' + '+money(AC)],'Deductions = '+money(ded))}),
+   N('What is the <strong>change in net position</strong> restricted for pensions?',chg,{hint:'Additions minus deductions.',exp:sol([money(add)+' − '+money(ded)],'Change = '+money(chg))}),
+   N('What is <strong>ending net position</strong> restricted for pensions?',B0+chg,{hint:'Add the change to the beginning net position.',exp:sol([money(B0)+' + '+money(chg)],'Ending net position = '+money(B0+chg))})
+  ];
+  return {intro:intro,ref:ref,steps:steps};
+}
+
+function g8custodial(R){
+  var co=countyOf(R);
+  var own=R.step(1500000,2500000,100000),sch=R.step(600000,1200000,100000),fire=R.step(200000,500000,100000),c=R.pick([94,95,96,97]);
+  var tot=(own+sch+fire)*c/100,out=(sch+fire)*c/100;
+  var intro='<p>The <strong>'+esc(co)+'</strong> levies <strong>'+money(own)+'</strong> of property taxes for itself, <strong>'+money(sch)+'</strong> for the School Board, and <strong>'+money(fire)+'</strong> for the Fire District. It collects <strong>'+c+'%</strong> of each levy. There is no trust agreement for the amounts collected for the other governments.</p>';
+  var ref=bullets(['A <strong>Custodial Fund</strong> holds resources for other governments or organizations when there is no trust.','The county’s own portion is <strong>not</strong> reported in the Custodial Fund. Only taxes held for outside governments are.']);
+  var steps=[
+   N('How much is collected <strong>in total</strong>?',tot,{hint:'Add the three levies, then multiply by the collection percentage.',exp:sol(['('+money(own)+' + '+money(sch)+' + '+money(fire)+') × '+c+'%'],'Total collected = '+money(tot))}),
+   N('How much of the collections is <strong>owed to the School Board and the Fire District</strong>?',out,{hint:'Only the levies for the outside governments count.',exp:sol(['('+money(sch)+' + '+money(fire)+') × '+c+'%'],'Owed to outsiders = '+money(out))}),
+   C('Where is the county’s <strong>own portion</strong> of the collections reported?',['General Fund','Custodial Fund'],'General Fund','The custodial fund reports only assets held for others.',sol(['<strong>General Fund.</strong> The county’s own portion is owed to the General Fund and is not reported as a Custodial Fund balance for outsiders.'])),
+   C('Which fiduciary fund type reports the taxes held for the School Board and Fire District?',['Pension Trust Fund','Investment Trust Fund','Private-Purpose Trust Fund','Custodial Fund'],'Custodial Fund','There is no trust agreement, and the resources belong to other governments.',sol(['<strong>Custodial Fund.</strong> It is used for fiduciary activity that is not in a trust.']))
+  ];
+  return {intro:intro,ref:ref,steps:steps};
+}
+
+function g8which(R){
+  var POOL=[
+   ['A city employees’ retirement trust','Pension Trust Fund'],['A trust holding retiree health benefit assets','Pension Trust Fund'],
+   ['The outside governments’ share of a county investment pool','Investment Trust Fund'],['A pool in which a school district and a fire district invest alongside the county','Investment Trust Fund'],
+   ['A scholarship trust for local students (not a government program)','Private-Purpose Trust Fund'],['A trust whose earnings provide aid to local families (not a government program)','Private-Purpose Trust Fund'],
+   ['Taxes collected for a school district with no trust agreement','Custodial Fund'],['Unclaimed property held for its owners','Custodial Fund'],['Money held for inmates at the county jail','Custodial Fund']
+  ];
+  var seen={},items=[];
+  R.shuffle(POOL).forEach(function(x){if(items.length<4&&!seen[x[1]]){seen[x[1]]=1;items.push(x);}});
+  items.push(R.pick(POOL.filter(function(x){return items.indexOf(x)<0;})));
+  items=R.shuffle(items);
+  var intro='<p>Fiduciary funds hold resources for people and organizations <em>outside</em> the government. The <strong>'+esc(countyOf(R))+'</strong> accountant must pick the right fiduciary fund type for each situation.</p>';
+  var ref=bullets(['<strong>Pension (and OPEB) Trust:</strong> employee benefit assets held in trust.','<strong>Investment Trust:</strong> outside governments’ share of an investment pool.','<strong>Private-Purpose Trust:</strong> a trust that benefits outsiders and is not a government program.','<strong>Custodial:</strong> other fiduciary activity with no trust.']);
+  var OPT=['Pension Trust Fund','Investment Trust Fund','Private-Purpose Trust Fund','Custodial Fund'];
+  var why={'Pension Trust Fund':'Employee benefit assets held in trust.','Investment Trust Fund':'The external participants’ share of an investment pool.','Private-Purpose Trust Fund':'A trust that benefits outsiders and is not a government program.','Custodial Fund':'Fiduciary activity that is not held in a trust.'};
+  var steps=items.map(function(x){return C('Which fiduciary fund fits this situation? <em>'+esc(x[0])+'</em>',OPT,x[1],'Ask: is it employee benefits, an investment pool, a trust for outsiders, or resources held with no trust?',sol(['<strong>'+x[1]+'.</strong> '+why[x[1]]]));});
+  return {intro:intro,ref:ref,steps:steps};
+}
+
+/* ================= Chapter 10: Government-Wide Financial Statements ================= */
+function g10cap(R){
+  var tn=cityOf(R);
+  var CO=R.step(300000,900000,50000),D=R.step(200000,500000,20000),Pr=R.step(1000000,3000000,500000),Pp=R.step(100000,400000,50000);
+  var e1=CO-D,e2=Pp-Pr;
+  var intro='<p>The <strong>'+esc(tn)+'</strong> is converting its governmental fund results to government-wide (full accrual) statements. The funds reported <strong>'+money(CO)+'</strong> of capital outlay as an expenditure. Depreciation for the year is <strong>'+money(D)+'</strong>. The funds also reported <strong>'+money(Pr)+'</strong> of bond proceeds as an other financing source and <strong>'+money(Pp)+'</strong> of bond principal paid as an expenditure.</p>';
+  var ref=bullets(['Governmental funds expense capital outlay. Government-wide statements <strong>capitalize</strong> it and record <strong>depreciation</strong>.','Borrowing is a <strong>liability</strong>, not revenue. Principal repayment reduces the liability and is not an expense.','Adjustments move you from the change in fund balances to the change in net position.']);
+  var steps=[
+   M('Choose <strong>Debit</strong> or <strong>Credit</strong> for each account in the conversion entry that capitalizes the outlay.',[['Capital Assets','Debit'],['Expenditures—Capital Outlay','Credit']],DC,'The expenditure is removed and the asset is added.',je('Capitalize current-year outlay',[['Capital Assets',CO,null],['Expenditures—Capital Outlay',null,CO]])+sol(['This removes the expenditure and adds the asset.'])),
+   N('What is the <strong>net effect on the change in net position</strong> of capitalizing the outlay and recording depreciation? (Enter a decrease as a negative number.)',e1,{hint:'Capitalizing the outlay adds to net position. Depreciation reduces it.',exp:sol(['+'+money(CO)+' − '+money(D)],'Net effect = '+money(e1))}),
+   M('Choose <strong>Debit</strong> or <strong>Credit</strong> for each account when the bond proceeds are reclassified.',[['Other Financing Sources—Long-Term Debt Issued','Debit'],['Bonds Payable','Credit']],DC,'Borrowing is a liability in the government-wide statements.',je('Reclassify bond proceeds as debt',[['Other Financing Sources—Long-Term Debt Issued',Pr,null],['Bonds Payable',null,Pr]])+sol(['Borrowing is a liability, not revenue.'])),
+   N('What is the <strong>net adjustment for the debt activity</strong>? (Enter a decrease as a negative number.)',e2,{hint:'Remove the bond proceeds, then add back the principal that was expensed in the funds.',exp:sol(['−'+money(Pr)+' proceeds + '+money(Pp)+' principal paid'],'Net adjustment = '+money(e2))}),
+   N('Taken together, what is the <strong>total adjustment</strong> from the change in fund balances to the change in net position for the capital asset and debt items? (Enter a decrease as a negative number.)',e1+e2,{hint:'Add the capital asset adjustment and the debt adjustment.',exp:sol([money(e1)+' + '+money(e2)],'Total adjustment = '+money(e1+e2))})
+  ];
+  return {intro:intro,ref:ref,steps:steps};
+}
+
+function g10rev(R){
+  var tn=cityOf(R);
+  var UA=R.step(20000,60000,5000),LY=R.step(10000,50000,5000);
+  var B,r,I;
+  do{B=R.step(2000000,5000000,500000);r=R.pick([4.2,4.8,3.6,6]);I=B*r/100*5/12;}while(Math.abs(I-Math.round(I))>1e-9);
+  var PY=I-R.step(-5000,10000,1000),CA1=R.step(180000,260000,10000),CA0=CA1-R.step(-10000,30000,5000);
+  var rv=UA-LY,ie=I-PY,ca=CA1-CA0;
+  var intro='<p>The <strong>'+esc(tn)+'</strong> is converting governmental fund results to the government-wide statements. Property taxes that were <strong>unavailable</strong> at year-end total <strong>'+money(UA)+'</strong>, and last year’s deferred taxes of <strong>'+money(LY)+'</strong> were collected this year. The city has <strong>'+money(B)+'</strong> of bonds paying <strong>'+r+'%</strong> interest on February 1 and August 1. Last year’s accrued interest was <strong>'+money(PY)+'</strong>. Accrued compensated absences (not matured) were <strong>'+money(CA1)+'</strong> at year-end and <strong>'+money(CA0)+'</strong> at the beginning of the year.</p>';
+  var ref=bullets(['Full accrual has <strong>no availability test</strong>, so unavailable taxes become revenue in the year levied.','Stub interest from the last payment date to year-end is accrued.','Compensated absences that are not yet matured are accrued in the government-wide statements.']);
+  var steps=[
+   N('What is the <strong>net change in revenue</strong> for the government-wide statements? (Enter a decrease as a negative number.)',rv,{hint:'This year’s unavailable taxes are now recognized. Last year’s deferred taxes were already recognized last year.',exp:sol(['+'+money(UA)+' now recognized − '+money(LY)+' that belonged to last year'],'Net revenue adjustment = '+money(rv))}),
+   N('How much interest is <strong>accrued at December 31</strong> (August 1 to December 31, 5 months)?',I,{hint:'Principal × annual rate × 5/12.',exp:sol([money(B)+' × '+r+'% × 5/12'],'Accrued interest = '+money(I))}),
+   N('How much <strong>additional interest expense</strong> is recorded this year? (Enter a decrease as a negative number.)',ie,{hint:'Compare this year’s accrual with last year’s accrual. Last year’s amount was already in the beginning net position.',exp:sol([money(I)+' − '+money(PY)],'Additional interest expense = '+money(ie))}),
+   N('What <strong>additional compensated absences expense</strong> is recorded? (Enter a decrease as a negative number.)',ca,{hint:'The expense is the change in the accrued liability during the year.',exp:sol([money(CA1)+' − '+money(CA0)],'Additional expense = '+money(ca))}),
+   N('What is the <strong>total additional expense</strong> (interest plus compensated absences) that reduces the change in net position? (Enter a decrease as a negative number.)',ie+ca,{hint:'Add the two expense adjustments.',exp:sol([money(ie)+' + '+money(ca)],'Total additional expense = '+money(ie+ca))})
+  ];
+  return {intro:intro,ref:ref,steps:steps};
+}
+
+function g10recon(R,o){var P=mk(R,o);
+  var tn=P('tn',function(){return cityOf(R);});
+  var FB=P('FB',function(){return R.step(2000000,4000000,100000);});
+  var CA=P('CA',function(){return R.step(10000000,16000000,100000);});
+  var BP=P('BP',function(){return R.step(4000000,9000000,500000);});
+  var US=P('US',function(){return R.step(200000,800000,100000);});
+  var AI=P('AI',function(){return R.step(40000,90000,5000);});
+  var CAB=P('CAB',function(){return R.step(100000,260000,10000);});
+  var UT=P('UT',function(){return R.step(20000,60000,5000);});
+  var NP=FB+CA-BP-AI-CAB+UT,NI=CA-(BP-US);
+  var intro='<p>The <strong>'+esc(tn)+'</strong> is reconciling its governmental funds to the government-wide statement of net position. Total governmental fund balances are <strong>'+money(FB)+'</strong>.</p>'+
+   tbl('Information for the reconciliation',['Item','Amount'],[['Capital assets, net of depreciation',money(CA)],['Bonds payable',money(BP)],['Accrued interest payable',money(AI)],['Compensated absences (not matured)',money(CAB)],['Unavailable property taxes (a deferred inflow in the funds)',money(UT)]])+
+   '<p>Of the bonds payable, <strong>'+money(US)+'</strong> of proceeds has not yet been spent on capital assets.</p>';
+  var ref=bullets(['Reconciliation: fund balances + capital assets − long-term liabilities − accrued interest − compensated absences + unavailable revenue = net position.','<strong>Net investment in capital assets</strong> = capital assets − the debt used to acquire them.','Unspent bond proceeds belong in restricted or unrestricted net position, not net investment in capital assets.']);
+  var rows=[['Capital assets, net','Add'],['Bonds payable','Subtract'],['Accrued interest payable','Subtract'],['Compensated absences','Subtract'],['Unavailable property taxes','Add']];
+  var steps=[
+   M('In the reconciliation from total governmental fund balances to net position, is each item <strong>added</strong> or <strong>subtracted</strong>?',rows,['Add','Subtract'],'Assets that are not in the funds are added. Liabilities that are not in the funds are subtracted. Unavailable taxes were deferred in the funds but are revenue under full accrual.',sol(rows.map(function(x){return '<strong>'+x[1]+':</strong> '+x[0]+'.';}))),
+   N('What is <strong>net position of governmental activities</strong>?',NP,{hint:'Start with fund balances, add the items you chose to add, and subtract the others.',exp:sol([money(FB)+' + '+money(CA)+' − '+money(BP)+' − '+money(AI)+' − '+money(CAB)+' + '+money(UT)],'Net position = '+money(NP))}),
+   N('What is <strong>net investment in capital assets</strong>?',NI,{hint:'Subtract only the debt that was used to acquire the capital assets. Part of the bonds has not yet been spent on assets.',exp:sol(['Debt used for assets = '+money(BP)+' − '+money(US)+' = '+money(BP-US),money(CA)+' − '+money(BP-US)],'Net investment = '+money(NI))}),
+   C('Where do the <strong>unspent bond proceeds</strong> ('+money(US)+') affect net position?',['Net investment in capital assets','Restricted or unrestricted net position'],'Restricted or unrestricted net position','The proceeds have not yet been turned into capital assets.',sol(['<strong>Restricted or unrestricted net position.</strong> The unspent proceeds are excluded from the capital asset calculation.']))
+  ];
+  return {intro:intro,ref:ref,steps:steps};
+}
+
+function g10elim(R){
+  var tn=cityOf(R);
+  var POOL=[
+   ['Receivables and payables between two governmental funds','Eliminated'],
+   ['A transfer from the General Fund to an Enterprise Fund','Internal activities line'],
+   ['An Internal Service Fund’s assets and liabilities','Governmental activities'],
+   ['A loan between the General Fund and a Special Revenue Fund','Eliminated']
+  ];
+  var rows=R.sample(POOL,3);
+  var MA=[['Eligible infrastructure is depreciated','False'],['Maintenance is expensed as incurred','True'],['Condition assessments are made at least every three years','True'],['Additions and improvements are expensed','False'],['An asset management system must be maintained','True']];
+  var ma=R.sample(MA,4);
+  var intro='<p>The <strong>'+esc(tn)+'</strong> presents government-wide statements, so internal activity is removed and the government is shown as a single entity. The city also elected the <strong>modified approach</strong> for its eligible infrastructure.</p>';
+  var ref=bullets(['Balances between governmental funds are eliminated. Transfers between governmental and business-type activities are reported as internal activity that nets to zero in the total column.','Internal Service Fund activity is normally reported with governmental activities.','The <strong>modified approach</strong> replaces depreciation with an asset management system, regular condition assessments, and preservation at or above a stated level.']);
+  var steps=[
+   M('How is each item reported in the government-wide statements?',rows,['Eliminated','Internal activities line','Governmental activities'],'Balances inside the same activity are eliminated. Transfers between governmental and business-type activities appear on an internal line and net to zero.',sol(rows.map(function(x){return '<strong>'+x[1]+':</strong> '+x[0]+'.';}))),
+   M('Is each statement about the modified approach true or false?',ma,['True','False'],'Under the modified approach, the asset is not depreciated, but maintenance is expensed and the government must document the condition.',sol(ma.map(function(x){return '<strong>'+x[1]+':</strong> '+x[0]+'.';}))),
+   C('To use the modified approach, the government must document that the assets are preserved at or above…',['A stated condition level','Original cost','Fair value'],'A stated condition level','The condition is what is being managed instead of depreciation.',sol(['<strong>A stated condition level.</strong> The government sets a level and assesses condition regularly.']))
+  ];
+  return {intro:intro,ref:ref,steps:steps};
+}
+
+/* ================= Chapter 13: Nonprofit Organizations ================= */
+function g13pledge(R){
+  var nm=R.pick(['Pinecrest Food Pantry','Laurel Valley Youth Center','Mountain Literacy Alliance','Riverbend Animal Shelter']);
+  var P0=R.step(50000,150000,10000),up=R.pick([5,10]),U=P0*up/100;
+  var intro='<p><strong>'+esc(nm)+'</strong> receives an <strong>unconditional</strong> pledge of <strong>'+money(P0)+'</strong> with no donor restriction, payable this year. Based on experience, the nonprofit expects <strong>'+up+'%</strong> of it to be uncollectible.</p>';
+  var ref=bullets(['An unconditional promise is revenue when promised, recorded at the net amount expected.','A gift restricted by the donor increases <strong>net assets with donor restrictions</strong>.']);
+  var steps=[
+   M('Choose <strong>Debit</strong> or <strong>Credit</strong> for each account when the pledge is recorded.',[['Contributions Receivable','Debit'],['Allowance for Uncollectible Contributions','Credit'],['Contribution Revenue—Without Donor Restrictions','Credit']],DC,'The pledge is a receivable. The allowance reduces it, and revenue is recorded for the net amount.',je('Short-term pledge',[['Contributions Receivable',P0,null],['Allowance for Uncollectible Contributions',null,U],['Contribution Revenue—Without Donor Restrictions',null,P0-U]])+sol(['Revenue is recorded at the net amount expected.'])),
+   N('How much <strong>contribution revenue</strong> is recognized?',P0-U,{hint:'Revenue is the pledge less the amount expected to be uncollectible.',exp:sol([money(P0)+' − '+money(U)],'Revenue = '+money(P0-U))}),
+   C('Suppose the donor had restricted the pledge to a literacy program. Which net asset class would it increase?',['Without donor restrictions','With donor restrictions'],'With donor restrictions','A donor’s purpose stipulation creates a donor restriction.',sol(['<strong>With donor restrictions.</strong> The restriction is released when the money is spent on the program.']))
+  ];
+  return {intro:intro,ref:ref,steps:steps};
+}
+
+function g13multi(R,o){var P=mk(R,o);
+  var nm=P('nm',function(){return R.pick(['Pinecrest Food Pantry','Laurel Valley Youth Center','Mountain Literacy Alliance','Riverbend Animal Shelter']);});
+  var A=P('A',function(){return R.step(5000,20000,1000);});
+  var nowAmt=P('nowAmt',function(){return R.step(2000,10000,1000);});
+  var r=P('r',function(){return R.pick([6,7,8]);});
+  var i=r/100,PV=rd(A/(1+i)+A/Math.pow(1+i,2)),disc=2*A-PV,acc=rd(PV*i);
+  var intro='<p>A donor makes an unconditional, unrestricted pledge to <strong>'+esc(nm)+'</strong> of <strong>'+money(nowAmt+2*A)+'</strong>: <strong>'+money(nowAmt)+'</strong> now and <strong>'+money(A)+'</strong> at the end of each of the next two years. The nonprofit uses a <strong>'+r+'%</strong> discount rate. Use the present value rounded to the nearest dollar in later steps.</p>';
+  var ref=bullets(['Pledges due after more than a year are recorded at <strong>present value</strong>.','The discount is accreted into <strong>additional contribution revenue</strong> over time.','Present value = payment ÷ (1 + rate)^n for each payment.']);
+  var steps=[
+   N('What is the <strong>present value of the two future payments</strong>? (Round to the nearest dollar.)',PV,{tol:1,hint:'Discount the first payment one year and the second payment two years.',exp:sol([money(A)+' ÷ '+(1+i).toFixed(2)+' + '+money(A)+' ÷ '+(1+i).toFixed(2)+'² = '+money(A/(1+i)+A/Math.pow(1+i,2),2)],'Present value = '+money(PV))}),
+   N('What is the <strong>discount on contributions receivable</strong>?',disc,{tol:1,hint:'Compare the total of the two future payments with their present value.',exp:sol(['2 × '+money(A)+' = '+money(2*A),money(2*A)+' − '+money(PV)],'Discount = '+money(disc))}),
+   N('What <strong>revenue</strong> is recorded from accreting the discount in year 1? (Round to the nearest dollar.)',acc,{tol:1,hint:'Multiply the present value by the discount rate.',exp:sol([money(PV)+' × '+r+'%'],'Accretion = '+money(acc))}),
+   C('How is the accretion of the discount reported?',['Interest income','Additional contribution revenue','A reduction of expenses'],'Additional contribution revenue','The discount arose from a contribution, not from lending money.',sol(['<strong>Additional contribution revenue.</strong> The discount is unwound into contribution revenue, not interest income.']))
+  ];
+  return {intro:intro,ref:ref,steps:steps};
+}
+
+function g13cond(R){
+  var nm=R.pick(['Pinecrest Food Pantry','Laurel Valley Youth Center','Mountain Literacy Alliance','Riverbend Animal Shelter']);
+  var Gm=R.step(30000,100000,10000),X=R.step(10000,Gm-10000,5000),Rl=R.step(10000,40000,5000);
+  var intro='<p><strong>'+esc(nm)+'</strong> is awarded a <strong>conditional</strong> matching grant of <strong>'+money(Gm)+'</strong>: the grant is payable only if the nonprofit raises an equal amount from other donors. The grantor sends <strong>'+money(X)+'</strong> early, before the match is raised. Separately, a donor gives a gift restricted to the literacy program, and the nonprofit spends <strong>'+money(Rl)+'</strong> on that program this year.</p>';
+  var ref=bullets(['A <strong>conditional promise</strong> is not revenue until the condition is substantially met. Cash received first is a <strong>Refundable Advance</strong> (a liability).','When a donor restriction is met, the amount is <strong>released</strong> from net assets with donor restrictions to net assets without donor restrictions. Total net assets do not change.']);
+  var s4=[['An unconditional pledge from a donor','Recognize now'],['A matching grant whose match has not been raised','Wait'],['A gift with a donor restriction on its purpose','Recognize now'],['A grant with a barrier to entitlement (an event must be held) and a right of return','Wait']];
+  var rows=R.sample(s4,4);
+  var steps=[
+   M('Choose <strong>Debit</strong> or <strong>Credit</strong> for each account when the early cash is received.',[['Cash','Debit'],['Refundable Advance','Credit']],DC,'The cash comes in, but revenue cannot be recognized yet.',je('Advance received',[['Cash',X,null],['Refundable Advance',null,X]])+sol(['It is a liability until the match is raised.'])),
+   C('How is the Refundable Advance classified?',['Revenue','A liability','Net assets with donor restrictions'],'A liability','The nonprofit may have to give the money back if the condition is not met.',sol(['<strong>A liability.</strong> It becomes revenue when the condition is substantially met.'])),
+   M('Choose <strong>Debit</strong> or <strong>Credit</strong> for each account in the entry that releases the literacy gift from restriction.',[['Net Assets With Donor Restrictions—Released','Debit'],['Net Assets Without Donor Restrictions—Released','Credit']],DC,'Net assets with donor restrictions decrease, and net assets without donor restrictions increase by the same amount.',je('Net assets released',[['Net Assets With Donor Restrictions—Released',Rl,null],['Net Assets Without Donor Restrictions—Released',null,Rl]])+sol(['The reclassification moves the amount between net asset classes.'])),
+   C('What happens to <strong>total net assets</strong> when the restriction is released?',['They increase','They decrease','No change'],'No change','The release moves amounts between classes. It does not bring in new resources.',sol(['<strong>No change.</strong> One class decreases and the other increases by '+money(Rl)+'.'])),
+   M('Should the nonprofit recognize revenue now or wait?',rows,['Recognize now','Wait'],'Conditional promises wait until the condition is substantially met. Unconditional promises, even with donor restrictions on use, are recognized.',sol(rows.map(function(x){return '<strong>'+x[1]+':</strong> '+x[0]+'.';})))
+  ];
+  return {intro:intro,ref:ref,steps:steps};
+}
+
+function g13serv(R){
+  var nm=R.pick(['Pinecrest Food Pantry','Laurel Valley Youth Center','Mountain Literacy Alliance','Riverbend Animal Shelter']);
+  var h=R.step(30,60,5),rate=R.step(110,180,10),Mb=R.step(100,250,50),Bv=R.pick([25,30,40,45,50]),n=R.step(40,120,10);
+  var rec=[['A CPA donates audit-preparation help the nonprofit would otherwise buy','Record'],['An electrician donates wiring during a building renovation','Record'],['An attorney donates legal advice the nonprofit would otherwise buy','Record']];
+  var no=[['Volunteers stock shelves and serve meals for 200 hours','Do not record'],['Board members donate time attending meetings','Do not record'],['Volunteers answer phones at the front desk','Do not record']];
+  var rows=R.shuffle(R.sample(rec,2).concat(R.sample(no,2)));
+  var intro='<p><strong>'+esc(nm)+'</strong> receives several kinds of donated services. A CPA volunteer donates <strong>'+h+' hours</strong> with a fair value of <strong>'+money(rate)+' per hour</strong>. The organization also sells <strong>'+n+'</strong> annual memberships at <strong>'+money(Mb)+'</strong> each. Each membership includes a magazine and discounts with a fair value of <strong>'+money(Bv)+'</strong>.</p>';
+  var ref=bullets(['Record contributed services only if they <strong>create or enhance nonfinancial assets</strong>, or require <strong>specialized skills</strong> and would otherwise be purchased.','Unskilled labor is never recorded, regardless of the hours.','A membership with benefits is split: the fair value of the benefits is <strong>exchange revenue</strong> (Topic 606). The rest is <strong>contribution</strong>.']);
+  var steps=[
+   M('Should each donated service be recorded?',rows,['Record','Do not record'],'Record skilled services that would otherwise be purchased and services that enhance nonfinancial assets. Never record unskilled labor.',sol(rows.map(function(x){return '<strong>'+x[1]+':</strong> '+x[0]+'.';}))),
+   N('What <strong>amount</strong> is recorded for the CPA’s donated time?',h*rate,{hint:'Hours times the fair value per hour.',exp:sol([h+' × '+money(rate)],'Contributed services = '+money(h*rate))}),
+   N('How much of <strong>one membership</strong> is contribution revenue?',Mb-Bv,{hint:'The benefits received are an exchange. The rest is a contribution.',exp:sol([money(Mb)+' − '+money(Bv)],'Contribution per membership = '+money(Mb-Bv))}),
+   N('What is <strong>total contribution revenue</strong> from the '+n+' memberships?',n*(Mb-Bv),{hint:'Multiply the contribution per membership by the number of memberships.',exp:sol([n+' × '+money(Mb-Bv)],'Contribution revenue = '+money(n*(Mb-Bv)))}),
+   N('What is <strong>total exchange revenue</strong> from the memberships?',n*Bv,{hint:'Multiply the fair value of the benefits by the number of memberships.',exp:sol([n+' × '+money(Bv)],'Exchange revenue = '+money(n*Bv))})
+  ];
+  return {intro:intro,ref:ref,steps:steps};
+}
+
+function g13ratio(R){
+  var nm=R.pick(['Pinecrest Food Pantry','Laurel Valley Youth Center','Mountain Literacy Alliance','Riverbend Animal Shelter']);
+  var Pg=R.step(500000,900000,10000),mg=R.step(60000,120000,5000),fr=R.step(40000,90000,5000);
+  var FA=R.step(1400000,2200000,50000),rs=R.step(300000,600000,50000),bd=R.step(100000,300000,50000),il=R.step(80000,160000,10000);
+  var tot=Pg+mg+fr,pct=Pg/tot*100,av=FA-rs-bd-il;
+  var POOL=[['A board sets aside funds for plant expansion','Without donor restrictions'],['A donor gift that must be held in an endowment forever','With donor restrictions'],['A pledge payable only next year, with no other donor stipulation','With donor restrictions'],['A donor gift restricted to the literacy program','With donor restrictions'],['Unrestricted membership dues received in cash','Without donor restrictions'],['A board-designated reserve for emergencies','Without donor restrictions']];
+  var cls=R.shuffle(R.sample(POOL.filter(function(x){return x[1]==='With donor restrictions';}),2).concat(R.sample(POOL.filter(function(x){return x[1]==='Without donor restrictions';}),1)));
+  var intro='<p><strong>'+esc(nm)+'</strong> reports program expenses of <strong>'+money(Pg)+'</strong>, management and general expenses of <strong>'+money(mg)+'</strong>, and fundraising expenses of <strong>'+money(fr)+'</strong>. Financial assets at year-end are <strong>'+money(FA)+'</strong>. Of these, <strong>'+money(rs)+'</strong> is donor-restricted, <strong>'+money(bd)+'</strong> is board-designated for specific purposes, and <strong>'+money(il)+'</strong> is illiquid and cannot be converted to cash within a year.</p>';
+  var ref=bullets(['Net assets have two classes: <strong>with</strong> and <strong>without</strong> donor restrictions. A board designation never creates a donor restriction.','<strong>Program ratio</strong> = program expenses ÷ total expenses.','Financial assets available within one year = financial assets − donor-restricted, board-designated, and illiquid amounts.','For a split-interest agreement, a <strong>revocable</strong> agreement leaves the cash as a refundable advance. An <strong>irrevocable</strong> agreement is revenue at fair value.']);
+  var steps=[
+   M('Which net asset class does each item belong to?',cls,['Without donor restrictions','With donor restrictions'],'Only a donor can create a donor restriction, including a time or perpetual restriction. A board’s decision does not.',sol(cls.map(function(x){return '<strong>'+x[1]+':</strong> '+x[0]+'.';}))),
+   N('What <strong>percent of total expenses</strong> are program expenses? (Round to one decimal place.)',pct,{fmt:'pct',dec:1,tol:0.06,hint:'Divide program expenses by the total of all three expense categories, then multiply by 100.',exp:sol([money(Pg)+' ÷ '+money(tot)+' = '+nf(pct,2)+'%'],'Program ratio = '+nf(pct,1)+'%')}),
+   N('How much of the financial assets are <strong>available within one year</strong>?',av,{hint:'Subtract each amount that is not available from the total financial assets.',exp:sol([money(FA)+' − '+money(rs)+' − '+money(bd)+' − '+money(il)],'Available = '+money(av))}),
+   M('When is revenue recognized for a split-interest agreement?',[['The donor can revoke the trust','Not yet (Refundable Advance)'],['The agreement is irrevocable','Revenue at fair value']],['Not yet (Refundable Advance)','Revenue at fair value'],'If the donor can take the gift back, it is not yet a contribution.',sol(['<strong>Not yet (Refundable Advance):</strong> a revocable agreement. Cash received is a refundable advance.','<strong>Revenue at fair value:</strong> when an irrevocable agreement is executed, the charity records revenue and a beneficial-interest asset at fair value.']))
+  ];
+  return {intro:intro,ref:ref,steps:steps};
+}
+
+/* ================= problem-type list ================= */
+var CHAPTERS=[
+ {n:1,title:'Governmental and Nonprofit Accounting Environment'},
+ {n:2,title:'The Use of Funds in Governmental Accounting'},
+ {n:3,title:'Budgetary Considerations in Governmental Accounting'},
+ {n:4,title:'An Introduction to General and Special Revenue Funds'},
+ {n:5,title:'General and Special Revenue Funds'},
+ {n:6,title:'Capital Projects Fund, Debt Service Fund, and Permanent Funds'},
+ {n:7,title:'Proprietary Funds: Enterprise and Internal Service Funds'},
+ {n:8,title:'Fiduciary Funds'},
+ {n:10,title:'Government-Wide Financial Statements'},
+ {n:13,title:'Accounting for Nonprofit Organizations'}
+];
+var TYPES=[
+ {id:'g1setters',ch:1,title:'Who writes the rules?',desc:'Match organizations to GASB, FASB, or FASAB, and place guidance in the GAAP hierarchy.',gen:G.g1setters},
+ {id:'g1gov',ch:1,title:'Is it a governmental entity?',desc:'Test an organization against the four governmental criteria and pick the standard setter.',gen:G.g1gov},
+ {id:'g1equity',ch:1,title:'Interperiod equity',desc:'Measure whether current revenues paid for current services, and spot practices that shift cost to the future.',gen:G.g1equity},
+ {id:'g2fund',ch:2,title:'Which fund does it belong in?',desc:'Choose among the 11 fund types for a series of government activities.',gen:G.g2fund},
+ {id:'g2focus',ch:2,title:'Measurement focus and basis',desc:'Work out how a particular fund is reported: focus, basis, long-term debt, and capital outlay.',gen:G.g2focus},
+ {id:'g2same',ch:2,title:'Same transaction, different fund',desc:'Compute salaries, depreciation, debt payments, and property tax revenue under modified and full accrual.',gen:G.g2same},
+ {id:'g3rate',ch:3,title:'Setting the property tax rate',desc:'Find the levy, the tax rate per $1,000, and the tax on a specific property.',gen:G.g3rate},
+ {id:'g3cash',ch:3,title:'Cash forecast and TAN borrowing',desc:'Decide how much to borrow on a tax anticipation note and compute the interest.',gen:G.g3cash},
+ {id:'g3budget',ch:3,title:'Recording the budget',desc:'Record the adopted budget, find the budgeted surplus or deficit, and tell interchanges from revisions.',gen:G.g3budget},
+ {id:'g3enc',ch:3,title:'The purchase order cycle',desc:'Issue a purchase order, reverse the encumbrance, record the expenditure, and find the available appropriation.',gen:G.g3enc},
+ {id:'g4gf',ch:4,title:'General Fund revenues and payroll',desc:'Track tax collections, the receivable, salary expenditures, and the payroll accrual.',gen:G.g4gf},
+ {id:'g4close',ch:4,title:'Year-end closing entries',desc:'Prepare the two closing entries and find ending fund balance.',gen:G.g4close},
+ {id:'g4bc',ch:4,title:'Budgetary comparison schedule',desc:'Compute budget changes and favorable or unfavorable variances.',gen:G.g4bc},
+ {id:'g4tan',ch:4,title:'Borrowing on a TAN',desc:'Record a tax anticipation note, its interest, and its repayment.',gen:G.g4tan},
+ {id:'g5ptax',ch:5,title:'Property taxes from levy to deferral',desc:'Follow a levy through delinquency, the allowance, and deferred inflows.',gen:G.g5ptax},
+ {id:'g5inter',ch:5,title:'Interfund transactions',desc:'Classify the four types and reclassify fund balance for a long-term loan.',gen:G.g5inter},
+ {id:'g5inv',ch:5,title:'Consumption vs. purchases method',desc:'Compare supplies expenditures and nonspendable fund balance under each method.',gen:G.g5inv},
+ {id:'g5accr',ch:5,title:'Accruals and fund balance',desc:'Accrue salaries and compensated absences, find fund balance, and classify it under GASB 54.',gen:G.g5accr},
+ {id:'g6cap',ch:6,title:'Capital projects: retainage and encumbrances',desc:'Record a progress billing with retainage and track the remaining encumbrance.',gen:g6cap},
+ {id:'g6bond',ch:6,title:'Selling bonds at par, premium, or discount',desc:'Compute proceeds and record the sale, then classify each item.',gen:g6bond},
+ {id:'g6debt',ch:6,title:'Debt Service Fund',desc:'Record interest coming due and find debt service expenditures and the net change in fund balance.',gen:g6debt},
+ {id:'g6lease',ch:6,title:'GASB 87 lease in a governmental fund',desc:'Find the present value, record the lease, and split the next payment into interest and principal.',gen:g6lease},
+ {id:'g6perm',ch:6,title:'Endowments and refunding',desc:'Work through a Permanent Fund and tell current from advance refundings.',gen:g6perm},
+ {id:'g7isf',ch:7,title:'Internal Service or Enterprise Fund?',desc:'Choose the right proprietary fund and apply the Enterprise Fund requirements.',gen:g7isf},
+ {id:'g7motor',ch:7,title:'A motor pool from start to finish',desc:'Charge departments, then find operating income, net position, and operating cash flow.',gen:g7motor},
+ {id:'g7bonds',ch:7,title:'Revenue bonds in an Enterprise Fund',desc:'Record the issue, accrue interest, and classify proceeds and assessments.',gen:g7bonds},
+ {id:'g7lease',ch:7,title:'Leases in a proprietary fund',desc:'Find the present value, record the lease, then amortization and interest.',gen:g7lease},
+ {id:'g8pension',ch:8,title:'Pension basics',desc:'Compute a benefit, the net pension liability, and the amortization of investment returns.',gen:g8pension},
+ {id:'g8trust',ch:8,title:'A Pension Trust Fund for the year',desc:'Record contributions, then find additions, deductions, and net position.',gen:g8trust},
+ {id:'g8custodial',ch:8,title:'Collecting taxes for other governments',desc:'Find what a county collects and what it owes to outside governments.',gen:g8custodial},
+ {id:'g8which',ch:8,title:'Choosing the fiduciary fund',desc:'Match situations to pension, investment, private-purpose, and custodial funds.',gen:g8which},
+ {id:'g10cap',ch:10,title:'Capital asset and debt adjustments',desc:'Capitalize outlay, record depreciation, and reclassify bond proceeds.',gen:g10cap},
+ {id:'g10rev',ch:10,title:'Revenue and expense adjustments',desc:'Adjust for unavailable taxes, stub interest, and compensated absences.',gen:g10rev},
+ {id:'g10recon',ch:10,title:'Reconciling to net position',desc:'Reconcile fund balances to net position and find net investment in capital assets.',gen:g10recon},
+ {id:'g10elim',ch:10,title:'Eliminations and the modified approach',desc:'See how internal activity is handled and what the modified approach requires.',gen:g10elim},
+ {id:'g13pledge',ch:13,title:'Recording a pledge',desc:'Record an unconditional pledge net of uncollectible amounts.',gen:g13pledge},
+ {id:'g13multi',ch:13,title:'Multi-year pledges',desc:'Discount a long-term pledge and accrete the discount into revenue.',gen:g13multi},
+ {id:'g13cond',ch:13,title:'Conditions and restrictions',desc:'Handle a refundable advance and release a gift from donor restrictions.',gen:g13cond},
+ {id:'g13serv',ch:13,title:'Contributed services and memberships',desc:'Decide which services to record and split memberships between contribution and exchange.',gen:g13serv},
+ {id:'g13ratio',ch:13,title:'Net assets, efficiency, and liquidity',desc:'Classify net assets, compute the program ratio, and find assets available within one year.',gen:g13ratio}
+];
+TYPES.forEach(function(t){t.n=t.gen(makeRng(1)).steps.length;});
+
+/* ================= answer checking ================= */
+function parse(s){
+  s=String(s).trim().replace(/[−–—]/g,'-').replace(/[A-Za-z]+/g,'').replace(/[\$,\s%]/g,'');
+  var neg=false;
+  if(/^\(.*\)$/.test(s)){neg=true;s=s.slice(1,-1);}
+  if(!/^-?(\d+\.?\d*|\.\d+)$/.test(s)) return NaN;
+  var v=parseFloat(s);
+  return neg?-v:v;
+}
+function tolOf(s){return (s.tol!=null?s.tol:0.5*Math.pow(10,-(s.dec||0)))+1e-9;}
+function rowsRight(s,raw){var c=0;s.rows.forEach(function(r,i){if(raw&&raw[i]===r.a)c++;});return c;}
+function isRight(s,raw){
+  if(s.kind==='choice') return raw===s.ans;
+  if(s.kind==='multi') return rowsRight(s,raw)===s.rows.length;
+  var v=parse(raw);
+  return !isNaN(v)&&Math.abs(v-s.ans)<=tolOf(s);
+}
+function showAns(s){
+  if(s.kind==='choice') return s.ans;
+  if(s.kind==='multi') return s.rows.map(function(r){return r.a;}).join(', ');
+  if(s.fmt==='money') return money(s.ans,s.dec||0);
+  if(s.fmt==='pct') return nf(s.ans,s.dec==null?1:s.dec)+'%';
+  return (s.dec?nf(s.ans,s.dec):nf(s.ans,0))+(s.unit?' '+s.unit:'');
+}
+function roundHint(s){
+  if(s.kind!=='num') return '';
+  if(s.fmt==='money') return s.dec===0?'Enter dollars (nearest whole dollar), for example 12,500. Use a minus sign or parentheses for a negative amount.':'Enter dollars and cents, for example 12.50.';
+  if(s.fmt==='pct') return 'Enter a percentage, for example 66.7.';
+  return 'Round to '+s.dec+' decimal places, for example '+(s.dec===1?'12.5':s.dec===2?'12.50':s.dec===3?'12.500':'12.5000')+'.';
+}
+
+window.ACCT635={TYPES:TYPES,CHAPTERS:CHAPTERS,makeRng:makeRng,isRight:isRight,rowsRight:rowsRight,showAns:showAns,parse:parse,roundHint:roundHint,PRAISE:L.PRAISE,PRAISE2:L.PRAISE2,HINTLEAD:L.HINTLEAD,MISS:L.MISS,
+  testGens:{g3rate:G.g3rate,g5ptax:G.g5ptax,g6lease:g6lease,g7motor:g7motor,g7lease:g7lease,g10recon:g10recon,g13multi:g13multi}};
+})();
+
+</script>
+<script>
+/* ACCT 635 Course Tutor: interface */
+(function(){
+'use strict';
+var A=window.ACCT635;
+function $(s,r){return (r||document).querySelector(s);}
+function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function pickOf(a){return a[Math.floor(Math.random()*a.length)];}
+var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var S={t:null,seed:0,d:null,resolved:0,first:0};
+var menuView=$('#menu-view'),probView=$('#problem-view'),live=$('#live');
+
+function say(msg){live.textContent='';setTimeout(function(){live.textContent=msg;},60);}
+function chapterTitle(n){var c=A.CHAPTERS.filter(function(x){return x.n===n;})[0];return c?c.title:'';}
+
+/* ---------------- menu ---------------- */
+function buildChapterSelect(){
+  var sel=$('#chSel'),h='<option value="all">All chapters</option>';
+  A.CHAPTERS.forEach(function(c){h+='<option value="'+c.n+'">Chapter '+c.n+': '+esc(c.title)+'</option>';});
+  sel.innerHTML=h;
+  sel.addEventListener('change',function(){renderMenu();try{var u=new URL(location.href);if(sel.value==='all'){u.searchParams.delete('ch');}else{u.searchParams.set('ch',sel.value);}u.searchParams.delete('type');history.replaceState(null,'',u.toString());}catch(e){}});
+}
+function renderMenu(){
+  var v=$('#chSel').value,out='';
+  A.CHAPTERS.forEach(function(c){
+    if(v!=='all'&&String(c.n)!==v)return;
+    var ts=A.TYPES.filter(function(t){return t.ch===c.n;});
+    if(!ts.length)return;
+    out+='<section aria-labelledby="chh-'+c.n+'"><h3 id="chh-'+c.n+'">Chapter '+c.n+': '+esc(c.title)+'</h3><ul class="menu" style="list-style:none;padding:0">';
+    ts.forEach(function(t){
+      out+='<li><button type="button" class="tcard" data-id="'+t.id+'"><span class="t">'+esc(t.title)+'</span><span class="d">'+esc(t.desc)+'</span><span class="m">'+t.n+' steps &middot; new numbers every time</span></button></li>';
+    });
+    out+='</ul></section>';
+  });
+  $('#menu').innerHTML=out;
+}
+$('#menu').addEventListener('click',function(e){
+  var b=e.target.closest?e.target.closest('.tcard'):null;
+  if(!b)return;
+  var t=A.TYPES.filter(function(x){return x.id===b.getAttribute('data-id');})[0];
+  if(t)start(t);
+});
+$('#back-btn').addEventListener('click',showMenu);
+
+function showMenu(){
+  probView.hidden=true;menuView.hidden=false;
+  try{var u=new URL(location.href);u.searchParams.delete('type');history.replaceState(null,'',u.toString());}catch(e){}
+  var h=$('#menu-h');h.setAttribute('tabindex','-1');h.focus({preventScroll:true});
+  window.scrollTo(0,0);
+}
+
+/* ---------------- problem ---------------- */
+function start(t,seed){
+  S.t=t;S.seed=seed||(Math.floor(Math.random()*2147483000)+1);
+  S.d=t.gen(A.makeRng(S.seed));S.resolved=0;S.first=0;
+  menuView.hidden=true;probView.hidden=false;
+  try{var u=new URL(location.href);u.searchParams.set('type',t.id);history.replaceState(null,'',u.toString());}catch(e){}
+  $('#prob-h').textContent=t.title;
+  $('#seed-badge').textContent='Chapter '+t.ch+' · Problem '+S.seed.toString(36).toUpperCase().slice(-5);
+  $('#scenario').innerHTML=S.d.intro+'<details class="ref"><summary>Need a quick refresher?</summary>'+S.d.ref+'</details>';
+  $('#steps').innerHTML='';
+  $('#summary').hidden=true;$('#summary').innerHTML='';
+  updateProgress();
+  addStep(0,true);
+  var h=$('#prob-h');h.setAttribute('tabindex','-1');h.focus({preventScroll:true});
+  window.scrollTo(0,0);
+  say('New problem: '+t.title+'. Step 1 of '+S.d.steps.length+'.');
+}
+
+function updateProgress(){
+  var n=S.d.steps.length,pct=Math.round(S.resolved/n*100);
+  $('#prog-fill').style.width=pct+'%';
+  var p=$('#prog');p.setAttribute('aria-valuemax',n);p.setAttribute('aria-valuenow',S.resolved);
+  $('#prog-left').textContent=S.resolved+' of '+n+' steps done';
+  $('#prog-right').textContent=S.first+' correct on the first try';
+}
+
+function inputHTML(st,i){
+  var h='';
+  if(st.kind==='num'){
+    var unit=st.unit?'<span class="affix">'+esc(st.unit)+'</span>':'';
+    h+='<div class="ansrow"><label for="in-'+i+'">Your answer:</label>'+(st.fmt==='money'?'<span class="affix" aria-hidden="true">$</span>':'')+'<input type="text" id="in-'+i+'" inputmode="decimal" autocomplete="off" spellcheck="false" aria-describedby="q-'+i+' rh-'+i+'">'+(st.fmt==='pct'?'<span class="affix" aria-hidden="true">%</span>':'')+unit+'</div><p class="rhint" id="rh-'+i+'">'+esc(A.roundHint(st))+'</p>';
+  }else if(st.kind==='choice'){
+    h+='<div class="opts" role="radiogroup" aria-labelledby="q-'+i+'">';
+    st.options.forEach(function(o,k){h+='<label class="opt"><input type="radio" name="ch-'+i+'" value="'+k+'"><span>'+esc(o)+'</span></label>';});
+    h+='</div>';
+  }else{
+    h+='<div class="selrows" role="group" aria-labelledby="q-'+i+'">';
+    st.rows.forEach(function(r,j){
+      h+='<div class="selrow"><label for="sel-'+i+'-'+j+'">'+esc(r.t)+'</label><select id="sel-'+i+'-'+j+'"><option value="">Choose&hellip;</option>';
+      r.o.forEach(function(o,k){h+='<option value="'+k+'">'+esc(o)+'</option>';});
+      h+='</select><span class="mark" id="mk-'+i+'-'+j+'"></span></div>';
+    });
+    h+='</div>';
+  }
+  return h;
+}
+
+function addStep(i,noFocus){
+  var st=S.d.steps[i],n=S.d.steps.length;
+  var sec=document.createElement('section');
+  sec.className='card step active';sec.id='step-'+i;sec.setAttribute('aria-labelledby','sh-'+i);
+  sec.innerHTML='<h3 class="num" id="sh-'+i+'" tabindex="-1">Step '+(i+1)+' of '+n+'</h3>'+
+    '<form novalidate><div class="q" id="q-'+i+'">'+st.q+'</div>'+inputHTML(st,i)+
+    '<div class="actions"><button type="submit" class="btn">Check my answer</button></div></form>'+
+    '<div class="fbwrap" id="fb-'+i+'"></div>';
+  $('#steps').appendChild(sec);
+  $('form',sec).addEventListener('submit',function(e){e.preventDefault();check(i);});
+  if(!noFocus){
+    sec.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});
+    var h=$('#sh-'+i);h.focus({preventScroll:true});
+  }
+  var first=$('input[type=text],input[type=radio],select',sec);
+  if(first&&!noFocus){/* focus stays on the step heading so screen readers read the question first */}
+}
+
+function readAnswer(st,sec){
+  if(st.kind==='num')return $('input[type=text]',sec).value;
+  if(st.kind==='choice'){var r=$('input[type=radio]:checked',sec);return r?st.options[+r.value]:null;}
+  var out=[];st.rows.forEach(function(row,j){var s=$('#sel-'+sec.id.split('-')[1]+'-'+j,sec);out.push(s.value===''?null:row.o[+s.value]);});
+  return out;
+}
+function answered(st,raw){
+  if(st.kind==='num')return String(raw).trim()!=='';
+  if(st.kind==='choice')return raw!==null;
+  return raw.every(function(x){return x!==null;});
+}
+
+function fb(i,html){$('#fb-'+i).innerHTML=html;}
+
+function check(i){
+  var st=S.d.steps[i],sec=$('#step-'+i),raw=readAnswer(st,sec);
+  if(!answered(st,raw)){
+    var msg=st.kind==='num'?'Type your answer in the box first.':st.kind==='choice'?'Choose an answer first.':'Choose an answer for every row first.';
+    fb(i,'<div class="fb warn"><strong class="lead">'+msg+'</strong></div>');say(msg);return;
+  }
+  if(st.kind==='num'&&isNaN(A.parse(raw))){
+    var m2='I could not read that as a number. '+A.roundHint(st);
+    fb(i,'<div class="fb warn"><strong class="lead">'+esc(m2)+'</strong></div>');say(m2);return;
+  }
+  var tries=(+sec.getAttribute('data-tries')||0)+1;sec.setAttribute('data-tries',tries);
+  var ok=A.isRight(st,raw);
+  if(ok){finish(i,true,tries===1,raw);return;}
+  if(tries===1){
+    var extra='';
+    if(st.kind==='multi'){var c=A.rowsRight(st,raw);extra=' You have '+c+' of '+st.rows.length+' rows right.';}
+    var lead=pickOf(A.HINTLEAD)+extra;
+    fb(i,'<div class="fb bad"><strong class="lead">'+esc(lead)+'</strong></div><div class="fb hint"><strong>Hint:</strong> '+st.hint+'</div>');
+    say(lead+' Hint: '+st.hint.replace(/<[^>]+>/g,''));
+    var again=$('input[type=text],input[type=radio],select',sec);
+    if(st.kind==='num'){var inp=$('input[type=text]',sec);inp.focus();inp.select();}
+    return;
+  }
+  finish(i,false,false,raw);
+}
+
+function finish(i,ok,firstTry,raw){
+  var st=S.d.steps[i],sec=$('#step-'+i),n=S.d.steps.length;
+  /* lock the inputs */
+  Array.prototype.forEach.call(sec.querySelectorAll('input,select'),function(el){el.disabled=true;});
+  var actions=$('.actions',sec);
+  var last=(i===n-1);
+  actions.innerHTML='<button type="button" class="btn" id="next-'+i+'">'+(last?'See my summary &rarr;':'Next step &rarr;')+'</button>';
+  sec.classList.remove('active');sec.classList.add(ok?'correct':'missed');
+  $('#sh-'+i).textContent='Step '+(i+1)+' of '+n+' · '+(ok?(firstTry?'✓ Correct':'✓ Correct after a hint'):'Solution shown');
+  var html='';
+  if(ok){
+    html+='<div class="fb good"><strong class="lead">✓ '+esc(pickOf(firstTry?A.PRAISE:A.PRAISE2))+'</strong></div>';
+  }else{
+    var yours=st.kind==='num'?A.parse(raw):st.kind==='choice'?raw:'';
+    html+='<div class="fb bad"><strong class="lead">'+esc(pickOf(A.MISS))+'</strong>'+(st.kind==='multi'?'':'The correct answer is <strong>'+esc(A.showAns(st))+'</strong>.')+'</div>';
+    if(st.kind==='multi'){
+      st.rows.forEach(function(r,j){
+        var good=raw[j]===r.a,mk=$('#mk-'+i+'-'+j);
+        if(mk)mk.textContent=good?'✓ Correct':'✗ The answer is '+r.a;
+      });
+    }
+  }
+  if(ok&&st.kind==='multi'){st.rows.forEach(function(r,j){var mk=$('#mk-'+i+'-'+j);if(mk)mk.textContent='✓ Correct';});}
+  html+='<div class="solbox"><div class="lab">Solution</div>'+st.exp+'</div>';
+  fb(i,html);
+  S.resolved++;if(ok&&firstTry)S.first++;
+  updateProgress();
+  var nb=$('#next-'+i);
+  nb.addEventListener('click',function(){
+    nb.disabled=true;nb.style.display='none';
+    if(last){showSummary();}else{addStep(i+1);say('Step '+(i+2)+' of '+n+'.');}
+  });
+  nb.focus();
+  say((ok?'Correct. ':'Not this time. The solution is shown. ')+(last?'Select See my summary.':'Select Next step to continue.'));
+}
+
+function showSummary(){
+  var n=S.d.steps.length,f=S.first,t=S.t;
+  var msg=f===n?'A perfect run: every step right on the first try. Great work!':f>=n*0.6?'Strong work. You got most of the steps on the first try, and the hints took care of the rest.':'Good persistence. Every step you worked through builds the skill. Try another problem: the numbers will be new, and the pattern will feel more familiar.';
+  var h='<h2 id="sum-h" tabindex="-1">Problem complete</h2><p><strong>'+f+' of '+n+'</strong> steps correct on the first try.</p><p>'+msg+'</p>'+
+    '<div class="actions"><button type="button" class="btn" id="again-btn">Try another problem like this</button><button type="button" class="btn secondary" id="other-btn">Choose a different problem type</button></div>'+
+    '<p class="links">Review: <a href="chapter-notes/ch-'+t.ch+'.html">Chapter '+t.ch+' notes</a> &middot; <a href="chapter-walkthroughs/ch-'+t.ch+'.html">Chapter '+t.ch+' walkthrough</a></p>';
+  var box=$('#summary');box.innerHTML=h;box.hidden=false;
+  $('#again-btn').addEventListener('click',function(){start(S.t);});
+  $('#other-btn').addEventListener('click',showMenu);
+  box.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});
+  $('#sum-h').focus({preventScroll:true});
+  say('Problem complete. '+f+' of '+n+' steps correct on the first try.');
+}
+
+/* ---------------- start up ---------------- */
+buildChapterSelect();
+(function init(){
+  var q;try{q=new URLSearchParams(location.search);}catch(e){q=null;}
+  var ch=q&&q.get('ch'),ty=q&&q.get('type');
+  if(ch&&A.CHAPTERS.some(function(c){return String(c.n)===ch;})){$('#chSel').value=ch;}
+  renderMenu();
+  if(ty){var t=A.TYPES.filter(function(x){return x.id===ty;})[0];if(t){start(t);}}
+})();
+})();
+
+</script>
+</body>
+</html>
