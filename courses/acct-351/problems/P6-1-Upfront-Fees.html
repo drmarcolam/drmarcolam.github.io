@@ -399,9 +399,9 @@
       <table class="je">
         <thead><tr><th>Account</th><th class="num" style="width:150px;">Debit</th><th class="num" style="width:150px;">Credit</th></tr></thead>
         <tbody>
-        <tr><td><select class="acct"><option value="">&mdash; select account &mdash;</option><option value="Cash">Cash</option><option value="Accounts receivable">Accounts receivable</option><option value="Deferred revenue — membership">Deferred revenue — membership</option><option value="Deferred revenue — voucher">Deferred revenue — voucher</option><option value="Deferred revenue — visit book">Deferred revenue — visit book</option><option value="Service revenue">Service revenue</option><option value="No journal entry required">No journal entry required</option></select></td><td><input type="text" placeholder="$"></td><td><input type="text" placeholder="$"></td></tr>
-        <tr><td><select class="acct"><option value="">&mdash; select account &mdash;</option><option value="Cash">Cash</option><option value="Accounts receivable">Accounts receivable</option><option value="Deferred revenue — membership">Deferred revenue — membership</option><option value="Deferred revenue — voucher">Deferred revenue — voucher</option><option value="Deferred revenue — visit book">Deferred revenue — visit book</option><option value="Service revenue">Service revenue</option><option value="No journal entry required">No journal entry required</option></select></td><td><input type="text" placeholder="$"></td><td><input type="text" placeholder="$"></td></tr>
-        <tr><td><select class="acct"><option value="">&mdash; select account &mdash;</option><option value="Cash">Cash</option><option value="Accounts receivable">Accounts receivable</option><option value="Deferred revenue — membership">Deferred revenue — membership</option><option value="Deferred revenue — voucher">Deferred revenue — voucher</option><option value="Deferred revenue — visit book">Deferred revenue — visit book</option><option value="Service revenue">Service revenue</option><option value="No journal entry required">No journal entry required</option></select></td><td><input type="text" placeholder="$"></td><td><input type="text" placeholder="$"></td></tr>
+        <tr><td><select class="acct"><option value="">&mdash; select account &mdash;</option><option value="Cash">Cash</option><option value="Accounts receivable">Accounts receivable</option><option value="Deferred revenue">Deferred revenue</option><option value="Deferred revenue – coupons">Deferred revenue – coupons</option><option value="Service revenue">Service revenue</option><option value="No journal entry required">No journal entry required</option></select></td><td><input type="text" placeholder="$"></td><td><input type="text" placeholder="$"></td></tr>
+        <tr><td><select class="acct"><option value="">&mdash; select account &mdash;</option><option value="Cash">Cash</option><option value="Accounts receivable">Accounts receivable</option><option value="Deferred revenue">Deferred revenue</option><option value="Deferred revenue – coupons">Deferred revenue – coupons</option><option value="Service revenue">Service revenue</option><option value="No journal entry required">No journal entry required</option></select></td><td><input type="text" placeholder="$"></td><td><input type="text" placeholder="$"></td></tr>
+        <tr><td><select class="acct"><option value="">&mdash; select account &mdash;</option><option value="Cash">Cash</option><option value="Accounts receivable">Accounts receivable</option><option value="Deferred revenue">Deferred revenue</option><option value="Deferred revenue – coupons">Deferred revenue – coupons</option><option value="Service revenue">Service revenue</option><option value="No journal entry required">No journal entry required</option></select></td><td><input type="text" placeholder="$"></td><td><input type="text" placeholder="$"></td></tr>
           <tr class="je-total"><td>Totals</td>
             <td><input type="text" placeholder="$" id="p61-je1-debit"></td>
             <td><input type="text" placeholder="$" id="p61-je1-credit"></td></tr>
@@ -440,8 +440,8 @@
       <table class="je">
         <thead><tr><th>Account</th><th class="num" style="width:150px;">Debit</th><th class="num" style="width:150px;">Credit</th></tr></thead>
         <tbody>
-        <tr><td><select class="acct"><option value="">&mdash; select account &mdash;</option><option value="Cash">Cash</option><option value="Accounts receivable">Accounts receivable</option><option value="Deferred revenue — membership">Deferred revenue — membership</option><option value="Deferred revenue — voucher">Deferred revenue — voucher</option><option value="Deferred revenue — visit book">Deferred revenue — visit book</option><option value="Service revenue">Service revenue</option><option value="No journal entry required">No journal entry required</option></select></td><td><input type="text" placeholder="$"></td><td><input type="text" placeholder="$"></td></tr>
-        <tr><td><select class="acct"><option value="">&mdash; select account &mdash;</option><option value="Cash">Cash</option><option value="Accounts receivable">Accounts receivable</option><option value="Deferred revenue — membership">Deferred revenue — membership</option><option value="Deferred revenue — voucher">Deferred revenue — voucher</option><option value="Deferred revenue — visit book">Deferred revenue — visit book</option><option value="Service revenue">Service revenue</option><option value="No journal entry required">No journal entry required</option></select></td><td><input type="text" placeholder="$"></td><td><input type="text" placeholder="$"></td></tr>
+        <tr><td><select class="acct"><option value="">&mdash; select account &mdash;</option><option value="Cash">Cash</option><option value="Accounts receivable">Accounts receivable</option><option value="Deferred revenue">Deferred revenue</option><option value="Deferred revenue – coupons">Deferred revenue – coupons</option><option value="Service revenue">Service revenue</option><option value="No journal entry required">No journal entry required</option></select></td><td><input type="text" placeholder="$"></td><td><input type="text" placeholder="$"></td></tr>
+        <tr><td><select class="acct"><option value="">&mdash; select account &mdash;</option><option value="Cash">Cash</option><option value="Accounts receivable">Accounts receivable</option><option value="Deferred revenue">Deferred revenue</option><option value="Deferred revenue – coupons">Deferred revenue – coupons</option><option value="Service revenue">Service revenue</option><option value="No journal entry required">No journal entry required</option></select></td><td><input type="text" placeholder="$"></td><td><input type="text" placeholder="$"></td></tr>
           <tr class="je-total"><td>Totals</td>
             <td><input type="text" placeholder="$" id="p61-je2-debit"></td>
             <td><input type="text" placeholder="$" id="p61-je2-credit"></td></tr>
@@ -992,11 +992,11 @@
   var JE_CHECKS = [
     {prefix:'p61-je1', rows:[
       {acct:'Cash', side:'debit', key:'bundle'},
-      {acct:'Deferred revenue — membership', side:'credit', key:'membAlloc'},
-      {acct:'Deferred revenue — voucher', side:'credit', key:'vouchAlloc'}]},
+      {acct:'Deferred revenue', side:'credit', key:'membAlloc'},
+      {acct:'Deferred revenue – coupons', side:'credit', key:'vouchAlloc'}]},
     {prefix:'p61-je2', rows:[
       {acct:'Cash', side:'debit', key:'bookPrice'},
-      {acct:'Deferred revenue — visit book', side:'credit', key:'bookPrice'}]}
+      {acct:'Deferred revenue – coupons', side:'credit', key:'bookPrice'}]}
   ];
 
   var CHECK_GROUPS = [
