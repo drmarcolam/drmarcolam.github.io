@@ -329,7 +329,7 @@
 <header>
   <p class="eyebrow">ACCT 351 &middot; Intermediate Accounting I &middot; Receivables</p>
   <h1 class="title">Reading a Sales-Returns Disclosure</h1>
-  <p class="subtitle">A refund liability and a right-to-recover asset, reconciled from a real note, journalised, and used to work out the gross margin a company expects to give back.</p>
+  <p class="subtitle">A refund liability and a right-to-recover asset, reconciled from a real note, journalized, and used to work out the gross margin a company expects to give back.</p>
 </header>
 
 <p class="print-name-line" id="printNameLine"></p>
@@ -397,8 +397,8 @@
       <table class="je">
         <thead><tr><th>Account</th><th class="num" style="width:150px;">Debit</th><th class="num" style="width:150px;">Credit</th></tr></thead>
         <tbody>
-        <tr><td><select class="acct"><option value="">&mdash; select account &mdash;</option><option value="Accounts receivable">Accounts receivable</option><option value="Cash">Cash</option><option value="Inventory">Inventory</option><option value="Liability for return allowances">Liability for return allowances</option><option value="Sales returns">Sales returns</option><option value="Sales revenue">Sales revenue</option></select></td><td><input type="text" placeholder="$"></td><td><input type="text" placeholder="$"></td></tr>
-        <tr><td><select class="acct"><option value="">&mdash; select account &mdash;</option><option value="Accounts receivable">Accounts receivable</option><option value="Cash">Cash</option><option value="Inventory">Inventory</option><option value="Liability for return allowances">Liability for return allowances</option><option value="Sales returns">Sales returns</option><option value="Sales revenue">Sales revenue</option></select></td><td><input type="text" placeholder="$"></td><td><input type="text" placeholder="$"></td></tr>
+        <tr><td><select class="acct"><option value="">&mdash; select account &mdash;</option><option value="Accounts receivable">Accounts receivable</option><option value="Cash">Cash</option><option value="Inventory">Inventory</option><option value="Liability for returns allowance">Liability for returns allowance</option><option value="Sales returns">Sales returns</option><option value="Sales revenue">Sales revenue</option></select></td><td><input type="text" placeholder="$"></td><td><input type="text" placeholder="$"></td></tr>
+        <tr><td><select class="acct"><option value="">&mdash; select account &mdash;</option><option value="Accounts receivable">Accounts receivable</option><option value="Cash">Cash</option><option value="Inventory">Inventory</option><option value="Liability for returns allowance">Liability for returns allowance</option><option value="Sales returns">Sales returns</option><option value="Sales revenue">Sales revenue</option></select></td><td><input type="text" placeholder="$"></td><td><input type="text" placeholder="$"></td></tr>
           <tr class="je-total"><td>Totals</td>
             <td><input type="text" placeholder="$" id="p75-jea-debit"></td>
             <td><input type="text" placeholder="$" id="p75-jea-credit"></td></tr>
@@ -412,8 +412,8 @@
       <table class="je">
         <thead><tr><th>Account</th><th class="num" style="width:150px;">Debit</th><th class="num" style="width:150px;">Credit</th></tr></thead>
         <tbody>
-        <tr><td><select class="acct"><option value="">&mdash; select account &mdash;</option><option value="Accounts receivable">Accounts receivable</option><option value="Cash">Cash</option><option value="Inventory">Inventory</option><option value="Liability for return allowances">Liability for return allowances</option><option value="Sales returns">Sales returns</option><option value="Sales revenue">Sales revenue</option></select></td><td><input type="text" placeholder="$"></td><td><input type="text" placeholder="$"></td></tr>
-        <tr><td><select class="acct"><option value="">&mdash; select account &mdash;</option><option value="Accounts receivable">Accounts receivable</option><option value="Cash">Cash</option><option value="Inventory">Inventory</option><option value="Liability for return allowances">Liability for return allowances</option><option value="Sales returns">Sales returns</option><option value="Sales revenue">Sales revenue</option></select></td><td><input type="text" placeholder="$"></td><td><input type="text" placeholder="$"></td></tr>
+        <tr><td><select class="acct"><option value="">&mdash; select account &mdash;</option><option value="Accounts receivable">Accounts receivable</option><option value="Cash">Cash</option><option value="Inventory">Inventory</option><option value="Liability for returns allowance">Liability for returns allowance</option><option value="Sales returns">Sales returns</option><option value="Sales revenue">Sales revenue</option></select></td><td><input type="text" placeholder="$"></td><td><input type="text" placeholder="$"></td></tr>
+        <tr><td><select class="acct"><option value="">&mdash; select account &mdash;</option><option value="Accounts receivable">Accounts receivable</option><option value="Cash">Cash</option><option value="Inventory">Inventory</option><option value="Liability for returns allowance">Liability for returns allowance</option><option value="Sales returns">Sales returns</option><option value="Sales revenue">Sales revenue</option></select></td><td><input type="text" placeholder="$"></td><td><input type="text" placeholder="$"></td></tr>
           <tr class="je-total"><td>Totals</td>
             <td><input type="text" placeholder="$" id="p75-jeb-debit"></td>
             <td><input type="text" placeholder="$" id="p75-jeb-credit"></td></tr>
@@ -442,7 +442,7 @@
     <p class="hint">Enter the percentage as a number &mdash; 41.5 rather than 0.415.</p>
 
     <h4 class="subsection">Requirement 4 &mdash; the effect if the estimate was accurate</h4>
-    <p class="hint">Ask yourself when the revenue and the cost of these particular returns were recognised, and what is left to recognise once the goods come back.</p>
+    <p class="hint">Ask yourself when the revenue and the cost of these particular returns were recognized, and what is left to recognize once the goods come back.</p>
     <table class="worksheet">
       <thead><tr><th>Item ($ in millions)</th><th class="num">Amount</th></tr></thead>
       <tbody>
@@ -1001,9 +1001,9 @@
       entries:[
         {prefix:'p75-jea', rows:[
           {acct:'Sales returns', side:'debit', key:'add'},
-          {acct:'Liability for return allowances', side:'credit', key:'add'}]},
+          {acct:'Liability for returns allowance', side:'credit', key:'add'}]},
         {prefix:'p75-jeb', rows:[
-          {acct:'Liability for return allowances', side:'debit', key:'ded'},
+          {acct:'Liability for returns allowance', side:'debit', key:'ded'},
           {acct:'Accounts receivable', side:'credit', key:'ded'}]}
       ],
       fields:[
