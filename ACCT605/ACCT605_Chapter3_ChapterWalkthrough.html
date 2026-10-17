@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ACCT 605 Chapter 3 Chapter Walkthrough</title>
+<meta name="description" content="Chapter 3 Chapter Walkthrough: step-by-step guided practice on the balance sheet and financial disclosures for Accounting Theory and Research.">
+<style>
+:root{
+  --bg:#f4f8f5; --card:#ffffff; --text:#14201a; --muted:#41524a;
+  --g900:#0b3b2a; --g800:#14513a; --g700:#1b6a4a; --g100:#e3f0e8; --g50:#f0f7f3;
+  --border:#b4cdbf; --accent:#8a5a00; --ok:#0d6137; --bad:#9b2415; --focus:#0a4fd1;
+  --warn-bg:#fff6df;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0e1814; --card:#15231d; --text:#e9f3ee; --muted:#b5c9bf;
+    --g900:#0a2e21; --g800:#1d6a49; --g700:#58c08f; --g100:#1b3328; --g50:#122019;
+    --border:#34503f; --accent:#f0c36a; --ok:#6fdca3; --bad:#ff9f8f; --focus:#8db4ff;
+    --warn-bg:#2b2410;
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font:17px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+.skip{position:absolute;left:-999px;top:0;background:#fff;color:#000;padding:.6rem 1rem;z-index:100;border:2px solid var(--focus)}
+.skip:focus{left:8px;top:8px}
+a{color:var(--g800)}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+header.site{background:var(--g900);color:#fff;padding:2rem 1rem 1.5rem}
+.wrap{max-width:820px;margin:0 auto;padding:0 1rem}
+header.site .wrap{padding:0}
+.eyebrow{font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:#bfe3cf;margin:0 0 .25rem}
+h1{font-size:2rem;line-height:1.2;margin:.1rem 0 .5rem}
+header.site p{margin:.25rem 0}
+.progress{display:inline-block;margin-top:.75rem;background:#fff;color:var(--g900);font-weight:700;padding:.35rem .8rem;border-radius:999px}
+.howto{background:var(--g100);border-left:6px solid var(--g700);padding:.9rem 1.1rem;border-radius:6px;margin:1.25rem 0}
+nav.toc{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:.8rem 1.1rem;margin:1rem 0}
+nav.toc h2{font-size:1rem;margin:0 0 .3rem}
+nav.toc ol{margin:0;padding-left:1.2rem}
+section.topic{margin:2.2rem 0}
+section.topic>h2{font-size:1.55rem;color:var(--g800);border-bottom:3px solid var(--g700);padding-bottom:.3rem;margin-bottom:.8rem}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) section.topic>h2{color:var(--g700)}}
+h3{font-size:1.15rem;margin:1.2rem 0 .4rem}
+.keyterms{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:.4rem 1.1rem .6rem;margin:1rem 0}
+.keyterms ul,.keyterms ol{margin:.4rem 0;padding-left:1.3rem}
+.keyterms li{margin:.3rem 0}
+.example{background:var(--card);border:1px solid var(--border);border-top:6px solid var(--g700);border-radius:8px;padding:1rem 1.2rem 1.2rem;margin:1.5rem 0}
+.example h3{margin-top:0;color:var(--g800)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .example h3{color:var(--g700)}}
+.scenario{background:var(--g50);border-radius:6px;padding:.6rem .9rem;margin:.6rem 0}
+details.hint{margin:.6rem 0}
+details.hint summary{cursor:pointer;font-weight:600;color:var(--g800);padding:.2rem 0}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) details.hint summary{color:var(--g700)}}
+details.hint div{border-left:4px solid var(--accent);padding:.3rem .9rem;margin:.4rem 0;background:var(--warn-bg)}
+.q{margin:.9rem 0}
+.q>label,.q>.lbl{display:block;font-weight:600;margin-bottom:.25rem}
+.field{display:inline-flex;align-items:center;gap:.3rem}
+.field .pre,.field .suf{font-weight:700}
+input[type=text],select{font:inherit;color:var(--text);background:var(--card);border:2px solid var(--muted);border-radius:6px;padding:.4rem .6rem;min-height:2.6rem}
+input[type=text]{width:12rem;text-align:right}
+select{max-width:100%}
+input[aria-invalid=true],select[aria-invalid=true]{border-color:var(--bad)}
+input.ok,select.ok{border-color:var(--ok)}
+.fb{display:block;margin-top:.25rem;font-weight:600;min-height:0}
+.fb.ok{color:var(--ok)} .fb.bad{color:var(--bad)}
+.btnrow{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1rem;align-items:center}
+button{font:inherit;font-weight:700;cursor:pointer;border-radius:6px;padding:.55rem 1.1rem;min-height:2.75rem;border:2px solid var(--g800)}
+button.check{background:var(--g800);color:#fff}
+button.check:hover{background:var(--g900)}
+button.reset{background:transparent;color:var(--g800)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) button.check{background:#e9f3ee;color:#0a2e21;border-color:#e9f3ee} :root:not([data-theme="light"]) button.reset{color:var(--g700);border-color:var(--g700)}}
+.result{font-weight:700}
+.solution{margin-top:1rem;border:2px solid var(--g700);border-radius:8px;padding:.3rem 1rem .8rem;background:var(--g50)}
+.solution h4{margin:.6rem 0 .3rem;color:var(--g800)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .solution h4{color:var(--g700)}}
+table{border-collapse:collapse;width:100%;margin:.7rem 0;font-size:.98rem}
+caption{text-align:left;font-weight:700;padding:.2rem 0 .4rem}
+th,td{border:1px solid var(--border);padding:.4rem .6rem;text-align:left;vertical-align:top}
+thead th{background:var(--g800);color:#fff}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+tr.tot td{font-weight:700;border-top:3px double var(--text)}
+.tablewrap{overflow-x:auto;position:relative}
+table.je td,table.je th,table.jet td,table.jet th{vertical-align:middle}
+table.je select{width:100%;min-width:13rem}
+table.je input{width:8.5rem}
+.rowfb{font-weight:600;white-space:nowrap}
+.formula{background:var(--g100);padding:.5rem .9rem;border-radius:6px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.95rem;overflow-x:auto}
+footer.site{border-top:1px solid var(--border);margin-top:3rem;padding:1.2rem 1rem 2.5rem;color:var(--muted);font-size:.9rem;text-align:center}
+@media print{.skip,.btnrow,nav.toc{display:none} body{background:#fff;color:#000} .example{break-inside:avoid} .solution[hidden]{display:none}}
+
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="site">
+<div class="wrap">
+<p class="eyebrow">ACCT 605 · Accounting Theory and Research</p>
+<h1>Chapter 3 Chapter Walkthrough</h1>
+<p>The Balance Sheet and Financial Disclosures: step-by-step guided practice</p>
+<p class="progress" role="status" aria-live="polite"><span id="count">0</span> of <span id="total">10</span> checked</p>
+</div>
+</header>
+<main id="main" class="wrap">
+<div class="howto"><p><strong>How this works.</strong> This page is for practice only: it is not graded and nothing is submitted. Read each short review, try the example, and use <em>Check my answer</em> to see feedback and a worked solution. Numbers can be typed with or without dollar signs and commas. <em>Need a hint?</em> opens a nudge without giving the answer away. Company names are fictional.</p></div>
+<nav class="toc" aria-label="On this page"><h2>On this page</h2><ol><li><a href="#s1">The balance sheet and its classifications</a></li><li><a href="#s2">Disclosures, MD&A, and the audit</a></li><li><a href="#s3">Financial analysis and risk ratios</a></li><li><a href="#s4">U.S. GAAP and IFRS</a></li><li><a href="#wrap">Wrap-up</a></li></ol></nav>
+<section class="topic" id="s1" aria-labelledby="s1h">
+<h2 id="s1h">The balance sheet and its classifications</h2>
+<p>The balance sheet organizes assets, liabilities, and equity so users can assess liquidity, solvency, and financial flexibility.</p>
+<div class="keyterms"><ul>
+<li>The <strong>balance sheet</strong> is a position statement: assets, liabilities, and equity at a point in time. It helps users assess <strong>liquidity</strong>, <strong>solvency</strong>, and financial flexibility.</li>
+<li><strong>Limitations:</strong> many assets are reported at historical cost, not current value; the statement omits some resources (for example, internally developed intangibles); and it relies on estimates and judgments.</li>
+<li><strong>Current assets</strong> are cash and assets expected to be converted to cash, sold, or consumed within one year or the operating cycle, whichever is longer. Typical order: cash and cash equivalents, short-term investments, accounts receivable, inventories, prepaid expenses.</li>
+<li><strong>Noncurrent assets:</strong> investments and funds; property, plant, and equipment; intangible assets; other assets.</li>
+<li><strong>Current liabilities</strong> are expected to be settled with current assets or by creating other current liabilities. Everything else is long-term. Equity: paid-in capital, retained earnings, accumulated other comprehensive income, and treasury stock (a deduction).</li>
+</ul></div>
+<article class="example" id="ex1" aria-labelledby="ex1h">
+<h3 id="ex1h">Example 1 — Classifying balance sheet accounts</h3>
+<div class="scenario">Choose the balance sheet classification for each item.</div>
+<details class="hint"><summary>Need a hint?</summary><div>Think: will it be converted to cash or settled within one year (or the operating cycle)? Is it used in operations or held for investment?</div></details>
+<div class="q"><label for="f1">a. Inventory held for sale</label><select id="f1" data-answer="Current asset"><option value="">Choose…</option><option>Current asset</option><option>Investments and funds</option><option>Property, plant, and equipment</option><option>Intangible asset</option><option>Current liability</option><option>Long-term liability</option><option>Shareholders’ equity</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f2">b. A factory building used in operations</label><select id="f2" data-answer="Property, plant, and equipment"><option value="">Choose…</option><option>Current asset</option><option>Investments and funds</option><option>Property, plant, and equipment</option><option>Intangible asset</option><option>Current liability</option><option>Long-term liability</option><option>Shareholders’ equity</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f3">c. A patent</label><select id="f3" data-answer="Intangible asset"><option value="">Choose…</option><option>Current asset</option><option>Investments and funds</option><option>Property, plant, and equipment</option><option>Intangible asset</option><option>Current liability</option><option>Long-term liability</option><option>Shareholders’ equity</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f4">d. Land held for future investment, not used in operations</label><select id="f4" data-answer="Investments and funds"><option value="">Choose…</option><option>Current asset</option><option>Investments and funds</option><option>Property, plant, and equipment</option><option>Intangible asset</option><option>Current liability</option><option>Long-term liability</option><option>Shareholders’ equity</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f5">e. Salaries payable</label><select id="f5" data-answer="Current liability"><option value="">Choose…</option><option>Current asset</option><option>Investments and funds</option><option>Property, plant, and equipment</option><option>Intangible asset</option><option>Current liability</option><option>Long-term liability</option><option>Shareholders’ equity</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f6">f. Bonds payable due in 8 years</label><select id="f6" data-answer="Long-term liability"><option value="">Choose…</option><option>Current asset</option><option>Investments and funds</option><option>Property, plant, and equipment</option><option>Intangible asset</option><option>Current liability</option><option>Long-term liability</option><option>Shareholders’ equity</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f7">g. Retained earnings</label><select id="f7" data-answer="Shareholders’ equity"><option value="">Choose…</option><option>Current asset</option><option>Investments and funds</option><option>Property, plant, and equipment</option><option>Intangible asset</option><option>Current liability</option><option>Long-term liability</option><option>Shareholders’ equity</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f8">h. Prepaid insurance covering the next 12 months</label><select id="f8" data-answer="Current asset"><option value="">Choose…</option><option>Current asset</option><option>Investments and funds</option><option>Property, plant, and equipment</option><option>Intangible asset</option><option>Current liability</option><option>Long-term liability</option><option>Shareholders’ equity</option></select><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><ul><li><strong>a. Current asset.</strong></li><li><strong>b. Property, plant, and equipment.</strong></li><li><strong>c. Intangible asset</strong> (no physical substance).</li><li><strong>d. Investments and funds.</strong> Land not used in operations is held for investment.</li><li><strong>e. Current liability.</strong></li><li><strong>f. Long-term liability.</strong></li><li><strong>g. Shareholders&rsquo; equity.</strong></li><li><strong>h. Current asset</strong> (prepaid expense).</li></ul></div>
+</article><article class="example" id="ex2" aria-labelledby="ex2h">
+<h3 id="ex2h">Example 2 — Cash, cash equivalents, and restrictions</h3>
+<div class="scenario">Cedar Hollow Foods reports the following at year-end: currency and coins $4,000; checking account $61,000; Treasury bill with a 60-day original maturity $30,000; 6-month certificate of deposit $25,000; compensating balance of $15,000 required by a loan agreement (held in the checking account, loan matures in 3 years); and a postdated customer check of $2,000 (not yet deposited, not included above).</div>
+<details class="hint"><summary>Need a hint?</summary><div>Cash equivalents are highly liquid investments with original maturities of three months or less. Legally restricted cash related to long-term borrowings is reported as noncurrent.</div></details>
+<div class="q"><label for="f9">Cash and cash equivalents (current)</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f9" inputmode="decimal" autocomplete="off" data-answer="80000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f10">Where does the 6-month certificate of deposit belong?</label><select id="f10" data-answer="Short-term investments"><option value="">Choose…</option><option>Cash equivalents</option><option>Short-term investments</option><option>Noncurrent investments</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f11">How is the $15,000 compensating balance (loan matures in 3 years) classified?</label><select id="f11" data-answer="Noncurrent asset (restricted cash)"><option value="">Choose…</option><option>Current cash</option><option>Noncurrent asset (restricted cash)</option><option>Not reported</option></select><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><p>Cash and cash equivalents: currency $4,000 + checking $61,000 − restricted $15,000 + T-bill $30,000 = <strong>$80,000</strong>. The T-bill had an original maturity of three months or less, so it is a cash equivalent.</p><p>The 6-month CD has an original maturity of more than three months, so it is a <strong>short-term investment</strong>.</p><p>The compensating balance supports a long-term loan, so it is reported as a <strong>noncurrent asset (restricted cash)</strong>. The postdated check is a receivable, not cash.</p></div>
+</article><article class="example" id="ex3" aria-labelledby="ex3h">
+<h3 id="ex3h">Example 3 — Working capital and the current ratio</h3>
+<div class="scenario">Balsam Ridge Outfitters reports current assets: cash $30,000, short-term investments $20,000, accounts receivable (net) $90,000, inventories $130,000, prepaid expenses $10,000. Current liabilities: accounts payable $70,000, accrued liabilities $25,000, current portion of long-term debt $35,000.</div>
+<details class="hint"><summary>Need a hint?</summary><div>Working capital = current assets − current liabilities. Current ratio = current assets ÷ current liabilities. Quick (acid-test) ratio uses cash, short-term investments, and net receivables.</div></details>
+<div class="q"><label for="f12">Total current assets</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f12" inputmode="decimal" autocomplete="off" data-answer="280000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f13">Total current liabilities</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f13" inputmode="decimal" autocomplete="off" data-answer="130000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f14">Working capital</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f14" inputmode="decimal" autocomplete="off" data-answer="150000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f15">Current ratio</label><div class="field"><input type="text" id="f15" inputmode="decimal" autocomplete="off" data-answer="2.15" data-unit="x" data-tol="0.01"><span class="suf" aria-hidden="true">×</span></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f16">Acid-test (quick) ratio</label><div class="field"><input type="text" id="f16" inputmode="decimal" autocomplete="off" data-answer="1.08" data-unit="x" data-tol="0.01"><span class="suf" aria-hidden="true">×</span></div><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><p>Current assets: $30,000 + $20,000 + $90,000 + $130,000 + $10,000 = <strong>$280,000</strong>. Current liabilities: $70,000 + $25,000 + $35,000 = <strong>$130,000</strong>. Working capital = <strong>$150,000</strong>.</p><p>Current ratio = $280,000 ÷ $130,000 = <strong>2.15</strong>. Acid-test = ($30,000 + $20,000 + $90,000) ÷ $130,000 = 140,000 ÷ 130,000 = <strong>1.08</strong>.</p></div>
+</article><article class="example" id="ex4" aria-labelledby="ex4h">
+<h3 id="ex4h">Example 4 — Reporting equity</h3>
+<div class="scenario">Asheboro Valley Corp. has the following equity accounts: common stock, 100,000 shares at $1 par, $100,000; additional paid-in capital $540,000; retained earnings $320,000; treasury stock (at cost) $60,000; accumulated other comprehensive income (loss) of ($15,000).</div>
+<details class="hint"><summary>Need a hint?</summary><div>Treasury stock and an accumulated other comprehensive <em>loss</em> reduce total equity.</div></details>
+<div class="q"><label for="f17">Total paid-in capital</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f17" inputmode="decimal" autocomplete="off" data-answer="640000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f18">Total shareholders’ equity</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f18" inputmode="decimal" autocomplete="off" data-answer="885000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f19">Treasury stock is reported as</label><select id="f19" data-answer="A deduction from shareholders’ equity"><option value="">Choose…</option><option>An asset</option><option>A deduction from shareholders’ equity</option><option>A liability</option></select><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><p>Paid-in capital: $100,000 + $540,000 = <strong>$640,000</strong>.</p><p>Total equity = $640,000 + $320,000 − $15,000 − $60,000 = <strong>$885,000</strong>.</p><p>Treasury stock is a contra-equity account, reducing total shareholders&rsquo; equity.</p></div>
+</article>
+</section><section class="topic" id="s2" aria-labelledby="s2h">
+<h2 id="s2h">Disclosures, MD&A, and the audit</h2>
+<p>The notes, management&rsquo;s discussion, and the auditor&rsquo;s report supplement the statements so that users can interpret them.</p>
+<div class="keyterms"><ul>
+<li><strong>Disclosure notes</strong> are an integral part of the financial statements. Typical notes: summary of significant accounting policies, subsequent events, related-party transactions, commitments and contingencies, and segment information.</li>
+<li><strong>Subsequent events:</strong> <em>Recognized</em> events provide additional evidence about conditions that existed at the balance sheet date (adjust the statements). <em>Nonrecognized</em> events arise after the balance sheet date (disclose only).</li>
+<li><strong>Related-party transactions</strong> must be disclosed. <strong>Commitments and contingencies</strong> are disclosed when appropriate.</li>
+<li><strong>MD&amp;A</strong> (management&rsquo;s discussion and analysis) covers liquidity, capital resources, and results of operations. The <strong>management report</strong> states management&rsquo;s responsibility. <strong>Compensation</strong> disclosures cover executives.</li>
+<li><strong>Audit:</strong> an independent CPA expresses an opinion on whether the statements are presented fairly, in all material respects, in conformity with GAAP. An <strong>unqualified (clean) opinion</strong> is the best result. Auditors also report on <strong>internal control over financial reporting</strong> for public companies and communicate <strong>critical audit matters</strong>.</li>
+</ul></div>
+<article class="example" id="ex5" aria-labelledby="ex5h">
+<h3 id="ex5h">Example 5 — Subsequent events</h3>
+<div class="scenario">Greenfield Mills has a December 31 year-end. The financial statements are issued on March 5. Classify each event that occurred in the new year.</div>
+<details class="hint"><summary>Need a hint?</summary><div>Does the event give more information about a condition that <em>existed</em> at the balance sheet date, or does it reflect a new condition that arose afterward?</div></details>
+<div class="q"><label for="f20">a. On February 10, a customer that owed $40,000 at December 31 declares bankruptcy because of financial trouble that existed at year-end</label><select id="f20" data-answer="Recognized (adjust the statements)"><option value="">Choose…</option><option>Recognized (adjust the statements)</option><option>Nonrecognized (disclose only)</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f21">b. On January 20, a fire destroys one of the company&rsquo;s warehouses</label><select id="f21" data-answer="Nonrecognized (disclose only)"><option value="">Choose…</option><option>Recognized (adjust the statements)</option><option>Nonrecognized (disclose only)</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f22">c. On February 1, the company issues $5,000,000 of bonds</label><select id="f22" data-answer="Nonrecognized (disclose only)"><option value="">Choose…</option><option>Recognized (adjust the statements)</option><option>Nonrecognized (disclose only)</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f23">d. On January 15, a lawsuit that was pending at year-end is settled for an amount greater than the accrued liability</label><select id="f23" data-answer="Recognized (adjust the statements)"><option value="">Choose…</option><option>Recognized (adjust the statements)</option><option>Nonrecognized (disclose only)</option></select><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><ul><li><strong>a. Recognized.</strong> The bankruptcy confirms the customer&rsquo;s condition at year-end, which affects the allowance for uncollectible accounts.</li><li><strong>b. Nonrecognized.</strong> The fire is a new event; disclose it.</li><li><strong>c. Nonrecognized.</strong> A bond issue after year-end is disclosed.</li><li><strong>d. Recognized.</strong> The settlement provides evidence about a condition that existed at year-end.</li></ul></div>
+</article><article class="example" id="ex6" aria-labelledby="ex6h">
+<h3 id="ex6h">Example 6 — Notes, MD&A, and the audit report</h3>
+<div class="scenario">Match each item to where it appears or what it does.</div>
+<details class="hint"><summary>Need a hint?</summary><div>The audit opinion is about fair presentation in conformity with GAAP. MD&amp;A is management&rsquo;s own discussion.</div></details>
+<div class="q"><label for="f24">a. Description of the depreciation method and inventory costing method used</label><select id="f24" data-answer="Summary of significant accounting policies"><option value="">Choose…</option><option>Summary of significant accounting policies</option><option>MD&A</option><option>Audit report</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f25">b. Management&rsquo;s discussion of liquidity, capital resources, and results of operations</label><select id="f25" data-answer="MD&A"><option value="">Choose…</option><option>Summary of significant accounting policies</option><option>MD&A</option><option>Audit report</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f26">c. An independent CPA&rsquo;s opinion that the statements are presented fairly in conformity with GAAP</label><select id="f26" data-answer="Audit report"><option value="">Choose…</option><option>Summary of significant accounting policies</option><option>MD&A</option><option>Audit report</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f27">d. Which audit opinion is most favorable?</label><select id="f27" data-answer="Unqualified"><option value="">Choose…</option><option>Unqualified</option><option>Qualified</option><option>Adverse</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f28">e. Who is primarily responsible for the preparation of the financial statements?</label><select id="f28" data-answer="Management"><option value="">Choose…</option><option>The auditor</option><option>Management</option><option>The SEC</option></select><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><ul><li><strong>a.</strong> Summary of significant accounting policies.</li><li><strong>b.</strong> MD&amp;A.</li><li><strong>c.</strong> Audit report.</li><li><strong>d. Unqualified</strong> (clean) opinion.</li><li><strong>e. Management.</strong> The auditor expresses an opinion on them; it does not prepare them.</li></ul></div>
+</article>
+</section><section class="topic" id="s3" aria-labelledby="s3h">
+<h2 id="s3h">Financial analysis and risk ratios</h2>
+<p>Analysts transform reported numbers into ratios to evaluate liquidity, solvency, and profitability.</p>
+<div class="keyterms"><ul>
+<li><strong>Liquidity</strong> = ability to pay current obligations. <strong>Solvency</strong> = ability to meet long-term obligations.</li>
+<li><strong>Current ratio</strong> = current assets ÷ current liabilities. <strong>Acid-test</strong> = (cash + short-term investments + net receivables) ÷ current liabilities.</li>
+<li><strong>Debt to equity</strong> = total liabilities ÷ shareholders&rsquo; equity. <strong>Times interest earned</strong> = (net income + interest expense + taxes) ÷ interest expense.</li>
+<li><strong>Return on assets</strong> = net income ÷ average total assets. Profit margin = net income ÷ net sales. Asset turnover = net sales ÷ average total assets. ROA = profit margin × asset turnover.</li>
+<li><strong>Financial analysis techniques:</strong> horizontal (trend), vertical (common-size), and ratio analysis.</li>
+</ul></div>
+<article class="example" id="ex7" aria-labelledby="ex7h">
+<h3 id="ex7h">Example 7 — Risk ratios</h3>
+<div class="scenario">Pisgah Trails Inc. reports: total assets $900,000; total liabilities $540,000; shareholders&rsquo; equity $360,000. Net income $72,000, interest expense $18,000, income tax expense $30,000.</div>
+<details class="hint"><summary>Need a hint?</summary><div>Times interest earned uses earnings <em>before</em> interest and taxes (net income + interest + taxes).</div></details>
+<div class="q"><label for="f29">Debt to equity ratio</label><div class="field"><input type="text" id="f29" inputmode="decimal" autocomplete="off" data-answer="1.5" data-unit="x" data-tol="0.01"><span class="suf" aria-hidden="true">×</span></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f30">Times interest earned</label><div class="field"><input type="text" id="f30" inputmode="decimal" autocomplete="off" data-answer="6.67" data-unit="x" data-tol="0.01"><span class="suf" aria-hidden="true">×</span></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f31">Equity as a % of total assets</label><div class="field"><input type="text" id="f31" inputmode="decimal" autocomplete="off" data-answer="40" data-unit="%" data-tol="0.5"><span class="suf" aria-hidden="true">%</span></div><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><p>Debt to equity = $540,000 ÷ $360,000 = <strong>1.5</strong>.</p><p>Times interest earned = ($72,000 + $18,000 + $30,000) ÷ $18,000 = $120,000 ÷ $18,000 = <strong>6.67</strong>.</p><p>Equity ÷ total assets = $360,000 ÷ $900,000 = <strong>40%</strong>.</p></div>
+</article><article class="example" id="ex8" aria-labelledby="ex8h">
+<h3 id="ex8h">Example 8 — Profitability: DuPont analysis</h3>
+<div class="scenario">Tryon Outdoor Gear: net sales $1,200,000; net income $96,000; total assets were $700,000 at the beginning of the year and $900,000 at the end.</div>
+<details class="hint"><summary>Need a hint?</summary><div>Average total assets = (beginning + ending) ÷ 2.</div></details>
+<div class="q"><label for="f32">Profit margin on sales</label><div class="field"><input type="text" id="f32" inputmode="decimal" autocomplete="off" data-answer="8" data-unit="%" data-tol="0.1"><span class="suf" aria-hidden="true">%</span></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f33">Asset turnover</label><div class="field"><input type="text" id="f33" inputmode="decimal" autocomplete="off" data-answer="1.5" data-unit="x" data-tol="0.01"><span class="suf" aria-hidden="true">×</span></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f34">Return on assets</label><div class="field"><input type="text" id="f34" inputmode="decimal" autocomplete="off" data-answer="12" data-unit="%" data-tol="0.1"><span class="suf" aria-hidden="true">%</span></div><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><p>Average assets: ($700,000 + $900,000) ÷ 2 = $800,000.</p><p>Profit margin = $96,000 ÷ $1,200,000 = <strong>8%</strong>. Asset turnover = $1,200,000 ÷ $800,000 = <strong>1.5</strong>. ROA = 8% × 1.5 = <strong>12%</strong>, which also equals $96,000 ÷ $800,000.</p></div>
+</article><article class="example" id="ex9" aria-labelledby="ex9h">
+<h3 id="ex9h">Example 9 — Analysis techniques</h3>
+<div class="scenario">Identify the analysis technique described.</div>
+<details class="hint"><summary>Need a hint?</summary><div>Horizontal = across time. Vertical = within one year, as a percent of a base.</div></details>
+<div class="q"><label for="f35">a. Comparing sales for each of the last five years, expressed as a percentage of the first year</label><select id="f35" data-answer="Horizontal analysis"><option value="">Choose…</option><option>Horizontal analysis</option><option>Vertical (common-size) analysis</option><option>Ratio analysis</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f36">b. Expressing each balance sheet item as a percentage of total assets</label><select id="f36" data-answer="Vertical (common-size) analysis"><option value="">Choose…</option><option>Horizontal analysis</option><option>Vertical (common-size) analysis</option><option>Ratio analysis</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f37">c. Dividing current assets by current liabilities</label><select id="f37" data-answer="Ratio analysis"><option value="">Choose…</option><option>Horizontal analysis</option><option>Vertical (common-size) analysis</option><option>Ratio analysis</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f38">d. A decrease in the current ratio would generally signal</label><select id="f38" data-answer="Lower liquidity"><option value="">Choose…</option><option>Lower liquidity</option><option>Higher liquidity</option><option>Lower solvency risk</option></select><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><ul><li><strong>a. Horizontal analysis.</strong></li><li><strong>b. Vertical (common-size) analysis.</strong></li><li><strong>c. Ratio analysis.</strong></li><li><strong>d. Lower liquidity.</strong></li></ul></div>
+</article>
+</section><section class="topic" id="s4" aria-labelledby="s4h">
+<h2 id="s4h">U.S. GAAP and IFRS</h2>
+<p>A few differences affect the balance sheet and segment disclosures.</p>
+<div class="keyterms"><ul>
+<li><strong>Presentation:</strong> U.S. GAAP presents current items first (liquidity order). IFRS companies often present noncurrent items first, and the balance sheet may be presented as net assets.</li>
+<li><strong>Segments:</strong> IFRS 8 and U.S. GAAP (ASC 280) both use the management approach, with differences in required disclosures (for example, IFRS also requires segment liabilities if reported to the chief operating decision maker).</li>
+<li>Under IFRS, <strong>current</strong> liabilities also include those a company does not have an unconditional right to defer settlement of for twelve months.</li>
+</ul></div>
+<article class="example" id="ex10" aria-labelledby="ex10h">
+<h3 id="ex10h">Example 10 — U.S. GAAP versus IFRS</h3>
+<div class="scenario">For each description, decide whether it describes U.S. GAAP, IFRS, or both.</div>
+<details class="hint"><summary>Need a hint?</summary><div>The biggest presentation difference is the order of balance sheet items.</div></details>
+<div class="q"><label for="f39">a. Assets are typically listed beginning with the most liquid</label><select id="f39" data-answer="U.S. GAAP"><option value="">Choose…</option><option>U.S. GAAP</option><option>IFRS</option><option>Both</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f40">b. Companies commonly list noncurrent assets first</label><select id="f40" data-answer="IFRS"><option value="">Choose…</option><option>U.S. GAAP</option><option>IFRS</option><option>Both</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f41">c. Segment reporting follows the management approach</label><select id="f41" data-answer="Both"><option value="">Choose…</option><option>U.S. GAAP</option><option>IFRS</option><option>Both</option></select><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><ul><li><strong>a. U.S. GAAP.</strong></li><li><strong>b. IFRS.</strong> Many IFRS companies present noncurrent items first.</li><li><strong>c. Both.</strong></li></ul></div>
+</article>
+</section>
+<section class="topic" id="wrap" aria-labelledby="wraph"><h2 id="wraph">Wrap-up: Chapter 3 at a glance</h2><ul><li><strong>The balance sheet</strong> lists assets, liabilities, and equity at a point in time, classified as current or noncurrent. It has limitations, including historical-cost measurement.</li><li><strong>Cash and cash equivalents</strong> include highly liquid investments maturing in three months or less when purchased; restricted cash tied to long-term debt is noncurrent.</li><li><strong>Disclosures:</strong> notes (accounting policies, subsequent events, related parties), MD&amp;A, and the audit report all help users interpret the statements.</li><li><strong>Ratios:</strong> current ratio and acid-test for liquidity; debt to equity and times interest earned for solvency; profit margin, asset turnover, and ROA for profitability.</li><li><strong>IFRS</strong> differs mainly in presentation order and some segment disclosures.</li></ul></section>
+</main>
+<footer class="site">ACCT 605 · Chapter 3 Chapter Walkthrough · The Balance Sheet and Financial Disclosures (Ungraded)</footer>
+<script>
+(function(){
+  var Y=new Date().getFullYear();
+  document.querySelectorAll('[data-yr]').forEach(function(e){e.textContent=String(Y+Number(e.getAttribute('data-yr')));});
+
+  var ACCOUNTS=["Accounts payable", "Accounts receivable", "Allowance for uncollectible accounts", "Bonds payable", "Cash", "Common stock", "Equipment", "Interest expense", "Inventory", "Land", "Prepaid insurance", "Retained earnings", "Salaries payable", "Sales revenue", "Treasury stock"];
+
+  function parseNum(s){
+    if(s==null) return NaN; s=String(s).trim(); if(!s) return NaN;
+    var neg=/^\(.*\)$/.test(s)||/^-/.test(s);
+    s=s.replace(/[$,%\s()\-]/g,''); var v=parseFloat(s);
+    return isNaN(v)?NaN:(neg?-v:v);
+  }
+  function fmt(v,unit){
+    var o=Math.abs(v)%1?{minimumFractionDigits:2,maximumFractionDigits:2}:{maximumFractionDigits:0};
+    var t=Math.abs(v).toLocaleString('en-US',o);
+    if(unit==='%') return t+'%';
+    if(unit==='$') return (v<0?'-':'')+'$'+t;
+    return (v<0?'-':'')+t;
+  }
+
+  /* Build journal entry tables */
+  document.querySelectorAll('div.je').forEach(function(box,idx){
+    var rows=Number(box.getAttribute('data-rows')||3);
+    var id='je'+idx;
+    var h='<div class="tablewrap"><table class="je"><caption>'+box.getAttribute('data-caption')+'</caption><thead><tr><th scope="col">Account title</th><th scope="col" class="n">Debit ($)</th><th scope="col" class="n">Credit ($)</th><th scope="col"><span class="sr">Result</span></th></tr></thead><tbody>';
+    for(var r=0;r<rows;r++){
+      h+='<tr><td><label class="sr" for="'+id+'a'+r+'">Account, line '+(r+1)+'</label><select id="'+id+'a'+r+'"><option value="">Choose…</option>'+ACCOUNTS.map(function(a){return '<option>'+a+'</option>';}).join('')+'</select></td>'+
+         '<td class="n"><label class="sr" for="'+id+'d'+r+'">Debit amount, line '+(r+1)+'</label><input type="text" inputmode="decimal" autocomplete="off" id="'+id+'d'+r+'"></td>'+
+         '<td class="n"><label class="sr" for="'+id+'c'+r+'">Credit amount, line '+(r+1)+'</label><input type="text" inputmode="decimal" autocomplete="off" id="'+id+'c'+r+'"></td>'+
+         '<td><span class="rowfb" aria-live="polite"></span></td></tr>';
+    }
+    h+='</tbody></table></div><span class="fb" aria-live="polite"></span>';
+    box.innerHTML=h;
+  });
+
+  var checked={}; var total=document.querySelectorAll('.example').length;
+  document.getElementById('total').textContent=total;
+  function updateProgress(){
+    document.getElementById('count').textContent=Object.keys(checked).length;
+  }
+
+  function gradeField(el){
+    var unit=el.getAttribute('data-unit')||'';
+    var fb=el.closest('.q').querySelector('.fb');
+    var ok;
+    if(el.tagName==='SELECT'){
+      ok=(el.value===el.getAttribute('data-answer'));
+      fb.textContent=ok?'✓ Correct':(el.value?'✗ Not quite. Answer: ':'✗ No answer chosen. Answer: ')+(ok?'':el.getAttribute('data-answer'));
+    } else {
+      var v=parseNum(el.value), a=Number(el.getAttribute('data-answer')), tol=Number(el.getAttribute('data-tol')||0.5);
+      ok=!isNaN(v)&&Math.abs(v-a)<=tol;
+      fb.textContent=ok?'✓ Correct':(isNaN(v)?'✗ No answer entered. Answer: ':'✗ Not quite. Answer: ')+fmt(a,unit);
+    }
+    fb.className='fb '+(ok?'ok':'bad');
+    el.setAttribute('aria-invalid',ok?'false':'true'); el.classList.toggle('ok',ok);
+    return ok;
+  }
+
+  function gradeJE(box){
+    var id=null, rows=Number(box.getAttribute('data-rows')||3);
+    var first=box.querySelector('select').id; id=first.replace(/a0$/,'');
+    var exp={}; JSON.parse(box.getAttribute('data-expected')).forEach(function(e){
+      exp[e[0]]=(exp[e[0]]||0)+(e[1]==='D'?e[2]:-e[2]);
+    });
+    var got={}, rowOk=true, anyBlankAcct=false;
+    for(var r=0;r<rows;r++){
+      var acct=document.getElementById(id+'a'+r).value;
+      var d=parseNum(document.getElementById(id+'d'+r).value), c=parseNum(document.getElementById(id+'c'+r).value);
+      var fbr=box.querySelectorAll('.rowfb')[r];
+      if(isNaN(d)) d=0; if(isNaN(c)) c=0;
+      if(!acct && (d||c)){ fbr.textContent='✗ Pick an account'; fbr.className='rowfb bad'; rowOk=false; continue; }
+      if(!acct){ fbr.textContent=''; continue; }
+      got[acct]=(got[acct]||0)+d-c;
+    }
+    var keys=Object.keys(exp).concat(Object.keys(got).filter(function(k){return !(k in exp);}));
+    var ok=rowOk;
+    keys.forEach(function(k){ if(Math.abs((exp[k]||0)-(got[k]||0))>0.5) ok=false; });
+    for(var r2=0;r2<rows;r2++){
+      var acct2=document.getElementById(id+'a'+r2).value; var fbr2=box.querySelectorAll('.rowfb')[r2];
+      if(!acct2) continue;
+      var good=Math.abs((exp[acct2]||0)-(got[acct2]||0))<=0.5 && (acct2 in exp);
+      fbr2.textContent=good?'✓':'✗'; fbr2.className='rowfb '+(good?'ok':'bad');
+    }
+    var fb=box.querySelector('.fb');
+    fb.textContent=ok?'✓ Journal entry is correct':'✗ Not quite. Compare your entry with the solution below.';
+    fb.className='fb '+(ok?'ok':'bad');
+    return ok;
+  }
+
+  document.querySelectorAll('.example').forEach(function(ex){
+    var btn=ex.querySelector('button.check'), rst=ex.querySelector('button.reset'), sol=ex.querySelector('.solution'), res=ex.querySelector('.result');
+    btn.addEventListener('click',function(){
+      var good=0,n=0;
+      ex.querySelectorAll('[data-answer]').forEach(function(el){ n++; if(gradeField(el)) good++; });
+      ex.querySelectorAll('div.je').forEach(function(box){ n++; if(gradeJE(box)) good++; });
+      res.textContent=good+' of '+n+' correct';
+      sol.hidden=false;
+      checked[ex.id]=true; updateProgress();
+    });
+    rst.addEventListener('click',function(){
+      ex.querySelectorAll('input[type=text]').forEach(function(i){i.value='';i.removeAttribute('aria-invalid');i.classList.remove('ok');});
+      ex.querySelectorAll('select').forEach(function(s){s.selectedIndex=0;s.removeAttribute('aria-invalid');s.classList.remove('ok');});
+      ex.querySelectorAll('.fb,.rowfb').forEach(function(f){f.textContent='';f.className=f.className.split(' ')[0];});
+      res.textContent=''; sol.hidden=true;
+    });
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ACCT 605 Chapter 9 Chapter Walkthrough</title>
+<meta name="description" content="Chapter 9 Chapter Walkthrough: step-by-step guided practice on additional inventory issues for Accounting Theory and Research.">
+<style>
+:root{
+  --bg:#f4f8f5; --card:#ffffff; --text:#14201a; --muted:#41524a;
+  --g900:#0b3b2a; --g800:#14513a; --g700:#1b6a4a; --g100:#e3f0e8; --g50:#f0f7f3;
+  --border:#b4cdbf; --accent:#8a5a00; --ok:#0d6137; --bad:#9b2415; --focus:#0a4fd1;
+  --warn-bg:#fff6df;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0e1814; --card:#15231d; --text:#e9f3ee; --muted:#b5c9bf;
+    --g900:#0a2e21; --g800:#1d6a49; --g700:#58c08f; --g100:#1b3328; --g50:#122019;
+    --border:#34503f; --accent:#f0c36a; --ok:#6fdca3; --bad:#ff9f8f; --focus:#8db4ff;
+    --warn-bg:#2b2410;
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font:17px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+.skip{position:absolute;left:-999px;top:0;background:#fff;color:#000;padding:.6rem 1rem;z-index:100;border:2px solid var(--focus)}
+.skip:focus{left:8px;top:8px}
+a{color:var(--g800)}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+header.site{background:var(--g900);color:#fff;padding:2rem 1rem 1.5rem}
+.wrap{max-width:820px;margin:0 auto;padding:0 1rem}
+header.site .wrap{padding:0}
+.eyebrow{font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:#bfe3cf;margin:0 0 .25rem}
+h1{font-size:2rem;line-height:1.2;margin:.1rem 0 .5rem}
+header.site p{margin:.25rem 0}
+.progress{display:inline-block;margin-top:.75rem;background:#fff;color:var(--g900);font-weight:700;padding:.35rem .8rem;border-radius:999px}
+.howto{background:var(--g100);border-left:6px solid var(--g700);padding:.9rem 1.1rem;border-radius:6px;margin:1.25rem 0}
+nav.toc{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:.8rem 1.1rem;margin:1rem 0}
+nav.toc h2{font-size:1rem;margin:0 0 .3rem}
+nav.toc ol{margin:0;padding-left:1.2rem}
+section.topic{margin:2.2rem 0}
+section.topic>h2{font-size:1.55rem;color:var(--g800);border-bottom:3px solid var(--g700);padding-bottom:.3rem;margin-bottom:.8rem}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) section.topic>h2{color:var(--g700)}}
+h3{font-size:1.15rem;margin:1.2rem 0 .4rem}
+.keyterms{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:.4rem 1.1rem .6rem;margin:1rem 0}
+.keyterms ul,.keyterms ol{margin:.4rem 0;padding-left:1.3rem}
+.keyterms li{margin:.3rem 0}
+.example{background:var(--card);border:1px solid var(--border);border-top:6px solid var(--g700);border-radius:8px;padding:1rem 1.2rem 1.2rem;margin:1.5rem 0}
+.example h3{margin-top:0;color:var(--g800)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .example h3{color:var(--g700)}}
+.scenario{background:var(--g50);border-radius:6px;padding:.6rem .9rem;margin:.6rem 0}
+details.hint{margin:.6rem 0}
+details.hint summary{cursor:pointer;font-weight:600;color:var(--g800);padding:.2rem 0}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) details.hint summary{color:var(--g700)}}
+details.hint div{border-left:4px solid var(--accent);padding:.3rem .9rem;margin:.4rem 0;background:var(--warn-bg)}
+.q{margin:.9rem 0}
+.q>label,.q>.lbl{display:block;font-weight:600;margin-bottom:.25rem}
+.field{display:inline-flex;align-items:center;gap:.3rem}
+.field .pre,.field .suf{font-weight:700}
+input[type=text],select{font:inherit;color:var(--text);background:var(--card);border:2px solid var(--muted);border-radius:6px;padding:.4rem .6rem;min-height:2.6rem}
+input[type=text]{width:12rem;text-align:right}
+select{max-width:100%}
+input[aria-invalid=true],select[aria-invalid=true]{border-color:var(--bad)}
+input.ok,select.ok{border-color:var(--ok)}
+.fb{display:block;margin-top:.25rem;font-weight:600;min-height:0}
+.fb.ok{color:var(--ok)} .fb.bad{color:var(--bad)}
+.btnrow{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1rem;align-items:center}
+button{font:inherit;font-weight:700;cursor:pointer;border-radius:6px;padding:.55rem 1.1rem;min-height:2.75rem;border:2px solid var(--g800)}
+button.check{background:var(--g800);color:#fff}
+button.check:hover{background:var(--g900)}
+button.reset{background:transparent;color:var(--g800)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) button.check{background:#e9f3ee;color:#0a2e21;border-color:#e9f3ee} :root:not([data-theme="light"]) button.reset{color:var(--g700);border-color:var(--g700)}}
+.result{font-weight:700}
+.solution{margin-top:1rem;border:2px solid var(--g700);border-radius:8px;padding:.3rem 1rem .8rem;background:var(--g50)}
+.solution h4{margin:.6rem 0 .3rem;color:var(--g800)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .solution h4{color:var(--g700)}}
+table{border-collapse:collapse;width:100%;margin:.7rem 0;font-size:.98rem}
+caption{text-align:left;font-weight:700;padding:.2rem 0 .4rem}
+th,td{border:1px solid var(--border);padding:.4rem .6rem;text-align:left;vertical-align:top}
+thead th{background:var(--g800);color:#fff}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+tr.tot td{font-weight:700;border-top:3px double var(--text)}
+.tablewrap{overflow-x:auto;position:relative}
+table.je td,table.je th,table.jet td,table.jet th{vertical-align:middle}
+table.je select{width:100%;min-width:13rem}
+table.je input{width:8.5rem}
+.rowfb{font-weight:600;white-space:nowrap}
+.formula{background:var(--g100);padding:.5rem .9rem;border-radius:6px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.95rem;overflow-x:auto}
+footer.site{border-top:1px solid var(--border);margin-top:3rem;padding:1.2rem 1rem 2.5rem;color:var(--muted);font-size:.9rem;text-align:center}
+@media print{.skip,.btnrow,nav.toc{display:none} body{background:#fff;color:#000} .example{break-inside:avoid} .solution[hidden]{display:none}}
+
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="site">
+<div class="wrap">
+<p class="eyebrow">ACCT 605 · Accounting Theory and Research</p>
+<h1>Chapter 9 Chapter Walkthrough</h1>
+<p>Inventories: Additional Issues: step-by-step guided practice</p>
+<p class="progress" role="status" aria-live="polite"><span id="count">0</span> of <span id="total">10</span> checked</p>
+</div>
+</header>
+<main id="main" class="wrap">
+<div class="howto"><p><strong>How this works.</strong> This page is for practice only: it is not graded and nothing is submitted. Read each short review, try the example, and use <em>Check my answer</em> to see feedback and a worked solution. Numbers can be typed with or without dollar signs and commas. <em>Need a hint?</em> opens a nudge without giving the answer away. Company names are fictional.</p></div>
+<nav class="toc" aria-label="On this page"><h2>On this page</h2><ol><li><a href="#s1">Lower of cost and net realizable value</a></li><li><a href="#s2">Estimating inventory: gross profit and retail methods</a></li><li><a href="#s3">Changes in method, errors, and IFRS</a></li><li><a href="#wrap">Wrap-up</a></li></ol></nav>
+<section class="topic" id="s1" aria-labelledby="s1h">
+<h2 id="s1h">Lower of cost and net realizable value</h2>
+<p>Inventory should not be reported above the amount we expect to recover from it.</p>
+<div class="keyterms"><ul>
+<li>Inventory is reported at the <strong>lower of cost and net realizable value (LCNRV)</strong> for FIFO and average cost. <strong>Net realizable value (NRV)</strong> = estimated selling price − estimated costs of completion and disposal.</li>
+<li>Apply LCNRV to individual items, groups, or the total inventory (the method should be applied consistently). A write-down is recorded as a loss (or in cost of goods sold). The reduced amount becomes the <strong>new cost basis</strong>; recoveries are not recognized under U.S. GAAP.</li>
+<li><strong>LIFO and the retail inventory method</strong> use <strong>lower of cost or market (LCM)</strong>. <strong>Market</strong> is the <em>middle value</em> of three amounts: replacement cost, ceiling (NRV), and floor (NRV − normal profit margin). Inventory is reported at the lower of cost and market.</li>
+</ul></div>
+<article class="example" id="ex1" aria-labelledby="ex1h">
+<h3 id="ex1h">Example 1 — Lower of cost and net realizable value</h3>
+<div class="scenario">Hickory Hill Lighting uses FIFO and applies LCNRV item by item. At year-end:<ul><li>Item A: cost $40,000; NRV $35,000</li><li>Item B: cost $62,000; NRV $70,000</li><li>Item C: cost $28,000; NRV $21,000</li></ul></div>
+<details class="hint"><summary>Need a hint?</summary><div>For each item, report the lower of cost and NRV. Never write an item up above cost.</div></details>
+<div class="q"><label for="f1">Inventory carried at LCNRV</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f1" inputmode="decimal" autocomplete="off" data-answer="118000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f2">Total write-down</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f2" inputmode="decimal" autocomplete="off" data-answer="12000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><div class="je" data-caption="Record the inventory write-down" data-rows="2" data-expected="[[&quot;Loss on inventory write-down&quot;, &quot;D&quot;, 12000], [&quot;Inventory&quot;, &quot;C&quot;, 12000]]"></div></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><div class="tablewrap"><table><caption>Item-by-item LCNRV</caption><thead><tr><th scope="col">Item</th><th scope="col" class=n>Cost</th><th scope="col" class=n>NRV</th><th scope="col" class=n>LCNRV</th></tr></thead><tbody><tr><th scope="row">A</th><td class="n">$40,000</td><td class="n">$35,000</td><td class="n">$35,000</td></tr><tr><th scope="row">B</th><td class="n">62,000</td><td class="n">70,000</td><td class="n">62,000</td></tr><tr><th scope="row">C</th><td class="n">28,000</td><td class="n">21,000</td><td class="n">21,000</td></tr><tr class="tot"><th scope="row">Total</th><td class="n">$130,000</td><td class="n">$126,000</td><td class="n">$118,000</td></tr></tbody></table></div><p>Write-down: $130,000 − $118,000 = <strong>$12,000</strong>. Item B stays at cost. Total NRV ($126,000) would give a smaller write-down only if LCNRV were applied to the total inventory.</p><table class="jet"><caption>Write-down</caption><thead><tr><th scope="col">Account</th><th scope="col" class="n">Debit</th><th scope="col" class="n">Credit</th></tr></thead><tbody><tr><td>Loss on inventory write-down</td><td class="n">12,000</td><td class="n"></td></tr><tr><td>&nbsp;&nbsp;&nbsp;Inventory</td><td class="n"></td><td class="n">12,000</td></tr></tbody></table></div>
+</article><article class="example" id="ex2" aria-labelledby="ex2h">
+<h3 id="ex2h">Example 2 — Lower of cost or market (LIFO and retail)</h3>
+<div class="scenario">Cashiers Hardware uses LIFO, so it applies lower of cost or market. For each item (per unit):<ul><li>Item X: cost $100; replacement cost $85; NRV $95; normal profit margin $15; 1,000 units</li><li>Item Y: cost $60; replacement cost $40; NRV $52; normal profit margin $10; 500 units</li></ul></div>
+<details class="hint"><summary>Need a hint?</summary><div>Market = median of (replacement cost, ceiling = NRV, floor = NRV − normal profit). Then take the lower of cost and market.</div></details>
+<div class="q"><label for="f3">Item X: market value per unit</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f3" inputmode="decimal" autocomplete="off" data-answer="85" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f4">Item Y: floor per unit</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f4" inputmode="decimal" autocomplete="off" data-answer="42" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f5">Item Y: market value per unit</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f5" inputmode="decimal" autocomplete="off" data-answer="42" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f6">Total inventory at lower of cost or market</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f6" inputmode="decimal" autocomplete="off" data-answer="106000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><p><strong>Item X:</strong> replacement cost $85; ceiling $95; floor = $95 − $15 = $80. The median is <strong>$85</strong>. LCM = lower of $100 and $85 = $85. Total: 1,000 × $85 = $85,000.</p><p><strong>Item Y:</strong> replacement cost $40; ceiling $52; floor = $52 − $10 = <strong>$42</strong>. The median of $40, $52, $42 is <strong>$42</strong>. LCM = lower of $60 and $42 = $42. Total: 500 × $42 = $21,000.</p><p>Total LCM inventory: $85,000 + $21,000 = <strong>$106,000</strong>.</p></div>
+</article><article class="example" id="ex3" aria-labelledby="ex3h">
+<h3 id="ex3h">Example 3 — Which measurement rule applies?</h3>
+<div class="scenario">Select the measurement rule for each company.</div>
+<details class="hint"><summary>Need a hint?</summary><div>LCNRV applies to FIFO and average cost. LCM applies to LIFO and the retail inventory method.</div></details>
+<div class="q"><label for="f7">a. A company uses FIFO for all inventory</label><select id="f7" data-answer="Lower of cost and NRV (LCNRV)"><option value="">Choose…</option><option>Lower of cost and NRV (LCNRV)</option><option>Lower of cost or market (LCM)</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f8">b. A company uses LIFO for its inventory</label><select id="f8" data-answer="Lower of cost or market (LCM)"><option value="">Choose…</option><option>Lower of cost and NRV (LCNRV)</option><option>Lower of cost or market (LCM)</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f9">c. After a write-down under U.S. GAAP, a later recovery in NRV</label><select id="f9" data-answer="Is not recognized; the written-down amount is the new cost"><option value="">Choose…</option><option>Is recognized as a gain</option><option>Is not recognized; the written-down amount is the new cost</option></select><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><ul><li><strong>a. LCNRV.</strong></li><li><strong>b. LCM.</strong></li><li><strong>c.</strong> The written-down amount becomes the new cost basis; recoveries are not recognized under U.S. GAAP.</li></ul></div>
+</article>
+</section><section class="topic" id="s2" aria-labelledby="s2h">
+<h2 id="s2h">Estimating inventory: gross profit and retail methods</h2>
+<p>When counting is impractical, we estimate ending inventory and cost of goods sold using historical relationships.</p>
+<div class="keyterms"><ul>
+<li>The <strong>gross profit method</strong> estimates ending inventory when a count is impractical (fire, theft, interim reports). Estimated COGS = net sales × (1 − gross profit ratio). Estimated ending inventory = goods available − estimated COGS. Convert a markup on cost to a gross profit ratio on sales: GP% = markup ÷ (1 + markup).</li>
+<li>The <strong>retail inventory method</strong> uses the relationship of cost to retail. <strong>Net markups</strong> increase retail; <strong>net markdowns</strong> decrease it.</li>
+<li><strong>Cost-to-retail percentage</strong> = cost of goods available ÷ retail of goods available. <strong>Conventional (lower of average cost or market):</strong> include net markups but <em>exclude</em> net markdowns from the denominator. <strong>Average cost:</strong> include both. <strong>FIFO:</strong> use current-period purchases only.</li>
+<li>Ending inventory at retail = goods available at retail (after markups and markdowns) − net sales. Ending inventory at cost = ending retail × cost-to-retail percentage.</li>
+<li><strong>Dollar-value LIFO retail:</strong> deflate ending retail by the price index; any increase is a new layer, converted to cost using the current year&rsquo;s cost-to-retail percentage.</li>
+</ul></div>
+<article class="example" id="ex4" aria-labelledby="ex4h">
+<h3 id="ex4h">Example 4 — Gross profit method</h3>
+<div class="scenario">A fire destroys the inventory of Biltmore Bicycle Co. Records show: beginning inventory <strong>$150,000</strong>; net purchases <strong>$620,000</strong>; net sales <strong>$900,000</strong>. The gross profit ratio has averaged <strong>30%</strong> of net sales.</div>
+<details class="hint"><summary>Need a hint?</summary><div>Estimated COGS = sales × (1 − 30%). Estimated ending inventory = goods available − estimated COGS.</div></details>
+<div class="q"><label for="f10">Cost of goods available for sale</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f10" inputmode="decimal" autocomplete="off" data-answer="770000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f11">Estimated cost of goods sold</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f11" inputmode="decimal" autocomplete="off" data-answer="630000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f12">Estimated inventory destroyed</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f12" inputmode="decimal" autocomplete="off" data-answer="140000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><div class="je" data-caption="Record the loss (no insurance recovery yet)" data-rows="2" data-expected="[[&quot;Loss from fire&quot;, &quot;D&quot;, 140000], [&quot;Inventory&quot;, &quot;C&quot;, 140000]]"></div></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><p>Available: $150,000 + $620,000 = <strong>$770,000</strong>. COGS: $900,000 × 70% = <strong>$630,000</strong>. Ending inventory: $770,000 − $630,000 = <strong>$140,000</strong>.</p><table class="jet"><caption>Fire loss</caption><thead><tr><th scope="col">Account</th><th scope="col" class="n">Debit</th><th scope="col" class="n">Credit</th></tr></thead><tbody><tr><td>Loss from fire</td><td class="n">140,000</td><td class="n"></td></tr><tr><td>&nbsp;&nbsp;&nbsp;Inventory</td><td class="n"></td><td class="n">140,000</td></tr></tbody></table></div>
+</article><article class="example" id="ex5" aria-labelledby="ex5h">
+<h3 id="ex5h">Example 5 — Markup on cost versus gross profit on sales</h3>
+<div class="scenario">Rutherford Rugs prices goods at <strong>25% above cost</strong>. Net sales for the period are <strong>$500,000</strong>. Goods available for sale at cost total <strong>$460,000</strong>.</div>
+<details class="hint"><summary>Need a hint?</summary><div>A markup on cost of 25% is a gross profit ratio on sales of 0.25 ÷ 1.25.</div></details>
+<div class="q"><label for="f13">Gross profit ratio on sales</label><div class="field"><input type="text" id="f13" inputmode="decimal" autocomplete="off" data-answer="20" data-unit="%" data-tol="0.1"><span class="suf" aria-hidden="true">%</span></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f14">Estimated cost of goods sold</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f14" inputmode="decimal" autocomplete="off" data-answer="400000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f15">Estimated ending inventory</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f15" inputmode="decimal" autocomplete="off" data-answer="60000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><p>GP% on sales = 0.25 ÷ 1.25 = <strong>20%</strong>. COGS = $500,000 × 80% = <strong>$400,000</strong> (check: $500,000 ÷ 1.25). Ending inventory = $460,000 − $400,000 = <strong>$60,000</strong>.</p></div>
+</article><article class="example" id="ex6" aria-labelledby="ex6h">
+<h3 id="ex6h">Example 6 — Retail inventory method</h3>
+<div class="scenario">Mount Mitchell Mercantile reports:<ul><li>Beginning inventory: cost $60,000; retail $100,000</li><li>Net purchases: cost $312,000; retail $500,000</li><li>Net markups: $20,000; net markdowns: $40,000</li><li>Net sales: $450,000</li></ul>Estimate ending inventory under the conventional (lower of average cost or market) and FIFO retail methods.</div>
+<details class="hint"><summary>Need a hint?</summary><div>Conventional: denominator includes beginning inventory and purchases plus markups, not markdowns. FIFO: use current purchases only, with both markups and markdowns.</div></details>
+<div class="q"><label for="f16">Ending inventory at retail</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f16" inputmode="decimal" autocomplete="off" data-answer="130000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f17">Conventional cost-to-retail percentage</label><div class="field"><input type="text" id="f17" inputmode="decimal" autocomplete="off" data-answer="60" data-unit="%" data-tol="0.1"><span class="suf" aria-hidden="true">%</span></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f18">Conventional ending inventory at cost</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f18" inputmode="decimal" autocomplete="off" data-answer="78000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f19">Conventional cost of goods sold</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f19" inputmode="decimal" autocomplete="off" data-answer="294000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f20">FIFO cost-to-retail percentage</label><div class="field"><input type="text" id="f20" inputmode="decimal" autocomplete="off" data-answer="65" data-unit="%" data-tol="0.1"><span class="suf" aria-hidden="true">%</span></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f21">FIFO ending inventory at cost</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f21" inputmode="decimal" autocomplete="off" data-answer="84500" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><div class="tablewrap"><table><caption>Retail method</caption><thead><tr><th scope="col"></th><th scope="col" class=n>Cost</th><th scope="col" class=n>Retail</th></tr></thead><tbody><tr><th scope="row">Beginning inventory</th><td class="n">$60,000</td><td class="n">$100,000</td></tr><tr><th scope="row">Net purchases</th><td class="n">312,000</td><td class="n">500,000</td></tr><tr><th scope="row">Net markups</th><td class="n"></td><td class="n">20,000</td></tr><tr><th scope="row">Goods available</th><td class="n">$372,000</td><td class="n">$620,000</td></tr><tr><th scope="row">Net markdowns</th><td class="n"></td><td class="n">(40,000)</td></tr><tr><th scope="row">Net sales</th><td class="n"></td><td class="n">(450,000)</td></tr><tr class="tot"><th scope="row">Ending inventory at retail</th><td class="n"></td><td class="n">$130,000</td></tr></tbody></table></div><p>Conventional: $372,000 ÷ $620,000 = <strong>60%</strong>. Ending cost = $130,000 × 60% = <strong>$78,000</strong>. COGS = $372,000 − $78,000 = <strong>$294,000</strong>.</p><p>FIFO: current purchases only: $312,000 ÷ ($500,000 + $20,000 − $40,000) = $312,000 ÷ $480,000 = <strong>65%</strong>. Ending retail ($130,000) is less than current purchases at retail, so it is all from the current layer: $130,000 × 65% = <strong>$84,500</strong>.</p></div>
+</article><article class="example" id="ex7" aria-labelledby="ex7h">
+<h3 id="ex7h">Example 7 — Dollar-value LIFO retail</h3>
+<div class="scenario">Sylva Stores uses dollar-value LIFO retail. The base-year inventory is <strong>$100,000 at retail</strong> (cost $60,000, index 1.00). At the end of Year 2, ending inventory at current retail prices is <strong>$132,000</strong>; the price index is <strong>1.10</strong>. The Year 2 cost-to-retail percentage for current purchases is <strong>62%</strong>.</div>
+<details class="hint"><summary>Need a hint?</summary><div>Deflate ending retail to base-year retail. The layer is reinflated at the current index and converted to cost using the current cost-to-retail percentage.</div></details>
+<div class="q"><label for="f22">Ending inventory at base-year retail</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f22" inputmode="decimal" autocomplete="off" data-answer="120000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f23">New layer at base-year retail</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f23" inputmode="decimal" autocomplete="off" data-answer="20000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f24">New layer at current retail</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f24" inputmode="decimal" autocomplete="off" data-answer="22000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f25">New layer at cost</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f25" inputmode="decimal" autocomplete="off" data-answer="13640" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f26">Dollar-value LIFO retail ending inventory at cost</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f26" inputmode="decimal" autocomplete="off" data-answer="73640" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><p>$132,000 ÷ 1.10 = <strong>$120,000</strong>; the layer is $120,000 − $100,000 = <strong>$20,000</strong> at base-year retail. Current retail: $20,000 × 1.10 = <strong>$22,000</strong>. Cost: $22,000 × 62% = <strong>$13,640</strong>.</p><p>Ending inventory at cost: $60,000 + $13,640 = <strong>$73,640</strong>.</p></div>
+</article>
+</section><section class="topic" id="s3" aria-labelledby="s3h">
+<h2 id="s3h">Changes in method, errors, and IFRS</h2>
+<p>Changes in inventory method and inventory errors affect more than one period.</p>
+<div class="keyterms"><ul>
+<li><strong>Change in inventory method:</strong> generally a change in accounting principle, applied <strong>retrospectively</strong> (restate prior statements; adjust beginning retained earnings for the cumulative effect, net of tax). A change to LIFO is usually applied <strong>prospectively</strong> because earlier layers can&rsquo;t be determined. Disclose the nature and justification.</li>
+<li><strong>Inventory errors:</strong> ending inventory is part of COGS in the current year and beginning inventory the next, so errors <strong>counterbalance</strong> over two years. An overstated ending inventory overstates income that year and understates it the next; retained earnings are correct at the end of the second year.</li>
+<li><strong>IFRS:</strong> LCNRV applies to all inventory (no LCM). Write-downs <em>can be reversed</em> (up to the original cost) if NRV recovers. U.S. GAAP prohibits reversal.</li>
+</ul></div>
+<article class="example" id="ex8" aria-labelledby="ex8h">
+<h3 id="ex8h">Example 8 — Change in inventory method</h3>
+<div class="scenario">On January 1, Mitchell Mills changes from FIFO to average cost. The January 1 inventory was <strong>$200,000</strong> under FIFO and would have been <strong>$180,000</strong> under average cost. The tax rate is <strong>25%</strong>.</div>
+<details class="hint"><summary>Need a hint?</summary><div>The cumulative effect on prior income is $20,000 lower under average cost. Net of tax, retained earnings decline by less.</div></details>
+<div class="q"><label for="f27">Pre-tax cumulative effect on prior years&rsquo; income (decrease)</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f27" inputmode="decimal" autocomplete="off" data-answer="20000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f28">Tax effect</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f28" inputmode="decimal" autocomplete="off" data-answer="5000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f29">Adjustment to beginning retained earnings (net of tax)</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f29" inputmode="decimal" autocomplete="off" data-answer="15000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><div class="je" data-caption="Record the change (adjust for the income tax effect)" data-rows="3" data-expected="[[&quot;Retained earnings&quot;, &quot;D&quot;, 15000], [&quot;Income taxes payable&quot;, &quot;D&quot;, 5000], [&quot;Inventory&quot;, &quot;C&quot;, 20000]]"></div></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><p>Decrease in pre-tax income: $200,000 − $180,000 = <strong>$20,000</strong>. Tax effect: $20,000 × 25% = <strong>$5,000</strong>. Net-of-tax decrease in beginning retained earnings: <strong>$15,000</strong>.</p><table class="jet"><caption>Change in method</caption><thead><tr><th scope="col">Account</th><th scope="col" class="n">Debit</th><th scope="col" class="n">Credit</th></tr></thead><tbody><tr><td>Retained earnings</td><td class="n">15,000</td><td class="n"></td></tr><tr><td>Income taxes payable</td><td class="n">5,000</td><td class="n"></td></tr><tr><td>&nbsp;&nbsp;&nbsp;Inventory</td><td class="n"></td><td class="n">20,000</td></tr></tbody></table></div>
+</article><article class="example" id="ex9" aria-labelledby="ex9h">
+<h3 id="ex9h">Example 9 — Inventory errors</h3>
+<div class="scenario">Franklin Frames&rsquo; <strong>Year 1</strong> ending inventory was overstated by <strong>$30,000</strong>. The error was not discovered until Year 3. Ignore income taxes.</div>
+<details class="hint"><summary>Need a hint?</summary><div>Ending inventory in Year 1 is beginning inventory in Year 2. Higher ending inventory means lower COGS and higher income.</div></details>
+<div class="q"><label for="f30">Year 1 cost of goods sold was</label><select id="f30" data-answer="Understated"><option value="">Choose…</option><option>Overstated</option><option>Understated</option><option>Correct</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f31">Year 1 net income was</label><select id="f31" data-answer="Overstated"><option value="">Choose…</option><option>Overstated</option><option>Understated</option><option>Correct</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f32">Year 2 net income was</label><select id="f32" data-answer="Understated"><option value="">Choose…</option><option>Overstated</option><option>Understated</option><option>Correct</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f33">Retained earnings at the end of Year 2 are</label><select id="f33" data-answer="Correct"><option value="">Choose…</option><option>Overstated</option><option>Understated</option><option>Correct</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f34">Year 1 net income overstatement</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f34" inputmode="decimal" autocomplete="off" data-answer="30000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f35">Year 2 net income understatement</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f35" inputmode="decimal" autocomplete="off" data-answer="30000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><ul><li>Year 1: ending inventory ↑ $30,000 &rarr; COGS <strong>understated</strong>, net income <strong>overstated</strong> by $30,000.</li><li>Year 2: beginning inventory ↑ $30,000 &rarr; COGS overstated, net income <strong>understated</strong> by $30,000.</li><li>Retained earnings at the end of Year 2 are <strong>correct</strong> because the errors offset. Because the statements for Year 1 and 2 are wrong, prior statements shown for comparison are restated.</li></ul></div>
+</article><article class="example" id="ex10" aria-labelledby="ex10h">
+<h3 id="ex10h">Example 10 — U.S. GAAP versus IFRS</h3>
+<div class="scenario">Decide which framework each statement describes.</div>
+<details class="hint"><summary>Need a hint?</summary><div>IFRS requires LCNRV for all inventory and permits reversals; U.S. GAAP does not.</div></details>
+<div class="q"><label for="f36">a. Inventory written down to NRV may be written back up if NRV recovers (up to original cost)</label><select id="f36" data-answer="IFRS"><option value="">Choose…</option><option>U.S. GAAP</option><option>IFRS</option><option>Both</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f37">b. LIFO companies use lower of cost or market</label><select id="f37" data-answer="U.S. GAAP"><option value="">Choose…</option><option>U.S. GAAP</option><option>IFRS</option><option>Both</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f38">c. Inventory is reported at the lower of cost and NRV for FIFO or average cost</label><select id="f38" data-answer="Both"><option value="">Choose…</option><option>U.S. GAAP</option><option>IFRS</option><option>Both</option></select><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><ul><li><strong>a. IFRS.</strong></li><li><strong>b. U.S. GAAP</strong> (LIFO and retail use LCM).</li><li><strong>c. Both.</strong></li></ul></div>
+</article>
+</section>
+<section class="topic" id="wrap" aria-labelledby="wraph"><h2 id="wraph">Wrap-up: Chapter 9 at a glance</h2><ul><li><strong>LCNRV</strong> applies to FIFO and average cost; <strong>LCM</strong> applies to LIFO and retail. The write-down creates a new cost basis.</li><li><strong>Gross profit method:</strong> estimated COGS = sales × (1 − GP%); estimated ending inventory = goods available − COGS.</li><li><strong>Retail method:</strong> cost-to-retail percentage × ending inventory at retail. Conventional excludes markdowns from the denominator; FIFO uses only current purchases.</li><li><strong>Method changes</strong> are generally retrospective; <strong>inventory errors</strong> counterbalance after two years.</li><li><strong>IFRS</strong> allows reversal of inventory write-downs; U.S. GAAP does not.</li></ul></section>
+</main>
+<footer class="site">ACCT 605 · Chapter 9 Chapter Walkthrough · Inventories: Additional Issues (Ungraded)</footer>
+<script>
+(function(){
+  var Y=new Date().getFullYear();
+  document.querySelectorAll('[data-yr]').forEach(function(e){e.textContent=String(Y+Number(e.getAttribute('data-yr')));});
+
+  var ACCOUNTS=["Accounts receivable", "Cash", "Cost of goods sold", "Income taxes payable", "Insurance receivable", "Inventory", "Loss from fire", "Loss on inventory write-down", "Retained earnings", "Sales revenue"];
+
+  function parseNum(s){
+    if(s==null) return NaN; s=String(s).trim(); if(!s) return NaN;
+    var neg=/^\(.*\)$/.test(s)||/^-/.test(s);
+    s=s.replace(/[$,%\s()\-]/g,''); var v=parseFloat(s);
+    return isNaN(v)?NaN:(neg?-v:v);
+  }
+  function fmt(v,unit){
+    var o=Math.abs(v)%1?{minimumFractionDigits:2,maximumFractionDigits:2}:{maximumFractionDigits:0};
+    var t=Math.abs(v).toLocaleString('en-US',o);
+    if(unit==='%') return t+'%';
+    if(unit==='$') return (v<0?'-':'')+'$'+t;
+    return (v<0?'-':'')+t;
+  }
+
+  /* Build journal entry tables */
+  document.querySelectorAll('div.je').forEach(function(box,idx){
+    var rows=Number(box.getAttribute('data-rows')||3);
+    var id='je'+idx;
+    var h='<div class="tablewrap"><table class="je"><caption>'+box.getAttribute('data-caption')+'</caption><thead><tr><th scope="col">Account title</th><th scope="col" class="n">Debit ($)</th><th scope="col" class="n">Credit ($)</th><th scope="col"><span class="sr">Result</span></th></tr></thead><tbody>';
+    for(var r=0;r<rows;r++){
+      h+='<tr><td><label class="sr" for="'+id+'a'+r+'">Account, line '+(r+1)+'</label><select id="'+id+'a'+r+'"><option value="">Choose…</option>'+ACCOUNTS.map(function(a){return '<option>'+a+'</option>';}).join('')+'</select></td>'+
+         '<td class="n"><label class="sr" for="'+id+'d'+r+'">Debit amount, line '+(r+1)+'</label><input type="text" inputmode="decimal" autocomplete="off" id="'+id+'d'+r+'"></td>'+
+         '<td class="n"><label class="sr" for="'+id+'c'+r+'">Credit amount, line '+(r+1)+'</label><input type="text" inputmode="decimal" autocomplete="off" id="'+id+'c'+r+'"></td>'+
+         '<td><span class="rowfb" aria-live="polite"></span></td></tr>';
+    }
+    h+='</tbody></table></div><span class="fb" aria-live="polite"></span>';
+    box.innerHTML=h;
+  });
+
+  var checked={}; var total=document.querySelectorAll('.example').length;
+  document.getElementById('total').textContent=total;
+  function updateProgress(){
+    document.getElementById('count').textContent=Object.keys(checked).length;
+  }
+
+  function gradeField(el){
+    var unit=el.getAttribute('data-unit')||'';
+    var fb=el.closest('.q').querySelector('.fb');
+    var ok;
+    if(el.tagName==='SELECT'){
+      ok=(el.value===el.getAttribute('data-answer'));
+      fb.textContent=ok?'✓ Correct':(el.value?'✗ Not quite. Answer: ':'✗ No answer chosen. Answer: ')+(ok?'':el.getAttribute('data-answer'));
+    } else {
+      var v=parseNum(el.value), a=Number(el.getAttribute('data-answer')), tol=Number(el.getAttribute('data-tol')||0.5);
+      ok=!isNaN(v)&&Math.abs(v-a)<=tol;
+      fb.textContent=ok?'✓ Correct':(isNaN(v)?'✗ No answer entered. Answer: ':'✗ Not quite. Answer: ')+fmt(a,unit);
+    }
+    fb.className='fb '+(ok?'ok':'bad');
+    el.setAttribute('aria-invalid',ok?'false':'true'); el.classList.toggle('ok',ok);
+    return ok;
+  }
+
+  function gradeJE(box){
+    var id=null, rows=Number(box.getAttribute('data-rows')||3);
+    var first=box.querySelector('select').id; id=first.replace(/a0$/,'');
+    var exp={}; JSON.parse(box.getAttribute('data-expected')).forEach(function(e){
+      exp[e[0]]=(exp[e[0]]||0)+(e[1]==='D'?e[2]:-e[2]);
+    });
+    var got={}, rowOk=true, anyBlankAcct=false;
+    for(var r=0;r<rows;r++){
+      var acct=document.getElementById(id+'a'+r).value;
+      var d=parseNum(document.getElementById(id+'d'+r).value), c=parseNum(document.getElementById(id+'c'+r).value);
+      var fbr=box.querySelectorAll('.rowfb')[r];
+      if(isNaN(d)) d=0; if(isNaN(c)) c=0;
+      if(!acct && (d||c)){ fbr.textContent='✗ Pick an account'; fbr.className='rowfb bad'; rowOk=false; continue; }
+      if(!acct){ fbr.textContent=''; continue; }
+      got[acct]=(got[acct]||0)+d-c;
+    }
+    var keys=Object.keys(exp).concat(Object.keys(got).filter(function(k){return !(k in exp);}));
+    var ok=rowOk;
+    keys.forEach(function(k){ if(Math.abs((exp[k]||0)-(got[k]||0))>0.5) ok=false; });
+    for(var r2=0;r2<rows;r2++){
+      var acct2=document.getElementById(id+'a'+r2).value; var fbr2=box.querySelectorAll('.rowfb')[r2];
+      if(!acct2) continue;
+      var good=Math.abs((exp[acct2]||0)-(got[acct2]||0))<=0.5 && (acct2 in exp);
+      fbr2.textContent=good?'✓':'✗'; fbr2.className='rowfb '+(good?'ok':'bad');
+    }
+    var fb=box.querySelector('.fb');
+    fb.textContent=ok?'✓ Journal entry is correct':'✗ Not quite. Compare your entry with the solution below.';
+    fb.className='fb '+(ok?'ok':'bad');
+    return ok;
+  }
+
+  document.querySelectorAll('.example').forEach(function(ex){
+    var btn=ex.querySelector('button.check'), rst=ex.querySelector('button.reset'), sol=ex.querySelector('.solution'), res=ex.querySelector('.result');
+    btn.addEventListener('click',function(){
+      var good=0,n=0;
+      ex.querySelectorAll('[data-answer]').forEach(function(el){ n++; if(gradeField(el)) good++; });
+      ex.querySelectorAll('div.je').forEach(function(box){ n++; if(gradeJE(box)) good++; });
+      res.textContent=good+' of '+n+' correct';
+      sol.hidden=false;
+      checked[ex.id]=true; updateProgress();
+    });
+    rst.addEventListener('click',function(){
+      ex.querySelectorAll('input[type=text]').forEach(function(i){i.value='';i.removeAttribute('aria-invalid');i.classList.remove('ok');});
+      ex.querySelectorAll('select').forEach(function(s){s.selectedIndex=0;s.removeAttribute('aria-invalid');s.classList.remove('ok');});
+      ex.querySelectorAll('.fb,.rowfb').forEach(function(f){f.textContent='';f.className=f.className.split(' ')[0];});
+      res.textContent=''; sol.hidden=true;
+    });
+  });
+})();
+</script>
+</body>
+</html>

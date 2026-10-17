@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ACCT 605 Chapter 1 Chapter Walkthrough</title>
+<meta name="description" content="Chapter 1 Chapter Walkthrough: step-by-step guided practice on the environment and theoretical structure of financial accounting for Accounting Theory and Research.">
+<style>
+:root{
+  --bg:#f4f8f5; --card:#ffffff; --text:#14201a; --muted:#41524a;
+  --g900:#0b3b2a; --g800:#14513a; --g700:#1b6a4a; --g100:#e3f0e8; --g50:#f0f7f3;
+  --border:#b4cdbf; --accent:#8a5a00; --ok:#0d6137; --bad:#9b2415; --focus:#0a4fd1;
+  --warn-bg:#fff6df;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0e1814; --card:#15231d; --text:#e9f3ee; --muted:#b5c9bf;
+    --g900:#0a2e21; --g800:#1d6a49; --g700:#58c08f; --g100:#1b3328; --g50:#122019;
+    --border:#34503f; --accent:#f0c36a; --ok:#6fdca3; --bad:#ff9f8f; --focus:#8db4ff;
+    --warn-bg:#2b2410;
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font:17px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+.skip{position:absolute;left:-999px;top:0;background:#fff;color:#000;padding:.6rem 1rem;z-index:100;border:2px solid var(--focus)}
+.skip:focus{left:8px;top:8px}
+a{color:var(--g800)}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+header.site{background:var(--g900);color:#fff;padding:2rem 1rem 1.5rem}
+.wrap{max-width:820px;margin:0 auto;padding:0 1rem}
+header.site .wrap{padding:0}
+.eyebrow{font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:#bfe3cf;margin:0 0 .25rem}
+h1{font-size:2rem;line-height:1.2;margin:.1rem 0 .5rem}
+header.site p{margin:.25rem 0}
+.progress{display:inline-block;margin-top:.75rem;background:#fff;color:var(--g900);font-weight:700;padding:.35rem .8rem;border-radius:999px}
+.howto{background:var(--g100);border-left:6px solid var(--g700);padding:.9rem 1.1rem;border-radius:6px;margin:1.25rem 0}
+nav.toc{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:.8rem 1.1rem;margin:1rem 0}
+nav.toc h2{font-size:1rem;margin:0 0 .3rem}
+nav.toc ol{margin:0;padding-left:1.2rem}
+section.topic{margin:2.2rem 0}
+section.topic>h2{font-size:1.55rem;color:var(--g800);border-bottom:3px solid var(--g700);padding-bottom:.3rem;margin-bottom:.8rem}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) section.topic>h2{color:var(--g700)}}
+h3{font-size:1.15rem;margin:1.2rem 0 .4rem}
+.keyterms{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:.4rem 1.1rem .6rem;margin:1rem 0}
+.keyterms ul,.keyterms ol{margin:.4rem 0;padding-left:1.3rem}
+.keyterms li{margin:.3rem 0}
+.example{background:var(--card);border:1px solid var(--border);border-top:6px solid var(--g700);border-radius:8px;padding:1rem 1.2rem 1.2rem;margin:1.5rem 0}
+.example h3{margin-top:0;color:var(--g800)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .example h3{color:var(--g700)}}
+.scenario{background:var(--g50);border-radius:6px;padding:.6rem .9rem;margin:.6rem 0}
+details.hint{margin:.6rem 0}
+details.hint summary{cursor:pointer;font-weight:600;color:var(--g800);padding:.2rem 0}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) details.hint summary{color:var(--g700)}}
+details.hint div{border-left:4px solid var(--accent);padding:.3rem .9rem;margin:.4rem 0;background:var(--warn-bg)}
+.q{margin:.9rem 0}
+.q>label,.q>.lbl{display:block;font-weight:600;margin-bottom:.25rem}
+.field{display:inline-flex;align-items:center;gap:.3rem}
+.field .pre,.field .suf{font-weight:700}
+input[type=text],select{font:inherit;color:var(--text);background:var(--card);border:2px solid var(--muted);border-radius:6px;padding:.4rem .6rem;min-height:2.6rem}
+input[type=text]{width:12rem;text-align:right}
+select{max-width:100%}
+input[aria-invalid=true],select[aria-invalid=true]{border-color:var(--bad)}
+input.ok,select.ok{border-color:var(--ok)}
+.fb{display:block;margin-top:.25rem;font-weight:600;min-height:0}
+.fb.ok{color:var(--ok)} .fb.bad{color:var(--bad)}
+.btnrow{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1rem;align-items:center}
+button{font:inherit;font-weight:700;cursor:pointer;border-radius:6px;padding:.55rem 1.1rem;min-height:2.75rem;border:2px solid var(--g800)}
+button.check{background:var(--g800);color:#fff}
+button.check:hover{background:var(--g900)}
+button.reset{background:transparent;color:var(--g800)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) button.check{background:#e9f3ee;color:#0a2e21;border-color:#e9f3ee} :root:not([data-theme="light"]) button.reset{color:var(--g700);border-color:var(--g700)}}
+.result{font-weight:700}
+.solution{margin-top:1rem;border:2px solid var(--g700);border-radius:8px;padding:.3rem 1rem .8rem;background:var(--g50)}
+.solution h4{margin:.6rem 0 .3rem;color:var(--g800)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .solution h4{color:var(--g700)}}
+table{border-collapse:collapse;width:100%;margin:.7rem 0;font-size:.98rem}
+caption{text-align:left;font-weight:700;padding:.2rem 0 .4rem}
+th,td{border:1px solid var(--border);padding:.4rem .6rem;text-align:left;vertical-align:top}
+thead th{background:var(--g800);color:#fff}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+tr.tot td{font-weight:700;border-top:3px double var(--text)}
+.tablewrap{overflow-x:auto;position:relative}
+table.je td,table.je th,table.jet td,table.jet th{vertical-align:middle}
+table.je select{width:100%;min-width:13rem}
+table.je input{width:8.5rem}
+.rowfb{font-weight:600;white-space:nowrap}
+.formula{background:var(--g100);padding:.5rem .9rem;border-radius:6px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.95rem;overflow-x:auto}
+footer.site{border-top:1px solid var(--border);margin-top:3rem;padding:1.2rem 1rem 2.5rem;color:var(--muted);font-size:.9rem;text-align:center}
+@media print{.skip,.btnrow,nav.toc{display:none} body{background:#fff;color:#000} .example{break-inside:avoid} .solution[hidden]{display:none}}
+
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="site">
+<div class="wrap">
+<p class="eyebrow">ACCT 605 · Accounting Theory and Research</p>
+<h1>Chapter 1 Chapter Walkthrough</h1>
+<p>Environment and Theoretical Structure of Financial Accounting: step-by-step guided practice</p>
+<p class="progress" role="status" aria-live="polite"><span id="count">0</span> of <span id="total">12</span> checked</p>
+</div>
+</header>
+<main id="main" class="wrap">
+<div class="howto"><p><strong>How this works.</strong> This page is for practice only: it is not graded and nothing is submitted. Read each short review, try the example, and use <em>Check my answer</em> to see feedback and a worked solution. Numbers can be typed with or without dollar signs and commas. <em>Need a hint?</em> opens a nudge without giving the answer away. Company names are fictional.</p></div>
+<nav class="toc" aria-label="On this page"><h2>On this page</h2><ol><li><a href="#s1">The purpose of financial accounting</a></li><li><a href="#s2">Standard setting and high-quality reporting</a></li><li><a href="#s3">The conceptual framework</a></li><li><a href="#s4">Recognition, measurement, and disclosure</a></li><li><a href="#s5">Ethics in accounting</a></li><li><a href="#wrap">Wrap-up</a></li></ol></nav>
+<section class="topic" id="s1" aria-labelledby="s1h">
+<h2 id="s1h">The purpose of financial accounting</h2>
+<p>Start with who uses financial information, what they need it for, and why accrual accounting does a better job than cash-basis accounting over short periods.</p>
+<div class="keyterms"><ul>
+<li><strong>Financial accounting</strong> provides financial information to <strong>external users</strong>, chiefly investors and creditors. The primary objective is to help them evaluate the <strong>amounts, timing, and uncertainty</strong> of future cash flows.</li>
+<li><strong>Rate of return</strong> = (dividends + change in share price) ÷ initial investment. Investors weigh expected return against risk.</li>
+<li><strong>Cash-basis accounting</strong> measures net operating cash flow (cash receipts minus cash payments). Over short periods it can give an uneven picture of performance.</li>
+<li><strong>Accrual accounting</strong> measures <strong>revenues</strong> (resources provided by operations) and <strong>expenses</strong> (resources consumed) when they occur, so net income is usually a better predictor of future cash flows. Over a company&rsquo;s life the two totals agree; only the timing differs.</li>
+</ul></div>
+<article class="example" id="ex1" aria-labelledby="ex1h">
+<h3 id="ex1h">Example 1 — Rate of return for an investor</h3>
+<div class="scenario">On January 1, <span data-yr="-1"></span>, an investor buys 1,000 shares of Blue Ridge Outfitters stock for <strong>$20,000</strong>. During the year the company pays dividends of <strong>$600</strong>, and on December 31 the investor sells the shares for <strong>$21,400</strong>.</div>
+<details class="hint"><summary>Need a hint?</summary><div>Return has two parts: cash received during the year (dividends) and the change in share price. Divide the total by the amount invested.</div></details>
+<div class="q"><label for="f1">Share price appreciation</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f1" inputmode="decimal" autocomplete="off" data-answer="1400" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f2">Total return in dollars (dividends + appreciation)</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f2" inputmode="decimal" autocomplete="off" data-answer="2000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f3">Rate of return</label><div class="field"><input type="text" id="f3" inputmode="decimal" autocomplete="off" data-answer="10" data-unit="%" data-tol="0.05"><span class="suf" aria-hidden="true">%</span></div><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><p>Appreciation: $21,400 − $20,000 = <strong>$1,400</strong>. Total return: $600 + $1,400 = <strong>$2,000</strong>.</p><p>Rate of return = $2,000 ÷ $20,000 = <strong>10%</strong>.</p><p>Investors and creditors supply capital only if they expect more cash back later, which is why financial accounting focuses on information that helps predict future cash flows.</p></div>
+</article><article class="example" id="ex2" aria-labelledby="ex2h">
+<h3 id="ex2h">Example 2 — Cash-basis versus accrual accounting</h3>
+<div class="scenario">Smoky Mountain Printing starts business at the beginning of Year 1. Its activities are the same each year, but cash moves unevenly:<ul><li>Credit sales are <strong>$120,000</strong> each year. Cash collected is <strong>$60,000</strong> in Year 1, then <strong>$150,000</strong> in each of Years 2 and 3. Customers owe nothing at the end of Year 3.</li><li>At the start of Year 1 it prepays <strong>three years&rsquo; insurance for $45,000</strong> ($15,000 per year).</li><li>Salaries of <strong>$40,000</strong> are paid in cash each year.</li></ul></div>
+<details class="hint"><summary>Need a hint?</summary><div>Net operating cash flow = cash collected − cash paid in that year. Accrual net income = sales − the expenses that belong to that year (insurance is $15,000 per year).</div></details>
+<div class="q"><label for="f4">Year 1 net operating cash flow (enter a negative number as -25000)</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f4" inputmode="decimal" autocomplete="off" data-answer="-25000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f5">Year 1 accrual net income</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f5" inputmode="decimal" autocomplete="off" data-answer="65000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f6">Year 2 net operating cash flow</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f6" inputmode="decimal" autocomplete="off" data-answer="110000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f7">Three-year total net operating cash flow</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f7" inputmode="decimal" autocomplete="off" data-answer="195000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f8">Three-year total accrual net income</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f8" inputmode="decimal" autocomplete="off" data-answer="195000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><div class="tablewrap"><table><caption>Cash basis versus accrual basis</caption><thead><tr><th scope="col"></th><th scope="col" class=n>Year 1</th><th scope="col" class=n>Year 2</th><th scope="col" class=n>Year 3</th><th scope="col" class=n>Total</th></tr></thead><tbody><tr><th scope="row">Cash collected</th><td class="n">$60,000</td><td class="n">$150,000</td><td class="n">$150,000</td><td class="n">$360,000</td></tr><tr><th scope="row">Insurance paid</th><td class="n">(45,000)</td><td class="n">0</td><td class="n">0</td><td class="n">(45,000)</td></tr><tr><th scope="row">Salaries paid</th><td class="n">(40,000)</td><td class="n">(40,000)</td><td class="n">(40,000)</td><td class="n">(120,000)</td></tr><tr><th scope="row">Net operating cash flow</th><td class="n">$(25,000)</td><td class="n">$110,000</td><td class="n">$110,000</td><td class="n">$195,000</td></tr><tr><th scope="row">Accrual net income ($120,000 − $15,000 − $40,000)</th><td class="n">$65,000</td><td class="n">$65,000</td><td class="n">$65,000</td><td class="n">$195,000</td></tr></tbody></table></div><p>Accrual income is steady at $65,000 per year, matching the steady activity. Cash flow swings from −$25,000 to +$110,000 because of the timing of collections and the insurance prepayment. Over three years both measures total $195,000.</p></div>
+</article>
+</section><section class="topic" id="s2" aria-labelledby="s2h">
+<h2 id="s2h">Standard setting and high-quality reporting</h2>
+<p>Accounting standards come from a layered structure of government and private-sector bodies, and several safeguards support high-quality reporting.</p>
+<div class="keyterms"><ul>
+<li><strong>SEC:</strong> the government agency with authority to set accounting standards for public companies. It has delegated standard setting to the private sector but retains the power.</li>
+<li><strong>FASB:</strong> seven full-time members; issues Accounting Standards Updates (ASUs) that are added to the <strong>Accounting Standards Codification</strong>, the single source of authoritative nongovernmental U.S. GAAP. <strong>GASB</strong> sets standards for state and local governments. <strong>EITF</strong> resolves narrow implementation issues.</li>
+<li><strong>IASB:</strong> issues International Financial Reporting Standards (IFRS), used or permitted in more than 120 jurisdictions.</li>
+<li>Standard setting is a <strong>political process</strong>: changes can redistribute wealth, so interest groups lobby the FASB (for example, on employee stock options).</li>
+<li><strong>Management</strong> is responsible for applying GAAP. <strong>Auditors</strong> give an independent opinion on whether the statements are fairly presented. The <strong>Sarbanes-Oxley Act (2002)</strong> created the <strong>PCAOB</strong>, restricts auditor non-audit services, requires lead-partner rotation, and (Section 404) requires management and auditors to report on internal control.</li>
+</ul></div>
+<article class="example" id="ex3" aria-labelledby="ex3h">
+<h3 id="ex3h">Example 3 — Who sets the standards?</h3>
+<div class="scenario">Match each description to the organization.</div>
+<details class="hint"><summary>Need a hint?</summary><div>Think about public vs. private sector, U.S. vs. international, and business vs. government.</div></details>
+<div class="q"><label for="f9">a. Created by the Securities Exchange Act of 1934 with legal authority to set standards for public companies</label><select id="f9" data-answer="SEC"><option value="">Choose…</option><option>SEC</option><option>FASB</option><option>IASB</option><option>PCAOB</option><option>GASB</option><option>EITF</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f10">b. Private-sector board with seven full-time members that issues Accounting Standards Updates</label><select id="f10" data-answer="FASB"><option value="">Choose…</option><option>SEC</option><option>FASB</option><option>IASB</option><option>PCAOB</option><option>GASB</option><option>EITF</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f11">c. Issues International Financial Reporting Standards (IFRS)</label><select id="f11" data-answer="IASB"><option value="">Choose…</option><option>SEC</option><option>FASB</option><option>IASB</option><option>PCAOB</option><option>GASB</option><option>EITF</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f12">d. Created by the Sarbanes-Oxley Act to regulate auditors of public companies</label><select id="f12" data-answer="PCAOB"><option value="">Choose…</option><option>SEC</option><option>FASB</option><option>IASB</option><option>PCAOB</option><option>GASB</option><option>EITF</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f13">e. Develops accounting standards for state and city governments</label><select id="f13" data-answer="GASB"><option value="">Choose…</option><option>SEC</option><option>FASB</option><option>IASB</option><option>PCAOB</option><option>GASB</option><option>EITF</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f14">f. Resolves narrowly defined implementation issues within existing GAAP</label><select id="f14" data-answer="EITF"><option value="">Choose…</option><option>SEC</option><option>FASB</option><option>IASB</option><option>PCAOB</option><option>GASB</option><option>EITF</option></select><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><ul><li><strong>a. SEC.</strong> Congress gave it the authority; it delegated the work to the private sector.</li><li><strong>b. FASB.</strong></li><li><strong>c. IASB.</strong></li><li><strong>d. PCAOB.</strong></li><li><strong>e. GASB.</strong> The FAF oversees and funds both the FASB and the GASB.</li><li><strong>f. EITF.</strong> Its consensuses are ratified by the FASB and become part of GAAP.</li></ul></div>
+</article><article class="example" id="ex4" aria-labelledby="ex4h">
+<h3 id="ex4h">Example 4 — Reporting responsibilities and high-quality reporting</h3>
+<div class="scenario">Choose the party that best fits each responsibility.</div>
+<details class="hint"><summary>Need a hint?</summary><div>Audits add credibility, but the audit is not the preparation of the statements.</div></details>
+<div class="q"><label for="f15">a. Prepares the financial statements and applies GAAP</label><select id="f15" data-answer="Management"><option value="">Choose…</option><option>Management</option><option>External auditor</option><option>PCAOB</option><option>SEC</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f16">b. Expresses an independent opinion on whether the statements are presented fairly in conformity with GAAP</label><select id="f16" data-answer="External auditor"><option value="">Choose…</option><option>Management</option><option>External auditor</option><option>PCAOB</option><option>SEC</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f17">c. Regulates and inspects the auditors of public companies</label><select id="f17" data-answer="PCAOB"><option value="">Choose…</option><option>Management</option><option>External auditor</option><option>PCAOB</option><option>SEC</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f18">d. Has legal authority over the financial reporting of public companies (Form 10-K, Form 10-Q)</label><select id="f18" data-answer="SEC"><option value="">Choose…</option><option>Management</option><option>External auditor</option><option>PCAOB</option><option>SEC</option></select><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><ul><li><strong>a. Management.</strong> Management is responsible for the statements.</li><li><strong>b. External auditor.</strong> A clean (unmodified) opinion says the statements present fairly, in all material respects, in conformity with GAAP.</li><li><strong>c. PCAOB.</strong> Created by the Sarbanes-Oxley Act in 2002 after Enron and WorldCom.</li><li><strong>d. SEC.</strong></li></ul></div>
+</article><article class="example" id="ex5" aria-labelledby="ex5h">
+<h3 id="ex5h">Example 5 — Rules-based versus objectives-oriented standards</h3>
+<div class="scenario">Marion Valley Manufacturing is reviewing its accounting for a complex transaction. Compare the two approaches to standard setting.</div>
+<details class="hint"><summary>Need a hint?</summary><div>An objectives-oriented (principles-based) approach relies on professional judgment. A rules-based approach relies on detailed bright-line tests.</div></details>
+<div class="q"><label for="f19">a. Which approach leaves fewer specific rules to structure transactions around?</label><select id="f19" data-answer="Objectives-oriented"><option value="">Choose…</option><option>Objectives-oriented</option><option>Rules-based</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f20">b. Which approach helps auditors resist client pressure and helps companies confirm compliance?</label><select id="f20" data-answer="Rules-based"><option value="">Choose…</option><option>Objectives-oriented</option><option>Rules-based</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f21">c. Which approach raises more concern that similar transactions will be reported differently (comparability)?</label><select id="f21" data-answer="Objectives-oriented"><option value="">Choose…</option><option>Objectives-oriented</option><option>Rules-based</option></select><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><ul><li><strong>a. Objectives-oriented.</strong> There are few rules to sidestep, as with the structured transactions at Enron.</li><li><strong>b. Rules-based.</strong> Detailed rules give clear support for auditors and a safe harbor for preparers.</li><li><strong>c. Objectives-oriented.</strong> Reliance on judgment can lead to different treatment of similar transactions.</li></ul><p>Either approach can be abused. The key is whether management is committed to high-quality financial reporting, which leads to ethics.</p></div>
+</article>
+</section><section class="topic" id="s3" aria-labelledby="s3h">
+<h2 id="s3h">The conceptual framework</h2>
+<p>The conceptual framework, sometimes called an &ldquo;accounting constitution,&rdquo; sets out what makes information useful, defines the building blocks of the statements, and states the assumptions underlying GAAP.</p>
+<div class="keyterms"><ul>
+<li>The <strong>conceptual framework</strong> is a coherent system of objectives and fundamentals that guides standard setting. It is not itself authoritative GAAP.</li>
+<li><strong>Fundamental qualities:</strong> <strong>relevance</strong> (predictive value, confirmatory value, materiality) and <strong>faithful representation</strong> (complete, neutral, free from error).</li>
+<li><strong>Enhancing qualities:</strong> comparability (including consistency), verifiability, timeliness, understandability. The <strong>cost effectiveness</strong> constraint says benefits of information must exceed its costs.</li>
+<li><strong>Elements:</strong> assets, liabilities, equity, investments by owners, distributions to owners, comprehensive income, revenues, expenses, gains, losses.</li>
+<li><strong>Underlying assumptions:</strong> economic entity, going concern, periodicity, monetary unit.</li>
+</ul></div>
+<article class="example" id="ex6" aria-labelledby="ex6h">
+<h3 id="ex6h">Example 6 — Qualitative characteristics</h3>
+<div class="scenario">Classify each description under the qualitative characteristics of useful information.</div>
+<details class="hint"><summary>Need a hint?</summary><div>Relevance asks whether the information makes a difference. Faithful representation asks whether it depicts reality fairly. Enhancing qualities make good information more useful.</div></details>
+<div class="q"><label for="f22">a. Omitting the amount would change the decision of a reasonable investor (materiality)</label><select id="f22" data-answer="Relevance"><option value="">Choose…</option><option>Relevance</option><option>Faithful representation</option><option>Enhancing characteristic</option><option>Cost effectiveness constraint</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f23">b. The depiction is complete, free from bias, and free from error</label><select id="f23" data-answer="Faithful representation"><option value="">Choose…</option><option>Relevance</option><option>Faithful representation</option><option>Enhancing characteristic</option><option>Cost effectiveness constraint</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f24">c. A company uses the same inventory method every period so results can be compared year to year</label><select id="f24" data-answer="Enhancing characteristic"><option value="">Choose…</option><option>Relevance</option><option>Faithful representation</option><option>Enhancing characteristic</option><option>Cost effectiveness constraint</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f25">d. The benefits of providing a new disclosure must exceed the cost of preparing it</label><select id="f25" data-answer="Cost effectiveness constraint"><option value="">Choose…</option><option>Relevance</option><option>Faithful representation</option><option>Enhancing characteristic</option><option>Cost effectiveness constraint</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f26">e. Net income helps users confirm or revise their earlier expectations about future cash flows</label><select id="f26" data-answer="Relevance"><option value="">Choose…</option><option>Relevance</option><option>Faithful representation</option><option>Enhancing characteristic</option><option>Cost effectiveness constraint</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f27">f. Two independent measurers would reach similar amounts (verifiability)</label><select id="f27" data-answer="Enhancing characteristic"><option value="">Choose…</option><option>Relevance</option><option>Faithful representation</option><option>Enhancing characteristic</option><option>Cost effectiveness constraint</option></select><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><ul><li><strong>a. Relevance.</strong> Materiality is an aspect of relevance; immaterial information is not relevant.</li><li><strong>b. Faithful representation.</strong></li><li><strong>c. Enhancing.</strong> Consistency supports comparability.</li><li><strong>d. Cost effectiveness constraint.</strong></li><li><strong>e. Relevance.</strong> This is confirmatory value.</li><li><strong>f. Enhancing.</strong> Verifiability is an enhancing characteristic.</li></ul></div>
+</article><article class="example" id="ex7" aria-labelledby="ex7h">
+<h3 id="ex7h">Example 7 — Elements of financial statements</h3>
+<div class="scenario">Identify the element for each item.</div>
+<details class="hint"><summary>Need a hint?</summary><div>Revenues and expenses come from ongoing major or central operations; gains and losses come from peripheral or incidental transactions.</div></details>
+<div class="q"><label for="f28">a. A corporation issues new shares of stock to investors for cash</label><select id="f28" data-answer="Investment by owners"><option value="">Choose…</option><option>Asset</option><option>Liability</option><option>Revenue</option><option>Expense</option><option>Gain</option><option>Loss</option><option>Investment by owners</option><option>Distribution to owners</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f29">b. A corporation pays a cash dividend to its shareholders</label><select id="f29" data-answer="Distribution to owners"><option value="">Choose…</option><option>Asset</option><option>Liability</option><option>Revenue</option><option>Expense</option><option>Gain</option><option>Loss</option><option>Investment by owners</option><option>Distribution to owners</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f30">c. A furniture maker sells a parcel of land (not inventory) for more than its cost</label><select id="f30" data-answer="Gain"><option value="">Choose…</option><option>Asset</option><option>Liability</option><option>Revenue</option><option>Expense</option><option>Gain</option><option>Loss</option><option>Investment by owners</option><option>Distribution to owners</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f31">d. A furniture maker delivers sofas to customers</label><select id="f31" data-answer="Revenue"><option value="">Choose…</option><option>Asset</option><option>Liability</option><option>Revenue</option><option>Expense</option><option>Gain</option><option>Loss</option><option>Investment by owners</option><option>Distribution to owners</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f32">e. A furniture maker pays a lawsuit settlement unrelated to its normal operations</label><select id="f32" data-answer="Loss"><option value="">Choose…</option><option>Asset</option><option>Liability</option><option>Revenue</option><option>Expense</option><option>Gain</option><option>Loss</option><option>Investment by owners</option><option>Distribution to owners</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f33">f. A probable future economic benefit controlled as a result of a past transaction (such as a delivery truck)</label><select id="f33" data-answer="Asset"><option value="">Choose…</option><option>Asset</option><option>Liability</option><option>Revenue</option><option>Expense</option><option>Gain</option><option>Loss</option><option>Investment by owners</option><option>Distribution to owners</option></select><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><ul><li><strong>a. Investment by owners</strong> (increases equity).</li><li><strong>b. Distribution to owners</strong> (decreases equity).</li><li><strong>c. Gain.</strong> Incidental to operations.</li><li><strong>d. Revenue.</strong> Central operations.</li><li><strong>e. Loss.</strong> Incidental to operations.</li><li><strong>f. Asset.</strong></li></ul></div>
+</article><article class="example" id="ex8" aria-labelledby="ex8h">
+<h3 id="ex8h">Example 8 — Underlying assumptions</h3>
+<div class="scenario">Identify the assumption behind each practice.</div>
+<details class="hint"><summary>Need a hint?</summary><div>Match the practice to the idea: who is reported on, how long the business lasts, how often reports are issued, and what unit is used.</div></details>
+<div class="q"><label for="f34">a. The owner&rsquo;s personal home is not included in the business&rsquo;s balance sheet</label><select id="f34" data-answer="Economic entity"><option value="">Choose…</option><option>Economic entity</option><option>Going concern</option><option>Periodicity</option><option>Monetary unit</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f35">b. A building is depreciated over 40 years and measured at historical cost rather than liquidation value</label><select id="f35" data-answer="Going concern"><option value="">Choose…</option><option>Economic entity</option><option>Going concern</option><option>Periodicity</option><option>Monetary unit</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f36">c. A public company issues quarterly and annual reports</label><select id="f36" data-answer="Periodicity"><option value="">Choose…</option><option>Economic entity</option><option>Going concern</option><option>Periodicity</option><option>Monetary unit</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f37">d. Statements are expressed in U.S. dollars without adjusting for inflation</label><select id="f37" data-answer="Monetary unit"><option value="">Choose…</option><option>Economic entity</option><option>Going concern</option><option>Periodicity</option><option>Monetary unit</option></select><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><ul><li><strong>a. Economic entity.</strong> Business and owner are separate.</li><li><strong>b. Going concern.</strong> The business is assumed to operate long enough to use its assets; if liquidation were expected, assets would be measured at liquidation values.</li><li><strong>c. Periodicity.</strong> The economic life is divided into artificial periods for timely information.</li><li><strong>d. Monetary unit.</strong> The dollar is treated as stable in purchasing power.</li></ul></div>
+</article>
+</section><section class="topic" id="s4" aria-labelledby="s4h">
+<h2 id="s4h">Recognition, measurement, and disclosure</h2>
+<p>Once the elements are defined, GAAP must decide when to record them, at what amount, and how to describe them.</p>
+<div class="keyterms"><ul>
+<li><strong>Recognition</strong> decides whether an item is recorded; <strong>measurement</strong> decides the amount; <strong>disclosure</strong> decides what else users need to know (parenthetical comments, notes, supplemental schedules), subject to cost effectiveness.</li>
+<li><strong>Mixed-attribute measurement:</strong> historical cost, net realizable value, current cost, present value of future cash flows, and fair value.</li>
+<li><strong>Fair value hierarchy:</strong> <strong>Level 1</strong> quoted prices in active markets for identical items; <strong>Level 2</strong> other observable inputs (similar items, observable market data); <strong>Level 3</strong> unobservable inputs based on the company&rsquo;s own assumptions.</li>
+<li><strong>Fair value option:</strong> companies may choose to report certain financial assets and liabilities at fair value, with changes included in net income.</li>
+<li><strong>Revenue/expense approach</strong> emphasizes recognizing revenues when earned and matching expenses. <strong>Asset/liability approach</strong> defines assets and liabilities first, and revenues and expenses follow from changes in them. GAAP has been moving toward the asset/liability approach.</li>
+</ul></div>
+<article class="example" id="ex9" aria-labelledby="ex9h">
+<h3 id="ex9h">Example 9 — Fair value hierarchy</h3>
+<div class="scenario">Classify the inputs used to measure fair value.</div>
+<details class="hint"><summary>Need a hint?</summary><div>Level 1 is the most reliable (identical items, active market); Level 3 is the least observable.</div></details>
+<div class="q"><label for="f38">a. The closing price of identical shares on a stock exchange</label><select id="f38" data-answer="Level 1"><option value="">Choose…</option><option>Level 1</option><option>Level 2</option><option>Level 3</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f39">b. A value per square foot derived from recent sales of similar buildings in the same area</label><select id="f39" data-answer="Level 2"><option value="">Choose…</option><option>Level 1</option><option>Level 2</option><option>Level 3</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f40">c. A company&rsquo;s own estimate of the present value of future cash flows to clean up a site, when no market information exists</label><select id="f40" data-answer="Level 3"><option value="">Choose…</option><option>Level 1</option><option>Level 2</option><option>Level 3</option></select><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><ul><li><strong>a. Level 1.</strong> Quoted prices for identical assets in active markets.</li><li><strong>b. Level 2.</strong> Observable inputs for similar items.</li><li><strong>c. Level 3.</strong> Unobservable inputs reflecting the company&rsquo;s own assumptions.</li></ul><p>Opponents of fair value worry that Level 3 estimates may lack faithful representation and invite manipulation; proponents argue historical cost can be less relevant.</p></div>
+</article><article class="example" id="ex10" aria-labelledby="ex10h">
+<h3 id="ex10h">Example 10 — Measurement attributes</h3>
+<div class="scenario">Choose the measurement attribute that best matches each description.</div>
+<details class="hint"><summary>Need a hint?</summary><div>Historical cost looks backward to the exchange price; the others look to current or expected amounts.</div></details>
+<div class="q"><label for="f41">a. The amount paid when the asset was acquired</label><select id="f41" data-answer="Historical cost"><option value="">Choose…</option><option>Historical cost</option><option>Net realizable value</option><option>Present value of future cash flows</option><option>Fair value</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f42">b. The amount expected to be collected or realized from selling the asset, net of costs to sell</label><select id="f42" data-answer="Net realizable value"><option value="">Choose…</option><option>Historical cost</option><option>Net realizable value</option><option>Present value of future cash flows</option><option>Fair value</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f43">c. Expected future cash inflows discounted at an appropriate rate</label><select id="f43" data-answer="Present value of future cash flows"><option value="">Choose…</option><option>Historical cost</option><option>Net realizable value</option><option>Present value of future cash flows</option><option>Fair value</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f44">d. The price that would be received to sell an asset in an orderly transaction between market participants</label><select id="f44" data-answer="Fair value"><option value="">Choose…</option><option>Historical cost</option><option>Net realizable value</option><option>Present value of future cash flows</option><option>Fair value</option></select><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><ul><li><strong>a. Historical cost.</strong></li><li><strong>b. Net realizable value.</strong></li><li><strong>c. Present value of future cash flows.</strong></li><li><strong>d. Fair value.</strong></li></ul></div>
+</article><article class="example" id="ex11" aria-labelledby="ex11h">
+<h3 id="ex11h">Example 11 — Revenue/expense versus asset/liability approach</h3>
+<div class="scenario">Decide which approach each statement reflects.</div>
+<details class="hint"><summary>Need a hint?</summary><div>Ask which comes first: revenues and expenses, or assets and liabilities.</div></details>
+<div class="q"><label for="f45">a. Emphasis is on recognizing revenues when earned and matching expenses to those revenues</label><select id="f45" data-answer="Revenue/expense approach"><option value="">Choose…</option><option>Revenue/expense approach</option><option>Asset/liability approach</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f46">b. Revenues and expenses are defined by changes in assets and liabilities; assets and liabilities are defined first</label><select id="f46" data-answer="Asset/liability approach"><option value="">Choose…</option><option>Revenue/expense approach</option><option>Asset/liability approach</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f47">c. The approach the FASB and IASB have been moving toward in the conceptual framework</label><select id="f47" data-answer="Asset/liability approach"><option value="">Choose…</option><option>Revenue/expense approach</option><option>Asset/liability approach</option></select><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><ul><li><strong>a. Revenue/expense approach.</strong></li><li><strong>b. Asset/liability approach.</strong></li><li><strong>c. Asset/liability approach.</strong> Standards increasingly start from the definitions of assets and liabilities.</li></ul></div>
+</article>
+</section><section class="topic" id="s5" aria-labelledby="s5h">
+<h2 id="s5h">Ethics in accounting</h2>
+<p>Technical competence is not enough when a manager asks for an entry that misleads users. A simple framework helps you work through the decision.</p>
+<div class="keyterms"><ul>
+<li><strong>Ethics</strong> is a system of moral principles used to judge right and wrong. Professions such as public accounting adopt codes of conduct (the AICPA Code, the IMA code).</li>
+<li><strong>Seven-step framework:</strong> (1) determine the facts; (2) identify the ethical issue and stakeholders; (3) identify the values involved; (4) specify alternative courses of action; (5) evaluate them against the values; (6) identify the consequences for stakeholders; (7) decide and act.</li>
+<li>Advertising costs, like most similar costs, are expensed rather than deferred to match later sales; shifting expenses to an asset to reach a profit target misstates income.</li>
+</ul></div>
+<article class="example" id="ex12" aria-labelledby="ex12h">
+<h3 id="ex12h">Example 12 — An ethical dilemma</h3>
+<div class="scenario">You work for Cashiers Valley Sporting Goods. In May and June the company spent <strong>$1,200,000</strong> on a radio and TV campaign, all charged to advertising expense. Operating income before advertising for the quarter is <strong>$900,000</strong>. The CFO asks you to move the entire $1,200,000 to <em>prepaid advertising</em> so the quarter shows a profit, because the bank requires quarterly profits to keep the loan in good standing.</div>
+<details class="hint"><summary>Need a hint?</summary><div>Compute income both ways. Then think about who is affected (the bank, other lenders, investors) and which values (honesty, faithful representation) are involved.</div></details>
+<div class="q"><label for="f48">Operating income (loss) for the quarter if the advertising is correctly expensed (enter a loss as a negative number)</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f48" inputmode="decimal" autocomplete="off" data-answer="-300000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f49">Operating income for the quarter if the CFO&rsquo;s entry is made</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f49" inputmode="decimal" autocomplete="off" data-answer="900000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f50">Amount by which the CFO&rsquo;s entry overstates income</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f50" inputmode="decimal" autocomplete="off" data-answer="1200000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f51">Is the CFO&rsquo;s request appropriate?</label><select id="f51" data-answer="No, it overstates income and misleads the bank"><option value="">Choose…</option><option>No, it overstates income and misleads the bank</option><option>Yes, deferring the cost matches it to later sales</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f52">Which step of the ethical framework is &ldquo;specify the alternative courses of action&rdquo;?</label><select id="f52" data-answer="Step 4"><option value="">Choose…</option><option>Step 2</option><option>Step 4</option><option>Step 6</option></select><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><p>Correct treatment: $900,000 − $1,200,000 = <strong>$(300,000)</strong> operating loss. With the CFO&rsquo;s entry: $900,000 − $0 = <strong>$900,000</strong>, an overstatement of <strong>$1,200,000</strong>.</p><p>The request is not appropriate. The benefit of the advertising in a future month is uncertain, so the cost is expensed rather than deferred, and the purpose of the entry is to hide a loss from the bank. Stakeholders include the bank, other creditors, shareholders, and employees.</p><p>Alternatives (step 4) include: make the entry, refuse and explain GAAP, discuss with the audit committee, or disclose the loss to the bank and seek a covenant waiver. Information must be neutral and free from error, so you should not make the entry.</p></div>
+</article>
+</section>
+<section class="topic" id="wrap" aria-labelledby="wraph"><h2 id="wraph">Wrap-up: Chapter 1 at a glance</h2><ul><li><strong>Purpose:</strong> financial accounting supplies external users, mainly investors and creditors, with information to assess the amounts, timing, and uncertainty of future cash flows. Accrual accounting predicts those cash flows better than cash-basis accounting over short periods.</li><li><strong>Standard setting:</strong> SEC (authority) → FASB (ASUs and the Codification) in the private sector; IASB issues IFRS; GASB covers governments; politics influences standards.</li><li><strong>Quality safeguards:</strong> management prepares, auditors opine, the Sarbanes-Oxley Act created the PCAOB and internal-control reporting, and ethics codes guide professionals.</li><li><strong>Conceptual framework:</strong> relevance and faithful representation are fundamental; comparability, verifiability, timeliness, and understandability enhance; cost effectiveness constrains. Elements, assumptions, recognition, measurement, and disclosure complete the structure.</li><li><strong>IFRS:</strong> the IASB and FASB have converged on many topics, but differences remain; IFRS is not yet adopted for U.S. companies.</li></ul></section>
+</main>
+<footer class="site">ACCT 605 · Chapter 1 Chapter Walkthrough · Environment and Theoretical Structure of Financial Accounting (Ungraded)</footer>
+<script>
+(function(){
+  var Y=new Date().getFullYear();
+  document.querySelectorAll('[data-yr]').forEach(function(e){e.textContent=String(Y+Number(e.getAttribute('data-yr')));});
+
+  var ACCOUNTS=["Accounts receivable", "Cash"];
+
+  function parseNum(s){
+    if(s==null) return NaN; s=String(s).trim(); if(!s) return NaN;
+    var neg=/^\(.*\)$/.test(s)||/^-/.test(s);
+    s=s.replace(/[$,%\s()\-]/g,''); var v=parseFloat(s);
+    return isNaN(v)?NaN:(neg?-v:v);
+  }
+  function fmt(v,unit){
+    var o=Math.abs(v)%1?{minimumFractionDigits:2,maximumFractionDigits:2}:{maximumFractionDigits:0};
+    var t=Math.abs(v).toLocaleString('en-US',o);
+    if(unit==='%') return t+'%';
+    if(unit==='$') return (v<0?'-':'')+'$'+t;
+    return (v<0?'-':'')+t;
+  }
+
+  /* Build journal entry tables */
+  document.querySelectorAll('div.je').forEach(function(box,idx){
+    var rows=Number(box.getAttribute('data-rows')||3);
+    var id='je'+idx;
+    var h='<div class="tablewrap"><table class="je"><caption>'+box.getAttribute('data-caption')+'</caption><thead><tr><th scope="col">Account title</th><th scope="col" class="n">Debit ($)</th><th scope="col" class="n">Credit ($)</th><th scope="col"><span class="sr">Result</span></th></tr></thead><tbody>';
+    for(var r=0;r<rows;r++){
+      h+='<tr><td><label class="sr" for="'+id+'a'+r+'">Account, line '+(r+1)+'</label><select id="'+id+'a'+r+'"><option value="">Choose…</option>'+ACCOUNTS.map(function(a){return '<option>'+a+'</option>';}).join('')+'</select></td>'+
+         '<td class="n"><label class="sr" for="'+id+'d'+r+'">Debit amount, line '+(r+1)+'</label><input type="text" inputmode="decimal" autocomplete="off" id="'+id+'d'+r+'"></td>'+
+         '<td class="n"><label class="sr" for="'+id+'c'+r+'">Credit amount, line '+(r+1)+'</label><input type="text" inputmode="decimal" autocomplete="off" id="'+id+'c'+r+'"></td>'+
+         '<td><span class="rowfb" aria-live="polite"></span></td></tr>';
+    }
+    h+='</tbody></table></div><span class="fb" aria-live="polite"></span>';
+    box.innerHTML=h;
+  });
+
+  var checked={}; var total=document.querySelectorAll('.example').length;
+  document.getElementById('total').textContent=total;
+  function updateProgress(){
+    document.getElementById('count').textContent=Object.keys(checked).length;
+  }
+
+  function gradeField(el){
+    var unit=el.getAttribute('data-unit')||'';
+    var fb=el.closest('.q').querySelector('.fb');
+    var ok;
+    if(el.tagName==='SELECT'){
+      ok=(el.value===el.getAttribute('data-answer'));
+      fb.textContent=ok?'✓ Correct':(el.value?'✗ Not quite. Answer: ':'✗ No answer chosen. Answer: ')+(ok?'':el.getAttribute('data-answer'));
+    } else {
+      var v=parseNum(el.value), a=Number(el.getAttribute('data-answer')), tol=Number(el.getAttribute('data-tol')||0.5);
+      ok=!isNaN(v)&&Math.abs(v-a)<=tol;
+      fb.textContent=ok?'✓ Correct':(isNaN(v)?'✗ No answer entered. Answer: ':'✗ Not quite. Answer: ')+fmt(a,unit);
+    }
+    fb.className='fb '+(ok?'ok':'bad');
+    el.setAttribute('aria-invalid',ok?'false':'true'); el.classList.toggle('ok',ok);
+    return ok;
+  }
+
+  function gradeJE(box){
+    var id=null, rows=Number(box.getAttribute('data-rows')||3);
+    var first=box.querySelector('select').id; id=first.replace(/a0$/,'');
+    var exp={}; JSON.parse(box.getAttribute('data-expected')).forEach(function(e){
+      exp[e[0]]=(exp[e[0]]||0)+(e[1]==='D'?e[2]:-e[2]);
+    });
+    var got={}, rowOk=true, anyBlankAcct=false;
+    for(var r=0;r<rows;r++){
+      var acct=document.getElementById(id+'a'+r).value;
+      var d=parseNum(document.getElementById(id+'d'+r).value), c=parseNum(document.getElementById(id+'c'+r).value);
+      var fbr=box.querySelectorAll('.rowfb')[r];
+      if(isNaN(d)) d=0; if(isNaN(c)) c=0;
+      if(!acct && (d||c)){ fbr.textContent='✗ Pick an account'; fbr.className='rowfb bad'; rowOk=false; continue; }
+      if(!acct){ fbr.textContent=''; continue; }
+      got[acct]=(got[acct]||0)+d-c;
+    }
+    var keys=Object.keys(exp).concat(Object.keys(got).filter(function(k){return !(k in exp);}));
+    var ok=rowOk;
+    keys.forEach(function(k){ if(Math.abs((exp[k]||0)-(got[k]||0))>0.5) ok=false; });
+    for(var r2=0;r2<rows;r2++){
+      var acct2=document.getElementById(id+'a'+r2).value; var fbr2=box.querySelectorAll('.rowfb')[r2];
+      if(!acct2) continue;
+      var good=Math.abs((exp[acct2]||0)-(got[acct2]||0))<=0.5 && (acct2 in exp);
+      fbr2.textContent=good?'✓':'✗'; fbr2.className='rowfb '+(good?'ok':'bad');
+    }
+    var fb=box.querySelector('.fb');
+    fb.textContent=ok?'✓ Journal entry is correct':'✗ Not quite. Compare your entry with the solution below.';
+    fb.className='fb '+(ok?'ok':'bad');
+    return ok;
+  }
+
+  document.querySelectorAll('.example').forEach(function(ex){
+    var btn=ex.querySelector('button.check'), rst=ex.querySelector('button.reset'), sol=ex.querySelector('.solution'), res=ex.querySelector('.result');
+    btn.addEventListener('click',function(){
+      var good=0,n=0;
+      ex.querySelectorAll('[data-answer]').forEach(function(el){ n++; if(gradeField(el)) good++; });
+      ex.querySelectorAll('div.je').forEach(function(box){ n++; if(gradeJE(box)) good++; });
+      res.textContent=good+' of '+n+' correct';
+      sol.hidden=false;
+      checked[ex.id]=true; updateProgress();
+    });
+    rst.addEventListener('click',function(){
+      ex.querySelectorAll('input[type=text]').forEach(function(i){i.value='';i.removeAttribute('aria-invalid');i.classList.remove('ok');});
+      ex.querySelectorAll('select').forEach(function(s){s.selectedIndex=0;s.removeAttribute('aria-invalid');s.classList.remove('ok');});
+      ex.querySelectorAll('.fb,.rowfb').forEach(function(f){f.textContent='';f.className=f.className.split(' ')[0];});
+      res.textContent=''; sol.hidden=true;
+    });
+  });
+})();
+</script>
+</body>
+</html>

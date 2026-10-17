@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ACCT 605 Chapter 11 Chapter Walkthrough</title>
+<meta name="description" content="Chapter 11 Chapter Walkthrough: step-by-step guided practice on the utilization and impairment of operational assets for Accounting Theory and Research.">
+<style>
+:root{
+  --bg:#f4f8f5; --card:#ffffff; --text:#14201a; --muted:#41524a;
+  --g900:#0b3b2a; --g800:#14513a; --g700:#1b6a4a; --g100:#e3f0e8; --g50:#f0f7f3;
+  --border:#b4cdbf; --accent:#8a5a00; --ok:#0d6137; --bad:#9b2415; --focus:#0a4fd1;
+  --warn-bg:#fff6df;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0e1814; --card:#15231d; --text:#e9f3ee; --muted:#b5c9bf;
+    --g900:#0a2e21; --g800:#1d6a49; --g700:#58c08f; --g100:#1b3328; --g50:#122019;
+    --border:#34503f; --accent:#f0c36a; --ok:#6fdca3; --bad:#ff9f8f; --focus:#8db4ff;
+    --warn-bg:#2b2410;
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font:17px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+.skip{position:absolute;left:-999px;top:0;background:#fff;color:#000;padding:.6rem 1rem;z-index:100;border:2px solid var(--focus)}
+.skip:focus{left:8px;top:8px}
+a{color:var(--g800)}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+header.site{background:var(--g900);color:#fff;padding:2rem 1rem 1.5rem}
+.wrap{max-width:820px;margin:0 auto;padding:0 1rem}
+header.site .wrap{padding:0}
+.eyebrow{font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:#bfe3cf;margin:0 0 .25rem}
+h1{font-size:2rem;line-height:1.2;margin:.1rem 0 .5rem}
+header.site p{margin:.25rem 0}
+.progress{display:inline-block;margin-top:.75rem;background:#fff;color:var(--g900);font-weight:700;padding:.35rem .8rem;border-radius:999px}
+.howto{background:var(--g100);border-left:6px solid var(--g700);padding:.9rem 1.1rem;border-radius:6px;margin:1.25rem 0}
+nav.toc{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:.8rem 1.1rem;margin:1rem 0}
+nav.toc h2{font-size:1rem;margin:0 0 .3rem}
+nav.toc ol{margin:0;padding-left:1.2rem}
+section.topic{margin:2.2rem 0}
+section.topic>h2{font-size:1.55rem;color:var(--g800);border-bottom:3px solid var(--g700);padding-bottom:.3rem;margin-bottom:.8rem}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) section.topic>h2{color:var(--g700)}}
+h3{font-size:1.15rem;margin:1.2rem 0 .4rem}
+.keyterms{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:.4rem 1.1rem .6rem;margin:1rem 0}
+.keyterms ul,.keyterms ol{margin:.4rem 0;padding-left:1.3rem}
+.keyterms li{margin:.3rem 0}
+.example{background:var(--card);border:1px solid var(--border);border-top:6px solid var(--g700);border-radius:8px;padding:1rem 1.2rem 1.2rem;margin:1.5rem 0}
+.example h3{margin-top:0;color:var(--g800)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .example h3{color:var(--g700)}}
+.scenario{background:var(--g50);border-radius:6px;padding:.6rem .9rem;margin:.6rem 0}
+details.hint{margin:.6rem 0}
+details.hint summary{cursor:pointer;font-weight:600;color:var(--g800);padding:.2rem 0}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) details.hint summary{color:var(--g700)}}
+details.hint div{border-left:4px solid var(--accent);padding:.3rem .9rem;margin:.4rem 0;background:var(--warn-bg)}
+.q{margin:.9rem 0}
+.q>label,.q>.lbl{display:block;font-weight:600;margin-bottom:.25rem}
+.field{display:inline-flex;align-items:center;gap:.3rem}
+.field .pre,.field .suf{font-weight:700}
+input[type=text],select{font:inherit;color:var(--text);background:var(--card);border:2px solid var(--muted);border-radius:6px;padding:.4rem .6rem;min-height:2.6rem}
+input[type=text]{width:12rem;text-align:right}
+select{max-width:100%}
+input[aria-invalid=true],select[aria-invalid=true]{border-color:var(--bad)}
+input.ok,select.ok{border-color:var(--ok)}
+.fb{display:block;margin-top:.25rem;font-weight:600;min-height:0}
+.fb.ok{color:var(--ok)} .fb.bad{color:var(--bad)}
+.btnrow{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1rem;align-items:center}
+button{font:inherit;font-weight:700;cursor:pointer;border-radius:6px;padding:.55rem 1.1rem;min-height:2.75rem;border:2px solid var(--g800)}
+button.check{background:var(--g800);color:#fff}
+button.check:hover{background:var(--g900)}
+button.reset{background:transparent;color:var(--g800)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) button.check{background:#e9f3ee;color:#0a2e21;border-color:#e9f3ee} :root:not([data-theme="light"]) button.reset{color:var(--g700);border-color:var(--g700)}}
+.result{font-weight:700}
+.solution{margin-top:1rem;border:2px solid var(--g700);border-radius:8px;padding:.3rem 1rem .8rem;background:var(--g50)}
+.solution h4{margin:.6rem 0 .3rem;color:var(--g800)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .solution h4{color:var(--g700)}}
+table{border-collapse:collapse;width:100%;margin:.7rem 0;font-size:.98rem}
+caption{text-align:left;font-weight:700;padding:.2rem 0 .4rem}
+th,td{border:1px solid var(--border);padding:.4rem .6rem;text-align:left;vertical-align:top}
+thead th{background:var(--g800);color:#fff}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+tr.tot td{font-weight:700;border-top:3px double var(--text)}
+.tablewrap{overflow-x:auto;position:relative}
+table.je td,table.je th,table.jet td,table.jet th{vertical-align:middle}
+table.je select{width:100%;min-width:13rem}
+table.je input{width:8.5rem}
+.rowfb{font-weight:600;white-space:nowrap}
+.formula{background:var(--g100);padding:.5rem .9rem;border-radius:6px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.95rem;overflow-x:auto}
+footer.site{border-top:1px solid var(--border);margin-top:3rem;padding:1.2rem 1rem 2.5rem;color:var(--muted);font-size:.9rem;text-align:center}
+@media print{.skip,.btnrow,nav.toc{display:none} body{background:#fff;color:#000} .example{break-inside:avoid} .solution[hidden]{display:none}}
+
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="site">
+<div class="wrap">
+<p class="eyebrow">ACCT 605 · Accounting Theory and Research</p>
+<h1>Chapter 11 Chapter Walkthrough</h1>
+<p>Operational Assets: Utilization and Impairment: step-by-step guided practice</p>
+<p class="progress" role="status" aria-live="polite"><span id="count">0</span> of <span id="total">13</span> checked</p>
+</div>
+</header>
+<main id="main" class="wrap">
+<div class="howto"><p><strong>How this works.</strong> This page is for practice only: it is not graded and nothing is submitted. Read each short review, try the example, and use <em>Check my answer</em> to see feedback and a worked solution. Numbers can be typed with or without dollar signs and commas. <em>Need a hint?</em> opens a nudge without giving the answer away. Company names are fictional.</p></div>
+<nav class="toc" aria-label="On this page"><h2>On this page</h2><ol><li><a href="#s1">Depreciation methods</a></li><li><a href="#s2">Partial years and dispositions</a></li><li><a href="#s3">Depletion, amortization, and changes</a></li><li><a href="#s4">Impairment, subsequent expenditures, and IFRS</a></li><li><a href="#wrap">Wrap-up</a></li></ol></nav>
+<section class="topic" id="s1" aria-labelledby="s1h">
+<h2 id="s1h">Depreciation methods</h2>
+<p>Each method allocates cost over the useful life; they differ in how much expense is recognized in each period.</p>
+<div class="keyterms"><ul>
+<li><strong>Depreciation</strong> allocates the cost of PP&amp;E (less residual value) to the periods that benefit. <strong>Depletion</strong> applies to natural resources; <strong>amortization</strong> applies to intangible assets. None of these is a valuation process; each is cost allocation.</li>
+<li><strong>Depreciable base</strong> = cost − residual (salvage) value.</li>
+<li><strong>Straight-line:</strong> (cost − residual) ÷ service life. <strong>Sum-of-the-years&rsquo;-digits (SYD):</strong> depreciable base × (remaining life ÷ sum of years&rsquo; digits). <strong>Double-declining-balance (DDB):</strong> 2 ÷ life × beginning book value (ignore residual value, but never depreciate below residual). <strong>Units of production (activity-based):</strong> (cost − residual) ÷ total estimated units × units this period.</li>
+<li>Accelerated methods (SYD, DDB) record more depreciation in the early years.</li>
+</ul></div>
+<article class="example" id="ex1" aria-labelledby="ex1h">
+<h3 id="ex1h">Example 1 — Straight-line and units-of-production</h3>
+<div class="scenario">On January 1, Cullowhee Manufacturing buys a machine for <strong>$250,000</strong>. It has a <strong>5-year</strong> life, a residual value of <strong>$40,000</strong>, and an estimated total output of <strong>70,000 machine hours</strong>. In Year 1 the machine runs <strong>18,000 hours</strong>.</div>
+<details class="hint"><summary>Need a hint?</summary><div>Depreciable base = $250,000 − $40,000.</div></details>
+<div class="q"><label for="f1">Depreciable base</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f1" inputmode="decimal" autocomplete="off" data-answer="210000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f2">Straight-line depreciation per year</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f2" inputmode="decimal" autocomplete="off" data-answer="42000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f3">Depreciation per machine hour</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f3" inputmode="decimal" autocomplete="off" data-answer="3" data-unit="$" data-tol="0.01"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f4">Year 1 depreciation, units-of-production</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f4" inputmode="decimal" autocomplete="off" data-answer="54000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><p>Depreciable base: <strong>$210,000</strong>. Straight-line: $210,000 ÷ 5 = <strong>$42,000</strong>. Per hour: $210,000 ÷ 70,000 = <strong>$3</strong>. Year 1: 18,000 × $3 = <strong>$54,000</strong>.</p></div>
+</article><article class="example" id="ex2" aria-labelledby="ex2h">
+<h3 id="ex2h">Example 2 — SYD and double-declining-balance</h3>
+<div class="scenario">Use the same machine as Example 1: cost <strong>$250,000</strong>, residual value <strong>$40,000</strong>, life <strong>5 years</strong>, acquired January 1.</div>
+<details class="hint"><summary>Need a hint?</summary><div>SYD: sum of digits = 5 + 4 + 3 + 2 + 1 = 15. DDB rate = 2 ÷ 5 = 40% of beginning book value; in the last years, do not depreciate below residual value.</div></details>
+<div class="q"><label for="f5">SYD depreciation, Year 1</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f5" inputmode="decimal" autocomplete="off" data-answer="70000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f6">SYD depreciation, Year 2</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f6" inputmode="decimal" autocomplete="off" data-answer="56000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f7">DDB depreciation, Year 1</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f7" inputmode="decimal" autocomplete="off" data-answer="100000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f8">DDB depreciation, Year 2</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f8" inputmode="decimal" autocomplete="off" data-answer="60000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f9">DDB depreciation, Year 3</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f9" inputmode="decimal" autocomplete="off" data-answer="36000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f10">DDB depreciation, Year 4 (limited by residual value)</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f10" inputmode="decimal" autocomplete="off" data-answer="14000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><div class="tablewrap"><table><caption>Depreciation schedules</caption><thead><tr><th scope="col">Year</th><th scope="col" class=n>Straight-line</th><th scope="col" class=n>SYD</th><th scope="col" class=n>DDB</th></tr></thead><tbody><tr><th scope="row">1</th><td class="n">$42,000</td><td class="n">$70,000</td><td class="n">$100,000</td></tr><tr><th scope="row">2</th><td class="n">42,000</td><td class="n">56,000</td><td class="n">60,000</td></tr><tr><th scope="row">3</th><td class="n">42,000</td><td class="n">42,000</td><td class="n">36,000</td></tr><tr><th scope="row">4</th><td class="n">42,000</td><td class="n">28,000</td><td class="n">14,000</td></tr><tr><th scope="row">5</th><td class="n">42,000</td><td class="n">14,000</td><td class="n">0</td></tr><tr class="tot"><th scope="row">Total</th><td class="n">$210,000</td><td class="n">$210,000</td><td class="n">$210,000</td></tr></tbody></table></div><p>SYD Year 1: 5/15 × $210,000 = $70,000. DDB Year 1: 40% × $250,000 = $100,000; Year 2: 40% × $150,000 = $60,000; Year 3: 40% × $90,000 = $36,000; Year 4: 40% × $54,000 = $21,600, but book value cannot go below $40,000, so only $14,000. Year 5: $0.</p></div>
+</article><article class="example" id="ex3" aria-labelledby="ex3h">
+<h3 id="ex3h">Example 3 — Choosing and interpreting methods</h3>
+<div class="scenario">Choose the best answer.</div>
+<details class="hint"><summary>Need a hint?</summary><div>Think about the pattern of benefits and how each method behaves in early versus late years.</div></details>
+<div class="q"><label for="f11">a. Which method produces the highest depreciation in Year 1?</label><select id="f11" data-answer="Double-declining-balance"><option value="">Choose…</option><option>Straight-line</option><option>SYD</option><option>Double-declining-balance</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f12">b. Which method best matches an asset whose usage varies greatly from year to year?</label><select id="f12" data-answer="Units of production"><option value="">Choose…</option><option>Straight-line</option><option>Units of production</option><option>SYD</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f13">c. Total depreciation over the asset&rsquo;s life under all methods equals</label><select id="f13" data-answer="The depreciable base (cost − residual)"><option value="">Choose…</option><option>The depreciable base (cost − residual)</option><option>Cost plus residual value</option><option>Fair value</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f14">d. Depreciation is best described as a process of</label><select id="f14" data-answer="Cost allocation"><option value="">Choose…</option><option>Valuation</option><option>Cost allocation</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f15">e. Which method ignores residual value when computing the annual rate base?</label><select id="f15" data-answer="Double-declining-balance"><option value="">Choose…</option><option>Straight-line</option><option>SYD</option><option>Double-declining-balance</option></select><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><ul><li><strong>a. DDB.</strong></li><li><strong>b. Units of production.</strong></li><li><strong>c.</strong> The depreciable base.</li><li><strong>d. Cost allocation</strong>, not valuation.</li><li><strong>e. DDB</strong> applies the rate to book value without subtracting residual value (but stops at residual value).</li></ul></div>
+</article>
+</section><section class="topic" id="s2" aria-labelledby="s2h">
+<h2 id="s2h">Partial years and dispositions</h2>
+<p>When assets are acquired or sold mid-year, depreciation must be recorded for the part of the year the asset was held.</p>
+<div class="keyterms"><ul>
+<li><strong>Partial-year depreciation:</strong> multiply annual depreciation by the fraction of the year the asset was held. For accelerated methods, compute full-year amounts for each <em>year of the asset&rsquo;s life</em>, then allocate to calendar years.</li>
+<li><strong>Disposition:</strong> (1) record depreciation up to the date of sale; (2) remove the cost and accumulated depreciation; (3) record cash received and a gain or loss = proceeds − book value.</li>
+<li><strong>Gain</strong> if proceeds exceed book value; <strong>loss</strong> if proceeds are less than book value.</li>
+</ul></div>
+<article class="example" id="ex4" aria-labelledby="ex4h">
+<h3 id="ex4h">Example 4 — Partial-year depreciation</h3>
+<div class="scenario">Hendersonville Machining buys the same machine ($250,000 cost, $40,000 residual value, 5-year life) on <strong>April 1</strong>. The company has a December 31 year-end. Compute depreciation for the first two calendar years.</div>
+<details class="hint"><summary>Need a hint?</summary><div>Year 1 includes 9 months (April&ndash;December). For SYD, Year 2 combines 3 months of asset-year 1 and 9 months of asset-year 2.</div></details>
+<div class="q"><label for="f16">Straight-line, Year 1</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f16" inputmode="decimal" autocomplete="off" data-answer="31500" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f17">DDB, Year 1</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f17" inputmode="decimal" autocomplete="off" data-answer="75000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f18">DDB, Year 2</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f18" inputmode="decimal" autocomplete="off" data-answer="70000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f19">SYD, Year 1</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f19" inputmode="decimal" autocomplete="off" data-answer="52500" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f20">SYD, Year 2</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f20" inputmode="decimal" autocomplete="off" data-answer="59500" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><p>SL Year 1: $42,000 × 9/12 = <strong>$31,500</strong>.</p><p>DDB Year 1: $100,000 × 9/12 = <strong>$75,000</strong>. Year 2: 40% × ($250,000 − $75,000) = <strong>$70,000</strong>.</p><p>SYD Year 1: $70,000 × 9/12 = <strong>$52,500</strong>. Year 2: $70,000 × 3/12 + $56,000 × 9/12 = $17,500 + $42,000 = <strong>$59,500</strong>.</p></div>
+</article><article class="example" id="ex5" aria-labelledby="ex5h">
+<h3 id="ex5h">Example 5 — Selling an asset</h3>
+<div class="scenario">Waynesville Wood sells the straight-line machine ($250,000 cost, $42,000 annual depreciation, acquired January 1 of Year 1) on <strong>July 1 of Year 4</strong> for <strong>$90,000</strong> cash. Depreciation has been recorded through the end of Year 3.</div>
+<details class="hint"><summary>Need a hint?</summary><div>First record depreciation for 6 months of Year 4. Then compute the book value and the gain or loss.</div></details>
+<div class="q"><label for="f21">Depreciation for Year 4 up to the sale date</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f21" inputmode="decimal" autocomplete="off" data-answer="21000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f22">Book value at the date of sale</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f22" inputmode="decimal" autocomplete="off" data-answer="103000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f23">Loss on the sale</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f23" inputmode="decimal" autocomplete="off" data-answer="13000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><div class="je" data-caption="Record depreciation to the date of sale" data-rows="2" data-expected="[[&quot;Depreciation expense&quot;, &quot;D&quot;, 21000], [&quot;Accumulated depreciation&quot;, &quot;C&quot;, 21000]]"></div></div><div class="q"><div class="je" data-caption="Record the sale" data-rows="4" data-expected="[[&quot;Cash&quot;, &quot;D&quot;, 90000], [&quot;Accumulated depreciation&quot;, &quot;D&quot;, 147000], [&quot;Loss on sale of equipment&quot;, &quot;D&quot;, 13000], [&quot;Equipment&quot;, &quot;C&quot;, 250000]]"></div></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><p>Depreciation: $42,000 × 6/12 = <strong>$21,000</strong>. Accumulated depreciation: 3 × $42,000 + $21,000 = $147,000. Book value: $250,000 − $147,000 = <strong>$103,000</strong>. Loss: $103,000 − $90,000 = <strong>$13,000</strong>.</p><table class="jet"><caption>Depreciation</caption><thead><tr><th scope="col">Account</th><th scope="col" class="n">Debit</th><th scope="col" class="n">Credit</th></tr></thead><tbody><tr><td>Depreciation expense</td><td class="n">21,000</td><td class="n"></td></tr><tr><td>&nbsp;&nbsp;&nbsp;Accumulated depreciation</td><td class="n"></td><td class="n">21,000</td></tr></tbody></table><table class="jet"><caption>Sale</caption><thead><tr><th scope="col">Account</th><th scope="col" class="n">Debit</th><th scope="col" class="n">Credit</th></tr></thead><tbody><tr><td>Cash</td><td class="n">90,000</td><td class="n"></td></tr><tr><td>Accumulated depreciation</td><td class="n">147,000</td><td class="n"></td></tr><tr><td>Loss on sale of equipment</td><td class="n">13,000</td><td class="n"></td></tr><tr><td>&nbsp;&nbsp;&nbsp;Equipment</td><td class="n"></td><td class="n">250,000</td></tr></tbody></table></div>
+</article>
+</section><section class="topic" id="s3" aria-labelledby="s3h">
+<h2 id="s3h">Depletion, amortization, and changes</h2>
+<p>Natural resources and intangibles use depletion and amortization; estimates change over time.</p>
+<div class="keyterms"><ul>
+<li><strong>Depletion</strong> = (cost + restoration cost − residual value) ÷ estimated recoverable units × units extracted. Depletion of units sold goes to cost of goods sold; units unsold remain in inventory.</li>
+<li><strong>Amortization</strong> of a finite-life intangible: cost ÷ useful life (usually straight-line), over the shorter of legal and useful life. Indefinite-life intangibles (and goodwill) are <em>not</em> amortized but tested for impairment.</li>
+<li><strong>Change in estimate</strong> (useful life or residual value): <strong>prospective</strong>. New depreciation = (book value − new residual) ÷ remaining life. <strong>Change in method:</strong> a change in estimate effected by a change in principle; also prospective. <strong>Error</strong> (for example, using the wrong amount): restate prior periods.</li>
+</ul></div>
+<article class="example" id="ex6" aria-labelledby="ex6h">
+<h3 id="ex6h">Example 6 — Depletion</h3>
+<div class="scenario">Smoky Mountain Mining pays for a coal mine; with development and restoration costs, its depletable cost is <strong>$3,700,000</strong>. The estimated residual value of the land is <strong>$500,000</strong>, and estimated recoverable reserves are <strong>800,000 tons</strong>. During the year the company extracts <strong>120,000 tons</strong> and sells <strong>100,000 tons</strong>.</div>
+<details class="hint"><summary>Need a hint?</summary><div>Depletion rate = (cost − residual) ÷ estimated tons. Depletion for the year is based on tons <em>extracted</em>.</div></details>
+<div class="q"><label for="f24">Depletion rate per ton</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f24" inputmode="decimal" autocomplete="off" data-answer="4" data-unit="$" data-tol="0.01"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f25">Depletion for the year</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f25" inputmode="decimal" autocomplete="off" data-answer="480000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f26">Depletion included in cost of goods sold (tons sold)</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f26" inputmode="decimal" autocomplete="off" data-answer="400000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><div class="je" data-caption="Record depletion for the year (as part of inventory cost)" data-rows="2" data-expected="[[&quot;Inventory&quot;, &quot;D&quot;, 480000], [&quot;Accumulated depletion&quot;, &quot;C&quot;, 480000]]"></div></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><p>Rate: ($3,700,000 − $500,000) ÷ 800,000 = <strong>$4 per ton</strong>. Depletion: 120,000 × $4 = <strong>$480,000</strong>. Of this, 100,000 × $4 = <strong>$400,000</strong> goes to cost of goods sold; $80,000 remains in inventory.</p><table class="jet"><caption>Depletion</caption><thead><tr><th scope="col">Account</th><th scope="col" class="n">Debit</th><th scope="col" class="n">Credit</th></tr></thead><tbody><tr><td>Inventory</td><td class="n">480,000</td><td class="n"></td></tr><tr><td>&nbsp;&nbsp;&nbsp;Accumulated depletion</td><td class="n"></td><td class="n">480,000</td></tr></tbody></table></div>
+</article><article class="example" id="ex7" aria-labelledby="ex7h">
+<h3 id="ex7h">Example 7 — Amortization of intangibles</h3>
+<div class="scenario">On January 1, Brevard Software buys a patent for <strong>$240,000</strong>. The patent has a legal life of 20 years, but the company expects it to be useful for only <strong>8 years</strong>. It also acquires a trademark with an indefinite life for $100,000.</div>
+<details class="hint"><summary>Need a hint?</summary><div>Amortize over the shorter of the legal life and the useful life. Indefinite-life intangibles are not amortized.</div></details>
+<div class="q"><label for="f27">Annual patent amortization</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f27" inputmode="decimal" autocomplete="off" data-answer="30000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><div class="je" data-caption="Record annual patent amortization" data-rows="2" data-expected="[[&quot;Amortization expense&quot;, &quot;D&quot;, 30000], [&quot;Patent&quot;, &quot;C&quot;, 30000]]"></div></div><div class="q"><label for="f28">The indefinite-life trademark is</label><select id="f28" data-answer="Not amortized, but tested for impairment annually"><option value="">Choose…</option><option>Amortized over 40 years</option><option>Not amortized, but tested for impairment annually</option></select><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><p>$240,000 ÷ 8 years = <strong>$30,000</strong> per year. The trademark is not amortized; it is tested for impairment at least annually.</p><table class="jet"><caption>Amortization</caption><thead><tr><th scope="col">Account</th><th scope="col" class="n">Debit</th><th scope="col" class="n">Credit</th></tr></thead><tbody><tr><td>Amortization expense</td><td class="n">30,000</td><td class="n"></td></tr><tr><td>&nbsp;&nbsp;&nbsp;Patent</td><td class="n"></td><td class="n">30,000</td></tr></tbody></table></div>
+</article><article class="example" id="ex8" aria-labelledby="ex8h">
+<h3 id="ex8h">Example 8 — Change in estimate</h3>
+<div class="scenario">Return to the straight-line machine ($250,000 cost, $40,000 residual value, 5-year life). After <strong>2 years</strong>, management revises the estimates: the remaining life is <strong>6 more years</strong> and the residual value is <strong>$28,000</strong>.</div>
+<details class="hint"><summary>Need a hint?</summary><div>Book value after 2 years = cost − accumulated depreciation. New depreciation = (book value − new residual value) ÷ remaining life.</div></details>
+<div class="q"><label for="f29">Accumulated depreciation after 2 years</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f29" inputmode="decimal" autocomplete="off" data-answer="84000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f30">Book value after 2 years</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f30" inputmode="decimal" autocomplete="off" data-answer="166000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f31">Revised annual depreciation</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f31" inputmode="decimal" autocomplete="off" data-answer="23000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f32">The change is reported</label><select id="f32" data-answer="Prospectively, in the current and future periods"><option value="">Choose…</option><option>Retrospectively, restating prior years</option><option>Prospectively, in the current and future periods</option></select><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><p>Accumulated depreciation: 2 × $42,000 = <strong>$84,000</strong>. Book value: <strong>$166,000</strong>. New depreciation: ($166,000 − $28,000) ÷ 6 = <strong>$23,000</strong> per year. No restatement of prior years.</p></div>
+</article><article class="example" id="ex9" aria-labelledby="ex9h">
+<h3 id="ex9h">Example 9 — Changes and errors</h3>
+<div class="scenario">Classify each situation.</div>
+<details class="hint"><summary>Need a hint?</summary><div>Changing depreciation method is treated like a change in estimate: prospective. Errors involve mistakes in prior statements.</div></details>
+<div class="q"><label for="f33">a. Management concludes the equipment will last 12 years rather than 8 based on experience</label><select id="f33" data-answer="Change in estimate (prospective)"><option value="">Choose…</option><option>Change in estimate (prospective)</option><option>Change in method (prospective)</option><option>Error correction (restate prior periods)</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f34">b. A company switches from double-declining-balance to straight-line depreciation</label><select id="f34" data-answer="Change in method (prospective)"><option value="">Choose…</option><option>Change in estimate (prospective)</option><option>Change in method (prospective)</option><option>Error correction (restate prior periods)</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f35">c. The company discovers that last year it expensed a $50,000 purchase that should have been capitalized</label><select id="f35" data-answer="Error correction (restate prior periods)"><option value="">Choose…</option><option>Change in estimate (prospective)</option><option>Change in method (prospective)</option><option>Error correction (restate prior periods)</option></select><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><ul><li><strong>a. Change in estimate.</strong></li><li><strong>b. Change in method</strong>, treated prospectively as a change in estimate effected by a change in principle.</li><li><strong>c. Error correction.</strong> Restate prior statements.</li></ul></div>
+</article>
+</section><section class="topic" id="s4" aria-labelledby="s4h">
+<h2 id="s4h">Impairment, subsequent expenditures, and IFRS</h2>
+<p>Long-lived assets must be written down when their carrying amounts are not recoverable.</p>
+<div class="keyterms"><ul>
+<li><strong>Impairment of PP&amp;E and finite-life intangibles (U.S. GAAP):</strong> Step 1: if events suggest the carrying amount may not be recoverable, compare the carrying amount with the <strong>undiscounted</strong> expected future cash flows. If the carrying amount is higher, the asset is impaired. Step 2: loss = carrying amount − <strong>fair value</strong>. The new carrying amount becomes the cost basis; <strong>no reversal</strong>.</li>
+<li><strong>Indefinite-life intangibles</strong> and <strong>goodwill</strong> are tested at least annually. Loss on indefinite-life intangibles = carrying amount − fair value. Goodwill impairment = carrying amount of the reporting unit − fair value of the unit, limited to the goodwill balance.</li>
+<li><strong>Assets held for sale:</strong> report at the lower of carrying amount and fair value less cost to sell; stop depreciating.</li>
+<li><strong>Subsequent expenditures:</strong> <em>ordinary repairs and maintenance</em> are expensed; <em>additions</em>, <em>improvements</em> (increasing capacity or efficiency), and <em>extraordinary repairs</em> that extend useful life are capitalized; rearrangements are capitalized if they provide future benefit.</li>
+<li><strong>IFRS:</strong> one-step impairment (carrying amount vs. <strong>recoverable amount</strong> = higher of fair value less cost to sell and value in use); <strong>reversals</strong> are allowed (not for goodwill); <strong>component depreciation</strong> required; revaluation model permitted.</li>
+</ul></div>
+<article class="example" id="ex10" aria-labelledby="ex10h">
+<h3 id="ex10h">Example 10 — Impairment of equipment (U.S. GAAP)</h3>
+<div class="scenario">Mount Pisgah Plastics tests a production line after a sharp fall in demand. Carrying amount: <strong>$800,000</strong>. Expected undiscounted future cash flows: <strong>$700,000</strong>. Fair value: <strong>$520,000</strong>.</div>
+<details class="hint"><summary>Need a hint?</summary><div>Step 1: compare the carrying amount with undiscounted cash flows. Step 2: measure the loss against fair value.</div></details>
+<div class="q"><label for="f36">Is the asset impaired?</label><select id="f36" data-answer="Yes, carrying amount exceeds undiscounted cash flows"><option value="">Choose…</option><option>Yes, carrying amount exceeds undiscounted cash flows</option><option>No, fair value is positive</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f37">Impairment loss</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f37" inputmode="decimal" autocomplete="off" data-answer="280000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><div class="je" data-caption="Record the impairment loss" data-rows="2" data-expected="[[&quot;Impairment loss&quot;, &quot;D&quot;, 280000], [&quot;Accumulated depreciation&quot;, &quot;C&quot;, 280000]]"></div></div><div class="q"><label for="f38">Can the loss be reversed later if fair value recovers (U.S. GAAP)?</label><select id="f38" data-answer="No"><option value="">Choose…</option><option>Yes</option><option>No</option></select><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><p>$800,000 > $700,000, so the asset is impaired. Loss = $800,000 − $520,000 = <strong>$280,000</strong>. The adjusted carrying amount ($520,000) is the new cost basis, and reversals are not allowed.</p><table class="jet"><caption>Impairment</caption><thead><tr><th scope="col">Account</th><th scope="col" class="n">Debit</th><th scope="col" class="n">Credit</th></tr></thead><tbody><tr><td>Impairment loss</td><td class="n">280,000</td><td class="n"></td></tr><tr><td>&nbsp;&nbsp;&nbsp;Accumulated depreciation</td><td class="n"></td><td class="n">280,000</td></tr></tbody></table><p>If undiscounted cash flows had been $850,000 (greater than carrying amount), there would be no impairment, even if fair value were lower.</p></div>
+</article><article class="example" id="ex11" aria-labelledby="ex11h">
+<h3 id="ex11h">Example 11 — Goodwill, indefinite-life intangibles, and assets held for sale</h3>
+<div class="scenario">Part 1: A reporting unit has a carrying amount of <strong>$12,000,000</strong> (including $2,000,000 of goodwill) and a fair value of <strong>$10,500,000</strong>. Part 2: A trademark with an indefinite life has a carrying amount of <strong>$600,000</strong> and a fair value of <strong>$450,000</strong>. Part 3: A building held for sale has a carrying amount of <strong>$500,000</strong>, fair value of $450,000, and costs to sell of $20,000.</div>
+<details class="hint"><summary>Need a hint?</summary><div>Goodwill loss is limited to the goodwill balance. Held-for-sale assets are reported at the lower of carrying amount and fair value less cost to sell.</div></details>
+<div class="q"><label for="f39">Goodwill impairment loss</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f39" inputmode="decimal" autocomplete="off" data-answer="1500000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f40">Indefinite-life trademark impairment loss</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f40" inputmode="decimal" autocomplete="off" data-answer="150000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f41">Write-down of the building held for sale</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f41" inputmode="decimal" autocomplete="off" data-answer="70000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f42">Is depreciation recorded on the building while it is held for sale?</label><select id="f42" data-answer="No"><option value="">Choose…</option><option>Yes</option><option>No</option></select><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><p>Goodwill: $12,000,000 − $10,500,000 = <strong>$1,500,000</strong> (less than the $2,000,000 goodwill balance). Trademark: $600,000 − $450,000 = <strong>$150,000</strong>. Building: $500,000 − ($450,000 − $20,000) = <strong>$70,000</strong>. Depreciation stops once the asset is classified as held for sale.</p></div>
+</article><article class="example" id="ex12" aria-labelledby="ex12h">
+<h3 id="ex12h">Example 12 — Repairs, additions, and improvements</h3>
+<div class="scenario">Decide how to account for each expenditure on a delivery truck and building.</div>
+<details class="hint"><summary>Need a hint?</summary><div>Ordinary repairs are expensed. Expenditures that add capacity or extend the life are capitalized. Extending the life is often recorded against accumulated depreciation.</div></details>
+<div class="q"><label for="f43">a. Oil change and routine tire replacement</label><select id="f43" data-answer="Expense"><option value="">Choose…</option><option>Expense</option><option>Capitalize (debit the asset)</option><option>Capitalize (debit accumulated depreciation)</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f44">b. Adding a new wing to the building</label><select id="f44" data-answer="Capitalize (debit the asset)"><option value="">Choose…</option><option>Expense</option><option>Capitalize (debit the asset)</option><option>Capitalize (debit accumulated depreciation)</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f45">c. Installing an energy-efficient system that increases capacity</label><select id="f45" data-answer="Capitalize (debit the asset)"><option value="">Choose…</option><option>Expense</option><option>Capitalize (debit the asset)</option><option>Capitalize (debit accumulated depreciation)</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f46">d. Major overhaul that extends the truck&rsquo;s useful life</label><select id="f46" data-answer="Capitalize (debit accumulated depreciation)"><option value="">Choose…</option><option>Expense</option><option>Capitalize (debit the asset)</option><option>Capitalize (debit accumulated depreciation)</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f47">e. Repainting the building</label><select id="f47" data-answer="Expense"><option value="">Choose…</option><option>Expense</option><option>Capitalize (debit the asset)</option><option>Capitalize (debit accumulated depreciation)</option></select><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><ul><li><strong>a. Expense.</strong></li><li><strong>b. Capitalize</strong> (addition).</li><li><strong>c. Capitalize</strong> (improvement).</li><li><strong>d. Capitalize.</strong> An extraordinary repair that extends life is usually debited to accumulated depreciation, increasing book value.</li><li><strong>e. Expense</strong> (maintenance).</li></ul></div>
+</article><article class="example" id="ex13" aria-labelledby="ex13h">
+<h3 id="ex13h">Example 13 — U.S. GAAP versus IFRS</h3>
+<div class="scenario">Choose the framework that best fits each statement.</div>
+<details class="hint"><summary>Need a hint?</summary><div>IFRS is more flexible: it permits reversals of impairment losses and revaluation.</div></details>
+<div class="q"><label for="f48">a. Impairment is measured in two steps, starting with undiscounted cash flows</label><select id="f48" data-answer="U.S. GAAP"><option value="">Choose…</option><option>U.S. GAAP</option><option>IFRS</option><option>Both</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f49">b. An impairment loss on equipment may be reversed if circumstances improve (not goodwill)</label><select id="f49" data-answer="IFRS"><option value="">Choose…</option><option>U.S. GAAP</option><option>IFRS</option><option>Both</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f50">c. Significant parts of an asset with different useful lives must be depreciated separately (component depreciation)</label><select id="f50" data-answer="IFRS"><option value="">Choose…</option><option>U.S. GAAP</option><option>IFRS</option><option>Both</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f51">d. Goodwill impairment losses may not be reversed</label><select id="f51" data-answer="Both"><option value="">Choose…</option><option>U.S. GAAP</option><option>IFRS</option><option>Both</option></select><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><ul><li><strong>a. U.S. GAAP.</strong></li><li><strong>b. IFRS.</strong></li><li><strong>c. IFRS</strong> (component depreciation is required).</li><li><strong>d. Both.</strong></li></ul></div>
+</article>
+</section>
+<section class="topic" id="wrap" aria-labelledby="wraph"><h2 id="wraph">Wrap-up: Chapter 11 at a glance</h2><ul><li><strong>Depreciation</strong> allocates (cost − residual) over the useful life using straight-line, SYD, DDB, or units of production. Depletion and amortization follow the same idea for natural resources and intangibles.</li><li><strong>Partial years and sales:</strong> record depreciation to the sale date, remove cost and accumulated depreciation, and recognize gain or loss.</li><li><strong>Changes in estimate and method</strong> are prospective; errors require restatement.</li><li><strong>Impairment (U.S. GAAP):</strong> compare carrying amount with undiscounted cash flows, then measure the loss against fair value. No reversal. Goodwill and indefinite-life intangibles are tested annually.</li><li><strong>IFRS</strong> permits impairment reversals (not goodwill), requires component depreciation, and permits revaluation.</li></ul></section>
+</main>
+<footer class="site">ACCT 605 · Chapter 11 Chapter Walkthrough · Operational Assets: Utilization and Impairment (Ungraded)</footer>
+<script>
+(function(){
+  var Y=new Date().getFullYear();
+  document.querySelectorAll('[data-yr]').forEach(function(e){e.textContent=String(Y+Number(e.getAttribute('data-yr')));});
+
+  var ACCOUNTS=["Accumulated depletion", "Accumulated depreciation", "Amortization expense", "Building", "Cash", "Depletion expense", "Depreciation expense", "Equipment", "Gain on sale of equipment", "Goodwill", "Impairment loss", "Inventory", "Loss on sale of equipment", "Patent", "Repairs and maintenance expense"];
+
+  function parseNum(s){
+    if(s==null) return NaN; s=String(s).trim(); if(!s) return NaN;
+    var neg=/^\(.*\)$/.test(s)||/^-/.test(s);
+    s=s.replace(/[$,%\s()\-]/g,''); var v=parseFloat(s);
+    return isNaN(v)?NaN:(neg?-v:v);
+  }
+  function fmt(v,unit){
+    var o=Math.abs(v)%1?{minimumFractionDigits:2,maximumFractionDigits:2}:{maximumFractionDigits:0};
+    var t=Math.abs(v).toLocaleString('en-US',o);
+    if(unit==='%') return t+'%';
+    if(unit==='$') return (v<0?'-':'')+'$'+t;
+    return (v<0?'-':'')+t;
+  }
+
+  /* Build journal entry tables */
+  document.querySelectorAll('div.je').forEach(function(box,idx){
+    var rows=Number(box.getAttribute('data-rows')||3);
+    var id='je'+idx;
+    var h='<div class="tablewrap"><table class="je"><caption>'+box.getAttribute('data-caption')+'</caption><thead><tr><th scope="col">Account title</th><th scope="col" class="n">Debit ($)</th><th scope="col" class="n">Credit ($)</th><th scope="col"><span class="sr">Result</span></th></tr></thead><tbody>';
+    for(var r=0;r<rows;r++){
+      h+='<tr><td><label class="sr" for="'+id+'a'+r+'">Account, line '+(r+1)+'</label><select id="'+id+'a'+r+'"><option value="">Choose…</option>'+ACCOUNTS.map(function(a){return '<option>'+a+'</option>';}).join('')+'</select></td>'+
+         '<td class="n"><label class="sr" for="'+id+'d'+r+'">Debit amount, line '+(r+1)+'</label><input type="text" inputmode="decimal" autocomplete="off" id="'+id+'d'+r+'"></td>'+
+         '<td class="n"><label class="sr" for="'+id+'c'+r+'">Credit amount, line '+(r+1)+'</label><input type="text" inputmode="decimal" autocomplete="off" id="'+id+'c'+r+'"></td>'+
+         '<td><span class="rowfb" aria-live="polite"></span></td></tr>';
+    }
+    h+='</tbody></table></div><span class="fb" aria-live="polite"></span>';
+    box.innerHTML=h;
+  });
+
+  var checked={}; var total=document.querySelectorAll('.example').length;
+  document.getElementById('total').textContent=total;
+  function updateProgress(){
+    document.getElementById('count').textContent=Object.keys(checked).length;
+  }
+
+  function gradeField(el){
+    var unit=el.getAttribute('data-unit')||'';
+    var fb=el.closest('.q').querySelector('.fb');
+    var ok;
+    if(el.tagName==='SELECT'){
+      ok=(el.value===el.getAttribute('data-answer'));
+      fb.textContent=ok?'✓ Correct':(el.value?'✗ Not quite. Answer: ':'✗ No answer chosen. Answer: ')+(ok?'':el.getAttribute('data-answer'));
+    } else {
+      var v=parseNum(el.value), a=Number(el.getAttribute('data-answer')), tol=Number(el.getAttribute('data-tol')||0.5);
+      ok=!isNaN(v)&&Math.abs(v-a)<=tol;
+      fb.textContent=ok?'✓ Correct':(isNaN(v)?'✗ No answer entered. Answer: ':'✗ Not quite. Answer: ')+fmt(a,unit);
+    }
+    fb.className='fb '+(ok?'ok':'bad');
+    el.setAttribute('aria-invalid',ok?'false':'true'); el.classList.toggle('ok',ok);
+    return ok;
+  }
+
+  function gradeJE(box){
+    var id=null, rows=Number(box.getAttribute('data-rows')||3);
+    var first=box.querySelector('select').id; id=first.replace(/a0$/,'');
+    var exp={}; JSON.parse(box.getAttribute('data-expected')).forEach(function(e){
+      exp[e[0]]=(exp[e[0]]||0)+(e[1]==='D'?e[2]:-e[2]);
+    });
+    var got={}, rowOk=true, anyBlankAcct=false;
+    for(var r=0;r<rows;r++){
+      var acct=document.getElementById(id+'a'+r).value;
+      var d=parseNum(document.getElementById(id+'d'+r).value), c=parseNum(document.getElementById(id+'c'+r).value);
+      var fbr=box.querySelectorAll('.rowfb')[r];
+      if(isNaN(d)) d=0; if(isNaN(c)) c=0;
+      if(!acct && (d||c)){ fbr.textContent='✗ Pick an account'; fbr.className='rowfb bad'; rowOk=false; continue; }
+      if(!acct){ fbr.textContent=''; continue; }
+      got[acct]=(got[acct]||0)+d-c;
+    }
+    var keys=Object.keys(exp).concat(Object.keys(got).filter(function(k){return !(k in exp);}));
+    var ok=rowOk;
+    keys.forEach(function(k){ if(Math.abs((exp[k]||0)-(got[k]||0))>0.5) ok=false; });
+    for(var r2=0;r2<rows;r2++){
+      var acct2=document.getElementById(id+'a'+r2).value; var fbr2=box.querySelectorAll('.rowfb')[r2];
+      if(!acct2) continue;
+      var good=Math.abs((exp[acct2]||0)-(got[acct2]||0))<=0.5 && (acct2 in exp);
+      fbr2.textContent=good?'✓':'✗'; fbr2.className='rowfb '+(good?'ok':'bad');
+    }
+    var fb=box.querySelector('.fb');
+    fb.textContent=ok?'✓ Journal entry is correct':'✗ Not quite. Compare your entry with the solution below.';
+    fb.className='fb '+(ok?'ok':'bad');
+    return ok;
+  }
+
+  document.querySelectorAll('.example').forEach(function(ex){
+    var btn=ex.querySelector('button.check'), rst=ex.querySelector('button.reset'), sol=ex.querySelector('.solution'), res=ex.querySelector('.result');
+    btn.addEventListener('click',function(){
+      var good=0,n=0;
+      ex.querySelectorAll('[data-answer]').forEach(function(el){ n++; if(gradeField(el)) good++; });
+      ex.querySelectorAll('div.je').forEach(function(box){ n++; if(gradeJE(box)) good++; });
+      res.textContent=good+' of '+n+' correct';
+      sol.hidden=false;
+      checked[ex.id]=true; updateProgress();
+    });
+    rst.addEventListener('click',function(){
+      ex.querySelectorAll('input[type=text]').forEach(function(i){i.value='';i.removeAttribute('aria-invalid');i.classList.remove('ok');});
+      ex.querySelectorAll('select').forEach(function(s){s.selectedIndex=0;s.removeAttribute('aria-invalid');s.classList.remove('ok');});
+      ex.querySelectorAll('.fb,.rowfb').forEach(function(f){f.textContent='';f.className=f.className.split(' ')[0];});
+      res.textContent=''; sol.hidden=true;
+    });
+  });
+})();
+</script>
+</body>
+</html>

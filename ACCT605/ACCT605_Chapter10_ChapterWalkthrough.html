@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ACCT 605 Chapter 10 Chapter Walkthrough</title>
+<meta name="description" content="Chapter 10 Chapter Walkthrough: step-by-step guided practice on the acquisition of operational assets for Accounting Theory and Research.">
+<style>
+:root{
+  --bg:#f4f8f5; --card:#ffffff; --text:#14201a; --muted:#41524a;
+  --g900:#0b3b2a; --g800:#14513a; --g700:#1b6a4a; --g100:#e3f0e8; --g50:#f0f7f3;
+  --border:#b4cdbf; --accent:#8a5a00; --ok:#0d6137; --bad:#9b2415; --focus:#0a4fd1;
+  --warn-bg:#fff6df;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0e1814; --card:#15231d; --text:#e9f3ee; --muted:#b5c9bf;
+    --g900:#0a2e21; --g800:#1d6a49; --g700:#58c08f; --g100:#1b3328; --g50:#122019;
+    --border:#34503f; --accent:#f0c36a; --ok:#6fdca3; --bad:#ff9f8f; --focus:#8db4ff;
+    --warn-bg:#2b2410;
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font:17px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+.skip{position:absolute;left:-999px;top:0;background:#fff;color:#000;padding:.6rem 1rem;z-index:100;border:2px solid var(--focus)}
+.skip:focus{left:8px;top:8px}
+a{color:var(--g800)}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+header.site{background:var(--g900);color:#fff;padding:2rem 1rem 1.5rem}
+.wrap{max-width:820px;margin:0 auto;padding:0 1rem}
+header.site .wrap{padding:0}
+.eyebrow{font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:#bfe3cf;margin:0 0 .25rem}
+h1{font-size:2rem;line-height:1.2;margin:.1rem 0 .5rem}
+header.site p{margin:.25rem 0}
+.progress{display:inline-block;margin-top:.75rem;background:#fff;color:var(--g900);font-weight:700;padding:.35rem .8rem;border-radius:999px}
+.howto{background:var(--g100);border-left:6px solid var(--g700);padding:.9rem 1.1rem;border-radius:6px;margin:1.25rem 0}
+nav.toc{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:.8rem 1.1rem;margin:1rem 0}
+nav.toc h2{font-size:1rem;margin:0 0 .3rem}
+nav.toc ol{margin:0;padding-left:1.2rem}
+section.topic{margin:2.2rem 0}
+section.topic>h2{font-size:1.55rem;color:var(--g800);border-bottom:3px solid var(--g700);padding-bottom:.3rem;margin-bottom:.8rem}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) section.topic>h2{color:var(--g700)}}
+h3{font-size:1.15rem;margin:1.2rem 0 .4rem}
+.keyterms{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:.4rem 1.1rem .6rem;margin:1rem 0}
+.keyterms ul,.keyterms ol{margin:.4rem 0;padding-left:1.3rem}
+.keyterms li{margin:.3rem 0}
+.example{background:var(--card);border:1px solid var(--border);border-top:6px solid var(--g700);border-radius:8px;padding:1rem 1.2rem 1.2rem;margin:1.5rem 0}
+.example h3{margin-top:0;color:var(--g800)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .example h3{color:var(--g700)}}
+.scenario{background:var(--g50);border-radius:6px;padding:.6rem .9rem;margin:.6rem 0}
+details.hint{margin:.6rem 0}
+details.hint summary{cursor:pointer;font-weight:600;color:var(--g800);padding:.2rem 0}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) details.hint summary{color:var(--g700)}}
+details.hint div{border-left:4px solid var(--accent);padding:.3rem .9rem;margin:.4rem 0;background:var(--warn-bg)}
+.q{margin:.9rem 0}
+.q>label,.q>.lbl{display:block;font-weight:600;margin-bottom:.25rem}
+.field{display:inline-flex;align-items:center;gap:.3rem}
+.field .pre,.field .suf{font-weight:700}
+input[type=text],select{font:inherit;color:var(--text);background:var(--card);border:2px solid var(--muted);border-radius:6px;padding:.4rem .6rem;min-height:2.6rem}
+input[type=text]{width:12rem;text-align:right}
+select{max-width:100%}
+input[aria-invalid=true],select[aria-invalid=true]{border-color:var(--bad)}
+input.ok,select.ok{border-color:var(--ok)}
+.fb{display:block;margin-top:.25rem;font-weight:600;min-height:0}
+.fb.ok{color:var(--ok)} .fb.bad{color:var(--bad)}
+.btnrow{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1rem;align-items:center}
+button{font:inherit;font-weight:700;cursor:pointer;border-radius:6px;padding:.55rem 1.1rem;min-height:2.75rem;border:2px solid var(--g800)}
+button.check{background:var(--g800);color:#fff}
+button.check:hover{background:var(--g900)}
+button.reset{background:transparent;color:var(--g800)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) button.check{background:#e9f3ee;color:#0a2e21;border-color:#e9f3ee} :root:not([data-theme="light"]) button.reset{color:var(--g700);border-color:var(--g700)}}
+.result{font-weight:700}
+.solution{margin-top:1rem;border:2px solid var(--g700);border-radius:8px;padding:.3rem 1rem .8rem;background:var(--g50)}
+.solution h4{margin:.6rem 0 .3rem;color:var(--g800)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .solution h4{color:var(--g700)}}
+table{border-collapse:collapse;width:100%;margin:.7rem 0;font-size:.98rem}
+caption{text-align:left;font-weight:700;padding:.2rem 0 .4rem}
+th,td{border:1px solid var(--border);padding:.4rem .6rem;text-align:left;vertical-align:top}
+thead th{background:var(--g800);color:#fff}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+tr.tot td{font-weight:700;border-top:3px double var(--text)}
+.tablewrap{overflow-x:auto;position:relative}
+table.je td,table.je th,table.jet td,table.jet th{vertical-align:middle}
+table.je select{width:100%;min-width:13rem}
+table.je input{width:8.5rem}
+.rowfb{font-weight:600;white-space:nowrap}
+.formula{background:var(--g100);padding:.5rem .9rem;border-radius:6px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.95rem;overflow-x:auto}
+footer.site{border-top:1px solid var(--border);margin-top:3rem;padding:1.2rem 1rem 2.5rem;color:var(--muted);font-size:.9rem;text-align:center}
+@media print{.skip,.btnrow,nav.toc{display:none} body{background:#fff;color:#000} .example{break-inside:avoid} .solution[hidden]{display:none}}
+
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="site">
+<div class="wrap">
+<p class="eyebrow">ACCT 605 · Accounting Theory and Research</p>
+<h1>Chapter 10 Chapter Walkthrough</h1>
+<p>Operational Assets: Acquisition: step-by-step guided practice</p>
+<p class="progress" role="status" aria-live="polite"><span id="count">0</span> of <span id="total">12</span> checked</p>
+</div>
+</header>
+<main id="main" class="wrap">
+<div class="howto"><p><strong>How this works.</strong> This page is for practice only: it is not graded and nothing is submitted. Read each short review, try the example, and use <em>Check my answer</em> to see feedback and a worked solution. Numbers can be typed with or without dollar signs and commas. <em>Need a hint?</em> opens a nudge without giving the answer away. Company names are fictional.</p></div>
+<nav class="toc" aria-label="On this page"><h2>On this page</h2><ol><li><a href="#s1">Initial cost of property, plant, and equipment</a></li><li><a href="#s2">Noncash acquisitions and exchanges</a></li><li><a href="#s3">Self-constructed assets and capitalized interest</a></li><li><a href="#s4">Intangible assets and IFRS</a></li><li><a href="#wrap">Wrap-up</a></li></ol></nav>
+<section class="topic" id="s1" aria-labelledby="s1h">
+<h2 id="s1h">Initial cost of property, plant, and equipment</h2>
+<p>Capitalize every cost necessary to get an asset ready for its intended use, and no more.</p>
+<div class="keyterms"><ul>
+<li><strong>Property, plant, and equipment (PP&amp;E)</strong> are tangible, long-lived assets used in operations. <strong>Intangible assets</strong> lack physical substance. <strong>Natural resources</strong> are depleted as extracted.</li>
+<li><strong>Initial cost</strong> includes all expenditures <em>necessary to get the asset in condition and location for its intended use</em>: purchase price (net of discounts), sales taxes, freight, insurance in transit, installation, testing, legal fees, and similar costs. Later repairs, fines, and general overhead are <em>expensed</em>.</li>
+<li><strong>Land</strong> includes purchase price, closing costs, grading, demolition of old buildings (net of salvage), and similar. Land is not depreciated. <strong>Land improvements</strong> (parking lots, fences) have limited lives and are depreciated.</li>
+<li><strong>Lump-sum purchase:</strong> allocate the price to each asset in proportion to relative fair values.</li>
+<li><strong>Natural resources:</strong> include acquisition, exploration, development, and the present value of the <strong>asset retirement obligation (ARO)</strong>.</li>
+</ul></div>
+<article class="example" id="ex1" aria-labelledby="ex1h">
+<h3 id="ex1h">Example 1 — Capitalize or expense?</h3>
+<div class="scenario">Haywood Machining purchases a new machine. Decide how to treat each cost.</div>
+<details class="hint"><summary>Need a hint?</summary><div>Capitalize costs needed to acquire the asset and make it ready for use. Expense costs that arise after it is in use or that do not add to its value.</div></details>
+<div class="q"><label for="f1">a. Invoice price of the machine (net of cash discount taken)</label><select id="f1" data-answer="Capitalize"><option value="">Choose…</option><option>Capitalize</option><option>Expense</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f2">b. Sales tax on the machine</label><select id="f2" data-answer="Capitalize"><option value="">Choose…</option><option>Capitalize</option><option>Expense</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f3">c. Freight and insurance in transit</label><select id="f3" data-answer="Capitalize"><option value="">Choose…</option><option>Capitalize</option><option>Expense</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f4">d. Installation and testing before production begins</label><select id="f4" data-answer="Capitalize"><option value="">Choose…</option><option>Capitalize</option><option>Expense</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f5">e. A traffic fine paid by the delivery driver</label><select id="f5" data-answer="Expense"><option value="">Choose…</option><option>Capitalize</option><option>Expense</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f6">f. Cost of repairing damage caused by workers after the machine was placed in service</label><select id="f6" data-answer="Expense"><option value="">Choose…</option><option>Capitalize</option><option>Expense</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f7">g. First-year insurance policy after the machine begins operating</label><select id="f7" data-answer="Expense"><option value="">Choose…</option><option>Capitalize</option><option>Expense</option></select><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><ul><li><strong>a&ndash;d. Capitalize.</strong> They are necessary to acquire the machine and ready it for use.</li><li><strong>e. Expense.</strong> Fines are not a cost of acquiring the asset.</li><li><strong>f. Expense.</strong> It is a cost after the asset is in use.</li><li><strong>g. Expense.</strong> Ongoing insurance is a period cost.</li></ul></div>
+</article><article class="example" id="ex2" aria-labelledby="ex2h">
+<h3 id="ex2h">Example 2 — Land and building</h3>
+<div class="scenario">Cherokee Foods buys a tract of land with an old building for <strong>$500,000</strong> cash. It pays <strong>$10,000</strong> in title and legal fees, <strong>$30,000</strong> to demolish the old building (salvage sold for <strong>$5,000</strong>), and <strong>$15,000</strong> to grade the land. It then constructs a new building for <strong>$2,000,000</strong>, plus architect fees of <strong>$80,000</strong> and building permits of <strong>$20,000</strong>.</div>
+<details class="hint"><summary>Need a hint?</summary><div>Land: price + closing costs + demolition (net of salvage) + grading. Building: construction + architect fees + permits.</div></details>
+<div class="q"><label for="f8">Cost of land</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f8" inputmode="decimal" autocomplete="off" data-answer="550000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f9">Cost of building</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f9" inputmode="decimal" autocomplete="off" data-answer="2100000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><div class="je" data-caption="Record land and building (all paid in cash)" data-rows="3" data-expected="[[&quot;Land&quot;, &quot;D&quot;, 550000], [&quot;Building&quot;, &quot;D&quot;, 2100000], [&quot;Cash&quot;, &quot;C&quot;, 2650000]]"></div></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><p>Land: $500,000 + $10,000 + $30,000 − $5,000 + $15,000 = <strong>$550,000</strong>.</p><p>Building: $2,000,000 + $80,000 + $20,000 = <strong>$2,100,000</strong>.</p><table class="jet"><caption>Land and building</caption><thead><tr><th scope="col">Account</th><th scope="col" class="n">Debit</th><th scope="col" class="n">Credit</th></tr></thead><tbody><tr><td>Land</td><td class="n">550,000</td><td class="n"></td></tr><tr><td>Building</td><td class="n">2,100,000</td><td class="n"></td></tr><tr><td>&nbsp;&nbsp;&nbsp;Cash</td><td class="n"></td><td class="n">2,650,000</td></tr></tbody></table></div>
+</article><article class="example" id="ex3" aria-labelledby="ex3h">
+<h3 id="ex3h">Example 3 — Lump-sum purchase</h3>
+<div class="scenario">Biltmore Bakery pays <strong>$900,000</strong> cash for land, a building, and equipment in a single purchase. Appraised fair values: land <strong>$300,000</strong>; building <strong>$500,000</strong>; equipment <strong>$200,000</strong>.</div>
+<details class="hint"><summary>Need a hint?</summary><div>Allocate the $900,000 in proportion to relative fair value (fair value ÷ total $1,000,000).</div></details>
+<div class="q"><label for="f10">Cost allocated to land</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f10" inputmode="decimal" autocomplete="off" data-answer="270000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f11">Cost allocated to building</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f11" inputmode="decimal" autocomplete="off" data-answer="450000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f12">Cost allocated to equipment</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f12" inputmode="decimal" autocomplete="off" data-answer="180000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><div class="je" data-caption="Record the lump-sum purchase" data-rows="4" data-expected="[[&quot;Land&quot;, &quot;D&quot;, 270000], [&quot;Building&quot;, &quot;D&quot;, 450000], [&quot;Equipment&quot;, &quot;D&quot;, 180000], [&quot;Cash&quot;, &quot;C&quot;, 900000]]"></div></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><div class="tablewrap"><table><caption>Allocation</caption><thead><tr><th scope="col">Asset</th><th scope="col" class=n>Fair value</th><th scope="col" class=n>Percent</th><th scope="col" class=n>Allocated cost</th></tr></thead><tbody><tr><th scope="row">Land</th><td class="n">$300,000</td><td class="n">30%</td><td class="n">$270,000</td></tr><tr><th scope="row">Building</th><td class="n">500,000</td><td class="n">50%</td><td class="n">450,000</td></tr><tr><th scope="row">Equipment</th><td class="n">200,000</td><td class="n">20%</td><td class="n">180,000</td></tr><tr class="tot"><th scope="row">Total</th><td class="n">$1,000,000</td><td class="n">100%</td><td class="n">$900,000</td></tr></tbody></table></div><table class="jet"><caption>Purchase</caption><thead><tr><th scope="col">Account</th><th scope="col" class="n">Debit</th><th scope="col" class="n">Credit</th></tr></thead><tbody><tr><td>Land</td><td class="n">270,000</td><td class="n"></td></tr><tr><td>Building</td><td class="n">450,000</td><td class="n"></td></tr><tr><td>Equipment</td><td class="n">180,000</td><td class="n"></td></tr><tr><td>&nbsp;&nbsp;&nbsp;Cash</td><td class="n"></td><td class="n">900,000</td></tr></tbody></table></div>
+</article><article class="example" id="ex4" aria-labelledby="ex4h">
+<h3 id="ex4h">Example 4 — Asset retirement obligation</h3>
+<div class="scenario">Smoky Quarry pays <strong>$3,000,000</strong> for a limestone deposit and spends <strong>$500,000</strong> on development. The company must restore the land at the end of the project; the present value of the estimated restoration cost (the ARO) is <strong>$200,000</strong>.</div>
+<details class="hint"><summary>Need a hint?</summary><div>The present value of the ARO is added to the cost of the asset, with a matching liability.</div></details>
+<div class="q"><label for="f13">Cost of the mineral deposit</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f13" inputmode="decimal" autocomplete="off" data-answer="3700000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><div class="je" data-caption="Record the deposit and the ARO" data-rows="3" data-expected="[[&quot;Mineral deposit&quot;, &quot;D&quot;, 3700000], [&quot;Cash&quot;, &quot;C&quot;, 3500000], [&quot;Asset retirement obligation&quot;, &quot;C&quot;, 200000]]"></div></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><p>Cost: $3,000,000 + $500,000 + $200,000 = <strong>$3,700,000</strong>.</p><table class="jet"><caption>Deposit and ARO</caption><thead><tr><th scope="col">Account</th><th scope="col" class="n">Debit</th><th scope="col" class="n">Credit</th></tr></thead><tbody><tr><td>Mineral deposit</td><td class="n">3,700,000</td><td class="n"></td></tr><tr><td>&nbsp;&nbsp;&nbsp;Cash</td><td class="n"></td><td class="n">3,500,000</td></tr><tr><td>&nbsp;&nbsp;&nbsp;Asset retirement obligation</td><td class="n"></td><td class="n">200,000</td></tr></tbody></table></div>
+</article>
+</section><section class="topic" id="s2" aria-labelledby="s2h">
+<h2 id="s2h">Noncash acquisitions and exchanges</h2>
+<p>Assets acquired without a simple cash payment are recorded at fair value or the present value of what is given.</p>
+<div class="keyterms"><ul>
+<li><strong>Deferred payment (noninterest-bearing note):</strong> record the asset at the cash price or the <strong>present value</strong> of the note at the market rate. The difference between the face amount and the present value is a discount, amortized to interest expense (carrying amount × market rate).</li>
+<li><strong>Equity securities:</strong> record the asset at the fair value of the shares (or of the asset if more clearly determinable). <strong>Donated assets:</strong> record at fair value and recognize revenue (a contribution).</li>
+<li><strong>Nonmonetary exchange with commercial substance:</strong> record the new asset at the <strong>fair value of the asset given</strong> (plus cash paid, minus cash received) and recognize the gain or loss (fair value − book value of old asset).</li>
+<li><strong>Lacks commercial substance:</strong> gains are deferred (new asset = book value of old asset + cash paid); losses are recognized immediately.</li>
+<li><strong>Fixed-asset turnover</strong> = net sales ÷ average net fixed assets.</li>
+</ul></div>
+<article class="example" id="ex5" aria-labelledby="ex5h">
+<h3 id="ex5h">Example 5 — Deferred payment contract</h3>
+<div class="scenario">Pisgah Printing buys a press and gives a <strong>noninterest-bearing note of $100,000</strong> due in <strong>3 years</strong>. The cash price of the press is not known. The market rate for similar notes is <strong>10%</strong>.</div>
+<details class="hint"><summary>Need a hint?</summary><div>The press is recorded at the present value of the note: $100,000 ÷ 1.10<sup>3</sup>.</div></details>
+<div class="q"><label for="f14">Cost of the press (present value of the note)</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f14" inputmode="decimal" autocomplete="off" data-answer="75131" data-unit="$" data-tol="1"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f15">Discount on the note</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f15" inputmode="decimal" autocomplete="off" data-answer="24869" data-unit="$" data-tol="1"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f16">Year 1 interest expense</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f16" inputmode="decimal" autocomplete="off" data-answer="7513" data-unit="$" data-tol="1"></div><span class="fb" aria-live="polite"></span></div><div class="q"><div class="je" data-caption="Record the purchase (use the present value rounded to the nearest dollar, $75,131)" data-rows="3" data-expected="[[&quot;Equipment&quot;, &quot;D&quot;, 75131], [&quot;Discount on notes payable&quot;, &quot;D&quot;, 24869], [&quot;Notes payable&quot;, &quot;C&quot;, 100000]]"></div></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><p>PV = $100,000 ÷ 1.331 = <strong>$75,131</strong>. Discount = $100,000 − $75,131 = <strong>$24,869</strong>. Year 1 interest = $75,131 × 10% = <strong>$7,513</strong>.</p><table class="jet"><caption>Purchase</caption><thead><tr><th scope="col">Account</th><th scope="col" class="n">Debit</th><th scope="col" class="n">Credit</th></tr></thead><tbody><tr><td>Equipment</td><td class="n">75,131</td><td class="n"></td></tr><tr><td>Discount on notes payable</td><td class="n">24,869</td><td class="n"></td></tr><tr><td>&nbsp;&nbsp;&nbsp;Notes payable</td><td class="n"></td><td class="n">100,000</td></tr></tbody></table></div>
+</article><article class="example" id="ex6" aria-labelledby="ex6h">
+<h3 id="ex6h">Example 6 — Acquisition with shares and by donation</h3>
+<div class="scenario">Part 1: Western Peaks Co. issues <strong>20,000 shares</strong> of its <strong>$1 par</strong> common stock (market price <strong>$18</strong> per share) to acquire land. Part 2: The town of Sylva donates land with a fair value of <strong>$80,000</strong> to Western Peaks as an incentive to locate a plant there.</div>
+<details class="hint"><summary>Need a hint?</summary><div>Use the fair value of the shares when it is more clearly evident than the fair value of the land. A donation is recorded at fair value with a credit to revenue.</div></details>
+<div class="q"><label for="f17">Cost of the land acquired with shares</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f17" inputmode="decimal" autocomplete="off" data-answer="360000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><div class="je" data-caption="Part 1: issue shares for land" data-rows="3" data-expected="[[&quot;Land&quot;, &quot;D&quot;, 360000], [&quot;Common stock&quot;, &quot;C&quot;, 20000], [&quot;Additional paid-in capital&quot;, &quot;C&quot;, 340000]]"></div></div><div class="q"><div class="je" data-caption="Part 2: record the donated land" data-rows="2" data-expected="[[&quot;Land&quot;, &quot;D&quot;, 80000], [&quot;Donation revenue&quot;, &quot;C&quot;, 80000]]"></div></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><p>Part 1: 20,000 × $18 = <strong>$360,000</strong>. Par: 20,000 × $1 = $20,000; APIC = $340,000.</p><table class="jet"><caption>Shares for land</caption><thead><tr><th scope="col">Account</th><th scope="col" class="n">Debit</th><th scope="col" class="n">Credit</th></tr></thead><tbody><tr><td>Land</td><td class="n">360,000</td><td class="n"></td></tr><tr><td>&nbsp;&nbsp;&nbsp;Common stock</td><td class="n"></td><td class="n">20,000</td></tr><tr><td>&nbsp;&nbsp;&nbsp;Additional paid-in capital</td><td class="n"></td><td class="n">340,000</td></tr></tbody></table><table class="jet"><caption>Donation</caption><thead><tr><th scope="col">Account</th><th scope="col" class="n">Debit</th><th scope="col" class="n">Credit</th></tr></thead><tbody><tr><td>Land</td><td class="n">80,000</td><td class="n"></td></tr><tr><td>&nbsp;&nbsp;&nbsp;Donation revenue</td><td class="n"></td><td class="n">80,000</td></tr></tbody></table></div>
+</article><article class="example" id="ex7" aria-labelledby="ex7h">
+<h3 id="ex7h">Example 7 — Nonmonetary exchange with commercial substance</h3>
+<div class="scenario">Mitchell Manufacturing trades in an old machine and pays <strong>$20,000</strong> cash for a new machine with a fair value of <strong>$200,000</strong>. The old machine cost <strong>$400,000</strong>, has accumulated depreciation of <strong>$250,000</strong>, and has a fair value of <strong>$180,000</strong>. The exchange has commercial substance.</div>
+<details class="hint"><summary>Need a hint?</summary><div>Gain = fair value of the old asset − its book value. The new asset is recorded at the fair value of the old asset given plus cash paid.</div></details>
+<div class="q"><label for="f18">Book value of the old machine</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f18" inputmode="decimal" autocomplete="off" data-answer="150000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f19">Gain on the exchange</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f19" inputmode="decimal" autocomplete="off" data-answer="30000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f20">Cost of the new machine</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f20" inputmode="decimal" autocomplete="off" data-answer="200000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><div class="je" data-caption="Record the exchange" data-rows="5" data-expected="[[&quot;Equipment (new)&quot;, &quot;D&quot;, 200000], [&quot;Accumulated depreciation&quot;, &quot;D&quot;, 250000], [&quot;Equipment (old)&quot;, &quot;C&quot;, 400000], [&quot;Gain on exchange&quot;, &quot;C&quot;, 30000], [&quot;Cash&quot;, &quot;C&quot;, 20000]]"></div></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><p>Book value: $400,000 − $250,000 = <strong>$150,000</strong>. Gain: $180,000 − $150,000 = <strong>$30,000</strong>. New machine: $180,000 + $20,000 = <strong>$200,000</strong>.</p><table class="jet"><caption>Exchange</caption><thead><tr><th scope="col">Account</th><th scope="col" class="n">Debit</th><th scope="col" class="n">Credit</th></tr></thead><tbody><tr><td>Equipment (new)</td><td class="n">200,000</td><td class="n"></td></tr><tr><td>Accumulated depreciation</td><td class="n">250,000</td><td class="n"></td></tr><tr><td>&nbsp;&nbsp;&nbsp;Equipment (old)</td><td class="n"></td><td class="n">400,000</td></tr><tr><td>&nbsp;&nbsp;&nbsp;Gain on exchange</td><td class="n"></td><td class="n">30,000</td></tr><tr><td>&nbsp;&nbsp;&nbsp;Cash</td><td class="n"></td><td class="n">20,000</td></tr></tbody></table></div>
+</article><article class="example" id="ex8" aria-labelledby="ex8h">
+<h3 id="ex8h">Example 8 — Exchange lacking commercial substance</h3>
+<div class="scenario">Assume the same exchange as Example 7, except that it <strong>lacks commercial substance</strong>.</div>
+<details class="hint"><summary>Need a hint?</summary><div>A gain is not recognized when the exchange lacks commercial substance. The new asset is recorded at the book value of the old asset plus cash paid.</div></details>
+<div class="q"><label for="f21">Gain recognized</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f21" inputmode="decimal" autocomplete="off" data-answer="0" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f22">Cost recorded for the new machine</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f22" inputmode="decimal" autocomplete="off" data-answer="170000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><div class="je" data-caption="Record the exchange" data-rows="4" data-expected="[[&quot;Equipment (new)&quot;, &quot;D&quot;, 170000], [&quot;Accumulated depreciation&quot;, &quot;D&quot;, 250000], [&quot;Equipment (old)&quot;, &quot;C&quot;, 400000], [&quot;Cash&quot;, &quot;C&quot;, 20000]]"></div></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><p>The $30,000 gain is deferred by reducing the cost of the new machine. New machine = $150,000 book value + $20,000 cash = <strong>$170,000</strong> (instead of $200,000).</p><table class="jet"><caption>Exchange</caption><thead><tr><th scope="col">Account</th><th scope="col" class="n">Debit</th><th scope="col" class="n">Credit</th></tr></thead><tbody><tr><td>Equipment (new)</td><td class="n">170,000</td><td class="n"></td></tr><tr><td>Accumulated depreciation</td><td class="n">250,000</td><td class="n"></td></tr><tr><td>&nbsp;&nbsp;&nbsp;Equipment (old)</td><td class="n"></td><td class="n">400,000</td></tr><tr><td>&nbsp;&nbsp;&nbsp;Cash</td><td class="n"></td><td class="n">20,000</td></tr></tbody></table></div>
+</article><article class="example" id="ex9" aria-labelledby="ex9h">
+<h3 id="ex9h">Example 9 — Fixed-asset turnover</h3>
+<div class="scenario">Tryon Tool reports net sales of <strong>$3,000,000</strong>. Net property, plant, and equipment was <strong>$900,000</strong> at the beginning of the year and <strong>$1,100,000</strong> at the end.</div>
+<details class="hint"><summary>Need a hint?</summary><div>Fixed-asset turnover = net sales ÷ average net fixed assets.</div></details>
+<div class="q"><label for="f23">Average net fixed assets</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f23" inputmode="decimal" autocomplete="off" data-answer="1000000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f24">Fixed-asset turnover</label><div class="field"><input type="text" id="f24" inputmode="decimal" autocomplete="off" data-answer="3" data-unit="x" data-tol="0.01"><span class="suf" aria-hidden="true">×</span></div><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><p>Average: ($900,000 + $1,100,000) ÷ 2 = <strong>$1,000,000</strong>. Turnover = $3,000,000 ÷ $1,000,000 = <strong>3.0</strong>. Higher turnover indicates more effective use of fixed assets in generating sales.</p></div>
+</article>
+</section><section class="topic" id="s3" aria-labelledby="s3h">
+<h2 id="s3h">Self-constructed assets and capitalized interest</h2>
+<p>The cost of constructing an asset includes interest that could have been avoided if the expenditures had not been made.</p>
+<div class="keyterms"><ul>
+<li><strong>Self-constructed assets</strong> include direct materials, direct labor, and allocated overhead, plus <strong>capitalized interest</strong> during construction.</li>
+<li><strong>Capitalized interest</strong> = <strong>avoidable interest</strong>, limited to actual interest incurred. Avoidable interest = <em>weighted-average accumulated expenditures</em> × interest rate. Use the rate on any <strong>specific construction loan</strong> first; apply the <strong>weighted-average rate on other debt</strong> to any excess.</li>
+<li>Weighted-average accumulated expenditures = each expenditure × the fraction of the year it was outstanding.</li>
+<li>Interest capitalization stops when the asset is substantially complete and ready for use.</li>
+</ul></div>
+<article class="example" id="ex10" aria-labelledby="ex10h">
+<h3 id="ex10h">Example 10 — Capitalized interest</h3>
+<div class="scenario">Franklin Builders constructs a building for its own use. The construction period is the entire year. Expenditures: <strong>$1,000,000 on January 1</strong>; <strong>$1,200,000 on July 1</strong>; <strong>$600,000 on October 1</strong> (total $2,800,000). Debt: a <strong>$1,500,000</strong> construction loan at <strong>8%</strong>, and other general debt of <strong>$2,000,000</strong> at <strong>10%</strong>. Both were outstanding all year.</div>
+<details class="hint"><summary>Need a hint?</summary><div>Weighted-average accumulated expenditures first. Apply 8% to the first $1,500,000 and 10% to the excess.</div></details>
+<div class="q"><label for="f25">Weighted-average accumulated expenditures</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f25" inputmode="decimal" autocomplete="off" data-answer="1750000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f26">Avoidable interest</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f26" inputmode="decimal" autocomplete="off" data-answer="145000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f27">Actual interest incurred</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f27" inputmode="decimal" autocomplete="off" data-answer="320000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f28">Interest capitalized (lesser of avoidable and actual)</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f28" inputmode="decimal" autocomplete="off" data-answer="145000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><div class="je" data-caption="Record interest paid (capitalize the proper amount)" data-rows="3" data-expected="[[&quot;Building under construction&quot;, &quot;D&quot;, 145000], [&quot;Interest expense&quot;, &quot;D&quot;, 175000], [&quot;Cash&quot;, &quot;C&quot;, 320000]]"></div></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><p>Weighted-average expenditures: $1,000,000 × 12/12 + $1,200,000 × 6/12 + $600,000 × 3/12 = $1,000,000 + $600,000 + $150,000 = <strong>$1,750,000</strong>.</p><p>Avoidable interest: $1,500,000 × 8% = $120,000 plus ($1,750,000 − $1,500,000) × 10% = $25,000 &rarr; <strong>$145,000</strong>. Actual interest: $120,000 + $200,000 = <strong>$320,000</strong>. Capitalize the lesser: <strong>$145,000</strong>; expense $175,000.</p><table class="jet"><caption>Interest</caption><thead><tr><th scope="col">Account</th><th scope="col" class="n">Debit</th><th scope="col" class="n">Credit</th></tr></thead><tbody><tr><td>Building under construction</td><td class="n">145,000</td><td class="n"></td></tr><tr><td>Interest expense</td><td class="n">175,000</td><td class="n"></td></tr><tr><td>&nbsp;&nbsp;&nbsp;Cash</td><td class="n"></td><td class="n">320,000</td></tr></tbody></table><p>The building&rsquo;s total cost is $2,800,000 + $145,000 = $2,945,000.</p></div>
+</article>
+</section><section class="topic" id="s4" aria-labelledby="s4h">
+<h2 id="s4h">Intangible assets and IFRS</h2>
+<p>Intangible assets are recorded at cost when purchased; internally developed intangibles are mostly expensed.</p>
+<div class="keyterms"><ul>
+<li><strong>Purchased intangibles</strong> (patents, trademarks, franchises, copyrights, goodwill in a business combination) are capitalized at cost, including legal and registration fees. <strong>Internally developed intangibles</strong>: costs are generally expensed. <strong>Internally generated goodwill</strong> is never recorded.</li>
+<li><strong>Research and development (R&amp;D)</strong> costs are expensed as incurred under U.S. GAAP. Legal costs to successfully defend a patent are capitalized.</li>
+<li><strong>Software:</strong> costs of software developed for sale are expensed until <strong>technological feasibility</strong>, then capitalized. Internal-use software costs are capitalized during the application development stage.</li>
+<li><strong>IFRS:</strong> research costs are expensed, but <strong>development costs are capitalized</strong> once specific criteria are met. IFRS also permits the <strong>revaluation model</strong> for PP&amp;E (and some intangibles). U.S. GAAP requires historical cost.</li>
+</ul></div>
+<article class="example" id="ex11" aria-labelledby="ex11h">
+<h3 id="ex11h">Example 11 — Intangibles and R&D</h3>
+<div class="scenario">Rutherford Technologies incurs the following: research costs of <strong>$400,000</strong>; development costs of <strong>$300,000</strong> on a new product (none yet at technological feasibility); purchase of a patent from another company for <strong>$250,000</strong>; and legal fees of <strong>$50,000</strong> to register another patent it developed internally.</div>
+<details class="hint"><summary>Need a hint?</summary><div>Under U.S. GAAP, R&D is expensed. Costs to purchase a patent and legal fees to register it are capitalized.</div></details>
+<div class="q"><label for="f29">R&D expense for the year</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f29" inputmode="decimal" autocomplete="off" data-answer="700000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f30">Total capitalized as patents</label><div class="field"><span class="pre" aria-hidden="true">$</span><input type="text" id="f30" inputmode="decimal" autocomplete="off" data-answer="300000" data-unit="$" data-tol="0.5"></div><span class="fb" aria-live="polite"></span></div><div class="q"><div class="je" data-caption="Record the R&D costs (paid in cash)" data-rows="2" data-expected="[[&quot;Research and development expense&quot;, &quot;D&quot;, 700000], [&quot;Cash&quot;, &quot;C&quot;, 700000]]"></div></div><div class="q"><div class="je" data-caption="Record the patents (paid in cash)" data-rows="2" data-expected="[[&quot;Patent&quot;, &quot;D&quot;, 300000], [&quot;Cash&quot;, &quot;C&quot;, 300000]]"></div></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><p>R&D expense: $400,000 + $300,000 = <strong>$700,000</strong>. Patents: $250,000 purchased + $50,000 legal fees = <strong>$300,000</strong>.</p><table class="jet"><caption>R&D</caption><thead><tr><th scope="col">Account</th><th scope="col" class="n">Debit</th><th scope="col" class="n">Credit</th></tr></thead><tbody><tr><td>Research and development expense</td><td class="n">700,000</td><td class="n"></td></tr><tr><td>&nbsp;&nbsp;&nbsp;Cash</td><td class="n"></td><td class="n">700,000</td></tr></tbody></table><table class="jet"><caption>Patents</caption><thead><tr><th scope="col">Account</th><th scope="col" class="n">Debit</th><th scope="col" class="n">Credit</th></tr></thead><tbody><tr><td>Patent</td><td class="n">300,000</td><td class="n"></td></tr><tr><td>&nbsp;&nbsp;&nbsp;Cash</td><td class="n"></td><td class="n">300,000</td></tr></tbody></table></div>
+</article><article class="example" id="ex12" aria-labelledby="ex12h">
+<h3 id="ex12h">Example 12 — U.S. GAAP versus IFRS</h3>
+<div class="scenario">Decide which framework each statement describes.</div>
+<details class="hint"><summary>Need a hint?</summary><div>IFRS allows capitalization of development costs and the revaluation model; U.S. GAAP does not.</div></details>
+<div class="q"><label for="f31">a. Development costs are capitalized when specific criteria are met</label><select id="f31" data-answer="IFRS"><option value="">Choose…</option><option>U.S. GAAP</option><option>IFRS</option><option>Both</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f32">b. PP&E may be revalued to fair value after acquisition</label><select id="f32" data-answer="IFRS"><option value="">Choose…</option><option>U.S. GAAP</option><option>IFRS</option><option>Both</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f33">c. Research costs are expensed as incurred</label><select id="f33" data-answer="Both"><option value="">Choose…</option><option>U.S. GAAP</option><option>IFRS</option><option>Both</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f34">d. Interest is capitalized on self-constructed assets</label><select id="f34" data-answer="Both"><option value="">Choose…</option><option>U.S. GAAP</option><option>IFRS</option><option>Both</option></select><span class="fb" aria-live="polite"></span></div><div class="q"><label for="f35">e. Internally generated goodwill may be recorded as an asset</label><select id="f35" data-answer="No"><option value="">Choose…</option><option>Yes</option><option>No</option></select><span class="fb" aria-live="polite"></span></div>
+<div class="btnrow"><button type="button" class="check">Check my answer</button><button type="button" class="reset">Clear and try again</button><span class="result" role="status" aria-live="polite"></span></div>
+<div class="solution" hidden><h4>Solution</h4><ul><li><strong>a. IFRS.</strong></li><li><strong>b. IFRS</strong> (revaluation model).</li><li><strong>c. Both.</strong></li><li><strong>d. Both.</strong></li><li><strong>e. No.</strong></li></ul></div>
+</article>
+</section>
+<section class="topic" id="wrap" aria-labelledby="wraph"><h2 id="wraph">Wrap-up: Chapter 10 at a glance</h2><ul><li><strong>Cost</strong> includes all expenditures necessary to get an asset ready for use. Allocate lump-sum purchases by relative fair value.</li><li><strong>Noncash acquisitions:</strong> use the present value of a noninterest-bearing note; fair value of shares or donated assets; fair value in exchanges with commercial substance (recognize gains and losses).</li><li><strong>Capitalized interest</strong> = lesser of avoidable and actual interest, based on weighted-average accumulated expenditures.</li><li><strong>Intangibles:</strong> capitalize purchased intangibles; expense R&amp;D under U.S. GAAP. IFRS capitalizes development costs that meet criteria and permits revaluation.</li></ul></section>
+</main>
+<footer class="site">ACCT 605 · Chapter 10 Chapter Walkthrough · Operational Assets: Acquisition (Ungraded)</footer>
+<script>
+(function(){
+  var Y=new Date().getFullYear();
+  document.querySelectorAll('[data-yr]').forEach(function(e){e.textContent=String(Y+Number(e.getAttribute('data-yr')));});
+
+  var ACCOUNTS=["Accumulated depreciation", "Additional paid-in capital", "Asset retirement obligation", "Building", "Building under construction", "Cash", "Common stock", "Discount on notes payable", "Donation revenue", "Equipment", "Equipment (new)", "Equipment (old)", "Gain on exchange", "Interest expense", "Land", "Loss on exchange", "Mineral deposit", "Notes payable", "Patent", "Research and development expense"];
+
+  function parseNum(s){
+    if(s==null) return NaN; s=String(s).trim(); if(!s) return NaN;
+    var neg=/^\(.*\)$/.test(s)||/^-/.test(s);
+    s=s.replace(/[$,%\s()\-]/g,''); var v=parseFloat(s);
+    return isNaN(v)?NaN:(neg?-v:v);
+  }
+  function fmt(v,unit){
+    var o=Math.abs(v)%1?{minimumFractionDigits:2,maximumFractionDigits:2}:{maximumFractionDigits:0};
+    var t=Math.abs(v).toLocaleString('en-US',o);
+    if(unit==='%') return t+'%';
+    if(unit==='$') return (v<0?'-':'')+'$'+t;
+    return (v<0?'-':'')+t;
+  }
+
+  /* Build journal entry tables */
+  document.querySelectorAll('div.je').forEach(function(box,idx){
+    var rows=Number(box.getAttribute('data-rows')||3);
+    var id='je'+idx;
+    var h='<div class="tablewrap"><table class="je"><caption>'+box.getAttribute('data-caption')+'</caption><thead><tr><th scope="col">Account title</th><th scope="col" class="n">Debit ($)</th><th scope="col" class="n">Credit ($)</th><th scope="col"><span class="sr">Result</span></th></tr></thead><tbody>';
+    for(var r=0;r<rows;r++){
+      h+='<tr><td><label class="sr" for="'+id+'a'+r+'">Account, line '+(r+1)+'</label><select id="'+id+'a'+r+'"><option value="">Choose…</option>'+ACCOUNTS.map(function(a){return '<option>'+a+'</option>';}).join('')+'</select></td>'+
+         '<td class="n"><label class="sr" for="'+id+'d'+r+'">Debit amount, line '+(r+1)+'</label><input type="text" inputmode="decimal" autocomplete="off" id="'+id+'d'+r+'"></td>'+
+         '<td class="n"><label class="sr" for="'+id+'c'+r+'">Credit amount, line '+(r+1)+'</label><input type="text" inputmode="decimal" autocomplete="off" id="'+id+'c'+r+'"></td>'+
+         '<td><span class="rowfb" aria-live="polite"></span></td></tr>';
+    }
+    h+='</tbody></table></div><span class="fb" aria-live="polite"></span>';
+    box.innerHTML=h;
+  });
+
+  var checked={}; var total=document.querySelectorAll('.example').length;
+  document.getElementById('total').textContent=total;
+  function updateProgress(){
+    document.getElementById('count').textContent=Object.keys(checked).length;
+  }
+
+  function gradeField(el){
+    var unit=el.getAttribute('data-unit')||'';
+    var fb=el.closest('.q').querySelector('.fb');
+    var ok;
+    if(el.tagName==='SELECT'){
+      ok=(el.value===el.getAttribute('data-answer'));
+      fb.textContent=ok?'✓ Correct':(el.value?'✗ Not quite. Answer: ':'✗ No answer chosen. Answer: ')+(ok?'':el.getAttribute('data-answer'));
+    } else {
+      var v=parseNum(el.value), a=Number(el.getAttribute('data-answer')), tol=Number(el.getAttribute('data-tol')||0.5);
+      ok=!isNaN(v)&&Math.abs(v-a)<=tol;
+      fb.textContent=ok?'✓ Correct':(isNaN(v)?'✗ No answer entered. Answer: ':'✗ Not quite. Answer: ')+fmt(a,unit);
+    }
+    fb.className='fb '+(ok?'ok':'bad');
+    el.setAttribute('aria-invalid',ok?'false':'true'); el.classList.toggle('ok',ok);
+    return ok;
+  }
+
+  function gradeJE(box){
+    var id=null, rows=Number(box.getAttribute('data-rows')||3);
+    var first=box.querySelector('select').id; id=first.replace(/a0$/,'');
+    var exp={}; JSON.parse(box.getAttribute('data-expected')).forEach(function(e){
+      exp[e[0]]=(exp[e[0]]||0)+(e[1]==='D'?e[2]:-e[2]);
+    });
+    var got={}, rowOk=true, anyBlankAcct=false;
+    for(var r=0;r<rows;r++){
+      var acct=document.getElementById(id+'a'+r).value;
+      var d=parseNum(document.getElementById(id+'d'+r).value), c=parseNum(document.getElementById(id+'c'+r).value);
+      var fbr=box.querySelectorAll('.rowfb')[r];
+      if(isNaN(d)) d=0; if(isNaN(c)) c=0;
+      if(!acct && (d||c)){ fbr.textContent='✗ Pick an account'; fbr.className='rowfb bad'; rowOk=false; continue; }
+      if(!acct){ fbr.textContent=''; continue; }
+      got[acct]=(got[acct]||0)+d-c;
+    }
+    var keys=Object.keys(exp).concat(Object.keys(got).filter(function(k){return !(k in exp);}));
+    var ok=rowOk;
+    keys.forEach(function(k){ if(Math.abs((exp[k]||0)-(got[k]||0))>0.5) ok=false; });
+    for(var r2=0;r2<rows;r2++){
+      var acct2=document.getElementById(id+'a'+r2).value; var fbr2=box.querySelectorAll('.rowfb')[r2];
+      if(!acct2) continue;
+      var good=Math.abs((exp[acct2]||0)-(got[acct2]||0))<=0.5 && (acct2 in exp);
+      fbr2.textContent=good?'✓':'✗'; fbr2.className='rowfb '+(good?'ok':'bad');
+    }
+    var fb=box.querySelector('.fb');
+    fb.textContent=ok?'✓ Journal entry is correct':'✗ Not quite. Compare your entry with the solution below.';
+    fb.className='fb '+(ok?'ok':'bad');
+    return ok;
+  }
+
+  document.querySelectorAll('.example').forEach(function(ex){
+    var btn=ex.querySelector('button.check'), rst=ex.querySelector('button.reset'), sol=ex.querySelector('.solution'), res=ex.querySelector('.result');
+    btn.addEventListener('click',function(){
+      var good=0,n=0;
+      ex.querySelectorAll('[data-answer]').forEach(function(el){ n++; if(gradeField(el)) good++; });
+      ex.querySelectorAll('div.je').forEach(function(box){ n++; if(gradeJE(box)) good++; });
+      res.textContent=good+' of '+n+' correct';
+      sol.hidden=false;
+      checked[ex.id]=true; updateProgress();
+    });
+    rst.addEventListener('click',function(){
+      ex.querySelectorAll('input[type=text]').forEach(function(i){i.value='';i.removeAttribute('aria-invalid');i.classList.remove('ok');});
+      ex.querySelectorAll('select').forEach(function(s){s.selectedIndex=0;s.removeAttribute('aria-invalid');s.classList.remove('ok');});
+      ex.querySelectorAll('.fb,.rowfb').forEach(function(f){f.textContent='';f.className=f.className.split(' ')[0];});
+      res.textContent=''; sol.hidden=true;
+    });
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ACCT 605 Chapter 6 Quiz Calculation Walkthrough</title>
+<meta name="description" content="Step-by-step walkthroughs of the five calculation questions on the ACCT 605 Chapter 6 Quiz: Revenue Recognition.">
+<style>
+:root{--bg:#f4f8f5;--card:#fff;--text:#14201a;--muted:#41524a;--g900:#0b3b2a;--g800:#14513a;--g700:#1b6a4a;--g100:#e3f0e8;--g50:#f0f7f3;--border:#b4cdbf;--gold:#C1A875;--ok:#0d6137;--bad:#9b2415;--focus:#0a4fd1}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1814;--card:#15231d;--text:#e9f3ee;--muted:#b5c9bf;--g900:#0a2e21;--g800:#1d6a49;--g700:#58c08f;--g100:#1b3328;--g50:#122019;--border:#34503f;--ok:#6fdca3;--bad:#ff9f8f;--focus:#8db4ff}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:17px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+a{color:var(--g800)}:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.skip{position:absolute;left:-999px;top:0;background:#fff;color:#000;padding:.6rem 1rem;z-index:100}.skip:focus{left:8px;top:8px}
+header.site{background:var(--g900);color:#fff;padding:2rem 1rem 1.5rem;border-bottom:6px solid var(--gold)}
+.wrap{max-width:820px;margin:0 auto;padding:0 1rem}header.site .wrap{padding:0}
+.eyebrow{font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--gold);margin:0 0 .25rem}
+h1{font-size:2rem;line-height:1.2;margin:.1rem 0 .5rem}header.site p{margin:.25rem 0}
+.howto,.idbox{background:var(--g100);border-left:6px solid var(--g700);padding:.9rem 1.1rem;border-radius:6px;margin:1.25rem 0}
+.idbox label{font-weight:700}
+input[type=text]{font:inherit;color:var(--text);background:var(--card);border:2px solid var(--muted);border-radius:6px;padding:.4rem .6rem;min-height:2.6rem}
+button{font:inherit;font-weight:700;cursor:pointer;border-radius:6px;padding:.5rem 1rem;min-height:2.75rem;border:2px solid var(--g800)}
+button.primary{background:var(--g800);color:#fff}button.primary:hover{background:var(--g900)}button.ghost{background:transparent;color:var(--g800)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) button.primary{background:#e9f3ee;color:#0a2e21;border-color:#e9f3ee}:root:not([data-theme="light"]) button.ghost{color:var(--g700);border-color:var(--g700)}}
+section.calc{background:var(--card);border:1px solid var(--border);border-top:6px solid var(--g700);border-radius:8px;padding:1rem 1.2rem 1.2rem;margin:1.5rem 0}
+section.calc h2{margin:0 0 .4rem;font-size:1.25rem;color:var(--g800)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) section.calc h2{color:var(--g700)}}
+.formula{background:var(--g100);padding:.4rem .8rem;border-radius:6px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.92rem;overflow-x:auto}
+.ans{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center;margin:.8rem 0}
+.ans input{width:12rem;text-align:right}
+.fb{font-weight:700}.fb.ok{color:var(--ok)}.fb.bad{color:var(--bad)}
+details.walk{margin-top:.8rem;border:2px solid var(--g700);border-radius:8px;padding:.3rem 1rem .8rem;background:var(--g50)}
+details.walk summary{cursor:pointer;font-weight:700;padding:.4rem 0}
+ol.steps{padding-left:1.4rem}ol.steps li{margin:.5rem 0}
+.final{font-weight:700;background:var(--g100);padding:.4rem .8rem;border-radius:6px;display:inline-block}
+nav.toc{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:.8rem 1.1rem;margin:1rem 0}nav.toc ol{margin:0;padding-left:1.2rem}
+footer.site{border-top:1px solid var(--border);margin-top:3rem;padding:1.2rem 1rem 2.5rem;color:var(--muted);font-size:.9rem;text-align:center}
+.attempts{width:100%;border-collapse:collapse;margin:.6rem 0;font-size:.95rem}
+.attempts th,.attempts td{border:1px solid var(--border);padding:.35rem .6rem;text-align:left}.attempts thead th{background:var(--g800);color:#fff}
+.timer{font-weight:700;font-variant-numeric:tabular-nums}
+.row2{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;margin:.5rem 0}
+.row2 label{font-weight:700}
+#report{display:none}
+@media print{body{background:#fff;color:#000}.skip,header.site,main,footer.site{display:none!important}#report{display:block!important;padding:0}
+#report .rhead{background:#1f5136;color:#fff;padding:14pt 16pt;border-bottom:5pt solid #C1A875;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+#report .rhead p{margin:0;color:#C1A875;font-size:10pt;letter-spacing:1px}#report .rhead h1{margin:2pt 0 0;font-size:20pt;color:#fff}
+#report table{width:100%;border-collapse:collapse;margin:12pt 0;font-size:11pt}#report th,#report td{border:1px solid #444;padding:4pt 8pt;text-align:left}
+#report thead th{background:#1f5136;color:#fff;-webkit-print-color-adjust:exact;print-color-adjust:exact}#report p{margin:4pt 0;font-size:11pt}}
+</style>
+</head>
+<body>
+<a class="skip" href="#problems">Skip to the problems</a>
+<header class="site"><div class="wrap">
+<p class="eyebrow">ACCT 605 · Accounting Theory and Research</p>
+<h1>Chapter 6 Quiz Calculation Walkthrough</h1>
+<p>Chapter 6: Revenue Recognition</p>
+</div></header>
+<main class="wrap" id="main">
+<div class="howto"><p><strong>How to use this page.</strong> Each problem below mirrors a calculation question on the Chapter 6 Quiz, with the same formula but numbers generated for you. Try the problem first, check your answer, then open the walkthrough to see every step. Your numbers on the real quiz will differ because Canvas generates its own values; the method is the same.</p></div>
+<div class="idbox"><div class="row2"><label for="sname">Your name:</label><input type="text" id="sname" autocomplete="name"></div>
+<div class="row2"><label for="sid">Student ID:</label><input type="text" id="sid" autocomplete="off"> <button class="primary" type="button" id="go">Generate my numbers</button> <button class="ghost" type="button" id="rand">New random numbers</button></div>
+<p>Your student ID only selects your practice numbers. Nothing is sent anywhere; your attempt history is saved only in this browser on this device.</p>
+<p id="seednote" role="status" aria-live="polite"></p>
+<div class="row2"><span class="timer" id="timer">Time on this attempt: 0:00</span> <button class="primary" type="button" id="fin">Finish attempt and record score</button></div>
+<p id="finmsg" role="status" aria-live="polite"></p>
+<h2 style="font-size:1.1rem;margin:1rem 0 .3rem">My attempts</h2>
+<div id="attlog"></div>
+<div class="row2"><button class="primary" type="button" id="prt">Print or save my attempt report (PDF)</button> <button class="ghost" type="button" id="clr">Clear my saved attempts</button></div>
+<p>In the print window, choose "Save as PDF" as the destination to make a PDF file.</p></div>
+<nav class="toc" aria-label="Problems on this page"><strong>In this walkthrough</strong><ol><li>Smoky Mountain Solar Installers</li><li>Asheville Custom Builders</li><li>Asheville Custom Builders</li><li>Black Balsam Kayak</li><li>Waynesville Landscaping</li></ol></nav>
+<div id="problems"></div>
+</main>
+<div id="report" aria-hidden="true"></div>
+<footer class="site">ACCT 605 · Accounting Theory and Research · Western Carolina University · <span id="yr"></span><br>These walkthroughs are for practice and are not graded.</footer>
+<script>window.__CH={"n":6,"items":[{"t":"Smoky Mountain Solar Installers sells a bundle with a total transaction price of $[tp]. The standalone selling price of the panels is $[e] and of the installation service is $[i]. How much of the transaction price is allocated to the panels? Round to the nearest dollar.","v":{"tp":[30000,60000],"e":[24000,40000],"i":[6000,15000]},"f":"tp * e / (e + i)","r":"$","s":["Step 4 of the revenue model: allocate the transaction price in proportion to relative standalone selling prices (SSP).","Total SSP: {{$:e}} + {{$:i}} = {{$:e+i}}.","Panels' share: {{$:e}} ÷ {{$:e+i}} = {{4:e/(e+i)}}.","Allocate: {{$:tp}} × {{4:e/(e+i)}}.","Revenue allocated to panels = {{$:tp*e/(e+i)}}."],"co":"Smoky Mountain Solar Installers"},{"t":"Asheville Custom Builders has a fixed-price contract for $[p] and uses the cost-to-cost method. Costs incurred to date are $[c], and total estimated costs are $[te]. What cumulative revenue should be recognized to date? Round to the nearest dollar.","v":{"p":[500000,1500000],"c":[100000,400000],"te":[500000,1000000]},"f":"p * c / te","r":"$","s":["Cost-to-cost method: Percentage complete = Costs incurred to date ÷ Total estimated costs. Cumulative revenue = Percentage complete × Contract price.","Percentage complete: {{$:c}} ÷ {{$:te}} = {{4:c/te}}.","Multiply by the contract price: {{4:c/te}} × {{$:p}}.","Cumulative revenue to date = {{$:p*c/te}}."],"co":"Asheville Custom Builders"},{"t":"Asheville Custom Builders has a fixed-price contract for $[p]. Total estimated costs are $[te]. Costs incurred were $[c1] in Year 1 and $[c2] in Year 2. What revenue should be recognized in Year 2 under the cost-to-cost method? Round to the nearest dollar.","v":{"p":[500000,1500000],"te":[600000,1000000],"c1":[100000,250000],"c2":[100000,300000]},"f":"p * (c1 + c2) / te - p * c1 / te","r":"$","s":["Year 2 revenue = Cumulative revenue through Year 2 − Revenue recognized in Year 1.","Cumulative through Year 2: {{$:p}} × ({{$:c1}} + {{$:c2}}) ÷ {{$:te}} = {{$:p*(c1+c2)/te}}.","Year 1 revenue: {{$:p}} × {{$:c1}} ÷ {{$:te}} = {{$:p*c1/te}}.","Year 2 revenue: {{$:p*(c1+c2)/te}} − {{$:p*c1/te}} = {{$:p*(c1+c2)/te-p*c1/te}}."],"co":"Asheville Custom Builders"},{"t":"Black Balsam Kayak sold kayaks for $[s] and expects [r]% of the sales to be returned. What amount of net revenue should be recognized at the time of sale? Round to the nearest dollar.","v":{"s":[50000,200000],"r":[2,10,"n"]},"f":"s * (1 - r / 100)","r":"$","s":["Variable consideration: revenue is recognized only for the amount the company expects to keep, so expected returns are excluded (they become a refund liability).","Expected refunds: {{$:s}} × {{n:r}}% = {{$:s*r/100}}.","Net revenue: {{$:s}} − {{$:s*r/100}}.","Net revenue recognized = {{$:s*(1-r/100)}}."],"co":"Black Balsam Kayak"},{"t":"Waynesville Landscaping has a contract with a base fee of $[b] plus a bonus of $[bo] that it estimates has a [pr]% probability of being earned. Using the expected value method, what is the transaction price? Round to the nearest dollar.","v":{"b":[40000,120000],"bo":[5000,20000],"pr":[20,80,"n"]},"f":"b + bo * pr / 100","r":"$","s":["Expected value method: Transaction price = Fixed fee + (Bonus × Probability of earning it).","Expected bonus: {{$:bo}} × {{n:pr}}% = {{$:bo*pr/100}}.","Add to the base fee: {{$:b}} + {{$:bo*pr/100}}.","Transaction price = {{$:b+bo*pr/100}}."],"co":"Waynesville Landscaping"}]};</script>
+<script>
+(function(){
+var CH=window.__CH;var attempt={start:Date.now(),ok:{}};
+function mulberry(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+function hash(s){var h=2166136261;for(var i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)}return h>>>0}
+function commas(x){return Number(x).toLocaleString('en-US',{maximumFractionDigits:0})}
+function dec(x,d){return Number(x).toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d})}
+function fmt(code,x){
+  if(code==='$'){var r0=Math.round(x);return (r0<0?'-':'')+'$'+commas(Math.abs(r0))}
+  if(code==='p1')return dec(x,1)+'%';
+  if(code==='n')return commas(Math.round(x));
+  return dec(x,parseInt(code,10));
+}
+function gen(item,rnd){
+  var v={};
+  Object.keys(item.v).forEach(function(k){
+    var a=item.v[k],lo=a[0],hi=a[1],type=a[2]||'d',val;
+    if(type==='d'&&hi>=5000){var l=Math.ceil(lo/100),h=Math.floor(hi/100);val=(l+Math.floor(rnd()*(h-l+1)))*100}
+    else val=lo+Math.floor(rnd()*(hi-lo+1));
+    v[k]=val});
+  return v}
+function ev(expr,v){var names=Object.keys(v);return Function.apply(null,names.concat('return ('+expr+')')).apply(null,names.map(function(k){return v[k]}))}
+function answer(item,v){var x=ev(item.f.replace(/\^/g,'**'),v);
+  if(item.r==='$')return Math.round(x);if(item.r==='p1')return Math.round(x*10)/10;return Math.round(x*100)/100}
+function ansText(item,v){var a=answer(item,v);return item.r==='$'?fmt('$',a):item.r==='p1'?fmt('p1',a):'$'==item.r?'':fmt('2',a)}
+function text(item,v){return item.t.replace(/\[(\w+)\]/g,function(m,k){return commas(v[k])})}
+function step(s,v){return s.replace(/\{\{([^:]+):([^}]+)\}\}/g,function(m,f,e){return fmt(f,ev(e,v))})}
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+function render(seedStr){
+  attempt={start:Date.now(),ok:{}};
+  var root=document.getElementById('problems');root.innerHTML='';
+  CH.items.forEach(function(item,i){
+    var rnd=mulberry(hash(seedStr+'|'+CH.n+'|'+i));
+    var v=gen(item,rnd),id='q'+i;
+    var steps=item.s.map(function(s){return '<li>'+esc(step(s,v))+'</li>'}).join('');
+    var sec=document.createElement('section');sec.className='calc';sec.setAttribute('aria-labelledby',id+'h');
+    sec.innerHTML='<h2 id="'+id+'h">Calculation '+(i+1)+' · '+esc(item.co)+'</h2><p>'+esc(text(item,v))+'</p>'+
+      '<div class="ans"><label for="'+id+'a"><strong>Your answer:</strong></label><input type="text" id="'+id+'a" inputmode="decimal" autocomplete="off"><button class="primary" type="button" id="'+id+'b">Check</button><span class="fb" id="'+id+'f" role="status" aria-live="polite"></span></div>'+
+      '<details class="walk"><summary>Show step-by-step walkthrough</summary><p class="formula">Canvas formula: '+esc(item.f)+'</p><ol class="steps">'+steps+'</ol><p class="final">Answer: '+esc(ansText(item,v))+'</p></details>';
+    root.appendChild(sec);
+    var a=answer(item,v),tol=item.r==='$'?1:item.r==='p1'?0.1:0.01;
+    document.getElementById(id+'b').onclick=function(){
+      var raw=document.getElementById(id+'a').value.replace(/[$,%\s]/g,'').replace(/,/g,''),x=parseFloat(raw),fb=document.getElementById(id+'f');
+      if(isNaN(x)){fb.className='fb bad';fb.textContent='Enter a number.';return}
+      if(Math.abs(x-a)<=tol+1e-9){attempt.ok[i]=true;fb.className='fb ok';fb.textContent='Correct.'}else{attempt.ok[i]=false;fb.className='fb bad';fb.textContent='Not quite. Open the walkthrough and compare each step.'}};
+  });
+}
+window.__render=render;window.__gen={gen:gen,answer:answer,ansText:ansText,step:step,text:text};
+var idEl=document.getElementById('sid'),nameEl=document.getElementById('sname'),note=document.getElementById('seednote'),fm=document.getElementById('finmsg');
+var KEY='acct605_ch'+CH.n+'_attempts';
+function load(){try{var r=JSON.parse(localStorage.getItem(KEY)||'[]');return Array.isArray(r)?r:[]}catch(e){return []}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(log))}catch(e){}}
+var log=load();
+function dur(sec){var m=Math.floor(sec/60),s=sec%60;return m+' min '+(s<10?'0':'')+s+' sec'}
+function when(t){return new Date(t).toLocaleString('en-US',{dateStyle:'medium',timeStyle:'short'})}
+function table(){
+  if(!log.length)return '';
+  return '<table class="attempts"><thead><tr><th scope="col">Attempt</th><th scope="col">Date and time</th><th scope="col">Score</th><th scope="col">Time to complete</th></tr></thead><tbody>'+
+   log.map(function(e,i){return '<tr><td>'+(i+1)+'</td><td>'+esc(when(e.t))+'</td><td>'+e.score+' of '+e.of+' ('+Math.round(100*e.score/e.of)+'%)</td><td>'+esc(dur(e.secs))+'</td></tr>'}).join('')+'</tbody></table>'}
+function showLog(){var el=document.getElementById('attlog');el.innerHTML=log.length?table():'<p>No attempts recorded yet. Work the five problems, then choose Finish attempt.</p>'}
+function numbersFor(){var id=idEl.value.trim();return (id||'sample')+'#'+(log.length+1)}
+function start(msg){
+  var id=idEl.value.trim();
+  note.textContent=msg||(id?'Numbers generated for student ID '+id+' (attempt '+(log.length+1)+').':'Showing sample numbers. Enter your student ID to get your own numbers.');
+  render(numbersFor());
+}
+function tick(){var t=document.getElementById('timer');if(t){var s=Math.floor((Date.now()-attempt.start)/1000);t.textContent='Time on this attempt: '+Math.floor(s/60)+':'+(s%60<10?'0':'')+(s%60)}}
+document.getElementById('go').onclick=function(){start()};
+document.getElementById('rand').onclick=function(){note.textContent='Random practice numbers (attempt '+(log.length+1)+').';render('r'+Math.random())};
+idEl.addEventListener('keydown',function(e){if(e.key==='Enter')start()});
+document.getElementById('fin').onclick=function(){
+  if(!nameEl.value.trim()){fm.textContent='Enter your name first so it appears on your report.';nameEl.focus();return}
+  var score=0,n=CH.items.length;for(var i=0;i<n;i++)if(attempt.ok[i])score++;
+  var secs=Math.max(1,Math.round((Date.now()-attempt.start)/1000));
+  log.push({t:Date.now(),score:score,of:n,secs:secs});save();showLog();
+  fm.textContent='Attempt '+log.length+' recorded: '+score+' of '+n+' correct in '+dur(secs)+'. New numbers are ready for your next attempt.';
+  start();
+};
+document.getElementById('prt').onclick=function(){
+  var nm=nameEl.value.trim();
+  if(!nm){fm.textContent='Enter your name first so it appears on your report.';nameEl.focus();return}
+  if(!log.length){fm.textContent='Finish at least one attempt before printing your report.';return}
+  var best=Math.max.apply(null,log.map(function(e){return e.score})),id=idEl.value.trim();
+  document.getElementById('report').innerHTML='<div class="rhead"><p>ACCT 605 · Accounting Theory and Research</p><h1>Chapter '+CH.n+' Quiz Calculation Walkthrough: Attempt Report</h1></div>'+
+   '<p><strong>Name:</strong> '+esc(nm)+'</p>'+(id?'<p><strong>Student ID:</strong> '+esc(id)+'</p>':'')+
+   '<p><strong>Printed:</strong> '+esc(when(Date.now()))+'</p><p><strong>Attempts:</strong> '+log.length+' &nbsp; <strong>Best score:</strong> '+best+' of '+CH.items.length+'</p>'+table()+
+   '<p>Scores count the problems answered correctly with the Check button before the attempt was finished. This report was generated on the student device from practice work and is self-reported by the student.</p>';
+  window.print();
+};
+document.getElementById('clr').onclick=function(){if(log.length&&!window.confirm('Clear all saved attempts for this chapter on this device?'))return;log=[];save();showLog();fm.textContent='Saved attempts cleared.'};
+document.getElementById('yr').textContent=new Date().getFullYear();
+showLog();
+setInterval(tick,1000);
+start();
+})();</script>
+</body>
+</html>
