@@ -34,7 +34,17 @@ ol.steps{padding-left:1.4rem}ol.steps li{margin:.5rem 0}
 .final{font-weight:700;background:var(--g100);padding:.4rem .8rem;border-radius:6px;display:inline-block}
 nav.toc{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:.8rem 1.1rem;margin:1rem 0}nav.toc ol{margin:0;padding-left:1.2rem}
 footer.site{border-top:1px solid var(--border);margin-top:3rem;padding:1.2rem 1rem 2.5rem;color:var(--muted);font-size:.9rem;text-align:center}
-@media print{.skip,.idbox button{display:none}details.walk{display:block}details.walk>summary{display:none}}
+.attempts{width:100%;border-collapse:collapse;margin:.6rem 0;font-size:.95rem}
+.attempts th,.attempts td{border:1px solid var(--border);padding:.35rem .6rem;text-align:left}.attempts thead th{background:var(--g800);color:#fff}
+.timer{font-weight:700;font-variant-numeric:tabular-nums}
+.row2{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;margin:.5rem 0}
+.row2 label{font-weight:700}
+#report{display:none}
+@media print{body{background:#fff;color:#000}.skip,header.site,main,footer.site{display:none!important}#report{display:block!important;padding:0}
+#report .rhead{background:#1f5136;color:#fff;padding:14pt 16pt;border-bottom:5pt solid #C1A875;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+#report .rhead p{margin:0;color:#C1A875;font-size:10pt;letter-spacing:1px}#report .rhead h1{margin:2pt 0 0;font-size:20pt;color:#fff}
+#report table{width:100%;border-collapse:collapse;margin:12pt 0;font-size:11pt}#report th,#report td{border:1px solid #444;padding:4pt 8pt;text-align:left}
+#report thead th{background:#1f5136;color:#fff;-webkit-print-color-adjust:exact;print-color-adjust:exact}#report p{margin:4pt 0;font-size:11pt}}
 </style>
 </head>
 <body>
@@ -46,17 +56,25 @@ footer.site{border-top:1px solid var(--border);margin-top:3rem;padding:1.2rem 1r
 </div></header>
 <main class="wrap" id="main">
 <div class="howto"><p><strong>How to use this page.</strong> Each problem below mirrors a calculation question on the Chapter 9 Quiz, with the same formula but numbers generated for you. Try the problem first, check your answer, then open the walkthrough to see every step. Your numbers on the real quiz will differ because Canvas generates its own values; the method is the same.</p></div>
-<div class="idbox"><p><label for="sid">Student ID (used only to generate your practice numbers; nothing is stored or sent):</label></p>
-<p><input type="text" id="sid" autocomplete="off"> <button class="primary" type="button" id="go">Generate my numbers</button> <button class="ghost" type="button" id="rand">New random numbers</button></p>
-<p id="seednote" role="status" aria-live="polite"></p></div>
+<div class="idbox"><div class="row2"><label for="sname">Your name:</label><input type="text" id="sname" autocomplete="name"></div>
+<div class="row2"><label for="sid">Student ID:</label><input type="text" id="sid" autocomplete="off"> <button class="primary" type="button" id="go">Generate my numbers</button> <button class="ghost" type="button" id="rand">New random numbers</button></div>
+<p>Your student ID only selects your practice numbers. Nothing is sent anywhere; your attempt history is saved only in this browser on this device.</p>
+<p id="seednote" role="status" aria-live="polite"></p>
+<div class="row2"><span class="timer" id="timer">Time on this attempt: 0:00</span> <button class="primary" type="button" id="fin">Finish attempt and record score</button></div>
+<p id="finmsg" role="status" aria-live="polite"></p>
+<h2 style="font-size:1.1rem;margin:1rem 0 .3rem">My attempts</h2>
+<div id="attlog"></div>
+<div class="row2"><button class="primary" type="button" id="prt">Print or save my attempt report (PDF)</button> <button class="ghost" type="button" id="clr">Clear my saved attempts</button></div>
+<p>In the print window, choose "Save as PDF" as the destination to make a PDF file.</p></div>
 <nav class="toc" aria-label="Problems on this page"><strong>In this walkthrough</strong><ol><li>Marshall Mill Works</li><li>Weaverville Boot Company</li><li>Lake Junaluska Gifts</li><li>Hendersonville Apple Packers</li><li>Black Mountain Furniture</li></ol></nav>
 <div id="problems"></div>
 </main>
+<div id="report" aria-hidden="true"></div>
 <footer class="site">ACCT 351 · Intermediate Accounting I · Western Carolina University · <span id="yr"></span><br>These walkthroughs are for practice and are not graded.</footer>
 <script>window.__CH={"n":9,"items":[{"t":"Marshall Mill Works had beginning inventory of $[b], purchases of $[p], and net sales of $[s] through the date of a fire. Its historical gross profit rate is [g]% of net sales. Using the gross profit method, what is the estimated inventory destroyed? (Enter dollars, rounded to the nearest dollar.)","v":{"b":[40000,100000],"p":[200000,400000],"s":[150000,300000],"g":[30,45,"n"]},"f":"b + p - s * (1 - g / 100)","r":"$","s":["Gross profit method: Ending inventory = Goods available for sale − Estimated COGS, where Estimated COGS = Net sales × (1 − Gross profit rate).","Goods available: {{$:b}} + {{$:p}} = {{$:b+p}}.","Estimated COGS: {{$:s}} × (1 − {{n:g}}%) = {{$:s*(1-g/100)}}.","Estimated inventory destroyed: {{$:b+p}} − {{$:s*(1-g/100)}} = {{$:b+p-s*(1-g/100)}}."],"co":"Marshall Mill Works"},{"t":"Weaverville Boot Company's goods available for sale total $[c] at cost and $[r] at retail. What is the cost-to-retail ratio, expressed as a percentage? Round to one decimal place.","v":{"c":[100000,200000],"r":[200001,400000]},"f":"c / r * 100","r":"p1","s":["Cost-to-retail ratio = Goods available at cost ÷ Goods available at retail.","Substitute: {{$:c}} ÷ {{$:r}} = {{4:c/r}}.","As a percentage: {{4:c/r}} × 100 = {{p1:c/r*100}}."],"co":"Weaverville Boot Company"},{"t":"Lake Junaluska Gifts has goods available for sale of $[c] at cost and $[r] at retail. Net sales for the period were $[s]. Using the retail inventory method, what is the estimated ending inventory at cost? Round to the nearest dollar.","v":{"c":[100000,200000],"r":[200001,400000],"s":[100000,190000]},"f":"(r - s) * c / r","r":"$","s":["Retail inventory method: convert ending inventory at retail to cost using the cost-to-retail ratio.","Ending inventory at retail: {{$:r}} − {{$:s}} = {{$:r-s}}.","Cost-to-retail ratio: {{$:c}} ÷ {{$:r}} = {{4:c/r}}.","Ending inventory at cost: {{$:r-s}} × {{4:c/r}} = {{$:(r-s)*c/r}}."],"co":"Lake Junaluska Gifts"},{"t":"Hendersonville Apple Packers uses dollar-value LIFO. Ending inventory at current-year cost is $[e], and the current-year price index (base year = 100) is [i]. What is ending inventory in base-year dollars? Round to the nearest dollar.","v":{"e":[200000,600000],"i":[105,130,"n"]},"f":"e / (i / 100)","r":"$","s":["Dollar-value LIFO first removes the effect of price changes: Ending inventory at base-year cost = Ending inventory at current cost ÷ Price index.","Convert the index: {{n:i}} ÷ 100 = {{2:i/100}}.","Divide: {{$:e}} ÷ {{2:i/100}}.","Ending inventory in base-year dollars = {{$:e/(i/100)}}."],"co":"Hendersonville Apple Packers"},{"t":"Black Mountain Furniture has a firm commitment to purchase [q] units at $[pc] per unit. At year-end the market price is $[mp] per unit. What loss should be recognized on the purchase commitment? (Enter dollars, no commas.)","v":{"q":[500,2000,"n"],"pc":[30,50],"mp":[20,29]},"f":"q * (pc - mp)","r":"$","s":["A loss on a firm purchase commitment is recognized when the market price falls below the contract price: Loss = Quantity × (Contract price − Market price).","Price decline per unit: {{$:pc}} − {{$:mp}} = {{$:pc-mp}}.","Multiply by quantity: {{n:q}} × {{$:pc-mp}}.","Loss on purchase commitment = {{$:q*(pc-mp)}}."],"co":"Black Mountain Furniture"}]};</script>
 <script>
 (function(){
-var CH=window.__CH;
+var CH=window.__CH;var attempt={start:Date.now(),ok:{}};
 function mulberry(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
 function hash(s){var h=2166136261;for(var i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)}return h>>>0}
 function commas(x){return Number(x).toLocaleString('en-US',{maximumFractionDigits:0})}
@@ -83,6 +101,7 @@ function text(item,v){return item.t.replace(/\[(\w+)\]/g,function(m,k){return co
 function step(s,v){return s.replace(/\{\{([^:]+):([^}]+)\}\}/g,function(m,f,e){return fmt(f,ev(e,v))})}
 function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;')}
 function render(seedStr){
+  attempt={start:Date.now(),ok:{}};
   var root=document.getElementById('problems');root.innerHTML='';
   CH.items.forEach(function(item,i){
     var rnd=mulberry(hash(seedStr+'|'+CH.n+'|'+i));
@@ -97,17 +116,56 @@ function render(seedStr){
     document.getElementById(id+'b').onclick=function(){
       var raw=document.getElementById(id+'a').value.replace(/[$,%\s]/g,'').replace(/,/g,''),x=parseFloat(raw),fb=document.getElementById(id+'f');
       if(isNaN(x)){fb.className='fb bad';fb.textContent='Enter a number.';return}
-      if(Math.abs(x-a)<=tol+1e-9){fb.className='fb ok';fb.textContent='Correct.'}else{fb.className='fb bad';fb.textContent='Not quite. Open the walkthrough and compare each step.'}};
+      if(Math.abs(x-a)<=tol+1e-9){attempt.ok[i]=true;fb.className='fb ok';fb.textContent='Correct.'}else{attempt.ok[i]=false;fb.className='fb bad';fb.textContent='Not quite. Open the walkthrough and compare each step.'}};
   });
 }
 window.__render=render;window.__gen={gen:gen,answer:answer,ansText:ansText,step:step,text:text};
-var idEl=document.getElementById('sid'),note=document.getElementById('seednote');
-function useId(){var s=idEl.value.trim();if(!s){note.textContent='Showing sample numbers. Enter your student ID to get your own numbers.';render('sample')}else{note.textContent='Numbers generated for student ID '+s+'.';render(s)}}
-document.getElementById('go').onclick=useId;
-document.getElementById('rand').onclick=function(){var s='r'+Math.random();note.textContent='Random practice numbers. Use your student ID again to return to your own numbers.';render(s)};
-idEl.addEventListener('keydown',function(e){if(e.key==='Enter')useId()});
+var idEl=document.getElementById('sid'),nameEl=document.getElementById('sname'),note=document.getElementById('seednote'),fm=document.getElementById('finmsg');
+var KEY='acct351_ch'+CH.n+'_attempts';
+function load(){try{var r=JSON.parse(localStorage.getItem(KEY)||'[]');return Array.isArray(r)?r:[]}catch(e){return []}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(log))}catch(e){}}
+var log=load();
+function dur(sec){var m=Math.floor(sec/60),s=sec%60;return m+' min '+(s<10?'0':'')+s+' sec'}
+function when(t){return new Date(t).toLocaleString('en-US',{dateStyle:'medium',timeStyle:'short'})}
+function table(){
+  if(!log.length)return '';
+  return '<table class="attempts"><thead><tr><th scope="col">Attempt</th><th scope="col">Date and time</th><th scope="col">Score</th><th scope="col">Time to complete</th></tr></thead><tbody>'+
+   log.map(function(e,i){return '<tr><td>'+(i+1)+'</td><td>'+esc(when(e.t))+'</td><td>'+e.score+' of '+e.of+' ('+Math.round(100*e.score/e.of)+'%)</td><td>'+esc(dur(e.secs))+'</td></tr>'}).join('')+'</tbody></table>'}
+function showLog(){var el=document.getElementById('attlog');el.innerHTML=log.length?table():'<p>No attempts recorded yet. Work the five problems, then choose Finish attempt.</p>'}
+function numbersFor(){var id=idEl.value.trim();return (id||'sample')+'#'+(log.length+1)}
+function start(msg){
+  var id=idEl.value.trim();
+  note.textContent=msg||(id?'Numbers generated for student ID '+id+' (attempt '+(log.length+1)+').':'Showing sample numbers. Enter your student ID to get your own numbers.');
+  render(numbersFor());
+}
+function tick(){var t=document.getElementById('timer');if(t){var s=Math.floor((Date.now()-attempt.start)/1000);t.textContent='Time on this attempt: '+Math.floor(s/60)+':'+(s%60<10?'0':'')+(s%60)}}
+document.getElementById('go').onclick=function(){start()};
+document.getElementById('rand').onclick=function(){note.textContent='Random practice numbers (attempt '+(log.length+1)+').';render('r'+Math.random())};
+idEl.addEventListener('keydown',function(e){if(e.key==='Enter')start()});
+document.getElementById('fin').onclick=function(){
+  if(!nameEl.value.trim()){fm.textContent='Enter your name first so it appears on your report.';nameEl.focus();return}
+  var score=0,n=CH.items.length;for(var i=0;i<n;i++)if(attempt.ok[i])score++;
+  var secs=Math.max(1,Math.round((Date.now()-attempt.start)/1000));
+  log.push({t:Date.now(),score:score,of:n,secs:secs});save();showLog();
+  fm.textContent='Attempt '+log.length+' recorded: '+score+' of '+n+' correct in '+dur(secs)+'. New numbers are ready for your next attempt.';
+  start();
+};
+document.getElementById('prt').onclick=function(){
+  var nm=nameEl.value.trim();
+  if(!nm){fm.textContent='Enter your name first so it appears on your report.';nameEl.focus();return}
+  if(!log.length){fm.textContent='Finish at least one attempt before printing your report.';return}
+  var best=Math.max.apply(null,log.map(function(e){return e.score})),id=idEl.value.trim();
+  document.getElementById('report').innerHTML='<div class="rhead"><p>ACCT 351 · Intermediate Accounting I</p><h1>Chapter '+CH.n+' Quiz Calculation Walkthrough: Attempt Report</h1></div>'+
+   '<p><strong>Name:</strong> '+esc(nm)+'</p>'+(id?'<p><strong>Student ID:</strong> '+esc(id)+'</p>':'')+
+   '<p><strong>Printed:</strong> '+esc(when(Date.now()))+'</p><p><strong>Attempts:</strong> '+log.length+' &nbsp; <strong>Best score:</strong> '+best+' of '+CH.items.length+'</p>'+table()+
+   '<p>Scores count the problems answered correctly with the Check button before the attempt was finished. This report was generated on the student device from practice work and is self-reported by the student.</p>';
+  window.print();
+};
+document.getElementById('clr').onclick=function(){if(log.length&&!window.confirm('Clear all saved attempts for this chapter on this device?'))return;log=[];save();showLog();fm.textContent='Saved attempts cleared.'};
 document.getElementById('yr').textContent=new Date().getFullYear();
-useId();
+showLog();
+setInterval(tick,1000);
+start();
 })();</script>
 </body>
 </html>
