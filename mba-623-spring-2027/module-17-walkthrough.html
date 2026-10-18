@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Module 17 Walkthrough: Three decisions: a special order, Trail Cub and battery packs</title>
+<style>
+
+:root{
+  --paper:#F5F8F5; --card:#FFFFFF; --ink:#16222B; --muted:#4D5D68; --rule:#C7D2CB;
+  --spruce:#14574B; --spruce-ink:#FFFFFF; --spruce-soft:#E0EEE8;
+  --ok:#0F6A37; --ok-bg:#E3F3E9; --miss:#9B2C1F; --miss-bg:#FBE8E4;
+  --note:#274C8C; --note-bg:#E8EEF9; --focus:#1A47B8; --hl:#FFF3C4;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --paper:#0F1A17; --card:#16231F; --ink:#E8EFEA; --muted:#A9B8B0; --rule:#33453E;
+    --spruce:#5FC2AB; --spruce-ink:#06241D; --spruce-soft:#1B3A33;
+    --ok:#7FDCA0; --ok-bg:#16352A; --miss:#FFAE9F; --miss-bg:#3E1D18;
+    --note:#A9C4FF; --note-bg:#1B2B4A; --focus:#9DB8FF; --hl:#4A4017;
+  }
+}
+*{box-sizing:border-box}
+html{font-size:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.55;font-size:1.0625rem}
+.skip{position:absolute;left:-999px;top:0;background:var(--spruce);color:var(--spruce-ink);padding:.6rem 1rem;z-index:10}
+.skip:focus{left:.5rem;top:.5rem}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:3px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+header.top{padding:1.1rem 1.25rem .4rem;max-width:1120px;margin:0 auto}
+header.top p{margin:0;color:var(--muted);font-size:.95rem}
+header.top h1{font-family:var(--serif);font-weight:700;font-size:1.65rem;line-height:1.2;margin:.15rem 0 0}
+.wrap{max-width:1120px;margin:0 auto;padding:0 1.25rem 3rem;display:grid;grid-template-columns:232px minmax(0,1fr);gap:1.75rem}
+nav.steps{position:sticky;top:.75rem;align-self:start}
+nav.steps h2{font-size:.95rem;margin:.2rem 0 .5rem;color:var(--muted);font-weight:600}
+nav.steps ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.25rem}
+nav.steps button{width:100%;text-align:left;display:flex;gap:.6rem;align-items:center;min-height:44px;padding:.35rem .6rem;border:1px solid transparent;border-radius:6px;background:none;color:var(--ink);font:inherit;font-size:.97rem;cursor:pointer}
+nav.steps button:hover:not([aria-disabled="true"]){background:var(--spruce-soft)}
+nav.steps button[aria-disabled="true"]{color:var(--muted);cursor:not-allowed;opacity:.75}
+nav.steps button[aria-current="step"]{background:var(--spruce-soft);border-color:var(--spruce);font-weight:600}
+.mark{flex:0 0 1.6rem;height:1.6rem;border-radius:50%;border:2px solid var(--rule);display:grid;place-items:center;font-size:.85rem;font-weight:700}
+.mark.done{background:var(--ok);border-color:var(--ok);color:var(--card)}
+.mark.cur{border-color:var(--spruce);color:var(--spruce)}
+main{min-width:0}
+.progress{display:flex;align-items:center;gap:.75rem;margin:.2rem 0 1rem;color:var(--muted);font-size:.95rem}
+progress{flex:1;height:.55rem;accent-color:var(--spruce)}
+.memo{background:var(--card);border:1px solid var(--rule);border-left:6px solid var(--spruce);border-radius:4px;padding:1.2rem 1.4rem;margin-bottom:1.25rem}
+.memo h2{font-family:var(--serif);font-size:1.25rem;margin:0 0 .6rem}
+.memo dl{display:grid;grid-template-columns:5.2rem 1fr;gap:.15rem .75rem;margin:0 0 .9rem;padding-bottom:.8rem;border-bottom:1px solid var(--rule);font-size:.97rem}
+.memo dt{color:var(--muted)} .memo dd{margin:0}
+.memo p{margin:.5rem 0;max-width:68ch}
+.howto{background:var(--spruce-soft);border-radius:4px;padding:.8rem 1rem;margin:0 0 1.25rem;font-size:.97rem}
+.howto strong{font-family:var(--serif)}
+.howto ul{margin:.35rem 0 0;padding-left:1.2rem}
+details.data{background:var(--card);border:1px solid var(--rule);border-radius:4px;margin:0 0 1.25rem}
+details.data>summary{cursor:pointer;padding:.8rem 1rem;font-weight:600;min-height:44px}
+details.data .inner{padding:0 1rem 1rem}
+.tscroll{overflow-x:auto;margin:.4rem 0 1rem}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums;font-size:.95rem}
+caption{text-align:left;font-weight:600;padding:.2rem 0 .4rem;font-family:var(--serif);font-size:1.02rem}
+th,td{padding:.32rem .6rem;border-bottom:1px solid var(--rule);text-align:right;white-space:nowrap}
+th:first-child,td:first-child{text-align:left;white-space:normal}
+thead th{border-bottom:2px solid var(--ink);font-weight:600}
+tr.tot td,tr.tot th{font-weight:700;border-top:1px solid var(--ink)}
+tr.sub th{text-align:left;font-weight:700;color:var(--spruce);padding-top:.7rem}
+section.step{background:var(--card);border:1px solid var(--rule);border-radius:4px;padding:1.3rem 1.4rem}
+section.step h2{font-family:var(--serif);font-size:1.45rem;line-height:1.25;margin:0 0 .2rem}
+section.step h2:focus{outline:none}
+.res{color:var(--muted);font-size:.93rem;margin:0 0 .9rem}
+.lead{max-width:70ch}
+.formula{display:inline-block;background:var(--hl);color:#111;padding:.05rem .45rem;border-radius:3px;font-variant-numeric:tabular-nums}
+@media (prefers-color-scheme: dark){.formula{color:var(--ink)}}
+.q{border-top:1px solid var(--rule);margin-top:1.2rem;padding-top:1.1rem}
+.q label.ql,.q legend{font-weight:600;display:block;margin-bottom:.45rem;max-width:68ch;padding:0}
+.q .unit{font-weight:400;color:var(--muted)}
+.q fieldset{border:0;margin:0;padding:0;min-width:0}
+.row{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center}
+input[type=text]{font:inherit;font-variant-numeric:tabular-nums;min-height:46px;width:12rem;padding:.35rem .7rem;border:2px solid var(--muted);border-radius:5px;background:var(--card);color:var(--ink)}
+input[type=text][disabled]{background:var(--paper);border-color:var(--rule)}
+.opt{display:flex;gap:.7rem;align-items:flex-start;padding:.55rem .7rem;border:1px solid var(--rule);border-radius:5px;margin:.4rem 0;max-width:68ch;cursor:pointer;min-height:44px}
+.opt:hover{background:var(--spruce-soft)}
+.opt input{margin-top:.3rem;width:1.15rem;height:1.15rem;accent-color:var(--spruce);flex:none}
+.opt.disabled{cursor:default;opacity:.85}
+.opt.picked{border-color:var(--spruce);background:var(--spruce-soft)}
+button.btn{font:inherit;font-weight:600;min-height:46px;padding:.45rem 1.15rem;border-radius:5px;border:2px solid var(--spruce);background:var(--spruce);color:var(--spruce-ink);cursor:pointer}
+button.btn:hover{filter:brightness(1.08)}
+button.btn.alt{background:transparent;color:var(--spruce)}
+button.btn[disabled]{opacity:.5;cursor:not-allowed}
+.fb{margin-top:.7rem;padding:.7rem .9rem;border-radius:5px;max-width:68ch}
+.fb.ok{background:var(--ok-bg);border-left:6px solid var(--ok)}
+.fb.no{background:var(--miss-bg);border-left:6px solid var(--miss)}
+.fb.info{background:var(--note-bg);border-left:6px solid var(--note)}
+.fb strong.tag{display:inline-block;margin-right:.35rem}
+.fb.ok strong.tag{color:var(--ok)} .fb.no strong.tag{color:var(--miss)}
+.notes{margin:.6rem 0 0;padding:0;list-style:none;max-width:68ch}
+.notes li{background:var(--note-bg);border-left:6px solid var(--note);padding:.6rem .85rem;margin:.45rem 0;border-radius:4px}
+.notes li b{color:var(--note)}
+.why{margin:.6rem 0 0;max-width:68ch}
+.nextbar{margin-top:1.6rem;padding-top:1.1rem;border-top:2px solid var(--ink);display:flex;gap:.8rem;flex-wrap:wrap;align-items:center}
+.nextbar .hint{color:var(--muted);font-size:.95rem}
+textarea{width:100%;max-width:68ch;min-height:9rem;font:inherit;padding:.7rem;border:2px solid var(--muted);border-radius:5px;background:var(--card);color:var(--ink)}
+.checks label{display:flex;gap:.6rem;align-items:flex-start;margin:.4rem 0;max-width:68ch;min-height:32px}
+.checks input{margin-top:.35rem;width:1.1rem;height:1.1rem;accent-color:var(--spruce)}
+.tick td:nth-child(n+2),.tick th:nth-child(n+2){text-align:center}
+.tick td.good{font-weight:700;color:var(--ok)}
+.tick td.bad{font-weight:700;color:var(--miss)}
+.tick tfoot td,.tick tfoot th{border-top:2px solid var(--ink);font-weight:700}
+pre.out{white-space:pre-wrap;background:var(--paper);border:1px solid var(--rule);padding:.8rem;border-radius:5px;font-size:.92rem;max-width:80ch}
+.cmp{display:grid;grid-template-columns:1fr;gap:.6rem}
+.model{background:var(--spruce-soft);border-radius:4px;padding:.8rem 1rem;max-width:72ch}
+footer{max-width:1120px;margin:0 auto;padding:0 1.25rem 2rem;color:var(--muted);font-size:.9rem}
+@media (max-width:860px){
+  .wrap{grid-template-columns:1fr}
+  nav.steps{position:static}
+  nav.steps ol{flex-direction:row;flex-wrap:wrap}
+  nav.steps li{flex:1 1 auto}
+  nav.steps button{justify-content:center;padding:.35rem .5rem}
+  nav.steps .lbl{display:none}
+  nav.steps button[aria-current="step"] .lbl{display:inline}
+  section.step,.memo{padding:1rem}
+}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+@media print{
+  nav.steps,.nextbar button,.btn,details.data,.skip{display:none!important}
+  body{background:#fff;color:#000}
+  .wrap{display:block}
+}
+
+select{font:inherit;min-height:44px;max-width:100%;padding:.3rem .5rem;border:2px solid var(--muted);border-radius:5px;background:var(--card);color:var(--ink)}
+select[disabled]{background:var(--paper);border-color:var(--rule)}
+table.gridq th,table.gridq td{white-space:normal;vertical-align:middle}
+table.gridq td{text-align:left}
+table.gridq tbody th{font-weight:500;min-width:14rem}
+
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the walkthrough</a>
+<div id="sr-live" class="sr-only" role="status" aria-live="polite"></div>
+<header class="top">
+  <p><a href="../courses/mba-623-spring-2027.html" style="color:inherit">&larr; MBA 623 Spring 2027</a> &middot; Summit Cycle Works case &middot; Module 17: Relevant costs and differential analysis</p>
+  <h1>Three decisions: a special order, Trail Cub and battery packs</h1>
+</header>
+<noscript><p style="max-width:700px;margin:1rem auto;padding:0 1.25rem">This walkthrough needs JavaScript. Please open it in a current browser.</p></noscript>
+<div class="wrap">
+  <nav class="steps" aria-label="Walkthrough steps"><h2>Your steps</h2><ol id="stepnav"></ol></nav>
+  <main id="main" tabindex="-1"><div id="app"></div></main>
+</div>
+<footer>Practice walkthrough. Hints are free and nothing here is graded or sent anywhere. All people and companies in the Summit case are fictional.</footer>
+<script>
+(function(){
+'use strict';
+var M = {"num": 17, "h1": "Three decisions: a special order, Trail Cub and battery packs", "subject": "Relevant costs and differential analysis", "textbook": "Financial & Managerial Accounting for MBAs, 7e", "memo": {"from": "Naomi Okafor, Chief Financial Officer", "date": "March 8, 2027", "re": "Three decisions for the management team", "body": ["Management has three decisions in front of it: whether to accept a one-time fleet order below our regular price, whether to drop the children's line and whether to keep making our own battery packs.", "For each, decide which costs are relevant, calculate the effect on profit and tell me what you recommend.", "Naomi"]}, "data": [{"cap": "Special order: Metro Courier Co. (Ridge Commuter bikes)", "heads": ["Amount"], "rows": [["Bikes requested", ["600"]], ["Offered price per bike ($)", ["650"]], ["Regular variable cost per bike ($)", ["520"]], ["Extra variable cost per bike for racks ($)", ["18"]], ["One-time packaging and tooling cost ($)", ["6,000"]], ["Regular average net price per bike ($)", ["800"]], ["Plant utilization before the order", ["78%, idle capacity is available"]]], "unit": "Item", "dec": 0, "zero": false}, {"cap": "Trail Cub (children's bike) line, FY2026 ($ thousands)", "heads": ["Amount"], "rows": [["Net sales", [6000]], ["Contribution margin", [1700]], ["Traceable fixed costs", [-2100]], ["Segment margin", [-400], "tot"], ["Fixed costs that would be avoided if the line were dropped", [1400]]], "unit": "$ thousands", "dec": 0, "zero": false}, {"cap": "Make or buy: battery packs for E1 and Atelier bikes", "heads": ["Amount"], "rows": [["Packs needed per year", ["11,000"]], ["Internal variable cost per pack ($)", ["400"]], ["Avoidable fixed cost per year ($)", ["600,000"]], ["Outside supplier quote per pack ($)", ["432"]]], "unit": "Item", "dec": 0, "zero": false}], "dataTitle": "Summit decision data", "dataNote": null, "rounding": "Answers are in dollars unless a different unit is shown. Answers within a small tolerance are accepted.", "steps": [{"nav": "Predict", "title": "Make a prediction", "res": "Not scored. Your guess is revisited at the end.", "type": "predict", "intro": "<p class=\"lead\">Three decisions are on Naomi's desk: a one-time fleet order below the regular price, a children's line that loses money on paper, and whether to keep making battery packs in-house. Each looks one way on the surface and another way once you identify the relevant costs.<\/p>", "legend": "Metro Courier offers $650 per bike for 600 Ridge Commuter bikes. The regular price is $800 and full cost is above $650. What is your first instinct?", "options": [["a", "Accept: the order adds profit."], ["b", "Reject: it is priced below the regular price."], ["c", "Reject: it is priced below full cost."], ["d", "It depends on which costs change."]]}, {"nav": "Special order", "title": "Metro Courier special order", "res": "Textbook: Module 17, Special orders", "intro": "<p class=\"lead\">The plant has idle capacity, so the order will not displace regular sales. Only costs that change because of the order are <b>relevant<\/b>: the bikes' variable cost, the racks and the one-time packaging cost. Existing fixed costs do not change.<\/p>", "qs": [{"id": "q1a", "type": "num", "label": "Total variable cost per bike for the order (regular variable cost + racks)", "unit": "dollars", "answer": 538, "tol": 0.5, "show": "$538", "kind": "num", "traps": [], "hints": ["Add the extra rack cost to the regular variable cost.", "Regular $520 plus racks $18.", "Worked step: 520 + 18 = ?"], "explain": "Each bike costs $538 to make and fit with racks."}, {"id": "q1b", "type": "num", "label": "Contribution margin per bike on the order", "unit": "dollars", "answer": 112, "tol": 0.5, "show": "$112", "kind": "num", "traps": [{"v": 130, "tol": 0.5, "msg": "You left out the $18 rack cost that is added to this order."}], "hints": ["Contribution margin = price − variable cost.", "$650 − $538.", "Worked step: 650 − 538 = ?"], "explain": "Each bike adds $112 even though the price is low."}, {"id": "q1c", "type": "num", "label": "Increase in operating income from accepting the order (total contribution margin − one-time cost)", "unit": "dollars", "answer": 61200, "tol": 1, "show": "$61,200", "kind": "num", "traps": [{"v": 67200, "tol": 1, "msg": "You did not subtract the $6,000 one-time packaging and tooling cost."}], "hints": ["Multiply the margin per bike by the number of bikes, then subtract the one-time cost.", "600 bikes × $112 less $6,000.", "Worked step: 600 × 112 − 6,000 = ?"], "explain": "The order would add about $61,200 of profit."}, {"id": "q1d", "type": "num", "label": "Minimum price per bike for the order to break even (variable cost + one-time cost ÷ bikes)", "unit": "dollars", "answer": 548.0, "tol": 0.5, "show": "$548", "kind": "num", "traps": [], "hints": ["The price must cover the variable cost and spread the one-time cost over the bikes.", "Variable cost $538 plus $6,000 ÷ 600.", "Worked step: 538 + 6,000 ÷ 600 = ?"], "explain": "Anything above $548 adds profit, so $650 clears the bar comfortably."}, {"id": "q1e", "type": "mc", "label": "Which of these is NOT relevant to the decision?", "options": [["a", "The $538 variable cost per bike."], ["b", "The $6,000 one-time packaging cost."], ["c", "Plant depreciation and supervision that will be incurred whether or not the order is accepted."], ["d", "The $650 offered price."]], "answer": "c", "optHints": {"a": "It changes with the order, so it is relevant.", "b": "It occurs only if the order is accepted, so it is relevant.", "d": "The extra revenue is relevant."}, "hints": ["A cost is relevant only if it differs between accepting and rejecting.", "Costs that will not change are sunk or unavoidable.", "Existing plant depreciation and supervision are the same either way."], "explain": "Full cost includes allocated fixed costs that do not change, which is why it misleads here."}]}, {"nav": "Drop Trail Cub", "title": "Should the children's line be dropped?", "res": "Textbook: Module 17, Keep or drop decisions", "intro": "<p class=\"lead\">The Trail Cub line shows a negative segment margin of $400 thousand. But some of its fixed costs cannot be avoided (they are shared or committed), so dropping it may not save what the segment margin implies. Use the data panel.<\/p>", "qs": [{"id": "q2a", "type": "grid", "label": "Is each item relevant to the decision to drop Trail Cub?", "rowHead": "Item", "cols": [{"n": "Relevant?"}], "rows": [{"t": "Contribution margin that would be lost ($1,700 thousand)", "a": ["Y"], "why": "Dropping the line gives up its contribution margin."}, {"t": "Avoidable fixed costs that would be saved ($1,400 thousand)", "a": ["Y"], "why": "These costs disappear only if the line is dropped."}, {"t": "Common SG&A costs of the whole company ($2,900 thousand)", "a": ["N"], "why": "Common costs continue whether or not the line is dropped."}, {"t": "Fixed manufacturing overhead that cannot be avoided ($600 thousand)", "a": ["N"], "why": "These costs remain if the line is dropped."}], "opts": [["Y", "Relevant"], ["N", "Not relevant"]], "hints": ["A cost is relevant if it changes with the decision. Which items change and which continue?", "Lost contribution margin and avoided fixed costs change. Common and unavoidable costs do not. Textbook: Module 17, relevant costs.", "Rows 1 and 2: yes. Rows 3 and 4: no."], "explain": "Segment margin includes costs that would not go away, so it is the wrong measure for a drop decision."}, {"id": "q2b", "type": "num", "label": "Change in operating income if Trail Cub is dropped (fixed costs avoided − contribution margin lost)", "unit": "$ thousands", "answer": -300.0, "tol": 1, "show": "-300", "kind": "num", "traps": [{"v": 400, "tol": 1, "msg": "That is the size of the segment loss. Segment margin includes fixed costs that would not go away."}, {"v": -400, "tol": 1, "msg": "That is the segment margin. It includes fixed costs that would not go away."}], "hints": ["Compare what is saved with what is given up.", "Avoided fixed costs 1,400; contribution margin lost 1,700.", "Worked step: 1,400 − 1,700 = ?"], "explain": "Operating income would fall by $300 thousand. Enter the answer as a negative number."}, {"id": "q2c", "type": "mc", "label": "What should Summit do?", "options": [["a", "Drop Trail Cub, because it loses $400 thousand."], ["b", "Keep Trail Cub, because dropping it lowers operating income by $300 thousand."], ["c", "Drop it only if the $400 thousand loss grows."], ["d", "Keep it because it earns the highest margin."]], "answer": "b", "optHints": {"a": "The $400 thousand loss includes costs that would continue.", "c": "The loss is not the relevant measure.", "d": "Trail Cub has the lowest margin of the four lines."}, "hints": ["Use your answer to the last question.", "If dropping the line lowers operating income, Summit is better off keeping it.", "Keep it, unless something else could use the freed capacity more profitably."], "explain": "The decision could change if the freed plant capacity or sales effort could earn more elsewhere."}]}, {"nav": "Make or buy", "title": "Make or buy the battery packs?", "res": "Textbook: Module 17, Make or buy decisions", "intro": "<p class=\"lead\">Voltcell makes the battery packs for the E1 and Atelier bikes. A qualified outside supplier has quoted a price with a 12-month commitment. If Summit buys, it avoids the variable cost and part of Voltcell's fixed cost (the avoidable fixed cost). The remaining fixed cost continues either way.<\/p>", "qs": [{"id": "q3a", "type": "num", "label": "Annual relevant cost to make 11,000 packs (variable cost + avoidable fixed cost)", "unit": "dollars", "answer": 5000000, "tol": 1, "show": "$5,000,000", "kind": "num", "traps": [], "hints": ["Add the variable cost for all packs to the avoidable fixed cost.", "11,000 × $400 + $600,000.", "Worked step: 11,000 × 400 + 600,000 = ?"], "explain": "Making the packs costs $5.0 million of relevant cost."}, {"id": "q3b", "type": "num", "label": "Annual cost to buy 11,000 packs", "unit": "dollars", "answer": 4752000, "tol": 1, "show": "$4,752,000", "kind": "num", "traps": [], "hints": ["Multiply the quote by the number of packs.", "$432 × 11,000.", "Worked step: 432 × 11,000 = ?"], "explain": "Buying would cost $4.752 million."}, {"id": "q3c", "type": "num", "label": "Annual savings from buying instead of making", "unit": "dollars", "answer": 248000, "tol": 1, "show": "$248,000", "kind": "num", "traps": [], "hints": ["Subtract the cost to buy from the cost to make.", "5,000,000 − 4,752,000.", "Worked step: 5,000,000 − 4,752,000 = ?"], "explain": "Buying saves $248,000 a year on these numbers."}, {"id": "q3d", "type": "num", "label": "The cost per pack to make (relevant cost ÷ packs). Compare with the $432 quote.", "unit": "dollars per pack", "answer": 454.54545454545456, "tol": 0.1, "show": "$454.55", "kind": "num", "traps": [{"v": 400, "tol": 0.1, "msg": "That is only the variable cost. Include the avoidable fixed cost."}], "hints": ["Divide the relevant cost to make by the number of packs.", "5,000,000 ÷ 11,000.", "Worked step: 5,000,000 ÷ 11,000 = ?"], "explain": "The internal cost per pack, once avoidable fixed cost is included, is above the $432 quote."}, {"id": "q3e", "type": "num", "label": "If only 8,000 packs were needed, how much would buying save compared with making?", "unit": "dollars", "answer": 344000, "tol": 1, "show": "$344,000", "kind": "num", "traps": [], "hints": ["Recompute both costs for 8,000 packs, then subtract.", "Make: 400 × 8,000 + 600,000 = 3,800,000. Buy: 432 × 8,000 = 3,456,000.", "Worked step: 3,800,000 − 3,456,000 = ?"], "explain": "At lower volume, the fixed cost is spread over fewer packs and buying looks even better."}, {"id": "q3f", "type": "mc", "label": "What non-financial factors should Summit weigh before outsourcing?", "options": [["a", "None: the lowest cost always wins."], ["b", "Quality, supply reliability, control of a key part and the 12-month price commitment."], ["c", "Only the supplier's name."], ["d", "Whether the CEO likes the supplier."]], "answer": "b", "optHints": {"a": "Qualitative factors can outweigh a small saving.", "c": "The supplier's name is not an analytical factor.", "d": "The decision should be based on analysis."}, "hints": ["Think about what could go wrong if a key part is outside Summit's control.", "A supply failure could halt E1 production. Textbook: Module 17, qualitative factors.", "Quality, reliability, control and commitment length all matter."], "explain": "The $248,000 saving is only about 5% of the cost, so strategic risk may outweigh it, especially because Summit just bought Voltcell."}]}, {"nav": "Recommend to Naomi", "title": "Recommend to Naomi", "res": "Not scored. Compare your note with the checklist and the model answer.", "type": "memo", "prompt": "Write Naomi three to four sentences with your recommendation on the special order, Trail Cub and the battery packs.", "checklist": ["Accepts the special order and states the profit (about $61,200).", "Keeps Trail Cub because dropping it lowers operating income by $300 thousand.", "Quantifies the make-or-buy saving ($248,000) and raises a qualitative risk."], "model": "Accept the Metro Courier order: each bike adds $112 of contribution margin and the order adds about $61,200 of profit. Keep Trail Cub, because the $1.4 million of fixed costs we would save is less than the $1.7 million of contribution margin we would lose, so operating income would fall by $300 thousand. Buying the battery packs would save about $248,000 a year, but I would not outsource them without a stronger supply guarantee, because the E1 depends on them and we just acquired Voltcell.", "feedback": {"d": "Correct: it depends on which costs actually change with the decision.", "a": "The order does add profit, as the next step shows, because only costs that change are relevant.", "_": "The answer depends on which costs actually change. Only those are relevant."}}]};
+
+/* ---------- Helpers ---------- */
+function esc(t){return String(t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+function fmtVal(v,spec){
+  if(v===null||v===undefined) return '';
+  if(typeof v==='string') return v;
+  var dec=(spec&&spec.dec)||0;
+  if(v===0&&!(spec&&spec.zero)) return '–';
+  var s=Math.abs(v).toLocaleString('en-US',{minimumFractionDigits:dec,maximumFractionDigits:dec});
+  return v<0?'('+s+')':s;
+}
+function table(spec){
+  var heads=spec.heads, unit=spec.unit||'$ thousands';
+  var h='<div class="tscroll" tabindex="0" role="region" aria-label="'+esc(spec.cap)+' (scrolls sideways on small screens)"><table><caption>'+esc(spec.cap)+'</caption><thead><tr><th scope="col">'+esc(unit)+'</th>';
+  heads.forEach(function(x){h+='<th scope="col">'+esc(x)+'</th>';});
+  h+='</tr></thead><tbody>';
+  spec.rows.forEach(function(r){
+    if(r[2]==='sub'){h+='<tr class="sub"><th scope="rowgroup" colspan="'+(heads.length+1)+'">'+esc(r[0])+'</th></tr>';return;}
+    h+='<tr'+(r[2]==='tot'?' class="tot"':'')+'><th scope="row">'+esc(r[0])+'</th>';
+    r[1].forEach(function(v){h+='<td>'+fmtVal(v,spec)+'</td>';});
+    h+='</tr>';
+  });
+  return h+'</tbody></table></div>';
+}
+function dataPanel(open){
+  if(!M.data||!M.data.length) return '';
+  return '<details class="data"'+(open?' open':'')+'><summary>'+esc(M.dataTitle||'Summit data')+'</summary><div class="inner">'+
+   M.data.map(table).join('')+(M.dataNote?'<p>'+M.dataNote+'</p>':'')+'</div></details>';
+}
+
+var STEPS=M.steps;
+var KEY='summit-m'+M.num+'-walkthrough-v1';
+var S={cur:0,max:0,q:{},prediction:null,memo:'',checks:[],name:'',done:false,confirmReset:false};
+try{var raw=sessionStorage.getItem(KEY); if(raw){var p=JSON.parse(raw); if(p&&p.q) S=p;}}catch(e){}
+function save(){try{sessionStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
+function qs(id){if(!S.q[id])S.q[id]={wrong:0,done:false,revealed:false,log:[],val:null};return S.q[id];}
+function stepDone(i){
+  var st=STEPS[i];
+  if(st.type==='predict') return S.prediction!==null;
+  if(st.type==='memo') return true;
+  return st.qs.every(function(q){return qs(q.id).done;});
+}
+function announce(t){var el=document.getElementById('sr-live');el.textContent='';setTimeout(function(){el.textContent=t;},40);}
+
+/* ---------- Parsing and checking ---------- */
+function parseNum(s){
+  s=String(s).trim().replace(/[$,\s%]/g,'').replace(/−/g,'-');
+  var neg=false;
+  if(/^\(.*\)$/.test(s)){neg=true;s=s.slice(1,-1);}
+  if(!/^-?(\d+\.?\d*|\.\d+)$/.test(s)) return NaN;
+  var v=parseFloat(s); return neg?-v:v;
+}
+function normalize(q,v){ if(q.kind==='pct' && v!==0 && Math.abs(v)<1) return v*100; return v; }
+function near(v,t,tol){return Math.abs(v-t)<=tol;}
+function sameSet(a,b){a=a.slice().sort().join(',');b=b.slice().sort().join(',');return a===b;}
+
+/* ---------- Rendering ---------- */
+var app=document.getElementById('app'), nav=document.getElementById('stepnav');
+
+function renderNav(){
+  var h='';
+  var all=STEPS.concat([{nav:'Your results'}]);
+  all.forEach(function(st,i){
+    var locked=i>S.max, cur=i===S.cur;
+    var isDone=(i<STEPS.length && i<S.max && stepDone(i)) || (i===STEPS.length && S.done);
+    h+='<li><button type="button" data-nav="'+i+'"'+(cur?' aria-current="step"':'')+(locked?' aria-disabled="true"':'')+'>'+
+       '<span class="mark'+(isDone?' done':(cur?' cur':''))+'" aria-hidden="true">'+(isDone?'✓':(i<STEPS.length?(i+1):'★'))+'</span>'+
+       '<span class="lbl">'+esc(st.nav)+'<span class="sr-only">'+(isDone?' (completed)':(locked?' (locked)':''))+'</span></span></button></li>';
+  });
+  nav.innerHTML=h;
+}
+
+function qBlock(q,idx){return '<div class="q" id="blk-'+q.id+'">'+qInner(q,qs(q.id),idx)+'</div>';}
+function noteList(q,st){
+  if(!st.log.length) return '';
+  var h='<ol class="notes" aria-label="Reviewer\'s notes">';
+  st.log.forEach(function(entry,i){
+    var tier=Math.min(i+1,3);
+    h+='<li><b>Reviewer\'s note '+(i+1)+':</b> ';
+    if(entry.msg) h+=entry.msg+' ';
+    if(!entry.msg || i>=2) h+=q.hints[tier-1];
+    h+='</li>';
+  });
+  return h+'</ol>';
+}
+function optLabel(o,opts){var r=o;opts.forEach(function(x){if(x[0]===o)r=x[1];});return r;}
+function qInner(q,st,idx){
+  var h='', dis=st.done?' disabled':'';
+  var fbId='fb-'+q.id;
+  if(q.type==='num'){
+    h+='<form data-q="'+q.id+'" novalidate><label class="ql" for="in-'+q.id+'">'+idx+'. '+q.label+' <span class="unit">('+q.unit+')</span></label>'+
+       '<div class="row"><input type="text" id="in-'+q.id+'" inputmode="decimal" autocomplete="off" aria-describedby="'+fbId+'" value="'+esc(st.val||'')+'"'+dis+'>'+
+       (st.done?'':'<button class="btn" type="submit">Check answer</button>')+'</div></form>';
+  }else if(q.type==='grid'){
+    var cols=q.cols, vals=st.val||[];
+    h+='<form data-q="'+q.id+'" novalidate><fieldset'+dis+'><legend>'+idx+'. '+q.label+'</legend><div class="tscroll" tabindex="0" role="region" aria-label="Answer table (scrolls sideways on small screens)"><table class="gridq"><caption class="sr-only">'+esc(q.label.replace(/<[^>]+>/g,''))+'</caption><thead><tr><th scope="col">'+esc(q.rowHead||'Item')+'</th>';
+    cols.forEach(function(c){h+='<th scope="col">'+esc(c.n)+'</th>';});
+    h+='</tr></thead><tbody>';
+    q.rows.forEach(function(r,ri){
+      h+='<tr><th scope="row">'+r.t+'</th>';
+      cols.forEach(function(c,ci){
+        var cur=vals[ri*cols.length+ci]||'';
+        var opts=c.opts||q.opts;
+        h+='<td><select data-r="'+ri+'" data-c="'+ci+'" aria-label="'+esc(r.t.replace(/<[^>]+>/g,''))+', '+esc(c.n)+'"'+dis+'><option value="">Choose</option>';
+        opts.forEach(function(o){h+='<option value="'+esc(o[0])+'"'+(cur===o[0]?' selected':'')+'>'+esc(o[1])+'</option>';});
+        h+='</select></td>';
+      });
+      h+='</tr>';
+    });
+    h+='</tbody></table></div></fieldset>'+(st.done?'':'<div class="row" style="margin-top:.6rem"><button class="btn" type="submit">Check answers</button></div>')+'</form>';
+  }else{
+    var multi=q.type==='multi';
+    h+='<form data-q="'+q.id+'" novalidate><fieldset'+dis+'><legend>'+idx+'. '+q.label+'</legend>';
+    q.options.forEach(function(o){
+      var picked=multi?(st.val||[]).indexOf(o[0])>-1:st.val===o[0];
+      h+='<label class="opt'+(picked?' picked':'')+(st.done?' disabled':'')+'"><input type="'+(multi?'checkbox':'radio')+'" name="'+q.id+'" value="'+o[0]+'"'+(picked?' checked':'')+dis+'><span>'+o[1]+'</span></label>';
+    });
+    h+='</fieldset>'+(st.done?'':'<div class="row" style="margin-top:.6rem"><button class="btn" type="submit">Check answer</button></div>')+'</form>';
+  }
+  h+='<div id="'+fbId+'">';
+  if(st.msg) h+='<div class="fb '+st.msgType+'">'+st.msg+'</div>';
+  if(st.done && !st.revealed) h+='<div class="fb ok"><strong class="tag">✓ Correct.</strong>'+(q.explain?q.explain:'')+'</div>';
+  if(st.revealed) h+='<div class="fb info"><strong class="tag">Answer shown:</strong> '+answerText(q)+' '+(q.explain?q.explain:'')+'</div>';
+  h+='</div>';
+  h+=noteList(q,st);
+  if(!st.done && st.wrong>=3) h+='<p class="why"><button type="button" class="btn alt" data-reveal="'+q.id+'">Show the answer</button></p>';
+  return h;
+}
+function answerText(q){
+  if(q.type==='num') return q.show+'.';
+  if(q.type==='grid'){
+    return '<ul>'+q.rows.map(function(r){return '<li>'+r.t+': '+q.cols.map(function(c,ci){return esc(c.n)+' '+esc(optLabel(r.a[ci],c.opts||q.opts));}).join('; ')+'</li>';}).join('')+'</ul>';
+  }
+  var map={};q.options.forEach(function(o){map[o[0]]=o[1];});
+  var a=q.type==='multi'?q.answers:[q.answer];
+  return a.map(function(k){return map[k];}).join(' ');
+}
+
+function renderStage(focusHeading){
+  var st=STEPS[S.cur], h='';
+  if(S.cur===STEPS.length){return renderResults(focusHeading);}
+  h+='<div class="progress"><span>Step '+(S.cur+1)+' of '+STEPS.length+'</span><progress max="'+STEPS.length+'" value="'+(S.cur+1)+'" aria-label="Walkthrough progress"></progress></div>';
+  if(S.cur===0){
+    var m=M.memo;
+    h+='<article class="memo" aria-labelledby="memo-h"><h2 id="memo-h">Memo</h2><dl><dt>To</dt><dd>You, Business Analyst, Finance and Strategy</dd><dt>From</dt><dd>'+m.from+'</dd><dt>Date</dt><dd>'+m.date+'</dd><dt>Re</dt><dd>'+m.re+'</dd></dl>'+
+       m.body.map(function(p){return '<p>'+p+'</p>';}).join('')+'</article>'+
+       '<div class="howto"><strong>How this works</strong><ul><li>Type or choose an answer and select Check answer. If it is off, you get a reviewer\'s note and can try again as often as you like. Hints are free.</li><li>'+(M.rounding||'Round percentages to one decimal and ratios to two decimals. Answers within a small tolerance are accepted.')+'</li><li>The textbook ('+esc(M.textbook)+') is a resource, not a requirement. Everything you need is on this page.</li><li>Your results page at the end shows how many answers were correct and incorrect in each step.</li></ul></div>';
+  }
+  h+=dataPanel(S.cur<=1);
+  h+='<section class="step" aria-labelledby="step-h"><h2 id="step-h" tabindex="-1">Step '+(S.cur+1)+'. '+esc(st.title)+'</h2><p class="res">'+esc(st.res||'')+'</p>'+(st.intro||'');
+  if(st.type==='predict'){
+    h+='<form data-predict="1"><fieldset'+(S.prediction!==null?' disabled':'')+'><legend>'+st.legend+'</legend>';
+    st.options.forEach(function(o){
+      var picked=S.prediction===o[0];
+      h+='<label class="opt'+(picked?' picked':'')+'"><input type="radio" name="pred" value="'+o[0]+'"'+(picked?' checked':'')+'><span>'+o[1]+'</span></label>';
+    });
+    h+='</fieldset>'+(S.prediction===null?'<div class="row" style="margin-top:.6rem"><button class="btn" type="submit">Lock in my prediction</button></div>':'<div class="fb info" style="margin-top:.7rem">Prediction locked in. You will revisit it in Step '+STEPS.length+'.</div>')+'</form>';
+  }else if(st.type==='memo'){
+    h+=memoHTML(st);
+  }else{
+    st.qs.forEach(function(q,i){h+=qBlock(q,i+1);});
+  }
+  var done=stepDone(S.cur);
+  if(st.type!=='memo'){
+    h+='<div class="nextbar"><button type="button" class="btn" data-next="1"'+(done?'':' disabled')+'>Continue to '+(S.cur+1<STEPS.length?'step '+(S.cur+2):'results')+'</button>'+
+       (done?'':'<span class="hint">Finish every question in this step to continue.</span>')+'</div>';
+  }
+  h+='</section>';
+  app.innerHTML=h;
+  if(focusHeading){var hd=document.getElementById('step-h');if(hd){hd.focus();window.scrollTo({top:0});}}
+}
+
+function predOpt(){return STEPS[0].options.filter(function(o){return o[0]===S.prediction;})[0];}
+function memoHTML(st){
+  var pred=predOpt();
+  var fb=(st.feedback&&(st.feedback[S.prediction]||st.feedback._))||'';
+  var h='<p class="lead"><strong>Your prediction in Step 1:</strong> '+(pred?esc(pred[1].replace(/<[^>]+>/g,'')):'You skipped it.')+'</p>';
+  h+='<p class="lead">'+fb+'</p>';
+  h+='<form data-memo="1"><label class="ql" for="memo" style="font-weight:600;display:block;margin:.8rem 0 .4rem">'+st.prompt+'</label>'+
+     '<textarea id="memo" aria-describedby="memo-help">'+esc(S.memo)+'</textarea><p id="memo-help" class="res">Your note stays in this browser tab. It is not saved anywhere else.</p>'+
+     '<fieldset class="checks"><legend style="font-weight:600">Check your note against this list</legend>';
+  st.checklist.forEach(function(t,i){h+='<label><input type="checkbox" data-check="'+i+'"'+(S.checks.indexOf(i)>-1?' checked':'')+'><span>'+t+'</span></label>';});
+  h+='</fieldset></form>';
+  h+='<details class="model" style="margin-top:1rem"><summary>See a model answer</summary><p>'+st.model+'</p></details>';
+  h+='<div class="nextbar"><button type="button" class="btn" data-finish="1">See my results</button></div>';
+  return h;
+}
+
+function tally(){
+  var rows=[], tot={n:0,ok:0,bad:0,first:0,shown:0};
+  STEPS.forEach(function(st,i){
+    if(!st.qs) return;
+    var r={step:i,name:st.title,n:st.qs.length,ok:0,bad:0,first:0,shown:0,qrows:[]};
+    st.qs.forEach(function(q){
+      var s=qs(q.id);
+      var ok=s.done&&!s.revealed, first=ok&&s.wrong===0;
+      r.ok+=ok?1:0; r.bad+=s.wrong; r.first+=first?1:0; r.shown+=s.revealed?1:0;
+      r.qrows.push({label:q.label.replace(/<[^>]+>/g,''),ok:ok,bad:s.wrong,first:first,shown:s.revealed,done:s.done});
+    });
+    tot.n+=r.n;tot.ok+=r.ok;tot.bad+=r.bad;tot.first+=r.first;tot.shown+=r.shown;
+    rows.push(r);
+  });
+  return {rows:rows,tot:tot};
+}
+function summaryText(t){
+  var L=[];
+  L.push('Summit Cycle Works - Module '+M.num+' walkthrough results');
+  if(S.name) L.push('Name: '+S.name);
+  var pred=predOpt();
+  L.push('Step 1 prediction: '+(pred?pred[1].replace(/<[^>]+>/g,''):'none'));
+  L.push('');
+  t.rows.forEach(function(r){
+    L.push('Step '+(r.step+1)+' ('+r.name+'): '+r.ok+' of '+r.n+' correct; '+r.bad+' incorrect attempt'+(r.bad===1?'':'s')+'; '+r.first+' correct on first try; '+r.shown+' answer'+(r.shown===1?'':'s')+' shown');
+  });
+  L.push('');
+  L.push('Total: '+t.tot.ok+' of '+t.tot.n+' correct; '+t.tot.bad+' incorrect attempts; '+t.tot.first+' correct on first try; '+t.tot.shown+' answers shown');
+  if(S.memo){L.push('');L.push('My note: ');L.push(S.memo);}
+  return L.join('\n');
+}
+function renderResults(focusHeading){
+  var t=tally(), h='';
+  h+='<div class="progress"><span>Results</span></div>';
+  h+='<section class="step" aria-labelledby="step-h"><h2 id="step-h" tabindex="-1">Your results</h2><p class="res">Correct answers and incorrect attempts for each step.</p>';
+  h+='<div class="tscroll" tabindex="0" role="region" aria-label="Results by step (scrolls sideways on small screens)"><table class="tick"><caption>Answers by step</caption><thead><tr><th scope="col">Step</th><th scope="col">Correct answers</th><th scope="col">Incorrect attempts</th><th scope="col">Correct on first try</th><th scope="col">Answers shown</th></tr></thead><tbody>';
+  t.rows.forEach(function(r){
+    h+='<tr><th scope="row">Step '+(r.step+1)+'. '+esc(r.name)+'</th><td class="'+(r.ok===r.n?'good':'')+'">'+(r.ok===r.n?'✓ ':'')+r.ok+' of '+r.n+'</td><td class="'+(r.bad?'bad':'')+'">'+(r.bad?'✗ ':'')+r.bad+'</td><td>'+r.first+' of '+r.n+'</td><td>'+r.shown+'</td></tr>';
+  });
+  h+='</tbody><tfoot><tr><th scope="row">Total</th><td>'+t.tot.ok+' of '+t.tot.n+'</td><td>'+t.tot.bad+'</td><td>'+t.tot.first+' of '+t.tot.n+'</td><td>'+t.tot.shown+'</td></tr></tfoot></table></div>';
+  h+='<p class="lead">Steps 1 and '+STEPS.length+' are not scored. An incorrect attempt is any wrong answer you submitted. A question counts as correct once you answer it right, even after retries; answers you chose to show are not counted as correct.</p>';
+  h+='<details style="margin:1rem 0"><summary>See the breakdown by question</summary><div class="tscroll" tabindex="0" role="region" aria-label="Results by question"><table class="tick"><caption>Answers by question</caption><thead><tr><th scope="col">Question</th><th scope="col">Result</th><th scope="col">Incorrect attempts</th></tr></thead><tbody>';
+  t.rows.forEach(function(r){r.qrows.forEach(function(q,i){
+    var res=q.shown?'Answer shown':(q.ok?(q.first?'✓ Correct, first try':'✓ Correct after retries'):'Not answered');
+    h+='<tr><th scope="row">Step '+(r.step+1)+', question '+(i+1)+': '+esc(q.label)+'</th><td>'+res+'</td><td>'+q.bad+'</td></tr>';
+  });});
+  h+='</tbody></table></div></details>';
+  h+='<div><label for="nm" style="font-weight:600">Your name (optional, included in the copied summary)</label><br><div class="row" style="margin-top:.35rem"><input type="text" id="nm" autocomplete="name" value="'+esc(S.name)+'" style="width:18rem"></div></div>';
+  h+='<h3 style="font-family:var(--serif);margin:1.2rem 0 .4rem">Summary you can copy</h3><pre class="out" id="sum" tabindex="0">'+esc(summaryText(t))+'</pre>';
+  h+='<div class="row"><button class="btn" type="button" data-copy="1">Copy summary</button><button class="btn alt" type="button" data-print="1">Print this page</button><button class="btn alt" type="button" data-back="1">Back to step '+STEPS.length+'</button><button class="btn alt" type="button" data-reset="1">'+(S.confirmReset?'Select again to confirm start over':'Start over')+'</button></div><div id="copymsg" class="res" role="status"></div>';
+  h+='</section>';
+  app.innerHTML=h;
+  if(focusHeading){var hd=document.getElementById('step-h');if(hd){hd.focus();window.scrollTo({top:0});}}
+}
+
+function render(focusHeading){renderNav();renderStage(focusHeading);}
+
+/* ---------- Events ---------- */
+nav.addEventListener('click',function(e){
+  var b=e.target.closest('button[data-nav]'); if(!b) return;
+  var i=+b.getAttribute('data-nav'); if(i>S.max) {announce('That step is locked until you finish the earlier steps.');return;}
+  S.cur=i; save(); render(true);
+});
+function goNext(){
+  var i=S.cur;
+  if(i<STEPS.length-1){S.cur=i+1;S.max=Math.max(S.max,S.cur);}
+  else {S.cur=STEPS.length;S.max=Math.max(S.max,S.cur);S.done=true;}
+  save();render(true);
+}
+app.addEventListener('click',function(e){
+  var t=e.target;
+  var rv=t.closest('[data-reveal]');
+  if(rv){
+    var id=rv.getAttribute('data-reveal'), s=qs(id); s.done=true;s.revealed=true;s.msg=null;
+    save(); refreshQ(id); announce('Answer shown.'); return;
+  }
+  if(t.closest('[data-next]')){goNext();return;}
+  if(t.closest('[data-finish]')){S.max=Math.max(S.max,STEPS.length);S.cur=STEPS.length;S.done=true;save();render(true);return;}
+  if(t.closest('[data-back]')){S.cur=STEPS.length-1;save();render(true);return;}
+  if(t.closest('[data-print]')){window.print();return;}
+  if(t.closest('[data-copy]')){
+    var txt=document.getElementById('sum').textContent, m=document.getElementById('copymsg');
+    function ok(){m.textContent='Summary copied.';announce('Summary copied.');}
+    function fail(){var r=document.createRange();r.selectNodeContents(document.getElementById('sum'));var sel=window.getSelection();sel.removeAllRanges();sel.addRange(r);m.textContent='Select and copy the highlighted text (Ctrl+C or Command+C).';}
+    try{
+      if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(ok,fail);}
+      else{fail();}
+    }catch(err){fail();}
+    return;
+  }
+  if(t.closest('[data-reset]')){
+    if(!S.confirmReset){S.confirmReset=true;save();renderResults(false);return;}
+    S={cur:0,max:0,q:{},prediction:null,memo:'',checks:[],name:'',done:false,confirmReset:false};save();render(true);return;
+  }
+});
+function refreshQ(id){
+  var q=null,idx=0;
+  STEPS[S.cur].qs.forEach(function(x,i){if(x.id===id){q=x;idx=i+1;}});
+  var blk=document.getElementById('blk-'+id);
+  blk.innerHTML=qInner(q,qs(id),idx);
+  var done=stepDone(S.cur), nb=app.querySelector('[data-next]');
+  if(nb){nb.disabled=!done;var hint=app.querySelector('.nextbar .hint');if(hint)hint.style.display=done?'none':'';}
+}
+function firstFocus(id){return document.getElementById('in-'+id)||document.querySelector('#blk-'+id+' select, #blk-'+id+' input');}
+
+app.addEventListener('submit',function(e){
+  e.preventDefault();
+  var f=e.target;
+  if(f.hasAttribute('data-predict')){
+    var c=f.querySelector('input[name=pred]:checked');
+    if(!c){announce('Choose an option first.');var fb=document.createElement('div');fb.className='fb no';fb.textContent='Choose one option, then lock in your prediction.';if(!f.querySelector('.fb'))f.appendChild(fb);return;}
+    S.prediction=c.value;save();render(false);
+    announce('Prediction locked in.');
+    var nb=app.querySelector('[data-next]'); if(nb) nb.focus();
+    return;
+  }
+  if(f.hasAttribute('data-memo')){return;}
+  var id=f.getAttribute('data-q'); if(!id) return;
+  var q=null; STEPS[S.cur].qs.forEach(function(x){if(x.id===id) q=x;});
+  var s=qs(id); if(s.done) return;
+  var correct=false, trap=null, empty=false;
+  if(q.type==='num'){
+    var inp=f.querySelector('input[type=text]'), raw=inp.value; s.val=raw;
+    if(!raw.trim()){empty=true;s.msg='Enter a number first.';s.msgType='info';}
+    else{
+      var v=parseNum(raw);
+      if(isNaN(v)){empty=true;s.msg='Enter a number, such as 12.5. Commas, $ and % signs are fine.';s.msgType='info';}
+      else{
+        v=normalize(q,v);
+        if(near(v,q.answer,q.tol)) correct=true;
+        else (q.traps||[]).forEach(function(tp){if(!trap&&near(v,tp.v,tp.tol)) trap=tp.msg;});
+      }
+    }
+  }else if(q.type==='grid'){
+    var sels=[].slice.call(f.querySelectorAll('select')), vals=sels.map(function(x){return x.value;});
+    s.val=vals;
+    if(vals.some(function(x){return !x;})){empty=true;s.msg='Choose an answer in every cell first.';s.msgType='info';}
+    else{
+      var badRows=[], nc=q.cols.length;
+      q.rows.forEach(function(r,ri){
+        var ok=true;for(var ci=0;ci<nc;ci++){if(vals[ri*nc+ci]!==r.a[ci]) ok=false;}
+        if(!ok) badRows.push(ri);
+      });
+      if(!badRows.length) correct=true;
+      else{
+        var parts=['Check '+(badRows.length===1?'row ':'rows ')+badRows.map(function(x){return x+1;}).join(', ')+'.'];
+        badRows.slice(0,2).forEach(function(ri){if(q.rows[ri].why) parts.push('Row '+(ri+1)+': '+q.rows[ri].why);});
+        trap=parts.join(' ');
+      }
+    }
+  }else if(q.type==='mc'){
+    var c2=f.querySelector('input:checked');
+    if(!c2){empty=true;s.msg='Choose an answer first.';s.msgType='info';}
+    else{s.val=c2.value; if(c2.value===q.answer) correct=true; else trap=(q.optHints||{})[c2.value]||null;}
+  }else{
+    var picks=[].slice.call(f.querySelectorAll('input:checked')).map(function(x){return x.value;});
+    s.val=picks;
+    if(!picks.length){empty=true;s.msg='Select at least one answer first.';s.msgType='info';}
+    else if(sameSet(picks,q.answers)) correct=true;
+    else{
+      var msgs=[];picks.forEach(function(k){if(q.answers.indexOf(k)<0 && q.optHints && q.optHints[k]) msgs.push(q.optHints[k]);});
+      var missing=q.answers.filter(function(k){return picks.indexOf(k)<0;});
+      if(missing.length && !msgs.length) msgs.push('You have not selected everything that applies.');
+      trap=msgs.join(' ');
+    }
+  }
+  if(empty){save();refreshQ(id);announce(s.msg);var ni=firstFocus(id);if(ni)ni.focus();return;}
+  if(correct){
+    s.done=true;s.msg=null;save();refreshQ(id);
+    announce('Correct. '+(q.explain||'').replace(/<[^>]+>/g,''));
+    var nextQ=null;STEPS[S.cur].qs.forEach(function(x){if(!nextQ&&!qs(x.id).done)nextQ=x;});
+    if(nextQ){var ni2=firstFocus(nextQ.id);if(ni2)ni2.focus();}
+    else{var nb2=app.querySelector('[data-next]');if(nb2)nb2.focus();}
+    return;
+  }
+  s.wrong++; s.log.push({msg:trap}); s.msg='<strong class="tag">✗ Not quite.</strong>Try again. Reviewer\'s note '+s.log.length+' is below.'; s.msgType='no';
+  save();refreshQ(id);
+  var tier=Math.min(s.log.length,3);
+  announce('Not quite. '+((trap||'')+' '+(q.hints[tier-1]||'')).replace(/<[^>]+>/g,''));
+  var again=firstFocus(id);
+  if(again){again.focus(); if(again.select&&again.type==='text')again.select();}
+});
+app.addEventListener('change',function(e){
+  var t=e.target;
+  if(t.matches('[data-check]')){
+    var i=+t.getAttribute('data-check'), k=S.checks.indexOf(i);
+    if(t.checked&&k<0)S.checks.push(i); if(!t.checked&&k>-1)S.checks.splice(k,1); save();
+  }
+  if(t.closest('.opt')){
+    var grp=t.closest('form').querySelectorAll('.opt');
+    [].forEach.call(grp,function(l){l.classList.toggle('picked',l.querySelector('input').checked);});
+  }
+});
+app.addEventListener('input',function(e){
+  if(e.target.id==='memo'){S.memo=e.target.value;save();}
+  if(e.target.id==='nm'){S.name=e.target.value;save();var sm=document.getElementById('sum');if(sm)sm.textContent=summaryText(tally());}
+});
+
+render(false);
+})();
+
+</script>
+</body>
+</html>

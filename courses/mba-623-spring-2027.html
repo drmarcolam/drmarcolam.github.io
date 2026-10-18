@@ -324,7 +324,19 @@
 (function(){
   // Add a new problem by adding an entry here — the list renders itself.
   var PROBLEMS = [
-    { num: 'M4', title: 'Why Did Summit\'s ROE Fall?', topic: 'Return on equity, DuPont analysis (ROA and leverage, margin and turnover), and a peer comparison with Ridgeline Bikes', href: '../mba-623-spring-2027/module-4-walkthrough.html' }
+    { num: 'M1', title: 'How Did Summit Fund Its Growth?', topic: 'Business activities, users of statements, ROA and ROE', href: '../mba-623-spring-2027/module-1-walkthrough.html' },
+    { num: 'M2', title: "Reading Summit's Four Statements", topic: 'Linking the statements, net income vs. operating cash flow, comparison with Ridgeline', href: '../mba-623-spring-2027/module-2-walkthrough.html' },
+    { num: 'M3', title: 'Tracing January 2027 Through the FSET', topic: 'Transactions, adjustments and the Financial Statement Effects Template', href: '../mba-623-spring-2027/module-3-walkthrough.html' },
+    { num: 'M4', title: "Why Did Summit's ROE Fall?", topic: 'Return on equity, DuPont analysis (ROA and leverage, margin and turnover), and a peer comparison with Ridgeline Bikes', href: '../mba-623-spring-2027/module-4-walkthrough.html' },
+    { num: 'M5', title: "How Reliable Is Summit's Revenue?", topic: 'Returns and rebates, receivables and the allowance, deferred revenue, euro sales', href: '../mba-623-spring-2027/module-5-walkthrough.html' },
+    { num: 'M6', title: 'Battery Costs, a New Assembly Line and Voltcell', topic: 'FIFO, LIFO and average cost; capitalizing costs; goodwill; cash conversion cycle', href: '../mba-623-spring-2027/module-6-walkthrough.html' },
+    { num: 'M7', title: 'Warranties, Loans and the $10 Million Bond', topic: 'Warranty liability, term loan and revolver interest, bond at a discount, interest coverage', href: '../mba-623-spring-2027/module-7-walkthrough.html' },
+    { num: 'M8', title: 'EPS, a Dividend and a Stock Split', topic: 'Share transactions, weighted-average shares, EPS, dividend and split', href: '../mba-623-spring-2027/module-8-walkthrough.html' },
+    { num: 'M14', title: 'Strategy, the Value Chain and Unit Economics', topic: 'Value chain, cost classification, contribution margin by product line', href: '../mba-623-spring-2027/module-14-walkthrough.html' },
+    { num: 'M15', title: 'Estimating Plant Costs for the Second Shift', topic: 'Cost behavior, high-low, regression and the relevant range', href: '../mba-623-spring-2027/module-15-walkthrough.html' },
+    { num: 'M16', title: 'Break-Even, Margin of Safety and the Motor Tariff', topic: 'Contribution format, break-even, operating leverage, target profit, sensitivity', href: '../mba-623-spring-2027/module-16-walkthrough.html' },
+    { num: 'M17', title: 'Three Decisions: Special Order, Trail Cub, Battery Packs', topic: 'Relevant costs, keep or drop, make or buy', href: '../mba-623-spring-2027/module-17-walkthrough.html' },
+    { num: 'M19', title: 'Is Atelier Custom Really Profitable?', topic: 'Activity-based costing and customer cost to serve', href: '../mba-623-spring-2027/module-19-walkthrough.html' }
   ];
 
   function rowHTML(p){
@@ -342,7 +354,7 @@
   if(PROBLEMS.length === 0){
     list.innerHTML = '<div class="empty-problem">Walkthroughs will appear here as they\'re added.</div>';
   } else {
-    list.innerHTML = PROBLEMS.map(rowHTML).join('') + '<div class="empty-problem">More module walkthroughs will be added before the term starts.</div>';
+    list.innerHTML = PROBLEMS.map(rowHTML).join('');
   }
 })();
 </script>
