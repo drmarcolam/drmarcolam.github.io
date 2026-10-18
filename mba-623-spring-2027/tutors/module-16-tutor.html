@@ -1,0 +1,608 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Module 16 Tutor: Cost-Volume-Profit Analysis and Planning | MBA 623</title>
+<meta name="description" content="Interactive step-by-step practice tutor for MBA 623, Module 16: Cost-Volume-Profit Analysis and Planning.">
+<style>
+:root{--bg:#F5F8F5;--card:#ffffff;--ink:#16222B;--muted:#4D5D68;--line:#C7D2CB;--brand:#14574B;--brand-ink:#ffffff;--brand-soft:#E0EEE8;--gold:#8CC7B0;--good:#0F6A37;--good-bg:#E3F3E9;--warn:#7a4a00;--warn-bg:#fff2d6;--bad:#9B2C1F;--bad-bg:#FBE8E4;--info-bg:#E8EEF9;--focus:#1A47B8;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#0F1A17;--card:#16231F;--ink:#E8EFEA;--muted:#A9B8B0;--line:#33453E;--brand:#5FC2AB;--brand-ink:#06241D;--brand-soft:#1B3A33;--gold:#5FC2AB;--good:#7FDCA0;--good-bg:#16352A;--warn:#f3c978;--warn-bg:#3a2d12;--bad:#FFAE9F;--bad-bg:#3E1D18;--info-bg:#1B2B4A;--focus:#9DB8FF;}}
+*{box-sizing:border-box}
+html{font-size:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.55;font-size:1.0625rem}
+.skip{position:absolute;left:-999px;top:0;background:var(--brand);color:var(--brand-ink);padding:.6rem 1rem;z-index:10}
+.skip:focus{left:8px;top:8px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+header.site{background:var(--brand);color:var(--brand-ink);padding:1.1rem 1rem 1.4rem}
+header.site .wrap{max-width:60rem;margin:0 auto}
+header.site a{color:var(--brand-ink);font-weight:600}
+.eyebrow{margin:.5rem 0 0;font-size:.95rem;letter-spacing:.04em;text-transform:uppercase;opacity:.92}
+header.site h1{margin:.15rem 0 .2rem;font-size:1.7rem;line-height:1.2}
+header.site p.sub{margin:0;opacity:.95}
+main{max-width:60rem;margin:0 auto;padding:1.25rem 1rem 3rem}
+h2{font-size:1.45rem;margin:.2rem 0 .6rem;color:var(--ink)}
+h3{font-size:1.1rem;margin:.1rem 0 .5rem}
+.lead{color:var(--muted);max-width:46rem}
+ul.menu{list-style:none;margin:1rem 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(17rem,1fr));gap:.85rem}
+.menu-btn{width:100%;height:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-left:6px solid var(--brand);border-radius:10px;padding:.9rem 1rem;color:var(--ink);font:inherit;cursor:pointer;display:flex;flex-direction:column;gap:.35rem}
+.menu-btn:hover{box-shadow:0 2px 10px rgba(0,0,0,.15);border-color:var(--brand)}
+.menu-title{font-weight:700;font-size:1.08rem}
+.menu-desc{color:var(--muted);font-size:.95rem}
+.menu-go{margin-top:auto;color:var(--brand);font-weight:700;font-size:.95rem}
+.toolbar{margin-bottom:.5rem}
+.link-btn{background:none;border:0;color:var(--brand);font:inherit;font-weight:600;text-decoration:underline;cursor:pointer;padding:.25rem 0}
+.scenario,.step,.worklog,.summary{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:1rem 1.1rem;margin:0 0 1rem}
+.scenario{border-left:6px solid var(--gold)}
+.scenario p{margin:.3rem 0}
+.step{border-left:6px solid var(--brand)}
+.stepno{margin:0 0 .35rem;font-weight:700;color:var(--brand)}
+.bar{height:8px;background:var(--brand-soft);border-radius:6px;overflow:hidden;margin:0 0 .8rem}
+.bar span{display:block;height:100%;background:var(--brand)}
+.q{font-size:1.1rem;margin:0 0 .7rem}
+.q p{margin:.3rem 0}
+.ans-row{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+.aff{font-weight:700;color:var(--muted)}
+input[type=text]{font:inherit;font-size:1.15rem;padding:.55rem .7rem;border:2px solid var(--muted);border-radius:8px;background:var(--bg);color:var(--ink);width:13rem;max-width:100%}
+.fmt{margin:.4rem 0 0;color:var(--muted);font-size:.93rem}
+fieldset.choices{border:0;padding:0;margin:0;display:grid;gap:.5rem}
+.choice{display:flex;gap:.65rem;align-items:flex-start;padding:.6rem .75rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);cursor:pointer}
+.choice:hover{border-color:var(--brand)}
+.choice input{margin-top:.3rem;width:1.1rem;height:1.1rem;flex:none}
+.actions{margin-top:.9rem}
+.actions.row{display:flex;gap:.75rem;flex-wrap:wrap}
+button.primary,button.secondary{font:inherit;font-weight:700;border-radius:8px;padding:.65rem 1.2rem;cursor:pointer;border:2px solid var(--brand)}
+button.primary{background:var(--brand);color:var(--brand-ink)}
+button.secondary{background:transparent;color:var(--brand)}
+button:disabled{opacity:.55;cursor:not-allowed}
+.fb{margin-top:.9rem}
+.fb.good,.fb.warn,.fb.bad,.fb.info{padding:.8rem 1rem;border-radius:8px;border:1px solid var(--line)}
+.fb.good{background:var(--good-bg);border-color:var(--good)}
+.fb.warn{background:var(--warn-bg);border-color:var(--warn)}
+.fb.bad{background:var(--bad-bg);border-color:var(--bad)}
+.fb.info{background:var(--info-bg)}
+.fb p{margin:.25rem 0}
+.fb-h{font-weight:600}
+.badge{display:inline-block;font-size:.8rem;font-weight:800;padding:.1rem .5rem;border-radius:99px;border:1.5px solid currentColor;margin-right:.35rem;vertical-align:.05em}
+.badge.ok{color:var(--good)}.badge.no{color:var(--bad)}
+.fb.warn .badge.no{color:var(--warn)}
+.hint,.sol{margin:.4rem 0}
+.ans-line{margin-top:.5rem}
+.worklog ol{margin:.2rem 0 0;padding-left:1.3rem}
+.worklog li{margin:.45rem 0}
+.log-q{display:block;color:var(--muted);font-size:.95rem}
+.log-a.good{color:var(--good)}
+.log-a.bad{color:var(--bad)}
+.log-a .badge{font-size:.72rem}
+.yours{color:var(--muted)}
+.summary .big{font-size:1.15rem;font-weight:600}
+.score{list-style:none;padding:0;margin:.5rem 0;display:flex;gap:1.4rem;flex-wrap:wrap}
+.score strong{font-size:1.4rem;color:var(--brand)}
+.takeaway{background:var(--brand-soft);border-radius:8px;padding:.7rem .9rem;margin-top:.6rem}
+.tbl-wrap{overflow-x:auto;margin:.6rem 0}
+table.data{border-collapse:collapse;min-width:16rem;font-size:.98rem}
+table.data caption{text-align:left;font-weight:700;padding-bottom:.3rem}
+table.data th,table.data td{border:1px solid var(--line);padding:.35rem .65rem;text-align:left;vertical-align:top}
+table.data thead th{background:var(--brand-soft)}
+table.data .r,table.data td.r{text-align:right;font-variant-numeric:tabular-nums}
+table.data tr.tot th,table.data tr.tot td{font-weight:700;border-top:2px solid var(--ink)}
+table.data tbody th{font-weight:500}
+.eq{display:inline-block;background:var(--brand-soft);padding:.1rem .5rem;border-radius:6px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.95em}
+footer.site{max-width:60rem;margin:0 auto;padding:1rem;color:var(--muted);border-top:1px solid var(--line);font-size:.92rem}
+@media (max-width:30rem){header.site h1{font-size:1.4rem}input[type=text]{width:100%}}
+@media print{header.site{background:#fff;color:#000}.menu-go,.toolbar,.actions{display:none}}
+
+
+.tutor-intro{display:flex;gap:1rem;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-left:6px solid var(--brand);border-radius:10px;padding:1rem 1.1rem;margin:0 0 1.25rem}
+.tutor-avatar{flex:none;width:3.4rem;height:3.4rem;border-radius:50%;background:var(--brand);color:var(--brand-ink);display:flex;align-items:center;justify-content:center;font-size:1.6rem;font-weight:700}
+.tutor-intro h2{margin:0 0 .35rem}
+.tutor-intro p{margin:.35rem 0;color:var(--ink)}
+@media (max-width:30rem){.tutor-intro{flex-direction:column}}
+</style>
+</head>
+<body>
+<a class="skip" href="#app">Skip to main content</a>
+<header class="site">
+  <div class="wrap">
+    <p class="eyebrow">MBA 623 &middot; <span id="mod-num">Module 16</span></p>
+    <h1><span id="mod-title">Cost-Volume-Profit Analysis and Planning</span> Tutor</h1>
+    <p class="sub" id="mod-sub">The profit equation, contribution margin, break-even and margin of safety, multiple products, operating leverage, and income taxes.</p>
+  </div>
+</header>
+<main id="app" tabindex="-1"></main>
+<footer class="site">MBA 623 &middot; Western Carolina University &middot; Practice problems use fictional companies and randomly generated numbers. Nothing you enter here is saved or graded.</footer>
+<script>
+/* MBA 623 tutor library: random helpers, formatting, answer checking (no DOM) */
+(function (root) {
+  'use strict';
+  function makeRNG(seed) {
+    let a = seed >>> 0;
+    const next = function () {
+      a = (a + 0x6D2B79F5) | 0;
+      let t = Math.imul(a ^ (a >>> 15), 1 | a);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+    const R = {
+      next: next,
+      int: function (lo, hi) { return lo + Math.floor(next() * (hi - lo + 1)); },
+      step: function (lo, hi, s) { return lo + s * Math.floor(next() * ((hi - lo) / s + 1)); },
+      pick: function (arr) { return arr[Math.floor(next() * arr.length)]; },
+      chance: function (p) { return next() < p; },
+      shuffle: function (arr) {
+        const b = arr.slice();
+        for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(next() * (i + 1)); const t = b[i]; b[i] = b[j]; b[j] = t; }
+        return b;
+      },
+      sample: function (arr, n) { return R.shuffle(arr).slice(0, n); }
+    };
+    return R;
+  }
+
+  const COMPANIES = ['Alder Ridge Foods', 'Bluewater Outfitters', 'Cedar Point Instruments', 'Dunmore Apparel', 'Eastgate Medical', 'Fairhaven Home Goods', 'Granite Peak Tools', 'Harborview Software', 'Ironwood Furniture', 'Juniper Labs', 'Kestrel Logistics', 'Lakeshore Beverages', 'Maple Hollow Bakery', 'Northfield Electronics', 'Oakmont Pharmaceuticals', 'Pinecrest Sports', 'Quarry Lane Builders', 'Redstone Retail', 'Silverline Networks', 'Tamarack Outdoor', 'Union Square Coffee', 'Valley Forge Machining', 'Westbrook Toys', 'Yellowfin Seafood', 'Zephyr Cycles'];
+
+  function addCommas(s) { return s.replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+  function num(x, d) {
+    d = d || 0;
+    const neg = x < 0 && Math.round(Math.abs(x) * Math.pow(10, d)) !== 0;
+    const s = Math.abs(x).toFixed(d).split('.');
+    return (neg ? '-' : '') + addCommas(s[0]) + (s[1] ? '.' + s[1] : '');
+  }
+  function money(x, d) {
+    d = d || 0;
+    const s = num(Math.abs(x), d);
+    const isZero = Math.round(Math.abs(x) * Math.pow(10, d)) === 0;
+    return (x < 0 && !isZero) ? '($' + s + ')' : '$' + s;
+  }
+  function sgn(x, d) { return (x < 0 ? ' &minus; ' : ' + ') + money(Math.abs(x), d); }
+  function pct(x, d) { d = (d === undefined) ? 1 : d; return num(x, d) + '%'; }
+  function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+
+  /* table(headers, rows, opts) rows: array of arrays; first column left aligned, others right aligned */
+  function table(head, rows, opts) {
+    opts = opts || {};
+    let h = '<div class="tbl-wrap"><table class="data"' + (opts.caption ? '' : '') + '>';
+    if (opts.caption) h += '<caption>' + opts.caption + '</caption>';
+    if (head && head.length) {
+      h += '<thead><tr>';
+      head.forEach(function (c, i) { h += '<th scope="col"' + (i === 0 ? '' : ' class="r"') + '>' + c + '</th>'; });
+      h += '</tr></thead>';
+    }
+    h += '<tbody>';
+    rows.forEach(function (r) {
+      let cls = '';
+      if (r && r.cls) { cls = ' class="' + r.cls + '"'; r = r.cells; }
+      h += '<tr' + cls + '>';
+      r.forEach(function (c, i) {
+        if (i === 0) h += '<th scope="row">' + c + '</th>';
+        else h += '<td class="r">' + c + '</td>';
+      });
+      h += '</tr>';
+    });
+    return h + '</tbody></table></div>';
+  }
+
+  function parseAnswer(raw) {
+    if (raw === null || raw === undefined) return NaN;
+    let s = String(raw).trim().toLowerCase();
+    if (!s) return NaN;
+    let neg = false;
+    if (/^\(.*\)$/.test(s)) { neg = true; s = s.slice(1, -1); }
+    s = s.replace(/[−–]/g, '-');
+    if (s.charAt(0) === '-') { neg = true; s = s.slice(1); }
+    s = s.replace(/[\$,\s]/g, '').replace(/%$/, '');
+    s = s.replace(/(units?|days?|times|x|shares?|batches|hours|hrs|years?|yrs?|dollars)$/, '');
+    if (s.charAt(0) === '-') { neg = true; s = s.slice(1); }
+    if (!/^[0-9]*\.?[0-9]+$|^[0-9]+\.$/.test(s)) return NaN;
+    const v = parseFloat(s);
+    return neg ? -v : v;
+  }
+
+  function isCorrectNumber(step, raw) {
+    const u = parseAnswer(raw);
+    if (!isFinite(u)) return false;
+    const a = step.ans;
+    const dec = step.dec || 0;
+    const rel = (step.tol === undefined) ? 0.003 : step.tol;
+    const absTol = 0.5 * Math.pow(10, -dec) + 1e-9;
+    const ok = function (v) { return Math.abs(v - a) <= Math.max(absTol, rel * Math.abs(a)); };
+    if (ok(u)) return true;
+    if (step.unit === '%' && Math.abs(u) <= 1.5 && Math.abs(a) > 1.5 && ok(u * 100)) return true;
+    return false;
+  }
+
+  function fmtAnswer(step) {
+    const d = step.dec || 0;
+    switch (step.unit) {
+      case '$': return money(step.ans, d);
+      case '%': return pct(step.ans, d);
+      case 'x': return num(step.ans, d) + 'x';
+      case 'days': return num(step.ans, d) + ' days';
+      case 'units': return num(step.ans, d) + ' units';
+      default: return num(step.ans, d) + (step.suffix ? ' ' + step.suffix : '');
+    }
+  }
+
+
+  /* step builders */
+  function ns(q, short, ans, unit, dec, hint, sol, extra) {
+    var o = { q: '<p>' + q + '</p>', short: short, ans: ans, unit: unit || '', dec: dec || 0, hint: hint, sol: sol };
+    if (extra) { for (var k in extra) o[k] = extra[k]; }
+    return o;
+  }
+  function cs(q, short, choices, correct, hint, sol) {
+    return { q: '<p>' + q + '</p>', short: short, choices: choices, correct: correct, hint: hint, sol: sol };
+  }
+  /* shuffle choices but keep track of the correct one */
+  function csr(R, q, short, choices, correctIdx, hint, sol) {
+    var order = R.shuffle(choices.map(function (c, i) { return i; }));
+    return cs(q, short, order.map(function (i) { return choices[i]; }), order.indexOf(correctIdx), hint, sol);
+  }
+
+  root.TutorLib = { sgn: sgn, ns: ns, cs: cs, csr: csr, makeRNG: makeRNG, COMPANIES: COMPANIES, num: num, money: money, pct: pct, esc: esc, table: table, parseAnswer: parseAnswer, isCorrectNumber: isCorrectNumber, fmtAnswer: fmtAnswer };
+})(typeof window !== 'undefined' ? window : globalThis);
+
+</script>
+<script>
+(function () {
+  var L = window.TutorLib, $ = L.money, N = L.num, P = L.pct, T = L.table, ns = L.ns, cs = L.cs, csr = L.csr, G = L.sgn;
+  function co(R) { return R.pick(L.COMPANIES); }
+  function fmt(n) { return Math.round(n).toLocaleString('en-US'); }
+  var PRODUCTS = ['smoothies', 'frozen yogurt cups', 'granola bars', 'phone cases', 'scented candles', 'water bottles', 'notebooks', 'tote bags'];
+
+  /* base scenario: price, vc components, fixed; all in dollars with cents */
+  function base(R) {
+    var price = R.step(120, 400, 5) / 100 * 1;
+    var vcDM = R.step(20, 60, 1) / 100, vcDL = R.step(15, 40, 1) / 100, vcMO = R.step(10, 25, 1) / 100, vcSA = R.step(8, 20, 1) / 100;
+    var vc = Math.round((vcDM + vcDL + vcMO + vcSA) * 100) / 100;
+    while (vc > price * 0.8) { vcDM = Math.round(vcDM * 80) / 100; vcDL = Math.round(vcDL * 80) / 100; vc = Math.round((vcDM + vcDL + vcMO + vcSA) * 100) / 100; if (vcDM < 0.05) break; }
+    var cm = Math.round((price - vc) * 100) / 100;
+    var fm = R.step(8, 30, 1) * 100, fs = R.step(3, 15, 1) * 100;
+    return { price: price, dm: vcDM, dl: vcDL, mo: vcMO, sa: vcSA, vc: vc, cm: cm, fm: fm, fs: fs, F: fm + fs, prod: R.pick(PRODUCTS), name: co(R) };
+  }
+  function costTable(b) {
+    return T(['Variable costs per unit', '', 'Fixed costs per month', ''], [
+      ['Direct materials', $(b.dm, 2), 'Manufacturing overhead', $(b.fm)],
+      ['Direct labor', $(b.dl, 2), 'Selling and administrative', $(b.fs)],
+      ['Manufacturing overhead', $(b.mo, 2), 'Total', $(b.F)],
+      ['Selling and administrative', $(b.sa, 2), '', ''],
+      ['Total', $(b.vc, 2), '', '']
+    ]);
+  }
+  function baseIntro(b) { return '<p><strong>' + b.name + '</strong> makes and sells one product, <strong>' + b.prod + '</strong>, for <strong>' + $(b.price, 2) + '</strong> each. It keeps no inventory. Estimated costs:</p>' + costTable(b); }
+  function ceil(x) { return Math.ceil(x - 1e-9); }
+
+  /* A. Profit equation and target profit */
+  function genProfit(R) {
+    var b = base(R), q = R.step(40, 120, 5) * 100, tgt = R.step(5, 30, 1) * 100;
+    var profit = b.price * q - b.F - b.vc * q;
+    var need = (b.F + tgt) / b.cm, needU = ceil(need);
+    return {
+      intro: baseIntro(b),
+      takeaway: 'Profit = (price &times; units) &minus; (fixed costs + variable cost per unit &times; units). To hit a target profit, set the equation equal to the target and solve for units: units = (fixed costs + target profit) &divide; contribution margin per unit.',
+      steps: [
+        ns('What is the <strong>total variable cost per unit</strong>?', 'Variable cost per unit', b.vc, '$', 2, 'Add all four variable cost components.', $(b.dm, 2) + ' + ' + $(b.dl, 2) + ' + ' + $(b.mo, 2) + ' + ' + $(b.sa, 2) + ' = <strong>' + $(b.vc, 2) + '</strong>.', { tol: 0.002 }),
+        ns('What are the <strong>total fixed costs</strong> per month?', 'Fixed costs', b.F, '$', 0, 'Add fixed manufacturing overhead and fixed selling and administrative.', $(b.fm) + ' + ' + $(b.fs) + ' = <strong>' + $(b.F) + '</strong>.', { tol: 0 }),
+        ns('What is the <strong>profit</strong> if the company sells ' + fmt(q) + ' units in a month? Enter a loss as a negative number.', 'Profit at ' + fmt(q) + ' units', profit, '$', 0, 'Profit = price &times; units &minus; fixed costs &minus; variable cost per unit &times; units.', $(b.price, 2) + ' &times; ' + fmt(q) + ' &minus; ' + $(b.F) + ' &minus; ' + $(b.vc, 2) + ' &times; ' + fmt(q) + ' = <strong>' + $(profit) + '</strong>.', { tol: 0.01 }),
+        ns('How many units must be sold to earn a profit of <strong>' + $(tgt) + '</strong> per month? Round up to a whole unit.', 'Units for target profit', needU, 'units', 0, 'Set the profit equation equal to the target: ' + $(tgt) + ' = ' + $(b.price, 2) + 'X &minus; ' + $(b.F) + ' &minus; ' + $(b.vc, 2) + 'X. Solve for X.', 'X = (' + $(b.F) + ' + ' + $(tgt) + ') &divide; (' + $(b.price, 2) + ' &minus; ' + $(b.vc, 2) + ') = ' + $(b.F + tgt) + ' &divide; ' + $(b.cm, 2) + ' = <strong>' + fmt(need) + '</strong>, rounded up to <strong>' + fmt(needU) + ' units</strong>.', { tol: 0.002 })
+      ]
+    };
+  }
+
+  /* B. Contribution income statement */
+  function genCIS(R) {
+    var b = base(R), q = R.step(40, 120, 5) * 100;
+    var sales = b.price * q, tv = b.vc * q, cmT = sales - tv, profit = cmT - b.F, ratio = b.cm / b.price;
+    var dq = R.step(2, 10, 1) * 100, dsales = R.step(5, 20, 1) * 100;
+    return {
+      intro: baseIntro(b) + '<p>The company expects to sell <strong>' + fmt(q) + '</strong> units this month.</p>',
+      takeaway: 'A contribution income statement separates variable and fixed costs: Sales &minus; variable costs = contribution margin; contribution margin &minus; fixed costs = profit. Profit changes by the contribution margin on any change in sales.',
+      steps: [
+        ns('What are <strong>total sales</strong>?', 'Sales', sales, '$', 0, 'Price per unit times units.', $(b.price, 2) + ' &times; ' + fmt(q) + ' = <strong>' + $(sales) + '</strong>.', { tol: 0.002 }),
+        ns('What are <strong>total variable costs</strong>?', 'Total variable costs', tv, '$', 0, 'Variable cost per unit times units (include selling and administrative variable costs).', $(b.vc, 2) + ' &times; ' + fmt(q) + ' = <strong>' + $(tv) + '</strong>.', { tol: 0.002 }),
+        ns('What is the <strong>contribution margin</strong> in total?', 'Contribution margin', cmT, '$', 0, 'Sales minus variable costs.', $(sales) + ' &minus; ' + $(tv) + ' = <strong>' + $(cmT) + '</strong>.', { tol: 0.005 }),
+        ns('What is <strong>profit</strong>? Enter a loss as a negative number.', 'Profit', profit, '$', 0, 'Contribution margin minus total fixed costs (' + $(b.F) + ').', $(cmT) + ' &minus; ' + $(b.F) + ' = <strong>' + $(profit) + '</strong>.', { tol: 0.01 }),
+        ns('What is the <strong>contribution margin ratio</strong> (contribution margin &divide; sales)? Round to one decimal place.', 'CM ratio', ratio * 100, '%', 1, 'Use the per-unit values: (price &minus; variable cost) &divide; price.', '(' + $(b.price, 2) + ' &minus; ' + $(b.vc, 2) + ') &divide; ' + $(b.price, 2) + ' = <strong>' + P(ratio * 100, 1) + '</strong>.', { tol: 0.005 }),
+        ns('If sales volume rises by <strong>' + fmt(dq) + ' units</strong>, by how much will profit increase?', 'Increase in profit', dq * b.cm, '$', 0, 'Fixed costs do not change, so each additional unit adds its contribution margin per unit (' + $(b.cm, 2) + ').', fmt(dq) + ' &times; ' + $(b.cm, 2) + ' = <strong>' + $(dq * b.cm) + '</strong>.', { tol: 0.005 }),
+        ns('If sales <em>dollars</em> rise by <strong>' + $(dsales) + '</strong>, by how much will profit increase?', 'Increase in profit', dsales * ratio, '$', 0, 'Use the contribution margin ratio.', $(dsales) + ' &times; ' + (ratio).toFixed(4) + ' = <strong>' + $(dsales * ratio) + '</strong>.', { tol: 0.01 })
+      ]
+    };
+  }
+
+  /* C. Break-even and margin of safety */
+  function genBE(R) {
+    var b = base(R), beU = b.F / b.cm, beUc = ceil(beU), ratio = b.cm / b.price, beS = b.F / ratio;
+    var exp = Math.round((beUc * R.step(120, 180, 5) / 100) / 50) * 50, mos = exp - beUc, mosPct = 100 * mos / exp;
+    return {
+      intro: baseIntro(b) + '<p>Management also expects to sell about <strong>' + fmt(exp) + '</strong> units per month.</p>',
+      takeaway: 'Break-even units = fixed costs &divide; contribution margin per unit. Break-even sales dollars = fixed costs &divide; contribution margin ratio. The margin of safety is how far expected sales are above break-even.',
+      steps: [
+        ns('What is the <strong>contribution margin per unit</strong>?', 'CM per unit', b.cm, '$', 2, 'Selling price minus variable cost per unit (all four variable costs).', $(b.price, 2) + ' &minus; ' + $(b.vc, 2) + ' = <strong>' + $(b.cm, 2) + '</strong>.', { tol: 0.002 }),
+        ns('What is the <strong>break-even point in units</strong>? Round up to a whole unit.', 'Break-even units', beUc, 'units', 0, 'At break-even, profit is zero: fixed costs &divide; contribution margin per unit.', $(b.F) + ' &divide; ' + $(b.cm, 2) + ' = ' + fmt(beU) + ', rounded up to <strong>' + fmt(beUc) + ' units</strong>.', { tol: 0.002 }),
+        ns('What is the <strong>break-even point in sales dollars</strong>? (Use fixed costs &divide; contribution margin ratio.) Round to the nearest dollar.', 'Break-even sales', beS, '$', 0, 'Contribution margin ratio = ' + $(b.cm, 2) + ' &divide; ' + $(b.price, 2) + ' = ' + ratio.toFixed(4) + '.', $(b.F) + ' &divide; ' + ratio.toFixed(4) + ' = <strong>' + $(beS) + '</strong>.', { tol: 0.005 }),
+        ns('What is the <strong>margin of safety in units</strong> (expected sales minus break-even units)?', 'Margin of safety (units)', mos, 'units', 0, 'Expected units minus break-even units.', fmt(exp) + ' &minus; ' + fmt(beUc) + ' = <strong>' + fmt(mos) + ' units</strong>.', { tol: 0.01 }),
+        ns('What is the <strong>margin of safety percentage</strong> (margin of safety &divide; expected sales)? Round to one decimal.', 'Margin of safety %', mosPct, '%', 1, 'Divide the margin of safety by expected unit sales.', fmt(mos) + ' &divide; ' + fmt(exp) + ' = <strong>' + P(mosPct, 1) + '</strong>.', { tol: 0.01 })
+      ]
+    };
+  }
+
+  /* D. Multiple products */
+  function genMulti(R) {
+    var name = co(R), p1 = R.step(150, 300, 5) / 100, v1 = Math.round(p1 * R.step(45, 65, 1)) / 100, p2 = R.step(60, 120, 5) / 100, v2 = Math.round(p2 * R.step(40, 60, 1)) / 100;
+    var m1 = R.pick([[4, 1], [3, 1], [2, 1], [3, 2]]), s1 = m1[0], s2 = m1[1];
+    var F = R.step(30, 90, 5) * 100;
+    var c1 = Math.round((p1 - v1) * 100) / 100, c2 = Math.round((p2 - v2) * 100) / 100;
+    var pack = (c1 * s1 + c2 * s2), packSales = p1 * s1 + p2 * s2;
+    var packs = F / pack, packsU = ceil(packs), u1 = packsU * s1, u2 = packsU * s2, tot = u1 + u2;
+    var ratio = pack / packSales, beS = F / ratio;
+    return {
+      intro: '<p><strong>' + name + '</strong> sells two products in a constant mix of <strong>' + s1 + ' units of Product A for every ' + s2 + ' unit' + (s2 > 1 ? 's' : '') + ' of Product B</strong>. Total fixed costs are <strong>' + $(F) + '</strong> per month.</p>' + T(['', 'Product A', 'Product B'], [['Selling price per unit', $(p1, 2), $(p2, 2)], ['Variable cost per unit', $(v1, 2), $(v2, 2)], ['Contribution margin per unit', $(c1, 2), $(c2, 2)]]),
+      takeaway: 'With a constant sales mix, treat a "package" of products (' + s1 + ' A + ' + s2 + ' B) as one product. Break-even packages = fixed costs &divide; package contribution margin; multiply by the mix to get units of each product.',
+      steps: [
+        ns('What is the <strong>contribution margin of one package</strong> (' + s1 + ' A + ' + s2 + ' B)?', 'Package CM', pack, '$', 2, 'Weight each product&rsquo;s contribution margin per unit by its units in the package.', '(' + s1 + ' &times; ' + $(c1, 2) + ') + (' + s2 + ' &times; ' + $(c2, 2) + ') = <strong>' + $(pack, 2) + '</strong>.', { tol: 0.002 }),
+        ns('How many <strong>packages</strong> must be sold to break even? Round up to a whole package.', 'Break-even packages', packsU, 'packages', 0, 'Fixed costs divided by package contribution margin.', $(F) + ' &divide; ' + $(pack, 2) + ' = ' + fmt(packs) + ', rounded up to <strong>' + fmt(packsU) + '</strong>.', { tol: 0.002 }),
+        ns('How many units of <strong>Product A</strong> must be sold to break even?', 'Units of A', u1, 'units', 0, 'Packages times units of A per package.', fmt(packsU) + ' &times; ' + s1 + ' = <strong>' + fmt(u1) + '</strong>.', { tol: 0.002 }),
+        ns('How many units of <strong>Product B</strong> must be sold to break even?', 'Units of B', u2, 'units', 0, 'Packages times units of B per package.', fmt(packsU) + ' &times; ' + s2 + ' = <strong>' + fmt(u2) + '</strong>.', { tol: 0.002 }),
+        ns('What is the <strong>total break-even sales in dollars</strong> (using the package contribution margin ratio)? Round to the nearest dollar.', 'Break-even sales', beS, '$', 0, 'Package sales = ' + s1 + ' &times; ' + $(p1, 2) + ' + ' + s2 + ' &times; ' + $(p2, 2) + ' = ' + $(packSales, 2) + '. Ratio = package CM &divide; package sales.', 'Ratio = ' + $(pack, 2) + ' &divide; ' + $(packSales, 2) + ' = ' + ratio.toFixed(4) + '. ' + $(F) + ' &divide; ' + ratio.toFixed(4) + ' = <strong>' + $(beS) + '</strong>.', { tol: 0.01 })
+      ]
+    };
+  }
+
+  /* E. Operating leverage */
+  function genOL(R) {
+    var nameA = R.pick(L.COMPANIES), nameB = R.pick(L.COMPANIES.filter(function (c) { return c !== nameA; }));
+    var sales = R.step(30, 80, 5) * 1000, profit = R.step(5, 14, 1) * 1000;
+    var cmA = profit + R.step(4, 8, 1) * 1000, cmB = cmA + R.step(6, 14, 1) * 1000;
+    if (cmB >= sales) cmB = sales - 1000;
+    var fA = cmA - profit, fB = cmB - profit, vA = sales - cmA, vB = sales - cmB;
+    var dA = cmA / profit, dB = cmB / profit, drop = R.step(10, 25, 5);
+    var chA = dA * drop, chB = dB * drop;
+    return {
+      intro: '<p>Two competitors, <strong>' + nameA + '</strong> and <strong>' + nameB + '</strong>, each reported sales of ' + $(sales) + ' and profit of ' + $(profit) + ' last month.</p>' + T(['', nameA, nameB], [['Sales', $(sales), $(sales)], ['Variable costs', '(' + $(vA) + ')', '(' + $(vB) + ')'], ['Contribution margin', $(cmA), $(cmB)], ['Fixed costs', '(' + $(fA) + ')', '(' + $(fB) + ')'], ['Profit', $(profit), $(profit)]]),
+      takeaway: 'Degree of operating leverage = contribution margin &divide; profit. The higher it is, the larger the percent change in profit for a given percent change in sales, both for gains and for losses.',
+      steps: [
+        ns('What is <strong>' + nameA + '</strong>&rsquo;s degree of operating leverage? Round to two decimals.', 'DOL, ' + nameA, dA, 'x', 2, 'Contribution margin divided by profit.', $(cmA) + ' &divide; ' + $(profit) + ' = <strong>' + dA.toFixed(2) + '</strong>.', { tol: 0.005 }),
+        ns('What is <strong>' + nameB + '</strong>&rsquo;s degree of operating leverage? Round to two decimals.', 'DOL, ' + nameB, dB, 'x', 2, 'Contribution margin divided by profit.', $(cmB) + ' &divide; ' + $(profit) + ' = <strong>' + dB.toFixed(2) + '</strong>.', { tol: 0.005 }),
+        ns('If sales <strong>fall by ' + drop + '%</strong> at both companies, by what percent will <strong>' + nameA + '</strong>&rsquo;s profit fall? Round to one decimal.', 'Profit decline, ' + nameA, chA, '%', 1, 'Percent change in profit = DOL &times; percent change in sales.', dA.toFixed(2) + ' &times; ' + drop + '% = <strong>' + P(chA, 1) + '</strong>.', { tol: 0.01 }),
+        ns('By what percent will <strong>' + nameB + '</strong>&rsquo;s profit fall? Round to one decimal.', 'Profit decline, ' + nameB, chB, '%', 1, 'Percent change in profit = DOL &times; percent change in sales.', dB.toFixed(2) + ' &times; ' + drop + '% = <strong>' + P(chB, 1) + '</strong>.', { tol: 0.01 }),
+        cs('Which company has the <strong>greater risk of loss when sales fall</strong> and the greater opportunity for profit when sales rise?', 'Higher leverage', [nameA, nameB], 1, 'Compare the two degrees of operating leverage.', nameB + ' has the higher DOL (' + dB.toFixed(2) + ' vs. ' + dA.toFixed(2) + '), so more fixed costs and a larger swing in profit in both directions.')
+      ]
+    };
+  }
+
+  /* F. Income taxes */
+  function genTax(R) {
+    var b = base(R), t = R.pick([20, 25, 30, 35]), aft = R.step(5, 20, 1) * 100;
+    var pre = aft / (1 - t / 100), need = (b.F + pre) / b.cm, needU = ceil(need), taxAmt = pre - aft;
+    return {
+      intro: baseIntro(b) + '<p>The income tax rate is <strong>' + t + '%</strong>.</p>',
+      takeaway: 'Break-even is not affected by income taxes (no profit means no tax). For a target <em>after-tax</em> profit, convert it to before-tax profit: before-tax = after-tax &divide; (1 &minus; tax rate), then use fixed costs + before-tax profit.',
+      steps: [
+        ns('What before-tax profit is needed to earn an <strong>after-tax profit of ' + $(aft) + '</strong>?', 'Before-tax profit', pre, '$', 0, 'After-tax profit = before-tax profit &times; (1 &minus; tax rate).', $(aft) + ' &divide; (1 &minus; ' + (t / 100) + ') = <strong>' + $(pre) + '</strong>.', { tol: 0.005 }),
+        ns('What is the <strong>income tax</strong> on that before-tax profit?', 'Income tax', taxAmt, '$', 0, 'Before-tax profit minus after-tax profit.', $(pre) + ' &minus; ' + $(aft) + ' = <strong>' + $(taxAmt) + '</strong>.', { tol: 0.005 }),
+        ns('How many units must be sold to earn that after-tax profit? Round up to a whole unit.', 'Units for target', needU, 'units', 0, 'Units = (fixed costs + before-tax profit) &divide; contribution margin per unit (' + $(b.cm, 2) + ').', '(' + $(b.F) + ' + ' + $(pre) + ') &divide; ' + $(b.cm, 2) + ' = ' + fmt(need) + ', rounded up to <strong>' + fmt(needU) + ' units</strong>.', { tol: 0.003 }),
+        cs('Does the income tax rate change the <strong>break-even point</strong>?', 'Taxes and break-even', ['Yes, a higher tax rate raises break-even', 'Yes, a higher tax rate lowers break-even', 'No, at break-even profit is zero so there is no tax'], 2, 'What is profit (and therefore tax) at break-even?', 'At break-even, profit is zero, so no income tax is owed and the tax rate has no effect.')
+      ]
+    };
+  }
+
+  window.MODULE = {
+    num: 16,
+    title: 'Cost-Volume-Profit Analysis and Planning',
+    subtitle: 'The profit equation, contribution margin, break-even and margin of safety, multiple products, operating leverage, and income taxes.',
+    types: [
+      { label: 'Profit Equation and Target Profit', desc: 'Predict profit and find the sales volume for a target profit.', gen: genProfit },
+      { label: 'Contribution Income Statement', desc: 'Contribution margin, CM ratio, and sensitivity of profit to sales.', gen: genCIS },
+      { label: 'Break-Even and Margin of Safety', desc: 'Break-even in units and dollars, plus margin of safety.', gen: genBE },
+      { label: 'Multiple-Product Break-Even', desc: 'Break-even for a constant sales mix.', gen: genMulti },
+      { label: 'Operating Leverage', desc: 'Degree of operating leverage and risk of profit changes.', gen: genOL },
+      { label: 'CVP with Income Taxes', desc: 'Convert after-tax targets to before-tax and find volume.', gen: genTax }
+    ]
+  };
+})();
+
+</script>
+<script>
+/* MBA 623 tutor UI engine */
+(function () {
+  'use strict';
+  var L = window.TutorLib;
+  var M = window.MODULE;
+  var app = document.getElementById('app');
+  var state = null;
+  var TUTOR_NAMES = ['Kelly', 'Riley', 'Alex', 'Kai', 'Yamal', 'Taylor', 'Vanessa'];
+  var TUTOR = (function () {
+    var n = null;
+    try { n = window.sessionStorage.getItem('mba623TutorName'); } catch (e) { n = null; }
+    if (TUTOR_NAMES.indexOf(n) < 0) {
+      n = TUTOR_NAMES[Math.floor(Math.random() * TUTOR_NAMES.length)];
+      try { window.sessionStorage.setItem('mba623TutorName', n); } catch (e) {}
+    }
+    return n;
+  })();
+
+  var PRAISE = ['Correct! Nice work.', 'Exactly right!', 'Well done, that is correct.', 'Great job, you got it!', 'Yes, that is right. Excellent!', 'Spot on!', 'That is correct. Keep it up!', 'Right on target!'];
+  var WRONG1 = ['Not quite, but you are close to a good approach. Here is a hint.', 'That is not the answer we are looking for, but no worries. Here is a hint.', 'Not quite right. Take a look at this hint and try once more.', 'Almost there, but that is not it. Use this hint and give it another try.'];
+  var WRONG2 = ['That is still not it, and that is okay. Here is the solution for this step.', 'Not this time, but this is how you learn. Here is the solution.', 'Still not quite. Let us walk through the solution together.'];
+
+  function el(html) { var d = document.createElement('div'); d.innerHTML = html; return d.firstElementChild; }
+  function rndFrom(arr, i) { return arr[i % arr.length]; }
+
+  /* ---------- menu ---------- */
+  function renderMenu() {
+    state = null;
+    var h = '<section class="tutor-intro" aria-labelledby="menu-h"><div class="tutor-avatar" aria-hidden="true">' + TUTOR.charAt(0) + '</div><div><h2 id="menu-h">Hi, I am ' + TUTOR + '. I am your personal tutor.</h2>';
+    h += '<p>Pick a type of problem below. You will get a new scenario with new numbers, and I will walk you through it one step at a time.</p>';
+    h += '<p>Type your answer for each step and press <strong>Check my answer</strong>. If you miss a step, no worries: you will get a hint and one more try. If you miss it again, you will see the solution for that step and then move on to the next one.</p></div></section>';
+    h += '<ul class="menu" aria-labelledby="menu-h">';
+    M.types.forEach(function (t, i) {
+      h += '<li><button type="button" class="menu-btn" data-type="' + i + '"><span class="menu-title">' + t.label + '</span><span class="menu-desc">' + t.desc + '</span><span class="menu-go" aria-hidden="true">Start &rarr;</span></button></li>';
+    });
+    h += '</ul>';
+    app.innerHTML = h;
+    var btns = app.querySelectorAll('.menu-btn');
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].addEventListener('click', function (e) { startProblem(parseInt(e.currentTarget.getAttribute('data-type'), 10)); });
+    }
+    document.title = 'Module ' + M.num + ' Tutor | MBA 623';
+  }
+
+  /* ---------- problem ---------- */
+  function startProblem(typeIdx) {
+    var seed = (Math.floor(Math.random() * 4294967295) ^ Date.now()) >>> 0;
+    var R = L.makeRNG(seed);
+    var t = M.types[typeIdx];
+    var prob = t.gen(R, L);
+    state = { typeIdx: typeIdx, type: t, prob: prob, i: 0, attempt: 0, log: [], first: 0, second: 0, shown: 0 };
+    renderProblem(true);
+  }
+
+  function renderHeader() {
+    var p = state.prob;
+    var h = '<div class="toolbar"><button type="button" class="link-btn" id="to-menu">&larr; Choose a different problem type</button></div>';
+    h += '<h2 id="prob-h" tabindex="-1">' + state.type.label + '</h2>';
+    h += '<section class="scenario" aria-labelledby="scen-h"><h3 id="scen-h">The problem</h3>' + p.intro + '</section>';
+    return h;
+  }
+
+  function renderLog() {
+    if (!state.log.length) return '';
+    var h = '<section class="worklog" aria-labelledby="log-h"><h3 id="log-h">Your work so far</h3><ol>';
+    state.log.forEach(function (e) {
+      h += '<li><span class="log-q">' + e.q + '</span><span class="log-a ' + e.cls + '"><span class="badge">' + e.badge + '</span> ' + e.text + '</span></li>';
+    });
+    return h + '</ol></section>';
+  }
+
+  function renderProblem(focusHeading) {
+    var p = state.prob, s = p.steps[state.i], n = p.steps.length;
+    var h = renderHeader();
+    h += renderLog();
+    h += '<section class="step" aria-labelledby="step-h">';
+    h += '<p class="stepno" id="step-h">Step ' + (state.i + 1) + ' of ' + n + '</p>';
+    h += '<div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="' + n + '" aria-valuenow="' + state.i + '" aria-label="Progress"><span style="width:' + Math.round(100 * state.i / n) + '%"></span></div>';
+    h += '<div class="q" id="q">' + s.q + '</div>';
+    h += '<form id="f" novalidate>';
+    if (s.choices) {
+      h += '<fieldset class="choices"><legend class="sr-only">Choose one answer</legend>';
+      s.choices.forEach(function (c, k) {
+        h += '<label class="choice"><input type="radio" name="c" value="' + k + '"><span>' + c + '</span></label>';
+      });
+      h += '</fieldset>';
+    } else {
+      h += '<div class="ans-row"><label class="sr-only" for="ans">Your answer</label>';
+      if (s.unit === '$') h += '<span class="aff" aria-hidden="true">$</span>';
+      h += '<input id="ans" name="ans" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" aria-describedby="q">';
+      if (s.unit === '%') h += '<span class="aff" aria-hidden="true">%</span>';
+      else if (s.unit === 'x') h += '<span class="aff" aria-hidden="true">times</span>';
+      else if (s.unit === 'days') h += '<span class="aff" aria-hidden="true">days</span>';
+      else if (s.unit === 'units') h += '<span class="aff" aria-hidden="true">units</span>';
+      else if (s.suffix) h += '<span class="aff" aria-hidden="true">' + s.suffix + '</span>';
+      h += '</div>';
+      if (s.note) h += '<p class="fmt">' + s.note + '</p>';
+    }
+    h += '<div class="actions"><button type="submit" class="primary" id="check">Check my answer</button></div>';
+    h += '</form>';
+    h += '<div id="fb" class="fb" role="status" aria-live="polite"></div>';
+    h += '</section>';
+    app.innerHTML = h;
+    document.getElementById('to-menu').addEventListener('click', renderMenu);
+    document.getElementById('f').addEventListener('submit', onCheck);
+    if (focusHeading) { var hd = document.getElementById('prob-h'); hd.focus(); window.scrollTo(0, 0); }
+    else { var inp = document.getElementById('ans') || document.querySelector('input[name=c]'); if (inp) inp.focus(); }
+  }
+
+  function currentUserAnswer(s) {
+    if (s.choices) {
+      var r = document.querySelector('input[name=c]:checked');
+      return r ? parseInt(r.value, 10) : null;
+    }
+    return document.getElementById('ans').value;
+  }
+
+  function onCheck(ev) {
+    ev.preventDefault();
+    var s = state.prob.steps[state.i];
+    var ua = currentUserAnswer(s);
+    var fb = document.getElementById('fb');
+    var correct;
+    if (s.choices) {
+      if (ua === null) { fb.className = 'fb info'; fb.innerHTML = '<p>Please choose an answer first.</p>'; return; }
+      correct = (ua === s.correct);
+    } else {
+      if (!String(ua).trim() || !isFinite(L.parseAnswer(ua))) { fb.className = 'fb info'; fb.innerHTML = '<p>Please enter a number (for example 1,250 or 12.5). Do not include words.</p>'; document.getElementById('ans').focus(); return; }
+      correct = L.isCorrectNumber(s, ua);
+    }
+    state.attempt++;
+    var correctText = s.choices ? s.choices[s.correct] : L.fmtAnswer(s);
+    var yourText = s.choices ? s.choices[ua] : L.esc(String(ua).trim());
+    var qShort = s.short || s.q;
+    if (correct) {
+      if (state.attempt === 1) state.first++; else state.second++;
+      fb.className = 'fb good';
+      fb.innerHTML = '<p class="fb-h"><span class="badge ok">Correct</span> ' + rndFrom(PRAISE, state.i + state.prob.steps.length) + '</p>' + (s.sol ? '<div class="sol"><strong>Why:</strong> ' + s.sol + '</div>' : '') + '<p class="ans-line">Answer: <strong>' + correctText + '</strong></p>';
+      state.log.push({ q: qShort, text: correctText, cls: 'good', badge: state.attempt === 1 ? 'Correct' : 'Correct (2nd try)' });
+      lockAndNext();
+    } else if (state.attempt === 1) {
+      fb.className = 'fb warn';
+      fb.innerHTML = '<p class="fb-h"><span class="badge no">Not yet</span> ' + rndFrom(WRONG1, state.i) + '</p><div class="hint"><strong>Hint from ' + TUTOR + ':</strong> ' + s.hint + '</div>';
+      document.getElementById('check').textContent = 'Try again';
+      var inp = document.getElementById('ans'); if (inp) { inp.select(); inp.focus(); }
+    } else {
+      state.shown++;
+      fb.className = 'fb bad';
+      fb.innerHTML = '<p class="fb-h"><span class="badge no">Solution</span> ' + rndFrom(WRONG2, state.i) + '</p><div class="sol">' + s.sol + '</div><p class="ans-line">Answer: <strong>' + correctText + '</strong></p>';
+      state.log.push({ q: qShort, text: correctText + ' <span class="yours">(you entered ' + yourText + ')</span>', cls: 'bad', badge: 'Solution shown' });
+      lockAndNext();
+    }
+  }
+
+  function lockAndNext() {
+    var f = document.getElementById('f');
+    var ctrls = f.querySelectorAll('input,button');
+    for (var i = 0; i < ctrls.length; i++) ctrls[i].disabled = true;
+    var last = state.i === state.prob.steps.length - 1;
+    var btn = el('<div class="actions"><button type="button" class="primary" id="next">' + (last ? 'See my results' : 'Next step &rarr;') + '</button></div>');
+    document.getElementById('fb').appendChild(btn);
+    var nb = document.getElementById('next');
+    nb.addEventListener('click', function () {
+      state.i++; state.attempt = 0;
+      if (state.i >= state.prob.steps.length) renderSummary(); else renderProblem(false);
+    });
+    nb.focus();
+  }
+
+  function renderSummary() {
+    var n = state.prob.steps.length;
+    var perfect = state.first === n;
+    var msg;
+    if (perfect) msg = 'Outstanding! You got every step right on the first try.';
+    else if (state.shown === 0) msg = 'Nice work! You solved every step, and you learned from the hints along the way.';
+    else if (state.first + state.second >= n / 2) msg = 'Good effort! You solved most of this problem. Review the steps marked "Solution shown" and try a new problem to lock it in.';
+    else msg = 'Thanks for sticking with it. Review the solutions below, look back at the module slides, and try a fresh problem. Practice makes this much easier.';
+    var h = renderHeader();
+    h += '<section class="summary" aria-labelledby="sum-h"><h3 id="sum-h" tabindex="-1">Your results</h3>';
+    h += '<p class="big"><strong>' + TUTOR + ' says:</strong> ' + msg + '</p>';
+    h += '<ul class="score"><li><strong>' + state.first + '</strong> correct on the first try</li><li><strong>' + state.second + '</strong> correct on the second try</li><li><strong>' + state.shown + '</strong> solution' + (state.shown === 1 ? '' : 's') + ' shown</li></ul>';
+    if (state.prob.takeaway) h += '<div class="takeaway"><strong>Key takeaway:</strong> ' + state.prob.takeaway + '</div>';
+    h += '</section>';
+    h += renderLog();
+    h += '<div class="actions row"><button type="button" class="primary" id="again">Try another problem like this</button><button type="button" class="secondary" id="menu2">Choose a different problem type</button></div>';
+    app.innerHTML = h;
+    document.getElementById('to-menu').addEventListener('click', renderMenu);
+    document.getElementById('menu2').addEventListener('click', renderMenu);
+    var ti = state.typeIdx;
+    document.getElementById('again').addEventListener('click', function () { startProblem(ti); });
+    var sh = document.getElementById('sum-h'); sh.focus(); window.scrollTo(0, 0);
+  }
+
+  document.getElementById('mod-title').textContent = M.title;
+  document.getElementById('mod-sub').textContent = M.subtitle;
+  document.getElementById('mod-num').textContent = 'Module ' + M.num;
+  renderMenu();
+})();
+
+</script>
+</body>
+</html>

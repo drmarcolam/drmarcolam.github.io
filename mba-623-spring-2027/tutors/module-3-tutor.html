@@ -1,0 +1,622 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Module 3 Tutor: Transactions, Adjustments, and Financial Statements | MBA 623</title>
+<meta name="description" content="Interactive step-by-step practice tutor for MBA 623, Module 3: Transactions, Adjustments, and Financial Statements.">
+<style>
+:root{--bg:#F5F8F5;--card:#ffffff;--ink:#16222B;--muted:#4D5D68;--line:#C7D2CB;--brand:#14574B;--brand-ink:#ffffff;--brand-soft:#E0EEE8;--gold:#8CC7B0;--good:#0F6A37;--good-bg:#E3F3E9;--warn:#7a4a00;--warn-bg:#fff2d6;--bad:#9B2C1F;--bad-bg:#FBE8E4;--info-bg:#E8EEF9;--focus:#1A47B8;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#0F1A17;--card:#16231F;--ink:#E8EFEA;--muted:#A9B8B0;--line:#33453E;--brand:#5FC2AB;--brand-ink:#06241D;--brand-soft:#1B3A33;--gold:#5FC2AB;--good:#7FDCA0;--good-bg:#16352A;--warn:#f3c978;--warn-bg:#3a2d12;--bad:#FFAE9F;--bad-bg:#3E1D18;--info-bg:#1B2B4A;--focus:#9DB8FF;}}
+*{box-sizing:border-box}
+html{font-size:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.55;font-size:1.0625rem}
+.skip{position:absolute;left:-999px;top:0;background:var(--brand);color:var(--brand-ink);padding:.6rem 1rem;z-index:10}
+.skip:focus{left:8px;top:8px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+header.site{background:var(--brand);color:var(--brand-ink);padding:1.1rem 1rem 1.4rem}
+header.site .wrap{max-width:60rem;margin:0 auto}
+header.site a{color:var(--brand-ink);font-weight:600}
+.eyebrow{margin:.5rem 0 0;font-size:.95rem;letter-spacing:.04em;text-transform:uppercase;opacity:.92}
+header.site h1{margin:.15rem 0 .2rem;font-size:1.7rem;line-height:1.2}
+header.site p.sub{margin:0;opacity:.95}
+main{max-width:60rem;margin:0 auto;padding:1.25rem 1rem 3rem}
+h2{font-size:1.45rem;margin:.2rem 0 .6rem;color:var(--ink)}
+h3{font-size:1.1rem;margin:.1rem 0 .5rem}
+.lead{color:var(--muted);max-width:46rem}
+ul.menu{list-style:none;margin:1rem 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(17rem,1fr));gap:.85rem}
+.menu-btn{width:100%;height:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-left:6px solid var(--brand);border-radius:10px;padding:.9rem 1rem;color:var(--ink);font:inherit;cursor:pointer;display:flex;flex-direction:column;gap:.35rem}
+.menu-btn:hover{box-shadow:0 2px 10px rgba(0,0,0,.15);border-color:var(--brand)}
+.menu-title{font-weight:700;font-size:1.08rem}
+.menu-desc{color:var(--muted);font-size:.95rem}
+.menu-go{margin-top:auto;color:var(--brand);font-weight:700;font-size:.95rem}
+.toolbar{margin-bottom:.5rem}
+.link-btn{background:none;border:0;color:var(--brand);font:inherit;font-weight:600;text-decoration:underline;cursor:pointer;padding:.25rem 0}
+.scenario,.step,.worklog,.summary{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:1rem 1.1rem;margin:0 0 1rem}
+.scenario{border-left:6px solid var(--gold)}
+.scenario p{margin:.3rem 0}
+.step{border-left:6px solid var(--brand)}
+.stepno{margin:0 0 .35rem;font-weight:700;color:var(--brand)}
+.bar{height:8px;background:var(--brand-soft);border-radius:6px;overflow:hidden;margin:0 0 .8rem}
+.bar span{display:block;height:100%;background:var(--brand)}
+.q{font-size:1.1rem;margin:0 0 .7rem}
+.q p{margin:.3rem 0}
+.ans-row{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+.aff{font-weight:700;color:var(--muted)}
+input[type=text]{font:inherit;font-size:1.15rem;padding:.55rem .7rem;border:2px solid var(--muted);border-radius:8px;background:var(--bg);color:var(--ink);width:13rem;max-width:100%}
+.fmt{margin:.4rem 0 0;color:var(--muted);font-size:.93rem}
+fieldset.choices{border:0;padding:0;margin:0;display:grid;gap:.5rem}
+.choice{display:flex;gap:.65rem;align-items:flex-start;padding:.6rem .75rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);cursor:pointer}
+.choice:hover{border-color:var(--brand)}
+.choice input{margin-top:.3rem;width:1.1rem;height:1.1rem;flex:none}
+.actions{margin-top:.9rem}
+.actions.row{display:flex;gap:.75rem;flex-wrap:wrap}
+button.primary,button.secondary{font:inherit;font-weight:700;border-radius:8px;padding:.65rem 1.2rem;cursor:pointer;border:2px solid var(--brand)}
+button.primary{background:var(--brand);color:var(--brand-ink)}
+button.secondary{background:transparent;color:var(--brand)}
+button:disabled{opacity:.55;cursor:not-allowed}
+.fb{margin-top:.9rem}
+.fb.good,.fb.warn,.fb.bad,.fb.info{padding:.8rem 1rem;border-radius:8px;border:1px solid var(--line)}
+.fb.good{background:var(--good-bg);border-color:var(--good)}
+.fb.warn{background:var(--warn-bg);border-color:var(--warn)}
+.fb.bad{background:var(--bad-bg);border-color:var(--bad)}
+.fb.info{background:var(--info-bg)}
+.fb p{margin:.25rem 0}
+.fb-h{font-weight:600}
+.badge{display:inline-block;font-size:.8rem;font-weight:800;padding:.1rem .5rem;border-radius:99px;border:1.5px solid currentColor;margin-right:.35rem;vertical-align:.05em}
+.badge.ok{color:var(--good)}.badge.no{color:var(--bad)}
+.fb.warn .badge.no{color:var(--warn)}
+.hint,.sol{margin:.4rem 0}
+.ans-line{margin-top:.5rem}
+.worklog ol{margin:.2rem 0 0;padding-left:1.3rem}
+.worklog li{margin:.45rem 0}
+.log-q{display:block;color:var(--muted);font-size:.95rem}
+.log-a.good{color:var(--good)}
+.log-a.bad{color:var(--bad)}
+.log-a .badge{font-size:.72rem}
+.yours{color:var(--muted)}
+.summary .big{font-size:1.15rem;font-weight:600}
+.score{list-style:none;padding:0;margin:.5rem 0;display:flex;gap:1.4rem;flex-wrap:wrap}
+.score strong{font-size:1.4rem;color:var(--brand)}
+.takeaway{background:var(--brand-soft);border-radius:8px;padding:.7rem .9rem;margin-top:.6rem}
+.tbl-wrap{overflow-x:auto;margin:.6rem 0}
+table.data{border-collapse:collapse;min-width:16rem;font-size:.98rem}
+table.data caption{text-align:left;font-weight:700;padding-bottom:.3rem}
+table.data th,table.data td{border:1px solid var(--line);padding:.35rem .65rem;text-align:left;vertical-align:top}
+table.data thead th{background:var(--brand-soft)}
+table.data .r,table.data td.r{text-align:right;font-variant-numeric:tabular-nums}
+table.data tr.tot th,table.data tr.tot td{font-weight:700;border-top:2px solid var(--ink)}
+table.data tbody th{font-weight:500}
+.eq{display:inline-block;background:var(--brand-soft);padding:.1rem .5rem;border-radius:6px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.95em}
+footer.site{max-width:60rem;margin:0 auto;padding:1rem;color:var(--muted);border-top:1px solid var(--line);font-size:.92rem}
+@media (max-width:30rem){header.site h1{font-size:1.4rem}input[type=text]{width:100%}}
+@media print{header.site{background:#fff;color:#000}.menu-go,.toolbar,.actions{display:none}}
+
+
+.tutor-intro{display:flex;gap:1rem;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-left:6px solid var(--brand);border-radius:10px;padding:1rem 1.1rem;margin:0 0 1.25rem}
+.tutor-avatar{flex:none;width:3.4rem;height:3.4rem;border-radius:50%;background:var(--brand);color:var(--brand-ink);display:flex;align-items:center;justify-content:center;font-size:1.6rem;font-weight:700}
+.tutor-intro h2{margin:0 0 .35rem}
+.tutor-intro p{margin:.35rem 0;color:var(--ink)}
+@media (max-width:30rem){.tutor-intro{flex-direction:column}}
+</style>
+</head>
+<body>
+<a class="skip" href="#app">Skip to main content</a>
+<header class="site">
+  <div class="wrap">
+    <p class="eyebrow">MBA 623 &middot; <span id="mod-num">Module 3</span></p>
+    <h1><span id="mod-title">Transactions, Adjustments, and Financial Statements</span> Tutor</h1>
+    <p class="sub" id="mod-sub">Financial statement effects, journal entries, adjusting entries, preparing statements, and the closing process.</p>
+  </div>
+</header>
+<main id="app" tabindex="-1"></main>
+<footer class="site">MBA 623 &middot; Western Carolina University &middot; Practice problems use fictional companies and randomly generated numbers. Nothing you enter here is saved or graded.</footer>
+<script>
+/* MBA 623 tutor library: random helpers, formatting, answer checking (no DOM) */
+(function (root) {
+  'use strict';
+  function makeRNG(seed) {
+    let a = seed >>> 0;
+    const next = function () {
+      a = (a + 0x6D2B79F5) | 0;
+      let t = Math.imul(a ^ (a >>> 15), 1 | a);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+    const R = {
+      next: next,
+      int: function (lo, hi) { return lo + Math.floor(next() * (hi - lo + 1)); },
+      step: function (lo, hi, s) { return lo + s * Math.floor(next() * ((hi - lo) / s + 1)); },
+      pick: function (arr) { return arr[Math.floor(next() * arr.length)]; },
+      chance: function (p) { return next() < p; },
+      shuffle: function (arr) {
+        const b = arr.slice();
+        for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(next() * (i + 1)); const t = b[i]; b[i] = b[j]; b[j] = t; }
+        return b;
+      },
+      sample: function (arr, n) { return R.shuffle(arr).slice(0, n); }
+    };
+    return R;
+  }
+
+  const COMPANIES = ['Alder Ridge Foods', 'Bluewater Outfitters', 'Cedar Point Instruments', 'Dunmore Apparel', 'Eastgate Medical', 'Fairhaven Home Goods', 'Granite Peak Tools', 'Harborview Software', 'Ironwood Furniture', 'Juniper Labs', 'Kestrel Logistics', 'Lakeshore Beverages', 'Maple Hollow Bakery', 'Northfield Electronics', 'Oakmont Pharmaceuticals', 'Pinecrest Sports', 'Quarry Lane Builders', 'Redstone Retail', 'Silverline Networks', 'Tamarack Outdoor', 'Union Square Coffee', 'Valley Forge Machining', 'Westbrook Toys', 'Yellowfin Seafood', 'Zephyr Cycles'];
+
+  function addCommas(s) { return s.replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+  function num(x, d) {
+    d = d || 0;
+    const neg = x < 0 && Math.round(Math.abs(x) * Math.pow(10, d)) !== 0;
+    const s = Math.abs(x).toFixed(d).split('.');
+    return (neg ? '-' : '') + addCommas(s[0]) + (s[1] ? '.' + s[1] : '');
+  }
+  function money(x, d) {
+    d = d || 0;
+    const s = num(Math.abs(x), d);
+    const isZero = Math.round(Math.abs(x) * Math.pow(10, d)) === 0;
+    return (x < 0 && !isZero) ? '($' + s + ')' : '$' + s;
+  }
+  function sgn(x, d) { return (x < 0 ? ' &minus; ' : ' + ') + money(Math.abs(x), d); }
+  function pct(x, d) { d = (d === undefined) ? 1 : d; return num(x, d) + '%'; }
+  function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+
+  /* table(headers, rows, opts) rows: array of arrays; first column left aligned, others right aligned */
+  function table(head, rows, opts) {
+    opts = opts || {};
+    let h = '<div class="tbl-wrap"><table class="data"' + (opts.caption ? '' : '') + '>';
+    if (opts.caption) h += '<caption>' + opts.caption + '</caption>';
+    if (head && head.length) {
+      h += '<thead><tr>';
+      head.forEach(function (c, i) { h += '<th scope="col"' + (i === 0 ? '' : ' class="r"') + '>' + c + '</th>'; });
+      h += '</tr></thead>';
+    }
+    h += '<tbody>';
+    rows.forEach(function (r) {
+      let cls = '';
+      if (r && r.cls) { cls = ' class="' + r.cls + '"'; r = r.cells; }
+      h += '<tr' + cls + '>';
+      r.forEach(function (c, i) {
+        if (i === 0) h += '<th scope="row">' + c + '</th>';
+        else h += '<td class="r">' + c + '</td>';
+      });
+      h += '</tr>';
+    });
+    return h + '</tbody></table></div>';
+  }
+
+  function parseAnswer(raw) {
+    if (raw === null || raw === undefined) return NaN;
+    let s = String(raw).trim().toLowerCase();
+    if (!s) return NaN;
+    let neg = false;
+    if (/^\(.*\)$/.test(s)) { neg = true; s = s.slice(1, -1); }
+    s = s.replace(/[−–]/g, '-');
+    if (s.charAt(0) === '-') { neg = true; s = s.slice(1); }
+    s = s.replace(/[\$,\s]/g, '').replace(/%$/, '');
+    s = s.replace(/(units?|days?|times|x|shares?|batches|hours|hrs|years?|yrs?|dollars)$/, '');
+    if (s.charAt(0) === '-') { neg = true; s = s.slice(1); }
+    if (!/^[0-9]*\.?[0-9]+$|^[0-9]+\.$/.test(s)) return NaN;
+    const v = parseFloat(s);
+    return neg ? -v : v;
+  }
+
+  function isCorrectNumber(step, raw) {
+    const u = parseAnswer(raw);
+    if (!isFinite(u)) return false;
+    const a = step.ans;
+    const dec = step.dec || 0;
+    const rel = (step.tol === undefined) ? 0.003 : step.tol;
+    const absTol = 0.5 * Math.pow(10, -dec) + 1e-9;
+    const ok = function (v) { return Math.abs(v - a) <= Math.max(absTol, rel * Math.abs(a)); };
+    if (ok(u)) return true;
+    if (step.unit === '%' && Math.abs(u) <= 1.5 && Math.abs(a) > 1.5 && ok(u * 100)) return true;
+    return false;
+  }
+
+  function fmtAnswer(step) {
+    const d = step.dec || 0;
+    switch (step.unit) {
+      case '$': return money(step.ans, d);
+      case '%': return pct(step.ans, d);
+      case 'x': return num(step.ans, d) + 'x';
+      case 'days': return num(step.ans, d) + ' days';
+      case 'units': return num(step.ans, d) + ' units';
+      default: return num(step.ans, d) + (step.suffix ? ' ' + step.suffix : '');
+    }
+  }
+
+
+  /* step builders */
+  function ns(q, short, ans, unit, dec, hint, sol, extra) {
+    var o = { q: '<p>' + q + '</p>', short: short, ans: ans, unit: unit || '', dec: dec || 0, hint: hint, sol: sol };
+    if (extra) { for (var k in extra) o[k] = extra[k]; }
+    return o;
+  }
+  function cs(q, short, choices, correct, hint, sol) {
+    return { q: '<p>' + q + '</p>', short: short, choices: choices, correct: correct, hint: hint, sol: sol };
+  }
+  /* shuffle choices but keep track of the correct one */
+  function csr(R, q, short, choices, correctIdx, hint, sol) {
+    var order = R.shuffle(choices.map(function (c, i) { return i; }));
+    return cs(q, short, order.map(function (i) { return choices[i]; }), order.indexOf(correctIdx), hint, sol);
+  }
+
+  root.TutorLib = { sgn: sgn, ns: ns, cs: cs, csr: csr, makeRNG: makeRNG, COMPANIES: COMPANIES, num: num, money: money, pct: pct, esc: esc, table: table, parseAnswer: parseAnswer, isCorrectNumber: isCorrectNumber, fmtAnswer: fmtAnswer };
+})(typeof window !== 'undefined' ? window : globalThis);
+
+</script>
+<script>
+(function () {
+  var L = window.TutorLib, $ = L.money, N = L.num, P = L.pct, T = L.table, ns = L.ns, cs = L.cs, csr = L.csr, G = L.sgn;
+  function co(R) { return R.pick(L.COMPANIES); }
+
+  /* A. Financial statement effects */
+  var EFF = { AL: 'Assets increase and liabilities increase; equity is unchanged', AE: 'Assets increase and stockholders’ equity increases; liabilities are unchanged', aE: 'Assets decrease and stockholders’ equity decreases; liabilities are unchanged', aL: 'Assets decrease and liabilities decrease; equity is unchanged', SW: 'One asset increases and another asset decreases; total assets, liabilities, and equity are unchanged', LE: 'Liabilities increase and stockholders’ equity decreases; assets are unchanged' };
+  var G1 = [
+    { t: 'issued common stock for cash', e: 'AE', ni: 0, w: 'Cash and contributed capital both increase. Owners are providing financing, so there is no revenue and net income does not change.' },
+    { t: 'borrowed cash from a bank', e: 'AL', ni: 0, w: 'Cash increases and a liability (notes payable) increases by the same amount.' },
+    { t: 'repurchased its own shares for cash', e: 'aE', ni: 0, w: 'Cash decreases and equity decreases (treasury stock is a contra-equity account). It is not an expense.' },
+    { t: 'paid a cash dividend to shareholders', e: 'aE', ni: 0, w: 'Cash decreases and retained earnings decreases. Dividends are not an expense, so net income is unaffected.' }
+  ];
+  var G2 = [
+    { t: 'purchased equipment for cash', e: 'SW', ni: 0, w: 'Cash decreases and equipment increases: one asset is swapped for another.' },
+    { t: 'collected cash from customers on account receivable', e: 'SW', ni: 0, w: 'Cash increases and accounts receivable decreases. The revenue was recorded earlier.' },
+    { t: 'purchased inventory on account', e: 'AL', ni: 0, w: 'Inventories (an asset) and accounts payable (a liability) both increase.' },
+    { t: 'paid suppliers on accounts payable', e: 'aL', ni: 0, w: 'Cash decreases and accounts payable decreases. The expense or purchase was recorded earlier.' },
+    { t: 'received cash from a customer for services to be performed next month', e: 'AL', ni: 0, w: 'Cash increases and a liability (unearned revenue) increases. Nothing has been earned yet.' }
+  ];
+  var G3 = [
+    { t: 'earned service revenue and collected cash', e: 'AE', ni: 1, w: 'Cash increases and revenue increases equity (through retained earnings).' },
+    { t: 'earned service revenue on account', e: 'AE', ni: 1, w: 'Accounts receivable increases and revenue increases equity. Revenue is recognized when earned, not when cash is received.' }
+  ];
+  var G4 = [
+    { t: 'paid employee wages in cash', e: 'aE', ni: -1, w: 'Cash decreases and wage expense decreases equity.' },
+    { t: 'paid for advertising in cash', e: 'aE', ni: -1, w: 'Cash decreases and advertising expense decreases equity.' },
+    { t: 'received a utility bill that is not yet paid', e: 'LE', ni: -1, w: 'Accounts payable increases and utilities expense decreases equity. No cash has moved yet.' }
+  ];
+  function genEffects(R) {
+    var name = co(R);
+    var rest = G1.concat(G2, G3, G4);
+    var tx = [R.pick(G1), R.pick(G2), R.pick(G3), R.pick(G4)];
+    var extra; do { extra = R.pick(rest); } while (tx.indexOf(extra) >= 0);
+    tx.push(extra); tx = R.shuffle(tx);
+    tx = tx.map(function (x) { return { x: x, amt: R.step(10, 90, 5) * 100 }; });
+    var intro = '<p><strong>' + name + '</strong> recorded the following transactions during the month.</p>' + T(['Transaction', 'Amount'], tx.map(function (o, i) { return [(i + 1) + '. The company ' + o.x.t, $(o.amt)]; }));
+    var opts = Object.keys(EFF);
+    var steps = tx.map(function (o, i) {
+      var wrong = R.sample(opts.filter(function (k) { return k !== o.x.e; }), 3);
+      var set = R.shuffle([o.x.e].concat(wrong));
+      return cs('What is the effect of transaction ' + (i + 1) + ' on the accounting equation? <em>The company ' + o.x.t + '.</em>', 'Transaction ' + (i + 1) + ': ' + o.x.t, set.map(function (k) { return EFF[k]; }), set.indexOf(o.x.e), 'Ask: what accounts change? Which are assets, liabilities, or equity? Does the entry keep Assets = Liabilities + Equity in balance?', o.x.w);
+    });
+    var ni = tx.reduce(function (s, o) { return s + o.x.ni * o.amt; }, 0);
+    steps.push(ns('Considering all five transactions, what is the total effect on <strong>net income</strong>? Enter a loss as a negative number.', 'Total effect on net income', ni, '$', 0, 'Only revenues and expenses affect net income. Financing transactions, dividends, asset purchases, collections, and payments of liabilities do not.', tx.filter(function (o) { return o.x.ni !== 0; }).map(function (o) { return (o.x.ni > 0 ? '+' : '&minus;') + $(o.amt) + ' (' + o.x.t + ')'; }).join(' ') + ' = <strong>' + $(ni) + '</strong>.', { tol: 0 }));
+    return { intro: intro, steps: steps, takeaway: 'Every transaction keeps Assets = Liabilities + Equity in balance. Only revenues and expenses change net income; owner transactions (stock issued, repurchased, dividends) change equity but not income.' };
+  }
+
+  /* B. Journal entries */
+  var JE = [
+    { t: 'issued common stock for cash', dr: 'Cash', cr: 'Common stock and paid-in capital', cash: 1, wr: [['Common stock and paid-in capital', 'Cash'], ['Cash', 'Retained earnings'], ['Cash', 'Notes payable']] },
+    { t: 'purchased equipment for cash', dr: 'Equipment', cr: 'Cash', cash: -1, wr: [['Cash', 'Equipment'], ['Equipment expense', 'Cash'], ['Equipment', 'Accounts payable']] },
+    { t: 'purchased inventory on account', dr: 'Inventories', cr: 'Accounts payable', cash: 0, wr: [['Accounts payable', 'Inventories'], ['Inventories', 'Cash'], ['Cost of goods sold', 'Accounts payable']] },
+    { t: 'provided services to customers on account', dr: 'Accounts receivable', cr: 'Service revenue', cash: 0, wr: [['Service revenue', 'Accounts receivable'], ['Cash', 'Service revenue'], ['Accounts receivable', 'Unearned revenue']] },
+    { t: 'paid employee wages in cash', dr: 'Wages expense', cr: 'Cash', cash: -1, wr: [['Cash', 'Wages expense'], ['Wages payable', 'Cash'], ['Wages expense', 'Wages payable']] },
+    { t: 'collected cash from a customer for services previously billed', dr: 'Cash', cr: 'Accounts receivable', cash: 1, wr: [['Accounts receivable', 'Cash'], ['Cash', 'Service revenue'], ['Accounts receivable', 'Service revenue']] },
+    { t: 'paid a supplier for inventory previously purchased on account', dr: 'Accounts payable', cr: 'Cash', cash: -1, wr: [['Cash', 'Accounts payable'], ['Inventories', 'Cash'], ['Accounts payable', 'Inventories']] },
+    { t: 'paid a cash dividend to shareholders', dr: 'Retained earnings (dividends)', cr: 'Cash', cash: -1, wr: [['Cash', 'Retained earnings (dividends)'], ['Dividend expense', 'Cash'], ['Common stock and paid-in capital', 'Cash']] },
+    { t: 'borrowed cash from a bank by signing a note', dr: 'Cash', cr: 'Notes payable', cash: 1, wr: [['Notes payable', 'Cash'], ['Cash', 'Interest payable'], ['Cash', 'Service revenue']] },
+    { t: 'received cash in advance for services to be provided next quarter', dr: 'Cash', cr: 'Unearned revenue', cash: 1, wr: [['Unearned revenue', 'Cash'], ['Cash', 'Service revenue'], ['Accounts receivable', 'Unearned revenue']] }
+  ];
+  function genJE(R) {
+    var name = co(R), beg = R.step(20, 80, 5) * 100;
+    var tx = R.sample(JE, 4).map(function (x) { return { x: x, amt: R.step(10, 90, 5) * 100 }; });
+    var intro = '<p><strong>' + name + '</strong> started the month with a cash balance of ' + $(beg) + '. During the month it recorded these transactions.</p>' + T(['Transaction', 'Amount'], tx.map(function (o, i) { return [(i + 1) + '. The company ' + o.x.t, $(o.amt)]; })) + '<p class="fmt">Remember: assets, expenses, and dividends increase with debits; liabilities, equity, and revenues increase with credits.</p>';
+    var steps = tx.map(function (o, i) {
+      var correct = 'Debit ' + o.x.dr + '; credit ' + o.x.cr;
+      var opts = [correct].concat(o.x.wr.map(function (w) { return 'Debit ' + w[0] + '; credit ' + w[1]; }));
+      var order = R.shuffle([0, 1, 2, 3]);
+      return cs('Which journal entry records transaction ' + (i + 1) + '? <em>The company ' + o.x.t + ' (' + $(o.amt) + ').</em>', 'Transaction ' + (i + 1) + ': ' + o.x.t, order.map(function (k) { return opts[k]; }), order.indexOf(0), 'Identify the two accounts affected. Then decide whether each increases or decreases and use debit for increases in assets (and expenses), credit for increases in liabilities, equity, and revenue.', 'The correct entry is <strong>' + correct + '</strong>, for ' + $(o.amt) + '.');
+    });
+    var cash = beg + tx.reduce(function (s, o) { return s + o.x.cash * o.amt; }, 0);
+    steps.push(ns('After all four transactions, what is the <strong>cash balance</strong>?', 'Ending cash balance', cash, '$', 0, 'Start with ' + $(beg) + '. Add each transaction that debits cash and subtract each that credits cash.', $(beg) + tx.filter(function (o) { return o.x.cash !== 0; }).map(function (o) { return (o.x.cash > 0 ? ' + ' : ' &minus; ') + $(o.amt); }).join('') + ' = <strong>' + $(cash) + '</strong>.', { tol: 0 }));
+    return { intro: intro, steps: steps, takeaway: 'Debits equal credits in every entry. Cash increases are debits to Cash; cash decreases are credits to Cash.' };
+  }
+
+  /* C. Adjusting entries */
+  function genAdjust(R) {
+    var name = co(R);
+    var A = [];
+    var mS = R.pick([5, 4, 3, 2]), mon = { 5: 'August 1', 4: 'September 1', 3: 'October 1', 2: 'November 1' }[mS];
+    var N1 = R.pick([6, 12, 24]), prem = R.step(1200, 4800, 600) * (N1 === 6 ? 1 : (N1 === 12 ? 2 : 4)) / 1;
+    prem = Math.round(prem / N1) * N1;
+    var exp1 = prem * mS / N1;
+    A.push({ kind: 'exp', label: 'Prepaid insurance', txt: 'On ' + mon + ' the company paid ' + $(prem) + ' for a ' + N1 + '-month insurance policy that began that day and recorded the payment as prepaid insurance.', q: 'What <strong>insurance expense</strong> should be recognized in the adjusting entry at December 31?', amt: exp1, hint: 'Months of coverage used by December 31 &divide; total months in the policy &times; the premium.', sol: $(prem) + ' &times; ' + mS + '/' + N1 + ' = <strong>' + $(exp1) + '</strong>. Debit insurance expense and credit prepaid insurance.' });
+    var mS2 = R.pick([2, 3, 4, 5]), N2 = R.pick([6, 12]), fee = R.step(2400, 9600, 1200) * (N2 === 6 ? 1 : 2);
+    fee = Math.round(fee / N2) * N2;
+    var rev2 = fee * mS2 / N2;
+    A.push({ kind: 'rev', label: 'Unearned revenue', txt: 'On ' + { 5: 'August 1', 4: 'September 1', 3: 'October 1', 2: 'November 1' }[mS2] + ' a customer paid ' + $(fee) + ' in advance for ' + N2 + ' months of service beginning that day. The company recorded the cash as unearned revenue.', q: 'How much <strong>service revenue</strong> should be recognized in the adjusting entry at December 31?', amt: rev2, hint: 'The company has earned the portion of the contract that has elapsed: months of service delivered &divide; total months &times; the fee.', sol: $(fee) + ' &times; ' + mS2 + '/' + N2 + ' = <strong>' + $(rev2) + '</strong>. Debit unearned revenue and credit service revenue.' });
+    var wk = R.step(8, 30, 2) * 1000, d = R.pick([1, 2, 3, 4]);
+    var w3 = wk / 5 * d;
+    A.push({ kind: 'exp', label: 'Accrued wages', txt: 'Employees earn ' + $(wk) + ' per five-day workweek. Employees were last paid on a Friday, and December 31 falls ' + d + ' working day' + (d > 1 ? 's' : '') + ' after that payday.', q: 'What amount of <strong>wages expense</strong> should be accrued at December 31?', amt: w3, hint: 'Daily wages = weekly wages &divide; 5. Multiply by the number of unpaid working days.', sol: $(wk) + ' &divide; 5 = ' + $(wk / 5) + ' per day &times; ' + d + ' day' + (d > 1 ? 's' : '') + ' = <strong>' + $(w3) + '</strong>. Debit wages expense and credit wages payable.' });
+    var pn = R.step(20, 90, 10) * 1000, rr = R.pick([6, 8, 9, 12]), mm = R.pick([2, 3, 4, 5]);
+    var int4 = pn * rr / 100 * mm / 12;
+    A.push({ kind: 'exp', label: 'Accrued interest', txt: 'The company borrowed ' + $(pn) + ' on a note at ' + rr + '% annual interest. The note was signed ' + mm + ' months before December 31, and no interest has been paid or recorded.', q: 'What amount of <strong>interest expense</strong> should be accrued at December 31?', amt: int4, hint: 'Interest = principal &times; annual rate &times; fraction of the year outstanding (months &divide; 12).', sol: $(pn) + ' &times; ' + rr + '% &times; ' + mm + '/12 = <strong>' + $(int4) + '</strong>. Debit interest expense and credit interest payable.' });
+    var cost = R.step(40, 120, 10) * 1000, life = R.pick([4, 5, 8, 10]), salv = Math.round(cost * R.pick([0, 0.1, 0.2]) / 1000) * 1000, mo = R.pick([12, 6, 3]);
+    var dep5 = (cost - salv) / life * mo / 12;
+    A.push({ kind: 'exp', label: 'Depreciation', txt: 'Equipment costing ' + $(cost) + ' has an estimated salvage value of ' + $(salv) + ' and a useful life of ' + life + ' years. It was placed in service ' + mo + ' months before December 31. The company uses straight-line depreciation.', q: 'What amount of <strong>depreciation expense</strong> should be recorded at December 31?', amt: dep5, hint: 'Annual depreciation = (cost &minus; salvage value) &divide; useful life. Then multiply by the fraction of the year the asset was in service.', sol: '(' + $(cost) + ' &minus; ' + $(salv) + ') &divide; ' + life + ' = ' + $((cost - salv) / life) + ' per year &times; ' + mo + '/12 = <strong>' + $(dep5) + '</strong>. Debit depreciation expense and credit accumulated depreciation.' });
+    var pick = R.sample(A, 4);
+    var intro = '<p><strong>' + name + '</strong> prepares financial statements for the year ended December 31. Before issuing them, the accountant must record adjusting entries for the following items.</p><ol>' + pick.map(function (a) { return '<li>' + a.txt + '</li>'; }).join('') + '</ol>';
+    var steps = pick.map(function (a, i) { return ns('Adjustment ' + (i + 1) + ': ' + a.q, 'Adjustment ' + (i + 1) + ' (' + a.label.toLowerCase() + ')', a.amt, '$', 0, a.hint, a.sol, { tol: 0.002 }); });
+    var ni = pick.reduce(function (s, a) { return s + (a.kind === 'rev' ? a.amt : -a.amt); }, 0);
+    steps.push(ns('What is the <strong>total effect of the four adjustments on net income</strong>? Enter a decrease as a negative number.', 'Total effect on net income', ni, '$', 0, 'Adjustments that recognize revenue increase net income; adjustments that recognize expenses decrease it.', pick.map(function (a) { return (a.kind === 'rev' ? '+' : '&minus;') + $(a.amt); }).join(' ') + ' = <strong>' + $(ni) + '</strong>.', { tol: 0.002 }));
+    return { intro: intro, steps: steps, takeaway: 'Adjusting entries bring the books up to date: deferrals (prepaid expenses and unearned revenue) move amounts to the income statement as they are used or earned, and accruals record expenses and revenues that have not yet been paid or received.' };
+  }
+
+  /* D. Statements from account balances */
+  function genStatements(R) {
+    var name = co(R);
+    for (var tries = 0; tries < 50; tries++) {
+      var rev = R.step(40, 120, 5) * 100, wag = Math.round(rev * R.step(30, 45, 1) / 100 / 100) * 100, rent = R.step(4, 12, 1) * 100, dep = R.step(3, 10, 1) * 100, ins = R.step(1, 5, 1) * 100;
+      var exp = wag + rent + dep + ins, ni = rev - exp;
+      var ar = R.step(8, 25, 1) * 100, pre = R.step(2, 8, 1) * 100, eqp = R.step(30, 90, 5) * 100;
+      var ap = R.step(5, 20, 1) * 100, unr = R.step(3, 12, 1) * 100, wp = R.step(1, 6, 1) * 100;
+      var cs0 = R.step(40, 100, 5) * 100, re0 = R.step(10, 40, 5) * 100, div = Math.round(ni * R.step(10, 40, 5) / 100 / 100) * 100;
+      var re1 = re0 + ni - div, eq1 = cs0 + re1, tl = ap + unr + wp, tla = tl + eq1;
+      var cash = tla - ar - pre - eqp;
+      if (ni > 0 && cash >= 1000) break;
+    }
+    var ta = cash + ar + pre + eqp;
+    var rows = [['Cash', $(cash)], ['Accounts receivable', $(ar)], ['Prepaid insurance', $(pre)], ['Equipment, net', $(eqp)], ['Accounts payable', $(ap)], ['Unearned revenue', $(unr)], ['Wages payable', $(wp)], ['Common stock and paid-in capital', $(cs0)], ['Retained earnings, beginning of year', $(re0)], ['Dividends declared and paid', $(div)], ['Service revenue', $(rev)], ['Wages expense', $(wag)], ['Rent expense', $(rent)], ['Depreciation expense', $(dep)], ['Insurance expense', $(ins)]];
+    var intro = '<p><strong>' + name + '</strong> has the following <em>adjusted</em> account balances at December 31 (all adjusting entries have been recorded).</p>' + T(['Account', 'Balance'], rows);
+    return {
+      intro: intro,
+      takeaway: 'Prepare the statements in order: income statement (net income), statement of retained earnings/equity, then the balance sheet. Net income links the income statement to retained earnings, and ending retained earnings links to the balance sheet.',
+      steps: [
+        ns('Prepare the income statement. What is <strong>net income</strong>?', 'Net income', ni, '$', 0, 'Net income = service revenue &minus; wages, rent, depreciation, and insurance expenses.', $(rev) + ' &minus; (' + $(wag) + ' + ' + $(rent) + ' + ' + $(dep) + ' + ' + $(ins) + ') = <strong>' + $(ni) + '</strong>.', { tol: 0 }),
+        ns('What is <strong>ending retained earnings</strong>?', 'Ending retained earnings', re1, '$', 0, 'Beginning retained earnings + net income &minus; dividends.', $(re0) + ' + ' + $(ni) + ' &minus; ' + $(div) + ' = <strong>' + $(re1) + '</strong>.', { tol: 0 }),
+        ns('What is <strong>total stockholders&rsquo; equity</strong> on the balance sheet?', 'Total stockholders’ equity', eq1, '$', 0, 'Add common stock and paid-in capital to ending retained earnings.', $(cs0) + ' + ' + $(re1) + ' = <strong>' + $(eq1) + '</strong>.', { tol: 0 }),
+        ns('What are <strong>total assets</strong>?', 'Total assets', ta, '$', 0, 'Add cash, accounts receivable, prepaid insurance, and equipment (net).', $(cash) + ' + ' + $(ar) + ' + ' + $(pre) + ' + ' + $(eqp) + ' = <strong>' + $(ta) + '</strong>. Check: liabilities ' + $(tl) + ' + equity ' + $(eq1) + ' = ' + $(tla) + '. The balance sheet balances.', { tol: 0 }),
+        ns('Compute the <strong>debt-to-equity ratio</strong> (total liabilities &divide; total stockholders&rsquo; equity). Round to two decimals.', 'Debt-to-equity ratio', tl / eq1, 'x', 2, 'Total liabilities = accounts payable + unearned revenue + wages payable.', 'Liabilities = ' + $(tl) + '. ' + $(tl) + ' &divide; ' + $(eq1) + ' = <strong>' + N(tl / eq1, 2) + 'x</strong>.')
+      ]
+    };
+  }
+
+  /* E. Closing */
+  var TEMP = ['Service revenue', 'Cost of goods sold', 'Wages expense', 'Interest expense', 'Income tax expense', 'Dividends'];
+  var PERM = ['Cash', 'Accounts receivable', 'Common stock', 'Accounts payable', 'Retained earnings', 'Equipment'];
+  function genClosing(R) {
+    var name = co(R);
+    var rev = R.step(400, 900, 10), cogs = Math.round(rev * R.step(50, 65, 1) / 100 / 10) * 10, opx = Math.round(rev * R.step(12, 22, 1) / 100 / 10) * 10, intx = R.step(5, 30, 5), tax = Math.round((rev - cogs - opx - intx) * 0.25 / 5) * 5;
+    var div = R.step(20, 80, 5), re0 = R.step(300, 900, 10);
+    var te = cogs + opx + intx + tax, ni = rev - te, re1 = re0 + ni - div;
+    var intro = '<p>At the end of the year, <strong>' + name + '</strong> is ready to close its books. Account balances before closing ($ thousands):</p>' + T(['Account', 'Balance'], [['Sales revenue', $(rev)], ['Cost of goods sold', $(cogs)], ['Operating expenses', $(opx)], ['Interest expense', $(intx)], ['Income tax expense', $(tax)], ['Dividends', $(div)], ['Retained earnings, beginning balance', $(re0)]]);
+    var t = R.pick(TEMP), pm = R.sample(PERM, 3);
+    var set = R.shuffle([t].concat(pm));
+    return {
+      intro: intro,
+      takeaway: 'Closing zeroes out the temporary accounts (revenues, expenses, and dividends) and transfers the net result to retained earnings. Permanent accounts (assets, liabilities, and equity accounts) carry their balances forward.',
+      steps: [
+        ns('Close the expense accounts. What is the <strong>total amount of expenses</strong> closed to retained earnings ($ thousands)?', 'Total expenses closed', te, '$', 0, 'Add cost of goods sold, operating expenses, interest expense, and income tax expense.', $(cogs) + ' + ' + $(opx) + ' + ' + $(intx) + ' + ' + $(tax) + ' = <strong>' + $(te) + '</strong>. Credit each expense account and debit retained earnings.', { tol: 0 }),
+        ns('What is <strong>net income</strong> transferred to retained earnings by closing revenues and expenses ($ thousands)?', 'Net income transferred', ni, '$', 0, 'Revenues &minus; total expenses.', $(rev) + ' &minus; ' + $(te) + ' = <strong>' + $(ni) + '</strong>.', { tol: 0 }),
+        ns('Close the dividends account. What is the <strong>ending balance in retained earnings</strong> ($ thousands)?', 'Ending retained earnings', re1, '$', 0, 'Beginning retained earnings + net income &minus; dividends.', $(re0) + ' + ' + $(ni) + ' &minus; ' + $(div) + ' = <strong>' + $(re1) + '</strong>.', { tol: 0 }),
+        cs('Which of the following accounts is a <strong>temporary account</strong> that is closed at year-end?', 'Identify the temporary account', set, set.indexOf(t), 'Temporary accounts are those reported on the income statement (revenues and expenses) plus dividends. Balance sheet accounts are permanent.', '<strong>' + t + '</strong> is a temporary account: its balance is zeroed out at year-end. The others appear on the balance sheet and carry forward.')
+      ]
+    };
+  }
+
+  window.MODULE = {
+    num: 3,
+    title: 'Transactions, Adjustments, and Financial Statements',
+    subtitle: 'Financial statement effects, journal entries, adjusting entries, preparing statements, and the closing process.',
+    types: [
+      { label: 'Transaction Effects (FSET)', desc: 'Decide how each transaction affects assets, liabilities, equity, and net income.', gen: genEffects },
+      { label: 'Journal Entries', desc: 'Pick the correct debit and credit for each transaction and track cash.', gen: genJE },
+      { label: 'Adjusting Entries', desc: 'Prepaid expenses, unearned revenue, accrued wages and interest, and depreciation.', gen: genAdjust },
+      { label: 'Prepare Statements from Balances', desc: 'Net income, ending retained earnings, equity, total assets, and debt-to-equity.', gen: genStatements },
+      { label: 'The Closing Process', desc: 'Close revenues, expenses, and dividends into retained earnings.', gen: genClosing }
+    ]
+  };
+})();
+
+</script>
+<script>
+/* MBA 623 tutor UI engine */
+(function () {
+  'use strict';
+  var L = window.TutorLib;
+  var M = window.MODULE;
+  var app = document.getElementById('app');
+  var state = null;
+  var TUTOR_NAMES = ['Kelly', 'Riley', 'Alex', 'Kai', 'Yamal', 'Taylor', 'Vanessa'];
+  var TUTOR = (function () {
+    var n = null;
+    try { n = window.sessionStorage.getItem('mba623TutorName'); } catch (e) { n = null; }
+    if (TUTOR_NAMES.indexOf(n) < 0) {
+      n = TUTOR_NAMES[Math.floor(Math.random() * TUTOR_NAMES.length)];
+      try { window.sessionStorage.setItem('mba623TutorName', n); } catch (e) {}
+    }
+    return n;
+  })();
+
+  var PRAISE = ['Correct! Nice work.', 'Exactly right!', 'Well done, that is correct.', 'Great job, you got it!', 'Yes, that is right. Excellent!', 'Spot on!', 'That is correct. Keep it up!', 'Right on target!'];
+  var WRONG1 = ['Not quite, but you are close to a good approach. Here is a hint.', 'That is not the answer we are looking for, but no worries. Here is a hint.', 'Not quite right. Take a look at this hint and try once more.', 'Almost there, but that is not it. Use this hint and give it another try.'];
+  var WRONG2 = ['That is still not it, and that is okay. Here is the solution for this step.', 'Not this time, but this is how you learn. Here is the solution.', 'Still not quite. Let us walk through the solution together.'];
+
+  function el(html) { var d = document.createElement('div'); d.innerHTML = html; return d.firstElementChild; }
+  function rndFrom(arr, i) { return arr[i % arr.length]; }
+
+  /* ---------- menu ---------- */
+  function renderMenu() {
+    state = null;
+    var h = '<section class="tutor-intro" aria-labelledby="menu-h"><div class="tutor-avatar" aria-hidden="true">' + TUTOR.charAt(0) + '</div><div><h2 id="menu-h">Hi, I am ' + TUTOR + '. I am your personal tutor.</h2>';
+    h += '<p>Pick a type of problem below. You will get a new scenario with new numbers, and I will walk you through it one step at a time.</p>';
+    h += '<p>Type your answer for each step and press <strong>Check my answer</strong>. If you miss a step, no worries: you will get a hint and one more try. If you miss it again, you will see the solution for that step and then move on to the next one.</p></div></section>';
+    h += '<ul class="menu" aria-labelledby="menu-h">';
+    M.types.forEach(function (t, i) {
+      h += '<li><button type="button" class="menu-btn" data-type="' + i + '"><span class="menu-title">' + t.label + '</span><span class="menu-desc">' + t.desc + '</span><span class="menu-go" aria-hidden="true">Start &rarr;</span></button></li>';
+    });
+    h += '</ul>';
+    app.innerHTML = h;
+    var btns = app.querySelectorAll('.menu-btn');
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].addEventListener('click', function (e) { startProblem(parseInt(e.currentTarget.getAttribute('data-type'), 10)); });
+    }
+    document.title = 'Module ' + M.num + ' Tutor | MBA 623';
+  }
+
+  /* ---------- problem ---------- */
+  function startProblem(typeIdx) {
+    var seed = (Math.floor(Math.random() * 4294967295) ^ Date.now()) >>> 0;
+    var R = L.makeRNG(seed);
+    var t = M.types[typeIdx];
+    var prob = t.gen(R, L);
+    state = { typeIdx: typeIdx, type: t, prob: prob, i: 0, attempt: 0, log: [], first: 0, second: 0, shown: 0 };
+    renderProblem(true);
+  }
+
+  function renderHeader() {
+    var p = state.prob;
+    var h = '<div class="toolbar"><button type="button" class="link-btn" id="to-menu">&larr; Choose a different problem type</button></div>';
+    h += '<h2 id="prob-h" tabindex="-1">' + state.type.label + '</h2>';
+    h += '<section class="scenario" aria-labelledby="scen-h"><h3 id="scen-h">The problem</h3>' + p.intro + '</section>';
+    return h;
+  }
+
+  function renderLog() {
+    if (!state.log.length) return '';
+    var h = '<section class="worklog" aria-labelledby="log-h"><h3 id="log-h">Your work so far</h3><ol>';
+    state.log.forEach(function (e) {
+      h += '<li><span class="log-q">' + e.q + '</span><span class="log-a ' + e.cls + '"><span class="badge">' + e.badge + '</span> ' + e.text + '</span></li>';
+    });
+    return h + '</ol></section>';
+  }
+
+  function renderProblem(focusHeading) {
+    var p = state.prob, s = p.steps[state.i], n = p.steps.length;
+    var h = renderHeader();
+    h += renderLog();
+    h += '<section class="step" aria-labelledby="step-h">';
+    h += '<p class="stepno" id="step-h">Step ' + (state.i + 1) + ' of ' + n + '</p>';
+    h += '<div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="' + n + '" aria-valuenow="' + state.i + '" aria-label="Progress"><span style="width:' + Math.round(100 * state.i / n) + '%"></span></div>';
+    h += '<div class="q" id="q">' + s.q + '</div>';
+    h += '<form id="f" novalidate>';
+    if (s.choices) {
+      h += '<fieldset class="choices"><legend class="sr-only">Choose one answer</legend>';
+      s.choices.forEach(function (c, k) {
+        h += '<label class="choice"><input type="radio" name="c" value="' + k + '"><span>' + c + '</span></label>';
+      });
+      h += '</fieldset>';
+    } else {
+      h += '<div class="ans-row"><label class="sr-only" for="ans">Your answer</label>';
+      if (s.unit === '$') h += '<span class="aff" aria-hidden="true">$</span>';
+      h += '<input id="ans" name="ans" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" aria-describedby="q">';
+      if (s.unit === '%') h += '<span class="aff" aria-hidden="true">%</span>';
+      else if (s.unit === 'x') h += '<span class="aff" aria-hidden="true">times</span>';
+      else if (s.unit === 'days') h += '<span class="aff" aria-hidden="true">days</span>';
+      else if (s.unit === 'units') h += '<span class="aff" aria-hidden="true">units</span>';
+      else if (s.suffix) h += '<span class="aff" aria-hidden="true">' + s.suffix + '</span>';
+      h += '</div>';
+      if (s.note) h += '<p class="fmt">' + s.note + '</p>';
+    }
+    h += '<div class="actions"><button type="submit" class="primary" id="check">Check my answer</button></div>';
+    h += '</form>';
+    h += '<div id="fb" class="fb" role="status" aria-live="polite"></div>';
+    h += '</section>';
+    app.innerHTML = h;
+    document.getElementById('to-menu').addEventListener('click', renderMenu);
+    document.getElementById('f').addEventListener('submit', onCheck);
+    if (focusHeading) { var hd = document.getElementById('prob-h'); hd.focus(); window.scrollTo(0, 0); }
+    else { var inp = document.getElementById('ans') || document.querySelector('input[name=c]'); if (inp) inp.focus(); }
+  }
+
+  function currentUserAnswer(s) {
+    if (s.choices) {
+      var r = document.querySelector('input[name=c]:checked');
+      return r ? parseInt(r.value, 10) : null;
+    }
+    return document.getElementById('ans').value;
+  }
+
+  function onCheck(ev) {
+    ev.preventDefault();
+    var s = state.prob.steps[state.i];
+    var ua = currentUserAnswer(s);
+    var fb = document.getElementById('fb');
+    var correct;
+    if (s.choices) {
+      if (ua === null) { fb.className = 'fb info'; fb.innerHTML = '<p>Please choose an answer first.</p>'; return; }
+      correct = (ua === s.correct);
+    } else {
+      if (!String(ua).trim() || !isFinite(L.parseAnswer(ua))) { fb.className = 'fb info'; fb.innerHTML = '<p>Please enter a number (for example 1,250 or 12.5). Do not include words.</p>'; document.getElementById('ans').focus(); return; }
+      correct = L.isCorrectNumber(s, ua);
+    }
+    state.attempt++;
+    var correctText = s.choices ? s.choices[s.correct] : L.fmtAnswer(s);
+    var yourText = s.choices ? s.choices[ua] : L.esc(String(ua).trim());
+    var qShort = s.short || s.q;
+    if (correct) {
+      if (state.attempt === 1) state.first++; else state.second++;
+      fb.className = 'fb good';
+      fb.innerHTML = '<p class="fb-h"><span class="badge ok">Correct</span> ' + rndFrom(PRAISE, state.i + state.prob.steps.length) + '</p>' + (s.sol ? '<div class="sol"><strong>Why:</strong> ' + s.sol + '</div>' : '') + '<p class="ans-line">Answer: <strong>' + correctText + '</strong></p>';
+      state.log.push({ q: qShort, text: correctText, cls: 'good', badge: state.attempt === 1 ? 'Correct' : 'Correct (2nd try)' });
+      lockAndNext();
+    } else if (state.attempt === 1) {
+      fb.className = 'fb warn';
+      fb.innerHTML = '<p class="fb-h"><span class="badge no">Not yet</span> ' + rndFrom(WRONG1, state.i) + '</p><div class="hint"><strong>Hint from ' + TUTOR + ':</strong> ' + s.hint + '</div>';
+      document.getElementById('check').textContent = 'Try again';
+      var inp = document.getElementById('ans'); if (inp) { inp.select(); inp.focus(); }
+    } else {
+      state.shown++;
+      fb.className = 'fb bad';
+      fb.innerHTML = '<p class="fb-h"><span class="badge no">Solution</span> ' + rndFrom(WRONG2, state.i) + '</p><div class="sol">' + s.sol + '</div><p class="ans-line">Answer: <strong>' + correctText + '</strong></p>';
+      state.log.push({ q: qShort, text: correctText + ' <span class="yours">(you entered ' + yourText + ')</span>', cls: 'bad', badge: 'Solution shown' });
+      lockAndNext();
+    }
+  }
+
+  function lockAndNext() {
+    var f = document.getElementById('f');
+    var ctrls = f.querySelectorAll('input,button');
+    for (var i = 0; i < ctrls.length; i++) ctrls[i].disabled = true;
+    var last = state.i === state.prob.steps.length - 1;
+    var btn = el('<div class="actions"><button type="button" class="primary" id="next">' + (last ? 'See my results' : 'Next step &rarr;') + '</button></div>');
+    document.getElementById('fb').appendChild(btn);
+    var nb = document.getElementById('next');
+    nb.addEventListener('click', function () {
+      state.i++; state.attempt = 0;
+      if (state.i >= state.prob.steps.length) renderSummary(); else renderProblem(false);
+    });
+    nb.focus();
+  }
+
+  function renderSummary() {
+    var n = state.prob.steps.length;
+    var perfect = state.first === n;
+    var msg;
+    if (perfect) msg = 'Outstanding! You got every step right on the first try.';
+    else if (state.shown === 0) msg = 'Nice work! You solved every step, and you learned from the hints along the way.';
+    else if (state.first + state.second >= n / 2) msg = 'Good effort! You solved most of this problem. Review the steps marked "Solution shown" and try a new problem to lock it in.';
+    else msg = 'Thanks for sticking with it. Review the solutions below, look back at the module slides, and try a fresh problem. Practice makes this much easier.';
+    var h = renderHeader();
+    h += '<section class="summary" aria-labelledby="sum-h"><h3 id="sum-h" tabindex="-1">Your results</h3>';
+    h += '<p class="big"><strong>' + TUTOR + ' says:</strong> ' + msg + '</p>';
+    h += '<ul class="score"><li><strong>' + state.first + '</strong> correct on the first try</li><li><strong>' + state.second + '</strong> correct on the second try</li><li><strong>' + state.shown + '</strong> solution' + (state.shown === 1 ? '' : 's') + ' shown</li></ul>';
+    if (state.prob.takeaway) h += '<div class="takeaway"><strong>Key takeaway:</strong> ' + state.prob.takeaway + '</div>';
+    h += '</section>';
+    h += renderLog();
+    h += '<div class="actions row"><button type="button" class="primary" id="again">Try another problem like this</button><button type="button" class="secondary" id="menu2">Choose a different problem type</button></div>';
+    app.innerHTML = h;
+    document.getElementById('to-menu').addEventListener('click', renderMenu);
+    document.getElementById('menu2').addEventListener('click', renderMenu);
+    var ti = state.typeIdx;
+    document.getElementById('again').addEventListener('click', function () { startProblem(ti); });
+    var sh = document.getElementById('sum-h'); sh.focus(); window.scrollTo(0, 0);
+  }
+
+  document.getElementById('mod-title').textContent = M.title;
+  document.getElementById('mod-sub').textContent = M.subtitle;
+  document.getElementById('mod-num').textContent = 'Module ' + M.num;
+  renderMenu();
+})();
+
+</script>
+</body>
+</html>

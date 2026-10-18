@@ -1,0 +1,607 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Module 8 Tutor: Stock Transactions, Dividends, and EPS | MBA 623</title>
+<meta name="description" content="Interactive step-by-step practice tutor for MBA 623, Module 8: Stock Transactions, Dividends, and EPS.">
+<style>
+:root{--bg:#F5F8F5;--card:#ffffff;--ink:#16222B;--muted:#4D5D68;--line:#C7D2CB;--brand:#14574B;--brand-ink:#ffffff;--brand-soft:#E0EEE8;--gold:#8CC7B0;--good:#0F6A37;--good-bg:#E3F3E9;--warn:#7a4a00;--warn-bg:#fff2d6;--bad:#9B2C1F;--bad-bg:#FBE8E4;--info-bg:#E8EEF9;--focus:#1A47B8;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#0F1A17;--card:#16231F;--ink:#E8EFEA;--muted:#A9B8B0;--line:#33453E;--brand:#5FC2AB;--brand-ink:#06241D;--brand-soft:#1B3A33;--gold:#5FC2AB;--good:#7FDCA0;--good-bg:#16352A;--warn:#f3c978;--warn-bg:#3a2d12;--bad:#FFAE9F;--bad-bg:#3E1D18;--info-bg:#1B2B4A;--focus:#9DB8FF;}}
+*{box-sizing:border-box}
+html{font-size:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.55;font-size:1.0625rem}
+.skip{position:absolute;left:-999px;top:0;background:var(--brand);color:var(--brand-ink);padding:.6rem 1rem;z-index:10}
+.skip:focus{left:8px;top:8px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+header.site{background:var(--brand);color:var(--brand-ink);padding:1.1rem 1rem 1.4rem}
+header.site .wrap{max-width:60rem;margin:0 auto}
+header.site a{color:var(--brand-ink);font-weight:600}
+.eyebrow{margin:.5rem 0 0;font-size:.95rem;letter-spacing:.04em;text-transform:uppercase;opacity:.92}
+header.site h1{margin:.15rem 0 .2rem;font-size:1.7rem;line-height:1.2}
+header.site p.sub{margin:0;opacity:.95}
+main{max-width:60rem;margin:0 auto;padding:1.25rem 1rem 3rem}
+h2{font-size:1.45rem;margin:.2rem 0 .6rem;color:var(--ink)}
+h3{font-size:1.1rem;margin:.1rem 0 .5rem}
+.lead{color:var(--muted);max-width:46rem}
+ul.menu{list-style:none;margin:1rem 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(17rem,1fr));gap:.85rem}
+.menu-btn{width:100%;height:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-left:6px solid var(--brand);border-radius:10px;padding:.9rem 1rem;color:var(--ink);font:inherit;cursor:pointer;display:flex;flex-direction:column;gap:.35rem}
+.menu-btn:hover{box-shadow:0 2px 10px rgba(0,0,0,.15);border-color:var(--brand)}
+.menu-title{font-weight:700;font-size:1.08rem}
+.menu-desc{color:var(--muted);font-size:.95rem}
+.menu-go{margin-top:auto;color:var(--brand);font-weight:700;font-size:.95rem}
+.toolbar{margin-bottom:.5rem}
+.link-btn{background:none;border:0;color:var(--brand);font:inherit;font-weight:600;text-decoration:underline;cursor:pointer;padding:.25rem 0}
+.scenario,.step,.worklog,.summary{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:1rem 1.1rem;margin:0 0 1rem}
+.scenario{border-left:6px solid var(--gold)}
+.scenario p{margin:.3rem 0}
+.step{border-left:6px solid var(--brand)}
+.stepno{margin:0 0 .35rem;font-weight:700;color:var(--brand)}
+.bar{height:8px;background:var(--brand-soft);border-radius:6px;overflow:hidden;margin:0 0 .8rem}
+.bar span{display:block;height:100%;background:var(--brand)}
+.q{font-size:1.1rem;margin:0 0 .7rem}
+.q p{margin:.3rem 0}
+.ans-row{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+.aff{font-weight:700;color:var(--muted)}
+input[type=text]{font:inherit;font-size:1.15rem;padding:.55rem .7rem;border:2px solid var(--muted);border-radius:8px;background:var(--bg);color:var(--ink);width:13rem;max-width:100%}
+.fmt{margin:.4rem 0 0;color:var(--muted);font-size:.93rem}
+fieldset.choices{border:0;padding:0;margin:0;display:grid;gap:.5rem}
+.choice{display:flex;gap:.65rem;align-items:flex-start;padding:.6rem .75rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);cursor:pointer}
+.choice:hover{border-color:var(--brand)}
+.choice input{margin-top:.3rem;width:1.1rem;height:1.1rem;flex:none}
+.actions{margin-top:.9rem}
+.actions.row{display:flex;gap:.75rem;flex-wrap:wrap}
+button.primary,button.secondary{font:inherit;font-weight:700;border-radius:8px;padding:.65rem 1.2rem;cursor:pointer;border:2px solid var(--brand)}
+button.primary{background:var(--brand);color:var(--brand-ink)}
+button.secondary{background:transparent;color:var(--brand)}
+button:disabled{opacity:.55;cursor:not-allowed}
+.fb{margin-top:.9rem}
+.fb.good,.fb.warn,.fb.bad,.fb.info{padding:.8rem 1rem;border-radius:8px;border:1px solid var(--line)}
+.fb.good{background:var(--good-bg);border-color:var(--good)}
+.fb.warn{background:var(--warn-bg);border-color:var(--warn)}
+.fb.bad{background:var(--bad-bg);border-color:var(--bad)}
+.fb.info{background:var(--info-bg)}
+.fb p{margin:.25rem 0}
+.fb-h{font-weight:600}
+.badge{display:inline-block;font-size:.8rem;font-weight:800;padding:.1rem .5rem;border-radius:99px;border:1.5px solid currentColor;margin-right:.35rem;vertical-align:.05em}
+.badge.ok{color:var(--good)}.badge.no{color:var(--bad)}
+.fb.warn .badge.no{color:var(--warn)}
+.hint,.sol{margin:.4rem 0}
+.ans-line{margin-top:.5rem}
+.worklog ol{margin:.2rem 0 0;padding-left:1.3rem}
+.worklog li{margin:.45rem 0}
+.log-q{display:block;color:var(--muted);font-size:.95rem}
+.log-a.good{color:var(--good)}
+.log-a.bad{color:var(--bad)}
+.log-a .badge{font-size:.72rem}
+.yours{color:var(--muted)}
+.summary .big{font-size:1.15rem;font-weight:600}
+.score{list-style:none;padding:0;margin:.5rem 0;display:flex;gap:1.4rem;flex-wrap:wrap}
+.score strong{font-size:1.4rem;color:var(--brand)}
+.takeaway{background:var(--brand-soft);border-radius:8px;padding:.7rem .9rem;margin-top:.6rem}
+.tbl-wrap{overflow-x:auto;margin:.6rem 0}
+table.data{border-collapse:collapse;min-width:16rem;font-size:.98rem}
+table.data caption{text-align:left;font-weight:700;padding-bottom:.3rem}
+table.data th,table.data td{border:1px solid var(--line);padding:.35rem .65rem;text-align:left;vertical-align:top}
+table.data thead th{background:var(--brand-soft)}
+table.data .r,table.data td.r{text-align:right;font-variant-numeric:tabular-nums}
+table.data tr.tot th,table.data tr.tot td{font-weight:700;border-top:2px solid var(--ink)}
+table.data tbody th{font-weight:500}
+.eq{display:inline-block;background:var(--brand-soft);padding:.1rem .5rem;border-radius:6px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.95em}
+footer.site{max-width:60rem;margin:0 auto;padding:1rem;color:var(--muted);border-top:1px solid var(--line);font-size:.92rem}
+@media (max-width:30rem){header.site h1{font-size:1.4rem}input[type=text]{width:100%}}
+@media print{header.site{background:#fff;color:#000}.menu-go,.toolbar,.actions{display:none}}
+
+
+.tutor-intro{display:flex;gap:1rem;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-left:6px solid var(--brand);border-radius:10px;padding:1rem 1.1rem;margin:0 0 1.25rem}
+.tutor-avatar{flex:none;width:3.4rem;height:3.4rem;border-radius:50%;background:var(--brand);color:var(--brand-ink);display:flex;align-items:center;justify-content:center;font-size:1.6rem;font-weight:700}
+.tutor-intro h2{margin:0 0 .35rem}
+.tutor-intro p{margin:.35rem 0;color:var(--ink)}
+@media (max-width:30rem){.tutor-intro{flex-direction:column}}
+</style>
+</head>
+<body>
+<a class="skip" href="#app">Skip to main content</a>
+<header class="site">
+  <div class="wrap">
+    <p class="eyebrow">MBA 623 &middot; <span id="mod-num">Module 8</span></p>
+    <h1><span id="mod-title">Stock Transactions, Dividends, and EPS</span> Tutor</h1>
+    <p class="sub" id="mod-sub">Stock issuances, treasury stock, dividends and splits, stock-based compensation, comprehensive income, and earnings per share.</p>
+  </div>
+</header>
+<main id="app" tabindex="-1"></main>
+<footer class="site">MBA 623 &middot; Western Carolina University &middot; Practice problems use fictional companies and randomly generated numbers. Nothing you enter here is saved or graded.</footer>
+<script>
+/* MBA 623 tutor library: random helpers, formatting, answer checking (no DOM) */
+(function (root) {
+  'use strict';
+  function makeRNG(seed) {
+    let a = seed >>> 0;
+    const next = function () {
+      a = (a + 0x6D2B79F5) | 0;
+      let t = Math.imul(a ^ (a >>> 15), 1 | a);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+    const R = {
+      next: next,
+      int: function (lo, hi) { return lo + Math.floor(next() * (hi - lo + 1)); },
+      step: function (lo, hi, s) { return lo + s * Math.floor(next() * ((hi - lo) / s + 1)); },
+      pick: function (arr) { return arr[Math.floor(next() * arr.length)]; },
+      chance: function (p) { return next() < p; },
+      shuffle: function (arr) {
+        const b = arr.slice();
+        for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(next() * (i + 1)); const t = b[i]; b[i] = b[j]; b[j] = t; }
+        return b;
+      },
+      sample: function (arr, n) { return R.shuffle(arr).slice(0, n); }
+    };
+    return R;
+  }
+
+  const COMPANIES = ['Alder Ridge Foods', 'Bluewater Outfitters', 'Cedar Point Instruments', 'Dunmore Apparel', 'Eastgate Medical', 'Fairhaven Home Goods', 'Granite Peak Tools', 'Harborview Software', 'Ironwood Furniture', 'Juniper Labs', 'Kestrel Logistics', 'Lakeshore Beverages', 'Maple Hollow Bakery', 'Northfield Electronics', 'Oakmont Pharmaceuticals', 'Pinecrest Sports', 'Quarry Lane Builders', 'Redstone Retail', 'Silverline Networks', 'Tamarack Outdoor', 'Union Square Coffee', 'Valley Forge Machining', 'Westbrook Toys', 'Yellowfin Seafood', 'Zephyr Cycles'];
+
+  function addCommas(s) { return s.replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+  function num(x, d) {
+    d = d || 0;
+    const neg = x < 0 && Math.round(Math.abs(x) * Math.pow(10, d)) !== 0;
+    const s = Math.abs(x).toFixed(d).split('.');
+    return (neg ? '-' : '') + addCommas(s[0]) + (s[1] ? '.' + s[1] : '');
+  }
+  function money(x, d) {
+    d = d || 0;
+    const s = num(Math.abs(x), d);
+    const isZero = Math.round(Math.abs(x) * Math.pow(10, d)) === 0;
+    return (x < 0 && !isZero) ? '($' + s + ')' : '$' + s;
+  }
+  function sgn(x, d) { return (x < 0 ? ' &minus; ' : ' + ') + money(Math.abs(x), d); }
+  function pct(x, d) { d = (d === undefined) ? 1 : d; return num(x, d) + '%'; }
+  function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+
+  /* table(headers, rows, opts) rows: array of arrays; first column left aligned, others right aligned */
+  function table(head, rows, opts) {
+    opts = opts || {};
+    let h = '<div class="tbl-wrap"><table class="data"' + (opts.caption ? '' : '') + '>';
+    if (opts.caption) h += '<caption>' + opts.caption + '</caption>';
+    if (head && head.length) {
+      h += '<thead><tr>';
+      head.forEach(function (c, i) { h += '<th scope="col"' + (i === 0 ? '' : ' class="r"') + '>' + c + '</th>'; });
+      h += '</tr></thead>';
+    }
+    h += '<tbody>';
+    rows.forEach(function (r) {
+      let cls = '';
+      if (r && r.cls) { cls = ' class="' + r.cls + '"'; r = r.cells; }
+      h += '<tr' + cls + '>';
+      r.forEach(function (c, i) {
+        if (i === 0) h += '<th scope="row">' + c + '</th>';
+        else h += '<td class="r">' + c + '</td>';
+      });
+      h += '</tr>';
+    });
+    return h + '</tbody></table></div>';
+  }
+
+  function parseAnswer(raw) {
+    if (raw === null || raw === undefined) return NaN;
+    let s = String(raw).trim().toLowerCase();
+    if (!s) return NaN;
+    let neg = false;
+    if (/^\(.*\)$/.test(s)) { neg = true; s = s.slice(1, -1); }
+    s = s.replace(/[−–]/g, '-');
+    if (s.charAt(0) === '-') { neg = true; s = s.slice(1); }
+    s = s.replace(/[\$,\s]/g, '').replace(/%$/, '');
+    s = s.replace(/(units?|days?|times|x|shares?|batches|hours|hrs|years?|yrs?|dollars)$/, '');
+    if (s.charAt(0) === '-') { neg = true; s = s.slice(1); }
+    if (!/^[0-9]*\.?[0-9]+$|^[0-9]+\.$/.test(s)) return NaN;
+    const v = parseFloat(s);
+    return neg ? -v : v;
+  }
+
+  function isCorrectNumber(step, raw) {
+    const u = parseAnswer(raw);
+    if (!isFinite(u)) return false;
+    const a = step.ans;
+    const dec = step.dec || 0;
+    const rel = (step.tol === undefined) ? 0.003 : step.tol;
+    const absTol = 0.5 * Math.pow(10, -dec) + 1e-9;
+    const ok = function (v) { return Math.abs(v - a) <= Math.max(absTol, rel * Math.abs(a)); };
+    if (ok(u)) return true;
+    if (step.unit === '%' && Math.abs(u) <= 1.5 && Math.abs(a) > 1.5 && ok(u * 100)) return true;
+    return false;
+  }
+
+  function fmtAnswer(step) {
+    const d = step.dec || 0;
+    switch (step.unit) {
+      case '$': return money(step.ans, d);
+      case '%': return pct(step.ans, d);
+      case 'x': return num(step.ans, d) + 'x';
+      case 'days': return num(step.ans, d) + ' days';
+      case 'units': return num(step.ans, d) + ' units';
+      default: return num(step.ans, d) + (step.suffix ? ' ' + step.suffix : '');
+    }
+  }
+
+
+  /* step builders */
+  function ns(q, short, ans, unit, dec, hint, sol, extra) {
+    var o = { q: '<p>' + q + '</p>', short: short, ans: ans, unit: unit || '', dec: dec || 0, hint: hint, sol: sol };
+    if (extra) { for (var k in extra) o[k] = extra[k]; }
+    return o;
+  }
+  function cs(q, short, choices, correct, hint, sol) {
+    return { q: '<p>' + q + '</p>', short: short, choices: choices, correct: correct, hint: hint, sol: sol };
+  }
+  /* shuffle choices but keep track of the correct one */
+  function csr(R, q, short, choices, correctIdx, hint, sol) {
+    var order = R.shuffle(choices.map(function (c, i) { return i; }));
+    return cs(q, short, order.map(function (i) { return choices[i]; }), order.indexOf(correctIdx), hint, sol);
+  }
+
+  root.TutorLib = { sgn: sgn, ns: ns, cs: cs, csr: csr, makeRNG: makeRNG, COMPANIES: COMPANIES, num: num, money: money, pct: pct, esc: esc, table: table, parseAnswer: parseAnswer, isCorrectNumber: isCorrectNumber, fmtAnswer: fmtAnswer };
+})(typeof window !== 'undefined' ? window : globalThis);
+
+</script>
+<script>
+(function () {
+  var L = window.TutorLib, $ = L.money, N = L.num, P = L.pct, T = L.table, ns = L.ns, cs = L.cs, csr = L.csr, G = L.sgn;
+  function co(R) { return R.pick(L.COMPANIES); }
+
+  /* A. Stock issuance */
+  function genIssue(R) {
+    var name = co(R);
+    var sh = R.step(100, 900, 50) * 1000, par = R.pick([0.01, 0.1, 0.5, 1]), price = R.step(12, 95, 1), eqb = R.step(500, 3000, 50);
+    var cash = sh * price, cs0 = sh * par, apic = cash - cs0;
+    var intro = '<p><strong>' + name + '</strong> issues ' + N(sh) + ' shares of common stock. The stock has a par value of ' + $(par, 2) + ' per share, and the shares are sold to investors for ' + $(price) + ' per share in cash.</p>';
+    return {
+      intro: intro,
+      takeaway: 'Cash received = shares &times; issue price. Common stock is recorded at par; the excess over par goes to additional paid-in capital (APIC). Issuing stock raises equity but is not revenue, so net income is unchanged.',
+      steps: [
+        ns('How much <strong>cash</strong> does the company receive?', 'Cash received', cash, '$', 0, 'Shares issued &times; issue price per share.', N(sh) + ' &times; ' + $(price) + ' = <strong>' + $(cash) + '</strong>.', { tol: 0 }),
+        ns('By how much does <strong>common stock (at par)</strong> increase?', 'Increase in common stock (par)', cs0, '$', 0, 'Shares issued &times; par value per share.', N(sh) + ' &times; ' + $(par, 2) + ' = <strong>' + $(cs0) + '</strong>.', { tol: 0 }),
+        ns('By how much does <strong>additional paid-in capital</strong> increase?', 'Increase in APIC', apic, '$', 0, 'Total cash received minus the amount recorded at par.', $(cash) + ' &minus; ' + $(cs0) + ' = <strong>' + $(apic) + '</strong>.', { tol: 0 }),
+        csr(R, 'What is the effect of the stock issuance on <strong>net income</strong>?', 'Effect on net income', ['None: issuing stock is a financing transaction with owners, not revenue', 'Net income increases by the cash received', 'Net income increases by the APIC amount', 'Net income decreases by the par value'], 0, 'Is cash from owners revenue?', 'Transactions with owners (issuing stock, repurchasing stock, paying dividends) change equity directly and never affect net income.')
+      ]
+    };
+  }
+
+  /* B. Treasury stock */
+  function genTreasury(R) {
+    var name = co(R);
+    var n = R.step(10, 90, 5) * 1000, p1 = R.step(20, 80, 1), m = Math.round(n * R.pick([0.4, 0.5, 0.6, 0.8]) / 1000) * 1000, p2 = p1 + R.pick([-6, -4, -3, 3, 5, 8]);
+    var cost = n * p1, recv = m * p2, rem = m * p1, apicEff = m * (p2 - p1), tsLeft = cost - rem;
+    var intro = '<p><strong>' + name + '</strong> repurchases ' + N(n) + ' of its own shares in the open market for ' + $(p1) + ' per share and holds them as treasury stock. Later it resells ' + N(m) + ' of these shares for ' + $(p2) + ' per share.</p>';
+    return {
+      intro: intro,
+      takeaway: 'Treasury stock is a contra-equity account recorded at cost. When shares are reissued, the difference between the proceeds and cost goes to additional paid-in capital (or reduces it), never to net income.',
+      steps: [
+        ns('What is the <strong>balance in treasury stock</strong> after the repurchase?', 'Treasury stock after repurchase', cost, '$', 0, 'Shares repurchased &times; price paid.', N(n) + ' &times; ' + $(p1) + ' = <strong>' + $(cost) + '</strong>.', { tol: 0 }),
+        ns('How much <strong>cash does the company receive</strong> from reselling the shares?', 'Cash from resale', recv, '$', 0, 'Shares resold &times; resale price.', N(m) + ' &times; ' + $(p2) + ' = <strong>' + $(recv) + '</strong>.', { tol: 0 }),
+        ns('What is the <strong>balance in treasury stock</strong> after the resale?', 'Treasury stock after resale', tsLeft, '$', 0, 'Treasury stock is carried at the original cost. The resale removes the cost of the shares sold (' + N(m) + ' &times; ' + $(p1) + ').', $(cost) + ' &minus; ' + $(rem) + ' = <strong>' + $(tsLeft) + '</strong>.', { tol: 0 }),
+        ns('By how much does <strong>additional paid-in capital change</strong> because of the resale? Enter a decrease as a negative number.', 'Change in APIC from resale', apicEff, '$', 0, 'Resale proceeds minus the cost of the treasury shares sold.', $(recv) + ' &minus; ' + $(rem) + ' = <strong>' + $(apicEff) + '</strong>.', { tol: 0 }),
+        csr(R, 'Is the difference between the resale price and cost reported as a gain or loss on the income statement?', 'Income statement effect of treasury stock', ['No: it adjusts additional paid-in capital, not net income', 'Yes: it is a gain or loss included in net income', 'Yes: it is reported as other comprehensive income', 'No: it adjusts retained earnings through dividends'], 0, 'A company cannot generate income by trading its own stock.', 'Companies cannot report gains or losses from transactions in their own stock. The difference adjusts APIC (or retained earnings if APIC is exhausted).')
+      ]
+    };
+  }
+
+  /* C. Dividends and splits */
+  function genDiv(R) {
+    var name = co(R);
+    var sh = R.step(100, 500, 10), eps = R.step(150, 600, 10) / 100, payout = R.pick([20, 25, 30, 40, 50]);
+    var dps = Math.round(eps * payout) / 100, price = R.step(20, 90, 1) + 0.0;
+    var total = sh * dps, pr = 100 * dps / eps, yld = 100 * dps / price;
+    var ratio = R.pick([2, 3, 4]);
+    var intro = '<p><strong>' + name + '</strong> has ' + N(sh) + ' million shares of common stock outstanding. It reports earnings per share of ' + $(eps, 2) + ' and declares and pays a cash dividend of ' + $(dps, 2) + ' per share. The stock&rsquo;s market price is ' + $(price) + ' per share. The company then announces a <strong>' + ratio + '-for-1 stock split</strong>.</p>';
+    return {
+      intro: intro,
+      takeaway: 'Cash dividends reduce cash and retained earnings (not net income). Payout = DPS &divide; EPS; yield = DPS &divide; price. A stock split increases the number of shares and lowers the price and par per share proportionally, with no change in total equity.',
+      steps: [
+        ns('What is the <strong>total cash dividend</strong> paid ($ millions, two decimals)?', 'Total cash dividends', total, '$', 2, 'Shares outstanding &times; dividend per share.', N(sh) + ' &times; ' + $(dps, 2) + ' = <strong>' + $(total, 2) + ' million</strong>.'),
+        ns('What is the <strong>dividend payout ratio</strong> (dividend per share &divide; EPS)? Round to one decimal.', 'Dividend payout ratio', pr, '%', 1, 'Dividends per share divided by EPS.', $(dps, 2) + ' &divide; ' + $(eps, 2) + ' = <strong>' + P(pr, 1) + '</strong>.', { tol: 0.01 }),
+        ns('What is the <strong>dividend yield</strong> (dividend per share &divide; market price)? Round to two decimals.', 'Dividend yield', yld, '%', 2, 'Dividends per share divided by the stock price.', $(dps, 2) + ' &divide; ' + $(price) + ' = <strong>' + P(yld, 2) + '</strong>.', { tol: 0.01 }),
+        ns('How many shares (in millions) are outstanding <strong>after the ' + ratio + '-for-1 split</strong>?', 'Shares after split (millions)', sh * ratio, '', 0, 'Multiply the existing shares by ' + ratio + '.', N(sh) + ' &times; ' + ratio + ' = <strong>' + N(sh * ratio) + ' million</strong>.', { tol: 0, suffix: 'million' }),
+        ns('All else equal, what is the <strong>expected market price per share after the split</strong>? Round to two decimals.', 'Price after split', price / ratio, '$', 2, 'Total market value is unchanged, so the price is divided by the split ratio.', $(price) + ' &divide; ' + ratio + ' = <strong>' + $(price / ratio, 2) + '</strong>.', { tol: 0.002 })
+      ]
+    };
+  }
+
+  /* D. Stock-based compensation */
+  function genSBC(R) {
+    var name = co(R);
+    var sh = R.step(100, 500, 50) * 1000, fv = R.step(20, 90, 1), yrs = R.pick([3, 4]), f = R.pick([0, 5, 10, 20]);
+    var total = sh * fv, exp = total * (1 - f / 100), ann = exp / yrs, unrec = exp - ann;
+    var intro = '<p><strong>' + name + '</strong> grants employees ' + N(sh) + ' restricted stock units. The grant-date fair value is ' + $(fv) + ' per unit. The units vest at the end of ' + yrs + ' years of service (cliff vesting), and the company expects ' + f + '% of the units to be forfeited.</p>';
+    return {
+      intro: intro,
+      takeaway: 'Stock-based compensation is measured at grant-date fair value and recognized as expense over the service period. It is a noncash expense (added back in operating cash flow) but a real cost to shareholders through dilution or share repurchases.',
+      steps: [
+        ns('What is the <strong>total grant-date fair value</strong> of the award before forfeitures?', 'Total fair value of award', total, '$', 0, 'Units granted &times; fair value per unit.', N(sh) + ' &times; ' + $(fv) + ' = <strong>' + $(total) + '</strong>.', { tol: 0 }),
+        ns('What <strong>total compensation cost</strong> does the company expect to recognize after expected forfeitures?', 'Expected compensation cost', exp, '$', 0, 'Total fair value &times; (1 &minus; expected forfeiture rate).', $(total) + ' &times; ' + (100 - f) + '% = <strong>' + $(exp) + '</strong>.', { tol: 0.002 }),
+        ns('How much <strong>compensation expense</strong> is recognized in each year of the service period?', 'Annual compensation expense', ann, '$', 0, 'Spread the expected cost evenly over the ' + yrs + '-year service period.', $(exp) + ' &divide; ' + yrs + ' = <strong>' + $(ann) + '</strong> per year.', { tol: 0.002 }),
+        ns('How much <strong>unrecognized compensation cost</strong> remains at the end of Year 1?', 'Unrecognized compensation cost', unrec, '$', 0, 'Expected total cost minus the expense recognized in Year 1.', $(exp) + ' &minus; ' + $(ann) + ' = <strong>' + $(unrec) + '</strong>.', { tol: 0.002 }),
+        csr(R, 'How does stock-based compensation expense affect <strong>operating cash flow</strong> under the indirect method?', 'Cash flow effect', ['It is added back to net income because it is a noncash expense', 'It is subtracted from net income because it uses cash', 'It is reported as a financing outflow', 'It has no effect on the statement of cash flows'], 0, 'The expense reduces net income but no cash leaves the company when the award is granted.', 'The expense lowers net income but involves no cash outflow, so it is added back in operating activities. The real cash cost often appears later when the company repurchases shares to offset dilution.')
+      ]
+    };
+  }
+
+  /* E. EPS */
+  function genEPS(R) {
+    var name = co(R);
+    var ni = R.step(300, 1500, 10), pdiv = R.pick([0, 0, 20, 30, 40]), beg = R.step(100, 400, 10), iss = R.step(20, 80, 10), mo = R.pick([3, 4, 6, 9]), bb = R.pick([0, 0, 10, 20]);
+    var months = 12 - mo; // issued 'mo' months into the year
+    var wavg = beg + iss * months / 12 - bb * 0; // repurchase ignored for simplicity
+    var opts = R.step(10, 40, 5), ex = R.step(15, 40, 1), mp = ex + R.step(8, 30, 1);
+    var basic = (ni - pdiv) / wavg, inc = opts - opts * ex / mp, dil = (ni - pdiv) / (wavg + inc);
+    var intro = '<p><strong>' + name + '</strong> reports net income of ' + $(ni) + ' million' + (pdiv ? ' and pays preferred dividends of ' + $(pdiv) + ' million' : ' (it has no preferred stock)') + '. It began the year with ' + N(beg) + ' million common shares outstanding and issued an additional ' + N(iss) + ' million shares ' + mo + ' months into the year (so they were outstanding for ' + months + ' months). At year-end, employees held ' + N(opts) + ' million stock options with an exercise price of ' + $(ex) + '. The average market price of the stock during the year was ' + $(mp) + '.</p>';
+    return {
+      intro: intro,
+      takeaway: 'Basic EPS = (net income &minus; preferred dividends) &divide; weighted average common shares. Diluted EPS adds the incremental shares from in-the-money options (treasury stock method) and other dilutive securities.',
+      steps: [
+        ns('What is the <strong>weighted average number of common shares</strong> outstanding (millions, one decimal)?', 'Weighted average shares', wavg, '', 1, 'Beginning shares + new shares &times; (months outstanding &divide; 12).', N(beg) + ' + ' + N(iss) + ' &times; ' + months + '/12 = <strong>' + N(wavg, 1) + ' million</strong>.', { suffix: 'million' }),
+        ns('What is <strong>basic EPS</strong>? Round to two decimals.', 'Basic EPS', basic, '$', 2, 'Subtract preferred dividends from net income (' + $(pdiv) + '), then divide by weighted average shares.', '(' + $(ni) + ' &minus; ' + $(pdiv) + ') &divide; ' + N(wavg, 1) + ' = <strong>' + $(basic, 2) + '</strong>.', { tol: 0.004 }),
+        ns('Using the treasury stock method, how many <strong>incremental shares</strong> do the options add (millions, two decimals)?', 'Incremental shares from options', inc, '', 2, 'Assume the options are exercised and the cash is used to buy back shares at the average market price: incremental shares = options &minus; (options &times; exercise price &divide; market price).', N(opts) + ' &minus; (' + N(opts) + ' &times; ' + $(ex) + ' &divide; ' + $(mp) + ') = <strong>' + N(inc, 2) + ' million</strong>.', { suffix: 'million', tol: 0.01 }),
+        ns('What is <strong>diluted EPS</strong>? Round to two decimals.', 'Diluted EPS', dil, '$', 2, 'Divide the same earnings by weighted average shares plus the incremental option shares.', '(' + $(ni) + ' &minus; ' + $(pdiv) + ') &divide; (' + N(wavg, 1) + ' + ' + N(inc, 2) + ') = <strong>' + $(dil, 2) + '</strong>.', { tol: 0.005 }),
+        csr(R, 'Why is diluted EPS lower than basic EPS?', 'Why diluted EPS is lower', ['It assumes in-the-money options are exercised, which increases the share count', 'It subtracts the cost of the options from earnings', 'It uses a different net income', 'It excludes shares issued during the year'], 0, 'Compare the denominators of the two EPS calculations.', 'Diluted EPS presumes the most extreme case: options are exercised, spreading earnings over more shares.')
+      ]
+    };
+  }
+
+  /* F. AOCI */
+  function genAOCI(R) {
+    var name = co(R);
+    var ni = R.step(200, 1200, 10), fxc = -R.step(20, 150, 5), afs = R.step(-60, 80, 5), pen = R.step(-50, 40, 5), beg = -R.step(50, 400, 10);
+    var oci = fxc + afs + pen, ci = ni + oci, end = beg + oci;
+    var intro = '<p>During the year the U.S. dollar strengthened against the foreign currencies in which <strong>' + name + '</strong>&rsquo;s subsidiaries operate. The company reports the following ($ millions).</p>' + T(['Item', 'Amount'], [['Net income', $(ni)], ['Foreign currency translation adjustment', $(fxc)], ['Unrealized gain (loss) on available-for-sale debt securities, net of tax', $(afs)], ['Pension and postretirement adjustments, net of tax', $(pen)], ['Accumulated other comprehensive income (loss), beginning of year', $(beg)]]);
+    return {
+      intro: intro,
+      takeaway: 'Other comprehensive income (OCI) captures changes in equity that bypass net income (translation adjustments, unrealized gains and losses on certain securities, pension adjustments). Comprehensive income = net income + OCI, and OCI accumulates in AOCI within stockholders&rsquo; equity.',
+      steps: [
+        ns('What is <strong>total other comprehensive income (loss)</strong> for the year ($ millions)? Enter a loss as a negative number.', 'Total OCI', oci, '$', 0, 'Add the three OCI items, keeping signs.', $(fxc) + G(afs) + G(pen) + ' = <strong>' + $(oci) + '</strong>.', { tol: 0 }),
+        ns('What is <strong>total comprehensive income</strong> ($ millions)?', 'Comprehensive income', ci, '$', 0, 'Net income plus other comprehensive income.', $(ni) + G(oci) + ' = <strong>' + $(ci) + '</strong>.', { tol: 0 }),
+        ns('What is the <strong>ending balance of AOCI</strong> ($ millions)? Enter a loss balance as a negative number.', 'Ending AOCI', end, '$', 0, 'Beginning AOCI plus OCI for the year.', $(beg) + G(oci) + ' = <strong>' + $(end) + '</strong>.', { tol: 0 }),
+        csr(R, 'Why is the foreign currency translation adjustment negative when the dollar strengthens (for subsidiaries with positive net assets)?', 'Why the translation adjustment is negative', ['Foreign net assets translate into fewer dollars, and the change is reported in OCI rather than net income', 'Foreign sales fall, which reduces net income', 'The parent must record a realized loss in net income', 'The subsidiary&rsquo;s debt increases in value'], 0, 'Think about what a stronger dollar does to the dollar value of assets denominated in euros, yen, and so on.', 'A stronger dollar shrinks the dollar value of net assets held abroad. The unrealized change goes directly to AOCI and is not included in net income.')
+      ]
+    };
+  }
+
+  /* G. Book value per share */
+  function genBVPS(R) {
+    var name = co(R);
+    var pref = R.pick([0, 0, 200, 300, 500]), eq = R.step(2000, 9000, 100) + pref, issued = R.step(200, 600, 10), tres = R.step(20, 140, 10), price = R.step(20, 120, 1);
+    var out = issued - tres, common = eq - pref, bv = common / out, mv = out * price, mtb = mv / common;
+    var intro = '<p><strong>' + name + '</strong> reports total stockholders&rsquo; equity of ' + $(eq) + ' million' + (pref ? ', of which ' + $(pref) + ' million is preferred stock (carried at its liquidation value)' : ' (no preferred stock)') + '. It has issued ' + N(issued) + ' million common shares, of which ' + N(tres) + ' million are held in treasury. The stock trades at ' + $(price) + ' per share.</p>';
+    return {
+      intro: intro,
+      takeaway: 'Book value per share = equity available to common shareholders &divide; common shares outstanding (issued less treasury). Comparing it with the market price (market-to-book) shows how the market values the company relative to its accounting equity.',
+      steps: [
+        ns('How many <strong>common shares are outstanding</strong> (millions)?', 'Shares outstanding (millions)', out, '', 0, 'Shares issued minus shares held in treasury.', N(issued) + ' &minus; ' + N(tres) + ' = <strong>' + N(out) + ' million</strong>.', { tol: 0, suffix: 'million' }),
+        ns('What is the <strong>equity available to common shareholders</strong> ($ millions)?', 'Common equity', common, '$', 0, 'Total equity minus preferred stock.', $(eq) + ' &minus; ' + $(pref) + ' = <strong>' + $(common) + '</strong>.', { tol: 0 }),
+        ns('What is <strong>book value per share</strong>? Round to two decimals.', 'Book value per share', bv, '$', 2, 'Common equity divided by shares outstanding.', $(common) + ' &divide; ' + N(out) + ' = <strong>' + $(bv, 2) + '</strong>.', { tol: 0.004 }),
+        ns('What is the <strong>market capitalization</strong> ($ millions)?', 'Market capitalization', mv, '$', 0, 'Shares outstanding &times; market price.', N(out) + ' &times; ' + $(price) + ' = <strong>' + $(mv) + '</strong>.', { tol: 0 }),
+        ns('What is the <strong>market-to-book ratio</strong> (market value of common &divide; book value of common)? Round to two decimals.', 'Market-to-book ratio', mtb, 'x', 2, 'Market capitalization divided by common equity (or price divided by book value per share).', $(mv) + ' &divide; ' + $(common) + ' = <strong>' + N(mtb, 2) + 'x</strong>.', { tol: 0.006 })
+      ]
+    };
+  }
+
+  window.MODULE = {
+    num: 8,
+    title: 'Stock Transactions, Dividends, and EPS',
+    subtitle: 'Stock issuances, treasury stock, dividends and splits, stock-based compensation, comprehensive income, and earnings per share.',
+    types: [
+      { label: 'Stock Issuance', desc: 'Cash received, common stock at par, and additional paid-in capital.', gen: genIssue },
+      { label: 'Treasury Stock', desc: 'Repurchase and resale of shares and the effect on APIC.', gen: genTreasury },
+      { label: 'Dividends and Stock Splits', desc: 'Total dividends, payout ratio, dividend yield, and split effects.', gen: genDiv },
+      { label: 'Stock-Based Compensation', desc: 'Fair value, expense over the vesting period, and unrecognized cost.', gen: genSBC },
+      { label: 'Basic and Diluted EPS', desc: 'Weighted average shares, basic EPS, treasury stock method, and diluted EPS.', gen: genEPS },
+      { label: 'Comprehensive Income and AOCI', desc: 'OCI items, comprehensive income, and the AOCI roll-forward.', gen: genAOCI },
+      { label: 'Book Value per Share', desc: 'Shares outstanding, common equity, book value per share, and market-to-book.', gen: genBVPS }
+    ]
+  };
+})();
+
+</script>
+<script>
+/* MBA 623 tutor UI engine */
+(function () {
+  'use strict';
+  var L = window.TutorLib;
+  var M = window.MODULE;
+  var app = document.getElementById('app');
+  var state = null;
+  var TUTOR_NAMES = ['Kelly', 'Riley', 'Alex', 'Kai', 'Yamal', 'Taylor', 'Vanessa'];
+  var TUTOR = (function () {
+    var n = null;
+    try { n = window.sessionStorage.getItem('mba623TutorName'); } catch (e) { n = null; }
+    if (TUTOR_NAMES.indexOf(n) < 0) {
+      n = TUTOR_NAMES[Math.floor(Math.random() * TUTOR_NAMES.length)];
+      try { window.sessionStorage.setItem('mba623TutorName', n); } catch (e) {}
+    }
+    return n;
+  })();
+
+  var PRAISE = ['Correct! Nice work.', 'Exactly right!', 'Well done, that is correct.', 'Great job, you got it!', 'Yes, that is right. Excellent!', 'Spot on!', 'That is correct. Keep it up!', 'Right on target!'];
+  var WRONG1 = ['Not quite, but you are close to a good approach. Here is a hint.', 'That is not the answer we are looking for, but no worries. Here is a hint.', 'Not quite right. Take a look at this hint and try once more.', 'Almost there, but that is not it. Use this hint and give it another try.'];
+  var WRONG2 = ['That is still not it, and that is okay. Here is the solution for this step.', 'Not this time, but this is how you learn. Here is the solution.', 'Still not quite. Let us walk through the solution together.'];
+
+  function el(html) { var d = document.createElement('div'); d.innerHTML = html; return d.firstElementChild; }
+  function rndFrom(arr, i) { return arr[i % arr.length]; }
+
+  /* ---------- menu ---------- */
+  function renderMenu() {
+    state = null;
+    var h = '<section class="tutor-intro" aria-labelledby="menu-h"><div class="tutor-avatar" aria-hidden="true">' + TUTOR.charAt(0) + '</div><div><h2 id="menu-h">Hi, I am ' + TUTOR + '. I am your personal tutor.</h2>';
+    h += '<p>Pick a type of problem below. You will get a new scenario with new numbers, and I will walk you through it one step at a time.</p>';
+    h += '<p>Type your answer for each step and press <strong>Check my answer</strong>. If you miss a step, no worries: you will get a hint and one more try. If you miss it again, you will see the solution for that step and then move on to the next one.</p></div></section>';
+    h += '<ul class="menu" aria-labelledby="menu-h">';
+    M.types.forEach(function (t, i) {
+      h += '<li><button type="button" class="menu-btn" data-type="' + i + '"><span class="menu-title">' + t.label + '</span><span class="menu-desc">' + t.desc + '</span><span class="menu-go" aria-hidden="true">Start &rarr;</span></button></li>';
+    });
+    h += '</ul>';
+    app.innerHTML = h;
+    var btns = app.querySelectorAll('.menu-btn');
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].addEventListener('click', function (e) { startProblem(parseInt(e.currentTarget.getAttribute('data-type'), 10)); });
+    }
+    document.title = 'Module ' + M.num + ' Tutor | MBA 623';
+  }
+
+  /* ---------- problem ---------- */
+  function startProblem(typeIdx) {
+    var seed = (Math.floor(Math.random() * 4294967295) ^ Date.now()) >>> 0;
+    var R = L.makeRNG(seed);
+    var t = M.types[typeIdx];
+    var prob = t.gen(R, L);
+    state = { typeIdx: typeIdx, type: t, prob: prob, i: 0, attempt: 0, log: [], first: 0, second: 0, shown: 0 };
+    renderProblem(true);
+  }
+
+  function renderHeader() {
+    var p = state.prob;
+    var h = '<div class="toolbar"><button type="button" class="link-btn" id="to-menu">&larr; Choose a different problem type</button></div>';
+    h += '<h2 id="prob-h" tabindex="-1">' + state.type.label + '</h2>';
+    h += '<section class="scenario" aria-labelledby="scen-h"><h3 id="scen-h">The problem</h3>' + p.intro + '</section>';
+    return h;
+  }
+
+  function renderLog() {
+    if (!state.log.length) return '';
+    var h = '<section class="worklog" aria-labelledby="log-h"><h3 id="log-h">Your work so far</h3><ol>';
+    state.log.forEach(function (e) {
+      h += '<li><span class="log-q">' + e.q + '</span><span class="log-a ' + e.cls + '"><span class="badge">' + e.badge + '</span> ' + e.text + '</span></li>';
+    });
+    return h + '</ol></section>';
+  }
+
+  function renderProblem(focusHeading) {
+    var p = state.prob, s = p.steps[state.i], n = p.steps.length;
+    var h = renderHeader();
+    h += renderLog();
+    h += '<section class="step" aria-labelledby="step-h">';
+    h += '<p class="stepno" id="step-h">Step ' + (state.i + 1) + ' of ' + n + '</p>';
+    h += '<div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="' + n + '" aria-valuenow="' + state.i + '" aria-label="Progress"><span style="width:' + Math.round(100 * state.i / n) + '%"></span></div>';
+    h += '<div class="q" id="q">' + s.q + '</div>';
+    h += '<form id="f" novalidate>';
+    if (s.choices) {
+      h += '<fieldset class="choices"><legend class="sr-only">Choose one answer</legend>';
+      s.choices.forEach(function (c, k) {
+        h += '<label class="choice"><input type="radio" name="c" value="' + k + '"><span>' + c + '</span></label>';
+      });
+      h += '</fieldset>';
+    } else {
+      h += '<div class="ans-row"><label class="sr-only" for="ans">Your answer</label>';
+      if (s.unit === '$') h += '<span class="aff" aria-hidden="true">$</span>';
+      h += '<input id="ans" name="ans" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" aria-describedby="q">';
+      if (s.unit === '%') h += '<span class="aff" aria-hidden="true">%</span>';
+      else if (s.unit === 'x') h += '<span class="aff" aria-hidden="true">times</span>';
+      else if (s.unit === 'days') h += '<span class="aff" aria-hidden="true">days</span>';
+      else if (s.unit === 'units') h += '<span class="aff" aria-hidden="true">units</span>';
+      else if (s.suffix) h += '<span class="aff" aria-hidden="true">' + s.suffix + '</span>';
+      h += '</div>';
+      if (s.note) h += '<p class="fmt">' + s.note + '</p>';
+    }
+    h += '<div class="actions"><button type="submit" class="primary" id="check">Check my answer</button></div>';
+    h += '</form>';
+    h += '<div id="fb" class="fb" role="status" aria-live="polite"></div>';
+    h += '</section>';
+    app.innerHTML = h;
+    document.getElementById('to-menu').addEventListener('click', renderMenu);
+    document.getElementById('f').addEventListener('submit', onCheck);
+    if (focusHeading) { var hd = document.getElementById('prob-h'); hd.focus(); window.scrollTo(0, 0); }
+    else { var inp = document.getElementById('ans') || document.querySelector('input[name=c]'); if (inp) inp.focus(); }
+  }
+
+  function currentUserAnswer(s) {
+    if (s.choices) {
+      var r = document.querySelector('input[name=c]:checked');
+      return r ? parseInt(r.value, 10) : null;
+    }
+    return document.getElementById('ans').value;
+  }
+
+  function onCheck(ev) {
+    ev.preventDefault();
+    var s = state.prob.steps[state.i];
+    var ua = currentUserAnswer(s);
+    var fb = document.getElementById('fb');
+    var correct;
+    if (s.choices) {
+      if (ua === null) { fb.className = 'fb info'; fb.innerHTML = '<p>Please choose an answer first.</p>'; return; }
+      correct = (ua === s.correct);
+    } else {
+      if (!String(ua).trim() || !isFinite(L.parseAnswer(ua))) { fb.className = 'fb info'; fb.innerHTML = '<p>Please enter a number (for example 1,250 or 12.5). Do not include words.</p>'; document.getElementById('ans').focus(); return; }
+      correct = L.isCorrectNumber(s, ua);
+    }
+    state.attempt++;
+    var correctText = s.choices ? s.choices[s.correct] : L.fmtAnswer(s);
+    var yourText = s.choices ? s.choices[ua] : L.esc(String(ua).trim());
+    var qShort = s.short || s.q;
+    if (correct) {
+      if (state.attempt === 1) state.first++; else state.second++;
+      fb.className = 'fb good';
+      fb.innerHTML = '<p class="fb-h"><span class="badge ok">Correct</span> ' + rndFrom(PRAISE, state.i + state.prob.steps.length) + '</p>' + (s.sol ? '<div class="sol"><strong>Why:</strong> ' + s.sol + '</div>' : '') + '<p class="ans-line">Answer: <strong>' + correctText + '</strong></p>';
+      state.log.push({ q: qShort, text: correctText, cls: 'good', badge: state.attempt === 1 ? 'Correct' : 'Correct (2nd try)' });
+      lockAndNext();
+    } else if (state.attempt === 1) {
+      fb.className = 'fb warn';
+      fb.innerHTML = '<p class="fb-h"><span class="badge no">Not yet</span> ' + rndFrom(WRONG1, state.i) + '</p><div class="hint"><strong>Hint from ' + TUTOR + ':</strong> ' + s.hint + '</div>';
+      document.getElementById('check').textContent = 'Try again';
+      var inp = document.getElementById('ans'); if (inp) { inp.select(); inp.focus(); }
+    } else {
+      state.shown++;
+      fb.className = 'fb bad';
+      fb.innerHTML = '<p class="fb-h"><span class="badge no">Solution</span> ' + rndFrom(WRONG2, state.i) + '</p><div class="sol">' + s.sol + '</div><p class="ans-line">Answer: <strong>' + correctText + '</strong></p>';
+      state.log.push({ q: qShort, text: correctText + ' <span class="yours">(you entered ' + yourText + ')</span>', cls: 'bad', badge: 'Solution shown' });
+      lockAndNext();
+    }
+  }
+
+  function lockAndNext() {
+    var f = document.getElementById('f');
+    var ctrls = f.querySelectorAll('input,button');
+    for (var i = 0; i < ctrls.length; i++) ctrls[i].disabled = true;
+    var last = state.i === state.prob.steps.length - 1;
+    var btn = el('<div class="actions"><button type="button" class="primary" id="next">' + (last ? 'See my results' : 'Next step &rarr;') + '</button></div>');
+    document.getElementById('fb').appendChild(btn);
+    var nb = document.getElementById('next');
+    nb.addEventListener('click', function () {
+      state.i++; state.attempt = 0;
+      if (state.i >= state.prob.steps.length) renderSummary(); else renderProblem(false);
+    });
+    nb.focus();
+  }
+
+  function renderSummary() {
+    var n = state.prob.steps.length;
+    var perfect = state.first === n;
+    var msg;
+    if (perfect) msg = 'Outstanding! You got every step right on the first try.';
+    else if (state.shown === 0) msg = 'Nice work! You solved every step, and you learned from the hints along the way.';
+    else if (state.first + state.second >= n / 2) msg = 'Good effort! You solved most of this problem. Review the steps marked "Solution shown" and try a new problem to lock it in.';
+    else msg = 'Thanks for sticking with it. Review the solutions below, look back at the module slides, and try a fresh problem. Practice makes this much easier.';
+    var h = renderHeader();
+    h += '<section class="summary" aria-labelledby="sum-h"><h3 id="sum-h" tabindex="-1">Your results</h3>';
+    h += '<p class="big"><strong>' + TUTOR + ' says:</strong> ' + msg + '</p>';
+    h += '<ul class="score"><li><strong>' + state.first + '</strong> correct on the first try</li><li><strong>' + state.second + '</strong> correct on the second try</li><li><strong>' + state.shown + '</strong> solution' + (state.shown === 1 ? '' : 's') + ' shown</li></ul>';
+    if (state.prob.takeaway) h += '<div class="takeaway"><strong>Key takeaway:</strong> ' + state.prob.takeaway + '</div>';
+    h += '</section>';
+    h += renderLog();
+    h += '<div class="actions row"><button type="button" class="primary" id="again">Try another problem like this</button><button type="button" class="secondary" id="menu2">Choose a different problem type</button></div>';
+    app.innerHTML = h;
+    document.getElementById('to-menu').addEventListener('click', renderMenu);
+    document.getElementById('menu2').addEventListener('click', renderMenu);
+    var ti = state.typeIdx;
+    document.getElementById('again').addEventListener('click', function () { startProblem(ti); });
+    var sh = document.getElementById('sum-h'); sh.focus(); window.scrollTo(0, 0);
+  }
+
+  document.getElementById('mod-title').textContent = M.title;
+  document.getElementById('mod-sub').textContent = M.subtitle;
+  document.getElementById('mod-num').textContent = 'Module ' + M.num;
+  renderMenu();
+})();
+
+</script>
+</body>
+</html>

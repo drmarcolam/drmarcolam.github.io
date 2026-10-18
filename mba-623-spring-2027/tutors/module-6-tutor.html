@@ -1,0 +1,659 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Module 6 Tutor: Inventories, Accounts Payable, and Long-Term Assets | MBA 623</title>
+<meta name="description" content="Interactive step-by-step practice tutor for MBA 623, Module 6: Inventories, Accounts Payable, and Long-Term Assets.">
+<style>
+:root{--bg:#F5F8F5;--card:#ffffff;--ink:#16222B;--muted:#4D5D68;--line:#C7D2CB;--brand:#14574B;--brand-ink:#ffffff;--brand-soft:#E0EEE8;--gold:#8CC7B0;--good:#0F6A37;--good-bg:#E3F3E9;--warn:#7a4a00;--warn-bg:#fff2d6;--bad:#9B2C1F;--bad-bg:#FBE8E4;--info-bg:#E8EEF9;--focus:#1A47B8;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#0F1A17;--card:#16231F;--ink:#E8EFEA;--muted:#A9B8B0;--line:#33453E;--brand:#5FC2AB;--brand-ink:#06241D;--brand-soft:#1B3A33;--gold:#5FC2AB;--good:#7FDCA0;--good-bg:#16352A;--warn:#f3c978;--warn-bg:#3a2d12;--bad:#FFAE9F;--bad-bg:#3E1D18;--info-bg:#1B2B4A;--focus:#9DB8FF;}}
+*{box-sizing:border-box}
+html{font-size:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.55;font-size:1.0625rem}
+.skip{position:absolute;left:-999px;top:0;background:var(--brand);color:var(--brand-ink);padding:.6rem 1rem;z-index:10}
+.skip:focus{left:8px;top:8px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+header.site{background:var(--brand);color:var(--brand-ink);padding:1.1rem 1rem 1.4rem}
+header.site .wrap{max-width:60rem;margin:0 auto}
+header.site a{color:var(--brand-ink);font-weight:600}
+.eyebrow{margin:.5rem 0 0;font-size:.95rem;letter-spacing:.04em;text-transform:uppercase;opacity:.92}
+header.site h1{margin:.15rem 0 .2rem;font-size:1.7rem;line-height:1.2}
+header.site p.sub{margin:0;opacity:.95}
+main{max-width:60rem;margin:0 auto;padding:1.25rem 1rem 3rem}
+h2{font-size:1.45rem;margin:.2rem 0 .6rem;color:var(--ink)}
+h3{font-size:1.1rem;margin:.1rem 0 .5rem}
+.lead{color:var(--muted);max-width:46rem}
+ul.menu{list-style:none;margin:1rem 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(17rem,1fr));gap:.85rem}
+.menu-btn{width:100%;height:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-left:6px solid var(--brand);border-radius:10px;padding:.9rem 1rem;color:var(--ink);font:inherit;cursor:pointer;display:flex;flex-direction:column;gap:.35rem}
+.menu-btn:hover{box-shadow:0 2px 10px rgba(0,0,0,.15);border-color:var(--brand)}
+.menu-title{font-weight:700;font-size:1.08rem}
+.menu-desc{color:var(--muted);font-size:.95rem}
+.menu-go{margin-top:auto;color:var(--brand);font-weight:700;font-size:.95rem}
+.toolbar{margin-bottom:.5rem}
+.link-btn{background:none;border:0;color:var(--brand);font:inherit;font-weight:600;text-decoration:underline;cursor:pointer;padding:.25rem 0}
+.scenario,.step,.worklog,.summary{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:1rem 1.1rem;margin:0 0 1rem}
+.scenario{border-left:6px solid var(--gold)}
+.scenario p{margin:.3rem 0}
+.step{border-left:6px solid var(--brand)}
+.stepno{margin:0 0 .35rem;font-weight:700;color:var(--brand)}
+.bar{height:8px;background:var(--brand-soft);border-radius:6px;overflow:hidden;margin:0 0 .8rem}
+.bar span{display:block;height:100%;background:var(--brand)}
+.q{font-size:1.1rem;margin:0 0 .7rem}
+.q p{margin:.3rem 0}
+.ans-row{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+.aff{font-weight:700;color:var(--muted)}
+input[type=text]{font:inherit;font-size:1.15rem;padding:.55rem .7rem;border:2px solid var(--muted);border-radius:8px;background:var(--bg);color:var(--ink);width:13rem;max-width:100%}
+.fmt{margin:.4rem 0 0;color:var(--muted);font-size:.93rem}
+fieldset.choices{border:0;padding:0;margin:0;display:grid;gap:.5rem}
+.choice{display:flex;gap:.65rem;align-items:flex-start;padding:.6rem .75rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);cursor:pointer}
+.choice:hover{border-color:var(--brand)}
+.choice input{margin-top:.3rem;width:1.1rem;height:1.1rem;flex:none}
+.actions{margin-top:.9rem}
+.actions.row{display:flex;gap:.75rem;flex-wrap:wrap}
+button.primary,button.secondary{font:inherit;font-weight:700;border-radius:8px;padding:.65rem 1.2rem;cursor:pointer;border:2px solid var(--brand)}
+button.primary{background:var(--brand);color:var(--brand-ink)}
+button.secondary{background:transparent;color:var(--brand)}
+button:disabled{opacity:.55;cursor:not-allowed}
+.fb{margin-top:.9rem}
+.fb.good,.fb.warn,.fb.bad,.fb.info{padding:.8rem 1rem;border-radius:8px;border:1px solid var(--line)}
+.fb.good{background:var(--good-bg);border-color:var(--good)}
+.fb.warn{background:var(--warn-bg);border-color:var(--warn)}
+.fb.bad{background:var(--bad-bg);border-color:var(--bad)}
+.fb.info{background:var(--info-bg)}
+.fb p{margin:.25rem 0}
+.fb-h{font-weight:600}
+.badge{display:inline-block;font-size:.8rem;font-weight:800;padding:.1rem .5rem;border-radius:99px;border:1.5px solid currentColor;margin-right:.35rem;vertical-align:.05em}
+.badge.ok{color:var(--good)}.badge.no{color:var(--bad)}
+.fb.warn .badge.no{color:var(--warn)}
+.hint,.sol{margin:.4rem 0}
+.ans-line{margin-top:.5rem}
+.worklog ol{margin:.2rem 0 0;padding-left:1.3rem}
+.worklog li{margin:.45rem 0}
+.log-q{display:block;color:var(--muted);font-size:.95rem}
+.log-a.good{color:var(--good)}
+.log-a.bad{color:var(--bad)}
+.log-a .badge{font-size:.72rem}
+.yours{color:var(--muted)}
+.summary .big{font-size:1.15rem;font-weight:600}
+.score{list-style:none;padding:0;margin:.5rem 0;display:flex;gap:1.4rem;flex-wrap:wrap}
+.score strong{font-size:1.4rem;color:var(--brand)}
+.takeaway{background:var(--brand-soft);border-radius:8px;padding:.7rem .9rem;margin-top:.6rem}
+.tbl-wrap{overflow-x:auto;margin:.6rem 0}
+table.data{border-collapse:collapse;min-width:16rem;font-size:.98rem}
+table.data caption{text-align:left;font-weight:700;padding-bottom:.3rem}
+table.data th,table.data td{border:1px solid var(--line);padding:.35rem .65rem;text-align:left;vertical-align:top}
+table.data thead th{background:var(--brand-soft)}
+table.data .r,table.data td.r{text-align:right;font-variant-numeric:tabular-nums}
+table.data tr.tot th,table.data tr.tot td{font-weight:700;border-top:2px solid var(--ink)}
+table.data tbody th{font-weight:500}
+.eq{display:inline-block;background:var(--brand-soft);padding:.1rem .5rem;border-radius:6px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.95em}
+footer.site{max-width:60rem;margin:0 auto;padding:1rem;color:var(--muted);border-top:1px solid var(--line);font-size:.92rem}
+@media (max-width:30rem){header.site h1{font-size:1.4rem}input[type=text]{width:100%}}
+@media print{header.site{background:#fff;color:#000}.menu-go,.toolbar,.actions{display:none}}
+
+
+.tutor-intro{display:flex;gap:1rem;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-left:6px solid var(--brand);border-radius:10px;padding:1rem 1.1rem;margin:0 0 1.25rem}
+.tutor-avatar{flex:none;width:3.4rem;height:3.4rem;border-radius:50%;background:var(--brand);color:var(--brand-ink);display:flex;align-items:center;justify-content:center;font-size:1.6rem;font-weight:700}
+.tutor-intro h2{margin:0 0 .35rem}
+.tutor-intro p{margin:.35rem 0;color:var(--ink)}
+@media (max-width:30rem){.tutor-intro{flex-direction:column}}
+</style>
+</head>
+<body>
+<a class="skip" href="#app">Skip to main content</a>
+<header class="site">
+  <div class="wrap">
+    <p class="eyebrow">MBA 623 &middot; <span id="mod-num">Module 6</span></p>
+    <h1><span id="mod-title">Inventories, Accounts Payable, and Long-Term Assets</span> Tutor</h1>
+    <p class="sub" id="mod-sub">Inventory costing, LIFO reserve, days inventory outstanding, depreciation, asset sales and impairments, PP&E analysis, and goodwill.</p>
+  </div>
+</header>
+<main id="app" tabindex="-1"></main>
+<footer class="site">MBA 623 &middot; Western Carolina University &middot; Practice problems use fictional companies and randomly generated numbers. Nothing you enter here is saved or graded.</footer>
+<script>
+/* MBA 623 tutor library: random helpers, formatting, answer checking (no DOM) */
+(function (root) {
+  'use strict';
+  function makeRNG(seed) {
+    let a = seed >>> 0;
+    const next = function () {
+      a = (a + 0x6D2B79F5) | 0;
+      let t = Math.imul(a ^ (a >>> 15), 1 | a);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+    const R = {
+      next: next,
+      int: function (lo, hi) { return lo + Math.floor(next() * (hi - lo + 1)); },
+      step: function (lo, hi, s) { return lo + s * Math.floor(next() * ((hi - lo) / s + 1)); },
+      pick: function (arr) { return arr[Math.floor(next() * arr.length)]; },
+      chance: function (p) { return next() < p; },
+      shuffle: function (arr) {
+        const b = arr.slice();
+        for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(next() * (i + 1)); const t = b[i]; b[i] = b[j]; b[j] = t; }
+        return b;
+      },
+      sample: function (arr, n) { return R.shuffle(arr).slice(0, n); }
+    };
+    return R;
+  }
+
+  const COMPANIES = ['Alder Ridge Foods', 'Bluewater Outfitters', 'Cedar Point Instruments', 'Dunmore Apparel', 'Eastgate Medical', 'Fairhaven Home Goods', 'Granite Peak Tools', 'Harborview Software', 'Ironwood Furniture', 'Juniper Labs', 'Kestrel Logistics', 'Lakeshore Beverages', 'Maple Hollow Bakery', 'Northfield Electronics', 'Oakmont Pharmaceuticals', 'Pinecrest Sports', 'Quarry Lane Builders', 'Redstone Retail', 'Silverline Networks', 'Tamarack Outdoor', 'Union Square Coffee', 'Valley Forge Machining', 'Westbrook Toys', 'Yellowfin Seafood', 'Zephyr Cycles'];
+
+  function addCommas(s) { return s.replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+  function num(x, d) {
+    d = d || 0;
+    const neg = x < 0 && Math.round(Math.abs(x) * Math.pow(10, d)) !== 0;
+    const s = Math.abs(x).toFixed(d).split('.');
+    return (neg ? '-' : '') + addCommas(s[0]) + (s[1] ? '.' + s[1] : '');
+  }
+  function money(x, d) {
+    d = d || 0;
+    const s = num(Math.abs(x), d);
+    const isZero = Math.round(Math.abs(x) * Math.pow(10, d)) === 0;
+    return (x < 0 && !isZero) ? '($' + s + ')' : '$' + s;
+  }
+  function sgn(x, d) { return (x < 0 ? ' &minus; ' : ' + ') + money(Math.abs(x), d); }
+  function pct(x, d) { d = (d === undefined) ? 1 : d; return num(x, d) + '%'; }
+  function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+
+  /* table(headers, rows, opts) rows: array of arrays; first column left aligned, others right aligned */
+  function table(head, rows, opts) {
+    opts = opts || {};
+    let h = '<div class="tbl-wrap"><table class="data"' + (opts.caption ? '' : '') + '>';
+    if (opts.caption) h += '<caption>' + opts.caption + '</caption>';
+    if (head && head.length) {
+      h += '<thead><tr>';
+      head.forEach(function (c, i) { h += '<th scope="col"' + (i === 0 ? '' : ' class="r"') + '>' + c + '</th>'; });
+      h += '</tr></thead>';
+    }
+    h += '<tbody>';
+    rows.forEach(function (r) {
+      let cls = '';
+      if (r && r.cls) { cls = ' class="' + r.cls + '"'; r = r.cells; }
+      h += '<tr' + cls + '>';
+      r.forEach(function (c, i) {
+        if (i === 0) h += '<th scope="row">' + c + '</th>';
+        else h += '<td class="r">' + c + '</td>';
+      });
+      h += '</tr>';
+    });
+    return h + '</tbody></table></div>';
+  }
+
+  function parseAnswer(raw) {
+    if (raw === null || raw === undefined) return NaN;
+    let s = String(raw).trim().toLowerCase();
+    if (!s) return NaN;
+    let neg = false;
+    if (/^\(.*\)$/.test(s)) { neg = true; s = s.slice(1, -1); }
+    s = s.replace(/[−–]/g, '-');
+    if (s.charAt(0) === '-') { neg = true; s = s.slice(1); }
+    s = s.replace(/[\$,\s]/g, '').replace(/%$/, '');
+    s = s.replace(/(units?|days?|times|x|shares?|batches|hours|hrs|years?|yrs?|dollars)$/, '');
+    if (s.charAt(0) === '-') { neg = true; s = s.slice(1); }
+    if (!/^[0-9]*\.?[0-9]+$|^[0-9]+\.$/.test(s)) return NaN;
+    const v = parseFloat(s);
+    return neg ? -v : v;
+  }
+
+  function isCorrectNumber(step, raw) {
+    const u = parseAnswer(raw);
+    if (!isFinite(u)) return false;
+    const a = step.ans;
+    const dec = step.dec || 0;
+    const rel = (step.tol === undefined) ? 0.003 : step.tol;
+    const absTol = 0.5 * Math.pow(10, -dec) + 1e-9;
+    const ok = function (v) { return Math.abs(v - a) <= Math.max(absTol, rel * Math.abs(a)); };
+    if (ok(u)) return true;
+    if (step.unit === '%' && Math.abs(u) <= 1.5 && Math.abs(a) > 1.5 && ok(u * 100)) return true;
+    return false;
+  }
+
+  function fmtAnswer(step) {
+    const d = step.dec || 0;
+    switch (step.unit) {
+      case '$': return money(step.ans, d);
+      case '%': return pct(step.ans, d);
+      case 'x': return num(step.ans, d) + 'x';
+      case 'days': return num(step.ans, d) + ' days';
+      case 'units': return num(step.ans, d) + ' units';
+      default: return num(step.ans, d) + (step.suffix ? ' ' + step.suffix : '');
+    }
+  }
+
+
+  /* step builders */
+  function ns(q, short, ans, unit, dec, hint, sol, extra) {
+    var o = { q: '<p>' + q + '</p>', short: short, ans: ans, unit: unit || '', dec: dec || 0, hint: hint, sol: sol };
+    if (extra) { for (var k in extra) o[k] = extra[k]; }
+    return o;
+  }
+  function cs(q, short, choices, correct, hint, sol) {
+    return { q: '<p>' + q + '</p>', short: short, choices: choices, correct: correct, hint: hint, sol: sol };
+  }
+  /* shuffle choices but keep track of the correct one */
+  function csr(R, q, short, choices, correctIdx, hint, sol) {
+    var order = R.shuffle(choices.map(function (c, i) { return i; }));
+    return cs(q, short, order.map(function (i) { return choices[i]; }), order.indexOf(correctIdx), hint, sol);
+  }
+
+  root.TutorLib = { sgn: sgn, ns: ns, cs: cs, csr: csr, makeRNG: makeRNG, COMPANIES: COMPANIES, num: num, money: money, pct: pct, esc: esc, table: table, parseAnswer: parseAnswer, isCorrectNumber: isCorrectNumber, fmtAnswer: fmtAnswer };
+})(typeof window !== 'undefined' ? window : globalThis);
+
+</script>
+<script>
+(function () {
+  var L = window.TutorLib, $ = L.money, N = L.num, P = L.pct, T = L.table, ns = L.ns, cs = L.cs, csr = L.csr, G = L.sgn;
+  function co(R) { return R.pick(L.COMPANIES); }
+
+  /* A. Inventory costing */
+  function layerCost(layers, units, order) {
+    var left = units, cost = 0;
+    order.forEach(function (i) { var take = Math.min(left, layers[i].u); cost += take * layers[i].c; left -= take; });
+    return cost;
+  }
+  function genInv(R) {
+    var name = co(R);
+    var c0 = R.step(10, 30, 1), c1 = c0 + R.step(1, 3, 1), c2 = c1 + R.step(1, 3, 1);
+    var u0 = R.step(100, 300, 50), u1 = R.step(200, 500, 50), u2 = R.step(200, 500, 50);
+    var tot = u0 + u1 + u2, sold = Math.round(tot * R.step(50, 80, 5) / 100 / 50) * 50;
+    var price = c2 + R.step(8, 20, 1);
+    var layers = [{ u: u0, c: c0 }, { u: u1, c: c1 }, { u: u2, c: c2 }];
+    var avail = u0 * c0 + u1 * c1 + u2 * c2;
+    var fifo = layerCost(layers, sold, [0, 1, 2]), lifo = layerCost(layers, sold, [2, 1, 0]), avgc = avail / tot, avg = avgc * sold;
+    var sales = sold * price, gpF = sales - fifo;
+    var intro = '<p><strong>' + name + '</strong> started the period with inventory and made two purchases. It then sold <strong>' + N(sold) + ' units</strong> at ' + $(price) + ' each. The company uses a periodic inventory system.</p>' + T(['Layer', 'Units', 'Cost per unit'], [['Beginning inventory', N(u0), $(c0)], ['First purchase', N(u1), $(c1)], ['Second purchase', N(u2), $(c2)]]);
+    return {
+      intro: intro,
+      takeaway: 'When costs are rising, FIFO assigns the older, lower costs to COGS (higher gross profit and higher ending inventory); LIFO assigns the newest, higher costs to COGS (lower gross profit and lower taxes); average cost falls in between.',
+      steps: [
+        ns('How many <strong>units are in ending inventory</strong>?', 'Ending inventory units', tot - sold, 'units', 0, 'Units available (beginning + purchases) minus units sold.', N(tot) + ' &minus; ' + N(sold) + ' = <strong>' + N(tot - sold) + ' units</strong>.', { tol: 0 }),
+        ns('Compute <strong>cost of goods sold under FIFO</strong>.', 'FIFO COGS', fifo, '$', 0, 'FIFO sells the oldest units first: start with beginning inventory, then the first purchase, and so on, until you reach ' + N(sold) + ' units.', 'Oldest ' + N(sold) + ' units at their layer costs = <strong>' + $(fifo) + '</strong>.', { tol: 0 }),
+        ns('Compute <strong>cost of goods sold under LIFO</strong>.', 'LIFO COGS', lifo, '$', 0, 'LIFO sells the newest units first: start with the second purchase, then the first purchase, then beginning inventory.', 'Newest ' + N(sold) + ' units at their layer costs = <strong>' + $(lifo) + '</strong>.', { tol: 0 }),
+        ns('Compute <strong>cost of goods sold under the average cost method</strong>.', 'Average cost COGS', avg, '$', 0, 'Average cost per unit = cost of goods available &divide; units available. Multiply by units sold.', 'Goods available = ' + $(avail) + '; average cost = ' + $(avail) + ' &divide; ' + N(tot) + ' = ' + $(avgc, 2) + ' per unit. COGS = ' + $(avgc, 2) + ' &times; ' + N(sold) + ' = <strong>' + $(avg) + '</strong>.'),
+        ns('Compute <strong>gross profit under FIFO</strong>.', 'FIFO gross profit', gpF, '$', 0, 'Sales = ' + N(sold) + ' &times; ' + $(price) + '. Then subtract FIFO COGS.', $(sales) + ' &minus; ' + $(fifo) + ' = <strong>' + $(gpF) + '</strong>. (LIFO gross profit would be ' + $(sales - lifo) + '.)', { tol: 0 }),
+        cs('Which method produces the <strong>highest gross profit</strong> in this period of rising costs?', 'Highest gross profit method', ['FIFO', 'LIFO', 'Average cost', 'All methods give the same gross profit'], 0, 'Which method assigns the lowest (oldest) costs to cost of goods sold?', 'FIFO gives the lowest COGS (' + $(fifo) + ') and therefore the highest gross profit. LIFO has the lowest taxable income, which is why many U.S. companies use it.')
+      ]
+    };
+  }
+
+  /* B. LIFO reserve */
+  function genLIFO(R) {
+    var name = co(R);
+    var inv = R.step(800, 3000, 10), r0 = R.step(100, 900, 10), dr = R.step(20, 200, 10) * (R.chance(0.8) ? 1 : -1), r1 = r0 + dr;
+    if (r1 < 0) r1 = r0 + 20;
+    dr = r1 - r0;
+    var cogs = R.step(6000, 20000, 100), t = R.pick([21, 24, 25]);
+    var fifoInv = inv + r1, fifoCogs = cogs - dr, tax = r1 * t / 100;
+    var intro = '<p><strong>' + name + '</strong> uses LIFO for its inventories and discloses a LIFO reserve in the notes ($ millions).</p>' + T(['Item', 'Amount'], [['Inventories, as reported (LIFO), end of year', $(inv)], ['LIFO reserve, beginning of year', $(r0)], ['LIFO reserve, end of year', $(r1)], ['Cost of goods sold, as reported (LIFO)', $(cogs)]]) + '<p>Assume a tax rate of ' + t + '%.</p>';
+    return {
+      intro: intro,
+      takeaway: 'FIFO inventory = LIFO inventory + LIFO reserve; FIFO COGS = LIFO COGS &minus; change in the LIFO reserve. These adjustments make LIFO and FIFO companies comparable. The cumulative reserve times the tax rate approximates taxes deferred by using LIFO.',
+      steps: [
+        ns('What would <strong>ending inventories</strong> be under FIFO ($ millions)?', 'FIFO inventories', fifoInv, '$', 0, 'FIFO inventory = LIFO inventory + LIFO reserve (end of year).', $(inv) + ' + ' + $(r1) + ' = <strong>' + $(fifoInv) + '</strong>.', { tol: 0 }),
+        ns('What was the <strong>change in the LIFO reserve</strong> during the year ($ millions)? Enter a decrease as a negative number.', 'Change in LIFO reserve', dr, '$', 0, 'Ending reserve minus beginning reserve.', $(r1) + ' &minus; ' + $(r0) + ' = <strong>' + $(dr) + '</strong>.', { tol: 0 }),
+        ns('What would <strong>cost of goods sold</strong> have been under FIFO ($ millions)?', 'FIFO cost of goods sold', fifoCogs, '$', 0, 'FIFO COGS = LIFO COGS &minus; increase in the LIFO reserve (or + a decrease).', $(cogs) + G(-dr) + ' = <strong>' + $(fifoCogs) + '</strong>.', { tol: 0 }),
+        ns('Approximately how much <strong>cumulative income tax</strong> has the company saved by using LIFO instead of FIFO ($ millions, one decimal)?', 'Cumulative taxes saved', tax, '$', 1, 'Cumulative tax savings &asymp; LIFO reserve (end of year) &times; tax rate.', $(r1) + ' &times; ' + t + '% = <strong>' + $(tax, 1) + '</strong>.'),
+        csr(R, 'Compared with FIFO, what is the effect of LIFO in a period of rising costs on <strong>pretax income</strong> this year?', 'Effect on pretax income', dr > 0 ? ['LIFO pretax income is lower by the increase in the reserve', 'LIFO pretax income is higher by the increase in the reserve', 'There is no difference in pretax income', 'LIFO pretax income is lower by the whole reserve balance'] : ['LIFO pretax income is higher by the decrease in the reserve', 'LIFO pretax income is lower by the decrease in the reserve', 'There is no difference in pretax income', 'LIFO pretax income is higher by the whole reserve balance'], 0, 'LIFO COGS vs. FIFO COGS: which is higher? The difference is the change in the reserve (' + $(dr) + ').', dr > 0 ? 'LIFO COGS is higher than FIFO COGS by ' + $(dr) + ', so LIFO pretax income is lower by that amount.' : 'The reserve shrank (costs fell or inventory layers were liquidated), so LIFO COGS is lower than FIFO COGS by ' + $(-dr) + '; LIFO income is higher by that amount.')
+      ]
+    };
+  }
+
+  /* C. Lower of cost or market */
+  function genLCM(R) {
+    var name = co(R);
+    var units = R.step(200, 900, 50), cost = R.step(40, 160, 5);
+    var drop = R.step(5, 30, 5);
+    var mkt = cost - drop;
+    var tc = units * cost, tm = units * mkt, wd = tc - tm;
+    var ge = R.step(300, 900, 10) * 100, gp = ge - wd;
+    var intro = '<p><strong>' + name + '</strong> holds ' + N(units) + ' units of a product in inventory. Each unit cost ' + $(cost) + '. Because of falling demand, the net realizable value (market) of each unit is now ' + $(mkt) + '. Before any adjustment, the company reports a gross profit of ' + $(ge) + ' for the year.</p>';
+    return {
+      intro: intro,
+      takeaway: 'Inventory is reported at the lower of cost and net realizable value. When market falls below cost, the company writes the inventory down and recognizes the loss immediately (usually in cost of goods sold), which lowers gross profit.',
+      steps: [
+        ns('What is the <strong>total cost</strong> of the inventory?', 'Total cost', tc, '$', 0, 'Units &times; cost per unit.', N(units) + ' &times; ' + $(cost) + ' = <strong>' + $(tc) + '</strong>.', { tol: 0 }),
+        ns('What is the <strong>total market (net realizable) value</strong>?', 'Total market value', tm, '$', 0, 'Units &times; market value per unit.', N(units) + ' &times; ' + $(mkt) + ' = <strong>' + $(tm) + '</strong>.', { tol: 0 }),
+        ns('What <strong>write-down</strong> must the company record?', 'Inventory write-down', wd, '$', 0, 'The difference between cost and the lower market value.', $(tc) + ' &minus; ' + $(tm) + ' = <strong>' + $(wd) + '</strong>.', { tol: 0 }),
+        ns('What is the company&rsquo;s <strong>gross profit after the write-down</strong>?', 'Gross profit after write-down', gp, '$', 0, 'The write-down is recorded in cost of goods sold, so subtract it from the gross profit before adjustment.', $(ge) + ' &minus; ' + $(wd) + ' = <strong>' + $(gp) + '</strong>.', { tol: 0 })
+      ]
+    };
+  }
+
+  /* D. DIO, DPO, cash effect */
+  function genDIO(R) {
+    var name = co(R);
+    var cogs0 = R.step(8000, 25000, 100), cogs1 = Math.round(cogs0 * (1 + R.step(-2, 10, 1) / 100) / 10) * 10;
+    var d0 = R.step(55, 90, 1), imp = R.pick([-8, -6, -5, -4, 3, 4, 5, 7]);
+    var d1 = d0 + imp;
+    var i0 = Math.round(cogs0 / 365 * d0 / 10) * 10, i1 = Math.round(cogs1 / 365 * d1 / 10) * 10;
+    var p1 = R.step(30, 60, 1), ap1 = Math.round(cogs1 / 365 * p1 / 10) * 10, dsoc = R.step(10, 40, 1);
+    var dio1 = i1 / (cogs1 / 365), dio0 = i0 / (cogs0 / 365), cash = (dio0 - dio1) * cogs1 / 365, dpo = ap1 / (cogs1 / 365), ccc = dio1 + dsoc - dpo;
+    var intro = '<p><strong>' + name + '</strong> reports the following ($ millions). Use average balances as given and a 365-day year.</p>' + T(['', 'Prior year', 'Current year'], [['Cost of goods sold', $(cogs0), $(cogs1)], ['Average inventories', $(i0), $(i1)], ['Average accounts payable', '', $(ap1)]]) + '<p>In the current year, days sales outstanding (DSO) was ' + dsoc + ' days.</p>';
+    return {
+      intro: intro,
+      takeaway: 'DIO = average inventory &divide; (COGS &divide; 365). Each day of inventory reduction releases about one day of COGS in cash. The cash conversion cycle (DIO + DSO &minus; DPO) summarizes how long cash is tied up in operations.',
+      steps: [
+        ns('Compute current-year <strong>days inventory outstanding (DIO)</strong>. Round to one decimal.', 'DIO, current year', dio1, 'days', 1, 'DIO = average inventories &divide; (cost of goods sold &divide; 365).', $(i1) + ' &divide; (' + $(cogs1) + ' &divide; 365) = <strong>' + N(dio1, 1) + ' days</strong>.', { tol: 0.01 }),
+        ns('Compute prior-year <strong>DIO</strong>. Round to one decimal.', 'DIO, prior year', dio0, 'days', 1, 'Use the prior-year inventory and COGS.', $(i0) + ' &divide; (' + $(cogs0) + ' &divide; 365) = <strong>' + N(dio0, 1) + ' days</strong>.', { tol: 0.01 }),
+        ns('Estimate the <strong>cash released (positive) or tied up (negative)</strong> by the change in DIO ($ millions), using current-year COGS &divide; 365 as daily cost.', 'Cash effect of the change in DIO', cash, '$', 0, 'Cash effect = (prior DIO &minus; current DIO) &times; current-year COGS &divide; 365.', '(' + N(dio0, 1) + ' &minus; ' + N(dio1, 1) + ') &times; ' + $(cogs1) + ' &divide; 365 = <strong>' + $(cash) + '</strong>.', { tol: 0.06 }),
+        ns('Compute current-year <strong>days payable outstanding (DPO)</strong>. Round to one decimal.', 'DPO, current year', dpo, 'days', 1, 'DPO = average accounts payable &divide; (COGS &divide; 365).', $(ap1) + ' &divide; (' + $(cogs1) + ' &divide; 365) = <strong>' + N(dpo, 1) + ' days</strong>.', { tol: 0.01 }),
+        ns('Compute the current-year <strong>cash conversion cycle</strong> in days. Round to one decimal.', 'Cash conversion cycle', ccc, 'days', 1, 'CCC = DIO + DSO &minus; DPO.', N(dio1, 1) + ' + ' + dsoc + ' &minus; ' + N(dpo, 1) + ' = <strong>' + N(ccc, 1) + ' days</strong>.', { tol: 0.015 })
+      ]
+    };
+  }
+
+  /* E. Depreciation */
+  function genDep(R) {
+    var name = co(R);
+    var cost = R.step(60, 240, 10) * 1000, life = R.pick([4, 5, 8, 10]), salv = Math.round(cost * R.pick([0.05, 0.1, 0.15]) / 1000) * 1000;
+    var hrs = R.step(40, 100, 10) * 1000, h1 = Math.round(hrs * R.pick([0.15, 0.2, 0.25]) / 1000) * 1000;
+    var sl = (cost - salv) / life, nbv2 = cost - 2 * sl;
+    var rate = 2 / life, d1 = cost * rate, d2 = (cost - d1) * rate;
+    var uop = (cost - salv) / hrs * h1;
+    var intro = '<p><strong>' + name + '</strong> buys a machine for ' + $(cost) + '. It expects the machine to last ' + life + ' years with a salvage value of ' + $(salv) + ', or ' + N(hrs) + ' machine hours in total. In Year 1 the machine is used for ' + N(h1) + ' hours.</p>';
+    return {
+      intro: intro,
+      takeaway: 'Straight-line spreads cost evenly; accelerated methods (double-declining balance) record more expense early and less later; units-of-production ties expense to usage. Total depreciation over the life is the same (cost less salvage); only the timing differs.',
+      steps: [
+        ns('Compute <strong>annual straight-line depreciation</strong>.', 'Straight-line depreciation', sl, '$', 0, '(Cost &minus; salvage value) &divide; useful life.', '(' + $(cost) + ' &minus; ' + $(salv) + ') &divide; ' + life + ' = <strong>' + $(sl) + '</strong> per year.', { tol: 0.002 }),
+        ns('What is the machine&rsquo;s <strong>net book value at the end of Year 2</strong> under straight-line?', 'Net book value after Year 2 (SL)', nbv2, '$', 0, 'Cost minus two years of accumulated depreciation.', $(cost) + ' &minus; 2 &times; ' + $(sl) + ' = <strong>' + $(nbv2) + '</strong>.', { tol: 0.002 }),
+        ns('Compute <strong>Year 1 depreciation under double-declining balance</strong>.', 'DDB depreciation, Year 1', d1, '$', 0, 'The DDB rate is 2 &divide; useful life = ' + P(rate * 100, 1) + ' applied to the beginning net book value (ignore salvage in the first years).', $(cost) + ' &times; ' + P(rate * 100, 1) + ' = <strong>' + $(d1) + '</strong>.', { tol: 0.002 }),
+        ns('Compute <strong>Year 2 depreciation under double-declining balance</strong>.', 'DDB depreciation, Year 2', d2, '$', 0, 'Apply the same rate to the net book value at the start of Year 2 (cost minus Year 1 depreciation).', '(' + $(cost) + ' &minus; ' + $(d1) + ') &times; ' + P(rate * 100, 1) + ' = <strong>' + $(d2) + '</strong>.', { tol: 0.002 }),
+        ns('Compute <strong>Year 1 depreciation under units-of-production</strong>.', 'Units-of-production depreciation, Year 1', uop, '$', 0, 'Depreciation per hour = (cost &minus; salvage) &divide; total hours. Multiply by hours used in Year 1.', '(' + $(cost) + ' &minus; ' + $(salv) + ') &divide; ' + N(hrs) + ' = ' + $((cost - salv) / hrs, 3) + ' per hour &times; ' + N(h1) + ' = <strong>' + $(uop) + '</strong>.', { tol: 0.002 }),
+        cs('Which method reports the <strong>lowest net income in Year 1</strong>, assuming everything else is equal?', 'Lowest Year 1 income method', ['Double-declining balance (largest Year 1 expense)', 'Straight-line', 'Units-of-production', 'All methods are equal in Year 1'], d1 >= sl && d1 >= uop ? 0 : (uop > sl ? 2 : 1), 'Compare Year 1 depreciation: ' + $(sl) + ' (SL), ' + $(d1) + ' (DDB), ' + $(uop) + ' (units).', 'The method with the largest Year 1 depreciation expense produces the lowest net income that year: SL ' + $(sl) + ', DDB ' + $(d1) + ', units-of-production ' + $(uop) + '.')
+      ]
+    };
+  }
+
+  /* F. Sale and impairment */
+  function genSale(R) {
+    var name = co(R);
+    var cost = R.step(80, 400, 10) * 1000, ad = Math.round(cost * R.step(30, 80, 5) / 100 / 1000) * 1000, nbv = cost - ad;
+    var proceeds = Math.round(nbv * (1 + R.pick([-30, -20, -10, 10, 20, 35]) / 100) / 1000) * 1000;
+    var gl = proceeds - nbv;
+    var carry = R.step(300, 900, 10) * 1000, fv = Math.round(carry * R.step(55, 85, 5) / 100 / 1000) * 1000;
+    var u = R.chance(0.6) ? Math.round(carry * R.step(70, 95, 5) / 100 / 1000) * 1000 : Math.round(carry * R.step(105, 140, 5) / 100 / 1000) * 1000;
+    var imp = u < carry;
+    var loss = imp ? carry - fv : 0;
+    var intro = '<p><strong>' + name + '</strong> sold equipment that originally cost ' + $(cost) + ' and had accumulated depreciation of ' + $(ad) + '. It received ' + $(proceeds) + ' in cash.</p><p>Separately, the company reviews a retail store for impairment. The store&rsquo;s carrying amount (net book value) is ' + $(carry) + '. Management estimates that the store will generate <em>undiscounted</em> future cash flows of ' + $(u) + ', and the store&rsquo;s fair value is ' + $(fv) + '.</p>';
+    return {
+      intro: intro,
+      takeaway: 'Gain or loss on sale = proceeds &minus; net book value. An asset is impaired if its carrying amount exceeds the undiscounted cash flows it will generate; the loss is the carrying amount minus fair value.',
+      steps: [
+        ns('What is the <strong>net book value</strong> of the equipment sold?', 'Net book value of equipment', nbv, '$', 0, 'Cost minus accumulated depreciation.', $(cost) + ' &minus; ' + $(ad) + ' = <strong>' + $(nbv) + '</strong>.', { tol: 0 }),
+        ns('What is the <strong>gain or loss on the sale</strong>? Enter a loss as a negative number.', 'Gain (loss) on sale', gl, '$', 0, 'Proceeds minus net book value.', $(proceeds) + ' &minus; ' + $(nbv) + ' = <strong>' + $(gl) + '</strong>, a ' + (gl >= 0 ? 'gain' : 'loss') + '.', { tol: 0 }),
+        cs('Applying the impairment test, is the store <strong>impaired</strong>?', 'Is the store impaired?', ['Yes: the undiscounted cash flows are less than the carrying amount', 'No: the undiscounted cash flows are at least the carrying amount', 'Yes: fair value is always below carrying amount', 'No: impairment only applies to goodwill'], imp ? 0 : 1, 'Compare undiscounted future cash flows (' + $(u) + ') with the carrying amount (' + $(carry) + ').', imp ? 'Undiscounted cash flows of ' + $(u) + ' are below the carrying amount of ' + $(carry) + ', so the asset is impaired.' : 'Undiscounted cash flows of ' + $(u) + ' are at least the carrying amount of ' + $(carry) + ', so the asset is not impaired (even though fair value is lower).'),
+        ns('What <strong>impairment loss</strong> should be recognized? Enter 0 if there is no impairment.', 'Impairment loss', loss, '$', 0, 'If impaired, write the asset down to fair value: loss = carrying amount &minus; fair value.', imp ? $(carry) + ' &minus; ' + $(fv) + ' = <strong>' + $(loss) + '</strong>.' : 'No impairment, so the loss is <strong>$0</strong>.', { tol: 0 })
+      ]
+    };
+  }
+
+  /* G. PP&E analysis */
+  function genPPE(R) {
+    var name = co(R);
+    var gross = R.step(4000, 15000, 100), pct = R.step(35, 70, 1), ad = Math.round(gross * pct / 100 / 10) * 10, net1 = gross - ad;
+    var net0 = net1 + R.step(-400, 400, 10);
+    var dep = Math.round(gross / R.step(10, 20, 1) / 10) * 10, sales = Math.round(((net0 + net1) / 2) * R.step(15, 50, 1) / 10 / 10) * 10;
+    var avg = (net0 + net1) / 2, tur = sales / avg, life = gross / dep, used = 100 * ad / gross, age = ad / dep, rem = net1 / dep;
+    var intro = '<p><strong>' + name + '</strong> reports the following ($ millions).</p>' + T(['Item', 'Amount'], [['Net sales', $(sales)], ['Property, plant, and equipment, at cost (gross), end of year', $(gross)], ['Accumulated depreciation, end of year', $(ad)], ['Net PP&amp;E, beginning of year', $(net0)], ['Depreciation expense for the year', $(dep)]]);
+    return {
+      intro: intro,
+      takeaway: 'PP&amp;E turnover shows how much revenue each dollar of net PP&amp;E generates. Useful life (gross PP&amp;E &divide; depreciation), percent used up (accumulated depreciation &divide; gross PP&amp;E), age, and remaining life help forecast future capital spending needs.',
+      steps: [
+        ns('Compute <strong>PP&amp;E turnover</strong> (net sales &divide; average net PP&amp;E). Round to two decimals.', 'PP&E turnover', tur, 'x', 2, 'Net PP&amp;E at year-end = gross PP&amp;E &minus; accumulated depreciation = ' + $(net1) + '. Average it with the beginning balance.', 'Average net PP&amp;E = (' + $(net0) + ' + ' + $(net1) + ') &divide; 2 = ' + $(avg, 1) + '. ' + $(sales) + ' &divide; ' + $(avg, 1) + ' = <strong>' + N(tur, 2) + 'x</strong>.'),
+        ns('Estimate the average <strong>useful life</strong> of the depreciable assets in years (gross PP&amp;E &divide; depreciation expense). Round to one decimal.', 'Estimated useful life', life, '', 1, 'Divide gross PP&amp;E by annual depreciation expense.', $(gross) + ' &divide; ' + $(dep) + ' = <strong>' + N(life, 1) + ' years</strong>.', { suffix: 'years' }),
+        ns('What percent of the asset base is <strong>used up</strong> (accumulated depreciation &divide; gross PP&amp;E)? Round to one decimal.', 'Percent used up', used, '%', 1, 'Accumulated depreciation divided by gross PP&amp;E.', $(ad) + ' &divide; ' + $(gross) + ' = <strong>' + P(used, 1) + '</strong>.'),
+        ns('Estimate the <strong>average age</strong> of the assets in years (accumulated depreciation &divide; depreciation expense). Round to one decimal.', 'Estimated average age', age, '', 1, 'Accumulated depreciation divided by annual depreciation.', $(ad) + ' &divide; ' + $(dep) + ' = <strong>' + N(age, 1) + ' years</strong>.', { suffix: 'years' }),
+        ns('Estimate the <strong>remaining useful life</strong> in years (net PP&amp;E &divide; depreciation expense). Round to one decimal.', 'Estimated remaining life', rem, '', 1, 'Net PP&amp;E at year-end divided by annual depreciation.', $(net1) + ' &divide; ' + $(dep) + ' = <strong>' + N(rem, 1) + ' years</strong>. Age + remaining life = ' + N(age + rem, 1) + ' years, the total useful life.', { suffix: 'years' })
+      ]
+    };
+  }
+
+  /* H. Goodwill */
+  function genGW(R) {
+    var name = co(R), tgt = R.pick(['Alpine Analytics', 'Brightwave Devices', 'Coastal Labs', 'Delta Components', 'Evergreen Systems']);
+    var price = R.step(400, 1500, 10);
+    var tang = Math.round(price * R.step(25, 45, 1) / 100 / 10) * 10, ident = Math.round(price * R.step(15, 30, 1) / 100 / 10) * 10, liab = Math.round(price * R.step(8, 20, 1) / 100 / 10) * 10;
+    var net = tang + ident - liab, gw = price - net, life = R.pick([5, 8, 10]), cr = Math.round(ident * R.step(50, 80, 5) / 100 / 10) * 10;
+    var am = cr / life;
+    var carry = gw + R.step(200, 400, 10), fv = Math.round(carry * R.step(55, 85, 5) / 100 / 10) * 10;
+    var il = Math.min(gw, Math.max(0, carry - fv));
+    var intro = '<p><strong>' + name + '</strong> acquires <strong>' + tgt + '</strong> for ' + $(price) + ' million in cash. The fair values of the identifiable items acquired are shown below ($ millions).</p>' + T(['Item', 'Fair value'], [['Tangible assets (property, inventory, receivables)', $(tang)], ['Identifiable intangibles (patents and customer relationships)', $(ident)], ['Liabilities assumed', $(liab)]]) + '<p>Of the identifiable intangibles, customer relationships valued at ' + $(cr) + ' million have a ' + life + '-year useful life. Two years later, the acquired unit has a carrying amount (including goodwill) of ' + $(carry) + ' million and a fair value of ' + $(fv) + ' million.</p>';
+    return {
+      intro: intro,
+      takeaway: 'Goodwill = purchase price &minus; fair value of net identifiable assets. Finite-lived intangibles are amortized; goodwill is not amortized but is tested for impairment at least annually (loss = carrying amount &minus; fair value, limited to the goodwill balance).',
+      steps: [
+        ns('What is the <strong>fair value of net identifiable assets</strong> acquired ($ millions)?', 'Net identifiable assets', net, '$', 0, 'Tangible assets + identifiable intangibles &minus; liabilities assumed.', $(tang) + ' + ' + $(ident) + ' &minus; ' + $(liab) + ' = <strong>' + $(net) + '</strong>.', { tol: 0 }),
+        ns('How much <strong>goodwill</strong> is recorded ($ millions)?', 'Goodwill', gw, '$', 0, 'Purchase price minus the fair value of net identifiable assets.', $(price) + ' &minus; ' + $(net) + ' = <strong>' + $(gw) + '</strong>.', { tol: 0 }),
+        ns('What <strong>annual amortization expense</strong> is recorded on the customer relationships ($ millions, one decimal)?', 'Annual amortization', am, '$', 1, 'Value &divide; useful life. Goodwill is not amortized.', $(cr) + ' &divide; ' + life + ' = <strong>' + $(am, 1) + '</strong>.'),
+        ns('What <strong>goodwill impairment loss</strong> must be recorded at the end of Year 2 ($ millions)? Enter 0 if none.', 'Goodwill impairment loss', il, '$', 0, 'If the unit&rsquo;s fair value is below its carrying amount, the loss is the shortfall, but it cannot exceed the goodwill balance.', 'Carrying amount ' + $(carry) + ' &minus; fair value ' + $(fv) + ' = ' + $(Math.max(0, carry - fv)) + '. The loss is limited to goodwill of ' + $(gw) + ': <strong>' + $(il) + '</strong>.', { tol: 0 }),
+        ns('What <strong>percent of the purchase price</strong> was allocated to goodwill? Round to one decimal.', 'Goodwill as % of price', 100 * gw / price, '%', 1, 'Goodwill divided by the purchase price.', $(gw) + ' &divide; ' + $(price) + ' = <strong>' + P(100 * gw / price, 1) + '</strong>.')
+      ]
+    };
+  }
+
+  window.MODULE = {
+    num: 6,
+    title: 'Inventories, Accounts Payable, and Long-Term Assets',
+    subtitle: 'Inventory costing, LIFO reserve, days inventory outstanding, depreciation, asset sales and impairments, PP&E analysis, and goodwill.',
+    types: [
+      { label: 'Inventory Costing: FIFO, LIFO, Average', desc: 'Compute COGS and gross profit under each method and see which is highest.', gen: genInv },
+      { label: 'LIFO Reserve Adjustments', desc: 'Convert LIFO inventory and COGS to FIFO and estimate tax savings.', gen: genLIFO },
+      { label: 'Lower of Cost or Market', desc: 'Write down inventory and see the effect on gross profit.', gen: genLCM },
+      { label: 'Inventory Days and Cash Impact', desc: 'DIO, DPO, cash conversion cycle, and the cash released by faster inventory turns.', gen: genDIO },
+      { label: 'Depreciation Methods', desc: 'Straight-line, double-declining balance, and units-of-production.', gen: genDep },
+      { label: 'Asset Sales and Impairment', desc: 'Gain or loss on sale, impairment test, and impairment loss.', gen: genSale },
+      { label: 'PP&E Turnover and Useful Life', desc: 'PP&E turnover, useful life, percent used up, age, and remaining life.', gen: genPPE },
+      { label: 'Goodwill and Intangibles', desc: 'Purchase price allocation, goodwill, amortization, and impairment.', gen: genGW }
+    ]
+  };
+})();
+
+</script>
+<script>
+/* MBA 623 tutor UI engine */
+(function () {
+  'use strict';
+  var L = window.TutorLib;
+  var M = window.MODULE;
+  var app = document.getElementById('app');
+  var state = null;
+  var TUTOR_NAMES = ['Kelly', 'Riley', 'Alex', 'Kai', 'Yamal', 'Taylor', 'Vanessa'];
+  var TUTOR = (function () {
+    var n = null;
+    try { n = window.sessionStorage.getItem('mba623TutorName'); } catch (e) { n = null; }
+    if (TUTOR_NAMES.indexOf(n) < 0) {
+      n = TUTOR_NAMES[Math.floor(Math.random() * TUTOR_NAMES.length)];
+      try { window.sessionStorage.setItem('mba623TutorName', n); } catch (e) {}
+    }
+    return n;
+  })();
+
+  var PRAISE = ['Correct! Nice work.', 'Exactly right!', 'Well done, that is correct.', 'Great job, you got it!', 'Yes, that is right. Excellent!', 'Spot on!', 'That is correct. Keep it up!', 'Right on target!'];
+  var WRONG1 = ['Not quite, but you are close to a good approach. Here is a hint.', 'That is not the answer we are looking for, but no worries. Here is a hint.', 'Not quite right. Take a look at this hint and try once more.', 'Almost there, but that is not it. Use this hint and give it another try.'];
+  var WRONG2 = ['That is still not it, and that is okay. Here is the solution for this step.', 'Not this time, but this is how you learn. Here is the solution.', 'Still not quite. Let us walk through the solution together.'];
+
+  function el(html) { var d = document.createElement('div'); d.innerHTML = html; return d.firstElementChild; }
+  function rndFrom(arr, i) { return arr[i % arr.length]; }
+
+  /* ---------- menu ---------- */
+  function renderMenu() {
+    state = null;
+    var h = '<section class="tutor-intro" aria-labelledby="menu-h"><div class="tutor-avatar" aria-hidden="true">' + TUTOR.charAt(0) + '</div><div><h2 id="menu-h">Hi, I am ' + TUTOR + '. I am your personal tutor.</h2>';
+    h += '<p>Pick a type of problem below. You will get a new scenario with new numbers, and I will walk you through it one step at a time.</p>';
+    h += '<p>Type your answer for each step and press <strong>Check my answer</strong>. If you miss a step, no worries: you will get a hint and one more try. If you miss it again, you will see the solution for that step and then move on to the next one.</p></div></section>';
+    h += '<ul class="menu" aria-labelledby="menu-h">';
+    M.types.forEach(function (t, i) {
+      h += '<li><button type="button" class="menu-btn" data-type="' + i + '"><span class="menu-title">' + t.label + '</span><span class="menu-desc">' + t.desc + '</span><span class="menu-go" aria-hidden="true">Start &rarr;</span></button></li>';
+    });
+    h += '</ul>';
+    app.innerHTML = h;
+    var btns = app.querySelectorAll('.menu-btn');
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].addEventListener('click', function (e) { startProblem(parseInt(e.currentTarget.getAttribute('data-type'), 10)); });
+    }
+    document.title = 'Module ' + M.num + ' Tutor | MBA 623';
+  }
+
+  /* ---------- problem ---------- */
+  function startProblem(typeIdx) {
+    var seed = (Math.floor(Math.random() * 4294967295) ^ Date.now()) >>> 0;
+    var R = L.makeRNG(seed);
+    var t = M.types[typeIdx];
+    var prob = t.gen(R, L);
+    state = { typeIdx: typeIdx, type: t, prob: prob, i: 0, attempt: 0, log: [], first: 0, second: 0, shown: 0 };
+    renderProblem(true);
+  }
+
+  function renderHeader() {
+    var p = state.prob;
+    var h = '<div class="toolbar"><button type="button" class="link-btn" id="to-menu">&larr; Choose a different problem type</button></div>';
+    h += '<h2 id="prob-h" tabindex="-1">' + state.type.label + '</h2>';
+    h += '<section class="scenario" aria-labelledby="scen-h"><h3 id="scen-h">The problem</h3>' + p.intro + '</section>';
+    return h;
+  }
+
+  function renderLog() {
+    if (!state.log.length) return '';
+    var h = '<section class="worklog" aria-labelledby="log-h"><h3 id="log-h">Your work so far</h3><ol>';
+    state.log.forEach(function (e) {
+      h += '<li><span class="log-q">' + e.q + '</span><span class="log-a ' + e.cls + '"><span class="badge">' + e.badge + '</span> ' + e.text + '</span></li>';
+    });
+    return h + '</ol></section>';
+  }
+
+  function renderProblem(focusHeading) {
+    var p = state.prob, s = p.steps[state.i], n = p.steps.length;
+    var h = renderHeader();
+    h += renderLog();
+    h += '<section class="step" aria-labelledby="step-h">';
+    h += '<p class="stepno" id="step-h">Step ' + (state.i + 1) + ' of ' + n + '</p>';
+    h += '<div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="' + n + '" aria-valuenow="' + state.i + '" aria-label="Progress"><span style="width:' + Math.round(100 * state.i / n) + '%"></span></div>';
+    h += '<div class="q" id="q">' + s.q + '</div>';
+    h += '<form id="f" novalidate>';
+    if (s.choices) {
+      h += '<fieldset class="choices"><legend class="sr-only">Choose one answer</legend>';
+      s.choices.forEach(function (c, k) {
+        h += '<label class="choice"><input type="radio" name="c" value="' + k + '"><span>' + c + '</span></label>';
+      });
+      h += '</fieldset>';
+    } else {
+      h += '<div class="ans-row"><label class="sr-only" for="ans">Your answer</label>';
+      if (s.unit === '$') h += '<span class="aff" aria-hidden="true">$</span>';
+      h += '<input id="ans" name="ans" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" aria-describedby="q">';
+      if (s.unit === '%') h += '<span class="aff" aria-hidden="true">%</span>';
+      else if (s.unit === 'x') h += '<span class="aff" aria-hidden="true">times</span>';
+      else if (s.unit === 'days') h += '<span class="aff" aria-hidden="true">days</span>';
+      else if (s.unit === 'units') h += '<span class="aff" aria-hidden="true">units</span>';
+      else if (s.suffix) h += '<span class="aff" aria-hidden="true">' + s.suffix + '</span>';
+      h += '</div>';
+      if (s.note) h += '<p class="fmt">' + s.note + '</p>';
+    }
+    h += '<div class="actions"><button type="submit" class="primary" id="check">Check my answer</button></div>';
+    h += '</form>';
+    h += '<div id="fb" class="fb" role="status" aria-live="polite"></div>';
+    h += '</section>';
+    app.innerHTML = h;
+    document.getElementById('to-menu').addEventListener('click', renderMenu);
+    document.getElementById('f').addEventListener('submit', onCheck);
+    if (focusHeading) { var hd = document.getElementById('prob-h'); hd.focus(); window.scrollTo(0, 0); }
+    else { var inp = document.getElementById('ans') || document.querySelector('input[name=c]'); if (inp) inp.focus(); }
+  }
+
+  function currentUserAnswer(s) {
+    if (s.choices) {
+      var r = document.querySelector('input[name=c]:checked');
+      return r ? parseInt(r.value, 10) : null;
+    }
+    return document.getElementById('ans').value;
+  }
+
+  function onCheck(ev) {
+    ev.preventDefault();
+    var s = state.prob.steps[state.i];
+    var ua = currentUserAnswer(s);
+    var fb = document.getElementById('fb');
+    var correct;
+    if (s.choices) {
+      if (ua === null) { fb.className = 'fb info'; fb.innerHTML = '<p>Please choose an answer first.</p>'; return; }
+      correct = (ua === s.correct);
+    } else {
+      if (!String(ua).trim() || !isFinite(L.parseAnswer(ua))) { fb.className = 'fb info'; fb.innerHTML = '<p>Please enter a number (for example 1,250 or 12.5). Do not include words.</p>'; document.getElementById('ans').focus(); return; }
+      correct = L.isCorrectNumber(s, ua);
+    }
+    state.attempt++;
+    var correctText = s.choices ? s.choices[s.correct] : L.fmtAnswer(s);
+    var yourText = s.choices ? s.choices[ua] : L.esc(String(ua).trim());
+    var qShort = s.short || s.q;
+    if (correct) {
+      if (state.attempt === 1) state.first++; else state.second++;
+      fb.className = 'fb good';
+      fb.innerHTML = '<p class="fb-h"><span class="badge ok">Correct</span> ' + rndFrom(PRAISE, state.i + state.prob.steps.length) + '</p>' + (s.sol ? '<div class="sol"><strong>Why:</strong> ' + s.sol + '</div>' : '') + '<p class="ans-line">Answer: <strong>' + correctText + '</strong></p>';
+      state.log.push({ q: qShort, text: correctText, cls: 'good', badge: state.attempt === 1 ? 'Correct' : 'Correct (2nd try)' });
+      lockAndNext();
+    } else if (state.attempt === 1) {
+      fb.className = 'fb warn';
+      fb.innerHTML = '<p class="fb-h"><span class="badge no">Not yet</span> ' + rndFrom(WRONG1, state.i) + '</p><div class="hint"><strong>Hint from ' + TUTOR + ':</strong> ' + s.hint + '</div>';
+      document.getElementById('check').textContent = 'Try again';
+      var inp = document.getElementById('ans'); if (inp) { inp.select(); inp.focus(); }
+    } else {
+      state.shown++;
+      fb.className = 'fb bad';
+      fb.innerHTML = '<p class="fb-h"><span class="badge no">Solution</span> ' + rndFrom(WRONG2, state.i) + '</p><div class="sol">' + s.sol + '</div><p class="ans-line">Answer: <strong>' + correctText + '</strong></p>';
+      state.log.push({ q: qShort, text: correctText + ' <span class="yours">(you entered ' + yourText + ')</span>', cls: 'bad', badge: 'Solution shown' });
+      lockAndNext();
+    }
+  }
+
+  function lockAndNext() {
+    var f = document.getElementById('f');
+    var ctrls = f.querySelectorAll('input,button');
+    for (var i = 0; i < ctrls.length; i++) ctrls[i].disabled = true;
+    var last = state.i === state.prob.steps.length - 1;
+    var btn = el('<div class="actions"><button type="button" class="primary" id="next">' + (last ? 'See my results' : 'Next step &rarr;') + '</button></div>');
+    document.getElementById('fb').appendChild(btn);
+    var nb = document.getElementById('next');
+    nb.addEventListener('click', function () {
+      state.i++; state.attempt = 0;
+      if (state.i >= state.prob.steps.length) renderSummary(); else renderProblem(false);
+    });
+    nb.focus();
+  }
+
+  function renderSummary() {
+    var n = state.prob.steps.length;
+    var perfect = state.first === n;
+    var msg;
+    if (perfect) msg = 'Outstanding! You got every step right on the first try.';
+    else if (state.shown === 0) msg = 'Nice work! You solved every step, and you learned from the hints along the way.';
+    else if (state.first + state.second >= n / 2) msg = 'Good effort! You solved most of this problem. Review the steps marked "Solution shown" and try a new problem to lock it in.';
+    else msg = 'Thanks for sticking with it. Review the solutions below, look back at the module slides, and try a fresh problem. Practice makes this much easier.';
+    var h = renderHeader();
+    h += '<section class="summary" aria-labelledby="sum-h"><h3 id="sum-h" tabindex="-1">Your results</h3>';
+    h += '<p class="big"><strong>' + TUTOR + ' says:</strong> ' + msg + '</p>';
+    h += '<ul class="score"><li><strong>' + state.first + '</strong> correct on the first try</li><li><strong>' + state.second + '</strong> correct on the second try</li><li><strong>' + state.shown + '</strong> solution' + (state.shown === 1 ? '' : 's') + ' shown</li></ul>';
+    if (state.prob.takeaway) h += '<div class="takeaway"><strong>Key takeaway:</strong> ' + state.prob.takeaway + '</div>';
+    h += '</section>';
+    h += renderLog();
+    h += '<div class="actions row"><button type="button" class="primary" id="again">Try another problem like this</button><button type="button" class="secondary" id="menu2">Choose a different problem type</button></div>';
+    app.innerHTML = h;
+    document.getElementById('to-menu').addEventListener('click', renderMenu);
+    document.getElementById('menu2').addEventListener('click', renderMenu);
+    var ti = state.typeIdx;
+    document.getElementById('again').addEventListener('click', function () { startProblem(ti); });
+    var sh = document.getElementById('sum-h'); sh.focus(); window.scrollTo(0, 0);
+  }
+
+  document.getElementById('mod-title').textContent = M.title;
+  document.getElementById('mod-sub').textContent = M.subtitle;
+  document.getElementById('mod-num').textContent = 'Module ' + M.num;
+  renderMenu();
+})();
+
+</script>
+</body>
+</html>

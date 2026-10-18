@@ -1,0 +1,626 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Module 5 Tutor: Revenues, Receivables, and Operating Expenses | MBA 623</title>
+<meta name="description" content="Interactive step-by-step practice tutor for MBA 623, Module 5: Revenues, Receivables, and Operating Expenses.">
+<style>
+:root{--bg:#F5F8F5;--card:#ffffff;--ink:#16222B;--muted:#4D5D68;--line:#C7D2CB;--brand:#14574B;--brand-ink:#ffffff;--brand-soft:#E0EEE8;--gold:#8CC7B0;--good:#0F6A37;--good-bg:#E3F3E9;--warn:#7a4a00;--warn-bg:#fff2d6;--bad:#9B2C1F;--bad-bg:#FBE8E4;--info-bg:#E8EEF9;--focus:#1A47B8;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#0F1A17;--card:#16231F;--ink:#E8EFEA;--muted:#A9B8B0;--line:#33453E;--brand:#5FC2AB;--brand-ink:#06241D;--brand-soft:#1B3A33;--gold:#5FC2AB;--good:#7FDCA0;--good-bg:#16352A;--warn:#f3c978;--warn-bg:#3a2d12;--bad:#FFAE9F;--bad-bg:#3E1D18;--info-bg:#1B2B4A;--focus:#9DB8FF;}}
+*{box-sizing:border-box}
+html{font-size:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.55;font-size:1.0625rem}
+.skip{position:absolute;left:-999px;top:0;background:var(--brand);color:var(--brand-ink);padding:.6rem 1rem;z-index:10}
+.skip:focus{left:8px;top:8px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+header.site{background:var(--brand);color:var(--brand-ink);padding:1.1rem 1rem 1.4rem}
+header.site .wrap{max-width:60rem;margin:0 auto}
+header.site a{color:var(--brand-ink);font-weight:600}
+.eyebrow{margin:.5rem 0 0;font-size:.95rem;letter-spacing:.04em;text-transform:uppercase;opacity:.92}
+header.site h1{margin:.15rem 0 .2rem;font-size:1.7rem;line-height:1.2}
+header.site p.sub{margin:0;opacity:.95}
+main{max-width:60rem;margin:0 auto;padding:1.25rem 1rem 3rem}
+h2{font-size:1.45rem;margin:.2rem 0 .6rem;color:var(--ink)}
+h3{font-size:1.1rem;margin:.1rem 0 .5rem}
+.lead{color:var(--muted);max-width:46rem}
+ul.menu{list-style:none;margin:1rem 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(17rem,1fr));gap:.85rem}
+.menu-btn{width:100%;height:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-left:6px solid var(--brand);border-radius:10px;padding:.9rem 1rem;color:var(--ink);font:inherit;cursor:pointer;display:flex;flex-direction:column;gap:.35rem}
+.menu-btn:hover{box-shadow:0 2px 10px rgba(0,0,0,.15);border-color:var(--brand)}
+.menu-title{font-weight:700;font-size:1.08rem}
+.menu-desc{color:var(--muted);font-size:.95rem}
+.menu-go{margin-top:auto;color:var(--brand);font-weight:700;font-size:.95rem}
+.toolbar{margin-bottom:.5rem}
+.link-btn{background:none;border:0;color:var(--brand);font:inherit;font-weight:600;text-decoration:underline;cursor:pointer;padding:.25rem 0}
+.scenario,.step,.worklog,.summary{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:1rem 1.1rem;margin:0 0 1rem}
+.scenario{border-left:6px solid var(--gold)}
+.scenario p{margin:.3rem 0}
+.step{border-left:6px solid var(--brand)}
+.stepno{margin:0 0 .35rem;font-weight:700;color:var(--brand)}
+.bar{height:8px;background:var(--brand-soft);border-radius:6px;overflow:hidden;margin:0 0 .8rem}
+.bar span{display:block;height:100%;background:var(--brand)}
+.q{font-size:1.1rem;margin:0 0 .7rem}
+.q p{margin:.3rem 0}
+.ans-row{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+.aff{font-weight:700;color:var(--muted)}
+input[type=text]{font:inherit;font-size:1.15rem;padding:.55rem .7rem;border:2px solid var(--muted);border-radius:8px;background:var(--bg);color:var(--ink);width:13rem;max-width:100%}
+.fmt{margin:.4rem 0 0;color:var(--muted);font-size:.93rem}
+fieldset.choices{border:0;padding:0;margin:0;display:grid;gap:.5rem}
+.choice{display:flex;gap:.65rem;align-items:flex-start;padding:.6rem .75rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);cursor:pointer}
+.choice:hover{border-color:var(--brand)}
+.choice input{margin-top:.3rem;width:1.1rem;height:1.1rem;flex:none}
+.actions{margin-top:.9rem}
+.actions.row{display:flex;gap:.75rem;flex-wrap:wrap}
+button.primary,button.secondary{font:inherit;font-weight:700;border-radius:8px;padding:.65rem 1.2rem;cursor:pointer;border:2px solid var(--brand)}
+button.primary{background:var(--brand);color:var(--brand-ink)}
+button.secondary{background:transparent;color:var(--brand)}
+button:disabled{opacity:.55;cursor:not-allowed}
+.fb{margin-top:.9rem}
+.fb.good,.fb.warn,.fb.bad,.fb.info{padding:.8rem 1rem;border-radius:8px;border:1px solid var(--line)}
+.fb.good{background:var(--good-bg);border-color:var(--good)}
+.fb.warn{background:var(--warn-bg);border-color:var(--warn)}
+.fb.bad{background:var(--bad-bg);border-color:var(--bad)}
+.fb.info{background:var(--info-bg)}
+.fb p{margin:.25rem 0}
+.fb-h{font-weight:600}
+.badge{display:inline-block;font-size:.8rem;font-weight:800;padding:.1rem .5rem;border-radius:99px;border:1.5px solid currentColor;margin-right:.35rem;vertical-align:.05em}
+.badge.ok{color:var(--good)}.badge.no{color:var(--bad)}
+.fb.warn .badge.no{color:var(--warn)}
+.hint,.sol{margin:.4rem 0}
+.ans-line{margin-top:.5rem}
+.worklog ol{margin:.2rem 0 0;padding-left:1.3rem}
+.worklog li{margin:.45rem 0}
+.log-q{display:block;color:var(--muted);font-size:.95rem}
+.log-a.good{color:var(--good)}
+.log-a.bad{color:var(--bad)}
+.log-a .badge{font-size:.72rem}
+.yours{color:var(--muted)}
+.summary .big{font-size:1.15rem;font-weight:600}
+.score{list-style:none;padding:0;margin:.5rem 0;display:flex;gap:1.4rem;flex-wrap:wrap}
+.score strong{font-size:1.4rem;color:var(--brand)}
+.takeaway{background:var(--brand-soft);border-radius:8px;padding:.7rem .9rem;margin-top:.6rem}
+.tbl-wrap{overflow-x:auto;margin:.6rem 0}
+table.data{border-collapse:collapse;min-width:16rem;font-size:.98rem}
+table.data caption{text-align:left;font-weight:700;padding-bottom:.3rem}
+table.data th,table.data td{border:1px solid var(--line);padding:.35rem .65rem;text-align:left;vertical-align:top}
+table.data thead th{background:var(--brand-soft)}
+table.data .r,table.data td.r{text-align:right;font-variant-numeric:tabular-nums}
+table.data tr.tot th,table.data tr.tot td{font-weight:700;border-top:2px solid var(--ink)}
+table.data tbody th{font-weight:500}
+.eq{display:inline-block;background:var(--brand-soft);padding:.1rem .5rem;border-radius:6px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.95em}
+footer.site{max-width:60rem;margin:0 auto;padding:1rem;color:var(--muted);border-top:1px solid var(--line);font-size:.92rem}
+@media (max-width:30rem){header.site h1{font-size:1.4rem}input[type=text]{width:100%}}
+@media print{header.site{background:#fff;color:#000}.menu-go,.toolbar,.actions{display:none}}
+
+
+.tutor-intro{display:flex;gap:1rem;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-left:6px solid var(--brand);border-radius:10px;padding:1rem 1.1rem;margin:0 0 1.25rem}
+.tutor-avatar{flex:none;width:3.4rem;height:3.4rem;border-radius:50%;background:var(--brand);color:var(--brand-ink);display:flex;align-items:center;justify-content:center;font-size:1.6rem;font-weight:700}
+.tutor-intro h2{margin:0 0 .35rem}
+.tutor-intro p{margin:.35rem 0;color:var(--ink)}
+@media (max-width:30rem){.tutor-intro{flex-direction:column}}
+</style>
+</head>
+<body>
+<a class="skip" href="#app">Skip to main content</a>
+<header class="site">
+  <div class="wrap">
+    <p class="eyebrow">MBA 623 &middot; <span id="mod-num">Module 5</span></p>
+    <h1><span id="mod-title">Revenues, Receivables, and Operating Expenses</span> Tutor</h1>
+    <p class="sub" id="mod-sub">Revenue recognition, sales allowances, deferred revenue, uncollectible accounts, discontinued operations, non-GAAP measures, and currency effects.</p>
+  </div>
+</header>
+<main id="app" tabindex="-1"></main>
+<footer class="site">MBA 623 &middot; Western Carolina University &middot; Practice problems use fictional companies and randomly generated numbers. Nothing you enter here is saved or graded.</footer>
+<script>
+/* MBA 623 tutor library: random helpers, formatting, answer checking (no DOM) */
+(function (root) {
+  'use strict';
+  function makeRNG(seed) {
+    let a = seed >>> 0;
+    const next = function () {
+      a = (a + 0x6D2B79F5) | 0;
+      let t = Math.imul(a ^ (a >>> 15), 1 | a);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+    const R = {
+      next: next,
+      int: function (lo, hi) { return lo + Math.floor(next() * (hi - lo + 1)); },
+      step: function (lo, hi, s) { return lo + s * Math.floor(next() * ((hi - lo) / s + 1)); },
+      pick: function (arr) { return arr[Math.floor(next() * arr.length)]; },
+      chance: function (p) { return next() < p; },
+      shuffle: function (arr) {
+        const b = arr.slice();
+        for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(next() * (i + 1)); const t = b[i]; b[i] = b[j]; b[j] = t; }
+        return b;
+      },
+      sample: function (arr, n) { return R.shuffle(arr).slice(0, n); }
+    };
+    return R;
+  }
+
+  const COMPANIES = ['Alder Ridge Foods', 'Bluewater Outfitters', 'Cedar Point Instruments', 'Dunmore Apparel', 'Eastgate Medical', 'Fairhaven Home Goods', 'Granite Peak Tools', 'Harborview Software', 'Ironwood Furniture', 'Juniper Labs', 'Kestrel Logistics', 'Lakeshore Beverages', 'Maple Hollow Bakery', 'Northfield Electronics', 'Oakmont Pharmaceuticals', 'Pinecrest Sports', 'Quarry Lane Builders', 'Redstone Retail', 'Silverline Networks', 'Tamarack Outdoor', 'Union Square Coffee', 'Valley Forge Machining', 'Westbrook Toys', 'Yellowfin Seafood', 'Zephyr Cycles'];
+
+  function addCommas(s) { return s.replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+  function num(x, d) {
+    d = d || 0;
+    const neg = x < 0 && Math.round(Math.abs(x) * Math.pow(10, d)) !== 0;
+    const s = Math.abs(x).toFixed(d).split('.');
+    return (neg ? '-' : '') + addCommas(s[0]) + (s[1] ? '.' + s[1] : '');
+  }
+  function money(x, d) {
+    d = d || 0;
+    const s = num(Math.abs(x), d);
+    const isZero = Math.round(Math.abs(x) * Math.pow(10, d)) === 0;
+    return (x < 0 && !isZero) ? '($' + s + ')' : '$' + s;
+  }
+  function sgn(x, d) { return (x < 0 ? ' &minus; ' : ' + ') + money(Math.abs(x), d); }
+  function pct(x, d) { d = (d === undefined) ? 1 : d; return num(x, d) + '%'; }
+  function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+
+  /* table(headers, rows, opts) rows: array of arrays; first column left aligned, others right aligned */
+  function table(head, rows, opts) {
+    opts = opts || {};
+    let h = '<div class="tbl-wrap"><table class="data"' + (opts.caption ? '' : '') + '>';
+    if (opts.caption) h += '<caption>' + opts.caption + '</caption>';
+    if (head && head.length) {
+      h += '<thead><tr>';
+      head.forEach(function (c, i) { h += '<th scope="col"' + (i === 0 ? '' : ' class="r"') + '>' + c + '</th>'; });
+      h += '</tr></thead>';
+    }
+    h += '<tbody>';
+    rows.forEach(function (r) {
+      let cls = '';
+      if (r && r.cls) { cls = ' class="' + r.cls + '"'; r = r.cells; }
+      h += '<tr' + cls + '>';
+      r.forEach(function (c, i) {
+        if (i === 0) h += '<th scope="row">' + c + '</th>';
+        else h += '<td class="r">' + c + '</td>';
+      });
+      h += '</tr>';
+    });
+    return h + '</tbody></table></div>';
+  }
+
+  function parseAnswer(raw) {
+    if (raw === null || raw === undefined) return NaN;
+    let s = String(raw).trim().toLowerCase();
+    if (!s) return NaN;
+    let neg = false;
+    if (/^\(.*\)$/.test(s)) { neg = true; s = s.slice(1, -1); }
+    s = s.replace(/[−–]/g, '-');
+    if (s.charAt(0) === '-') { neg = true; s = s.slice(1); }
+    s = s.replace(/[\$,\s]/g, '').replace(/%$/, '');
+    s = s.replace(/(units?|days?|times|x|shares?|batches|hours|hrs|years?|yrs?|dollars)$/, '');
+    if (s.charAt(0) === '-') { neg = true; s = s.slice(1); }
+    if (!/^[0-9]*\.?[0-9]+$|^[0-9]+\.$/.test(s)) return NaN;
+    const v = parseFloat(s);
+    return neg ? -v : v;
+  }
+
+  function isCorrectNumber(step, raw) {
+    const u = parseAnswer(raw);
+    if (!isFinite(u)) return false;
+    const a = step.ans;
+    const dec = step.dec || 0;
+    const rel = (step.tol === undefined) ? 0.003 : step.tol;
+    const absTol = 0.5 * Math.pow(10, -dec) + 1e-9;
+    const ok = function (v) { return Math.abs(v - a) <= Math.max(absTol, rel * Math.abs(a)); };
+    if (ok(u)) return true;
+    if (step.unit === '%' && Math.abs(u) <= 1.5 && Math.abs(a) > 1.5 && ok(u * 100)) return true;
+    return false;
+  }
+
+  function fmtAnswer(step) {
+    const d = step.dec || 0;
+    switch (step.unit) {
+      case '$': return money(step.ans, d);
+      case '%': return pct(step.ans, d);
+      case 'x': return num(step.ans, d) + 'x';
+      case 'days': return num(step.ans, d) + ' days';
+      case 'units': return num(step.ans, d) + ' units';
+      default: return num(step.ans, d) + (step.suffix ? ' ' + step.suffix : '');
+    }
+  }
+
+
+  /* step builders */
+  function ns(q, short, ans, unit, dec, hint, sol, extra) {
+    var o = { q: '<p>' + q + '</p>', short: short, ans: ans, unit: unit || '', dec: dec || 0, hint: hint, sol: sol };
+    if (extra) { for (var k in extra) o[k] = extra[k]; }
+    return o;
+  }
+  function cs(q, short, choices, correct, hint, sol) {
+    return { q: '<p>' + q + '</p>', short: short, choices: choices, correct: correct, hint: hint, sol: sol };
+  }
+  /* shuffle choices but keep track of the correct one */
+  function csr(R, q, short, choices, correctIdx, hint, sol) {
+    var order = R.shuffle(choices.map(function (c, i) { return i; }));
+    return cs(q, short, order.map(function (i) { return choices[i]; }), order.indexOf(correctIdx), hint, sol);
+  }
+
+  root.TutorLib = { sgn: sgn, ns: ns, cs: cs, csr: csr, makeRNG: makeRNG, COMPANIES: COMPANIES, num: num, money: money, pct: pct, esc: esc, table: table, parseAnswer: parseAnswer, isCorrectNumber: isCorrectNumber, fmtAnswer: fmtAnswer };
+})(typeof window !== 'undefined' ? window : globalThis);
+
+</script>
+<script>
+(function () {
+  var L = window.TutorLib, $ = L.money, N = L.num, P = L.pct, T = L.table, ns = L.ns, cs = L.cs, csr = L.csr, G = L.sgn;
+  function co(R) { return R.pick(L.COMPANIES); }
+  function r2(x) { return Math.round(x * 100) / 100; }
+
+  /* A. Cost-to-cost */
+  function genCTC(R) {
+    var name = co(R);
+    var price = R.pick([10, 20, 30, 40, 60]), cf = R.pick([0.6, 0.7, 0.75, 0.8]);
+    var cost = price * cf, f1 = R.pick([0.4, 0.5, 0.6, 0.8]);
+    var c1 = r2(cost * f1), c2 = r2(cost - c1);
+    var pc = 100 * c1 / cost, rev1 = price * c1 / cost, gp1 = rev1 - c1, rev2 = price - rev1, gp2 = rev2 - c2, gpt = price - cost;
+    var intro = '<p><strong>' + name + '</strong> signs a two-year contract to build equipment for a customer. It recognizes revenue over time using the <em>cost-to-cost</em> method. All amounts are in $ millions.</p>' + T(['Item', 'Amount'], [['Contract price', $(price, 2)], ['Total estimated contract cost', $(cost, 2)], ['Costs incurred in Year 1', $(c1, 2)], ['Costs incurred in Year 2', $(c2, 2)]]);
+    return {
+      intro: intro,
+      takeaway: 'Under the cost-to-cost method, revenue recognized = contract price &times; (costs incurred to date &divide; total estimated costs). Revenue is recognized as work is performed, regardless of when the customer pays.',
+      steps: [
+        ns('What <strong>percent of the contract is complete</strong> at the end of Year 1? Round to one decimal.', 'Percent complete, Year 1', pc, '%', 1, 'Costs incurred to date divided by total estimated cost.', $(c1, 2) + ' &divide; ' + $(cost, 2) + ' = <strong>' + P(pc, 1) + '</strong>.'),
+        ns('How much <strong>revenue</strong> is recognized in Year 1 ($ millions, two decimals)?', 'Year 1 revenue', rev1, '$', 2, 'Contract price &times; percent complete.', $(price, 2) + ' &times; ' + P(pc, 1) + ' = <strong>' + $(rev1, 2) + '</strong>.'),
+        ns('What is <strong>gross profit</strong> in Year 1 ($ millions, two decimals)?', 'Year 1 gross profit', gp1, '$', 2, 'Revenue recognized less the costs incurred in Year 1.', $(rev1, 2) + ' &minus; ' + $(c1, 2) + ' = <strong>' + $(gp1, 2) + '</strong>.'),
+        ns('How much <strong>revenue</strong> is recognized in Year 2 ($ millions, two decimals)?', 'Year 2 revenue', rev2, '$', 2, 'The remaining contract revenue: contract price &minus; revenue recognized in Year 1.', $(price, 2) + ' &minus; ' + $(rev1, 2) + ' = <strong>' + $(rev2, 2) + '</strong>.'),
+        ns('What is <strong>total gross profit</strong> over the life of the contract ($ millions, two decimals)?', 'Total gross profit', gpt, '$', 2, 'Total revenue less total cost, or add the gross profit from the two years.', 'Year 1 ' + $(gp1, 2) + ' + Year 2 ' + $(gp2, 2) + ' = <strong>' + $(gpt, 2) + '</strong>, which equals ' + $(price, 2) + ' &minus; ' + $(cost, 2) + '.')
+      ]
+    };
+  }
+
+  /* B. Sales returns */
+  function genReturns(R) {
+    var name = co(R);
+    var S = R.step(40, 400, 10) * 1000, cp = R.step(55, 72, 1), rr = R.pick([2, 3, 4, 5, 6, 8]);
+    var C = Math.round(S * cp / 100), ret = S * rr / 100, net = S - ret, ncogs = C * (1 - rr / 100), gp = net - ncogs;
+    var intro = '<p><strong>' + name + '</strong> sold goods on account for ' + $(S) + '. The goods cost the company ' + $(C) + '. Customers have the right to return merchandise, and the company estimates that <strong>' + rr + '%</strong> of these sales will be returned.</p>';
+    return {
+      intro: intro,
+      takeaway: 'When customers can return goods, revenue is recorded net of expected returns. The company also reduces cost of goods sold for the inventory it expects to get back, so gross profit reflects only the sales it expects to keep.',
+      steps: [
+        ns('What is the <strong>estimated sales returns</strong> amount?', 'Estimated sales returns', ret, '$', 0, 'Gross sales &times; expected return rate (' + rr + '%).', $(S) + ' &times; ' + rr + '% = <strong>' + $(ret) + '</strong>.', { tol: 0.002 }),
+        ns('What is <strong>net sales revenue</strong> recognized?', 'Net sales', net, '$', 0, 'Gross sales &minus; estimated returns.', $(S) + ' &minus; ' + $(ret) + ' = <strong>' + $(net) + '</strong>.', { tol: 0.002 }),
+        ns('What <strong>cost of goods sold</strong> is recognized? Assume goods expected to be returned will come back to inventory.', 'Cost of goods sold', ncogs, '$', 0, 'Only the cost of goods the company expects to keep sold: total cost &times; (1 &minus; ' + rr + '%).', $(C) + ' &times; ' + (100 - rr) + '% = <strong>' + $(ncogs) + '</strong>.', { tol: 0.002 }),
+        ns('What is <strong>gross profit</strong> on this sale?', 'Gross profit', gp, '$', 0, 'Net sales &minus; cost of goods sold.', $(net) + ' &minus; ' + $(ncogs) + ' = <strong>' + $(gp) + '</strong>.', { tol: 0.002 }),
+        ns('What is the <strong>gross profit margin</strong> on net sales? Round to one decimal.', 'Gross profit margin', 100 * gp / net, '%', 1, 'Gross profit divided by net sales.', $(gp) + ' &divide; ' + $(net) + ' = <strong>' + P(100 * gp / net, 1) + '</strong>.', { tol: 0.006 })
+      ]
+    };
+  }
+
+  /* C. Deferred revenue */
+  function genDeferred(R) {
+    var name = co(R);
+    var dr0 = R.step(400, 2000, 10), g = R.step(-12, 25, 1), dr1 = Math.round(dr0 * (1 + g / 100) / 10) * 10;
+    if (dr1 === dr0) dr1 += 10;
+    var rev = R.step(3000, 12000, 100);
+    var d = dr1 - dr0, cash = rev + d;
+    var gr = 100 * d / dr0;
+    var intro = '<p><strong>' + name + '</strong> sells annual subscriptions and collects cash in advance, recording it as deferred (unearned) revenue until the service is delivered. All of its revenue passes through deferred revenue. Amounts are in $ millions.</p>' + T(['Item', 'Amount'], [['Deferred revenue, beginning of year', $(dr0)], ['Deferred revenue, end of year', $(dr1)], ['Revenue recognized during the year', $(rev)]]);
+    return {
+      intro: intro,
+      takeaway: 'Deferred revenue roll-forward: beginning balance + cash collected (billings) &minus; revenue recognized = ending balance. Growth in deferred revenue is a leading indicator of future revenue; a decline suggests fewer new prepayments.',
+      steps: [
+        ns('What was the <strong>change in deferred revenue</strong> during the year ($ millions)? Enter a decrease as a negative number.', 'Change in deferred revenue', d, '$', 0, 'Ending balance minus beginning balance.', $(dr1) + ' &minus; ' + $(dr0) + ' = <strong>' + $(d) + '</strong>.', { tol: 0 }),
+        ns('How much <strong>cash was collected from customers</strong> for new subscriptions ($ millions)?', 'Cash collected from customers', cash, '$', 0, 'Use the roll-forward: beginning + cash collected &minus; revenue recognized = ending. So cash collected = revenue recognized + change in deferred revenue.', $(rev) + G(d) + ' = <strong>' + $(cash) + '</strong>. Check: ' + $(dr0) + ' + ' + $(cash) + ' &minus; ' + $(rev) + ' = ' + $(dr1) + '.', { tol: 0 }),
+        ns('What was the <strong>percent change in deferred revenue</strong>? Enter a decrease as a negative number. Round to one decimal.', 'Percent change in deferred revenue', gr, '%', 1, 'Change in deferred revenue divided by the beginning balance.', $(d) + ' &divide; ' + $(dr0) + ' = <strong>' + P(gr, 1) + '</strong>.', { tol: 0.01 }),
+        cs('How should an analyst interpret the change in deferred revenue?', 'Interpreting deferred revenue', ['Deferred revenue grew: cash collected exceeded revenue recognized, which points to higher future revenue', 'Deferred revenue fell: revenue recognized exceeded cash collected, a possible sign of slowing new bookings', 'Deferred revenue grew: the company recognized revenue before earning it', 'Deferred revenue fell: cash collected exceeded revenue recognized'], d > 0 ? 0 : 1, 'Compare cash collected (' + $(cash) + ') with revenue recognized (' + $(rev) + ').', d > 0 ? 'Cash collected (' + $(cash) + ') exceeded revenue (' + $(rev) + '), building up deferred revenue that will become revenue in later periods.' : 'Cash collected (' + $(cash) + ') was less than revenue recognized (' + $(rev) + '): the company is earning revenue from prior-period prepayments, which can signal slower new bookings.')
+      ]
+    };
+  }
+
+  /* D. Allowance */
+  function genAllowance(R) {
+    var name = co(R);
+    var cats = [['Current', 1], ['1 to 30 days past due', 3], ['31 to 60 days past due', 8], ['61 to 90 days past due', 20], ['Over 90 days past due', 50]];
+    var amts = cats.map(function (c, i) { return R.step(40, 400, 10) * (i < 2 ? 10 : (i === 2 ? 4 : (i === 3 ? 2 : 1))); });
+    var gross = amts.reduce(function (a, b) { return a + b; }, 0);
+    var req = amts.reduce(function (s, a, i) { return s + a * cats[i][1] / 100; }, 0);
+    var beg = R.step(20, 90, 5) * 10, wo = R.step(10, 60, 5) * 10;
+    var bde = req - beg + wo, net = gross - req;
+    var intro = '<p><strong>' + name + '</strong> uses an aging analysis to estimate uncollectible accounts at year-end (amounts in $ thousands).</p>' + T(['Age of receivable', 'Balance', 'Estimated % uncollectible'], cats.map(function (c, i) { return [c[0], $(amts[i]), c[1] + '%']; })) + '<p>The allowance for uncollectible accounts had a balance of ' + $(beg) + ' thousand at the beginning of the year, and ' + $(wo) + ' thousand of customer accounts were written off during the year.</p>';
+    var eqfix = Math.abs(bde) > 0;
+    return {
+      intro: intro,
+      takeaway: 'Bad debt expense is recorded in the period of the sale using an estimate, so receivables are shown at net realizable value (gross receivables less the allowance). A later write-off of a specific account reduces both receivables and the allowance, so it has no effect on net receivables or income.',
+      steps: [
+        ns('What <strong>ending allowance balance</strong> is required ($ thousands, one decimal)?', 'Required allowance', req, '$', 1, 'Multiply each age category by its estimated percent uncollectible and add the results.', cats.map(function (c, i) { return $(amts[i]) + ' &times; ' + c[1] + '%'; }).join(' + ') + ' = <strong>' + $(req, 1) + '</strong>.'),
+        ns('What <strong>bad debt expense</strong> must be recorded for the year ($ thousands, one decimal)?', 'Bad debt expense', bde, '$', 1, 'Roll-forward: beginning allowance + bad debt expense &minus; write-offs = ending allowance. Solve for expense.', 'Expense = ending allowance &minus; beginning allowance + write-offs = ' + $(req, 1) + ' &minus; ' + $(beg) + ' + ' + $(wo) + ' = <strong>' + $(bde, 1) + '</strong>.'),
+        ns('What is <strong>net accounts receivable</strong> (net realizable value) on the balance sheet ($ thousands, one decimal)?', 'Net accounts receivable', net, '$', 1, 'Gross receivables &minus; allowance for uncollectible accounts.', $(gross) + ' &minus; ' + $(req, 1) + ' = <strong>' + $(net, 1) + '</strong>.'),
+        ns('What percent of gross receivables is estimated to be uncollectible? Round to one decimal.', 'Allowance as % of gross receivables', 100 * req / gross, '%', 1, 'Allowance divided by gross receivables.', $(req, 1) + ' &divide; ' + $(gross) + ' = <strong>' + P(100 * req / gross, 1) + '</strong>.', { tol: 0.01 }),
+        csr(R, 'Next year the company writes off a specific customer account of $5 thousand that was already covered by the allowance. What is the effect on net receivables and net income?', 'Effect of a write-off', ['No effect on either: receivables and the allowance both fall by $5 thousand', 'Net receivables fall by $5 thousand and net income falls by $5 thousand', 'Net income falls by $5 thousand but net receivables are unchanged', 'Net receivables rise by $5 thousand'], 0, 'A write-off debits the allowance and credits accounts receivable. Is any expense recorded at that point?', 'The expense was already recorded when the allowance was estimated. The write-off reduces gross receivables and the allowance equally, so net receivables and net income are unchanged.')
+      ]
+    };
+  }
+
+  /* E. A/R turnover and DSO */
+  function genAR(R) {
+    var name = co(R);
+    var s0 = R.step(4000, 15000, 100), s1 = Math.round(s0 * (1 + R.step(-3, 12, 1) / 100) / 10) * 10;
+    var d0 = R.step(35, 70, 1), imp = R.pick([-8, -6, -5, -4, -3, 3, 4, 6]);
+    var d1 = d0 + imp;
+    var a0 = Math.round(s0 / 365 * d0 / 10) * 10, a1 = Math.round(s1 / 365 * d1 / 10) * 10;
+    var t1 = s1 / a1, dso1 = 365 / t1, dso0 = 365 / (s0 / a0);
+    var cash = (dso0 - dso1) * s1 / 365;
+    var intro = '<p><strong>' + name + '</strong> reports the following ($ millions). Use average accounts receivable as given and a 365-day year.</p>' + T(['', 'Prior year', 'Current year'], [['Net sales', $(s0), $(s1)], ['Average accounts receivable', $(a0), $(a1)]]);
+    return {
+      intro: intro,
+      takeaway: 'Receivables turnover = sales &divide; average receivables; DSO = 365 &divide; turnover. A shorter DSO means the company collects faster, which releases cash it can use elsewhere. A longer DSO ties up more cash.',
+      steps: [
+        ns('Compute the current-year <strong>accounts receivable turnover</strong> (net sales &divide; average receivables). Round to two decimals.', 'A/R turnover, current year', t1, 'x', 2, 'Net sales divided by average accounts receivable.', $(s1) + ' &divide; ' + $(a1) + ' = <strong>' + N(t1, 2) + 'x</strong>.'),
+        ns('Compute the current-year <strong>days sales outstanding (DSO)</strong>. Round to one decimal.', 'DSO, current year', dso1, 'days', 1, 'DSO = 365 &divide; receivables turnover.', '365 &divide; ' + N(t1, 2) + ' = <strong>' + N(dso1, 1) + ' days</strong>.', { tol: 0.01 }),
+        ns('Compute the prior-year <strong>DSO</strong>. Round to one decimal.', 'DSO, prior year', dso0, 'days', 1, 'Prior-year turnover = ' + $(s0) + ' &divide; ' + $(a0) + '. Then 365 &divide; turnover.', $(s0) + ' &divide; ' + $(a0) + ' = ' + N(s0 / a0, 2) + 'x; 365 &divide; ' + N(s0 / a0, 2) + ' = <strong>' + N(dso0, 1) + ' days</strong>.', { tol: 0.01 }),
+        ns('Estimate the <strong>cash released (positive) or tied up (negative)</strong> by the change in DSO ($ millions). Use current-year sales &divide; 365 as daily sales.', 'Cash effect of the change in DSO', cash, '$', 0, 'Cash effect = (prior DSO &minus; current DSO) &times; current-year sales &divide; 365. Collecting faster releases cash. Use unrounded DSO values if you can.', '(' + N(dso0, 1) + ' &minus; ' + N(dso1, 1) + ') &times; ' + $(s1) + ' &divide; 365 = <strong>' + $(cash) + '</strong>.', { tol: 0.06 }),
+        csr(R, 'What would a <em>longer</em> DSO combined with slower sales growth suggest to an analyst?', 'Interpreting rising DSO', ['Possible aggressive revenue recognition, looser credit terms, or collection problems', 'Improved collection efficiency', 'Lower credit risk', 'That the company holds less inventory'], 0, 'If receivables grow faster than sales, what could that signal about credit quality or revenue recognition?', 'Receivables growing faster than sales can signal channel stuffing, extended payment terms, or customers with trouble paying, so the allowance and revenue recognition policies deserve scrutiny.')
+      ]
+    };
+  }
+
+  /* F. Discontinued operations and non-GAAP */
+  function genDisc(R) {
+    var name = co(R);
+    var cont = R.step(300, 1500, 10), dloss = -R.step(10, 90, 5), dgain = R.step(20, 160, 5);
+    var sh = R.step(100, 400, 10);
+    var restr = R.step(20, 120, 10), amort = R.step(30, 200, 10), acq = R.step(10, 80, 10);
+    var disc = dloss + dgain, ni = cont + disc, eps = ni / sh;
+    var adj = cont + restr + amort + acq, aeps = adj / sh;
+    var intro = '<p><strong>' + name + '</strong> reports the following for the year ($ millions, except per-share amounts). All items are shown <em>after tax</em>.</p>' + T(['Item', 'Amount'], [['Income from continuing operations', $(cont)], ['Loss from operations of a discontinued segment', $(dloss)], ['Gain on sale of the discontinued segment', $(dgain)], ['Weighted average shares outstanding (millions)', N(sh)]]) + '<p>Management also reports <em>adjusted</em> (non-GAAP) net income, which adds back restructuring charges of ' + $(restr) + ', amortization of acquired intangibles of ' + $(amort) + ', and acquisition-related costs of ' + $(acq) + ' to income from continuing operations.</p>';
+    return {
+      intro: intro,
+      takeaway: 'Discontinued operations are reported separately below income from continuing operations because they will not recur. Non-GAAP (pro forma) measures exclude items management considers unusual; the SEC requires a reconciliation to GAAP, and analysts should judge whether the exclusions are truly nonrecurring.',
+      steps: [
+        ns('What is the <strong>net income (loss) from discontinued operations</strong> ($ millions)?', 'Net discontinued operations', disc, '$', 0, 'Combine the operating loss of the segment and the gain on its sale.', $(dloss) + ' + ' + $(dgain) + ' = <strong>' + $(disc) + '</strong>.', { tol: 0 }),
+        ns('What is <strong>GAAP net income</strong> ($ millions)?', 'GAAP net income', ni, '$', 0, 'Income from continuing operations plus the net result from discontinued operations.', $(cont) + G(disc) + ' = <strong>' + $(ni) + '</strong>.', { tol: 0 }),
+        ns('What is <strong>GAAP earnings per share</strong> (net income &divide; weighted average shares)? Round to two decimals.', 'GAAP EPS', eps, '$', 2, 'Divide GAAP net income by the weighted average shares outstanding.', $(ni) + ' &divide; ' + N(sh) + ' = <strong>' + $(eps, 2) + '</strong>.'),
+        ns('What is <strong>adjusted (non-GAAP) net income</strong> ($ millions)?', 'Adjusted net income', adj, '$', 0, 'Start with income from continuing operations and add back the three items management excludes. Discontinued operations are not part of adjusted income.', $(cont) + ' + ' + $(restr) + ' + ' + $(amort) + ' + ' + $(acq) + ' = <strong>' + $(adj) + '</strong>.', { tol: 0 }),
+        ns('What is <strong>adjusted EPS</strong>? Round to two decimals.', 'Adjusted EPS', aeps, '$', 2, 'Adjusted net income divided by weighted average shares.', $(adj) + ' &divide; ' + N(sh) + ' = <strong>' + $(aeps, 2) + '</strong>, compared with GAAP EPS of ' + $(eps, 2) + '.'),
+        csr(R, 'Which earnings number is generally the better starting point for forecasting <em>future</em> earnings?', 'Best predictor of future earnings', ['Income from continuing operations, because discontinued operations will not recur', 'Net income including the gain on sale, because it is the largest number', 'Adjusted income, because management knows best', 'Net income, because gains and losses recur every year'], 0, 'Think about which items are likely to repeat next year.', 'The discontinued segment is gone, so its results and the one-time gain will not recur. Analysts also check whether the non-GAAP add-backs (like restructuring) really are nonrecurring.')
+      ]
+    };
+  }
+
+  /* G. Foreign currency */
+  function genFX(R) {
+    var name = co(R);
+    var r0 = R.step(4000, 20000, 100), op = R.step(3, 14, 1), fx = R.pick([-8, -6, -5, -4, -3, -2, 2, 3, 4, 5]);
+    var rep = op + fx;
+    var r1 = Math.round(r0 * (1 + rep / 100));
+    var constant = r0 * (1 + op / 100);
+    var fxd = r1 - constant;
+    var rg = 100 * (r1 - r0) / r0;
+    var intro = '<p><strong>' + name + '</strong> sells in many countries. Its prior-year revenue was ' + $(r0) + ' million. Current-year revenue, as reported in U.S. dollars, was ' + $(r1) + ' million. Management&rsquo;s discussion states that revenue grew <strong>' + op + '%</strong> on an <em>operational</em> basis (excluding the effect of foreign exchange rates).</p>';
+    return {
+      intro: intro,
+      takeaway: 'Reported growth = operational growth + foreign currency effect. When the U.S. dollar strengthens, foreign sales translate into fewer dollars and reported revenue grows more slowly than operational revenue.',
+      steps: [
+        ns('What was the <strong>reported percent growth in revenue</strong>? Enter a decline as a negative number. Round to one decimal.', 'Reported revenue growth', rg, '%', 1, '(Current &minus; prior) &divide; prior &times; 100.', '(' + $(r1) + ' &minus; ' + $(r0) + ') &divide; ' + $(r0) + ' = <strong>' + P(rg, 1) + '</strong>.', { tol: 0.02 }),
+        ns('What was the <strong>foreign currency impact on growth</strong>, in percentage points (reported growth minus operational growth)? Enter an unfavorable effect as a negative number. Round to one decimal.', 'Foreign currency impact (points)', rg - op, '%', 1, 'Reported growth minus operational growth.', P(rg, 1) + ' &minus; ' + op + '% = <strong>' + P(rg - op, 1) + '</strong>.', { tol: 0.05 }),
+        ns('What would current-year revenue have been at <strong>constant exchange rates</strong> ($ millions)?', 'Revenue at constant exchange rates', constant, '$', 0, 'Prior-year revenue &times; (1 + operational growth).', $(r0) + ' &times; ' + (100 + op) + '% = <strong>' + $(constant) + '</strong>.', { tol: 0.003 }),
+        ns('What was the <strong>dollar impact of exchange rates on revenue</strong> ($ millions)? Enter an unfavorable effect as a negative number.', 'Dollar impact of foreign exchange', fxd, '$', 0, 'Reported revenue minus revenue at constant exchange rates.', $(r1) + ' &minus; ' + $(constant) + ' = <strong>' + $(fxd) + '</strong>.', { tol: 0.03 }),
+        cs('What most likely happened to the U.S. dollar relative to the foreign currencies in which the company sells?', 'Direction of the dollar', ['The dollar strengthened, so foreign revenue translated into fewer dollars', 'The dollar weakened, so foreign revenue translated into more dollars', 'The dollar weakened, so foreign revenue translated into fewer dollars', 'Exchange rates had no effect on reported revenue'], fx < 0 ? 0 : 1, 'Compare reported growth with operational growth. Which is larger?', fx < 0 ? 'Reported growth is lower than operational growth, an unfavorable translation effect: a stronger dollar makes each foreign-currency sale worth fewer dollars.' : 'Reported growth is higher than operational growth, a favorable effect: a weaker dollar makes each foreign-currency sale worth more dollars.')
+      ]
+    };
+  }
+
+  window.MODULE = {
+    num: 5,
+    title: 'Revenues, Receivables, and Operating Expenses',
+    subtitle: 'Revenue recognition, sales allowances, deferred revenue, uncollectible accounts, discontinued operations, non-GAAP measures, and currency effects.',
+    types: [
+      { label: 'Cost-to-Cost Revenue Recognition', desc: 'Percent complete, revenue, and gross profit on a long-term contract.', gen: genCTC },
+      { label: 'Sales Returns and Net Sales', desc: 'Estimate returns, net sales, cost of goods sold, and gross profit.', gen: genReturns },
+      { label: 'Deferred (Unearned) Revenue', desc: 'Roll-forward of deferred revenue, cash collected, and interpretation.', gen: genDeferred },
+      { label: 'Allowance for Uncollectible Accounts', desc: 'Aging analysis, bad debt expense, net receivables, and write-offs.', gen: genAllowance },
+      { label: 'Receivables Turnover and DSO', desc: 'Turnover, days sales outstanding, and the cash effect of collecting faster or slower.', gen: genAR },
+      { label: 'Discontinued Operations and Non-GAAP', desc: 'GAAP net income and EPS versus adjusted (pro forma) income.', gen: genDisc },
+      { label: 'Foreign Currency Effects on Revenue', desc: 'Reported vs. operational growth and the dollar impact of exchange rates.', gen: genFX }
+    ]
+  };
+})();
+
+</script>
+<script>
+/* MBA 623 tutor UI engine */
+(function () {
+  'use strict';
+  var L = window.TutorLib;
+  var M = window.MODULE;
+  var app = document.getElementById('app');
+  var state = null;
+  var TUTOR_NAMES = ['Kelly', 'Riley', 'Alex', 'Kai', 'Yamal', 'Taylor', 'Vanessa'];
+  var TUTOR = (function () {
+    var n = null;
+    try { n = window.sessionStorage.getItem('mba623TutorName'); } catch (e) { n = null; }
+    if (TUTOR_NAMES.indexOf(n) < 0) {
+      n = TUTOR_NAMES[Math.floor(Math.random() * TUTOR_NAMES.length)];
+      try { window.sessionStorage.setItem('mba623TutorName', n); } catch (e) {}
+    }
+    return n;
+  })();
+
+  var PRAISE = ['Correct! Nice work.', 'Exactly right!', 'Well done, that is correct.', 'Great job, you got it!', 'Yes, that is right. Excellent!', 'Spot on!', 'That is correct. Keep it up!', 'Right on target!'];
+  var WRONG1 = ['Not quite, but you are close to a good approach. Here is a hint.', 'That is not the answer we are looking for, but no worries. Here is a hint.', 'Not quite right. Take a look at this hint and try once more.', 'Almost there, but that is not it. Use this hint and give it another try.'];
+  var WRONG2 = ['That is still not it, and that is okay. Here is the solution for this step.', 'Not this time, but this is how you learn. Here is the solution.', 'Still not quite. Let us walk through the solution together.'];
+
+  function el(html) { var d = document.createElement('div'); d.innerHTML = html; return d.firstElementChild; }
+  function rndFrom(arr, i) { return arr[i % arr.length]; }
+
+  /* ---------- menu ---------- */
+  function renderMenu() {
+    state = null;
+    var h = '<section class="tutor-intro" aria-labelledby="menu-h"><div class="tutor-avatar" aria-hidden="true">' + TUTOR.charAt(0) + '</div><div><h2 id="menu-h">Hi, I am ' + TUTOR + '. I am your personal tutor.</h2>';
+    h += '<p>Pick a type of problem below. You will get a new scenario with new numbers, and I will walk you through it one step at a time.</p>';
+    h += '<p>Type your answer for each step and press <strong>Check my answer</strong>. If you miss a step, no worries: you will get a hint and one more try. If you miss it again, you will see the solution for that step and then move on to the next one.</p></div></section>';
+    h += '<ul class="menu" aria-labelledby="menu-h">';
+    M.types.forEach(function (t, i) {
+      h += '<li><button type="button" class="menu-btn" data-type="' + i + '"><span class="menu-title">' + t.label + '</span><span class="menu-desc">' + t.desc + '</span><span class="menu-go" aria-hidden="true">Start &rarr;</span></button></li>';
+    });
+    h += '</ul>';
+    app.innerHTML = h;
+    var btns = app.querySelectorAll('.menu-btn');
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].addEventListener('click', function (e) { startProblem(parseInt(e.currentTarget.getAttribute('data-type'), 10)); });
+    }
+    document.title = 'Module ' + M.num + ' Tutor | MBA 623';
+  }
+
+  /* ---------- problem ---------- */
+  function startProblem(typeIdx) {
+    var seed = (Math.floor(Math.random() * 4294967295) ^ Date.now()) >>> 0;
+    var R = L.makeRNG(seed);
+    var t = M.types[typeIdx];
+    var prob = t.gen(R, L);
+    state = { typeIdx: typeIdx, type: t, prob: prob, i: 0, attempt: 0, log: [], first: 0, second: 0, shown: 0 };
+    renderProblem(true);
+  }
+
+  function renderHeader() {
+    var p = state.prob;
+    var h = '<div class="toolbar"><button type="button" class="link-btn" id="to-menu">&larr; Choose a different problem type</button></div>';
+    h += '<h2 id="prob-h" tabindex="-1">' + state.type.label + '</h2>';
+    h += '<section class="scenario" aria-labelledby="scen-h"><h3 id="scen-h">The problem</h3>' + p.intro + '</section>';
+    return h;
+  }
+
+  function renderLog() {
+    if (!state.log.length) return '';
+    var h = '<section class="worklog" aria-labelledby="log-h"><h3 id="log-h">Your work so far</h3><ol>';
+    state.log.forEach(function (e) {
+      h += '<li><span class="log-q">' + e.q + '</span><span class="log-a ' + e.cls + '"><span class="badge">' + e.badge + '</span> ' + e.text + '</span></li>';
+    });
+    return h + '</ol></section>';
+  }
+
+  function renderProblem(focusHeading) {
+    var p = state.prob, s = p.steps[state.i], n = p.steps.length;
+    var h = renderHeader();
+    h += renderLog();
+    h += '<section class="step" aria-labelledby="step-h">';
+    h += '<p class="stepno" id="step-h">Step ' + (state.i + 1) + ' of ' + n + '</p>';
+    h += '<div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="' + n + '" aria-valuenow="' + state.i + '" aria-label="Progress"><span style="width:' + Math.round(100 * state.i / n) + '%"></span></div>';
+    h += '<div class="q" id="q">' + s.q + '</div>';
+    h += '<form id="f" novalidate>';
+    if (s.choices) {
+      h += '<fieldset class="choices"><legend class="sr-only">Choose one answer</legend>';
+      s.choices.forEach(function (c, k) {
+        h += '<label class="choice"><input type="radio" name="c" value="' + k + '"><span>' + c + '</span></label>';
+      });
+      h += '</fieldset>';
+    } else {
+      h += '<div class="ans-row"><label class="sr-only" for="ans">Your answer</label>';
+      if (s.unit === '$') h += '<span class="aff" aria-hidden="true">$</span>';
+      h += '<input id="ans" name="ans" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" aria-describedby="q">';
+      if (s.unit === '%') h += '<span class="aff" aria-hidden="true">%</span>';
+      else if (s.unit === 'x') h += '<span class="aff" aria-hidden="true">times</span>';
+      else if (s.unit === 'days') h += '<span class="aff" aria-hidden="true">days</span>';
+      else if (s.unit === 'units') h += '<span class="aff" aria-hidden="true">units</span>';
+      else if (s.suffix) h += '<span class="aff" aria-hidden="true">' + s.suffix + '</span>';
+      h += '</div>';
+      if (s.note) h += '<p class="fmt">' + s.note + '</p>';
+    }
+    h += '<div class="actions"><button type="submit" class="primary" id="check">Check my answer</button></div>';
+    h += '</form>';
+    h += '<div id="fb" class="fb" role="status" aria-live="polite"></div>';
+    h += '</section>';
+    app.innerHTML = h;
+    document.getElementById('to-menu').addEventListener('click', renderMenu);
+    document.getElementById('f').addEventListener('submit', onCheck);
+    if (focusHeading) { var hd = document.getElementById('prob-h'); hd.focus(); window.scrollTo(0, 0); }
+    else { var inp = document.getElementById('ans') || document.querySelector('input[name=c]'); if (inp) inp.focus(); }
+  }
+
+  function currentUserAnswer(s) {
+    if (s.choices) {
+      var r = document.querySelector('input[name=c]:checked');
+      return r ? parseInt(r.value, 10) : null;
+    }
+    return document.getElementById('ans').value;
+  }
+
+  function onCheck(ev) {
+    ev.preventDefault();
+    var s = state.prob.steps[state.i];
+    var ua = currentUserAnswer(s);
+    var fb = document.getElementById('fb');
+    var correct;
+    if (s.choices) {
+      if (ua === null) { fb.className = 'fb info'; fb.innerHTML = '<p>Please choose an answer first.</p>'; return; }
+      correct = (ua === s.correct);
+    } else {
+      if (!String(ua).trim() || !isFinite(L.parseAnswer(ua))) { fb.className = 'fb info'; fb.innerHTML = '<p>Please enter a number (for example 1,250 or 12.5). Do not include words.</p>'; document.getElementById('ans').focus(); return; }
+      correct = L.isCorrectNumber(s, ua);
+    }
+    state.attempt++;
+    var correctText = s.choices ? s.choices[s.correct] : L.fmtAnswer(s);
+    var yourText = s.choices ? s.choices[ua] : L.esc(String(ua).trim());
+    var qShort = s.short || s.q;
+    if (correct) {
+      if (state.attempt === 1) state.first++; else state.second++;
+      fb.className = 'fb good';
+      fb.innerHTML = '<p class="fb-h"><span class="badge ok">Correct</span> ' + rndFrom(PRAISE, state.i + state.prob.steps.length) + '</p>' + (s.sol ? '<div class="sol"><strong>Why:</strong> ' + s.sol + '</div>' : '') + '<p class="ans-line">Answer: <strong>' + correctText + '</strong></p>';
+      state.log.push({ q: qShort, text: correctText, cls: 'good', badge: state.attempt === 1 ? 'Correct' : 'Correct (2nd try)' });
+      lockAndNext();
+    } else if (state.attempt === 1) {
+      fb.className = 'fb warn';
+      fb.innerHTML = '<p class="fb-h"><span class="badge no">Not yet</span> ' + rndFrom(WRONG1, state.i) + '</p><div class="hint"><strong>Hint from ' + TUTOR + ':</strong> ' + s.hint + '</div>';
+      document.getElementById('check').textContent = 'Try again';
+      var inp = document.getElementById('ans'); if (inp) { inp.select(); inp.focus(); }
+    } else {
+      state.shown++;
+      fb.className = 'fb bad';
+      fb.innerHTML = '<p class="fb-h"><span class="badge no">Solution</span> ' + rndFrom(WRONG2, state.i) + '</p><div class="sol">' + s.sol + '</div><p class="ans-line">Answer: <strong>' + correctText + '</strong></p>';
+      state.log.push({ q: qShort, text: correctText + ' <span class="yours">(you entered ' + yourText + ')</span>', cls: 'bad', badge: 'Solution shown' });
+      lockAndNext();
+    }
+  }
+
+  function lockAndNext() {
+    var f = document.getElementById('f');
+    var ctrls = f.querySelectorAll('input,button');
+    for (var i = 0; i < ctrls.length; i++) ctrls[i].disabled = true;
+    var last = state.i === state.prob.steps.length - 1;
+    var btn = el('<div class="actions"><button type="button" class="primary" id="next">' + (last ? 'See my results' : 'Next step &rarr;') + '</button></div>');
+    document.getElementById('fb').appendChild(btn);
+    var nb = document.getElementById('next');
+    nb.addEventListener('click', function () {
+      state.i++; state.attempt = 0;
+      if (state.i >= state.prob.steps.length) renderSummary(); else renderProblem(false);
+    });
+    nb.focus();
+  }
+
+  function renderSummary() {
+    var n = state.prob.steps.length;
+    var perfect = state.first === n;
+    var msg;
+    if (perfect) msg = 'Outstanding! You got every step right on the first try.';
+    else if (state.shown === 0) msg = 'Nice work! You solved every step, and you learned from the hints along the way.';
+    else if (state.first + state.second >= n / 2) msg = 'Good effort! You solved most of this problem. Review the steps marked "Solution shown" and try a new problem to lock it in.';
+    else msg = 'Thanks for sticking with it. Review the solutions below, look back at the module slides, and try a fresh problem. Practice makes this much easier.';
+    var h = renderHeader();
+    h += '<section class="summary" aria-labelledby="sum-h"><h3 id="sum-h" tabindex="-1">Your results</h3>';
+    h += '<p class="big"><strong>' + TUTOR + ' says:</strong> ' + msg + '</p>';
+    h += '<ul class="score"><li><strong>' + state.first + '</strong> correct on the first try</li><li><strong>' + state.second + '</strong> correct on the second try</li><li><strong>' + state.shown + '</strong> solution' + (state.shown === 1 ? '' : 's') + ' shown</li></ul>';
+    if (state.prob.takeaway) h += '<div class="takeaway"><strong>Key takeaway:</strong> ' + state.prob.takeaway + '</div>';
+    h += '</section>';
+    h += renderLog();
+    h += '<div class="actions row"><button type="button" class="primary" id="again">Try another problem like this</button><button type="button" class="secondary" id="menu2">Choose a different problem type</button></div>';
+    app.innerHTML = h;
+    document.getElementById('to-menu').addEventListener('click', renderMenu);
+    document.getElementById('menu2').addEventListener('click', renderMenu);
+    var ti = state.typeIdx;
+    document.getElementById('again').addEventListener('click', function () { startProblem(ti); });
+    var sh = document.getElementById('sum-h'); sh.focus(); window.scrollTo(0, 0);
+  }
+
+  document.getElementById('mod-title').textContent = M.title;
+  document.getElementById('mod-sub').textContent = M.subtitle;
+  document.getElementById('mod-num').textContent = 'Module ' + M.num;
+  renderMenu();
+})();
+
+</script>
+</body>
+</html>

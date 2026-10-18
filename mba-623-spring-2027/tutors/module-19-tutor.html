@@ -1,0 +1,608 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Module 19 Tutor: Activity-Based Costing, Customer Profitability, and Activity-Based Management | MBA 623</title>
+<meta name="description" content="Interactive step-by-step practice tutor for MBA 623, Module 19: Activity-Based Costing, Customer Profitability, and Activity-Based Management.">
+<style>
+:root{--bg:#F5F8F5;--card:#ffffff;--ink:#16222B;--muted:#4D5D68;--line:#C7D2CB;--brand:#14574B;--brand-ink:#ffffff;--brand-soft:#E0EEE8;--gold:#8CC7B0;--good:#0F6A37;--good-bg:#E3F3E9;--warn:#7a4a00;--warn-bg:#fff2d6;--bad:#9B2C1F;--bad-bg:#FBE8E4;--info-bg:#E8EEF9;--focus:#1A47B8;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#0F1A17;--card:#16231F;--ink:#E8EFEA;--muted:#A9B8B0;--line:#33453E;--brand:#5FC2AB;--brand-ink:#06241D;--brand-soft:#1B3A33;--gold:#5FC2AB;--good:#7FDCA0;--good-bg:#16352A;--warn:#f3c978;--warn-bg:#3a2d12;--bad:#FFAE9F;--bad-bg:#3E1D18;--info-bg:#1B2B4A;--focus:#9DB8FF;}}
+*{box-sizing:border-box}
+html{font-size:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.55;font-size:1.0625rem}
+.skip{position:absolute;left:-999px;top:0;background:var(--brand);color:var(--brand-ink);padding:.6rem 1rem;z-index:10}
+.skip:focus{left:8px;top:8px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+header.site{background:var(--brand);color:var(--brand-ink);padding:1.1rem 1rem 1.4rem}
+header.site .wrap{max-width:60rem;margin:0 auto}
+header.site a{color:var(--brand-ink);font-weight:600}
+.eyebrow{margin:.5rem 0 0;font-size:.95rem;letter-spacing:.04em;text-transform:uppercase;opacity:.92}
+header.site h1{margin:.15rem 0 .2rem;font-size:1.7rem;line-height:1.2}
+header.site p.sub{margin:0;opacity:.95}
+main{max-width:60rem;margin:0 auto;padding:1.25rem 1rem 3rem}
+h2{font-size:1.45rem;margin:.2rem 0 .6rem;color:var(--ink)}
+h3{font-size:1.1rem;margin:.1rem 0 .5rem}
+.lead{color:var(--muted);max-width:46rem}
+ul.menu{list-style:none;margin:1rem 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(17rem,1fr));gap:.85rem}
+.menu-btn{width:100%;height:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-left:6px solid var(--brand);border-radius:10px;padding:.9rem 1rem;color:var(--ink);font:inherit;cursor:pointer;display:flex;flex-direction:column;gap:.35rem}
+.menu-btn:hover{box-shadow:0 2px 10px rgba(0,0,0,.15);border-color:var(--brand)}
+.menu-title{font-weight:700;font-size:1.08rem}
+.menu-desc{color:var(--muted);font-size:.95rem}
+.menu-go{margin-top:auto;color:var(--brand);font-weight:700;font-size:.95rem}
+.toolbar{margin-bottom:.5rem}
+.link-btn{background:none;border:0;color:var(--brand);font:inherit;font-weight:600;text-decoration:underline;cursor:pointer;padding:.25rem 0}
+.scenario,.step,.worklog,.summary{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:1rem 1.1rem;margin:0 0 1rem}
+.scenario{border-left:6px solid var(--gold)}
+.scenario p{margin:.3rem 0}
+.step{border-left:6px solid var(--brand)}
+.stepno{margin:0 0 .35rem;font-weight:700;color:var(--brand)}
+.bar{height:8px;background:var(--brand-soft);border-radius:6px;overflow:hidden;margin:0 0 .8rem}
+.bar span{display:block;height:100%;background:var(--brand)}
+.q{font-size:1.1rem;margin:0 0 .7rem}
+.q p{margin:.3rem 0}
+.ans-row{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+.aff{font-weight:700;color:var(--muted)}
+input[type=text]{font:inherit;font-size:1.15rem;padding:.55rem .7rem;border:2px solid var(--muted);border-radius:8px;background:var(--bg);color:var(--ink);width:13rem;max-width:100%}
+.fmt{margin:.4rem 0 0;color:var(--muted);font-size:.93rem}
+fieldset.choices{border:0;padding:0;margin:0;display:grid;gap:.5rem}
+.choice{display:flex;gap:.65rem;align-items:flex-start;padding:.6rem .75rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);cursor:pointer}
+.choice:hover{border-color:var(--brand)}
+.choice input{margin-top:.3rem;width:1.1rem;height:1.1rem;flex:none}
+.actions{margin-top:.9rem}
+.actions.row{display:flex;gap:.75rem;flex-wrap:wrap}
+button.primary,button.secondary{font:inherit;font-weight:700;border-radius:8px;padding:.65rem 1.2rem;cursor:pointer;border:2px solid var(--brand)}
+button.primary{background:var(--brand);color:var(--brand-ink)}
+button.secondary{background:transparent;color:var(--brand)}
+button:disabled{opacity:.55;cursor:not-allowed}
+.fb{margin-top:.9rem}
+.fb.good,.fb.warn,.fb.bad,.fb.info{padding:.8rem 1rem;border-radius:8px;border:1px solid var(--line)}
+.fb.good{background:var(--good-bg);border-color:var(--good)}
+.fb.warn{background:var(--warn-bg);border-color:var(--warn)}
+.fb.bad{background:var(--bad-bg);border-color:var(--bad)}
+.fb.info{background:var(--info-bg)}
+.fb p{margin:.25rem 0}
+.fb-h{font-weight:600}
+.badge{display:inline-block;font-size:.8rem;font-weight:800;padding:.1rem .5rem;border-radius:99px;border:1.5px solid currentColor;margin-right:.35rem;vertical-align:.05em}
+.badge.ok{color:var(--good)}.badge.no{color:var(--bad)}
+.fb.warn .badge.no{color:var(--warn)}
+.hint,.sol{margin:.4rem 0}
+.ans-line{margin-top:.5rem}
+.worklog ol{margin:.2rem 0 0;padding-left:1.3rem}
+.worklog li{margin:.45rem 0}
+.log-q{display:block;color:var(--muted);font-size:.95rem}
+.log-a.good{color:var(--good)}
+.log-a.bad{color:var(--bad)}
+.log-a .badge{font-size:.72rem}
+.yours{color:var(--muted)}
+.summary .big{font-size:1.15rem;font-weight:600}
+.score{list-style:none;padding:0;margin:.5rem 0;display:flex;gap:1.4rem;flex-wrap:wrap}
+.score strong{font-size:1.4rem;color:var(--brand)}
+.takeaway{background:var(--brand-soft);border-radius:8px;padding:.7rem .9rem;margin-top:.6rem}
+.tbl-wrap{overflow-x:auto;margin:.6rem 0}
+table.data{border-collapse:collapse;min-width:16rem;font-size:.98rem}
+table.data caption{text-align:left;font-weight:700;padding-bottom:.3rem}
+table.data th,table.data td{border:1px solid var(--line);padding:.35rem .65rem;text-align:left;vertical-align:top}
+table.data thead th{background:var(--brand-soft)}
+table.data .r,table.data td.r{text-align:right;font-variant-numeric:tabular-nums}
+table.data tr.tot th,table.data tr.tot td{font-weight:700;border-top:2px solid var(--ink)}
+table.data tbody th{font-weight:500}
+.eq{display:inline-block;background:var(--brand-soft);padding:.1rem .5rem;border-radius:6px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.95em}
+footer.site{max-width:60rem;margin:0 auto;padding:1rem;color:var(--muted);border-top:1px solid var(--line);font-size:.92rem}
+@media (max-width:30rem){header.site h1{font-size:1.4rem}input[type=text]{width:100%}}
+@media print{header.site{background:#fff;color:#000}.menu-go,.toolbar,.actions{display:none}}
+
+
+.tutor-intro{display:flex;gap:1rem;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-left:6px solid var(--brand);border-radius:10px;padding:1rem 1.1rem;margin:0 0 1.25rem}
+.tutor-avatar{flex:none;width:3.4rem;height:3.4rem;border-radius:50%;background:var(--brand);color:var(--brand-ink);display:flex;align-items:center;justify-content:center;font-size:1.6rem;font-weight:700}
+.tutor-intro h2{margin:0 0 .35rem}
+.tutor-intro p{margin:.35rem 0;color:var(--ink)}
+@media (max-width:30rem){.tutor-intro{flex-direction:column}}
+</style>
+</head>
+<body>
+<a class="skip" href="#app">Skip to main content</a>
+<header class="site">
+  <div class="wrap">
+    <p class="eyebrow">MBA 623 &middot; <span id="mod-num">Module 19</span></p>
+    <h1><span id="mod-title">Activity-Based Costing, Customer Profitability, and Activity-Based Management</span> Tutor</h1>
+    <p class="sub" id="mod-sub">Plantwide and departmental overhead rates, the activity cost hierarchy, ABC product costing, customer profitability, and multi-level profit analysis.</p>
+  </div>
+</header>
+<main id="app" tabindex="-1"></main>
+<footer class="site">MBA 623 &middot; Western Carolina University &middot; Practice problems use fictional companies and randomly generated numbers. Nothing you enter here is saved or graded.</footer>
+<script>
+/* MBA 623 tutor library: random helpers, formatting, answer checking (no DOM) */
+(function (root) {
+  'use strict';
+  function makeRNG(seed) {
+    let a = seed >>> 0;
+    const next = function () {
+      a = (a + 0x6D2B79F5) | 0;
+      let t = Math.imul(a ^ (a >>> 15), 1 | a);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+    const R = {
+      next: next,
+      int: function (lo, hi) { return lo + Math.floor(next() * (hi - lo + 1)); },
+      step: function (lo, hi, s) { return lo + s * Math.floor(next() * ((hi - lo) / s + 1)); },
+      pick: function (arr) { return arr[Math.floor(next() * arr.length)]; },
+      chance: function (p) { return next() < p; },
+      shuffle: function (arr) {
+        const b = arr.slice();
+        for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(next() * (i + 1)); const t = b[i]; b[i] = b[j]; b[j] = t; }
+        return b;
+      },
+      sample: function (arr, n) { return R.shuffle(arr).slice(0, n); }
+    };
+    return R;
+  }
+
+  const COMPANIES = ['Alder Ridge Foods', 'Bluewater Outfitters', 'Cedar Point Instruments', 'Dunmore Apparel', 'Eastgate Medical', 'Fairhaven Home Goods', 'Granite Peak Tools', 'Harborview Software', 'Ironwood Furniture', 'Juniper Labs', 'Kestrel Logistics', 'Lakeshore Beverages', 'Maple Hollow Bakery', 'Northfield Electronics', 'Oakmont Pharmaceuticals', 'Pinecrest Sports', 'Quarry Lane Builders', 'Redstone Retail', 'Silverline Networks', 'Tamarack Outdoor', 'Union Square Coffee', 'Valley Forge Machining', 'Westbrook Toys', 'Yellowfin Seafood', 'Zephyr Cycles'];
+
+  function addCommas(s) { return s.replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+  function num(x, d) {
+    d = d || 0;
+    const neg = x < 0 && Math.round(Math.abs(x) * Math.pow(10, d)) !== 0;
+    const s = Math.abs(x).toFixed(d).split('.');
+    return (neg ? '-' : '') + addCommas(s[0]) + (s[1] ? '.' + s[1] : '');
+  }
+  function money(x, d) {
+    d = d || 0;
+    const s = num(Math.abs(x), d);
+    const isZero = Math.round(Math.abs(x) * Math.pow(10, d)) === 0;
+    return (x < 0 && !isZero) ? '($' + s + ')' : '$' + s;
+  }
+  function sgn(x, d) { return (x < 0 ? ' &minus; ' : ' + ') + money(Math.abs(x), d); }
+  function pct(x, d) { d = (d === undefined) ? 1 : d; return num(x, d) + '%'; }
+  function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+
+  /* table(headers, rows, opts) rows: array of arrays; first column left aligned, others right aligned */
+  function table(head, rows, opts) {
+    opts = opts || {};
+    let h = '<div class="tbl-wrap"><table class="data"' + (opts.caption ? '' : '') + '>';
+    if (opts.caption) h += '<caption>' + opts.caption + '</caption>';
+    if (head && head.length) {
+      h += '<thead><tr>';
+      head.forEach(function (c, i) { h += '<th scope="col"' + (i === 0 ? '' : ' class="r"') + '>' + c + '</th>'; });
+      h += '</tr></thead>';
+    }
+    h += '<tbody>';
+    rows.forEach(function (r) {
+      let cls = '';
+      if (r && r.cls) { cls = ' class="' + r.cls + '"'; r = r.cells; }
+      h += '<tr' + cls + '>';
+      r.forEach(function (c, i) {
+        if (i === 0) h += '<th scope="row">' + c + '</th>';
+        else h += '<td class="r">' + c + '</td>';
+      });
+      h += '</tr>';
+    });
+    return h + '</tbody></table></div>';
+  }
+
+  function parseAnswer(raw) {
+    if (raw === null || raw === undefined) return NaN;
+    let s = String(raw).trim().toLowerCase();
+    if (!s) return NaN;
+    let neg = false;
+    if (/^\(.*\)$/.test(s)) { neg = true; s = s.slice(1, -1); }
+    s = s.replace(/[−–]/g, '-');
+    if (s.charAt(0) === '-') { neg = true; s = s.slice(1); }
+    s = s.replace(/[\$,\s]/g, '').replace(/%$/, '');
+    s = s.replace(/(units?|days?|times|x|shares?|batches|hours|hrs|years?|yrs?|dollars)$/, '');
+    if (s.charAt(0) === '-') { neg = true; s = s.slice(1); }
+    if (!/^[0-9]*\.?[0-9]+$|^[0-9]+\.$/.test(s)) return NaN;
+    const v = parseFloat(s);
+    return neg ? -v : v;
+  }
+
+  function isCorrectNumber(step, raw) {
+    const u = parseAnswer(raw);
+    if (!isFinite(u)) return false;
+    const a = step.ans;
+    const dec = step.dec || 0;
+    const rel = (step.tol === undefined) ? 0.003 : step.tol;
+    const absTol = 0.5 * Math.pow(10, -dec) + 1e-9;
+    const ok = function (v) { return Math.abs(v - a) <= Math.max(absTol, rel * Math.abs(a)); };
+    if (ok(u)) return true;
+    if (step.unit === '%' && Math.abs(u) <= 1.5 && Math.abs(a) > 1.5 && ok(u * 100)) return true;
+    return false;
+  }
+
+  function fmtAnswer(step) {
+    const d = step.dec || 0;
+    switch (step.unit) {
+      case '$': return money(step.ans, d);
+      case '%': return pct(step.ans, d);
+      case 'x': return num(step.ans, d) + 'x';
+      case 'days': return num(step.ans, d) + ' days';
+      case 'units': return num(step.ans, d) + ' units';
+      default: return num(step.ans, d) + (step.suffix ? ' ' + step.suffix : '');
+    }
+  }
+
+
+  /* step builders */
+  function ns(q, short, ans, unit, dec, hint, sol, extra) {
+    var o = { q: '<p>' + q + '</p>', short: short, ans: ans, unit: unit || '', dec: dec || 0, hint: hint, sol: sol };
+    if (extra) { for (var k in extra) o[k] = extra[k]; }
+    return o;
+  }
+  function cs(q, short, choices, correct, hint, sol) {
+    return { q: '<p>' + q + '</p>', short: short, choices: choices, correct: correct, hint: hint, sol: sol };
+  }
+  /* shuffle choices but keep track of the correct one */
+  function csr(R, q, short, choices, correctIdx, hint, sol) {
+    var order = R.shuffle(choices.map(function (c, i) { return i; }));
+    return cs(q, short, order.map(function (i) { return choices[i]; }), order.indexOf(correctIdx), hint, sol);
+  }
+
+  root.TutorLib = { sgn: sgn, ns: ns, cs: cs, csr: csr, makeRNG: makeRNG, COMPANIES: COMPANIES, num: num, money: money, pct: pct, esc: esc, table: table, parseAnswer: parseAnswer, isCorrectNumber: isCorrectNumber, fmtAnswer: fmtAnswer };
+})(typeof window !== 'undefined' ? window : globalThis);
+
+</script>
+<script>
+(function () {
+  var L = window.TutorLib, $ = L.money, N = L.num, P = L.pct, T = L.table, ns = L.ns, cs = L.cs, csr = L.csr, G = L.sgn;
+  function co(R) { return R.pick(L.COMPANIES); }
+  function fmt(n) { return Math.round(n).toLocaleString('en-US'); }
+
+  /* A. Plantwide rate */
+  function genPlant(R) {
+    var name = co(R), batches = R.step(40, 80, 5), mhA = R.step(12, 24, 1), mhB = R.step(14, 28, 1);
+    var tmhA = mhA * batches / 2, tmhB = mhB * batches / 2;
+    var half = batches / 2, tmh = (mhA + mhB) * half;
+    var oh = R.step(100, 200, 5) * 1000, rate = oh / tmh;
+    var dmA = R.step(15, 40, 1) * 10, dmB = R.step(20, 50, 1) * 10, dlA = R.step(5, 12, 1) * 10, dlB = R.step(6, 14, 1) * 10;
+    var ohA = mhA * rate, ohB = mhB * rate, uA = dmA + dlA + ohA, uB = dmB + dlB + ohB;
+    return {
+      intro: '<p><strong>' + name + '</strong> produces two products, Standard and Premium, in batches. It expects to make <strong>' + half + ' batches of each</strong> (' + batches + ' in total) with total estimated manufacturing overhead of <strong>' + $(oh) + '</strong>. Overhead is allocated using a single plantwide rate based on machine hours.</p>' + T(['', 'Standard', 'Premium'], [['Machine hours per batch', mhA, mhB], ['Direct materials per batch', $(dmA), $(dmB)], ['Direct labor per batch', $(dlA), $(dlB)]]),
+      takeaway: 'A plantwide rate = total estimated overhead &divide; total allocation base. Each product gets overhead = base used &times; rate. This is simple but can misstate costs if products consume overhead in different ways.',
+      steps: [
+        ns('What are the <strong>total machine hours</strong> for all batches?', 'Total machine hours', tmh, 'hours', 0, 'Hours per batch &times; ' + half + ' batches, for each product, added together.', '(' + mhA + ' &times; ' + half + ') + (' + mhB + ' &times; ' + half + ') = <strong>' + fmt(tmh) + ' hours</strong>.', { tol: 0 }),
+        ns('What is the <strong>plantwide overhead rate</strong> per machine hour? Round to two decimals.', 'Plantwide rate', rate, '$', 2, 'Total overhead divided by total machine hours.', $(oh) + ' &divide; ' + fmt(tmh) + ' = <strong>' + $(rate, 2) + '</strong> per machine hour.', { tol: 0.003 }),
+        ns('What is the <strong>overhead assigned to one batch of Standard</strong>? Round to the nearest dollar.', 'Overhead per Standard batch', ohA, '$', 0, 'Machine hours per batch times the rate.', mhA + ' &times; ' + $(rate, 2) + ' = <strong>' + $(ohA) + '</strong>.', { tol: 0.005 }),
+        ns('What is the <strong>total cost per batch of Standard</strong>? Round to the nearest dollar.', 'Cost per Standard batch', uA, '$', 0, 'Direct materials + direct labor + overhead.', $(dmA) + ' + ' + $(dlA) + ' + ' + $(ohA) + ' = <strong>' + $(uA) + '</strong>.', { tol: 0.005 }),
+        ns('What is the <strong>total cost per batch of Premium</strong>? Round to the nearest dollar.', 'Cost per Premium batch', uB, '$', 0, 'Direct materials + direct labor + overhead (' + mhB + ' hours &times; ' + $(rate, 2) + ').', $(dmB) + ' + ' + $(dlB) + ' + ' + $(ohB) + ' = <strong>' + $(uB) + '</strong>.', { tol: 0.005 })
+      ]
+    };
+  }
+
+  /* B. Departmental rates */
+  function genDept(R) {
+    var name = co(R), batches = R.step(40, 80, 5);
+    var ohM = R.step(30, 60, 5) * 1000, ohB = R.step(90, 140, 5) * 1000;
+    var dlhA = R.step(2, 5, 1) * batches, dlhB = R.step(3, 6, 1) * batches;
+    var mhA = R.step(8, 14, 1) * batches, mhB = R.step(9, 15, 1) * batches;
+    var rM = ohM / (dlhA + dlhB), rB = ohB / (mhA + mhB);
+    var aM = rM * dlhA / batches, aB = rB * mhA / batches, bM = rM * dlhB / batches, bB = rB * mhB / batches;
+    var totA = aM + aB, totB = bM + bB;
+    return {
+      intro: '<p><strong>' + name + '</strong> makes two products, Alpha and Beta, in two departments. It plans <strong>' + batches + ' batches of each</strong>. Mixing overhead is allocated on direct labor hours; Bottling overhead on machine hours.</p>' + T(['', 'Mixing', 'Bottling'], [['Departmental overhead', $(ohM), $(ohB)], ['Allocation base', 'Direct labor hours', 'Machine hours'], ['Alpha, total base for ' + batches + ' batches', fmt(dlhA) + ' DLH', fmt(mhA) + ' MH'], ['Beta, total base for ' + batches + ' batches', fmt(dlhB) + ' DLH', fmt(mhB) + ' MH']]),
+      takeaway: 'Departmental rates = departmental overhead &divide; departmental allocation base. Each product is charged in every department it passes through, using the department&rsquo;s own rate.',
+      steps: [
+        ns('What is the <strong>Mixing overhead rate</strong> per direct labor hour? Round to two decimals.', 'Mixing rate', rM, '$', 2, 'Mixing overhead divided by total direct labor hours (Alpha + Beta).', $(ohM) + ' &divide; (' + fmt(dlhA) + ' + ' + fmt(dlhB) + ') = <strong>' + $(rM, 2) + '</strong>.', { tol: 0.003 }),
+        ns('What is the <strong>Bottling overhead rate</strong> per machine hour? Round to two decimals.', 'Bottling rate', rB, '$', 2, 'Bottling overhead divided by total machine hours (Alpha + Beta).', $(ohB) + ' &divide; (' + fmt(mhA) + ' + ' + fmt(mhB) + ') = <strong>' + $(rB, 2) + '</strong>.', { tol: 0.003 }),
+        ns('What is the <strong>Mixing overhead per batch of Alpha</strong>? Round to the nearest dollar.', 'Alpha Mixing overhead / batch', aM, '$', 0, 'Direct labor hours per batch (' + fmt(dlhA) + ' &divide; ' + batches + ' = ' + (dlhA / batches) + ') times the Mixing rate.', (dlhA / batches) + ' &times; ' + $(rM, 2) + ' = <strong>' + $(aM) + '</strong>.', { tol: 0.005 }),
+        ns('What is the <strong>Bottling overhead per batch of Alpha</strong>? Round to the nearest dollar.', 'Alpha Bottling overhead / batch', aB, '$', 0, 'Machine hours per batch (' + fmt(mhA) + ' &divide; ' + batches + ' = ' + (mhA / batches) + ') times the Bottling rate.', (mhA / batches) + ' &times; ' + $(rB, 2) + ' = <strong>' + $(aB) + '</strong>.', { tol: 0.005 }),
+        ns('What is the <strong>total overhead assigned per batch of Alpha</strong>?', 'Alpha overhead / batch', totA, '$', 0, 'Add the two departments.', $(aM) + ' + ' + $(aB) + ' = <strong>' + $(totA) + '</strong>.', { tol: 0.005 }),
+        ns('What is the <strong>total overhead assigned per batch of Beta</strong>?', 'Beta overhead / batch', totB, '$', 0, 'Beta uses ' + (dlhB / batches) + ' DLH in Mixing and ' + (mhB / batches) + ' MH in Bottling.', '(' + (dlhB / batches) + ' &times; ' + $(rM, 2) + ') + (' + (mhB / batches) + ' &times; ' + $(rB, 2) + ') = <strong>' + $(totB) + '</strong>.', { tol: 0.005 })
+      ]
+    };
+  }
+
+  /* C. Activity hierarchy */
+  var HC = ['Unit level', 'Batch level', 'Product level', 'Facility level'];
+  var HP = [
+    ['Cost of raw materials for each unit', 0, 'Performed for each unit: <strong>unit level</strong>.'],
+    ['Cost of equipment setup', 1, 'Performed for each batch: <strong>batch level</strong>.'],
+    ['Cost of processing a sales order', 1, 'Incurred for each batch or order: <strong>batch level</strong>.'],
+    ['Cost of inspecting each batch', 1, 'Performed per batch: <strong>batch level</strong>.'],
+    ['Cost of developing a new product and its specialized equipment', 2, 'Supports each different product: <strong>product level</strong>.'],
+    ['Advertising for one specific product', 2, 'Supports a specific product: <strong>product level</strong>.'],
+    ['Plant manager&rsquo;s salary', 3, 'Maintains general capabilities: <strong>facility level</strong>.'],
+    ['Real property taxes on the plant', 3, 'General capability cost: <strong>facility level</strong>.'],
+    ['Sales commission on each unit sold', 0, 'Performed per unit: <strong>unit level</strong>.'],
+    ['Utilities cost of operating machines for each unit produced', 0, 'Varies with each unit: <strong>unit level</strong>.'],
+    ['Cost of moving each batch between workstations', 1, 'Per batch: <strong>batch level</strong>.']
+  ];
+  function genHier(R) {
+    var name = co(R), picks = R.sample(HP, 5);
+    return {
+      intro: '<p>Activity-based costing (ABC) groups activities into a cost hierarchy. For <strong>' + name + '</strong>, classify each cost by the level at which the activity is performed.</p>',
+      steps: picks.map(function (p, i) { return cs('At what level is this activity performed? <em>' + p[0] + '</em>', 'Activity ' + (i + 1), HC, p[1], 'Unit: each unit. Batch: each batch. Product: each different product. Facility: general capabilities.', p[2]); }),
+      takeaway: 'A separate cost driver is chosen for each level: units, batches, product types, and so on. Facility-level costs are generally not driven by any product.'
+    };
+  }
+
+  /* D. ABC product costing */
+  function genABC(R) {
+    var name = co(R);
+    var setup = R.step(20, 45, 1) * 1000, pack = R.step(8, 20, 1) * 1000, insp = R.step(4, 12, 1) * 1000;
+    var sA = R.step(20, 60, 2), sB = R.step(40, 120, 2), setups = sA + sB;
+    var pA = R.step(30, 70, 1) * 100, pB = R.step(30, 70, 1) * 100, packs = pA + pB;
+    var iA = R.step(40, 120, 2), iB = R.step(40, 120, 2), insps = iA + iB;
+    var rs = setup / setups, rp = pack / packs, ri = insp / insps;
+    var costA = rs * sA + rp * pA + ri * iA, costB = rs * sB + rp * pB + ri * iB;
+    var uA = R.step(20, 60, 2) * 100, uB = R.step(20, 60, 2) * 100;
+    var perA = costA / uA, perB = costB / uB;
+    var mh = R.step(10, 30, 1) * 100, mhA = Math.round(uA * 0.7), mhB = uB;
+    var tot = setup + pack + insp, pwRate = tot / (mhA + mhB), pwA = pwRate * mhA / uA, pwB = pwRate * mhB / uB;
+    return {
+      intro: '<p><strong>' + name + '</strong> makes two products. Overhead is assigned using three activity cost pools.</p>' + T(['Activity (driver)', 'Cost', 'Product X', 'Product Y'], [['Machine setup (setups)', $(setup), sA, sB], ['Packaging and shipping (packages)', $(pack), fmt(pA), fmt(pB)], ['Inspection (inspections)', $(insp), iA, iB]]) + '<p>Units produced: Product X ' + fmt(uA) + '; Product Y ' + fmt(uB) + '. Machine hours (for comparison): X ' + fmt(mhA) + '; Y ' + fmt(mhB) + '.</p>',
+      takeaway: 'ABC step 1: compute a cost per unit of each activity driver (pool cost &divide; total driver). Step 2: assign cost to each product = driver units used &times; rate. Dividing by units gives overhead per unit, which often differs a lot from a single plantwide rate.',
+      steps: [
+        ns('What is the <strong>cost per setup</strong>? Round to two decimals.', 'Cost per setup', rs, '$', 2, 'Machine setup cost divided by total setups (X + Y).', $(setup) + ' &divide; ' + setups + ' = <strong>' + $(rs, 2) + '</strong>.', { tol: 0.003 }),
+        ns('What is the <strong>cost per package</strong>? Round to two decimals.', 'Cost per package', rp, '$', 2, 'Packaging and shipping cost divided by total packages.', $(pack) + ' &divide; ' + fmt(packs) + ' = <strong>' + $(rp, 2) + '</strong>.', { tol: 0.01 }),
+        ns('What is the <strong>cost per inspection</strong>? Round to two decimals.', 'Cost per inspection', ri, '$', 2, 'Inspection cost divided by total inspections.', $(insp) + ' &divide; ' + insps + ' = <strong>' + $(ri, 2) + '</strong>.', { tol: 0.003 }),
+        ns('What is the <strong>total overhead assigned to Product X</strong> under ABC? Round to the nearest dollar.', 'Overhead to X', costA, '$', 0, 'Add (setups &times; setup rate) + (packages &times; package rate) + (inspections &times; inspection rate) for X.', '(' + sA + ' &times; ' + $(rs, 2) + ') + (' + fmt(pA) + ' &times; ' + $(rp, 4) + ') + (' + iA + ' &times; ' + $(ri, 2) + ') = <strong>' + $(costA) + '</strong>.', { tol: 0.005 }),
+        ns('What is the <strong>total overhead assigned to Product Y</strong> under ABC? Round to the nearest dollar.', 'Overhead to Y', costB, '$', 0, 'Same method using Y&rsquo;s driver quantities.', '(' + sB + ' &times; ' + $(rs, 2) + ') + (' + fmt(pB) + ' &times; ' + $(rp, 4) + ') + (' + iB + ' &times; ' + $(ri, 2) + ') = <strong>' + $(costB) + '</strong>.', { tol: 0.005 }),
+        ns('What is the <strong>ABC overhead cost per unit of Product X</strong>? Round to two decimals.', 'ABC overhead per unit, X', perA, '$', 2, 'Overhead assigned to X divided by units of X (' + fmt(uA) + ').', $(costA) + ' &divide; ' + fmt(uA) + ' = <strong>' + $(perA, 2) + '</strong>.', { tol: 0.01 }),
+        ns('For comparison, using a single plantwide rate on machine hours, what is the <strong>overhead per unit of Product X</strong>? (Total overhead &divide; total machine hours, times X&rsquo;s hours per unit.) Round to two decimals.', 'Plantwide overhead per unit, X', pwA, '$', 2, 'Plantwide rate = ' + $(tot) + ' &divide; ' + fmt(mhA + mhB) + ' machine hours = ' + $(pwRate, 4) + '. X uses ' + fmt(mhA) + ' hours for ' + fmt(uA) + ' units.', $(pwRate, 4) + ' &times; ' + fmt(mhA) + ' &divide; ' + fmt(uA) + ' = <strong>' + $(pwA, 2) + '</strong>.', { tol: 0.01 })
+      ]
+    };
+  }
+
+  /* E. Customer profitability */
+  function genCust(R) {
+    var name = co(R), cust = R.pick(['Haskell Construction', 'Brightway Builders', 'Cobalt Contractors', 'Summit Homes']);
+    var rates = [['Visits to customer', 'visits', R.step(25, 45, 5) * 10], ['Remote contacts', 'contacts', R.step(2, 5, 1) * 10], ['Processing and shipping', 'orders', R.step(10, 20, 1) * 10], ['Repackaging', 'requests', R.step(8, 15, 1) * 10], ['Billing and collection', 'invoices', R.step(3, 6, 1) * 10]];
+    var qty = [R.step(2, 6, 1), R.step(2, 6, 1), R.step(4, 9, 1), R.step(1, 4, 1), R.step(3, 8, 1)];
+    var costs = rates.map(function (r, i) { return r[2] * qty[i]; }), act = costs.reduce(function (a, b) { return a + b; }, 0);
+    var sales = R.step(40, 90, 1) * 1000, cogs = Math.round(sales * R.step(70, 85, 1) / 100 / 100) * 100;
+    var gp = sales - cogs, prof = gp - act, ratio = 100 * prof / sales;
+    return {
+      intro: '<p><strong>' + name + '</strong> wants to know how profitable one customer, <strong>' + cust + '</strong>, is after the cost of serving it.</p>' + T(['Activity', 'Driver', 'Cost per driver unit', 'Driver units for customer'], rates.map(function (r, i) { return [r[0], r[1], $(r[2]), qty[i]]; })) + '<p>Customer sales were <strong>' + $(sales) + '</strong> and cost of goods sold was <strong>' + $(cogs) + '</strong>.</p>',
+      takeaway: 'Customer profitability = gross profit &minus; customer activity costs. Customers with low or negative profitability should be flagged: look for ways to improve it, or consider ending the relationship.',
+      steps: [
+        ns('What is the <strong>total cost of the visits to the customer</strong> (visits &times; cost per visit)?', 'Visit cost', costs[0], '$', 0, 'Driver units times cost per driver unit.', qty[0] + ' &times; ' + $(rates[0][2]) + ' = <strong>' + $(costs[0]) + '</strong>.', { tol: 0 }),
+        ns('What is the <strong>total customer activity cost</strong> across all five activities?', 'Total activity cost', act, '$', 0, 'Multiply each activity&rsquo;s driver units by its rate and add.', rates.map(function (r, i) { return qty[i] + ' &times; ' + $(r[2]); }).join(' + ') + ' = <strong>' + $(act) + '</strong>.', { tol: 0 }),
+        ns('What is the <strong>gross profit</strong> on the customer&rsquo;s sales?', 'Gross profit', gp, '$', 0, 'Sales minus cost of goods sold.', $(sales) + ' &minus; ' + $(cogs) + ' = <strong>' + $(gp) + '</strong>.', { tol: 0 }),
+        ns('What is the <strong>customer profitability</strong> (gross profit minus activity costs)? Enter a loss as a negative number.', 'Customer profitability', prof, '$', 0, 'Gross profit minus total customer activity cost.', $(gp) + ' &minus; ' + $(act) + ' = <strong>' + $(prof) + '</strong>.', { tol: 0 }),
+        ns('What is the <strong>customer profitability ratio</strong> (customer profitability &divide; sales)? Round to one decimal.', 'Profitability ratio', ratio, '%', 1, 'Divide customer profitability by customer sales.', $(prof) + ' &divide; ' + $(sales) + ' = <strong>' + P(ratio, 1) + '</strong>.', { tol: 0.01 })
+      ]
+    };
+  }
+
+  /* F. Multi-level income statement & break-even */
+  function genMulti(R) {
+    var name = co(R), sales = R.step(15, 30, 1) * 100000, ur = R.step(50, 62, 2) / 100, orders = R.step(30, 50, 2) * 100, orate = R.step(20, 30, 1);
+    var custs = R.step(3, 8, 1) * 100, crate = R.step(20, 40, 2) * 10, fac = R.step(15, 30, 1) * 10000, tax = R.pick([25, 30, 35]);
+    var uc = sales * ur, ucm = sales - uc, oc = orders * orate, ocm = ucm - oc, cc = custs * crate, ccm = ocm - cc; fac = Math.min(fac, Math.floor(ccm * 0.6 / 10000) * 10000); var pre = ccm - fac, taxes = pre > 0 ? pre * tax / 100 : 0, after = pre - taxes;
+    var be = (oc + cc + fac) / (1 - ur);
+    return {
+      intro: '<p><strong>' + name + '</strong> prepares a multi-level contribution income statement. Last year: sales of <strong>' + $(sales) + '</strong>; unit-level costs of <strong>' + Math.round(ur * 100) + '%</strong> of sales; order processing of ' + $(orate) + ' per order for ' + fmt(orders) + ' orders; customer acquisition and sales calls of ' + $(crate) + ' for each of ' + fmt(custs) + ' customers; facility-level costs of ' + $(fac) + '; and an income tax rate of ' + tax + '%.</p>',
+      takeaway: 'A multi-level statement subtracts costs by activity level: unit, order, customer, then facility. Break-even sales = (order + customer + facility costs) &divide; (1 &minus; unit-level cost ratio).',
+      steps: [
+        ns('What is the <strong>unit-level contribution margin</strong>?', 'Unit-level CM', ucm, '$', 0, 'Sales minus unit-level costs (' + Math.round(ur * 100) + '% of sales).', $(sales) + ' &minus; ' + $(uc) + ' = <strong>' + $(ucm) + '</strong>.', { tol: 0.002 }),
+        ns('What is the <strong>order-level contribution margin</strong>?', 'Order-level CM', ocm, '$', 0, 'Unit-level contribution margin minus order processing cost (' + fmt(orders) + ' &times; ' + $(orate) + ').', $(ucm) + ' &minus; ' + $(oc) + ' = <strong>' + $(ocm) + '</strong>.', { tol: 0.002 }),
+        ns('What is the <strong>customer-level contribution margin</strong>?', 'Customer-level CM', ccm, '$', 0, 'Subtract customer-level costs (' + fmt(custs) + ' &times; ' + $(crate) + ' = ' + $(cc) + ').', $(ocm) + ' &minus; ' + $(cc) + ' = <strong>' + $(ccm) + '</strong>.', { tol: 0.002 }),
+        ns('What is <strong>before-tax profit</strong>? Enter a loss as a negative number.', 'Before-tax profit', pre, '$', 0, 'Subtract facility-level costs.', $(ccm) + ' &minus; ' + $(fac) + ' = <strong>' + $(pre) + '</strong>.', { tol: 0.005 }),
+        ns('What is <strong>after-tax profit</strong>? (If before-tax profit is negative, assume no tax.)', 'After-tax profit', after, '$', 0, 'Before-tax profit times (1 &minus; ' + tax + '%).', $(pre) + ' &times; (1 &minus; ' + (tax / 100) + ') = <strong>' + $(after) + '</strong>.', { tol: 0.005 }),
+        ns('What are the <strong>break-even sales dollars</strong>? Use (order + customer + facility costs) &divide; (1 &minus; unit-level cost ratio).', 'Break-even sales', be, '$', 0, 'The unit-level cost ratio is ' + ur + ' per sales dollar, so the contribution margin ratio is ' + (1 - ur).toFixed(2) + '.', '(' + $(oc) + ' + ' + $(cc) + ' + ' + $(fac) + ') &divide; (1 &minus; ' + ur + ') = <strong>' + $(be) + '</strong>.', { tol: 0.005 })
+      ]
+    };
+  }
+
+  window.MODULE = {
+    num: 19,
+    title: 'Activity-Based Costing, Customer Profitability, and Activity-Based Management',
+    subtitle: 'Plantwide and departmental overhead rates, the activity cost hierarchy, ABC product costing, customer profitability, and multi-level profit analysis.',
+    types: [
+      { label: 'Plantwide Overhead Rate', desc: 'Allocate overhead using one rate and compute batch costs.', gen: genPlant },
+      { label: 'Departmental Overhead Rates', desc: 'Separate rates for two departments and product overhead.', gen: genDept },
+      { label: 'Activity Cost Hierarchy', desc: 'Unit, batch, product, or facility level.', gen: genHier },
+      { label: 'ABC Product Costing', desc: 'Activity rates, product overhead, and comparison to a plantwide rate.', gen: genABC },
+      { label: 'Customer Profitability', desc: 'Customer activity costs and profitability ratio.', gen: genCust },
+      { label: 'Multi-Level Income Statement', desc: 'Contribution margins by level, profit after tax, and break-even.', gen: genMulti }
+    ]
+  };
+})();
+
+</script>
+<script>
+/* MBA 623 tutor UI engine */
+(function () {
+  'use strict';
+  var L = window.TutorLib;
+  var M = window.MODULE;
+  var app = document.getElementById('app');
+  var state = null;
+  var TUTOR_NAMES = ['Kelly', 'Riley', 'Alex', 'Kai', 'Yamal', 'Taylor', 'Vanessa'];
+  var TUTOR = (function () {
+    var n = null;
+    try { n = window.sessionStorage.getItem('mba623TutorName'); } catch (e) { n = null; }
+    if (TUTOR_NAMES.indexOf(n) < 0) {
+      n = TUTOR_NAMES[Math.floor(Math.random() * TUTOR_NAMES.length)];
+      try { window.sessionStorage.setItem('mba623TutorName', n); } catch (e) {}
+    }
+    return n;
+  })();
+
+  var PRAISE = ['Correct! Nice work.', 'Exactly right!', 'Well done, that is correct.', 'Great job, you got it!', 'Yes, that is right. Excellent!', 'Spot on!', 'That is correct. Keep it up!', 'Right on target!'];
+  var WRONG1 = ['Not quite, but you are close to a good approach. Here is a hint.', 'That is not the answer we are looking for, but no worries. Here is a hint.', 'Not quite right. Take a look at this hint and try once more.', 'Almost there, but that is not it. Use this hint and give it another try.'];
+  var WRONG2 = ['That is still not it, and that is okay. Here is the solution for this step.', 'Not this time, but this is how you learn. Here is the solution.', 'Still not quite. Let us walk through the solution together.'];
+
+  function el(html) { var d = document.createElement('div'); d.innerHTML = html; return d.firstElementChild; }
+  function rndFrom(arr, i) { return arr[i % arr.length]; }
+
+  /* ---------- menu ---------- */
+  function renderMenu() {
+    state = null;
+    var h = '<section class="tutor-intro" aria-labelledby="menu-h"><div class="tutor-avatar" aria-hidden="true">' + TUTOR.charAt(0) + '</div><div><h2 id="menu-h">Hi, I am ' + TUTOR + '. I am your personal tutor.</h2>';
+    h += '<p>Pick a type of problem below. You will get a new scenario with new numbers, and I will walk you through it one step at a time.</p>';
+    h += '<p>Type your answer for each step and press <strong>Check my answer</strong>. If you miss a step, no worries: you will get a hint and one more try. If you miss it again, you will see the solution for that step and then move on to the next one.</p></div></section>';
+    h += '<ul class="menu" aria-labelledby="menu-h">';
+    M.types.forEach(function (t, i) {
+      h += '<li><button type="button" class="menu-btn" data-type="' + i + '"><span class="menu-title">' + t.label + '</span><span class="menu-desc">' + t.desc + '</span><span class="menu-go" aria-hidden="true">Start &rarr;</span></button></li>';
+    });
+    h += '</ul>';
+    app.innerHTML = h;
+    var btns = app.querySelectorAll('.menu-btn');
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].addEventListener('click', function (e) { startProblem(parseInt(e.currentTarget.getAttribute('data-type'), 10)); });
+    }
+    document.title = 'Module ' + M.num + ' Tutor | MBA 623';
+  }
+
+  /* ---------- problem ---------- */
+  function startProblem(typeIdx) {
+    var seed = (Math.floor(Math.random() * 4294967295) ^ Date.now()) >>> 0;
+    var R = L.makeRNG(seed);
+    var t = M.types[typeIdx];
+    var prob = t.gen(R, L);
+    state = { typeIdx: typeIdx, type: t, prob: prob, i: 0, attempt: 0, log: [], first: 0, second: 0, shown: 0 };
+    renderProblem(true);
+  }
+
+  function renderHeader() {
+    var p = state.prob;
+    var h = '<div class="toolbar"><button type="button" class="link-btn" id="to-menu">&larr; Choose a different problem type</button></div>';
+    h += '<h2 id="prob-h" tabindex="-1">' + state.type.label + '</h2>';
+    h += '<section class="scenario" aria-labelledby="scen-h"><h3 id="scen-h">The problem</h3>' + p.intro + '</section>';
+    return h;
+  }
+
+  function renderLog() {
+    if (!state.log.length) return '';
+    var h = '<section class="worklog" aria-labelledby="log-h"><h3 id="log-h">Your work so far</h3><ol>';
+    state.log.forEach(function (e) {
+      h += '<li><span class="log-q">' + e.q + '</span><span class="log-a ' + e.cls + '"><span class="badge">' + e.badge + '</span> ' + e.text + '</span></li>';
+    });
+    return h + '</ol></section>';
+  }
+
+  function renderProblem(focusHeading) {
+    var p = state.prob, s = p.steps[state.i], n = p.steps.length;
+    var h = renderHeader();
+    h += renderLog();
+    h += '<section class="step" aria-labelledby="step-h">';
+    h += '<p class="stepno" id="step-h">Step ' + (state.i + 1) + ' of ' + n + '</p>';
+    h += '<div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="' + n + '" aria-valuenow="' + state.i + '" aria-label="Progress"><span style="width:' + Math.round(100 * state.i / n) + '%"></span></div>';
+    h += '<div class="q" id="q">' + s.q + '</div>';
+    h += '<form id="f" novalidate>';
+    if (s.choices) {
+      h += '<fieldset class="choices"><legend class="sr-only">Choose one answer</legend>';
+      s.choices.forEach(function (c, k) {
+        h += '<label class="choice"><input type="radio" name="c" value="' + k + '"><span>' + c + '</span></label>';
+      });
+      h += '</fieldset>';
+    } else {
+      h += '<div class="ans-row"><label class="sr-only" for="ans">Your answer</label>';
+      if (s.unit === '$') h += '<span class="aff" aria-hidden="true">$</span>';
+      h += '<input id="ans" name="ans" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" aria-describedby="q">';
+      if (s.unit === '%') h += '<span class="aff" aria-hidden="true">%</span>';
+      else if (s.unit === 'x') h += '<span class="aff" aria-hidden="true">times</span>';
+      else if (s.unit === 'days') h += '<span class="aff" aria-hidden="true">days</span>';
+      else if (s.unit === 'units') h += '<span class="aff" aria-hidden="true">units</span>';
+      else if (s.suffix) h += '<span class="aff" aria-hidden="true">' + s.suffix + '</span>';
+      h += '</div>';
+      if (s.note) h += '<p class="fmt">' + s.note + '</p>';
+    }
+    h += '<div class="actions"><button type="submit" class="primary" id="check">Check my answer</button></div>';
+    h += '</form>';
+    h += '<div id="fb" class="fb" role="status" aria-live="polite"></div>';
+    h += '</section>';
+    app.innerHTML = h;
+    document.getElementById('to-menu').addEventListener('click', renderMenu);
+    document.getElementById('f').addEventListener('submit', onCheck);
+    if (focusHeading) { var hd = document.getElementById('prob-h'); hd.focus(); window.scrollTo(0, 0); }
+    else { var inp = document.getElementById('ans') || document.querySelector('input[name=c]'); if (inp) inp.focus(); }
+  }
+
+  function currentUserAnswer(s) {
+    if (s.choices) {
+      var r = document.querySelector('input[name=c]:checked');
+      return r ? parseInt(r.value, 10) : null;
+    }
+    return document.getElementById('ans').value;
+  }
+
+  function onCheck(ev) {
+    ev.preventDefault();
+    var s = state.prob.steps[state.i];
+    var ua = currentUserAnswer(s);
+    var fb = document.getElementById('fb');
+    var correct;
+    if (s.choices) {
+      if (ua === null) { fb.className = 'fb info'; fb.innerHTML = '<p>Please choose an answer first.</p>'; return; }
+      correct = (ua === s.correct);
+    } else {
+      if (!String(ua).trim() || !isFinite(L.parseAnswer(ua))) { fb.className = 'fb info'; fb.innerHTML = '<p>Please enter a number (for example 1,250 or 12.5). Do not include words.</p>'; document.getElementById('ans').focus(); return; }
+      correct = L.isCorrectNumber(s, ua);
+    }
+    state.attempt++;
+    var correctText = s.choices ? s.choices[s.correct] : L.fmtAnswer(s);
+    var yourText = s.choices ? s.choices[ua] : L.esc(String(ua).trim());
+    var qShort = s.short || s.q;
+    if (correct) {
+      if (state.attempt === 1) state.first++; else state.second++;
+      fb.className = 'fb good';
+      fb.innerHTML = '<p class="fb-h"><span class="badge ok">Correct</span> ' + rndFrom(PRAISE, state.i + state.prob.steps.length) + '</p>' + (s.sol ? '<div class="sol"><strong>Why:</strong> ' + s.sol + '</div>' : '') + '<p class="ans-line">Answer: <strong>' + correctText + '</strong></p>';
+      state.log.push({ q: qShort, text: correctText, cls: 'good', badge: state.attempt === 1 ? 'Correct' : 'Correct (2nd try)' });
+      lockAndNext();
+    } else if (state.attempt === 1) {
+      fb.className = 'fb warn';
+      fb.innerHTML = '<p class="fb-h"><span class="badge no">Not yet</span> ' + rndFrom(WRONG1, state.i) + '</p><div class="hint"><strong>Hint from ' + TUTOR + ':</strong> ' + s.hint + '</div>';
+      document.getElementById('check').textContent = 'Try again';
+      var inp = document.getElementById('ans'); if (inp) { inp.select(); inp.focus(); }
+    } else {
+      state.shown++;
+      fb.className = 'fb bad';
+      fb.innerHTML = '<p class="fb-h"><span class="badge no">Solution</span> ' + rndFrom(WRONG2, state.i) + '</p><div class="sol">' + s.sol + '</div><p class="ans-line">Answer: <strong>' + correctText + '</strong></p>';
+      state.log.push({ q: qShort, text: correctText + ' <span class="yours">(you entered ' + yourText + ')</span>', cls: 'bad', badge: 'Solution shown' });
+      lockAndNext();
+    }
+  }
+
+  function lockAndNext() {
+    var f = document.getElementById('f');
+    var ctrls = f.querySelectorAll('input,button');
+    for (var i = 0; i < ctrls.length; i++) ctrls[i].disabled = true;
+    var last = state.i === state.prob.steps.length - 1;
+    var btn = el('<div class="actions"><button type="button" class="primary" id="next">' + (last ? 'See my results' : 'Next step &rarr;') + '</button></div>');
+    document.getElementById('fb').appendChild(btn);
+    var nb = document.getElementById('next');
+    nb.addEventListener('click', function () {
+      state.i++; state.attempt = 0;
+      if (state.i >= state.prob.steps.length) renderSummary(); else renderProblem(false);
+    });
+    nb.focus();
+  }
+
+  function renderSummary() {
+    var n = state.prob.steps.length;
+    var perfect = state.first === n;
+    var msg;
+    if (perfect) msg = 'Outstanding! You got every step right on the first try.';
+    else if (state.shown === 0) msg = 'Nice work! You solved every step, and you learned from the hints along the way.';
+    else if (state.first + state.second >= n / 2) msg = 'Good effort! You solved most of this problem. Review the steps marked "Solution shown" and try a new problem to lock it in.';
+    else msg = 'Thanks for sticking with it. Review the solutions below, look back at the module slides, and try a fresh problem. Practice makes this much easier.';
+    var h = renderHeader();
+    h += '<section class="summary" aria-labelledby="sum-h"><h3 id="sum-h" tabindex="-1">Your results</h3>';
+    h += '<p class="big"><strong>' + TUTOR + ' says:</strong> ' + msg + '</p>';
+    h += '<ul class="score"><li><strong>' + state.first + '</strong> correct on the first try</li><li><strong>' + state.second + '</strong> correct on the second try</li><li><strong>' + state.shown + '</strong> solution' + (state.shown === 1 ? '' : 's') + ' shown</li></ul>';
+    if (state.prob.takeaway) h += '<div class="takeaway"><strong>Key takeaway:</strong> ' + state.prob.takeaway + '</div>';
+    h += '</section>';
+    h += renderLog();
+    h += '<div class="actions row"><button type="button" class="primary" id="again">Try another problem like this</button><button type="button" class="secondary" id="menu2">Choose a different problem type</button></div>';
+    app.innerHTML = h;
+    document.getElementById('to-menu').addEventListener('click', renderMenu);
+    document.getElementById('menu2').addEventListener('click', renderMenu);
+    var ti = state.typeIdx;
+    document.getElementById('again').addEventListener('click', function () { startProblem(ti); });
+    var sh = document.getElementById('sum-h'); sh.focus(); window.scrollTo(0, 0);
+  }
+
+  document.getElementById('mod-title').textContent = M.title;
+  document.getElementById('mod-sub').textContent = M.subtitle;
+  document.getElementById('mod-num').textContent = 'Module ' + M.num;
+  renderMenu();
+})();
+
+</script>
+</body>
+</html>
