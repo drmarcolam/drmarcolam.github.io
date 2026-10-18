@@ -267,6 +267,14 @@
       problemCount: 37
     },
     {
+      code: 'MBA 623 Spring 2027',
+      name: 'Accounting: Understanding Performance & Informing Decisions',
+      desc: 'Work as a business analyst at Summit Cycle Works. Guided walkthroughs with free hints and instant answer checks.',
+      href: 'courses/mba-623-spring-2027.html',
+      problemCount: 1,
+      unit: 'walkthrough'
+    },
+    {
       code: 'Assessments',
       name: 'Assessment files',
       desc: 'For faculty use only',
@@ -286,7 +294,7 @@
       '<div class="course-card-body">' +
         '<p class="course-desc">' + c.desc + '</p>' +
         '<div class="course-meta">' +
-          '<span class="problem-count">' + (c.problemCount > 0 ? (c.problemCount + ' problem set' + (c.problemCount === 1 ? '' : 's')) : 'Course page') + '</span>' +
+          '<span class="problem-count">' + (c.problemCount > 0 ? (c.problemCount + ' ' + (c.unit || 'problem set') + (c.problemCount === 1 ? '' : 's')) : 'Course page') + '</span>' +
           '<span class="go-arrow">Open course &rarr;</span>' +
         '</div>' +
       '</div>' +
