@@ -68,11 +68,11 @@ tot+=k.w;if(ok)got+=k.w;per[k.p]=per[k.p]||[0,0];per[k.p][1]+=k.w;if(ok)per[k.p]
 mark(e,ok,ok?'✓ Correct (+'+k.w+')':'✗ Incorrect (0 of '+k.w+'). Correct answer: '+ans+(k.y?' — '+k.y:''))});
 document.querySelectorAll('[data-expl]').forEach(function(x){x.hidden=false});
 document.querySelectorAll('[data-ps]').forEach(function(x){var p=per[x.dataset.ps];if(p)x.textContent='Part score: '+p[0]+' of '+p[1]}); 
-$('#score').textContent='Score: '+got+' of '+tot+' ('+Math.round(100*got/tot)+'%)';$('#score').hidden=false;$('#pdf').hidden=false;$('#chk').hidden=true;$('#rst').hidden=false;$('#pdfnote').hidden=false;
+$('#score').textContent='Score: '+got+' of '+tot+' ('+Math.round(100*got/tot)+'%)';$('#score').hidden=false;$('#pdf').hidden=false;$('#chk').hidden=true;var used=1;try{used=(parseInt(localStorage.getItem(KEY+'-n'),10)||0)+1}catch(e){}if(used>=3){$('#rst').hidden=true;var am=document.createElement('span');am.className='noprint';am.setAttribute('role','status');am.textContent='You have used all 3 attempts.';$('#rst').parentNode.insertBefore(am,$('#rst').nextSibling)}else{$('#rst').hidden=false;$('#rst').textContent='Start over (attempt '+used+' of 3 used)'}$('#pdfnote').hidden=false;
 $('#hintmsg').textContent='Checked and locked. Save as PDF, then upload to Canvas.';save();window.scrollTo(0,0);$('#score').focus()}
 $('#chk').addEventListener('click',check);
 $('#pdf').addEventListener('click',function(){window.print()});
-$('#rst').addEventListener('click',function(){if(!confirm('Start over? This clears all answers.'))return;try{localStorage.removeItem(KEY)}catch(e){}location.reload()});
+$('#rst').addEventListener('click',function(){if(!confirm('Start over? This clears all answers.'))return;try{localStorage.setItem(KEY+'-n',String((parseInt(localStorage.getItem(KEY+'-n'),10)||0)+1));localStorage.removeItem(KEY)}catch(e){}location.reload()});
 var st=load();if(st.__l){LOCKED=false}upd();
 
 function pn(v){v=String(v).trim().replace(/[−–]/g,"-").replace(/[$,\s]/g,"");if(!v)return 0;var n=false;if(/^\(.*\)$/.test(v)){n=true;v=v.slice(1,-1)}var r=Number(v);if(isNaN(r))return 0;return n?-r:r}
