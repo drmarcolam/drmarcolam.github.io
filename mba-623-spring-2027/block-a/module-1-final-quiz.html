@@ -37,12 +37,12 @@ textarea{width:100%;min-height:170px;font:14px/1.45 ui-monospace,Consolas,monosp
 <main>
 <span class="tag">MBA 623 · Block A · Module 1 Final Quiz</span>
 <h1>Module 1 Final Quiz: Business Activities and Financial Statements</h1>
-<p class="meta">14 questions · About 25 minutes · One attempt · Scored on this page</p>
+<p class="meta">10 questions · About 20 minutes · One attempt · Scored on this page</p>
 
 <div id="intro">
 <div class="banner"><strong>What this is.</strong> The Final Quiz for Module 1 is a second look at the same ideas with <em>different questions</em>. It is required if you scored below 90% on the Gate Quiz (after the Remedial Chapter Walkthrough), and optional if you met the gate (if you met the gate and would like to take it, contact Dr. Marco Lam). You get <strong>one attempt</strong>.</div>
 <div class="card"><h2 style="margin-top:0">What your score means</h2><ul>
-<li>The quiz has 14 questions. <strong>13 of 14 (about 93%)</strong> is the 90% mark.</li>
+<li>The quiz has 10 questions. <strong>9 of 10 (90%)</strong> is the 90% mark.</li>
 <li>The <strong>higher</strong> of your Gate Quiz and Final Quiz scores counts for the module, so an optional attempt cannot lower your grade.</li>
 <li>Everyone completes the Block A Challenge, whatever the quiz scores.</li></ul></div>
 <div class="card"><h3 style="margin-top:0">Academic integrity and use of AI</h3>
@@ -407,9 +407,10 @@ function buildQuestions(idStr,dateStr,f,nonce){
   return Q;
 }
 
+var KEEP=["1.1","1.2","1.3","1.8","1.14","1.4","1.6","1.7","1.12","1.13","2.1","2.2","2.3","2.4","2.5","2.6","2.8","2.10","2.13","2.14","3.1","3.2","3.3","3.4","3.6","3.7","3.11","3.12","3.13","3.14"];
 (function(){
 'use strict';
-var THRESH=0.90,PER=14,NEED=Math.ceil(THRESH*PER-1e-9);
+var THRESH=0.90,PER=10,NEED=Math.ceil(THRESH*PER-1e-9);
 var MODS=[{n:1,title:'Module 1: Business Activities and Financial Statements',sub:'What did Cullowhee do with its money, and how well did it work?'}];
 var FORM=1;
 var Q=[],info={},results={};
@@ -426,7 +427,7 @@ function start(){
   if(nm.length<2){er.textContent='Please enter your first and last name.';$('stuname').focus();return;}
   if(!/^\d{5,12}$/.test(id)){er.textContent='Please enter your student ID using digits only.';$('stuid').focus();return;}
   info={name:nm,id:id,date:today()};
-  Q=buildQuestions(id,info.date,FORM);
+  Q=buildQuestions(id,info.date,FORM).filter(function(q){return KEEP.indexOf(q.id)>=0;});
   render();
   $('intro').hidden=true;$('app').hidden=false;
   $('who').textContent=nm+', ID '+id+', '+info.date+'.';
