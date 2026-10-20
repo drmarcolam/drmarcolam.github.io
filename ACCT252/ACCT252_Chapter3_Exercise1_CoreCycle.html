@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ACCT 252 Chapter 3 Exercise 1: Core Cycle</title>
+<meta name="description" content="Chapter 3 Exercise 1: Core Cycle. Practice recalling the formulas, estimating overhead, setting the predetermined rate, and costing a job.">
+<style>
+:root{
+  --bg:#fffbe8; --card:#fffef6; --ink:#1b2a21; --muted:#4f5a49; --line:#e0d59c;
+  --purple:#1f5136; --purple-dark:#163d29; --gold:#f5e68a; --tint:#f8f0c2; --edge:#c9a500;
+  --good-bg:#e7f5ea; --good-ink:#14532d; --good-line:#2e7d32;
+  --bad-bg:#fdebe4; --bad-ink:#7a2a0b; --bad-line:#b4481a;
+  --warn-bg:#fff3de; --warn-ink:#5e3300; --warn-line:#b86b00;
+  --focus:#0b57d0;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0f1f17; --card:#16291f; --ink:#f6f1d0; --muted:#c3c9a8; --line:#2f4a3a;
+    --purple:#f2e48a; --purple-dark:#0b1a12; --tint:#1e3829; --edge:#f2e48a;
+    --good-bg:#16301d; --good-ink:#bfe8c8; --good-line:#58b46c;
+    --bad-bg:#3b1f14; --bad-ink:#ffd2bf; --bad-line:#e08a5e;
+    --warn-bg:#3a2a10; --warn-ink:#ffe0b3; --warn-line:#e0a040;
+    --focus:#8ab4ff;
+  }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.55;font-size:1.0625rem}
+.skip{position:absolute;left:-999px;top:0;background:var(--gold);color:#163d29;padding:.6rem 1rem;z-index:10;font-weight:700}
+.skip:focus{left:8px;top:8px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+header.site{background:var(--purple-dark);color:#fff;border-bottom:6px solid var(--gold)}
+header.site .wrap{max-width:52rem;margin:0 auto;padding:1.3rem 1rem}
+header.site .eyebrow{margin:0;font-size:.9rem;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);font-weight:700}
+header.site h1{margin:.2rem 0 .3rem;font-size:1.7rem;line-height:1.2}
+header.site p.sub{margin:0;color:#e6efd9}
+.progress{max-width:52rem;margin:0 auto;padding:.8rem 1rem 0;display:flex;align-items:center;gap:1rem;position:sticky;top:0;background:var(--bg);z-index:5}
+.progress .track{flex:1;height:10px;background:var(--line);border-radius:5px;overflow:hidden}
+.progress .fill{height:100%;width:0;background:var(--purple);transition:width .3s}
+.progress .lab{font-size:.9rem;color:var(--muted);white-space:nowrap}
+main{max-width:52rem;margin:0 auto;padding:.8rem 1rem 3rem}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+h2{font-size:1.45rem;margin:.2rem 0 .7rem;color:var(--purple);border-bottom:2px solid var(--line);padding-bottom:.35rem}
+h3{font-size:1.02rem;margin:1rem 0 .3rem}
+p{margin:.55rem 0}
+.lo-block{margin:2.2rem 0}
+.lo-tag{display:inline-block;font-size:.8rem;font-weight:700;letter-spacing:.04em;color:#fff;background:var(--purple-dark);padding:.2rem .6rem;border-radius:4px;margin-bottom:.4rem}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .lo-tag{background:var(--purple);color:#0b1a12}}
+.key-idea{background:var(--tint);border-left:5px solid var(--edge);padding:.8rem 1rem;border-radius:0 8px 8px 0;margin:.9rem 0}
+.key-idea ol,.key-idea ul{margin:.4rem 0 .2rem;padding-left:1.3rem}
+.key-idea ul{margin:.3rem 0 0}
+.note{color:var(--muted);font-size:.95rem}
+.example{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:1rem 1.1rem 1.1rem;margin:1.1rem 0}
+.ex-label{font-size:.82rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--purple);margin-bottom:.3rem}
+.q{margin:.3rem 0}
+table.mini{border-collapse:collapse;width:100%;margin:.6rem 0;font-size:.92rem;font-variant-numeric:tabular-nums}
+table.mini th,table.mini td{border:1px solid var(--line);padding:.35rem .55rem;text-align:right;vertical-align:top}
+table.mini thead th{background:var(--tint);color:var(--ink)}
+table.mini th[scope="row"]{text-align:left;font-weight:600;background:transparent}
+table.mini thead th:first-child{text-align:left}
+.input-row{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:.8rem 0 .4rem;padding:.7rem;background:var(--tint);border-radius:8px}
+.input-row label{font-weight:700}
+.input-row input{font:inherit;font-variant-numeric:tabular-nums;padding:.45rem .6rem;border:2px solid var(--line);border-radius:6px;width:11rem;background:var(--card);color:var(--ink)}
+.input-col{display:grid;gap:.5rem;margin:.8rem 0 .4rem;padding:.7rem;background:var(--tint);border-radius:8px}
+.sel-row{display:grid;grid-template-columns:1fr minmax(11rem,19rem);gap:.6rem;align-items:center}
+.sel-row label{font-weight:600}
+@media (max-width:34rem){.sel-row{grid-template-columns:1fr}}
+select{font:inherit;padding:.45rem .5rem;border:2px solid var(--line);border-radius:6px;background:var(--card);color:var(--ink)}
+.sel-row select{max-width:100%;min-width:0}
+.sel-row{flex-wrap:wrap}
+button{font:inherit;font-weight:700;color:#fff;background:var(--purple-dark);border:2px solid var(--purple-dark);padding:.5rem 1rem;border-radius:6px;cursor:pointer}
+button:hover{background:var(--purple);border-color:var(--purple)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) button{background:var(--purple);color:#0b1a12;border-color:var(--purple)}}
+.feedback{margin:.4rem 0;font-weight:600}
+.feedback:not(:empty){padding:.6rem .85rem;border-radius:6px;border-left:5px solid}
+.feedback.good{color:var(--good-ink);background:var(--good-bg);border-color:var(--good-line)}
+.feedback.bad{color:var(--bad-ink);background:var(--bad-bg);border-color:var(--bad-line)}
+.feedback.warn{color:var(--warn-ink);background:var(--warn-bg);border-color:var(--warn-line)}
+.solution{margin-top:.7rem;padding-top:.8rem;border-top:2px dashed var(--line)}
+.solution-label{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--purple);margin-bottom:.4rem}
+.final-answer{margin-top:.6rem}
+.final-answer strong{color:var(--purple);font-size:1.08rem}
+details.hint{margin:.4rem 0}
+details.hint summary{cursor:pointer;font-weight:600;color:var(--purple)}
+details.hint div{padding:.4rem .8rem;border-left:4px solid var(--line);margin-top:.3rem}
+footer{text-align:center;color:var(--muted);font-size:.85rem;padding:1.5rem 1rem 2.5rem}
+@media (max-width:40rem){table.mini{display:block;overflow-x:auto}}
+@media (prefers-reduced-motion:reduce){.progress .fill{transition:none}}
+
+/* Completion record (screen) */
+.id-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));gap:.8rem;margin:.8rem 0}
+.id-grid label{display:block;font-weight:700;margin-bottom:.25rem}
+.id-grid input{font:inherit;width:100%;padding:.5rem .6rem;border:2px solid var(--line);border-radius:6px;background:var(--card);color:var(--ink)}
+.tablewrap{overflow-x:auto}
+table.mini td.l{text-align:left}
+table.mini tr.total th,table.mini tr.total td{font-weight:700;background:var(--tint)}
+#print-sheet{display:none}
+
+/* Completion record (print / Save as PDF) */
+@media print{
+  @page{margin:.45in}
+  html,body{background:#fff!important;color:#111!important}
+  .skip,header.site,.progress,main,footer{display:none!important}
+  #print-sheet{display:block!important;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-size:9pt;line-height:1.25;color:#111}
+  #print-sheet .ps-head{background:#163d29;color:#fff;padding:.7rem 1rem;border-bottom:5px solid #f5e68a;margin-bottom:1rem;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  #print-sheet .ps-eyebrow{margin:0;font-size:9pt;letter-spacing:.06em;text-transform:uppercase;color:#f5e68a;font-weight:700}
+  #print-sheet h1{margin:.15rem 0 0;font-size:18pt;line-height:1.2;color:#fff}
+  #print-sheet .ps-sub{margin:.1rem 0 0;color:#e6efd9}
+  #print-sheet h2{font-size:12pt;margin:1.1rem 0 .35rem;color:#163d29;border-bottom:2px solid #c9a500;padding-bottom:.2rem}
+  #print-sheet table{border-collapse:collapse;width:100%;margin:.3rem 0;font-variant-numeric:tabular-nums}
+  #print-sheet th,#print-sheet td{border:1px solid #888;padding:.3rem .5rem;text-align:left;vertical-align:top}
+  #print-sheet thead th{background:#f1ead0;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  #print-sheet table.ps-id th{width:9rem;background:#f1ead0;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  #print-sheet td.num,#print-sheet th.num{text-align:right}
+  #print-sheet tr.total th,#print-sheet tr.total td{font-weight:700;background:#f1ead0;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  #print-sheet #ps-items th:last-child,#print-sheet #ps-items td:last-child{white-space:nowrap;width:8.5rem}
+  #print-sheet tr{break-inside:avoid}
+  #print-sheet .ok{color:#14532d;font-weight:700}
+  #print-sheet .no{color:#7a2a0b;font-weight:700}
+  #print-sheet .un{color:#555}
+  #print-sheet #ps-scen th{width:17%;background:#f1ead0;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  #print-sheet #ps-scen td{width:33%}
+  #print-sheet .ps-note{margin-top:1rem;font-size:9pt;color:#444}
+}
+
+/* Access code gate */
+.gate{position:fixed;inset:0;z-index:99999;background:var(--bg);display:flex;align-items:center;justify-content:center;padding:1.25rem}
+html.unlocked .gate{display:none}
+.gate-card{background:var(--card);color:var(--ink);border:1px solid var(--line);border-top:6px solid var(--gold);border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.18);padding:2rem 1.75rem;max-width:23rem;width:100%;text-align:center}
+.gate-card .eyebrow{margin:0 0 .4rem;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.gate-card h2{margin:0 0 .5rem;font-size:1.3rem;color:var(--purple);border:0;padding:0}
+.gate-card p.sub{margin:0 0 1.2rem;color:var(--muted);font-size:.95rem}
+.gate-card label{display:block;text-align:left;font-weight:600;font-size:.9rem;margin-bottom:.3rem}
+.gate-card input{width:100%;font:inherit;font-size:1.05rem;letter-spacing:.06em;text-align:center;text-transform:uppercase;padding:.65rem .75rem;border:2px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);margin-bottom:.8rem}
+.gate-card input:focus-visible,.gate-card button:focus-visible{outline:3px solid var(--edge);outline-offset:2px}
+.gate-card button{width:100%;font:inherit;font-weight:700;padding:.7rem;border:0;border-radius:6px;background:var(--purple);color:var(--bg);cursor:pointer}
+.gate-card button:hover{background:var(--purple-dark);color:#fff}
+.gate-err{min-height:1.3em;margin:.7rem 0 0;color:#9c2b2b;font-size:.9rem;font-weight:600}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .gate-err{color:#ffb3a8}}
+@media print{.gate{display:none!important}}
+</style>
+</head>
+<body>
+<script>(function(){try{if(localStorage.getItem('wcu_acct252_ex1_CORECYCLE3')==='1'){document.documentElement.classList.add('unlocked');}}catch(e){}})();</script>
+<div class="gate" id="gate" role="dialog" aria-modal="true" aria-labelledby="gate-title">
+  <div class="gate-card">
+    <p class="eyebrow">ACCT 252 · Chapter 3</p>
+    <h2 id="gate-title">Access Code Required</h2>
+    <p class="sub">Enter the access code to open this exercise.</p>
+    <form id="gate-form" autocomplete="off">
+      <label for="gate-input">Access code</label>
+      <input type="text" id="gate-input" autocapitalize="characters" autocomplete="off" spellcheck="false">
+      <button type="submit">Unlock</button>
+      <p class="gate-err" id="gate-err" role="alert"></p>
+    </form>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY='wcu_acct252_ex1_CORECYCLE3', CODE='CORECYCLE3';
+  var root=document.documentElement;
+  var gate=document.getElementById('gate');
+  var others=[].filter.call(document.body.children,function(el){return el!==gate && el.tagName!=='SCRIPT';});
+  function setInert(on){others.forEach(function(el){if(on){el.setAttribute('inert','');}else{el.removeAttribute('inert');}});}
+  if(root.classList.contains('unlocked')){return;}
+  setInert(true);
+  var input=document.getElementById('gate-input');
+  if(input){input.focus();}
+  document.getElementById('gate-form').addEventListener('submit',function(e){
+    e.preventDefault();
+    var err=document.getElementById('gate-err');
+    if((input.value||'').trim().toUpperCase()===CODE){
+      try{localStorage.setItem(KEY,'1');}catch(x){}
+      root.classList.add('unlocked'); setInert(false); err.textContent='';
+      var m=document.getElementById('main'); if(m&&m.focus){m.setAttribute('tabindex','-1');m.focus();}
+    }else{
+      err.textContent='That code isn\u2019t correct. Please try again.'; input.value=''; input.focus();
+    }
+  });
+})();
+</script>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="site"><div class="wrap">
+  <p class="eyebrow">ACCT 252 · Managerial Accounting</p>
+  <h1>Chapter 3 Exercise 1: Core Cycle</h1>
+  <p class="sub">Job-Order Costing: the rate, the estimate, and the job cost · Practice each step, then check yourself.</p>
+</div></header>
+<div class="progress" id="progressBar" role="progressbar" aria-label="Questions checked" aria-valuemin="0" aria-valuemax="8" aria-valuenow="0">
+  <div class="track"><div class="fill" id="progressFill"></div></div>
+  <div class="lab" id="progressLabel">0 of 8 checked</div>
+</div>
+<main id="main" tabindex="-1">
+  <div class="key-idea"><strong>How this works.</strong> This exercise is a quick refresher on material you have already seen in Chapter 3. Work each problem by hand or with a calculator, type your answer, and choose <strong>Check my answer</strong>. You will see right away whether you are correct, plus the full solution either way. Use <em>Need a hint?</em> if you get stuck. Parts 2 and 3 use numbers built from your student ID. Your score on this page does not change your course grade. When you have checked every item, save the completion PDF at the bottom of the page and upload it in Canvas to unlock your next step.</div>
+
+  <div class="key-idea">
+    <strong>Before you start</strong>
+    <p>Enter your name and student ID. Parts 2 and 3 use your student ID to build your own set of numbers, and both appear on your completion PDF.</p>
+    <div class="id-grid">
+      <div><label for="stu-name">Name</label><input type="text" id="stu-name" autocomplete="name"></div>
+      <div><label for="stu-id">Student ID</label><input type="text" id="stu-id" autocomplete="off" inputmode="numeric"></div>
+    </div>
+  </div>
+
+  <div class="key-idea">
+    <strong>Recall card: Chapter 3 formulas</strong>
+    <ul>
+      <li>Estimated total overhead (Y = a + bX): <strong>a</strong> = fixed overhead, <strong>b</strong> = variable overhead rate per unit of the base, <strong>X</strong> = estimated amount of the base.</li>
+      <li>Predetermined overhead rate = Estimated total overhead ÷ Estimated total amount of the allocation base.</li>
+      <li>Overhead applied to a job = Predetermined rate × <em>Actual</em> amount of the base used by the job.</li>
+      <li>Total job cost = Direct materials + Direct labor + Overhead applied.</li>
+      <li>Unit product cost = Total job cost ÷ Units produced.</li>
+    </ul>
+    <p class="note">Need more review? Check your Chapter 3 class notes or the Chapter 3 section of your textbook.</p>
+  </div>
+
+  <section class="lo-block" aria-labelledby="s1-h">
+    <span class="lo-tag">Part 1</span>
+    <h2 id="s1-h">Which Formula?</h2>
+
+    <p>Before any numbers, decide which calculation fits each question. If you are unsure, use the recall card above.</p>
+    <div class="example"><div class="ex-label">Check 1 — Choose the Calculation</div>
+      <div class="q">
+      <details class="hint"><summary>Need a hint?</summary><div>The rate is set before the year starts. Think about what is known at that point and what is only known later.</div></details>
+      <div class="input-col">
+        <div class="sel-row"><label for="sel-1-1-0">Predetermined overhead rate</label><select id="sel-1-1-0"><option value="">Choose…</option><option>Estimated overhead ÷ estimated base</option><option>Actual overhead ÷ actual base</option><option>Estimated base ÷ estimated overhead</option></select></div>
+        <div class="sel-row"><label for="sel-1-1-1">Overhead applied to a job</label><select id="sel-1-1-1"><option value="">Choose…</option><option>Predetermined rate × actual base used by the job</option><option>Predetermined rate × estimated base for the year</option><option>Actual overhead rate × actual base used by the job</option></select></div>
+        <div class="sel-row"><label for="sel-1-1-2">Unit product cost</label><select id="sel-1-1-2"><option value="">Choose…</option><option>Total job cost ÷ units produced</option><option>(Direct materials + direct labor) ÷ units produced</option><option>Applied overhead ÷ units produced</option></select></div>
+        <div><button type="button" onclick="checkSelects('1-1')">Check my answers</button></div>
+      </div>
+      <div class="feedback" id="fb-1-1" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-1-1" hidden>
+        <div class="solution-label">Solution</div>
+        <p>The rate is estimated overhead ÷ estimated base, because it must be set before the year starts. Overhead is applied to a job with that rate × the hours (or other base) the job <em>actually</em> used. Unit product cost is the total job cost, including applied overhead, ÷ the units produced.</p>
+      </div>
+      </div></div>
+  </section>
+
+  <section class="lo-block" aria-labelledby="s2-h">
+    <span class="lo-tag">Part 2</span>
+    <h2 id="s2-h">Estimating Overhead and Setting the Rate</h2>
+
+    <p>Parts 2 and 3 use a set of numbers built from your student ID, so they are different from your classmates’ numbers.</p>
+    <div id="p2-gate"><div class="input-row">
+      <button type="button" onclick="generateScenario()">Generate my scenario</button>
+      <span class="note">Uses the student ID you entered at the top of the page.</span>
+    </div></div>
+    <div class="feedback" id="fb-gen" role="status" aria-live="polite"></div>
+    <div id="p2-body" hidden>
+      <div id="p2-scenario" tabindex="-1"></div>
+    <div class="example"><div class="ex-label">Question 1 — Estimated Total Overhead</div><p>Use Y = a + bX to estimate total manufacturing overhead for the year.</p>
+      <div class="q">
+      <details class="hint"><summary>Need a hint?</summary><div>Fixed overhead plus the variable rate × the estimated direct labor-hours.</div></details>
+      <div class="input-row">
+        <label for="ans-2-1">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-2-1" placeholder="0" aria-describedby="fb-2-1">
+        <button type="button" onclick="checkAnswer('2-1', null, 0.5)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-2-1" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-2-1" hidden>
+        <div class="solution-label">Solution</div>
+        <div id="solbody-2-1"></div>
+      </div>
+      </div></div>
+    <div class="example"><div class="ex-label">Question 2 — The Rate</div><p>What is the predetermined overhead rate per direct labor-hour?</p>
+      <div class="q">
+      <details class="hint"><summary>Need a hint?</summary><div>Divide your answer from Question 1 by the estimated hours. If you were unsure of Question 1, the correct total is shown in its solution.</div></details>
+      <div class="input-row">
+        <label for="ans-2-2">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-2-2" placeholder="0.00" aria-describedby="fb-2-2"><span aria-hidden="true"> per DLH</span>
+        <button type="button" onclick="checkAnswer('2-2', null, 0.01)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-2-2" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-2-2" hidden>
+        <div class="solution-label">Solution</div>
+        <div id="solbody-2-2"></div>
+      </div>
+      </div></div>
+    <div class="example"><div class="ex-label">Question 3 — Reading the Equation</div><p>In Y = a + bX, which symbol stands for the fixed overhead?</p>
+      <div class="q">
+      
+      <div class="input-col"><div class="sel-row"><label for="sel-2-3-0">The fixed overhead is</label><select id="sel-2-3-0"><option value="">Choose…</option><option>a</option><option>b</option><option>X</option></select></div>
+        <div><button type="button" onclick="checkSelects('2-3')">Check my answers</button></div>
+      </div>
+      <div class="feedback" id="fb-2-3" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-2-3" hidden>
+        <div class="solution-label">Solution</div>
+        <div id="solbody-2-3"></div>
+      </div>
+      </div></div>
+    </div>
+  </section>
+
+<div id="p3-body" hidden>
+  <section class="lo-block" aria-labelledby="s3-h">
+    <span class="lo-tag">Part 3</span>
+    <h2 id="s3-h">Costing a Job</h2>
+
+    <div id="p3-scenario"></div>
+    <div class="example"><div class="ex-label">Step 2 — Which Hours?</div><p>Which hours go into the overhead applied to the job?</p>
+      <div class="q">
+      <details class="hint"><summary>Need a hint?</summary><div>The rate already reflects the yearly estimate. Think about what each job should be charged for.</div></details>
+      <div class="input-col"><div class="sel-row"><label for="sel-3-1-0">Hours used to apply overhead</label><select id="sel-3-1-0"><option value="">Choose…</option></select></div>
+        <div><button type="button" onclick="checkSelects('3-1')">Check my answers</button></div>
+      </div>
+      <div class="feedback" id="fb-3-1" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-3-1" hidden>
+        <div class="solution-label">Solution</div>
+        <div id="solbody-3-1"></div>
+      </div>
+      </div></div>
+    <div class="example"><div class="ex-label">Step 3 — Applied Overhead</div><p>How much manufacturing overhead is applied to the job?</p>
+      <div class="q">
+      <details class="hint"><summary>Need a hint?</summary><div>Predetermined rate × actual hours on the job.</div></details>
+      <div class="input-row">
+        <label for="ans-3-2">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-3-2" placeholder="0" aria-describedby="fb-3-2">
+        <button type="button" onclick="checkAnswer('3-2', null, 0.5)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-3-2" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-3-2" hidden>
+        <div class="solution-label">Solution</div>
+        <div id="solbody-3-2"></div>
+      </div>
+      </div></div>
+    <div class="example"><div class="ex-label">Step 4 — Total Job Cost</div><p>What is the total manufacturing cost of the job?</p>
+      <div class="q">
+      <details class="hint"><summary>Need a hint?</summary><div>Direct materials + direct labor + applied overhead. All three parts belong in the total.</div></details>
+      <div class="input-row">
+        <label for="ans-3-3">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-3-3" placeholder="0" aria-describedby="fb-3-3">
+        <button type="button" onclick="checkAnswer('3-3', null, 0.5)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-3-3" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-3-3" hidden>
+        <div class="solution-label">Solution</div>
+        <div id="solbody-3-3"></div>
+      </div>
+      </div></div>
+    <div class="example"><div class="ex-label">Step 5 — Unit Product Cost</div><p>What is the unit product cost per cabinet?</p>
+      <div class="q">
+      <details class="hint"><summary>Need a hint?</summary><div>Divide the total job cost by the number of cabinets in the job.</div></details>
+      <div class="input-row">
+        <label for="ans-3-4">Your answer:</label><span aria-hidden="true">$</span>
+        <input type="text" inputmode="decimal" autocomplete="off" id="ans-3-4" placeholder="0" aria-describedby="fb-3-4">
+        <button type="button" onclick="checkAnswer('3-4', null, 0.51)">Check my answer</button>
+      </div>
+      <div class="feedback" id="fb-3-4" role="status" aria-live="polite"></div>
+      <div class="solution" id="sol-3-4" hidden>
+        <div class="solution-label">Solution</div>
+        <div id="solbody-3-4"></div>
+      </div>
+      </div></div>
+  </section>
+</div>
+
+  <section class="lo-block" aria-labelledby="wrap-h">
+    <span class="lo-tag">Wrap-up</span>
+    <h2 id="wrap-h">The Core Cycle at a Glance</h2>
+
+    <ul><li><strong>Estimate</strong> total overhead with Y = a + bX, then <strong>rate</strong> = estimated overhead ÷ estimated base.</li>
+    <li><strong>Applied</strong> = rate × the <em>actual</em> base the job used.</li>
+    <li><strong>Job cost</strong> = direct materials + direct labor + applied overhead; <strong>unit cost</strong> = job cost ÷ units.</li></ul>
+  </section>
+
+  <section class="lo-block" aria-labelledby="rec-h">
+    <span class="lo-tag">Submit</span>
+    <h2 id="rec-h">Save Your Completion Record</h2>
+
+    <p>Check that your name and student ID at the top of the page are correct and that your score table looks right, then save the PDF and upload it in Canvas. The PDF lists your score for each part, your answers, and your Part 2 and 3 numbers.</p>
+    <div class="tablewrap"><table class="mini" id="scoreTable"><caption class="sr">Your score by part</caption><thead><tr><th scope="col">Part</th><th scope="col">Correct</th><th scope="col">Checked</th></tr></thead><tbody id="scoreBody"></tbody></table></div>
+    <div class="input-row"><button type="button" onclick="savePdf()">Save my completion PDF</button></div>
+    <div class="feedback" id="fb-save" role="status" aria-live="polite"></div>
+    <p class="note">A print window will open. Choose <strong>Save as PDF</strong> as the destination (not a printer), save the file, then upload it to the Canvas assignment for this step.</p>
+  </section>
+
+</main>
+<footer>ACCT 252 · Chapter 3 Exercise 1: Core Cycle · Job-Order Costing</footer>
+
+<section id="print-sheet" aria-hidden="true">
+  <div class="ps-head">
+    <p class="ps-eyebrow">ACCT 252 · Managerial Accounting</p>
+    <h1>Chapter 3 Exercise 1: Core Cycle</h1>
+    <p class="ps-sub">Completion record</p>
+  </div>
+  <table class="ps-id"><tbody>
+    <tr><th scope="row">Name</th><td id="ps-name"></td></tr>
+    <tr><th scope="row">Student ID</th><td id="ps-id"></td></tr>
+    <tr><th scope="row">Saved</th><td id="ps-date"></td></tr>
+    <tr><th scope="row">Status</th><td id="ps-status"></td></tr>
+  </tbody></table>
+  <h2>Score by part</h2>
+  <table id="ps-scores"><thead><tr><th scope="col">Part</th><th scope="col" class="num">Correct</th><th scope="col" class="num">Checked</th></tr></thead><tbody></tbody></table>
+  <h2>Your answers</h2>
+  <table id="ps-items"><thead><tr><th scope="col">Item</th><th scope="col">Your answer</th><th scope="col">Result</th></tr></thead><tbody></tbody></table>
+  <div id="ps-scen-wrap" hidden><h2>Your Part 2 and 3 numbers (built from your student ID)</h2>
+  <table id="ps-scen"><tbody></tbody></table></div>
+  <p class="ps-note">Practice exercise. The score shows how you did on your last check of each item; it does not change your course grade. Submit this PDF in Canvas to release the next step in your mastery path.</p>
+</section>
+<script>
+var CHECKED = {};
+var RESULT = {};
+var TOTAL = 8;
+
+var PARTS = [
+ {
+  "name": "Part 1: Which Formula?",
+  "ids": [
+   "1-1"
+  ]
+ },
+ {
+  "name": "Part 2: Estimating Overhead and Setting the Rate",
+  "ids": [
+   "2-1",
+   "2-2",
+   "2-3"
+  ]
+ },
+ {
+  "name": "Part 3: Costing a Job",
+  "ids": [
+   "3-1",
+   "3-2",
+   "3-3",
+   "3-4"
+  ]
+ }
+];
+var LABELS = {
+ "1-1": {
+  "label": "Part 1 \u00b7 Which formula? (rate, applied overhead, unit cost)"
+ },
+ "2-1": {
+  "label": "Part 2 \u00b7 Question 1: Estimated total overhead",
+  "pre": "$"
+ },
+ "2-2": {
+  "label": "Part 2 \u00b7 Question 2: Predetermined rate",
+  "pre": "$",
+  "post": " per DLH",
+  "dec": 2
+ },
+ "2-3": {
+  "label": "Part 2 \u00b7 Question 3: Reading Y = a + bX"
+ },
+ "3-1": {
+  "label": "Part 3 \u00b7 Step 2: Which hours?"
+ },
+ "3-2": {
+  "label": "Part 3 \u00b7 Step 3: Applied overhead",
+  "pre": "$"
+ },
+ "3-3": {
+  "label": "Part 3 \u00b7 Step 4: Total job cost",
+  "pre": "$"
+ },
+ "3-4": {
+  "label": "Part 3 \u00b7 Step 5: Unit product cost",
+  "pre": "$"
+ }
+};
+
+var SEL = {
+ "1-1": [
+  [
+   "sel-1-1-0",
+   "Estimated overhead \u00f7 estimated base",
+   "The rate is set before the year starts, so it uses estimated overhead and the estimated base, in that order."
+  ],
+  [
+   "sel-1-1-1",
+   "Predetermined rate \u00d7 actual base used by the job",
+   "Overhead is applied with the predetermined rate times the base the job actually used."
+  ],
+  [
+   "sel-1-1-2",
+   "Total job cost \u00f7 units produced",
+   "Unit cost uses the total job cost (materials, labor and applied overhead) divided by the units produced."
+  ]
+ ],
+ "2-3": [
+  [
+   "sel-2-3-0",
+   "a",
+   "The letter a is the fixed amount. b is the variable rate and X is the estimated activity."
+  ]
+ ]
+};
+
+var DIAG = {};
+
+function updateProgress(){
+  var c = Object.keys(CHECKED).length;
+  document.getElementById('progressLabel').textContent = c + ' of ' + TOTAL + ' checked';
+  document.getElementById('progressFill').style.width = (c / TOTAL * 100) + '%';
+  document.getElementById('progressBar').setAttribute('aria-valuenow', c);
+  renderScores();
+}
+function parseNum(s){
+  s = String(s).replace(/\$/g,'').trim();
+  var neg = /^\(.*\)$/.test(s) || /^-/.test(s);
+  var t = s.replace(/[$,\s()]/g, '').replace(/^-/, '');
+  if (t === '' || isNaN(Number(t))) return NaN;
+  var v = parseFloat(t);
+  return neg ? -v : v;
+}
+function setFb(fb, cls, text){ fb.className = 'feedback ' + cls; fb.textContent = text; }
+function checkAnswer(id, correct, tol){
+  var input = document.getElementById('ans-' + id);
+  var fb = document.getElementById('fb-' + id);
+  var sol = document.getElementById('sol-' + id);
+  var val = parseNum(input.value);
+  if (isNaN(val)) { setFb(fb, 'warn', 'Enter a number first, then choose Check my answer.'); return; }
+  if (correct === null) {
+    if (!SCEN || SCEN.ans[id] === undefined) { setFb(fb, 'warn', 'Generate your scenario first.'); return; }
+    correct = SCEN.ans[id];
+  }
+  var isOk = Math.abs(val - correct) <= tol;
+  RESULT[id] = {ok: isOk, ans: val.toLocaleString('en-US', {minimumFractionDigits: (LABELS[id] && LABELS[id].dec) || 0, maximumFractionDigits: 2})};
+  if (isOk) {
+    setFb(fb, 'good', '\u2713 Correct! Here is the full solution for reference.');
+  } else {
+    var note = '', d = DIAG[id] || [];
+    for (var i = 0; i < d.length; i++) {
+      if (Math.abs(val - d[i][0]) <= 0.5) { note = d[i][1] + ' '; break; }
+    }
+    setFb(fb, 'bad', '\u2717 Not quite. ' + note + 'Here is the full solution; compare it with your work to see where things diverged.');
+  }
+  sol.hidden = false;
+  CHECKED[id] = true;
+  updateProgress();
+}
+function checkSelects(id){
+  var items = SEL[id];
+  var fb = document.getElementById('fb-' + id);
+  var sol = document.getElementById('sol-' + id);
+  var ok = 0, blank = 0, notes = [];
+  for (var i = 0; i < items.length; i++) {
+    var el = document.getElementById(items[i][0]);
+    if (!el.value) { blank++; continue; }
+    if (el.value === items[i][1]) { ok++; }
+    else { notes.push((items.length > 1 ? 'Item ' + (i + 1) + ': ' : '') + items[i][2]); }
+  }
+  if (blank) { setFb(fb, 'warn', 'Choose an answer for every item first, then choose Check my answers.'); return; }
+  RESULT[id] = {
+    ok: ok === items.length,
+    ans: items.length > 1 ? ok + ' of ' + items.length + ' choices correct' : document.getElementById(items[0][0]).value
+  };
+  if (ok === items.length) {
+    setFb(fb, 'good', '\u2713 Correct! ' + ok + ' of ' + items.length + '. Here is the explanation.');
+  } else {
+    setFb(fb, 'bad', '\u2717 ' + ok + ' of ' + items.length + ' correct. ' + notes.join(' ') + ' Review the explanation below.');
+  }
+  sol.hidden = false;
+  CHECKED[id] = true;
+  updateProgress();
+}
+
+function cell(tag, text, cls) {
+  var el = document.createElement(tag);
+  el.textContent = text;
+  if (cls) { el.className = cls; }
+  return el;
+}
+function scoreOf(ids) {
+  var s = 0;
+  for (var i = 0; i < ids.length; i++) { if (RESULT[ids[i]] && RESULT[ids[i]].ok) { s++; } }
+  return s;
+}
+function checkedOf(ids) {
+  var n = 0;
+  for (var i = 0; i < ids.length; i++) { if (CHECKED[ids[i]]) { n++; } }
+  return n;
+}
+function fillScoreRows(body, forPrint) {
+  body.textContent = '';
+  var tot = 0, max = 0, chk = 0;
+  PARTS.forEach(function (p) {
+    var s = scoreOf(p.ids), c = checkedOf(p.ids);
+    tot += s; max += p.ids.length; chk += c;
+    var tr = document.createElement('tr');
+    var th = cell('th', p.name); th.scope = 'row';
+    tr.appendChild(th);
+    tr.appendChild(cell('td', s + ' of ' + p.ids.length, forPrint ? 'num' : ''));
+    tr.appendChild(cell('td', c + ' of ' + p.ids.length, forPrint ? 'num' : ''));
+    body.appendChild(tr);
+  });
+  var t = document.createElement('tr');
+  t.className = 'total';
+  var th2 = cell('th', 'Total'); th2.scope = 'row';
+  t.appendChild(th2);
+  t.appendChild(cell('td', tot + ' of ' + max + ' (' + Math.round(tot / max * 100) + '%)', forPrint ? 'num' : ''));
+  t.appendChild(cell('td', chk + ' of ' + max, forPrint ? 'num' : ''));
+  body.appendChild(t);
+}
+function renderScores() {
+  var body = document.getElementById('scoreBody');
+  if (body) { fillScoreRows(body, false); }
+  var f = document.getElementById('fb-save');
+  if (f && f.classList.contains('warn')) { f.textContent = ''; f.className = 'feedback'; }
+}
+function fillPrintSheet() {
+  var nm = document.getElementById('stu-name').value.trim() || '(not entered)';
+  var sid = document.getElementById('stu-id').value.trim() || '(not entered)';
+  document.getElementById('ps-name').textContent = nm;
+  document.getElementById('ps-id').textContent = sid;
+  var now = new Date();
+  document.getElementById('ps-date').textContent = now.toLocaleDateString('en-US', {year: 'numeric', month: 'long', day: 'numeric'}) + ', ' + now.toLocaleTimeString('en-US', {hour: 'numeric', minute: '2-digit'});
+  var n = Object.keys(CHECKED).length;
+  document.getElementById('ps-status').textContent = n === TOTAL ? 'Complete: all ' + TOTAL + ' items checked' : 'Incomplete: ' + n + ' of ' + TOTAL + ' items checked';
+  fillScoreRows(document.querySelector('#ps-scores tbody'), true);
+  var scWrap = document.getElementById('ps-scen-wrap');
+  if (SCEN) { fillScenTable(); scWrap.hidden = false; } else { scWrap.hidden = true; }
+  var body = document.querySelector('#ps-items tbody');
+  body.textContent = '';
+  PARTS.forEach(function (p) {
+    p.ids.forEach(function (id) {
+      var L = LABELS[id], r = RESULT[id];
+      var tr = document.createElement('tr');
+      tr.appendChild(cell('td', L.label));
+      tr.appendChild(cell('td', r ? (L.pre || '') + r.ans + (L.post || '') : '—'));
+      if (!r) { tr.appendChild(cell('td', 'Not checked', 'un')); }
+      else if (r.ok) { tr.appendChild(cell('td', '✓ Correct', 'ok')); }
+      else { tr.appendChild(cell('td', '✗ Not correct', 'no')); }
+      body.appendChild(tr);
+    });
+  });
+}
+function savePdf() {
+  var fb = document.getElementById('fb-save');
+  var nm = document.getElementById('stu-name').value.trim();
+  var sid = document.getElementById('stu-id').value.trim();
+  var missing = [];
+  if (!nm) { missing.push('your name'); }
+  if (!sid) { missing.push('your student ID'); }
+  if (missing.length) { setFb(fb, 'warn', 'Enter ' + missing.join(' and ') + ' at the top of the page first, then choose Save my completion PDF.'); return; }
+  var n = Object.keys(CHECKED).length;
+  if (SCEN && normId(sid) !== SCEN.id) {
+    resetScenario('');
+    setFb(fb, 'warn', 'Your student ID changed after you generated your scenario, so your Part 2 and 3 answers were cleared. Generate your scenario again and recheck those parts.');
+    return;
+  }
+  if (n < TOTAL) { setFb(fb, 'warn', 'Check all ' + TOTAL + ' items first (' + n + ' of ' + TOTAL + ' checked so far).' + (SCEN ? '' : ' Parts 2 and 3 need your scenario: choose Generate my scenario in Part 2.')); return; }
+  setFb(fb, 'good', '✓ Opening the print window. Choose Save as PDF as the destination, then upload the file in Canvas.');
+  fillPrintSheet();
+  window.print();
+}
+
+/* ---------- Parts 2 and 3: scenario built from the student ID ---------- */
+var SCEN = null;
+var P_IDS = ['2-1', '2-2', '2-3', '3-1', '3-2', '3-3', '3-4'];
+var COMPANIES = [
+  ['Sylva Mountain Millwork', 'Sylva'], ['Murphy Mountain Joinery', 'Murphy'],
+  ['Bryson City Barnwood', 'Bryson City'], ['Robbinsville Rustics', 'Robbinsville'],
+  ['Franklin Foothills Furniture', 'Franklin'], ['Hayesville Hardwoods', 'Hayesville'],
+  ['Cherokee Creek Casework', 'Cherokee']
+];
+function normId(s) { return String(s || '').replace(/\s+/g, '').toUpperCase(); }
+function hashStr(s) {
+  var x = 2166136261;
+  for (var i = 0; i < s.length; i++) { x ^= s.charCodeAt(i); x = Math.imul(x, 16777619); }
+  return x >>> 0;
+}
+function mulberry32(a) {
+  return function () {
+    a = (a + 0x6D2B79F5) | 0;
+    var t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+function pick(rnd, lo, hi, step) { var n = Math.floor((hi - lo) / step) + 1; return lo + step * Math.floor(rnd() * n); }
+function money(x, d) { return '$' + x.toLocaleString('en-US', {minimumFractionDigits: d, maximumFractionDigits: d}); }
+function money0(x) { return money(x, Math.abs(x - Math.round(x)) < 1e-9 ? 0 : 2); }
+function numf(x) { return x.toLocaleString('en-US'); }
+
+function buildScenario(id) {
+  var rnd = mulberry32(hashStr('ACCT252-CH3-EX1:' + id));
+  rnd(); rnd(); rnd();
+  var s = {id: id};
+  s.company = COMPANIES[Math.floor(rnd() * COMPANIES.length)];
+  s.H = pick(rnd, 8000, 14000, 500);
+  s.v = pick(rnd, 200, 350, 50) / 100;
+  s.r = pick(rnd, 1000, 1600, 50) / 100;
+  s.F = Math.round((s.r - s.v) * s.H);
+  s.w = pick(rnd, 18, 24, 1);
+  s.job = pick(rnd, 201, 299, 1);
+  s.h = pick(rnd, 120, 200, 10);
+  var dm0 = pick(rnd, 5000, 8000, 100), cands = [], k = 0;
+  s.rate = s.r;
+  s.dl = s.h * s.w;
+  s.oh = s.h * s.rate;
+  do {
+    s.dm = dm0 + 100 * k;
+    s.total = s.dm + s.dl + s.oh;
+    cands = [6, 7, 8, 9, 10, 11, 12].filter(function (u) { return s.total % u === 0; });
+    k++;
+  } while (!cands.length && k < 80);
+  s.units = cands.length ? cands[Math.floor(rnd() * cands.length)] : 8;
+  s.unit = s.total / s.units;
+  s.est = s.F + s.v * s.H;
+  s.ans = {'2-1': s.est, '2-2': s.rate, '3-2': s.oh, '3-3': s.total, '3-4': s.unit};
+  return s;
+}
+
+function fin(t) { return '<p class="final-answer">' + t + '</p>'; }
+function sol(id, html) { document.getElementById('solbody-' + id).innerHTML = html; }
+
+function renderScenario() {
+  var s = SCEN;
+  document.getElementById('p2-scenario').innerHTML =
+    '<p><strong>' + s.company[0] + '</strong> in ' + s.company[1] + ', North Carolina, builds custom cabinets and trim, so it uses <strong>job-order costing</strong>. Its allocation base is direct labor-hours (DLH). For the coming year it estimates fixed manufacturing overhead of ' + money0(s.F) +
+    ' plus variable manufacturing overhead of ' + money(s.v, 2) + ' per DLH, and it expects ' + numf(s.H) + ' direct labor-hours.</p>';
+  document.getElementById('p3-scenario').innerHTML =
+    '<p>In March, <strong>Job ' + s.job + '</strong> was a kitchen cabinet set of ' + s.units + ' units for a client in Cashiers. It used ' + money0(s.dm) + ' of direct materials and ' + s.h + ' direct labor-hours at ' + money0(s.w) +
+    ' per hour. Use the predetermined rate from Part 2, <strong>' + money(s.rate, 2) + ' per DLH</strong>.</p>' +
+    '<div class="key-idea"><strong>Step 1 (done for you).</strong> Direct labor cost = ' + s.h + ' hours × ' + money0(s.w) + ' = <strong>' + money0(s.dl) + '</strong>.</div>';
+
+  sol('2-1', '<p>Y = ' + money0(s.F) + ' + (' + money(s.v, 2) + ' × ' + numf(s.H) + ') = ' + money0(s.F) + ' + ' + money0(s.v * s.H) + ' = ' + money0(s.est) + '.</p>' + fin('Estimated overhead = <strong>' + money0(s.est) + '</strong>'));
+  sol('2-2', '<p>' + money0(s.est) + ' ÷ ' + numf(s.H) + ' DLH = ' + money(s.rate, 2) + ' per DLH.</p>' + fin('Rate = <strong>' + money(s.rate, 2) + ' per DLH</strong>'));
+  sol('2-3', '<p><strong>a</strong> is the fixed amount (' + money0(s.F) + '). <strong>b</strong> is the variable rate per hour (' + money(s.v, 2) + '). <strong>X</strong> is the estimated activity (' + numf(s.H) + ' hours). Only b × X changes with activity.</p>');
+  sol('3-1', '<p>The estimated hours were already used to set the rate. Each job is charged the rate × the hours <em>that job</em> actually used, here ' + s.h + '.</p>');
+  sol('3-2', '<p>' + s.h + ' DLH × ' + money(s.rate, 2) + ' = ' + money0(s.oh) + '.</p>' + fin('Applied overhead = <strong>' + money0(s.oh) + '</strong>'));
+  sol('3-3', '<table class="mini"><caption class="sr">Job cost sheet: Job ' + s.job + '</caption><thead><tr><th scope="col">Cost</th><th scope="col">Amount</th></tr></thead><tbody>' +
+    '<tr><th scope="row">Direct materials</th><td>' + money0(s.dm) + '</td></tr>' +
+    '<tr><th scope="row">Direct labor (' + s.h + ' hrs × ' + money0(s.w) + ')</th><td>' + money0(s.dl) + '</td></tr>' +
+    '<tr><th scope="row">Manufacturing overhead applied (' + s.h + ' × ' + money(s.rate, 2) + ')</th><td>' + money0(s.oh) + '</td></tr>' +
+    '<tr class="total"><th scope="row">Total manufacturing cost</th><td>' + money0(s.total) + '</td></tr></tbody></table>' + fin('Total job cost = <strong>' + money0(s.total) + '</strong>'));
+  var uInt = Math.abs(s.unit - Math.round(s.unit)) < 1e-9;
+  sol('3-4', '<p>' + money0(s.total) + ' ÷ ' + s.units + ' cabinets = ' + (uInt ? money0(s.unit) : money(s.unit, 2)) + ' per cabinet.</p>' + fin('Unit product cost = <strong>' + (uInt ? money0(s.unit) : money(s.unit, 2)) + '</strong>'));
+
+  var hoursOk = 'The ' + s.h + ' hours Job ' + s.job + ' actually used';
+  var sel31 = document.getElementById('sel-3-1-0');
+  sel31.innerHTML = '';
+  [['', 'Choose…'], [hoursOk, hoursOk], ['The ' + numf(s.H) + ' hours estimated for the year', 'The ' + numf(s.H) + ' hours estimated for the year'],
+   ['The year-end actual hours for the whole company', 'The year-end actual hours for the whole company']].forEach(function (o) {
+    var op = document.createElement('option'); op.value = o[0]; op.textContent = o[1]; sel31.appendChild(op);
+  });
+  shuffleOptions(sel31);
+  SEL['3-1'] = [['sel-3-1-0', hoursOk, 'The yearly estimate is already built into the rate. Each job is charged for the hours that job actually used.']];
+
+  DIAG['2-1'] = [[s.F, 'That is only the fixed overhead. Add the variable part (the rate times the estimated hours).'],
+                 [s.v * s.H, 'That is only the variable part. Add the fixed overhead as well.'],
+                 [s.F + s.v, 'Multiply the ' + money(s.v, 2) + ' variable rate by the ' + numf(s.H) + ' estimated hours before adding the fixed overhead.']];
+  DIAG['2-2'] = [[s.F / s.H, 'That divides only the fixed overhead by the hours. Use the total estimated overhead.'],
+                 [1 / s.rate, 'Flip the division: the rate is overhead per hour, so overhead goes on top.']];
+  DIAG['3-2'] = [[s.dl, 'That is the direct labor cost. Overhead applied is the predetermined rate times the hours.'],
+                 [s.est, 'That is the estimated overhead for the whole year. Apply only the rate times this job’s hours.'],
+                 [s.h / s.rate, 'Multiply the rate by the hours; do not divide.']];
+  DIAG['3-3'] = [[s.dm + s.dl, 'That leaves out the applied overhead. Add all three cost parts.'],
+                 [s.oh, 'That is only the applied overhead. The total includes direct materials and direct labor too.']];
+  DIAG['3-4'] = [[s.total, 'That is the whole job. Divide by the number of cabinets.'],
+                 [(s.dm + s.dl) / s.units, 'That leaves overhead out of the total before dividing.']];
+}
+
+function generateScenario() {
+  var fb = document.getElementById('fb-gen');
+  var idEl = document.getElementById('stu-id');
+  var id = normId(idEl.value);
+  if (!id) { setFb(fb, 'warn', 'Enter your student ID at the top of the page first, then choose Generate my scenario.'); idEl.focus(); return; }
+  SCEN = buildScenario(id);
+  renderScenario();
+  fb.textContent = ''; fb.className = 'feedback';
+  document.getElementById('p2-gate').hidden = true;
+  document.getElementById('p2-body').hidden = false;
+  document.getElementById('p3-body').hidden = false;
+  document.getElementById('p2-scenario').focus();
+}
+
+function resetScenario(msg) {
+  SCEN = null;
+  P_IDS.forEach(function (id) {
+    delete RESULT[id]; delete CHECKED[id];
+    var inp = document.getElementById('ans-' + id); if (inp) { inp.value = ''; }
+    var sl = document.getElementById('sel-' + id + '-0'); if (sl) { sl.value = ''; }
+    var f = document.getElementById('fb-' + id); f.textContent = ''; f.className = 'feedback';
+    document.getElementById('sol-' + id).hidden = true;
+    delete DIAG[id];
+  });
+  delete SEL['3-1'];
+  document.getElementById('p2-body').hidden = true;
+  document.getElementById('p3-body').hidden = true;
+  document.getElementById('p2-gate').hidden = false;
+  var g = document.getElementById('fb-gen');
+  if (msg) { setFb(g, 'warn', msg); } else { g.textContent = ''; g.className = 'feedback'; }
+  updateProgress();
+}
+
+function fillScenTable() {
+  var s = SCEN, t = document.querySelector('#ps-scen tbody');
+  t.textContent = '';
+  var rows = [
+    ['Company', s.company[0], 'Allocation base', 'Direct labor-hours (DLH)'],
+    ['Est. fixed overhead', money0(s.F), 'Est. variable overhead', money(s.v, 2) + ' per DLH'],
+    ['Est. direct labor-hours', numf(s.H), 'Direct labor rate', money0(s.w) + ' per hour'],
+    ['Job', 'Job ' + s.job, 'Units produced', String(s.units)],
+    ['Direct materials', money0(s.dm), 'Direct labor-hours used', String(s.h)]
+  ];
+  rows.forEach(function (r) {
+    var tr = document.createElement('tr');
+    var th1 = cell('th', r[0]); th1.scope = 'row';
+    var th2 = cell('th', r[2]); th2.scope = 'row';
+    tr.appendChild(th1); tr.appendChild(cell('td', r[1])); tr.appendChild(th2); tr.appendChild(cell('td', r[3]));
+    t.appendChild(tr);
+  });
+}
+
+function shuffleOptions(sel) {
+  var opts = Array.prototype.slice.call(sel.options, 1);
+  for (var i = opts.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1)), t = opts[i]; opts[i] = opts[j]; opts[j] = t;
+  }
+  opts.forEach(function (o) { sel.appendChild(o); });
+}
+Array.prototype.forEach.call(document.querySelectorAll('.sel-row select'), shuffleOptions);
+
+document.getElementById('stu-id').addEventListener('change', function () {
+  if (SCEN && normId(this.value) !== SCEN.id) {
+    resetScenario('Your student ID changed, so your Part 2 and 3 numbers were cleared. Choose Generate my scenario to build the set for the new ID.');
+  }
+});
+
+window.addEventListener('beforeprint', fillPrintSheet);
+renderScores();
+</script>
+</body>
+</html>
