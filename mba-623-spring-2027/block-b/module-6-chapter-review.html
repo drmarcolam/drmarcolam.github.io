@@ -1,0 +1,389 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Block B Gate Quizzes — Cullowhee Cycle Works</title><style>
+:root{--paper:#F5F8F5;--card:#fff;--ink:#16222B;--muted:#4D5D68;--rule:#C7D2CB;--spruce:#14574B;--soft:#E0EEE8;--ok:#0F6A37;--okbg:#E3F3E9;--miss:#9B2C1F;--missbg:#FBE8E4;--note:#274C8C;--focus:#1A47B8;--hl:#FFF3C4;--onsp:#fff}
+@media (prefers-color-scheme:dark){:root:not([data-print]){--paper:#0F1A17;--card:#17262A;--ink:#E8F0EC;--muted:#A9B9B2;--rule:#34504A;--spruce:#5FC2AB;--soft:#1D3A34;--ok:#7BD99E;--okbg:#17382A;--miss:#FF9C8C;--missbg:#40201C;--note:#9DB8F0;--focus:#8FB1FF;--hl:#4A4220;--onsp:#0F1A17}}
+[hidden]{display:none!important}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:900px;margin:0 auto;padding:20px 16px 80px}
+h1,h2,h3{font-family:Iowan Old Style,Palatino,Georgia,serif;color:var(--spruce);line-height:1.25}
+h1{font-size:1.8rem;margin:.2em 0}h2{font-size:1.3rem;margin:1.8em 0 .4em;border-bottom:2px solid var(--rule);padding-bottom:.2em}h3{font-size:1.05rem;margin:1.1em 0 .3em}
+.tag{display:inline-block;background:var(--soft);color:var(--spruce);font-weight:700;font-size:.8rem;padding:2px 10px;border-radius:99px;letter-spacing:.04em}
+.meta{color:var(--muted);margin:.2em 0 1em}
+.card{background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:14px 18px;margin:12px 0}
+.banner{background:var(--soft);border-left:5px solid var(--spruce);border-radius:8px;padding:10px 14px;margin:12px 0}
+.idbar{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end;margin:12px 0}.idbar label{font-weight:600;font-size:.9rem;display:flex;flex-direction:column;gap:2px;flex:1;min-width:200px}
+input[type=text],input[type=number]{font:inherit;color:var(--ink);background:var(--card);border:1.5px solid var(--muted);border-radius:6px;padding:7px 9px;min-height:44px;max-width:100%}
+input.num{width:14em;text-align:right}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+button{font:inherit;font-weight:700;min-height:44px;padding:8px 20px;border-radius:8px;border:2px solid var(--spruce);background:var(--spruce);color:var(--onsp);cursor:pointer}
+button.alt{background:var(--card);color:var(--spruce)}button:disabled{opacity:.55;cursor:not-allowed}
+.err{color:var(--miss);font-weight:600;min-height:1.2em}
+fieldset.q{border:1px solid var(--rule);border-radius:10px;background:var(--card);margin:14px 0;padding:12px 18px 14px}
+fieldset.q legend{font-weight:700;color:var(--spruce);padding:0 6px}
+.stem{margin:.2em 0 .6em}
+.opt{display:flex;gap:10px;align-items:flex-start;padding:6px 4px;min-height:44px}
+.opt input{margin-top:.35em;width:20px;height:20px;flex:none}
+.opt label{flex:1;cursor:pointer}
+.unit{color:var(--muted);margin-left:6px}
+.fb{margin-top:10px;padding:8px 12px;border-radius:8px;border-left:5px solid var(--rule)}
+.fb.ok{background:var(--okbg);border-color:var(--ok)}.fb.no{background:var(--missbg);border-color:var(--miss)}
+.fb strong.v{display:block}
+.prog{color:var(--muted);font-size:.9rem}
+.res{border:2px solid var(--spruce);border-radius:10px;padding:12px 16px;margin:14px 0;background:var(--card)}
+.res.pass{border-color:var(--ok)}.res.nope{border-color:var(--miss)}
+table{border-collapse:collapse;width:100%;background:var(--card)}th,td{border:1px solid var(--rule);padding:6px 8px;text-align:left}th{background:var(--soft);color:var(--spruce)}
+textarea{width:100%;min-height:170px;font:14px/1.45 ui-monospace,Consolas,monospace;color:var(--ink);background:var(--card);border:1.5px solid var(--muted);border-radius:6px;padding:8px}
+.aiv{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+@media print{:root{--paper:#fff}button,.idbar,.noprint{display:none!important}body{background:#fff;color:#000}fieldset.q{break-inside:avoid}}
+
+.tw{overflow-x:auto;margin:8px 0}td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}tr.tot th,tr.tot td{font-weight:700;border-top:2px solid var(--spruce)}caption{caption-side:top;text-align:left;font-weight:700;color:var(--spruce);padding:4px 0}
+.step{background:var(--card);border:1px solid var(--rule);border-radius:10px;margin:16px 0;padding:6px 18px 16px}
+.step h2{border:none;margin:.6em 0 .2em}.why{font-style:italic;color:var(--muted);margin:.2em 0 .6em}
+.lbl{font-weight:700;color:var(--spruce);font-size:.85rem;letter-spacing:.04em;text-transform:uppercase;margin:.9em 0 .2em}
+.try{background:var(--soft);border-radius:8px;padding:10px 14px;margin-top:12px}
+.done{display:inline-block;background:var(--okbg);color:var(--ok);font-weight:700;border-radius:99px;padding:2px 10px;font-size:.85rem}
+details{margin:8px 0}summary{cursor:pointer;font-weight:700;color:var(--spruce);min-height:32px}
+.memo{border-left:5px solid var(--spruce);background:var(--soft);padding:10px 14px;border-radius:8px}
+
+.callout{background:var(--soft);border-left:5px solid var(--spruce);border-radius:8px;padding:10px 14px;margin:12px 0}
+.tw{overflow-x:auto;margin:10px 0}td,th{vertical-align:top}th{white-space:normal}
+nav.toc{background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:8px 18px;margin:14px 0}nav.toc a{color:var(--spruce);font-weight:600}
+@media print{.noprint{display:none}}
+</style></head><body><main><span class="tag">MBA 623 · Block B · Module 6 · Optional</span><h1>Module 6 Chapter Review</h1><p class="meta">Inventories, accounts payable, and long-term assets · Not graded · Print or save as PDF if you like</p><div class="banner"><strong>Use this as a refresher</strong> before the Gate Quiz, while you work through the walkthrough, or after a missed concept. Nothing here is submitted. The running example is Home Depot, fiscal 2022 ($ millions), as in the lectures and textbook (Chapter 6).</div><nav class="toc noprint" aria-label="On this page"><strong>On this page:</strong> <a href="#s0">The Big Picture: One Idea Running Through the Whole Module</a> · <a href="#s1">LO 6-1</a> · <a href="#s2">LO 6-2</a> · <a href="#s3">LO 6-3</a> · <a href="#s4">LO 6-4</a> · <a href="#s5">LO 6-5</a> · <a href="#s6">LO 6-6</a> · <a href="#s7">LO 6-7</a> · <a href="#cullowhee">Cullowhee examples</a></nav>
+<div class="callout"><strong>What this module covers</strong><div class="tw"><table><tr><th scope="col"><strong>LO</strong></th><th scope="col"><strong>Learning objective</strong></th></tr><tr><td class="n"><strong>6-1</strong></td><td>Evaluate inventory costing methods.</td></tr><tr><td class="n"><strong>6-2</strong></td><td>Examine inventory disclosures in financial statements.</td></tr><tr><td class="n"><strong>6-3</strong></td><td>Analyze inventories and the related accounts payable.</td></tr><tr><td class="n"><strong>6-4</strong></td><td>Analyze capitalization and depreciation of tangible assets.</td></tr><tr><td class="n"><strong>6-5</strong></td><td>Evaluate asset sales, impairments, and restructuring activities.</td></tr><tr><td class="n"><strong>6-6</strong></td><td>Analyze tangible assets and related activities.</td></tr><tr><td class="n"><strong>6-7</strong></td><td>Analyze capitalization and subsequent accounting for intangible assets.</td></tr></table></div><em>Running example:</em> Home Depot, fiscal 2022 (all dollar amounts in millions), with supporting examples from Caterpillar and Kubota (the LIFO reserve), Lowe's (lower of cost or market), Macy's (asset sales), CVS Health (impairments), Pfizer (restructuring), and AMD's acquisition of Xilinx (intangibles).</div>
+
+<h2 id="s0">The Big Picture: One Idea Running Through the Whole Module</h2>
+<div class="callout"><strong>Capitalize the cost on the balance sheet, then transfer it to the income statement as the asset is used up or sold.</strong></div>
+<div class="tw"><table><tr><th scope="col"><strong>Asset</strong></th><th scope="col"><strong>Capitalized as</strong></th><th scope="col"><strong>Transferred to the income statement as</strong></th></tr><tr><td><strong>Inventory</strong> (LOs 6-1 to 6-3)</td><td>Purchase price, or direct materials + direct labor + manufacturing overhead</td><td><strong>COGS</strong> when sold — the amount depends on the costing method (FIFO, LIFO, average cost)</td></tr><tr><td><strong>PP&amp;E</strong> (LOs 6-4 to 6-6)</td><td>Cost plus all costs to put the asset into service (<strong>CAPEX</strong>)</td><td><strong>Depreciation</strong> over the useful life; <strong>impairment</strong> or <strong>gain/loss</strong> on disposal</td></tr><tr><td><strong>Intangibles</strong> (LO 6-7)</td><td>Purchase price allocated in an acquisition</td><td><strong>Amortization</strong> over the useful life; goodwill is <strong>not amortized</strong> but tested for <strong>impairment</strong></td></tr></table></div>
+<p>Because each of these involves <strong>choices and estimates</strong>, two companies with identical economics can report very different numbers — which is why the disclosures and the ratios in this module matter.</p>
+
+<h2 id="s1">LO 6-1  Inventory Costing Methods</h2>
+<h3>Flow of costs</h3>
+<ul>
+<li>When inventory is purchased or produced, it is <strong>capitalized on the balance sheet</strong>.</li>
+<li>When the inventory is sold, its cost is transferred from the balance sheet to the income statement as <strong>COGS</strong>.</li>
+</ul>
+<h3>Capitalization of inventory cost</h3>
+<ul>
+<li><strong>Capitalization</strong> means that a cost is recorded on the <strong>balance sheet</strong> and is <strong>not</strong> immediately expensed in the income statement.</li>
+<li>For <strong>purchased</strong> inventories, the amount capitalized is the <strong>purchase price</strong>.</li>
+<li>For <strong>manufactured</strong> inventory, we capitalize all manufacturing costs, which consist of three components:</li>
+<li>Cost of <strong>direct (raw) materials</strong> used in the product</li>
+<li>Cost of <strong>direct labor</strong> to manufacture the product</li>
+<li><strong>Manufacturing overhead</strong></li>
+</ul>
+<h3>Cost of goods sold</h3>
+<div class="callout"><strong>Beginning inventory + Inventory acquired = Cost of goods available for sale</strong><br><strong>Cost of goods available for sale = Ending inventory + Cost of goods sold</strong></div>
+<ul>
+<li><strong>Beginning inventory</strong> is the ending inventory balance of the <strong>prior</strong> period.</li>
+<li>Current <strong>inventory purchases</strong> (or manufacturing costs) are added to the beginning balance, yielding the cost of goods available for sale.</li>
+<li><strong>Goods available</strong> are either sold and flow to <strong>COGS</strong>, or the goods remain unsold and are in <strong>inventory</strong> at the end of the period.</li>
+</ul>
+<h3>Gross profit and managerial choice</h3>
+<div class="callout"><strong>Sales − Cost of goods sold = Gross profit</strong></div>
+<ul>
+<li>If <strong>higher cost</strong> units are transferred from the balance sheet, then COGS is <strong>higher</strong> and gross profit is <strong>lower</strong>.</li>
+<li>If <strong>lower cost</strong> units are transferred to COGS, gross profit is <strong>higher</strong>.</li>
+<li>Companies have a <strong>choice</strong> when it comes to determining COGS and the cost of the inventory remaining on the balance sheet.</li>
+<li>Three choices for inventory costing: <strong>FIFO</strong>, <strong>LIFO</strong>, and <strong>average cost</strong>.</li>
+</ul>
+<h3>The common data set</h3>
+<div class="tw"><table><tr><th scope="col"><strong>Inventory records</strong></th><th scope="col"><strong>Units</strong></th><th scope="col"><strong>Per unit</strong></th><th scope="col"><strong>Total</strong></th></tr><tr><td>Inventory available on January 1</td><td>500 units</td><td>@ $100 per unit</td><td class="n">$ 50,000</td></tr><tr><td>Inventory purchased during the period</td><td>200 units</td><td>@ $150 per unit</td><td class="n">30,000</td></tr><tr><td><strong>Total cost of goods available for sale</strong></td><td><strong>700 units</strong></td><td></td><td class="n"><strong>$ 80,000</strong></td></tr><tr><td>Inventory sold during the period</td><td>450 units</td><td>@ $250 per unit</td><td class="n">$112,500</td></tr></table></div>
+<h3>First-in, first-out (FIFO)</h3>
+<p>The <strong>FIFO</strong> inventory costing method transfers costs from inventory <strong>in the order that they were initially recorded</strong>.</p>
+<div class="tw"><table><tr><th scope="col"><strong>FIFO</strong></th><th scope="col"></th></tr><tr><td>Sales</td><td class="n">$112,500</td></tr><tr><td>COGS (450 @ $100 each)</td><td class="n">45,000</td></tr><tr><td><strong>Gross profit</strong></td><td class="n"><strong>$ 67,500</strong></td></tr></table></div>
+<p>FIFO assumes that the <strong>unsold</strong> inventory is the <strong>most recently purchased</strong>:</p>
+<ul>
+<li>200 units @ $150 + 50 units @ $100 = <strong>$35,000</strong></li>
+<li>OR Goods available for sale $80,000 − COGS $45,000 = <strong>$35,000</strong></li>
+</ul>
+<h3>Last-in, first-out (LIFO)</h3>
+<p>The <strong>LIFO</strong> inventory costing method transfers the <strong>most recent</strong> inventory costs from the balance sheet to COGS.</p>
+<div class="tw"><table><tr><th scope="col"><strong>LIFO</strong></th><th scope="col"></th><th scope="col"></th></tr><tr><td>Sales</td><td></td><td class="n">$112,500</td></tr><tr><td>COGS: 200 @ $150 per unit</td><td class="n">$30,000</td><td></td></tr><tr><td>250 @ $100 per unit</td><td class="n">25,000</td><td class="n">55,000</td></tr><tr><td><strong>Gross profit</strong></td><td></td><td class="n"><strong>$ 57,500</strong></td></tr></table></div>
+<p>LIFO assumes that the unsold inventory is the <strong>earliest acquired</strong>:</p>
+<ul>
+<li>250 units @ $100 = <strong>$25,000</strong></li>
+<li>OR Goods available for sale $80,000 − COGS $55,000 = <strong>$25,000</strong></li>
+</ul>
+<h3>Average cost</h3>
+<p>The <strong>average cost method</strong> computes the average cost to purchase or manufacture inventory available for sale during the period and applies that average to determine COGS and ending inventory.</p>
+<div class="callout"><strong>Average cost = $80,000 ÷ 700 units = $114.286 per unit</strong></div>
+<div class="tw"><table><tr><th scope="col"><strong>Average cost</strong></th><th scope="col"></th></tr><tr><td>Sales</td><td class="n">$112,500</td></tr><tr><td>COGS (450 @ $114.286 per unit)</td><td class="n">51,429</td></tr><tr><td><strong>Gross profit</strong></td><td class="n"><strong>$ 61,071</strong></td></tr></table></div>
+<p>Ending inventory = 250 units @ $114.286 = <strong>$28,571</strong>.</p>
+<h3>Retail inventory costing</h3>
+<ul>
+<li>Retailers use the <strong>retail inventory costing method</strong> to compute ending inventory: <strong>Units available × Retail selling price</strong>.</li>
+<li>The company's inventory system tracks <strong>both</strong> the purchase cost and the retail selling price of inventories and determines a <strong>cost-to-retail percentage</strong>.</li>
+<li>Managers review the ratio regularly for reliability.</li>
+</ul>
+<div class="tw"><table><tr><th scope="col"><strong>Retail inventory method</strong></th><th scope="col"><strong>Purchase cost</strong></th><th scope="col"><strong>Retail selling price</strong></th></tr><tr><td>Beginning inventories</td><td class="n">$100,000</td><td class="n">$160,000</td></tr><tr><td>\+ Purchases during the period</td><td class="n">300,000</td><td class="n">500,000</td></tr><tr><td><strong>= Cost of goods available for sale</strong></td><td class="n"><strong>400,000</strong></td><td class="n"><strong>660,000</strong></td></tr><tr><td><em>(Cost-to-retail percentage: $400,000 ÷ $660,000 = 60.6%)</em></td><td></td><td></td></tr><tr><td>Sales</td><td></td><td class="n">(420,000)</td></tr><tr><td>Estimated ending inventory at retail selling prices</td><td></td><td class="n">$240,000</td></tr><tr><td>Estimated ending inventory at cost (60.6% × $240,000 retail)</td><td class="n">(145,440)</td><td></td></tr><tr><td><strong>= Cost of goods sold</strong></td><td class="n"><strong>$254,560</strong></td><td></td></tr></table></div>
+<h3>Financial statement effects of inventory costing</h3>
+<div class="tw"><table><tr><th scope="col"><strong>Income Effects from Inventory Costing Methods</strong></th><th scope="col"><strong>Sales</strong></th><th scope="col"><strong>Cost of goods sold</strong></th><th scope="col"><strong>Gross profit</strong></th></tr><tr><td>FIFO</td><td class="n">$112,500</td><td class="n">$45,000</td><td class="n">$67,500</td></tr><tr><td>LIFO</td><td class="n">112,500</td><td class="n">55,000</td><td class="n">57,500</td></tr><tr><td>Average cost</td><td class="n">112,500</td><td class="n">51,429</td><td class="n">61,071</td></tr></table></div>
+<ul>
+<li><strong>FIFO has the lowest COGS and the highest gross profit</strong>, because FIFO matches older, lower-cost inventory against current selling prices.</li>
+<li>In recent years the gross profit impact from using FIFO has been <strong>minimal</strong> for many companies, because of <strong>lower rates of inflation</strong> and <strong>increased management focus on reducing inventory quantities</strong> through improved manufacturing processes and better inventory controls.</li>
+</ul>
+<h3>Balance sheet effects</h3>
+<ul>
+<li>In periods of rising costs, <strong>LIFO inventory can be markedly lower than FIFO</strong>.</li>
+<li>LIFO balance sheets do <strong>not</strong> accurately represent the cost a company would incur to <strong>replace</strong> its current inventory.</li>
+<li>LIFO and FIFO balance sheets are <strong>not comparable</strong>. GAAP therefore requires firms that choose LIFO to also report (in the footnotes) the <strong>equivalent FIFO inventory amounts</strong>.</li>
+</ul>
+<p><em>Caterpillar's 2022 inventory note:</em> "We state inventories at the lower of cost or net realizable value. We principally determine cost using the <strong>last-in, first-out (LIFO)</strong> method. The value of inventories on the LIFO basis represented about <strong>65 percent</strong> and <strong>60 percent</strong> of total inventories at December 31, 2022 and 2021, respectively. If the <strong>FIFO</strong> (first-in, first-out) method had been in use, inventories would have been <strong>$3,321 million</strong> and <strong>$2,599 million higher</strong> than reported at December 31, 2022 and 2021, respectively." This difference is the <strong>LIFO reserve</strong>.</p>
+<h3>Cash flow effects</h3>
+<p><strong>Taxes drive the decision to use LIFO.</strong> Caterpillar has saved <strong>$968 million</strong> in total taxes over time.</p>
+<div class="tw"><table><tr><th scope="col"><strong>CATERPILLAR</strong><br><strong>LIFO Reserve and Tax Saving ($ millions)</strong></th></tr><tr><td></td><td><strong>LIFO reserve</strong></td><td><strong>Tax rate</strong></td><td><strong>Tax saving</strong></td></tr><tr><td>LIFO reserve (cumulative through 2017)</td><td class="n">$1,934</td><td class="n">35%</td><td class="n">$676.90</td></tr><tr><td>Change in LIFO reserve in 2018–2021</td><td class="n">665</td><td class="n">21%</td><td class="n">139.65</td></tr><tr><td>LIFO reserve (cumulative through 2021)</td><td class="n">2,599</td><td></td><td></td></tr><tr><td>Change in LIFO reserve in 2022</td><td class="n">722</td><td class="n">21%</td><td class="n">151.62</td></tr><tr><td><strong>LIFO reserve (cumulative through 2022)</strong></td><td class="n"><strong>$3,321</strong></td><td></td><td class="n"><strong>$968.17</strong></td></tr></table></div>
+<ul>
+<li>Through 2021, CAT's <strong>cumulative</strong> COGS was <strong>$2,599M higher</strong> than it would have been had the company used FIFO.</li>
+<li>Cumulative gross profit and pretax profit were <strong>lower</strong> by $2,599M, which saved taxes <strong>and cash</strong> of <strong>$816.55M</strong> ($676.9M + $139.65M) through 2021.</li>
+<li>In 2022 the LIFO reserve increased by <strong>$722M</strong> — at 21%, the 2022 tax saving was <strong>$151.62M</strong>.</li>
+</ul>
+
+<h2 id="s2">LO 6-2  Inventory Disclosures</h2>
+<h3>Lower of cost or market (LCM)</h3>
+<ul>
+<li>The <strong>lower of cost or market rule</strong> says: if the <strong>market value</strong> of inventory is less than its <strong>cost</strong>, "write down" the inventory to its market value.</li>
+<li>For example, <strong>Lowe's</strong> uses the <strong>FIFO</strong> costing method. At the end of each accounting period, Lowe's compares ending FIFO inventory with market value (<strong>replacement cost</strong>) and writes inventory down when <strong>market value &lt; cost</strong>.</li>
+<li>This <strong>noncash expense</strong>, reflected in <strong>COGS</strong>, <strong>reduces gross profit</strong>.</li>
+</ul>
+<div class="tw"><table><tr><th scope="col"><strong>Transaction</strong></th><th scope="col"><strong>Balance sheet effect</strong></th><th scope="col"><strong>Income statement effect</strong></th></tr><tr><td>Write down inventory from $22,532M to $18,532M</td><td>Noncash assets −4,000M (Inventory); Earned capital −4,000M (Retained Earnings)</td><td>Expenses +4,000M (Cost of Goods Sold); Net income −4,000M</td></tr></table></div>
+<h3>Disclosures for a LIFO reserve</h3>
+<p>Because companies can choose among various inventory costing methods, financial statements are <strong>not comparable</strong>. Compare CAT to a close foreign competitor, <strong>Kubota</strong>, which uses FIFO — <strong>only U.S. tax law permits the LIFO method</strong>.</p>
+<div class="tw"><table><tr><th scope="col"><strong>Monetary Amounts (in millions)</strong></th></tr><tr><td></td><td><strong>CAT LIFO as reported</strong></td><td><strong>CAT FIFO as adjusted</strong></td><td><strong>Kubota as reported</strong></td></tr><tr><td>Inventory</td><td class="n">$16,270</td><td class="n">$19,591</td><td>¥ 644,471</td></tr><tr><td>LIFO reserve, 2022</td><td class="n">$ 3,321</td><td>—</td><td>—</td></tr><tr><td>LIFO reserve, 2021</td><td class="n">$ 2,599</td><td>—</td><td>—</td></tr><tr><td>Total assets</td><td class="n">$81,943</td><td class="n">$85,264</td><td>¥4,731,273</td></tr><tr><td><strong>Inventory as a % of total assets</strong></td><td class="n"><strong>20%</strong></td><td class="n"><strong>23%</strong></td><td class="n"><strong>14%</strong></td></tr><tr><td>Cost of goods sold</td><td class="n">$41,350</td><td>$40,628*</td><td>¥1,982,248</td></tr><tr><td>Revenue (equipment sales)</td><td class="n">$56,574</td><td class="n">$56,574</td><td>¥2,678,772</td></tr><tr><td>Cost of goods sold as a % of revenue</td><td class="n">73.09%</td><td class="n">71.81%</td><td class="n">74.00%</td></tr></table></div>
+<p><em>*CAT's FIFO COGS = $41,350 − $722 change in the LIFO reserve.</em></p>
+<h3>LIFO reserve adjustments — the balance sheet</h3>
+<div class="callout"><strong>FIFO Inventory = LIFO Inventory + LIFO Reserve</strong></div>
+<p>Three adjustments convert LIFO to FIFO on the balance sheet:</p>
+<ul>
+<li><strong>Increase Inventory</strong> by the LIFO reserve</li>
+<li><strong>Increase tax liabilities</strong> by the tax rate applied to the LIFO reserve</li>
+<li><strong>Increase retained earnings</strong> by the difference</li>
+</ul>
+<p><em>For CAT's 2022 balance sheet:</em> increase Inventory by <strong>$3,321M</strong>; increase tax liabilities by <strong>$697.41M</strong> ($3,321M × 21%); increase retained earnings by the difference of <strong>$2,623.59M</strong> ($3,321M − $697.41M).</p>
+<h3>LIFO reserve adjustments — the income statement</h3>
+<div class="callout"><strong>FIFO COGS = LIFO COGS − Change in LIFO Reserve</strong></div>
+<ul>
+<li>During the year, the <strong>change</strong> in the LIFO reserve represents the difference in LIFO versus FIFO COGS during the <strong>current</strong> year.</li>
+<li>FIFO COGS will be <strong>lower</strong>, which causes <strong>higher pretax profit, higher income tax, and higher net income</strong>.</li>
+</ul>
+<p><em>For CAT's 2022 income statement:</em> decrease COGS by <strong>$722M</strong> (the increase in the LIFO reserve); increase tax expense by <strong>$151.62M</strong> ($722M × 21%); increase net income by the difference of <strong>$570.38M</strong>.</p>
+
+<h2 id="s3">LO 6-3  Analyzing Inventories and Accounts Payable</h2>
+<h3>Gross profit analysis</h3>
+<p>The <strong>gross profit margin (GPM)</strong> is gross profit divided by sales.</p>
+<div class="tw"><table><tr><th scope="col"><strong>HOME DEPOT</strong><br><strong>Gross Profit ($ millions)</strong></th></tr><tr><td></td><td class="n"><strong>2022</strong></td><td class="n"><strong>2021</strong></td><td class="n"><strong>2020</strong></td></tr><tr><td>Net sales</td><td class="n">$157,403</td><td class="n">$151,157</td><td class="n">$132,110</td></tr><tr><td>Cost of sales</td><td class="n">104,625</td><td class="n">100,325</td><td class="n">87,257</td></tr><tr><td><strong>Gross profit</strong></td><td class="n"><strong>$ 52,778</strong></td><td class="n"><strong>$ 50,832</strong></td><td class="n"><strong>$ 44,853</strong></td></tr><tr><td>Gross profit margin</td><td class="n">33.5%</td><td class="n">33.6%</td><td class="n">34.0%</td></tr><tr><td>Inventories</td><td class="n">$ 24,886</td><td class="n">$ 22,068</td><td class="n">$ 16,627</td></tr><tr><td>Accounts payable</td><td class="n">11,443</td><td class="n">13,462</td><td class="n">11,606</td></tr></table></div>
+<p><em>Home Depot's MD&amp;A:</em> "Gross profit as a percent of net sales, or gross profit margin, was <strong>33.5%</strong> in fiscal 2022 compared to <strong>33.6%</strong> in fiscal 2021. The decrease in gross profit margin was primarily driven by <strong>higher product and transportation costs</strong>, <strong>pressure from shrink</strong> during the second half of the year, and <strong>investments in our supply chain network</strong>, offset by the benefit from <strong>higher retail prices</strong>, along with <strong>favorable product mix</strong>."</p>
+<h3>Factors that negatively affect GPM</h3>
+<ul>
+<li>Changes in <strong>product mix</strong> toward lower-margin products</li>
+<li><strong>New products</strong> introduced at low prices to gain market share</li>
+<li>Increases in <strong>production costs</strong></li>
+<li><strong>Decrease in production volume</strong></li>
+<li>Increases in <strong>supply-chain costs</strong> (procurement, transportation, technology, insurance)</li>
+<li>More generous <strong>sales discounts or sales returns</strong> policies</li>
+<li><strong>Inventory obsolescence</strong> and/or overstocking</li>
+<li><strong>Warranty costs</strong></li>
+<li>General <strong>decline in economic activity</strong></li>
+<li><strong>New competitors</strong> in the market</li>
+<li><strong>Regulation</strong> that inhibits sales or adds fees or taxes to products sold</li>
+</ul>
+<h3>Days inventory outstanding and inventory turnover</h3>
+<div class="callout"><strong>Inventory Turnover = Cost of Goods Sold ÷ Average Inventory</strong><br><strong>Days Inventory Outstanding (DIO) = 365 ÷ Inventory Turnover</strong></div>
+<ul>
+<li><strong>Inventory turnover</strong> measures the number of times during the period that the company <strong>sells</strong> its inventory.</li>
+<li><strong>DIO</strong> measures the number of <strong>days required to sell</strong> the average inventory available for sale.</li>
+</ul>
+<p><em>Home Depot, 2022:</em> Inventory turnover = $104,625 ÷ [($24,886 + $22,068) ÷ 2] = <strong>4.456 times</strong>; DIO = 365 ÷ 4.456 = <strong>81.9 days</strong>.</p>
+<ul>
+<li>Home Depot turned over (sold) its entire inventory <strong>4.5 times</strong> during 2022.</li>
+<li>It took Home Depot about <strong>82 days</strong> to sell its average inventory.</li>
+<li>From 2013 to 2022, average DIO <strong>increased from 60.5 days to 70.6 days</strong> for the S&amp;P 500 firms. DIO also varies widely by industry — roughly 13 days in transportation and 16 days in oil and gas, against about 112 days in semiconductors and 133 days in textiles, apparel, and luxury goods.</li>
+</ul>
+<h3>Interpreting DIO</h3>
+<p>Analyzing DIO matters for at least two reasons:</p>
+<div class="tw"><table><tr><th scope="col"><strong>Reason</strong></th><th scope="col"><strong>What to look for</strong></th></tr><tr><td><strong>Inventory quality</strong></td><td>Product mix can include more (or less) <strong>higher-margin</strong> inventories that sell more slowly; a company can change its <strong>promotion policies</strong>; a company can realize improvements in <strong>manufacturing efficiency</strong> and lower investments in direct materials and work-in-process inventories.</td></tr><tr><td><strong>Asset utilization</strong></td><td>Companies optimize inventory through <strong>improved manufacturing processes</strong> that eliminate bottlenecks and the buildup of WIP; <strong>just-in-time (JIT) deliveries</strong> of raw materials to the production line, reducing raw materials and associated holding costs; and <strong>demand-pull production</strong>, in which raw materials are released into production when final goods are demanded by customers instead of producing for estimated demand.</td></tr></table></div>
+<h3>Days payable outstanding (DPO)</h3>
+<div class="callout"><strong>Accounts Payable Turnover = COGS ÷ Average Accounts Payable</strong><br><strong>Days Payable Outstanding (DPO) = 365 ÷ Accounts Payable Turnover</strong></div>
+<ul>
+<li><strong>Accounts payable turnover</strong> measures the number of <strong>payment cycles</strong> per period (typically per year).</li>
+<li><strong>DPO</strong> is the average length of time a company takes to <strong>pay its suppliers</strong>.</li>
+<li>Use <strong>COGS</strong> in the accounts payable ratios, because payables relate to the purchase of <strong>inventories</strong>, which are reported at <strong>cost</strong>.</li>
+</ul>
+<p><em>Home Depot, 2022:</em> Accounts payable turnover = $104,625 ÷ [($11,443 + $13,462) ÷ 2] = <strong>8.4 times</strong>; DPO = 365 ÷ 8.4 = <strong>43.4 days</strong>.</p>
+<ul>
+<li>Home Depot's DPO of 43 days is <strong>slightly longer</strong> than the typical 30-day payment term.</li>
+<li><strong>Delaying payment to suppliers</strong> allows the purchasing company to <strong>increase its available cash</strong>.</li>
+<li>However, <strong>excessive delays</strong> (called <strong>"leaning on the trade"</strong>) can <strong>damage supplier relationships</strong>.</li>
+</ul>
+<h3>Cash conversion cycle (CCC)</h3>
+<div class="callout"><strong>Days inventory outstanding + Days sales outstanding (accounts receivable) − Days payable outstanding = Cash conversion cycle</strong></div>
+<p><strong>The aim is to minimize the time to complete a cycle.</strong> Each time a company completes one cash conversion cycle, it has purchased and sold inventory (realizing sales and gross profit), paid A/P, and collected A/R.</p>
+<div class="tw"><table><tr><th scope="col"><strong>HOME DEPOT</strong><br><strong>Cash Conversion Cycle (amounts in days)</strong></th></tr><tr><td></td><td class="n"><strong>2022</strong></td><td class="n"><strong>2021</strong></td><td class="n"><strong>2020</strong></td></tr><tr><td>Days inventory outstanding (DIO)</td><td class="n">81.9</td><td class="n">70.4</td><td class="n">65.2</td></tr><tr><td>\+ Days sales outstanding (DSO)</td><td class="n">7.8</td><td class="n">7.7</td><td class="n">7.0</td></tr><tr><td>− Days payable outstanding (DPO)</td><td class="n">(43.4)</td><td class="n">(45.6)</td><td class="n">(40.6)</td></tr><tr><td><strong>= Cash conversion cycle</strong></td><td class="n"><strong>46.3</strong></td><td class="n"><strong>32.5</strong></td><td class="n"><strong>31.6</strong></td></tr></table></div>
+<p>Over the past 3 years, Home Depot's cash conversion cycle <strong>deteriorated from 32 days to 46 days</strong>, primarily because of the <strong>increase in DIO</strong>.</p>
+<h3>Cash impacts of DIO</h3>
+<div class="callout"><strong>Δ Cash = Δ Days Inventory Outstanding × (COGS ÷ 365)</strong></div>
+<p><em>From 2019 to 2020, Home Depot reduced DIO by 6 days, from 71 to 65:</em> Δ Cash = 6 days × ($87,257 million in 2020 ÷ 365 days) = <strong>$1,434 million</strong> increase in the company's cash balance.</p>
+
+<h2 id="s4">LO 6-4  Capitalization and Depreciation of Tangible Assets</h2>
+<h3>PP&amp;E: capitalization and depreciation</h3>
+<ul>
+<li>When PP&amp;E is acquired, it is recorded at <strong>cost</strong> on the balance sheet. This is called <strong>capitalization</strong> — which is why expenditures for PP&amp;E are called <strong>CAPEX</strong>.</li>
+<li>The amount capitalized includes <strong>all costs to put the asset into service</strong>: the PP&amp;E cost as well as transportation, duties, tax, and the necessary costs to install and test the assets.</li>
+<li>Once capitalized, the PP&amp;E cost is recognized as expense over the period of time that the PP&amp;E <strong>produces revenues</strong>. <strong>Depreciation</strong> recognizes the using up of the asset over its useful life.</li>
+<li>Instead of purchasing PP&amp;E outright, companies often enter into <strong>long-term equipment leases</strong>. If the lease terms extend beyond a year, the equipment is <strong>capitalized</strong> just like other tangible assets.</li>
+</ul>
+<h3>Depreciation expense assumptions</h3>
+<p>To determine depreciation expense, a company makes <strong>three estimates</strong>:</p>
+<div class="tw"><table><tr><th scope="col"><strong>Estimate</strong></th><th scope="col"><strong>Definition</strong></th></tr><tr><td><strong>Useful life</strong></td><td>The period of time over which the asset is expected to generate measurable benefits</td></tr><tr><td><strong>Salvage value</strong></td><td>The amount expected for the asset when disposed of at the end of its useful life</td></tr><tr><td><strong>Depreciation method</strong></td><td>An estimate of how the asset is used up over its useful life</td></tr></table></div>
+<h3>Straight-line method</h3>
+<p>Assume a company acquires a machine for <strong>$100,000</strong> with a <strong>$10,000</strong> salvage value and a <strong>5-year</strong> useful life.</p>
+<div class="tw"><table><tr><th scope="col"><strong>Depreciation base</strong></th><th scope="col"><strong>Depreciation rate</strong></th></tr><tr><td>Cost − Salvage value = $100,000 − $10,000 = <strong>$90,000</strong></td><td>1 ÷ Estimated useful life = 1 ÷ 5 years = <strong>20%</strong></td></tr></table></div>
+<p>With the <strong>straight-line (SL) method</strong>, <strong>$18,000</strong> of depreciation expense is recognized per year over the asset's estimated useful life:</p>
+<div class="callout"><strong>Depreciation expense per year = $90,000 ÷ 5 = $18,000</strong></div>
+<h3>Net book value</h3>
+<div class="tw"><table><tr><th scope="col"><strong>Transaction</strong></th><th scope="col"><strong>Balance sheet effect</strong></th><th scope="col"><strong>Income statement effect</strong></th></tr><tr><td>Record $18,000 straight-line depreciation</td><td>Noncash assets −18,000 (Accumulated Depreciation); Earned capital −18,000 (Retained Earnings)</td><td>Expenses +18,000 (Depreciation Expense); Net income −18,000</td></tr></table></div>
+<p>The <strong>accumulated depreciation</strong> (contra asset) account increases by $18,000, thus reducing net PP&amp;E by the same amount. At the end of the 1st year the asset is reported on the balance sheet as:</p>
+<div class="tw"><table><tr><th scope="col"><strong>Balance sheet presentation</strong></th><th scope="col"></th></tr><tr><td>Machine, at cost</td><td class="n">$100,000</td></tr><tr><td>Less accumulated depreciation</td><td class="n">18,000</td></tr><tr><td><strong>Machine, net (end of Year 1)</strong></td><td class="n"><strong>$ 82,000</strong></td></tr></table></div>
+<p><em>The $82,000 is the asset's</em> <strong>net book value</strong>.</p>
+<h3>Other depreciation methods</h3>
+<ul>
+<li><strong>Accelerated depreciation</strong> methods record <strong>more</strong> depreciation in the early years of an asset's useful life (hence "accelerated") and <strong>less</strong> in later years.</li>
+<li>The <strong>units-of-production</strong> method records depreciation according to <strong>asset use</strong>. The depreciation base is cost less salvage value; the depreciation rate is the units produced and sold during the year compared with the total expected units to be produced and sold.</li>
+<li>The <strong>Modified Accelerated Cost Recovery System (MACRS)</strong>, an accelerated method, is <strong>required by the U.S. IRS</strong> to calculate <strong>taxable</strong> income.</li>
+</ul>
+<h3>R&amp;D facilities and equipment</h3>
+<ul>
+<li>R&amp;D facilities and equipment are <strong>not</strong> immediately expensed. If they are <strong>general-use</strong> in nature, costs are <strong>capitalized</strong> on the balance sheet and <strong>depreciated</strong> over their useful life like other depreciable assets.</li>
+<li>R&amp;D facilities and equipment purchased <strong>specifically for a single R&amp;D project</strong>, with <strong>no alternative use</strong>, are <strong>expensed immediately</strong>.</li>
+<li>R&amp;D costs do create future benefits and might seem to be assets — but <strong>R&amp;D costs are not capitalized</strong>:</li>
+<li>Whether any tangible products or services will be developed is often <strong>uncertain</strong>; many R&amp;D efforts fail to produce any benefits whatsoever.</li>
+<li>Even for promising R&amp;D programs, the <strong>timing</strong> of future products and services is uncertain.</li>
+<li>Salaries for R&amp;D personnel are <strong>no different</strong> from those of other personnel, whose salaries and wages are expensed when incurred.</li>
+</ul>
+
+<h2 id="s5">LO 6-5  Asset Sales, Impairments, and Restructuring</h2>
+<h3>Asset sales</h3>
+<div class="callout"><strong>Gain or Loss on Asset Sale = Proceeds from Sale − Net Book Value of Asset Sold</strong></div>
+<ul>
+<li><strong>Net book value</strong> is acquisition cost less accumulated depreciation.</li>
+<li>When an asset is sold, <strong>both</strong> the acquisition cost and the related accumulated depreciation are <strong>removed</strong> from the balance sheet.</li>
+<li>Any gain or loss is reported in <strong>income from continuing operations</strong>.</li>
+</ul>
+<p><em>Macy's, 2022:</em> "<strong>Gains on Sale of Real Estate</strong> — The company recognized gains of <strong>$89 million</strong> in 2022 associated with sales of real estate, as compared to <strong>$91 million</strong> in 2021. The 2022 asset sale gains mainly consist of gains from the sale of <strong>6 properties</strong>, versus <strong>18 properties</strong> sold at a gain in 2021."</p>
+<h3>Asset impairments</h3>
+<ul>
+<li>Sometimes <strong>market values of PP&amp;E assets decrease</strong>.</li>
+<li>If the asset value is deemed to be <strong>permanently impaired</strong>, the company must <strong>write off the impaired cost and recognize losses</strong>.</li>
+</ul>
+<div class="tw"><table><tr><th scope="col"><strong>Impairment Analysis of Tangible Assets</strong></th><th scope="col"></th></tr><tr><td>Sum of (undiscounted) expected cash flows <strong>is less than</strong> net book value of asset → <strong>Yes</strong></td><td>Asset is impaired: <strong>write down asset to fair value</strong></td></tr><tr><td>Sum of (undiscounted) expected cash flows <strong>is not less than</strong> net book value → <strong>No</strong></td><td><strong>No asset impairment</strong></td></tr></table></div>
+<p><em>CVS Health's note:</em> "<strong>Store Impairments</strong> — During the year ended December 31, 2021, the store impairment charge relates to the write down of operating lease right-of-use (ROU) assets and property and equipment in connection with the planned closure of approximately <strong>900 retail stores</strong> between 2022 and 2024."</p>
+<p>As operating cash flows declined at CVS stores nationwide, management determined to close retail locations, and it was unlikely those locations would generate enough cash flow to absorb the cost of the ROU and PP&amp;E assets. The facilities were therefore deemed impaired and the assets were written down to their fair values, resulting in an impairment expense of <strong>$1,358 million in 2021</strong>.</p>
+<h3>Restructuring costs</h3>
+<p>Corporate restructurings are designed to <strong>turn a company around</strong> and are frequently initiated in response to <strong>poor performance</strong>, <strong>mounting debt</strong>, or <strong>shareholder pressure</strong>. A restructuring can involve:</p>
+<ul>
+<li><strong>Eliminating business segments</strong></li>
+<li><strong>Selling major assets</strong></li>
+<li><strong>Downsizing the workforce</strong></li>
+<li><strong>Reconfiguring debt</strong></li>
+</ul>
+<p>Ultimately, the goal of a restructuring is to <strong>positively impact a company's long-term financial performance</strong>.</p>
+<p><strong>Disclosure of restructuring costs.</strong> Because of their magnitude, restructurings require enhanced disclosure either as a <strong>separate line item</strong> in the income statement or as a <strong>footnote</strong>. Restructuring costs typically include <strong>three components</strong>:</p>
+<div class="tw"><table><tr><th scope="col"><strong>Component</strong></th><th scope="col"><strong>How it is accounted for</strong></th></tr><tr><td><strong>Employee severance or relocation costs</strong></td><td><strong>Estimate</strong> total costs of terminating or relocating selected employees; report total estimated costs as an <strong>expense (and a liability)</strong> in the period the restructuring program is <strong>announced</strong>; subsequent payments to employees <strong>reduce the restructuring accrual</strong> (the liability).</td></tr><tr><td><strong>Asset write-downs</strong></td><td>Restructuring usually involves closure or relocation of manufacturing or administrative facilities, which can require write-downs if <strong>fair value &lt; book value</strong> — of long-term assets (PP&amp;E), intangible assets (goodwill), and inventories. Write-downs have <strong>no cash flow effects</strong> unless the write-down has <strong>tax consequences</strong>.</td></tr><tr><td><strong>Other restructuring costs</strong></td><td>The remaining costs of the program — reported by Pfizer as <strong>exit costs (credits)</strong>.</td></tr></table></div>
+<p>In 2022, Pfizer made several organizational changes and began taking steps to optimize its R&amp;D operations.</p>
+<div class="tw"><table><tr><th scope="col"><strong>PFIZER</strong><br><strong>Restructuring Charges (Credits), Year Ended December 31 ($ millions)</strong></th></tr><tr><td></td><td class="n"><strong>2022</strong></td><td class="n"><strong>2021</strong></td><td class="n"><strong>2020</strong></td></tr><tr><td>Employee terminations</td><td class="n">$776</td><td class="n">$680</td><td class="n">$474</td></tr><tr><td>Asset impairments</td><td class="n">52</td><td class="n">53</td><td class="n">66</td></tr><tr><td>Exit costs (credits)</td><td class="n">54</td><td class="n">8</td><td class="n">(6)</td></tr><tr><td><strong>Restructuring charges (credits)</strong></td><td class="n"><strong>$882</strong></td><td class="n"><strong>$741</strong></td><td class="n"><strong>$535</strong></td></tr></table></div>
+<p>The 2020 column as reported does not foot exactly ($474 + $66 − $6 = $534), a rounding difference in the source.</p>
+<p>Pfizer reported <strong>$882 million</strong> of restructuring expense for 2022.</p>
+
+<h2 id="s6">LO 6-6  Analyzing Tangible Assets</h2>
+<h3>Home Depot's PP&amp;E footnote</h3>
+<div class="tw"><table><tr><th scope="col"><strong>HOME DEPOT</strong><br><strong>Net Property and Equipment ($ millions)</strong></th></tr><tr><td></td><td><strong>January 29, 2023</strong></td><td><strong>January 30, 2022</strong></td></tr><tr><td>Land</td><td class="n">$ 8,719</td><td class="n">$ 8,617</td></tr><tr><td>Buildings and improvements</td><td class="n">19,430</td><td class="n">19,173</td></tr><tr><td>Furniture, fixtures, and equipment</td><td class="n">16,564</td><td class="n">16,441</td></tr><tr><td>Leasehold improvements</td><td class="n">2,130</td><td class="n">2,016</td></tr><tr><td>Construction in process</td><td class="n">1,297</td><td class="n">1,139</td></tr><tr><td>Finance leases</td><td class="n">4,135</td><td class="n">3,943</td></tr><tr><td><strong>Property and equipment, at cost</strong></td><td class="n"><strong>52,275</strong></td><td class="n"><strong>51,329</strong></td></tr><tr><td>Less accumulated depreciation and finance lease amortization</td><td class="n">26,644</td><td class="n">26,130</td></tr><tr><td><strong>Net property and equipment</strong></td><td class="n"><strong>$25,631</strong></td><td class="n"><strong>$25,199</strong></td></tr></table></div>
+<div class="tw"><table><tr><th scope="col"><strong>HOME DEPOT</strong><br><strong>Depreciation Expense ($ millions)</strong></th></tr><tr><td></td><td><strong>Fiscal 2022</strong></td><td><strong>Fiscal 2021</strong></td><td><strong>Fiscal 2020</strong></td></tr><tr><td>Depreciation and finance lease amortization expense</td><td class="n">$2,756</td><td class="n">$2,650</td><td class="n">$2,425</td></tr></table></div>
+<h3>PP&amp;E turnover rate</h3>
+<p>A crucial issue in analyzing PP&amp;E is determining <strong>productivity (utilization)</strong>: what level of PP&amp;E is needed to generate a dollar of revenue, and how capital intensive is the company relative to its competitors?</p>
+<div class="callout"><strong>PP&amp;E Turnover (PPET) = Sales ÷ Average PP&amp;E, net</strong></div>
+<p><em>Home Depot, 2022:</em> PP&amp;E turnover = $157,403 ÷ [($25,199 + $25,631) ÷ 2] = <strong>6.2</strong>.</p>
+<h3>Analysis of PP&amp;E turnover</h3>
+<ul>
+<li><strong>Higher PP&amp;E turnover is preferable</strong>, because it implies a <strong>lower capital investment</strong> for a given level of sales.</li>
+<li>Higher turnover increases profitability because the company <strong>avoids asset carrying costs</strong> and the <strong>freed-up assets can generate operating cash flow</strong>.</li>
+<li>PP&amp;E turnover is <strong>lower for capital-intensive firms</strong> and <strong>higher for companies in service or IT</strong>. Among selected S&amp;P industries it ranges from roughly <strong>0.3 in utilities</strong> and <strong>1.0 in oil, gas, and consumable fuels</strong> to about <strong>6.5 in capital goods</strong>.</li>
+</ul>
+<h3>PP&amp;E useful life</h3>
+<p>Assuming straight-line depreciation and zero salvage value, we can estimate the average useful life of depreciable assets:</p>
+<div class="callout"><strong>Average useful life = Average depreciable asset cost ÷ Depreciation expense</strong></div>
+<h3>Depreciable asset cost excludes land and construction-in-progress.</h3>
+<p><em>Home Depot, 2022:</em> Average useful life = ($42,259 + $41,573) ÷ 2 ÷ $2,756 = <strong>15.2 years</strong>, where depreciable asset cost is PP&amp;E at cost less land and construction in progress ($52,275 − $8,719 − $1,297 = $42,259 for 2022).</p>
+<h3>PP&amp;E percent used up</h3>
+<p><strong>Percent used up</strong> measures the proportion of a company's depreciable assets that have already been "used up" — that is, transferred to the income statement. The ratio reflects the percent of depreciable assets that are <strong>no longer productive</strong>:</p>
+<div class="callout"><strong>Percent used up = Accumulated depreciation ÷ Depreciable asset cost</strong></div>
+<p><em>Home Depot, 2022:</em> Percent used up = $26,644 ÷ $42,259 = <strong>63%</strong>.</p>
+<h3>Analysis of percent used up</h3>
+<ul>
+<li>Knowing the degree to which a company's assets are used up is of interest in <strong>forecasting future cash flows</strong>.</li>
+<li>If depreciable assets are, say, <strong>80% used up</strong>, we might anticipate a <strong>higher level of capital expenditures</strong> to replace aging assets in the near future.</li>
+<li>We also expect that <strong>older assets are less efficient</strong> and will incur <strong>higher maintenance costs</strong>.</li>
+</ul>
+
+<h2 id="s7">LO 6-7  Intangible Assets</h2>
+<h3>Acquiring intangible assets</h3>
+<ul>
+<li>When one company acquires another, we must <strong>allocate the purchase price</strong> to the assets acquired and the liabilities assumed.</li>
+<li>After the purchase price is allocated, any <strong>excess</strong> is allocated to the <strong>acquired intangible assets</strong>.</li>
+<li>Each intangible asset must be <strong>identified, valued, and assigned a useful life</strong>, just like PP&amp;E.</li>
+<li>Intangibles can comprise a <strong>large proportion</strong> of a company's balance sheet: intangible assets as a percent of total assets for S&amp;P 500 nonfinancial firms rose from about <strong>23% in 2013 to about 31% in 2022</strong>.</li>
+</ul>
+<h3>Why intangibles are "missing" from many balance sheets</h3>
+<ul>
+<li>Although intangibles are likely to yield future benefits, it is difficult to <strong>reliably measure</strong> those benefits.</li>
+<li>Many U.S. balance sheets are <strong>"missing"</strong> valuable intangible assets.</li>
+<li>Even though many intangible assets are <strong>not</strong> on the balance sheet, they have <strong>tremendous economic value</strong>.</li>
+<li>This can explain part of the <strong>wide disparity</strong> between a company's <strong>market value</strong> and the <strong>book value</strong> of its stockholders' equity. The median market-to-book ratio for S&amp;P 500 companies rose from roughly <strong>2.2 in 2009</strong> to a peak near <strong>4.8 in 2021</strong>, falling to about <strong>3.8 in 2022</strong>.</li>
+</ul>
+<h3>Types of intangible assets</h3>
+<div class="tw"><table><tr><th scope="col"><strong>Category</strong></th><th scope="col"><strong>Examples</strong></th></tr><tr><td><strong>Marketing-related</strong></td><td>Trademarks, trade names, service marks, certification marks; trade dress (unique color, shape, package design); newspaper mastheads; noncompetition agreements; internet domain names</td></tr><tr><td><strong>Customer-related</strong></td><td>Customer lists; order or production backlog; customer contracts and related customer relationships; noncontractual customer relationships</td></tr><tr><td><strong>Artistic-related</strong></td><td>Plays, operas, ballets; books, magazines, newspapers, literary works; musical works, compositions, song lyrics, jingles; pictures, photographs; audiovisual material, films, videos, TV programs</td></tr><tr><td><strong>Technology-based</strong></td><td>Unpatented technology; patented technology; computer software and mask works; databases, including title plants; trade secrets, secret formulas, processes, recipes</td></tr><tr><td><strong>Contract-based</strong></td><td>Licensing, royalty, franchise agreements; advertising, construction, management, or supply contracts; lease agreements; construction permits; operating and broadcast rights; service and mortgage servicing contracts; employment contracts; use rights such as drilling, water, air, timber, routes</td></tr></table></div>
+<h3>AMD's acquisition of Xilinx</h3>
+<p><em>From AMD's note:</em> "On February 14, 2022, the Company completed the acquisition of all issued and outstanding shares of Xilinx, a leading provider of adaptive computing solutions, for a total purchase consideration of <strong>$48.8 billion</strong>."</p>
+<div class="tw"><table><tr><th scope="col"><strong>AMD — Allocation of the Xilinx Purchase Consideration ($ millions)</strong></th><th scope="col"><strong>Amount</strong></th></tr><tr><td>Cash and cash equivalents</td><td class="n">$ 2,366</td></tr><tr><td>Short-term investments</td><td class="n">1,582</td></tr><tr><td>Accounts receivable</td><td class="n">299</td></tr><tr><td>Inventories</td><td class="n">539</td></tr><tr><td>Prepaid expenses and other current assets</td><td class="n">61</td></tr><tr><td>Property and equipment</td><td class="n">692</td></tr><tr><td>Operating lease right-of-use assets</td><td class="n">61</td></tr><tr><td>Acquisition-related intangibles</td><td class="n">27,308</td></tr><tr><td>Deferred tax assets</td><td class="n">15</td></tr><tr><td>Other noncurrent assets</td><td class="n">418</td></tr><tr><td><strong>Total assets</strong></td><td class="n"><strong>33,341</strong></td></tr><tr><td>Accounts payable</td><td class="n">116</td></tr><tr><td>Accrued liabilities</td><td class="n">634</td></tr><tr><td>Other current liabilities</td><td class="n">185</td></tr><tr><td>Long-term debt</td><td class="n">1,474</td></tr><tr><td>Long-term operating lease liabilities</td><td class="n">45</td></tr><tr><td>Deferred tax liabilities</td><td class="n">4,346</td></tr><tr><td>Other long-term liabilities</td><td class="n">532</td></tr><tr><td><strong>Total liabilities</strong></td><td class="n"><strong>7,332</strong></td></tr><tr><td><strong>Fair value of net assets acquired</strong></td><td class="n"><strong>$26,009</strong></td></tr><tr><td>Goodwill</td><td class="n">22,784</td></tr><tr><td><strong>Total purchase consideration</strong></td><td class="n"><strong>$48,793</strong></td></tr></table></div>
+<ul>
+<li><strong>Nearly half</strong> of the Xilinx purchase price is allocated to <strong>goodwill</strong> — typical of acquisitions.</li>
+<li>The value assigned to goodwill is <strong>not computed directly</strong>; it is computed as a <strong>residual amount</strong>.</li>
+<li>Consequently, if a company <strong>overpays</strong> for an acquired company, that <strong>overpayment is reflected in goodwill</strong>.</li>
+</ul>
+<div class="tw"><table><tr><th scope="col"><strong>AMD — Identified Intangible Assets Acquired ($ millions)</strong></th><th scope="col"><strong>Fair value</strong></th><th scope="col"><strong>Weighted-average estimated useful life</strong></th></tr><tr><td>Developed technology</td><td class="n">$12,295</td><td>16 years</td></tr><tr><td>Customer relationships</td><td class="n">12,290</td><td>14 years</td></tr><tr><td>Customer backlog</td><td class="n">793</td><td>1 year</td></tr><tr><td>Corporate trade name</td><td class="n">65</td><td>1 year</td></tr><tr><td>Product trademarks</td><td class="n">895</td><td>12 years</td></tr><tr><td><strong>Identified intangible assets subject to amortization</strong></td><td class="n"><strong>26,338</strong></td><td></td></tr><tr><td>In-process research and development (IPR&amp;D) not subject to amortization</td><td class="n">970</td><td>N/A</td></tr><tr><td><strong>Total identified intangible assets acquired</strong></td><td class="n"><strong>$27,308</strong></td><td></td></tr></table></div>
+<p>AMD separately valued each of the identified intangible assets (called <strong>acquisition-related intangibles</strong>) and assigned to each a <strong>useful life</strong> over which the asset is <strong>amortized</strong> (like depreciation).</p>
+<h3>Valuation models for intangible assets</h3>
+<div class="tw"><table><tr><th scope="col"><strong>Model</strong></th><th scope="col"><strong>How it works</strong></th><th scope="col"><strong>Often used for</strong></th></tr><tr><td><strong>Relief from Royalty Method (RRM)</strong></td><td>Presumes the company <strong>avoided royalties</strong> by acquiring the asset; the value is the <strong>present value of the avoided royalty payments</strong></td><td>Brand names, trademarks, licensed computer software, in-progress R&amp;D</td></tr><tr><td><strong>Multiperiod Excess Earnings Method</strong></td><td>Measures the intangible asset's anticipated earnings that are <strong>in excess of an expected return</strong></td><td>Acquiring a business that is a <strong>stand-alone entity</strong></td></tr><tr><td><strong>With and Without Method</strong></td><td>Estimates the value of the business <strong>with</strong> and <strong>without</strong> the asset in question</td><td>Noncompete agreements</td></tr><tr><td><strong>Real Option Pricing</strong></td><td>Applies to intangibles that <strong>do not currently generate cash flows</strong> but have the potential to do so; follows the method used to value options in general</td><td>Undeveloped patents, natural resources</td></tr><tr><td><strong>Replacement Cost Method Less Obsolescence</strong></td><td>Values the asset at the cost that would be incurred to <strong>replace</strong> it</td><td>Software, databases, manufacturing processes</td></tr></table></div>
+<h3>Accounting for goodwill</h3>
+<ul>
+<li>Goodwill is <strong>not amortized</strong>, because it is considered to have an <strong>indefinite (or infinite) life</strong>.</li>
+<li>Goodwill must be evaluated for <strong>impairment at least annually</strong> and <strong>at the same time each year</strong>, to prevent companies from gaming the impairment evaluation.</li>
+<li>From a practical perspective, the goodwill impairment test is straightforward:</li>
+<li><strong>Estimate the fair value</strong> of each subsidiary that has goodwill on its balance sheet</li>
+<li><strong>Compare</strong> the estimated fair value of the subsidiary to its <strong>carrying value</strong> on the parent company's balance sheet</li>
+<li>If a subsidiary's <strong>fair value &lt; carrying value</strong>, the subsidiary's goodwill is <strong>impaired</strong></li>
+<li>A goodwill impairment test is a test of whether the value of the <strong>entire subsidiary</strong> is impaired.</li>
+</ul>
+<h3>Ratio and Metric Summary</h3>
+<div class="tw"><table><tr><th scope="col"><strong>Measure</strong></th><th scope="col"><strong>Formula</strong></th><th scope="col"><strong>Illustration</strong></th></tr><tr><td><strong>Cost of goods available for sale</strong></td><td>Beginning inventory + Inventory acquired</td><td>$50,000 + $30,000 = $80,000</td></tr><tr><td><strong>Gross profit</strong></td><td>Sales − COGS</td><td>FIFO: $112,500 − $45,000 = $67,500</td></tr><tr><td><strong>Average cost per unit</strong></td><td>Cost of goods available ÷ Units available</td><td>$80,000 ÷ 700 = $114.286</td></tr><tr><td><strong>Cost-to-retail percentage</strong></td><td>Cost of goods available at cost ÷ at retail</td><td>$400,000 ÷ $660,000 = 60.6%</td></tr><tr><td><strong>FIFO inventory</strong></td><td>LIFO inventory + LIFO reserve</td><td>CAT 2022: $16,270 + $3,321 = $19,591</td></tr><tr><td><strong>FIFO COGS</strong></td><td>LIFO COGS − Change in LIFO reserve</td><td>CAT 2022: $41,350 − $722 = $40,628</td></tr><tr><td><strong>Gross profit margin (GPM)</strong></td><td>Gross profit ÷ Sales</td><td>Home Depot 2022: 33.5%</td></tr><tr><td><strong>Inventory turnover</strong></td><td>COGS ÷ Average inventory</td><td>Home Depot 2022: 4.456 times</td></tr><tr><td><strong>Days inventory outstanding (DIO)</strong></td><td>365 ÷ Inventory turnover</td><td>Home Depot 2022: 81.9 days</td></tr><tr><td><strong>Accounts payable turnover</strong></td><td>COGS ÷ Average accounts payable</td><td>Home Depot 2022: 8.4 times</td></tr><tr><td><strong>Days payable outstanding (DPO)</strong></td><td>365 ÷ Accounts payable turnover</td><td>Home Depot 2022: 43.4 days</td></tr><tr><td><strong>Cash conversion cycle (CCC)</strong></td><td>DIO + DSO − DPO</td><td>Home Depot 2022: 46.3 days</td></tr><tr><td><strong>Cash impact of a DIO change</strong></td><td>Δ DIO × (COGS ÷ 365)</td><td>6 days × ($87,257 ÷ 365) = $1,434</td></tr><tr><td><strong>Straight-line depreciation</strong></td><td>(Cost − Salvage value) ÷ Useful life</td><td>($100,000 − $10,000) ÷ 5 = $18,000</td></tr><tr><td><strong>Net book value</strong></td><td>Acquisition cost − Accumulated depreciation</td><td>$100,000 − $18,000 = $82,000</td></tr><tr><td><strong>Gain or loss on asset sale</strong></td><td>Proceeds − Net book value of asset sold</td><td>Macy's 2022: $89 million of gains</td></tr><tr><td><strong>PP&amp;E turnover (PPET)</strong></td><td>Sales ÷ Average PP&amp;E, net</td><td>Home Depot 2022: 6.2</td></tr><tr><td><strong>Average useful life</strong></td><td>Average depreciable asset cost ÷ Depreciation expense</td><td>Home Depot 2022: 15.2 years</td></tr><tr><td><strong>Percent used up</strong></td><td>Accumulated depreciation ÷ Depreciable asset cost</td><td>Home Depot 2022: 63%</td></tr><tr><td><strong>Goodwill</strong></td><td>Purchase consideration − Fair value of net assets acquired</td><td>AMD/Xilinx: $48,793 − $26,009 = $22,784</td></tr></table></div>
+<h3>Key Terms</h3>
+<div class="tw"><table><tr><th scope="col"><strong>Term</strong></th><th scope="col"><strong>Definition</strong></th></tr><tr><td><strong>Accelerated depreciation</strong></td><td>Method that records more depreciation in the early years of an asset's useful life and less in later years</td></tr><tr><td><strong>Accounts payable turnover</strong></td><td>COGS ÷ Average accounts payable</td></tr><tr><td><strong>Average cost method</strong></td><td>Costing method that applies the average cost of goods available for sale to COGS and ending inventory</td></tr><tr><td><strong>Capitalization</strong></td><td>Recording a cost on the balance sheet rather than expensing it immediately</td></tr><tr><td><strong>CAPEX</strong></td><td>Capital expenditures — amounts spent to acquire PP&amp;E</td></tr><tr><td><strong>Cash conversion cycle (CCC)</strong></td><td>DIO + DSO − DPO; the time to complete one purchase-to-collection cycle</td></tr><tr><td><strong>Cost-to-retail percentage</strong></td><td>Cost of goods available for sale at cost ÷ at retail selling price</td></tr><tr><td><strong>Days inventory outstanding (DIO)</strong></td><td>365 ÷ Inventory turnover; days required to sell average inventory</td></tr><tr><td><strong>Days payable outstanding (DPO)</strong></td><td>365 ÷ Accounts payable turnover; days taken to pay suppliers</td></tr><tr><td><strong>Depreciation base</strong></td><td>Cost less salvage value</td></tr><tr><td><strong>FIFO</strong></td><td>First-in, first-out; transfers costs from inventory in the order initially recorded</td></tr><tr><td><strong>Goodwill</strong></td><td>Residual excess of purchase consideration over the fair value of net assets acquired; not amortized, tested for impairment at least annually</td></tr><tr><td><strong>Impairment</strong></td><td>Write-down of an asset to fair value when undiscounted expected cash flows are less than net book value</td></tr><tr><td><strong>In-process R&amp;D (IPR&amp;D)</strong></td><td>Acquired R&amp;D recorded as an asset and <strong>not subject to amortization</strong> (no assigned useful life)</td></tr><tr><td><strong>Inventory turnover</strong></td><td>COGS ÷ Average inventory</td></tr><tr><td><strong>"Leaning on the trade"</strong></td><td>Excessive delay of supplier payments, which can damage supplier relationships</td></tr><tr><td><strong>LIFO</strong></td><td>Last-in, first-out; transfers the most recent inventory costs to COGS</td></tr><tr><td><strong>LIFO reserve</strong></td><td>The difference between FIFO and LIFO inventory, disclosed in the footnotes</td></tr><tr><td><strong>Lower of cost or market (LCM)</strong></td><td>Rule requiring inventory to be written down to market value when market is below cost</td></tr><tr><td><strong>MACRS</strong></td><td>Modified Accelerated Cost Recovery System; accelerated method required by the IRS for taxable income</td></tr><tr><td><strong>Net book value</strong></td><td>Acquisition cost less accumulated depreciation</td></tr><tr><td><strong>Percent used up</strong></td><td>Accumulated depreciation ÷ Depreciable asset cost</td></tr><tr><td><strong>PP&amp;E turnover (PPET)</strong></td><td>Sales ÷ Average PP&amp;E, net</td></tr><tr><td><strong>Restructuring costs</strong></td><td>Severance/relocation costs, asset write-downs, and other exit costs from a corporate restructuring</td></tr><tr><td><strong>Retail inventory costing</strong></td><td>Method that estimates ending inventory at cost using the cost-to-retail percentage</td></tr><tr><td><strong>Salvage value</strong></td><td>Amount expected for an asset when disposed of at the end of its useful life</td></tr><tr><td><strong>Straight-line (SL) method</strong></td><td>Equal depreciation expense per year over the asset's useful life</td></tr><tr><td><strong>Units-of-production method</strong></td><td>Depreciation recorded according to asset use rather than time</td></tr><tr><td><strong>Useful life</strong></td><td>Period over which an asset is expected to generate measurable benefits</td></tr></table></div><h2 id="cullowhee">Cullowhee examples</h2><p>The review above uses the lecture and textbook examples. Here are the same ideas with Cullowhee Cycle Works, the company in your walkthroughs and quizzes.</p><h3>Cost flow and FIFO</h3><p>Cullowhee had 12,000 packs available at a total cost of $4,965,000, and 1,000 packs remain. Under FIFO, the ending packs are the newest (Q4 at $440): ending inventory = <strong>$440,000</strong> and COGS = 4,965,000 &minus; 440,000 = <strong>$4,525,000</strong>.</p><h3>LIFO and the effect of rising costs</h3><p>Under LIFO the ending packs are the oldest (beginning inventory at $380): ending inventory = <strong>$380,000</strong> and COGS = 4,965,000 &minus; 380,000 = <strong>$4,585,000</strong>, which is $60,000 more than FIFO. At a 25% tax rate, LIFO saves about $15,000 of taxes.</p><h3>Weighted-average cost</h3><p>Average cost = 4,965,000 &divide; 12,000 = <strong>$413.75</strong> per pack. Ending inventory = 1,000 &times; 413.75 = $413,750, and COGS = <strong>$4,551,250</strong>, between FIFO ($4,525,000) and LIFO ($4,585,000).</p><h3>Capitalize or expense?</h3><p>Assembly line ($ thousand): invoice 1,800 + freight 60 + installation 100 + test runs 40 = <strong>2,000</strong> capitalized. Worker training and the maintenance contract are expensed.</p><h3>Straight-line depreciation</h3><p>Assembly line: cost 2,000, salvage 100, life 10 years. Depreciation = (2,000 &minus; 100) &divide; 10 = <strong>190</strong> a year. If the line runs for 3 months of FY2026, depreciation is 190 &times; 3/12 = 47.5.</p><h3>Goodwill and acquired technology</h3><p>Highlands Cell Packs ($ thousand): price 6,000 &minus; (PP&amp;E 1,700 + inventory 500 + technology 1,600) = <strong>goodwill 2,200</strong>. The technology has an 8-year life: 1,600 &divide; 8 = 200 a year, or 100 for the six months after July 1.</p><h3>Days payables and the cash conversion cycle</h3><p>Cullowhee FY2026: average payables = (4,500 + 5,400) &divide; 2 = 4,950; DPO = 365 &times; 4,950 &divide; 37,030 = <strong>48.8 days</strong>. DIO = 101.5 days (average inventory 10,300), DSO = 35.4 days. Cash conversion cycle = 101.5 + 35.4 &minus; 48.8 = <strong>88.1 days</strong>.</p><p class="noprint"><button type="button" onclick="window.print()">Print or save as PDF</button></p><p class="prog">All people and companies in the Cullowhee case are fictional.</p></main><script>(function(){'use strict';
+function clean(s){return String(s).replace(/[‘’]/g,"'").replace(/[“”]/g,'"').replace(/[–—−]/g,'-').replace(/·/g,'-').replace(/÷/g,'/').replace(/×/g,'x').replace(/[^\x20-\x7E\n]/g,'?');}
+function esc(s){return s.replace(/\\/g,'\\\\').replace(/\(/g,'\\(').replace(/\)/g,'\\)');}
+function wrap(text,max){var out=[];text.split('\n').forEach(function(p){if(!p.trim()){out.push('');return;}var line='';p.split(/\s+/).forEach(function(w){while(w.length>max){if(line){out.push(line);line='';}out.push(w.slice(0,max));w=w.slice(max);}if((line+' '+w).trim().length>max){out.push(line);line=w;}else line=(line?line+' ':'')+w;});out.push(line);});return out;}
+function pdf(lines){var per=52,pages=[];for(var i=0;i<lines.length;i+=per)pages.push(lines.slice(i,i+per));if(!pages.length)pages=[[]];
+  var objs=[];objs[1]='<< /Type /Catalog /Pages 2 0 R >>';var kids=[];
+  objs[3]='<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>';objs[4]='<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>';
+  pages.forEach(function(pl,pi){var po=5+pi*2,co=po+1;kids.push(po+' 0 R');
+    var c='BT /F1 10 Tf 13 TL 54 740 Td\n';pl.forEach(function(l,li){var bold=(pi===0&&li===0);c+=(bold?'/F2 12 Tf ':'/F1 10 Tf ')+'('+esc(l)+') Tj T*\n';});c+='ET';
+    objs[po]='<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents '+co+' 0 R >>';
+    objs[co]='<< /Length '+c.length+' >>\nstream\n'+c+'\nendstream';});
+  objs[2]='<< /Type /Pages /Kids ['+kids.join(' ')+'] /Count '+pages.length+' >>';
+  var out='%PDF-1.4\n',off=[];for(var n=1;n<objs.length;n++){off[n]=out.length;out+=n+' 0 obj\n'+objs[n]+'\nendobj\n';}
+  var x=out.length;out+='xref\n0 '+objs.length+'\n0000000000 65535 f \n';for(n=1;n<objs.length;n++)out+=('0000000000'+off[n]).slice(-10)+' 00000 n \n';
+  out+='trailer\n<< /Size '+objs.length+' /Root 1 0 R >>\nstartxref\n'+x+'\n%%EOF';return out;}
+var b=document.getElementById('pdfbtn');if(!b)return;
+b.addEventListener('click',function(){var t=document.getElementById('sumtxt').value;if(!t)return;t=clean(t);
+  var id=(t.match(/Student ID: (\d+)/)||[])[1]||'student',title=t.split('\n')[0];
+  var lines=wrap(t,92);var data=pdf(lines);var blob=new Blob([data],{type:'application/pdf'});
+  var name=title.replace(/^MBA 623 - /,'MBA623 ').replace(/[^A-Za-z0-9 ]+/g,'').replace(/\s+/g,' ').trim()+' - '+id+'.pdf';
+  var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},500);
+  var m=document.getElementById('copied');if(m)m.textContent='PDF downloaded: '+name;});
+})();</script></body></html>

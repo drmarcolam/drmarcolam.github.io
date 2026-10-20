@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Module 4 Walkthrough: Why did Cullowhee's ROE fall?</title>
+<style>
+
+:root{
+  --paper:#F5F8F5; --card:#FFFFFF; --ink:#16222B; --muted:#4D5D68; --rule:#C7D2CB;
+  --spruce:#14574B; --spruce-ink:#FFFFFF; --spruce-soft:#E0EEE8;
+  --ok:#0F6A37; --ok-bg:#E3F3E9; --miss:#9B2C1F; --miss-bg:#FBE8E4;
+  --note:#274C8C; --note-bg:#E8EEF9; --focus:#1A47B8; --hl:#FFF3C4;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --paper:#0F1A17; --card:#16231F; --ink:#E8EFEA; --muted:#A9B8B0; --rule:#33453E;
+    --spruce:#5FC2AB; --spruce-ink:#06241D; --spruce-soft:#1B3A33;
+    --ok:#7FDCA0; --ok-bg:#16352A; --miss:#FFAE9F; --miss-bg:#3E1D18;
+    --note:#A9C4FF; --note-bg:#1B2B4A; --focus:#9DB8FF; --hl:#4A4017;
+  }
+}
+*{box-sizing:border-box}
+html{font-size:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.55;font-size:1.0625rem}
+.skip{position:absolute;left:-999px;top:0;background:var(--spruce);color:var(--spruce-ink);padding:.6rem 1rem;z-index:10}
+.skip:focus{left:.5rem;top:.5rem}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:3px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+header.top{padding:1.1rem 1.25rem .4rem;max-width:1120px;margin:0 auto}
+header.top p{margin:0;color:var(--muted);font-size:.95rem}
+header.top h1{font-family:var(--serif);font-weight:700;font-size:1.65rem;line-height:1.2;margin:.15rem 0 0}
+.wrap{max-width:1120px;margin:0 auto;padding:0 1.25rem 3rem;display:grid;grid-template-columns:232px minmax(0,1fr);gap:1.75rem}
+nav.steps{position:sticky;top:.75rem;align-self:start}
+nav.steps h2{font-size:.95rem;margin:.2rem 0 .5rem;color:var(--muted);font-weight:600}
+nav.steps ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.25rem}
+nav.steps button{width:100%;text-align:left;display:flex;gap:.6rem;align-items:center;min-height:44px;padding:.35rem .6rem;border:1px solid transparent;border-radius:6px;background:none;color:var(--ink);font:inherit;font-size:.97rem;cursor:pointer}
+nav.steps button:hover:not([aria-disabled="true"]){background:var(--spruce-soft)}
+nav.steps button[aria-disabled="true"]{color:var(--muted);cursor:not-allowed;opacity:.75}
+nav.steps button[aria-current="step"]{background:var(--spruce-soft);border-color:var(--spruce);font-weight:600}
+.mark{flex:0 0 1.6rem;height:1.6rem;border-radius:50%;border:2px solid var(--rule);display:grid;place-items:center;font-size:.85rem;font-weight:700}
+.mark.done{background:var(--ok);border-color:var(--ok);color:var(--card)}
+.mark.cur{border-color:var(--spruce);color:var(--spruce)}
+main{min-width:0}
+.progress{display:flex;align-items:center;gap:.75rem;margin:.2rem 0 1rem;color:var(--muted);font-size:.95rem}
+progress{flex:1;height:.55rem;accent-color:var(--spruce)}
+.memo{background:var(--card);border:1px solid var(--rule);border-left:6px solid var(--spruce);border-radius:4px;padding:1.2rem 1.4rem;margin-bottom:1.25rem}
+.memo h2{font-family:var(--serif);font-size:1.25rem;margin:0 0 .6rem}
+.memo dl{display:grid;grid-template-columns:5.2rem 1fr;gap:.15rem .75rem;margin:0 0 .9rem;padding-bottom:.8rem;border-bottom:1px solid var(--rule);font-size:.97rem}
+.memo dt{color:var(--muted)} .memo dd{margin:0}
+.memo p{margin:.5rem 0;max-width:68ch}
+.howto{background:var(--spruce-soft);border-radius:4px;padding:.8rem 1rem;margin:0 0 1.25rem;font-size:.97rem}
+.howto strong{font-family:var(--serif)}
+.howto ul{margin:.35rem 0 0;padding-left:1.2rem}
+details.data{background:var(--card);border:1px solid var(--rule);border-radius:4px;margin:0 0 1.25rem}
+details.data>summary{cursor:pointer;padding:.8rem 1rem;font-weight:600;min-height:44px}
+details.data .inner{padding:0 1rem 1rem}
+.tscroll{overflow-x:auto;margin:.4rem 0 1rem}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums;font-size:.95rem}
+caption{text-align:left;font-weight:600;padding:.2rem 0 .4rem;font-family:var(--serif);font-size:1.02rem}
+th,td{padding:.32rem .6rem;border-bottom:1px solid var(--rule);text-align:right;white-space:nowrap}
+th:first-child,td:first-child{text-align:left;white-space:normal}
+thead th{border-bottom:2px solid var(--ink);font-weight:600}
+tr.tot td,tr.tot th{font-weight:700;border-top:1px solid var(--ink)}
+tr.sub th{text-align:left;font-weight:700;color:var(--spruce);padding-top:.7rem}
+section.step{background:var(--card);border:1px solid var(--rule);border-radius:4px;padding:1.3rem 1.4rem}
+section.step h2{font-family:var(--serif);font-size:1.45rem;line-height:1.25;margin:0 0 .2rem}
+section.step h2:focus{outline:none}
+.res{color:var(--muted);font-size:.93rem;margin:0 0 .9rem}
+.lead{max-width:70ch}
+.formula{display:inline-block;background:var(--hl);color:#111;padding:.05rem .45rem;border-radius:3px;font-variant-numeric:tabular-nums}
+@media (prefers-color-scheme: dark){.formula{color:var(--ink)}}
+.q{border-top:1px solid var(--rule);margin-top:1.2rem;padding-top:1.1rem}
+.q label.ql,.q legend{font-weight:600;display:block;margin-bottom:.45rem;max-width:68ch;padding:0}
+.q .unit{font-weight:400;color:var(--muted)}
+.q fieldset{border:0;margin:0;padding:0;min-width:0}
+.row{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center}
+input[type=text]{font:inherit;font-variant-numeric:tabular-nums;min-height:46px;width:12rem;padding:.35rem .7rem;border:2px solid var(--muted);border-radius:5px;background:var(--card);color:var(--ink)}
+input[type=text][disabled]{background:var(--paper);border-color:var(--rule)}
+.opt{display:flex;gap:.7rem;align-items:flex-start;padding:.55rem .7rem;border:1px solid var(--rule);border-radius:5px;margin:.4rem 0;max-width:68ch;cursor:pointer;min-height:44px}
+.opt:hover{background:var(--spruce-soft)}
+.opt input{margin-top:.3rem;width:1.15rem;height:1.15rem;accent-color:var(--spruce);flex:none}
+.opt.disabled{cursor:default;opacity:.85}
+.opt.picked{border-color:var(--spruce);background:var(--spruce-soft)}
+button.btn{font:inherit;font-weight:600;min-height:46px;padding:.45rem 1.15rem;border-radius:5px;border:2px solid var(--spruce);background:var(--spruce);color:var(--spruce-ink);cursor:pointer}
+button.btn:hover{filter:brightness(1.08)}
+button.btn.alt{background:transparent;color:var(--spruce)}
+button.btn[disabled]{opacity:.5;cursor:not-allowed}
+.fb{margin-top:.7rem;padding:.7rem .9rem;border-radius:5px;max-width:68ch}
+.fb.ok{background:var(--ok-bg);border-left:6px solid var(--ok)}
+.fb.no{background:var(--miss-bg);border-left:6px solid var(--miss)}
+.fb.info{background:var(--note-bg);border-left:6px solid var(--note)}
+.fb strong.tag{display:inline-block;margin-right:.35rem}
+.fb.ok strong.tag{color:var(--ok)} .fb.no strong.tag{color:var(--miss)}
+.notes{margin:.6rem 0 0;padding:0;list-style:none;max-width:68ch}
+.notes li{background:var(--note-bg);border-left:6px solid var(--note);padding:.6rem .85rem;margin:.45rem 0;border-radius:4px}
+.notes li b{color:var(--note)}
+.why{margin:.6rem 0 0;max-width:68ch}
+.nextbar{margin-top:1.6rem;padding-top:1.1rem;border-top:2px solid var(--ink);display:flex;gap:.8rem;flex-wrap:wrap;align-items:center}
+.nextbar .hint{color:var(--muted);font-size:.95rem}
+textarea{width:100%;max-width:68ch;min-height:9rem;font:inherit;padding:.7rem;border:2px solid var(--muted);border-radius:5px;background:var(--card);color:var(--ink)}
+.checks label{display:flex;gap:.6rem;align-items:flex-start;margin:.4rem 0;max-width:68ch;min-height:32px}
+.checks input{margin-top:.35rem;width:1.1rem;height:1.1rem;accent-color:var(--spruce)}
+.tick td:nth-child(n+2),.tick th:nth-child(n+2){text-align:center}
+.tick td.good{font-weight:700;color:var(--ok)}
+.tick td.bad{font-weight:700;color:var(--miss)}
+.tick tfoot td,.tick tfoot th{border-top:2px solid var(--ink);font-weight:700}
+pre.out{white-space:pre-wrap;background:var(--paper);border:1px solid var(--rule);padding:.8rem;border-radius:5px;font-size:.92rem;max-width:80ch}
+.cmp{display:grid;grid-template-columns:1fr;gap:.6rem}
+.model{background:var(--spruce-soft);border-radius:4px;padding:.8rem 1rem;max-width:72ch}
+footer{max-width:1120px;margin:0 auto;padding:0 1.25rem 2rem;color:var(--muted);font-size:.9rem}
+@media (max-width:860px){
+  .wrap{grid-template-columns:1fr}
+  nav.steps{position:static}
+  nav.steps ol{flex-direction:row;flex-wrap:wrap}
+  nav.steps li{flex:1 1 auto}
+  nav.steps button{justify-content:center;padding:.35rem .5rem}
+  nav.steps .lbl{display:none}
+  nav.steps button[aria-current="step"] .lbl{display:inline}
+  section.step,.memo{padding:1rem}
+}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+@media print{
+  nav.steps,.nextbar button,.btn,details.data,.skip{display:none!important}
+  body{background:#fff;color:#000}
+  .wrap{display:block}
+}
+
+select{font:inherit;min-height:44px;max-width:100%;padding:.3rem .5rem;border:2px solid var(--muted);border-radius:5px;background:var(--card);color:var(--ink)}
+select[disabled]{background:var(--paper);border-color:var(--rule)}
+table.gridq th,table.gridq td{white-space:normal;vertical-align:middle}
+table.gridq td{text-align:left}
+table.gridq tbody th{font-weight:500;min-width:14rem}
+
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the walkthrough</a>
+<div id="sr-live" class="sr-only" role="status" aria-live="polite"></div>
+<header class="top">
+  <p>Cullowhee Cycle Works case &middot; Module 4: ROE and DuPont analysis</p>
+  <h1>Why did Cullowhee's ROE fall?</h1>
+</header>
+<noscript><p style="max-width:700px;margin:1rem auto;padding:0 1.25rem">This walkthrough needs JavaScript. Please open it in a current browser.</p></noscript>
+<div class="wrap">
+  <nav class="steps" aria-label="Walkthrough steps"><h2>Your steps</h2><ol id="stepnav"></ol></nav>
+  <main id="main" tabindex="-1"><div id="app"></div></main>
+</div>
+<footer>Practice walkthrough. Hints are free and your results can be downloaded as a PDF at the end for your instructor. Hints are free; nothing is sent anywhere automatically. All people and companies in the Cullowhee case are fictional.</footer>
+<script>
+(function(){
+'use strict';
+var M = {"num": 4, "h1": "Why did Cullowhee's ROE fall?", "subject": "ROE and DuPont analysis", "textbook": "Financial & Managerial Accounting for MBAs, 7e", "memo": {"from": "Nora Crisp, Chief Financial Officer", "date": "January 11, 2027", "re": "Why did our ROE fall in FY2026?", "body": ["Welcome aboard. Walt Parris, our board chair, asked me yesterday why return on equity dropped even though sales grew almost 19%. I need a clear answer for Friday's board packet, and I would like you to work it out rather than guess.", "Everything you need is in the Cullowhee data panel (statements for FY2024 to FY2026, in $ thousands). Work through the steps in order. If you get stuck, I will leave reviewer's notes. At the end, you will write me a short note with your conclusion.", "Nora"]}, "dataTitle": "Cullowhee financial data (statements, $ thousands)", "data": [{"cap": "Cullowhee Cycle Works income statement, years ended December 31", "heads": ["FY2024", "FY2025", "FY2026"], "rows": [["Gross sales", [40000, 49500, 59200]], ["Less: returns, allowances and dealer rebates", [-2000, -3000, -4000]], ["Net sales", [38000, 46500, 55200], "tot"], ["Cost of goods sold", [-24320, -30460, -37030]], ["Gross profit", [13680, 16040, 18170], "tot"], ["Selling, general and administrative expenses", [-7980, -9640, -11520]], ["Research and development expenses", [-1520, -1860, -2300]], ["Amortization of acquired intangibles", [0, 0, -100]], ["Operating income", [4180, 4540, 4250], "tot"], ["Interest expense", [-543, -548, -798]], ["Interest income", [32, 44, 120]], ["Income before income taxes", [3669, 4036, 3572], "tot"], ["Income tax expense", [-917, -1009, -893]], ["Net income", [2752, 3027, 2679], "tot"]], "unit": "$ thousands", "dec": 0, "zero": false}, {"cap": "Cullowhee Cycle Works balance sheet, December 31", "heads": ["2023", "2024", "2025", "2026"], "rows": [["Assets", null, "sub"], ["Cash and cash equivalents", [6130, 6922, 4989, 12992]], ["Accounts receivable, net", [3170, 3730, 4660, 6040]], ["Inventories", [5600, 6700, 8900, 11700]], ["Prepaid expenses", [600, 700, 850, 1000]], ["Property, plant and equipment, net", [12800, 14400, 16650, 22300]], ["Goodwill", [0, 0, 0, 2200]], ["Acquired intangible assets, net", [0, 0, 0, 1500]], ["Other assets", [400, 450, 500, 550]], ["Total assets", [28700, 32902, 36549, 58282], "tot"], ["Liabilities and equity", null, "sub"], ["Accounts payable", [3000, 3600, 4500, 5400]], ["Accrued liabilities", [1500, 1750, 2100, 2600]], ["Warranty liability", [700, 850, 1100, 1500]], ["Deferred revenue", [800, 1100, 1500, 2100]], ["Revolving credit line", [1500, 2000, 2500, 1000]], ["Term loan (current and long-term)", [6000, 5500, 5000, 4500]], ["Bonds payable, net", [0, 0, 0, 9314]], ["Total liabilities", [13500, 14800, 16700, 26414], "tot"], ["Total stockholders' equity", [15200, 18102, 19849, 31868], "tot"], ["Total liabilities and stockholders' equity", [28700, 32902, 36549, 58282], "tot"]], "unit": "$ thousands", "dec": 0, "zero": false}], "dataNote": "Notes: Cullowhee sold 1.2 million new shares for $9.0 million on April 1, 2026. It bought Highlands Cell Packs, LLC for $6.0 million and issued $10 million of bonds on July 1, 2026.", "steps": [{"nav": "Predict", "title": "Make a prediction", "res": "Textbook (optional): Module 4, introduction", "type": "predict", "intro": "<p class=\"lead\">Before you calculate anything, skim the net sales, net income, total assets and equity lines in the data panel. What is your first guess for why ROE fell? There is no wrong answer here. You will come back to it at the end.<\/p>", "options": [["a", "Leverage: Cullowhee borrowed more, and that hurt returns."], ["b", "Profit margin: Cullowhee keeps less profit from each sales dollar."], ["c", "Asset turnover: Cullowhee's assets grew faster than its sales."], ["d", "More than one of these."], ["e", "I am not sure yet."]], "legend": "What is your first guess for the main reason ROE fell?"}, {"nav": "Measure the drop", "title": "Measure the drop in ROE", "res": "Textbook (optional): Module 4, LO 4-1, Return on equity", "intro": "<p class=\"lead\">Return on equity (ROE) shows how much profit Cullowhee earns for its shareholders. <span class=\"formula\">ROE = net income &divide; average stockholders' equity<\/span> Start with FY2026, then repeat for FY2025.<\/p>", "qs": [{"id": "q2a", "type": "num", "label": "Average stockholders' equity for FY2026", "unit": "$ thousands", "answer": 25858.5, "tol": 1, "show": "25,858.5", "kind": "num", "traps": [{"v": 31868, "tol": 1, "msg": "That is only the ending (Dec 31, 2026) balance. ROE uses the average of the beginning and ending balances."}, {"v": 19849, "tol": 1, "msg": "That is only the beginning (Dec 31, 2025) balance. Average the beginning and ending balances."}, {"v": 51717, "tol": 1, "msg": "That is the sum of the two balances. Divide it by 2 to get the average."}], "hints": ["Average means (beginning balance + ending balance) &divide; 2. For FY2026 the beginning balance is Dec 31, 2025 and the ending balance is Dec 31, 2026.", "Find \"Total stockholders' equity\" on the balance sheet for Dec 31, 2025 and Dec 31, 2026. Textbook: Module 4, LO 4-1.", "Worked step: (19,849 + 31,868) &divide; 2 = ?"], "explain": "Average equity is about $25.9 million. It is well above last year's level because of the $9.0 million share sale on April 1."}, {"id": "q2b", "type": "num", "label": "ROE for FY2026", "unit": "percent", "answer": 10.36, "tol": 0.15, "show": "10.4%", "kind": "pct", "traps": [{"v": 8.41, "tol": 0.15, "msg": "It looks like you divided by ending equity (31,868). ROE uses average equity."}, {"v": 13.5, "tol": 0.15, "msg": "It looks like you divided by beginning equity (19,849). ROE uses average equity."}], "hints": ["ROE = net income &divide; average equity. FY2026 net income is on the income statement. Use the average equity you just found.", "Enter a percentage, for example 12.5 for 12.5%. Textbook: Module 4, LO 4-1.", "Worked step: 2,679 &divide; 25,858.5 = ? Then multiply by 100."], "explain": "Cullowhee earned about 10.4 cents of net income for each dollar of average equity."}, {"id": "q2c", "type": "num", "label": "ROE for FY2025", "unit": "percent", "answer": 15.95, "tol": 0.15, "show": "16.0%", "kind": "pct", "traps": [{"v": 15.25, "tol": 0.15, "msg": "It looks like you divided by ending equity (19,849). Use the average of Dec 31, 2024 and Dec 31, 2025."}, {"v": 16.72, "tol": 0.15, "msg": "It looks like you divided by beginning equity (18,102). Use the average of the two year-end balances."}], "hints": ["Same method, one year earlier. Use FY2025 net income and the average of the Dec 31, 2024 and Dec 31, 2025 equity balances.", "FY2025 net income is 3,027. Equity was 18,102 at Dec 31, 2024 and 19,849 at Dec 31, 2025.", "Worked step: (18,102 + 19,849) &divide; 2 = 18,975.5, then 3,027 &divide; 18,975.5 = ?"], "explain": "ROE was about 16.0% in FY2025."}, {"id": "q2d", "type": "num", "label": "How far did ROE fall from FY2025 to FY2026?", "unit": "percentage points", "answer": 5.6, "tol": 0.25, "show": "5.6 points", "kind": "num", "traps": [{"v": 35, "tol": 2, "msg": "That is the decline as a percent of last year's ROE. Percentage points are the simple difference between the two ROE figures."}], "hints": ["Subtract: FY2025 ROE minus FY2026 ROE.", "Use the two percentages you just found (about 16.0% and 10.4%).", "Worked step: 15.95 − 10.36 = ? Your rounded figures work too."], "explain": "ROE fell about 5.6 points, roughly a third of last year's return. Now find out why."}]}, {"nav": "Split ROE", "title": "Split ROE into ROA and leverage", "res": "Textbook (optional): Module 4, LO 4-2, DuPont disaggregation", "intro": "<p class=\"lead\">The DuPont approach splits ROE into two pieces: <span class=\"formula\">ROE = ROA &times; financial leverage<\/span> where <span class=\"formula\">ROA = net income &divide; average total assets<\/span> and <span class=\"formula\">financial leverage = average total assets &divide; average equity<\/span><\/p><p class=\"lead\">Nora's FY2025 figures for comparison: ROA 8.7% and financial leverage 1.83.<\/p>", "qs": [{"id": "q3a", "type": "num", "label": "Average total assets for FY2026", "unit": "$ thousands", "answer": 47415.5, "tol": 1, "show": "47,415.5", "kind": "num", "traps": [{"v": 58282, "tol": 1, "msg": "That is only the ending (Dec 31, 2026) balance. Average the beginning and ending balances."}, {"v": 36549, "tol": 1, "msg": "That is only the beginning (Dec 31, 2025) balance. Average the beginning and ending balances."}, {"v": 94831, "tol": 1, "msg": "That is the sum of the two balances. Divide it by 2."}], "hints": ["Same idea as average equity, but with total assets.", "Total assets were 36,549 at Dec 31, 2025 and 58,282 at Dec 31, 2026. Textbook: Module 4, LO 4-2.", "Worked step: (36,549 + 58,282) &divide; 2 = ?"], "explain": "Average assets were about $47.4 million."}, {"id": "q3b", "type": "num", "label": "ROA for FY2026", "unit": "percent", "answer": 5.65, "tol": 0.15, "show": "5.65%", "kind": "pct", "traps": [{"v": 4.6, "tol": 0.1, "msg": "It looks like you divided by ending assets (58,282). ROA uses average total assets."}, {"v": 7.33, "tol": 0.1, "msg": "It looks like you divided by beginning assets (36,549). ROA uses average total assets."}], "hints": ["ROA = net income &divide; average total assets.", "Use FY2026 net income (2,679) and the average assets from the last question. Enter a percentage.", "Worked step: 2,679 &divide; 47,415.5 = ? Then multiply by 100."], "explain": "ROA was about 5.65%, down from 8.7%."}, {"id": "q3c", "type": "num", "label": "Financial leverage for FY2026", "unit": "times (ratio)", "answer": 1.834, "tol": 0.02, "show": "1.83", "kind": "num", "traps": [{"v": 0.545, "tol": 0.01, "msg": "That is equity &divide; assets, the inverse. Leverage is average total assets &divide; average equity."}], "hints": ["Financial leverage shows how many dollars of assets Cullowhee controls for each dollar of equity.", "Financial leverage = average total assets &divide; average equity. Use the two averages you have already found. Textbook: Module 4, LO 4-2.", "Worked step: 47,415.5 &divide; 25,858.5 = ?"], "explain": "Cullowhee controlled about $1.83 of assets for each $1 of equity."}, {"id": "q3d", "type": "mc", "label": "Leverage was 1.83 in FY2025 and about 1.83 in FY2026. What does that tell you about the ROE decline?", "answer": "b", "options": [["a", "Rising leverage hurt ROE."], ["b", "Leverage stayed about the same, so the decline came from ROA."], ["c", "Falling leverage caused the decline."], ["d", "Leverage cannot be compared across years."]], "optHints": {"a": "Leverage did not rise: it was 1.83 in both years. Rising leverage would push ROE up, not down, all else equal.", "c": "Leverage did not fall either. Compare the two numbers again.", "d": "Ratios based on averages can be compared across years. That is why we use averages."}, "hints": ["Compare the two leverage figures: 1.83 in FY2025 and the number you just calculated for FY2026.", "Remember ROE = ROA &times; leverage. If leverage did not change, where must the change in ROE have come from?", "Leverage was 1.83 in both years, so ROE fell because ROA fell, from 8.7% to about 5.7%."], "explain": "Check: 5.65% &times; 1.83 is about 10.4%, the ROE you calculated. The same leverage with a lower ROA means the problem is in ROA, not in borrowing."}]}, {"nav": "Split ROA", "title": "Split ROA into margin and turnover", "res": "Textbook (optional): Module 4, LO 4-3, Profitability and productivity", "intro": "<p class=\"lead\">ROA also has two pieces: <span class=\"formula\">ROA = profit margin &times; asset turnover<\/span> where <span class=\"formula\">profit margin = net income &divide; net sales<\/span> and <span class=\"formula\">asset turnover = net sales &divide; average total assets<\/span><\/p><p class=\"lead\">Nora's FY2025 figures: profit margin 6.5% and asset turnover 1.34.<\/p>", "qs": [{"id": "q4a", "type": "num", "label": "Profit margin for FY2026", "unit": "percent", "answer": 4.85, "tol": 0.1, "show": "4.9%", "kind": "pct", "traps": [{"v": 4.53, "tol": 0.05, "msg": "You divided by gross sales (59,200). Use net sales (55,200), which is after returns and rebates."}], "hints": ["Profit margin = net income &divide; net sales. Use the \"Net sales\" line on the income statement.", "Net income is 2,679 and net sales is 55,200. Textbook: Module 4, LO 4-3.", "Worked step: 2,679 &divide; 55,200 = ? Then multiply by 100."], "explain": "Cullowhee kept about 4.9 cents of profit from each sales dollar, down from 6.5 cents."}, {"id": "q4b", "type": "num", "label": "Asset turnover for FY2026", "unit": "times (ratio)", "answer": 1.164, "tol": 0.02, "show": "1.16", "kind": "num", "traps": [{"v": 0.947, "tol": 0.02, "msg": "It looks like you divided by ending assets (58,282). Use average total assets."}], "hints": ["Asset turnover = net sales &divide; average total assets. It shows how many sales dollars each asset dollar produces.", "Use FY2026 net sales and the average total assets from Step 3.", "Worked step: 55,200 &divide; 47,415.5 = ?"], "explain": "Each asset dollar produced about $1.16 of sales, down from $1.34."}, {"id": "q4c", "type": "multi", "label": "Which of these explain why ROA fell? Select all that apply.", "answers": ["a", "b"], "options": [["a", "Profit margin fell."], ["b", "Asset turnover fell."], ["c", "Net sales fell."], ["d", "Financial leverage fell."]], "optHints": {"c": "Net sales rose, from 46,500 to 55,200.", "d": "Leverage is part of ROE, not ROA, and it stayed about the same."}, "hints": ["Compare each piece of ROA across the two years: profit margin (6.5% vs. your answer), asset turnover (1.34 vs. your answer), and net sales.", "ROA = profit margin &times; asset turnover. A fall in either piece lowers ROA. Leverage is not part of ROA.", "Profit margin fell from 6.5% to 4.9%, and asset turnover fell from 1.34 to 1.16. Net sales rose, and leverage is not part of ROA."], "explain": "Check: 4.85% &times; 1.164 is about 5.65%, your ROA. Both pieces fell: Cullowhee kept less profit from each sales dollar and used its assets less productively. That rules out \"too much debt.\" Next, look inside each piece."}]}, {"nav": "Where the margin went", "title": "Where did the margin go?", "res": "Textbook (optional): Module 4, LO 4-3, Analyzing profitability", "intro": "<p class=\"lead\">Net sales grew 18.7%, yet net income fell. To see why, express each income statement line as a percent of net sales. <span class=\"formula\">gross profit margin = gross profit &divide; net sales<\/span><\/p><p class=\"lead\">Nora's FY2025 figures as a percent of net sales: gross margin 34.5%, SG&amp;A 20.7%, R&amp;D 4.0%, amortization 0.0%, operating margin 9.8%.<\/p>", "qs": [{"id": "q5a", "type": "num", "label": "Gross profit margin for FY2026", "unit": "percent", "answer": 32.92, "tol": 0.1, "show": "32.9%", "kind": "pct", "traps": [{"v": 30.69, "tol": 0.1, "msg": "You divided by gross sales (59,200). Use net sales (55,200)."}], "hints": ["Gross profit margin = gross profit &divide; net sales.", "FY2026 gross profit is 18,170. Textbook: Module 4, LO 4-3.", "Worked step: 18,170 &divide; 55,200 = ? Then multiply by 100."], "explain": "Gross margin was 32.9% in FY2026."}, {"id": "q5b", "type": "num", "label": "How far did gross margin fall from FY2025 to FY2026?", "unit": "percentage points", "answer": 1.6, "tol": 0.1, "show": "1.6 points", "kind": "num", "traps": [], "hints": ["Compare FY2025's gross margin (34.5%) with the FY2026 figure you just found.", "Subtract the FY2026 margin from the FY2025 margin.", "Worked step: 34.5 − 32.9 = ?"], "explain": "Gross margin slipped about 1.6 points."}, {"id": "q5c", "type": "num", "label": "Operating margin for FY2026", "unit": "percent", "answer": 7.7, "tol": 0.1, "show": "7.7%", "kind": "pct", "traps": [{"v": 4.85, "tol": 0.1, "msg": "That is the net profit margin. Operating margin uses operating income (before interest and taxes)."}], "hints": ["Operating margin = operating income &divide; net sales. Operating income is before interest and taxes.", "FY2026 operating income is 4,250.", "Worked step: 4,250 &divide; 55,200 = ? Then multiply by 100."], "explain": "Operating margin fell from 9.8% to 7.7%, about 2.1 points."}, {"id": "q5d", "type": "mc", "label": "Operating margin fell about 2.1 points. Which line explains most of the drop?", "answer": "a", "options": [["a", "Gross margin: cost of goods sold grew faster than sales."], ["b", "SG&A expense."], ["c", "R&D expense."], ["d", "Amortization of acquired intangibles."]], "optHints": {"b": "Check SG&A as a percent of net sales in both years: 9,640 &divide; 46,500 and 11,520 &divide; 55,200. The change is small.", "c": "R&D moved only a little as a percent of sales: 1,860 &divide; 46,500 versus 2,300 &divide; 55,200.", "d": "Amortization started in FY2026, but at 100 it is only about 0.2% of net sales."}, "hints": ["Express each expense line as a percent of net sales for both years and see which moved the most.", "Gross margin fell by the amount you found two questions ago. Now compute SG&A, R&D and amortization as percents of net sales for each year.", "SG&A rose from 20.7% to 20.9% of sales, R&D from 4.0% to 4.2%, and amortization from 0.0% to 0.2%: each about 0.2 points. Gross margin fell 1.6 points, most of the 2.1-point drop."], "explain": "Returns and rebates also grew, from 6.1% to 6.8% of gross sales, which is about $0.4 million of extra deductions from sales. Gross margin is where the story is, so ask what drove product costs and returns."}]}, {"nav": "Where the assets went", "title": "Why did assets outgrow sales?", "res": "Textbook (optional): Module 4, LO 4-3, Analyzing productivity", "intro": "<p class=\"lead\">Asset turnover fell from 1.34 to 1.16. Total assets rose from $36.5 million to $58.3 million. Look at what is in them. Nora's FY2025 figures: average total assets 34,725.5; cash 13.6% of total assets; days inventory outstanding 93.5.<\/p>", "qs": [{"id": "q6a", "type": "num", "label": "By what percent did average total assets grow in FY2026 compared with FY2025?", "unit": "percent", "answer": 36.5, "tol": 0.3, "show": "36.5%", "kind": "num", "traps": [{"v": 18.7, "tol": 0.3, "msg": "That is net sales growth. Calculate the growth in average total assets."}], "hints": ["Growth rate = (new amount − old amount) &divide; old amount.", "FY2026 average total assets were 47,415.5 (Step 3). FY2025 average total assets were 34,725.5.", "Worked step: (47,415.5 − 34,725.5) &divide; 34,725.5 = ? Then multiply by 100."], "explain": "Average assets grew 36.5% while net sales grew 18.7% (from 46,500 to 55,200). Assets grew about twice as fast as sales."}, {"id": "q6b", "type": "num", "label": "Cash as a percent of total assets on December 31, 2026", "unit": "percent", "answer": 22.29, "tol": 0.2, "show": "22.3%", "kind": "pct", "traps": [], "hints": ["Divide year-end cash by year-end total assets.", "Cash is the first line of the balance sheet (12,992). Total assets are 58,282.", "Worked step: 12,992 &divide; 58,282 = ? Then multiply by 100."], "explain": "Cash was 13.6% of assets a year earlier. The share sale and bond issue left Cullowhee holding far more cash than it needs for daily operations."}, {"id": "q6c", "type": "num", "label": "Days inventory outstanding (DIO) for FY2026", "unit": "days", "answer": 101.5, "tol": 0.5, "show": "101.5 days", "kind": "num", "traps": [{"v": 115.3, "tol": 0.5, "msg": "It looks like you used ending inventory. DIO uses average inventory."}, {"v": 68.1, "tol": 0.5, "msg": "It looks like you divided by net sales. DIO uses cost of goods sold."}], "hints": ["DIO = 365 &times; average inventory &divide; cost of goods sold.", "Average inventory = (Dec 31, 2025 + Dec 31, 2026) &divide; 2. Use cost of goods sold, not net sales. Textbook: Module 4, LO 4-3.", "Worked step: average inventory = (8,900 + 11,700) &divide; 2 = 10,300, then 365 &times; 10,300 &divide; 37,030 = ?"], "explain": "DIO rose from 93.5 to 101.5 days. About 8 more days of inventory tied up assets without adding sales."}, {"id": "q6d", "type": "mc", "label": "Which statement best explains the lower asset turnover?", "answer": "a", "options": [["a", "Assets grew about twice as fast as sales: more idle cash, the Highlands Cell acquisition, and more inventory."], ["b", "Cullowhee sold assets during the year, so fewer assets produced sales."], ["c", "Net sales fell while assets stayed about the same."], ["d", "Higher depreciation reduced assets faster than sales grew."]], "optHints": {"b": "Total assets rose in FY2026 (36,549 to 58,282). There is no sign of net asset sales.", "c": "Net sales rose from 46,500 to 55,200.", "d": "Depreciation lowers assets a little, but net property, plant and equipment still rose from 16,650 to 22,300."}, "hints": ["Use the evidence you found: asset growth versus sales growth, the cash share, and inventory days.", "Which option matches assets up 36.5% and sales up 18.7%?", "Total assets rose from $36.5 million to $58.3 million and sales rose too, so only one option fits."], "explain": "Cullowhee raised money before it needed to spend it, so cash piled up. Until that cash is put to work, it adds to assets without adding sales and holds ROE down. That is a timing effect management can explain to the board."}]}, {"nav": "Peer check", "title": "Compare with Ridgeline and test the leverage lever", "res": "Textbook (optional): Module 4, LO 4-2 and 4-3", "intro": "<p class=\"lead\">Ridgeline Bikes sells only through dealers and is a good yardstick. Here are both companies' FY2026 results.<\/p><div class=\"tscroll\" tabindex=\"0\" role=\"region\" aria-label=\"FY2026 comparison table (scrolls sideways on small screens)\"><table><caption>FY2026: Cullowhee versus Ridgeline Bikes<\/caption><thead><tr><th scope=\"col\">Measure<\/th><th scope=\"col\">Cullowhee<\/th><th scope=\"col\">Ridgeline<\/th><\/tr><\/thead><tbody><tr><th scope=\"row\">Profit margin<\/th><td>4.9%<\/td><td>6.2%<\/td><\/tr><tr><th scope=\"row\">Asset turnover<\/th><td>1.16<\/td><td>1.32<\/td><\/tr><tr><th scope=\"row\">ROA<\/th><td>5.7%<\/td><td>8.1%<\/td><\/tr><tr><th scope=\"row\">Financial leverage<\/th><td>1.83<\/td><td>2.15<\/td><\/tr><tr class=\"tot\"><th scope=\"row\">ROE<\/th><td>10.4%<\/td><td>17.5%<\/td><\/tr><\/tbody><\/table><\/div>", "qs": [{"id": "q7a", "type": "mc", "label": "Compared with Ridgeline, Cullowhee's ROE is lower because:", "answer": "a", "options": [["a", "its profit margin, asset turnover and leverage are all lower."], ["b", "its margin is lower, but its turnover and leverage are higher."], ["c", "its margin and turnover are lower, but its leverage is higher."], ["d", "its margin is higher, but its turnover and leverage are lower."]], "optHints": {"b": "Check the table: Cullowhee's turnover (1.16) and leverage (1.83) are below Ridgeline's, not above.", "c": "Check leverage: Cullowhee 1.83, Ridgeline 2.15. Cullowhee is lower.", "d": "Check margin: Cullowhee 4.9%, Ridgeline 6.2%. Cullowhee is lower."}, "hints": ["Compare the table row by row: profit margin, asset turnover, then leverage.", "Is Cullowhee's number above or below Ridgeline's in each row?", "Cullowhee: 4.9%, 1.16, 1.83. Ridgeline: 6.2%, 1.32, 2.15. Cullowhee is lower on all three."], "explain": "Cullowhee trails on all three drivers, but the largest gap is in ROA (5.7% vs. 8.1%)."}, {"id": "q7b", "type": "num", "label": "What ROE would Cullowhee earn if it kept its FY2026 ROA of 5.65% but had Ridgeline's leverage of 2.15?", "unit": "percent", "answer": 12.15, "tol": 0.3, "show": "12.2%", "kind": "num", "traps": [], "hints": ["ROE = ROA &times; financial leverage.", "Use Cullowhee's ROA (5.65%) and Ridgeline's leverage (2.15).", "Worked step: 5.65 &times; 2.15 = ?"], "explain": "About 12.2%: more leverage lifts ROE, but only part of the way to Ridgeline's 17.5%. Most of the gap is in ROA."}, {"id": "q7c", "type": "mc", "label": "Why might the board be cautious about raising ROE by borrowing more?", "answer": "a", "options": [["a", "Borrowing helps ROE only while the business earns more than it costs to borrow, and it raises the risk of missing interest payments."], ["b", "Leverage has no effect on ROE."], ["c", "Borrowing always lowers ROA."], ["d", "Lenders do not look at leverage."]], "optHints": {"b": "You just saw that ROE = ROA &times; leverage, so leverage does change ROE.", "c": "ROA depends on what the assets earn. Borrowing does not always lower it.", "d": "Lenders watch leverage and interest coverage closely."}, "hints": ["Leverage magnifies returns, good or bad. What does debt create besides an interest cost?", "Cullowhee's operating income covered interest expense 8.3 times in FY2025 and 5.3 times in FY2026.", "Debt and interest must be paid whether or not the business earns enough, so more leverage means more risk as well as a higher ROE."], "explain": "Cullowhee's interest coverage already slid from 8.3 to 5.3 times after the bond issue. Fixing margin and turnover is the sturdier path to a higher ROE."}]}, {"nav": "Brief Nora", "title": "Brief Nora", "res": "Not scored. Compare your note with the checklist and the model answer.", "type": "memo", "prompt": "Write Nora three to five sentences that answer Walt's question.", "checklist": ["States that ROE fell from about 16.0% to 10.4%.", "Names both drivers: a lower profit margin and a lower asset turnover.", "Says that leverage did not cause the drop.", "Gives one number of evidence for each driver (for example, gross margin down 1.6 points; average assets up 36.5% while sales grew 18.7%).", "Suggests a next step (for example, look at returns and rebates, or how the new cash will be used)."], "model": "ROE fell from about 16.0% to 10.4% because ROA fell from 8.7% to 5.7% while financial leverage stayed at 1.83, so borrowing was not the cause. Profit margin dropped from 6.5% to 4.9%, mostly because gross margin slipped 1.6 points as product costs and returns and rebates rose faster than sales. Asset turnover fell from 1.34 to 1.16 because average assets grew 36.5% against 18.7% sales growth, driven by extra cash from the share sale and bond issue, the Highlands Cell acquisition, and more inventory. Next I would look at what is behind the rise in returns and rebates and plan how the new cash will be put to work.", "feedback": {"d": "The evidence supports you: profit margin and asset turnover both fell.", "b": "You named one of the two real drivers. The evidence shows that profit margin and asset turnover both fell, and leverage did not change.", "c": "You named one of the two real drivers. The evidence shows that profit margin and asset turnover both fell, and leverage did not change.", "a": "The evidence points the other way: leverage was about the same in both years. The drop came from profit margin and asset turnover.", "_": "The evidence shows profit margin and asset turnover both fell, and leverage did not change."}}]};
+
+/* ---------- Helpers ---------- */
+function esc(t){return String(t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+function fmtVal(v,spec){
+  if(v===null||v===undefined) return '';
+  if(typeof v==='string') return v;
+  var dec=(spec&&spec.dec)||0;
+  if(v===0&&!(spec&&spec.zero)) return '–';
+  var s=Math.abs(v).toLocaleString('en-US',{minimumFractionDigits:dec,maximumFractionDigits:dec});
+  return v<0?'('+s+')':s;
+}
+function table(spec){
+  var heads=spec.heads, unit=spec.unit||'$ thousands';
+  var h='<div class="tscroll" tabindex="0" role="region" aria-label="'+esc(spec.cap)+' (scrolls sideways on small screens)"><table><caption>'+esc(spec.cap)+'</caption><thead><tr><th scope="col">'+esc(unit)+'</th>';
+  heads.forEach(function(x){h+='<th scope="col">'+esc(x)+'</th>';});
+  h+='</tr></thead><tbody>';
+  spec.rows.forEach(function(r){
+    if(r[2]==='sub'){h+='<tr class="sub"><th scope="rowgroup" colspan="'+(heads.length+1)+'">'+esc(r[0])+'</th></tr>';return;}
+    h+='<tr'+(r[2]==='tot'?' class="tot"':'')+'><th scope="row">'+esc(r[0])+'</th>';
+    r[1].forEach(function(v){h+='<td>'+fmtVal(v,spec)+'</td>';});
+    h+='</tr>';
+  });
+  return h+'</tbody></table></div>';
+}
+function dataPanel(open){
+  if(!M.data||!M.data.length) return '';
+  return '<details class="data"'+(open?' open':'')+'><summary>'+esc(M.dataTitle||'Cullowhee data')+'</summary><div class="inner">'+
+   M.data.map(table).join('')+(M.dataNote?'<p>'+M.dataNote+'</p>':'')+'</div></details>';
+}
+
+var STEPS=M.steps;
+var KEY='summit-m'+M.num+'-walkthrough-v1';
+var S={cur:0,max:0,q:{},prediction:null,memo:'',checks:[],name:'',done:false,confirmReset:false};
+try{var raw=sessionStorage.getItem(KEY); if(raw){var p=JSON.parse(raw); if(p&&p.q) S=p;}}catch(e){}
+function save(){try{sessionStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
+function qs(id){if(!S.q[id])S.q[id]={wrong:0,done:false,revealed:false,log:[],val:null};return S.q[id];}
+function stepDone(i){
+  var st=STEPS[i];
+  if(st.type==='predict') return S.prediction!==null;
+  if(st.type==='memo') return true;
+  return st.qs.every(function(q){return qs(q.id).done;});
+}
+function announce(t){var el=document.getElementById('sr-live');el.textContent='';setTimeout(function(){el.textContent=t;},40);}
+
+/* ---------- Parsing and checking ---------- */
+function parseNum(s){
+  s=String(s).trim().replace(/[$,\s%]/g,'').replace(/−/g,'-');
+  var neg=false;
+  if(/^\(.*\)$/.test(s)){neg=true;s=s.slice(1,-1);}
+  if(!/^-?(\d+\.?\d*|\.\d+)$/.test(s)) return NaN;
+  var v=parseFloat(s); return neg?-v:v;
+}
+function normalize(q,v){ if(q.kind==='pct' && v!==0 && Math.abs(v)<1) return v*100; return v; }
+function near(v,t,tol){return Math.abs(v-t)<=tol;}
+function sameSet(a,b){a=a.slice().sort().join(',');b=b.slice().sort().join(',');return a===b;}
+
+/* ---------- Rendering ---------- */
+var app=document.getElementById('app'), nav=document.getElementById('stepnav');
+
+function renderNav(){
+  var h='';
+  var all=STEPS.concat([{nav:'Your results'}]);
+  all.forEach(function(st,i){
+    var locked=i>S.max, cur=i===S.cur;
+    var isDone=(i<STEPS.length && i<S.max && stepDone(i)) || (i===STEPS.length && S.done);
+    h+='<li><button type="button" data-nav="'+i+'"'+(cur?' aria-current="step"':'')+(locked?' aria-disabled="true"':'')+'>'+
+       '<span class="mark'+(isDone?' done':(cur?' cur':''))+'" aria-hidden="true">'+(isDone?'✓':(i<STEPS.length?(i+1):'★'))+'</span>'+
+       '<span class="lbl">'+esc(st.nav)+'<span class="sr-only">'+(isDone?' (completed)':(locked?' (locked)':''))+'</span></span></button></li>';
+  });
+  nav.innerHTML=h;
+}
+
+function qBlock(q,idx){return '<div class="q" id="blk-'+q.id+'">'+qInner(q,qs(q.id),idx)+'</div>';}
+function noteList(q,st){
+  if(!st.log.length) return '';
+  var h='<ol class="notes" aria-label="Reviewer\'s notes">';
+  st.log.forEach(function(entry,i){
+    var tier=Math.min(i+1,3);
+    h+='<li><b>Reviewer\'s note '+(i+1)+':</b> ';
+    if(entry.msg) h+=entry.msg+' ';
+    if(!entry.msg || i>=2) h+=q.hints[tier-1];
+    h+='</li>';
+  });
+  return h+'</ol>';
+}
+function optLabel(o,opts){var r=o;opts.forEach(function(x){if(x[0]===o)r=x[1];});return r;}
+function qInner(q,st,idx){
+  var h='', dis=st.done?' disabled':'';
+  var fbId='fb-'+q.id;
+  if(q.type==='num'){
+    h+='<form data-q="'+q.id+'" novalidate><label class="ql" for="in-'+q.id+'">'+idx+'. '+q.label+' <span class="unit">('+q.unit+')</span></label>'+
+       '<div class="row"><input type="text" id="in-'+q.id+'" inputmode="decimal" autocomplete="off" aria-describedby="'+fbId+'" value="'+esc(st.val||'')+'"'+dis+'>'+
+       (st.done?'':'<button class="btn" type="submit">Check answer</button>')+'</div></form>';
+  }else if(q.type==='grid'){
+    var cols=q.cols, vals=st.val||[];
+    h+='<form data-q="'+q.id+'" novalidate><fieldset'+dis+'><legend>'+idx+'. '+q.label+'</legend><div class="tscroll" tabindex="0" role="region" aria-label="Answer table (scrolls sideways on small screens)"><table class="gridq"><caption class="sr-only">'+esc(q.label.replace(/<[^>]+>/g,''))+'</caption><thead><tr><th scope="col">'+esc(q.rowHead||'Item')+'</th>';
+    cols.forEach(function(c){h+='<th scope="col">'+esc(c.n)+'</th>';});
+    h+='</tr></thead><tbody>';
+    q.rows.forEach(function(r,ri){
+      h+='<tr><th scope="row">'+r.t+'</th>';
+      cols.forEach(function(c,ci){
+        var cur=vals[ri*cols.length+ci]||'';
+        var opts=c.opts||q.opts;
+        h+='<td><select data-r="'+ri+'" data-c="'+ci+'" aria-label="'+esc(r.t.replace(/<[^>]+>/g,''))+', '+esc(c.n)+'"'+dis+'><option value="">Choose</option>';
+        opts.forEach(function(o){h+='<option value="'+esc(o[0])+'"'+(cur===o[0]?' selected':'')+'>'+esc(o[1])+'</option>';});
+        h+='</select></td>';
+      });
+      h+='</tr>';
+    });
+    h+='</tbody></table></div></fieldset>'+(st.done?'':'<div class="row" style="margin-top:.6rem"><button class="btn" type="submit">Check answers</button></div>')+'</form>';
+  }else{
+    var multi=q.type==='multi';
+    h+='<form data-q="'+q.id+'" novalidate><fieldset'+dis+'><legend>'+idx+'. '+q.label+'</legend>';
+    q.options.forEach(function(o){
+      var picked=multi?(st.val||[]).indexOf(o[0])>-1:st.val===o[0];
+      h+='<label class="opt'+(picked?' picked':'')+(st.done?' disabled':'')+'"><input type="'+(multi?'checkbox':'radio')+'" name="'+q.id+'" value="'+o[0]+'"'+(picked?' checked':'')+dis+'><span>'+o[1]+'</span></label>';
+    });
+    h+='</fieldset>'+(st.done?'':'<div class="row" style="margin-top:.6rem"><button class="btn" type="submit">Check answer</button></div>')+'</form>';
+  }
+  h+='<div id="'+fbId+'">';
+  if(st.msg) h+='<div class="fb '+st.msgType+'">'+st.msg+'</div>';
+  if(st.done && !st.revealed) h+='<div class="fb ok"><strong class="tag">✓ Correct.</strong>'+(q.explain?q.explain:'')+'</div>';
+  if(st.revealed) h+='<div class="fb info"><strong class="tag">Answer shown:</strong> '+answerText(q)+' '+(q.explain?q.explain:'')+'</div>';
+  h+='</div>';
+  h+=noteList(q,st);
+  if(!st.done && st.wrong>=3) h+='<p class="why"><button type="button" class="btn alt" data-reveal="'+q.id+'">Show the answer</button></p>';
+  return h;
+}
+function answerText(q){
+  if(q.type==='num') return q.show+'.';
+  if(q.type==='grid'){
+    return '<ul>'+q.rows.map(function(r){return '<li>'+r.t+': '+q.cols.map(function(c,ci){return esc(c.n)+' '+esc(optLabel(r.a[ci],c.opts||q.opts));}).join('; ')+'</li>';}).join('')+'</ul>';
+  }
+  var map={};q.options.forEach(function(o){map[o[0]]=o[1];});
+  var a=q.type==='multi'?q.answers:[q.answer];
+  return a.map(function(k){return map[k];}).join(' ');
+}
+
+function renderStage(focusHeading){
+  var st=STEPS[S.cur], h='';
+  if(S.cur===STEPS.length){return renderResults(focusHeading);}
+  h+='<div class="progress"><span>Step '+(S.cur+1)+' of '+STEPS.length+'</span><progress max="'+STEPS.length+'" value="'+(S.cur+1)+'" aria-label="Walkthrough progress"></progress></div>';
+  if(S.cur===0){
+    var m=M.memo;
+    h+='<article class="memo" aria-labelledby="memo-h"><h2 id="memo-h">Memo</h2><dl><dt>To</dt><dd>You, Business Analyst, Finance and Strategy</dd><dt>From</dt><dd>'+m.from+'</dd><dt>Date</dt><dd>'+m.date+'</dd><dt>Re</dt><dd>'+m.re+'</dd></dl>'+
+       m.body.map(function(p){return '<p>'+p+'</p>';}).join('')+'</article>'+
+       '<div class="howto"><strong>How this works</strong><ul><li>Type or choose an answer and select Check answer. If it is off, you get a reviewer\'s note and can try again as often as you like. Hints are free.</li><li>'+(M.rounding||'Round percentages to one decimal and ratios to two decimals. Answers within a small tolerance are accepted.')+'</li><li>The textbook ('+esc(M.textbook)+') is a resource, not a requirement. Everything you need is on this page.</li><li>Your results page at the end shows how many answers were correct and incorrect in each step.</li></ul></div>';
+  }
+  h+=dataPanel(S.cur<=1);
+  h+='<section class="step" aria-labelledby="step-h"><h2 id="step-h" tabindex="-1">Step '+(S.cur+1)+'. '+esc(st.title)+'</h2><p class="res">'+esc(st.res||'')+'</p>'+(st.intro||'');
+  if(st.type==='predict'){
+    h+='<form data-predict="1"><fieldset'+(S.prediction!==null?' disabled':'')+'><legend>'+st.legend+'</legend>';
+    st.options.forEach(function(o){
+      var picked=S.prediction===o[0];
+      h+='<label class="opt'+(picked?' picked':'')+'"><input type="radio" name="pred" value="'+o[0]+'"'+(picked?' checked':'')+'><span>'+o[1]+'</span></label>';
+    });
+    h+='</fieldset>'+(S.prediction===null?'<div class="row" style="margin-top:.6rem"><button class="btn" type="submit">Lock in my prediction</button></div>':'<div class="fb info" style="margin-top:.7rem">Prediction locked in. You will revisit it in Step '+STEPS.length+'.</div>')+'</form>';
+  }else if(st.type==='memo'){
+    h+=memoHTML(st);
+  }else{
+    st.qs.forEach(function(q,i){h+=qBlock(q,i+1);});
+  }
+  var done=stepDone(S.cur);
+  if(st.type!=='memo'){
+    h+='<div class="nextbar"><button type="button" class="btn" data-next="1"'+(done?'':' disabled')+'>Continue to '+(S.cur+1<STEPS.length?'step '+(S.cur+2):'results')+'</button>'+
+       (done?'':'<span class="hint">Finish every question in this step to continue.</span>')+'</div>';
+  }
+  h+='</section>';
+  app.innerHTML=h;
+  if(focusHeading){var hd=document.getElementById('step-h');if(hd){hd.focus();window.scrollTo({top:0});}}
+}
+
+function predOpt(){return STEPS[0].options.filter(function(o){return o[0]===S.prediction;})[0];}
+function memoHTML(st){
+  var pred=predOpt();
+  var fb=(st.feedback&&(st.feedback[S.prediction]||st.feedback._))||'';
+  var h='<p class="lead"><strong>Your prediction in Step 1:</strong> '+(pred?esc(pred[1].replace(/<[^>]+>/g,'')):'You skipped it.')+'</p>';
+  h+='<p class="lead">'+fb+'</p>';
+  h+='<form data-memo="1"><label class="ql" for="memo" style="font-weight:600;display:block;margin:.8rem 0 .4rem">'+st.prompt+'</label>'+
+     '<textarea id="memo" aria-describedby="memo-help">'+esc(S.memo)+'</textarea><p id="memo-help" class="res">Your note stays in this browser tab. It is not saved anywhere else.</p>'+
+     '<fieldset class="checks"><legend style="font-weight:600">Check your note against this list</legend>';
+  st.checklist.forEach(function(t,i){h+='<label><input type="checkbox" data-check="'+i+'"'+(S.checks.indexOf(i)>-1?' checked':'')+'><span>'+t+'</span></label>';});
+  h+='</fieldset></form>';
+  h+='<details class="model" style="margin-top:1rem"><summary>See a model answer</summary><p>'+st.model+'</p></details>';
+  h+='<div class="nextbar"><button type="button" class="btn" data-finish="1">See my results</button></div>';
+  return h;
+}
+
+function tally(){
+  var rows=[], tot={n:0,ok:0,bad:0,first:0,shown:0};
+  STEPS.forEach(function(st,i){
+    if(!st.qs) return;
+    var r={step:i,name:st.title,n:st.qs.length,ok:0,bad:0,first:0,shown:0,qrows:[]};
+    st.qs.forEach(function(q){
+      var s=qs(q.id);
+      var ok=s.done&&!s.revealed, first=ok&&s.wrong===0;
+      r.ok+=ok?1:0; r.bad+=s.wrong; r.first+=first?1:0; r.shown+=s.revealed?1:0;
+      r.qrows.push({label:q.label.replace(/<[^>]+>/g,''),ok:ok,bad:s.wrong,first:first,shown:s.revealed,done:s.done});
+    });
+    tot.n+=r.n;tot.ok+=r.ok;tot.bad+=r.bad;tot.first+=r.first;tot.shown+=r.shown;
+    rows.push(r);
+  });
+  return {rows:rows,tot:tot};
+}
+function summaryText(t){
+  var L=[];
+  L.push('Cullowhee Cycle Works - Module '+M.num+' walkthrough results');
+  L.push('Name: '+(S.name||'(not entered)'));L.push('Student ID: '+(S.sid||'(not entered)'));var d0=new Date(),dd0=d0.getFullYear()+'-'+('0'+(d0.getMonth()+1)).slice(-2)+'-'+('0'+d0.getDate()).slice(-2);L.push('Date: '+dd0);
+  var pred=predOpt();
+  L.push('Step 1 prediction: '+(pred?pred[1].replace(/<[^>]+>/g,''):'none'));
+  L.push('');
+  t.rows.forEach(function(r){
+    L.push('Step '+(r.step+1)+' ('+r.name+'): '+r.ok+' of '+r.n+' correct; '+r.bad+' incorrect attempt'+(r.bad===1?'':'s')+'; '+r.first+' correct on first try; '+r.shown+' answer'+(r.shown===1?'':'s')+' shown');
+  });
+  L.push('');
+  L.push('Total: '+t.tot.ok+' of '+t.tot.n+' correct; '+t.tot.bad+' incorrect attempts; '+t.tot.first+' correct on first try; '+t.tot.shown+' answers shown');
+  if(S.memo){L.push('');L.push('My note: ');L.push(S.memo);}
+  var h=2166136261,cs='CCW-W|'+[S.sid||'',dd0,'M'+M.num,t.tot.ok+'/'+t.tot.n,t.tot.bad].join('|');for(var ci=0;ci<cs.length;ci++){h^=cs.charCodeAt(ci);h=Math.imul(h,16777619);}h=(h>>>0).toString(16).toUpperCase();while(h.length<8)h='0'+h;L.push('');L.push('Verification code: '+h.slice(0,4)+'-'+h.slice(4));
+  return L.join('\n');
+}
+function renderResults(focusHeading){
+  var t=tally(), h='';
+  h+='<div class="progress"><span>Results</span></div>';
+  h+='<section class="step" aria-labelledby="step-h"><h2 id="step-h" tabindex="-1">Your results</h2><p class="res">Correct answers and incorrect attempts for each step.</p>';
+  h+='<div class="tscroll" tabindex="0" role="region" aria-label="Results by step (scrolls sideways on small screens)"><table class="tick"><caption>Answers by step</caption><thead><tr><th scope="col">Step</th><th scope="col">Correct answers</th><th scope="col">Incorrect attempts</th><th scope="col">Correct on first try</th><th scope="col">Answers shown</th></tr></thead><tbody>';
+  t.rows.forEach(function(r){
+    h+='<tr><th scope="row">Step '+(r.step+1)+'. '+esc(r.name)+'</th><td class="'+(r.ok===r.n?'good':'')+'">'+(r.ok===r.n?'✓ ':'')+r.ok+' of '+r.n+'</td><td class="'+(r.bad?'bad':'')+'">'+(r.bad?'✗ ':'')+r.bad+'</td><td>'+r.first+' of '+r.n+'</td><td>'+r.shown+'</td></tr>';
+  });
+  h+='</tbody><tfoot><tr><th scope="row">Total</th><td>'+t.tot.ok+' of '+t.tot.n+'</td><td>'+t.tot.bad+'</td><td>'+t.tot.first+' of '+t.tot.n+'</td><td>'+t.tot.shown+'</td></tr></tfoot></table></div>';
+  h+='<p class="lead">Steps 1 and '+STEPS.length+' are not scored. An incorrect attempt is any wrong answer you submitted. A question counts as correct once you answer it right, even after retries; answers you chose to show are not counted as correct.</p>';
+  h+='<details style="margin:1rem 0"><summary>See the breakdown by question</summary><div class="tscroll" tabindex="0" role="region" aria-label="Results by question"><table class="tick"><caption>Answers by question</caption><thead><tr><th scope="col">Question</th><th scope="col">Result</th><th scope="col">Incorrect attempts</th></tr></thead><tbody>';
+  t.rows.forEach(function(r){r.qrows.forEach(function(q,i){
+    var res=q.shown?'Answer shown':(q.ok?(q.first?'✓ Correct, first try':'✓ Correct after retries'):'Not answered');
+    h+='<tr><th scope="row">Step '+(r.step+1)+', question '+(i+1)+': '+esc(q.label)+'</th><td>'+res+'</td><td>'+q.bad+'</td></tr>';
+  });});
+  h+='</tbody></table></div></details>';
+  h+='<div><label for="nm" style="font-weight:600">Your name (included in your summary)</label><br><div class="row" style="margin-top:.35rem"><input type="text" id="nm" autocomplete="name" value="'+esc(S.name)+'" style="width:18rem"></div></div><div style="margin-top:.7rem"><label for="sid" style="font-weight:600">Your student ID (digits only)</label><br><div class="row" style="margin-top:.35rem"><input type="text" id="sid" inputmode="numeric" autocomplete="off" value="'+esc(S.sid||'')+'" style="width:18rem"></div></div>';
+  h+='<h3 style="font-family:var(--serif);margin:1.2rem 0 .4rem">Summary you can copy</h3><pre class="out" id="sum" tabindex="0">'+esc(summaryText(t))+'</pre>';
+  h+='<div class="row"><button class="btn" type="button" data-pdf="1">Download PDF to upload</button><button class="btn alt" type="button" data-copy="1">Copy summary (backup)</button><button class="btn alt" type="button" data-print="1">Print this page</button><button class="btn alt" type="button" data-back="1">Back to step '+STEPS.length+'</button><button class="btn alt" type="button" data-reset="1">'+(S.confirmReset?'Select again to confirm start over':'Start over')+'</button></div><div id="copymsg" class="res" role="status"></div>';
+  h+='</section>';
+  app.innerHTML=h;
+  if(focusHeading){var hd=document.getElementById('step-h');if(hd){hd.focus();window.scrollTo({top:0});}}
+}
+
+function render(focusHeading){renderNav();renderStage(focusHeading);}
+
+/* ---------- Events ---------- */
+nav.addEventListener('click',function(e){
+  var b=e.target.closest('button[data-nav]'); if(!b) return;
+  var i=+b.getAttribute('data-nav'); if(i>S.max) {announce('That step is locked until you finish the earlier steps.');return;}
+  S.cur=i; save(); render(true);
+});
+function goNext(){
+  var i=S.cur;
+  if(i<STEPS.length-1){S.cur=i+1;S.max=Math.max(S.max,S.cur);}
+  else {S.cur=STEPS.length;S.max=Math.max(S.max,S.cur);S.done=true;}
+  save();render(true);
+}
+app.addEventListener('click',function(e){
+  var t=e.target;
+  var rv=t.closest('[data-reveal]');
+  if(rv){
+    var id=rv.getAttribute('data-reveal'), s=qs(id); s.done=true;s.revealed=true;s.msg=null;
+    save(); refreshQ(id); announce('Answer shown.'); return;
+  }
+  if(t.closest('[data-next]')){goNext();return;}
+  if(t.closest('[data-finish]')){S.max=Math.max(S.max,STEPS.length);S.cur=STEPS.length;S.done=true;save();render(true);return;}
+  if(t.closest('[data-back]')){S.cur=STEPS.length-1;save();render(true);return;}
+  if(t.closest('[data-print]')){window.print();return;}
+  if(t.closest('[data-copy]')){
+    var txt=document.getElementById('sum').textContent, m=document.getElementById('copymsg');
+    function ok(){m.textContent='Summary copied.';announce('Summary copied.');}
+    function fail(){var r=document.createRange();r.selectNodeContents(document.getElementById('sum'));var sel=window.getSelection();sel.removeAllRanges();sel.addRange(r);m.textContent='Select and copy the highlighted text (Ctrl+C or Command+C).';}
+    try{
+      if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(ok,fail);}
+      else{fail();}
+    }catch(err){fail();}
+    return;
+  }
+  if(t.closest('[data-reset]')){
+    if(!S.confirmReset){S.confirmReset=true;save();renderResults(false);return;}
+    S={cur:0,max:0,q:{},prediction:null,memo:'',checks:[],name:'',done:false,confirmReset:false};save();render(true);return;
+  }
+});
+function refreshQ(id){
+  var q=null,idx=0;
+  STEPS[S.cur].qs.forEach(function(x,i){if(x.id===id){q=x;idx=i+1;}});
+  var blk=document.getElementById('blk-'+id);
+  blk.innerHTML=qInner(q,qs(id),idx);
+  var done=stepDone(S.cur), nb=app.querySelector('[data-next]');
+  if(nb){nb.disabled=!done;var hint=app.querySelector('.nextbar .hint');if(hint)hint.style.display=done?'none':'';}
+}
+function firstFocus(id){return document.getElementById('in-'+id)||document.querySelector('#blk-'+id+' select, #blk-'+id+' input');}
+
+app.addEventListener('submit',function(e){
+  e.preventDefault();
+  var f=e.target;
+  if(f.hasAttribute('data-predict')){
+    var c=f.querySelector('input[name=pred]:checked');
+    if(!c){announce('Choose an option first.');var fb=document.createElement('div');fb.className='fb no';fb.textContent='Choose one option, then lock in your prediction.';if(!f.querySelector('.fb'))f.appendChild(fb);return;}
+    S.prediction=c.value;save();render(false);
+    announce('Prediction locked in.');
+    var nb=app.querySelector('[data-next]'); if(nb) nb.focus();
+    return;
+  }
+  if(f.hasAttribute('data-memo')){return;}
+  var id=f.getAttribute('data-q'); if(!id) return;
+  var q=null; STEPS[S.cur].qs.forEach(function(x){if(x.id===id) q=x;});
+  var s=qs(id); if(s.done) return;
+  var correct=false, trap=null, empty=false;
+  if(q.type==='num'){
+    var inp=f.querySelector('input[type=text]'), raw=inp.value; s.val=raw;
+    if(!raw.trim()){empty=true;s.msg='Enter a number first.';s.msgType='info';}
+    else{
+      var v=parseNum(raw);
+      if(isNaN(v)){empty=true;s.msg='Enter a number, such as 12.5. Commas, $ and % signs are fine.';s.msgType='info';}
+      else{
+        v=normalize(q,v);
+        if(near(v,q.answer,q.tol)) correct=true;
+        else (q.traps||[]).forEach(function(tp){if(!trap&&near(v,tp.v,tp.tol)) trap=tp.msg;});
+      }
+    }
+  }else if(q.type==='grid'){
+    var sels=[].slice.call(f.querySelectorAll('select')), vals=sels.map(function(x){return x.value;});
+    s.val=vals;
+    if(vals.some(function(x){return !x;})){empty=true;s.msg='Choose an answer in every cell first.';s.msgType='info';}
+    else{
+      var badRows=[], nc=q.cols.length;
+      q.rows.forEach(function(r,ri){
+        var ok=true;for(var ci=0;ci<nc;ci++){if(vals[ri*nc+ci]!==r.a[ci]) ok=false;}
+        if(!ok) badRows.push(ri);
+      });
+      if(!badRows.length) correct=true;
+      else{
+        var parts=['Check '+(badRows.length===1?'row ':'rows ')+badRows.map(function(x){return x+1;}).join(', ')+'.'];
+        badRows.slice(0,2).forEach(function(ri){if(q.rows[ri].why) parts.push('Row '+(ri+1)+': '+q.rows[ri].why);});
+        trap=parts.join(' ');
+      }
+    }
+  }else if(q.type==='mc'){
+    var c2=f.querySelector('input:checked');
+    if(!c2){empty=true;s.msg='Choose an answer first.';s.msgType='info';}
+    else{s.val=c2.value; if(c2.value===q.answer) correct=true; else trap=(q.optHints||{})[c2.value]||null;}
+  }else{
+    var picks=[].slice.call(f.querySelectorAll('input:checked')).map(function(x){return x.value;});
+    s.val=picks;
+    if(!picks.length){empty=true;s.msg='Select at least one answer first.';s.msgType='info';}
+    else if(sameSet(picks,q.answers)) correct=true;
+    else{
+      var msgs=[];picks.forEach(function(k){if(q.answers.indexOf(k)<0 && q.optHints && q.optHints[k]) msgs.push(q.optHints[k]);});
+      var missing=q.answers.filter(function(k){return picks.indexOf(k)<0;});
+      if(missing.length && !msgs.length) msgs.push('You have not selected everything that applies.');
+      trap=msgs.join(' ');
+    }
+  }
+  if(empty){save();refreshQ(id);announce(s.msg);var ni=firstFocus(id);if(ni)ni.focus();return;}
+  if(correct){
+    s.done=true;s.msg=null;save();refreshQ(id);
+    announce('Correct. '+(q.explain||'').replace(/<[^>]+>/g,''));
+    var nextQ=null;STEPS[S.cur].qs.forEach(function(x){if(!nextQ&&!qs(x.id).done)nextQ=x;});
+    if(nextQ){var ni2=firstFocus(nextQ.id);if(ni2)ni2.focus();}
+    else{var nb2=app.querySelector('[data-next]');if(nb2)nb2.focus();}
+    return;
+  }
+  s.wrong++; s.log.push({msg:trap}); s.msg='<strong class="tag">✗ Not quite.</strong>Try again. Reviewer\'s note '+s.log.length+' is below.'; s.msgType='no';
+  save();refreshQ(id);
+  var tier=Math.min(s.log.length,3);
+  announce('Not quite. '+((trap||'')+' '+(q.hints[tier-1]||'')).replace(/<[^>]+>/g,''));
+  var again=firstFocus(id);
+  if(again){again.focus(); if(again.select&&again.type==='text')again.select();}
+});
+app.addEventListener('change',function(e){
+  var t=e.target;
+  if(t.matches('[data-check]')){
+    var i=+t.getAttribute('data-check'), k=S.checks.indexOf(i);
+    if(t.checked&&k<0)S.checks.push(i); if(!t.checked&&k>-1)S.checks.splice(k,1); save();
+  }
+  if(t.closest('.opt')){
+    var grp=t.closest('form').querySelectorAll('.opt');
+    [].forEach.call(grp,function(l){l.classList.toggle('picked',l.querySelector('input').checked);});
+  }
+});
+app.addEventListener('input',function(e){
+  if(e.target.id==='memo'){S.memo=e.target.value;save();}
+  if(e.target.id==='sid'){S.sid=e.target.value.replace(/\s/g,'');save();var sm2=document.getElementById('sum');if(sm2)sm2.textContent=summaryText(tally());}
+  if(e.target.id==='nm'){S.name=e.target.value;save();var sm=document.getElementById('sum');if(sm)sm.textContent=summaryText(tally());}
+});
+
+render(false);
+})();
+
+</script>
+<script>(function(){'use strict';
+function clean(s){return String(s).replace(/[‘’]/g,"'").replace(/[“”]/g,'"').replace(/[–—−]/g,'-').replace(/·/g,'-').replace(/÷/g,'/').replace(/×/g,'x').replace(/[^\x20-\x7E\n]/g,'?');}
+function esc(s){return s.replace(/\\/g,'\\\\').replace(/\(/g,'\\(').replace(/\)/g,'\\)');}
+function wrap(text,max){var out=[];text.split('\n').forEach(function(p){if(!p.trim()){out.push('');return;}var line='';p.split(/\s+/).forEach(function(w){while(w.length>max){if(line){out.push(line);line='';}out.push(w.slice(0,max));w=w.slice(max);}if((line+' '+w).trim().length>max){out.push(line);line=w;}else line=(line?line+' ':'')+w;});out.push(line);});return out;}
+function pdf(lines){var per=52,pages=[];for(var i=0;i<lines.length;i+=per)pages.push(lines.slice(i,i+per));if(!pages.length)pages=[[]];
+  var objs=[];objs[1]='<< /Type /Catalog /Pages 2 0 R >>';var kids=[];
+  objs[3]='<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>';objs[4]='<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>';
+  pages.forEach(function(pl,pi){var po=5+pi*2,co=po+1;kids.push(po+' 0 R');
+    var c='BT /F1 10 Tf 13 TL 54 740 Td\n';pl.forEach(function(l,li){var bold=(pi===0&&li===0);c+=(bold?'/F2 12 Tf ':'/F1 10 Tf ')+'('+esc(l)+') Tj T*\n';});c+='ET';
+    objs[po]='<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents '+co+' 0 R >>';
+    objs[co]='<< /Length '+c.length+' >>\nstream\n'+c+'\nendstream';});
+  objs[2]='<< /Type /Pages /Kids ['+kids.join(' ')+'] /Count '+pages.length+' >>';
+  var out='%PDF-1.4\n',off=[];for(var n=1;n<objs.length;n++){off[n]=out.length;out+=n+' 0 obj\n'+objs[n]+'\nendobj\n';}
+  var x=out.length;out+='xref\n0 '+objs.length+'\n0000000000 65535 f \n';for(n=1;n<objs.length;n++)out+=('0000000000'+off[n]).slice(-10)+' 00000 n \n';
+  out+='trailer\n<< /Size '+objs.length+' /Root 1 0 R >>\nstartxref\n'+x+'\n%%EOF';return out;}
+document.addEventListener('click',function(ev){if(!ev.target.closest('[data-pdf]'))return;var el=document.getElementById('sum');if(!el)return;var t=el.textContent;
+  var sidv=(t.match(/Student ID: (\d{5,12})/)||[])[1];var mm=document.getElementById('copymsg');if(!sidv){if(mm)mm.textContent='Enter your name and a student ID (digits only) above first, then download the PDF.';return;}t=clean(t);
+  var id=(t.match(/Student ID: (\d+)/)||[])[1]||'student',title=t.split('\n')[0];
+  var lines=wrap(t,92);var data=pdf(lines);var blob=new Blob([data],{type:'application/pdf'});
+  var name=title.replace(/^MBA 623 - /,'MBA623 ').replace(/[^A-Za-z0-9 ]+/g,'').replace(/\s+/g,' ').trim()+' - '+id+'.pdf';
+  var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},500);
+  if(mm)mm.textContent='PDF downloaded: '+name;});
+})();</script></body>
+</html>
