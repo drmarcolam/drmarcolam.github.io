@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ACCT 252 Chapter 1 Exercise 2: Check and Apply</title>
+<meta name="description" content="Chapter 1 Exercise 2: Check and Apply. Cost behavior, the contribution format income statement, and checking a colleague's estimate.">
+<style>
+
+:root{
+  --bg:#fffbe8; --card:#fffef6; --ink:#1b2a21; --muted:#4f5a49; --line:#e0d59c;
+  --purple:#1f5136; --purple-dark:#163d29; --gold:#f5e68a; --tint:#f8f0c2; --edge:#c9a500;
+  --good-bg:#e7f5ea; --good-ink:#14532d; --good-line:#2e7d32;
+  --bad-bg:#fdebe4; --bad-ink:#7a2a0b; --bad-line:#b4481a;
+  --warn-bg:#fff3de; --warn-ink:#5e3300; --warn-line:#b86b00;
+  --focus:#0b57d0;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0f1f17; --card:#16291f; --ink:#f6f1d0; --muted:#c3c9a8; --line:#2f4a3a;
+    --purple:#f2e48a; --purple-dark:#0b1a12; --tint:#1e3829; --edge:#f2e48a;
+    --good-bg:#16301d; --good-ink:#bfe8c8; --good-line:#58b46c;
+    --bad-bg:#3b1f14; --bad-ink:#ffd2bf; --bad-line:#e08a5e;
+    --warn-bg:#3a2a10; --warn-ink:#ffe0b3; --warn-line:#e0a040;
+    --focus:#8ab4ff;
+  }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.55;font-size:1.0625rem}
+.skip{position:absolute;left:-999px;top:0;background:var(--gold);color:#163d29;padding:.6rem 1rem;z-index:10;font-weight:700}
+.skip:focus{left:8px;top:8px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+header.site{background:var(--purple-dark);color:#fff;border-bottom:6px solid var(--gold)}
+header.site .wrap{max-width:52rem;margin:0 auto;padding:1.3rem 1rem}
+header.site .eyebrow{margin:0;font-size:.9rem;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);font-weight:700}
+header.site h1{margin:.2rem 0 .3rem;font-size:1.7rem;line-height:1.2}
+header.site p.sub{margin:0;color:#e6efd9}
+.progress{max-width:52rem;margin:0 auto;padding:.8rem 1rem 0;display:flex;align-items:center;gap:1rem;position:sticky;top:0;background:var(--bg);z-index:5}
+.progress .track{flex:1;height:10px;background:var(--line);border-radius:5px;overflow:hidden}
+.progress .fill{height:100%;width:0;background:var(--purple);transition:width .3s}
+.progress .lab{font-size:.9rem;color:var(--muted);white-space:nowrap}
+main{max-width:52rem;margin:0 auto;padding:.8rem 1rem 3rem}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+h2{font-size:1.45rem;margin:.2rem 0 .7rem;color:var(--purple);border-bottom:2px solid var(--line);padding-bottom:.35rem}
+h3{font-size:1.02rem;margin:1rem 0 .3rem}
+p{margin:.55rem 0}
+.lo-block{margin:2.2rem 0}
+.lo-tag{display:inline-block;font-size:.8rem;font-weight:700;letter-spacing:.04em;color:#fff;background:var(--purple-dark);padding:.2rem .6rem;border-radius:4px;margin-bottom:.4rem}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .lo-tag{background:var(--purple);color:#0b1a12}}
+.key-idea{background:var(--tint);border-left:5px solid var(--edge);padding:.8rem 1rem;border-radius:0 8px 8px 0;margin:.9rem 0}
+.key-idea ol,.key-idea ul{margin:.4rem 0 .2rem;padding-left:1.3rem}
+.key-idea ul{margin:.3rem 0 0}
+.note{color:var(--muted);font-size:.95rem}
+.example{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:1rem 1.1rem 1.1rem;margin:1.1rem 0}
+.ex-label{font-size:.82rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--purple);margin-bottom:.3rem}
+.q{margin:.3rem 0}
+table.mini{border-collapse:collapse;width:100%;margin:.6rem 0;font-size:.92rem;font-variant-numeric:tabular-nums}
+table.mini th,table.mini td{border:1px solid var(--line);padding:.35rem .55rem;text-align:right;vertical-align:top}
+table.mini thead th{background:var(--tint);color:var(--ink)}
+table.mini th[scope="row"]{text-align:left;font-weight:600;background:transparent}
+table.mini thead th:first-child{text-align:left}
+.input-row{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:.8rem 0 .4rem;padding:.7rem;background:var(--tint);border-radius:8px}
+.input-row label{font-weight:700}
+.input-row input{font:inherit;font-variant-numeric:tabular-nums;padding:.45rem .6rem;border:2px solid var(--line);border-radius:6px;width:11rem;background:var(--card);color:var(--ink)}
+.input-col{display:grid;gap:.5rem;margin:.8rem 0 .4rem;padding:.7rem;background:var(--tint);border-radius:8px}
+.sel-row{display:grid;grid-template-columns:1fr minmax(11rem,19rem);gap:.6rem;align-items:center}
+.sel-row label{font-weight:600}
+@media (max-width:34rem){.sel-row{grid-template-columns:1fr}}
+select{font:inherit;padding:.45rem .5rem;border:2px solid var(--line);border-radius:6px;background:var(--card);color:var(--ink)}
+.sel-row select{max-width:100%;min-width:0}
+.sel-row{flex-wrap:wrap}
+button{font:inherit;font-weight:700;color:#fff;background:var(--purple-dark);border:2px solid var(--purple-dark);padding:.5rem 1rem;border-radius:6px;cursor:pointer}
+button:hover{background:var(--purple);border-color:var(--purple)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) button{background:var(--purple);color:#0b1a12;border-color:var(--purple)}}
+.feedback{margin:.4rem 0;font-weight:600}
+.feedback:not(:empty){padding:.6rem .85rem;border-radius:6px;border-left:5px solid}
+.feedback.good{color:var(--good-ink);background:var(--good-bg);border-color:var(--good-line)}
+.feedback.bad{color:var(--bad-ink);background:var(--bad-bg);border-color:var(--bad-line)}
+.feedback.warn{color:var(--warn-ink);background:var(--warn-bg);border-color:var(--warn-line)}
+.solution{margin-top:.7rem;padding-top:.8rem;border-top:2px dashed var(--line)}
+.solution-label{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--purple);margin-bottom:.4rem}
+.final-answer{margin-top:.6rem}
+.final-answer strong{color:var(--purple);font-size:1.08rem}
+details.hint{margin:.4rem 0}
+details.hint summary{cursor:pointer;font-weight:600;color:var(--purple)}
+details.hint div{padding:.4rem .8rem;border-left:4px solid var(--line);margin-top:.3rem}
+footer{text-align:center;color:var(--muted);font-size:.85rem;padding:1.5rem 1rem 2.5rem}
+@media (max-width:40rem){table.mini{display:block;overflow-x:auto}}
+@media (prefers-reduced-motion:reduce){.progress .fill{transition:none}}
+
+/* Completion record (screen) */
+.id-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));gap:.8rem;margin:.8rem 0}
+.id-grid label{display:block;font-weight:700;margin-bottom:.25rem}
+.id-grid input{font:inherit;width:100%;padding:.5rem .6rem;border:2px solid var(--line);border-radius:6px;background:var(--card);color:var(--ink)}
+.tablewrap{overflow-x:auto}
+table.mini td.l{text-align:left}
+table.mini tr.total th,table.mini tr.total td{font-weight:700;background:var(--tint)}
+#print-sheet{display:none}
+
+/* Completion record (print / Save as PDF) */
+@media print{
+  @page{margin:.45in}
+  html,body{background:#fff!important;color:#111!important}
+  .skip,header.site,.progress,main,footer{display:none!important}
+  #print-sheet{display:block!important;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-size:8.6pt;line-height:1.2;color:#111}
+  #print-sheet .ps-head{background:#163d29;color:#fff;padding:.5rem 1rem;border-bottom:5px solid #f5e68a;margin-bottom:.6rem;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  #print-sheet .ps-eyebrow{margin:0;font-size:9pt;letter-spacing:.06em;text-transform:uppercase;color:#f5e68a;font-weight:700}
+  #print-sheet h1{margin:.15rem 0 0;font-size:18pt;line-height:1.2;color:#fff}
+  #print-sheet .ps-sub{margin:.1rem 0 0;color:#e6efd9}
+  #print-sheet h2{font-size:11pt;margin:.7rem 0 .25rem;color:#163d29;border-bottom:2px solid #c9a500;padding-bottom:.2rem}
+  #print-sheet table{border-collapse:collapse;width:100%;margin:.3rem 0;font-variant-numeric:tabular-nums}
+  #print-sheet th,#print-sheet td{border:1px solid #888;padding:.16rem .45rem;text-align:left;vertical-align:top}
+  #print-sheet thead th{background:#f1ead0;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  #print-sheet table.ps-id th{width:9rem;background:#f1ead0;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  #print-sheet td.num,#print-sheet th.num{text-align:right}
+  #print-sheet tr.total th,#print-sheet tr.total td{font-weight:700;background:#f1ead0;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  #print-sheet #ps-items th:last-child,#print-sheet #ps-items td:last-child{white-space:nowrap;width:8.5rem}
+  #print-sheet tr{break-inside:avoid}
+  #print-sheet .ok{color:#14532d;font-weight:700}
+  #print-sheet .no{color:#7a2a0b;font-weight:700}
+  #print-sheet .un{color:#555}
+  #print-sheet #ps-scen th{width:17%;background:#f1ead0;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  #print-sheet #ps-scen td{width:33%}
+  #print-sheet .ps-note{margin-top:.5rem;font-size:9pt;color:#444}
+}
+
+
+
+/* Access code gate */
+.gate{position:fixed;inset:0;z-index:99999;background:var(--bg);display:flex;align-items:center;justify-content:center;padding:1.25rem}
+html.unlocked .gate{display:none}
+.gate-card{background:var(--card);color:var(--ink);border:1px solid var(--line);border-top:6px solid var(--gold);border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.18);padding:2rem 1.75rem;max-width:23rem;width:100%;text-align:center}
+.gate-card .eyebrow{margin:0 0 .4rem;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.gate-card h2{margin:0 0 .5rem;font-size:1.3rem;color:var(--purple);border:0;padding:0}
+.gate-card p.sub{margin:0 0 1.2rem;color:var(--muted);font-size:.95rem}
+.gate-card label{display:block;text-align:left;font-weight:600;font-size:.9rem;margin-bottom:.3rem}
+.gate-card input{width:100%;font:inherit;font-size:1.05rem;letter-spacing:.06em;text-align:center;text-transform:uppercase;padding:.65rem .75rem;border:2px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);margin-bottom:.8rem}
+.gate-card input:focus-visible,.gate-card button:focus-visible{outline:3px solid var(--edge);outline-offset:2px}
+.gate-card button{width:100%;font:inherit;font-weight:700;padding:.7rem;border:0;border-radius:6px;background:var(--purple);color:var(--bg);cursor:pointer}
+.gate-card button:hover{background:var(--purple-dark);color:#fff}
+.gate-err{min-height:1.3em;margin:.7rem 0 0;color:#9c2b2b;font-size:.9rem;font-weight:600}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .gate-err{color:#ffb3a8}}
+@media print{.gate{display:none!important}}
+</style>
+</head>
+<body>
+<script>(function(){try{if(localStorage.getItem('wcu_acct252_mastery_CORECYCLE3')==='1'){document.documentElement.classList.add('unlocked');}}catch(e){}})();</script>
+<div class="gate" id="gate" role="dialog" aria-modal="true" aria-labelledby="gate-title">
+  <div class="gate-card">
+    <p class="eyebrow">ACCT 252 · Chapter 1</p>
+    <h2 id="gate-title">Access Code Required</h2>
+    <p class="sub">Enter the access code to open this exercise.</p>
+    <form id="gate-form" autocomplete="off">
+      <label for="gate-input">Access code</label>
+      <input type="text" id="gate-input" autocapitalize="characters" autocomplete="off" spellcheck="false">
+      <button type="submit">Unlock</button>
+      <p class="gate-err" id="gate-err" role="alert"></p>
+    </form>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY='wcu_acct252_mastery_CORECYCLE3', CODE='CORECYCLE3';
+  var root=document.documentElement;
+  var gate=document.getElementById('gate');
+  var others=[].filter.call(document.body.children,function(el){return el!==gate && el.tagName!=='SCRIPT';});
+  function setInert(on){others.forEach(function(el){if(on){el.setAttribute('inert','');}else{el.removeAttribute('inert');}});}
+  if(root.classList.contains('unlocked')){return;}
+  setInert(true);
+  var input=document.getElementById('gate-input');
+  if(input){input.focus();}
+  document.getElementById('gate-form').addEventListener('submit',function(e){
+    e.preventDefault();
+    var err=document.getElementById('gate-err');
+    if((input.value||'').trim().toUpperCase()===CODE){
+      try{localStorage.setItem(KEY,'1');}catch(x){}
+      root.classList.add('unlocked'); setInert(false); err.textContent='';
+      var m=document.getElementById('main'); if(m&&m.focus){m.setAttribute('tabindex','-1');m.focus();}
+    }else{
+      err.textContent='That code isn\u2019t correct. Please try again.'; input.value=''; input.focus();
+    }
+  });
+})();
+</script>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="site"><div class="wrap">
+  <p class="eyebrow">ACCT 252 · Managerial Accounting</p>
+  <h1>Chapter 1 Exercise 2: Check and Apply</h1>
+  <p class="sub">Managerial Accounting and Cost Concepts: how costs behave and what changes when volume changes · Apply what you practiced, then check yourself.</p>
+</div></header>
+<div class="progress" id="progressBar" role="progressbar" aria-label="Questions checked" aria-valuemin="0" aria-valuemax="0" aria-valuenow="0">
+  <div class="track"><div class="fill" id="progressFill"></div></div>
+  <div class="lab" id="progressLabel">0 of 0 checked</div>
+</div>
+<main id="main" tabindex="-1">
+  <div class="key-idea"><strong>How this works.</strong> This exercise builds on Exercise 1. You will apply cost behavior to a contribution income statement and check a colleague’s estimate. Work each problem by hand or with a calculator, type your answer, and choose <strong>Check my answer</strong>. You will see right away whether you are correct, plus the full solution either way. Use <em>Need a hint?</em> if you get stuck. The numbers are built from your student ID, so they are different from your classmates’ numbers. Your score on this page does not change your course grade. When you have checked every item, save the completion PDF at the bottom of the page and upload it in Canvas to unlock your next step.</div>
+
+  <div class="key-idea">
+    <strong>Before you start</strong>
+    <p>Enter your name and student ID. Your student ID builds your own set of numbers, and both appear on your completion PDF.</p>
+    <div class="id-grid">
+      <div><label for="stu-name">Name</label><input type="text" id="stu-name" autocomplete="name"></div>
+      <div><label for="stu-id">Student ID</label><input type="text" id="stu-id" autocomplete="off" inputmode="numeric"></div>
+    </div>
+  </div>
+
+  <div class="key-idea" id="recall"></div>
+
+  <div id="p-gate"><div class="input-row">
+    <button type="button" onclick="generateScenario()">Generate my scenario</button>
+    <span class="note">Uses the student ID you entered above.</span>
+  </div></div>
+  <div class="feedback" id="fb-gen" role="status" aria-live="polite"></div>
+
+  <div id="p-body" hidden></div>
+
+  <section class="lo-block" aria-labelledby="wrap-h">
+    <span class="lo-tag">Wrap-up</span>
+    <h2 id="wrap-h">Cost Behavior at a Glance</h2>
+    <div id="wrap"></div>
+  </section>
+
+  <section class="lo-block" aria-labelledby="rec-h">
+    <span class="lo-tag">Submit</span>
+    <h2 id="rec-h">Save Your Completion Record</h2>
+    <p>Check that your name and student ID at the top of the page are correct and that your score table looks right, then save the PDF and upload it in Canvas. The PDF lists your score for each part, your answers, and your numbers.</p>
+    <div class="tablewrap"><table class="mini" id="scoreTable"><caption class="sr">Your score by part</caption><thead><tr><th scope="col">Part</th><th scope="col">Correct</th><th scope="col">Checked</th></tr></thead><tbody id="scoreBody"></tbody></table></div>
+    <div class="input-row"><button type="button" onclick="savePdf()">Save my completion PDF</button></div>
+    <div class="feedback" id="fb-save" role="status" aria-live="polite"></div>
+    <p class="note">A print window will open. Choose <strong>Save as PDF</strong> as the destination (not a printer), save the file, then upload it to the Canvas assignment for this step.</p>
+  </section>
+</main>
+<footer>ACCT 252 · Chapter 1 Exercise 2: Check and Apply · Managerial Accounting and Cost Concepts</footer>
+
+<section id="print-sheet" aria-hidden="true">
+  <div class="ps-head">
+    <p class="ps-eyebrow">ACCT 252 · Managerial Accounting</p>
+    <h1>Chapter 1 Exercise 2: Check and Apply</h1>
+    <p class="ps-sub">Completion record</p>
+  </div>
+  <table class="ps-id"><tbody>
+    <tr><th scope="row">Name</th><td id="ps-name"></td></tr>
+    <tr><th scope="row">Student ID</th><td id="ps-id"></td></tr>
+    <tr><th scope="row">Saved</th><td id="ps-date"></td></tr>
+    <tr><th scope="row">Status</th><td id="ps-status"></td></tr>
+  </tbody></table>
+  <h2>Score by part</h2>
+  <table id="ps-scores"><thead><tr><th scope="col">Part</th><th scope="col" class="num">Correct</th><th scope="col" class="num">Checked</th></tr></thead><tbody></tbody></table>
+  <h2>Your answers</h2>
+  <table id="ps-items"><thead><tr><th scope="col">Item</th><th scope="col">Your answer</th><th scope="col">Result</th></tr></thead><tbody></tbody></table>
+  <div id="ps-scen-wrap" hidden><h2>Your numbers (built from your student ID)</h2>
+  <table id="ps-scen"><tbody></tbody></table></div>
+  <p class="ps-note">Practice exercise. The score shows how you did on your last check of each item; it does not change your course grade. Submit this PDF in Canvas to release the next step in your mastery path.</p>
+</section>
+<script>
+function normId(s) { return String(s || '').replace(/\s+/g, '').toUpperCase(); }
+function hashStr(s) {
+  var x = 2166136261;
+  for (var i = 0; i < s.length; i++) { x ^= s.charCodeAt(i); x = Math.imul(x, 16777619); }
+  return x >>> 0;
+}
+function mulberry32(a) {
+  return function () {
+    a = (a + 0x6D2B79F5) | 0;
+    var t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+function pick(rnd, lo, hi, step) { var n = Math.floor((hi - lo) / step + 1e-9) + 1; return lo + step * Math.floor(rnd() * n); }
+function choose(rnd, arr) { return arr[Math.floor(rnd() * arr.length)]; }
+function money(x, d) { var neg = x < 0; var t = Math.abs(x).toLocaleString('en-US', {minimumFractionDigits: d, maximumFractionDigits: d}); return (neg ? '-$' : '$') + t; }
+function isInt(x) { return Math.abs(x - Math.round(x)) < 1e-9; }
+function money0(x) { return money(x, isInt(x) ? 0 : 2); }
+function money2(x) { return money(x, 2); }
+function numf(x) { return (isInt(x) ? Math.round(x) : x).toLocaleString('en-US'); }
+function num2(x) { return x.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}); }
+function pct(x, d) { return (d === undefined ? (isInt(x) ? 0 : 1) : d) === 0 ? Math.round(x) + '%' : x.toFixed(d === undefined ? 1 : d) + '%'; }
+function fin(t) { return '<p class="final-answer">' + t + '</p>'; }
+function table(head, rows, opts) {
+  opts = opts || {};
+  var h = '<table class="mini"><caption class="sr">' + (opts.cap || 'Calculation') + '</caption><thead><tr>';
+  head.forEach(function (c) { h += '<th scope="col">' + c + '</th>'; });
+  h += '</tr></thead><tbody>';
+  rows.forEach(function (r) {
+    var cells = r.cells || r;
+    h += '<tr' + (r.tot ? ' class="total"' : '') + '>';
+    cells.forEach(function (c, i) { h += i === 0 ? '<th scope="row">' + c + '</th>' : '<td>' + c + '</td>'; });
+    h += '</tr>';
+  });
+  return h + '</tbody></table>';
+}
+function fav(x) { return x < 0 ? 'F' : (x > 0 ? 'U' : ''); }
+function fu(x, d) { var a = Math.abs(x); return money(a, d === undefined ? (isInt(a) ? 0 : 2) : d) + (x === 0 ? '' : (x < 0 ? ' F' : ' U')); }
+function fuRow(label, v, why) { return {label: label, correct: v < 0 ? 'Favorable' : 'Unfavorable', wrong: [v < 0 ? 'Unfavorable' : 'Favorable'], why: why || ''}; }
+function r2(x) { return Math.round(x * 100) / 100; }
+function sgn(rnd) { return rnd() < 0.5 ? 1 : -1; }
+function num(id, title, label, prompt, hint, ans, sol, diag, o) { o = o || {}; return {id: id, title: title, label: label, prompt: prompt, hint: hint, ans: ans, sol: sol, diag: diag, pre: o.pre, post: o.post, tol: o.tol, dec: o.dec, ph: o.ph}; }
+function sel(id, title, label, prompt, hint, rows, sol) { return {id: id, kind: 'sel', title: title, label: label, prompt: prompt, hint: hint, rows: rows, sol: sol}; }
+function cap(t) { return t.charAt(0).toUpperCase() + t.slice(1); }
+function opt(label, correct, wrong, why) { return {label: label, correct: correct, wrong: wrong, why: why}; }
+
+</script>
+<script>
+//@chapter: Chapter 1
+//@title: Chapter 1 Exercise 2: Check and Apply
+//@desc: Chapter 1 Exercise 2: Check and Apply. Cost behavior, the contribution format income statement, and checking a colleague's estimate.
+//@sub: Managerial Accounting and Cost Concepts: how costs behave and what changes when volume changes · Apply what you practiced, then check yourself.
+//@how: This exercise builds on Exercise 1. You will apply cost behavior to a contribution income statement and check a colleague’s estimate.
+//@wraph: Cost Behavior at a Glance
+//@topic: Managerial Accounting and Cost Concepts
+var SPEC = {
+  seed: 'ACCT252-CH1-EX2',
+  recall: '<strong>Recall card: Chapter 1 ideas</strong><ul>' +
+    '<li>Variable cost: <em>total</em> rises with volume, cost <em>per unit</em> stays the same. Fixed cost: <em>total</em> stays the same, cost <em>per unit</em> falls as volume rises.</li>' +
+    '<li>Contribution margin = Sales − Variable expenses (all variable costs, manufacturing and selling).</li>' +
+    '<li>Net operating income = Contribution margin − Fixed expenses.</li>' +
+    '<li>Sunk cost: already incurred, cannot be changed. Opportunity cost: benefit given up by choosing one use of a resource. Differential cost: differs between alternatives.</li></ul>',
+  build: function (rnd) {
+    var s = {};
+    s.firm = choose(rnd, ['Mountain Mead Brewing', 'Highlands Candle Co.', 'Waynesville Wood Toys', 'Pisgah Trail Snacks', 'Sylva Soap Works']);
+    s.N = choose(rnd, [2000, 2500, 4000, 5000]);
+    s.p = pick(rnd, 20, 40, 2); s.v1 = pick(rnd, 6, 10, 1); s.v2 = pick(rnd, 1, 3, 1);
+    s.cmu = s.p - s.v1 - s.v2; s.vu = s.v1 + s.v2;
+    var fp = pick(rnd, 2, Math.max(2, s.cmu - 2), 1); s.F = s.N * fp;
+    s.f1 = Math.round(s.F * pick(rnd, 5, 7, 1) / 10 / 100) * 100; s.f2 = s.F - s.f1;
+    s.sales = s.N * s.p; s.cm = s.N * s.cmu; s.noi = s.cm - s.F;
+    s.fpu = s.F / s.N; s.N2 = s.N * 1.1; s.cm2 = s.N2 * s.cmu; s.noi2 = s.cm2 - s.F; s.inc = s.noi2 - s.noi;
+    s.wrongInc = s.noi * 0.1;
+    return s;
+  },
+  verify: function (s) { var e = []; if (s.noi <= 0) e.push('noi<=0'); if (Math.abs(s.inc - 0.1 * s.N * s.cmu) > 1e-6) e.push('inc'); if (Math.abs(s.inc - s.wrongInc) < 1) e.push('inc==wrong'); if (s.fpu * s.N !== s.F) e.push('fpu'); return e; },
+  intro: function (s) {
+    return '<p><strong>' + s.firm + '</strong> sold <strong>' + numf(s.N) + ' units</strong> last year at <strong>' + money0(s.p) + ' each</strong>. Variable manufacturing cost is ' + money0(s.v1) + ' per unit and variable selling cost is ' + money0(s.v2) + ' per unit. Fixed manufacturing overhead was ' + money0(s.f1) + ' and fixed selling and administrative expense was ' + money0(s.f2) + '.</p>';
+  },
+  table: function (s) { return [['Company', s.firm], ['Units sold', numf(s.N)], ['Selling price', money0(s.p)], ['Variable mfg cost / unit', money0(s.v1)], ['Variable selling / unit', money0(s.v2)], ['Fixed mfg overhead', money0(s.f1)], ['Fixed S&A', money0(s.f2)], ['', '']]; },
+  parts: [
+    {heading: 'How Costs Behave', items: [
+      sel('1-1', 'Check 1 — Variable or Fixed Behavior', 'Cost behavior as volume rises', 'Suppose volume rises within the normal range. What happens to each cost?', 'Think about what changes when you make one more unit, and what does not.',
+        function () { var all = ['Increases', 'Stays the same', 'Decreases'];
+          function r(l, c, w) { return opt(l, c, all.filter(function (x) { return x !== c; }), w); }
+          return [r('Total variable cost', all[0], 'Each extra unit adds its variable cost, so the total rises.'),
+            r('Total fixed cost', all[1], 'Fixed costs do not change in total within the normal range.'),
+            r('Fixed cost per unit', all[2], 'The same total fixed cost is spread over more units.'),
+            r('Variable cost per unit', all[1], 'The cost of each unit stays the same.')]; })
+    ]},
+    {heading: 'Contribution Format Income Statement', items: [
+      num('2-1', 'Question 1 — Variable Cost per Unit', 'Total variable cost per unit', 'What is the total variable cost per unit (manufacturing and selling)?', 'Add the variable manufacturing cost and the variable selling cost.',
+        function (s) { return s.vu; }, function (s) { return '<p>' + money0(s.v1) + ' + ' + money0(s.v2) + ' = ' + money0(s.vu) + ' per unit.</p>' + fin('Variable cost per unit = <strong>' + money0(s.vu) + '</strong>'); },
+        function (s) { return [[s.v1, 'That is only the variable manufacturing cost. Include the variable selling cost.']]; }, {pre: '$'}),
+      num('2-2', 'Question 2 — Contribution Margin', 'Total contribution margin', 'What is the total contribution margin?', 'Sales minus all variable expenses, or units × (price − variable cost per unit).',
+        function (s) { return s.cm; }, function (s) { return '<p>' + numf(s.N) + ' × (' + money0(s.p) + ' − ' + money0(s.vu) + ') = ' + numf(s.N) + ' × ' + money0(s.cmu) + ' = ' + money0(s.cm) + '.</p>' + fin('Contribution margin = <strong>' + money0(s.cm) + '</strong>'); },
+        function (s) { return [[s.sales - s.N * s.v1, 'That leaves out the variable selling cost.'], [s.sales, 'That is sales. Subtract the variable expenses.']]; }, {pre: '$'}),
+      num('2-3', 'Question 3 — Net Operating Income', 'Net operating income', 'What is net operating income?', 'Contribution margin minus total fixed expenses (manufacturing and selling and administrative).',
+        function (s) { return s.noi; }, function (s) { return '<p>' + money0(s.cm) + ' − (' + money0(s.f1) + ' + ' + money0(s.f2) + ') = ' + money0(s.cm) + ' − ' + money0(s.F) + ' = ' + money0(s.noi) + '.</p>' + fin('Net operating income = <strong>' + money0(s.noi) + '</strong>'); },
+        function (s) { return [[s.cm - s.f1, 'That leaves out the fixed selling and administrative expense.'], [s.cm - s.f2, 'That leaves out the fixed manufacturing overhead.']]; }, {pre: '$'}),
+      num('2-4', 'Question 4 — Fixed Cost per Unit', 'Fixed cost per unit', 'What is the total fixed cost per unit at this volume?', 'Total fixed expenses ÷ units sold.',
+        function (s) { return s.fpu; }, function (s) { return '<p>' + money0(s.F) + ' ÷ ' + numf(s.N) + ' = ' + money2(s.fpu) + ' per unit.</p>' + fin('Fixed cost per unit = <strong>' + money2(s.fpu) + '</strong>'); },
+        function (s) { return [[s.F, 'That is the total fixed cost. Divide it by the units sold.']]; }, {pre: '$', tol: 0.01, dec: 2, ph: '0.00'})
+    ]},
+    {heading: 'Check a Colleague’s Estimate', intro: function (s) { return '<p>Next year volume is expected to rise by <strong>10%</strong>, to ' + numf(s.N2) + ' units. A colleague estimates that net operating income will also rise by 10%, an increase of ' + money0(s.wrongInc) + '. Check that estimate.</p>'; }, items: [
+      num('3-1', 'Question 1 — The Correct Increase', 'Correct increase in net operating income', 'By how much will net operating income actually increase if volume rises by 10%?', function (s) { return 'Fixed expenses do not change. Each extra unit adds the contribution margin per unit (' + money0(s.cmu) + ').'; },
+        function (s) { return s.inc; }, function (s) { return '<p>Extra units: ' + numf(s.N2 - s.N) + '. Each adds ' + money0(s.cmu) + ' of contribution margin and fixed costs stay the same: ' + numf(s.N2 - s.N) + ' × ' + money0(s.cmu) + ' = ' + money0(s.inc) + '.</p>' + fin('Increase in net operating income = <strong>' + money0(s.inc) + '</strong>'); },
+        function (s) { return [[s.wrongInc, 'That is your colleague’s estimate. Fixed costs do not rise with volume, so check it against the contribution margin.'], [(s.N2 - s.N) * s.p, 'That is extra sales. Subtract the variable expenses on those units.']]; }, {pre: '$'}),
+      sel('3-2', 'Question 2 — What Went Wrong?', 'The flaw in the estimate', 'Why is the colleague’s estimate wrong?', 'Think about which costs change when volume changes.',
+        function (s) { return [opt('The flaw is', 'Fixed costs stay the same, so net operating income rises by more than 10%', ['Variable costs per unit fall as volume rises, so income rises by less than 10%', 'Net operating income always rises by exactly the same percentage as volume'], 'Extra volume adds contribution margin but no extra fixed cost, so profit grows faster than volume (here the increase is ' + money0(s.inc) + ', not ' + money0(s.wrongInc) + ').')]; })
+    ]},
+    {heading: 'Decision Vocabulary', items: [
+      sel('4-1', 'Check 2 — Name the Cost', 'Name the cost concept', 'Match each description to a cost concept.', 'A sunk cost is already spent. An opportunity cost is the benefit lost. A differential cost differs between alternatives.',
+        function () { var all = ['Sunk cost', 'Opportunity cost', 'Differential cost', 'Direct cost'];
+          function r(l, c, w) { return opt(l, c, all.filter(function (x) { return x !== c; }), w); }
+          return [r('Rent already paid on a non-cancelable lease', all[0], 'It has already been incurred and cannot be changed by any alternative.'),
+            r('Profit given up by using a machine for one job instead of another', all[1], 'The benefit of the next best use is the opportunity cost.'),
+            r('A cost that is higher under one alternative than another', all[2], 'Costs that differ between alternatives are differential costs.'),
+            r('Lumber that can be traced to one table', all[3], 'A cost that can be easily traced to the product is a direct cost.')]; })
+    ]}
+  ],
+  wrap: '<ul><li><strong>Variable</strong> costs rise in total with volume; <strong>fixed</strong> costs do not, so profit changes by the contribution margin on the extra units.</li><li>The contribution format separates variable from fixed costs so you can see the effect of volume.</li></ul>'
+};
+
+</script>
+<script>
+var CHECKED = {}, RESULT = {}, ANS = {}, SEL = {}, DIAG = {};
+var SCEN = null, ITEMS = {}, TOTAL = 0, PARTS = [], LABELS = {};
+SPEC.parts.forEach(function (p, pi) {
+  var ids = [];
+  p.items.forEach(function (it) { ITEMS[it.id] = it; ids.push(it.id); TOTAL++; LABELS[it.id] = {label: 'Part ' + (pi + 1) + ' · ' + (it.label || it.title), pre: it.pre, post: it.post, dec: it.dec}; });
+  PARTS.push({name: 'Part ' + (pi + 1) + ': ' + p.heading, ids: ids});
+});
+function F(x, s) { return typeof x === 'function' ? x(s) : x; }
+
+function updateProgress() {
+  var c = Object.keys(CHECKED).length;
+  document.getElementById('progressLabel').textContent = c + ' of ' + TOTAL + ' checked';
+  document.getElementById('progressFill').style.width = (c / TOTAL * 100) + '%';
+  var pb = document.getElementById('progressBar');
+  pb.setAttribute('aria-valuenow', c); pb.setAttribute('aria-valuemax', TOTAL);
+  renderScores();
+}
+function parseNum(s) {
+  s = String(s).replace(/\$/g, '').replace(/%/g, '').trim();
+  var neg = /^\(.*\)$/.test(s) || /^-/.test(s);
+  var t = s.replace(/[$,\s()]/g, '').replace(/^-/, '');
+  if (t === '' || isNaN(Number(t))) return NaN;
+  var v = parseFloat(t);
+  return neg ? -v : v;
+}
+function setFb(fb, cls, text) { fb.className = 'feedback ' + cls; fb.textContent = text; }
+function checkAnswer(id) {
+  var it = ITEMS[id];
+  var input = document.getElementById('ans-' + id);
+  var fb = document.getElementById('fb-' + id);
+  var sol = document.getElementById('sol-' + id);
+  var val = parseNum(input.value);
+  if (isNaN(val)) { setFb(fb, 'warn', 'Enter a number first, then choose Check my answer.'); return; }
+  var correct = ANS[id], tol = it.tol === undefined ? 0.5 : it.tol;
+  var isOk = Math.abs(val - correct) <= tol + 1e-9;
+  RESULT[id] = {ok: isOk, ans: val.toLocaleString('en-US', {minimumFractionDigits: it.dec || 0, maximumFractionDigits: Math.max(2, it.dec || 0)})};
+  if (isOk) {
+    setFb(fb, 'good', '✓ Correct! Here is the full solution for reference.');
+  } else {
+    var note = '', d = DIAG[id] || [];
+    for (var i = 0; i < d.length; i++) {
+      if (Math.abs(val - d[i][0]) <= Math.max(tol, 0.005) + 1e-9) { note = d[i][1] + ' '; break; }
+    }
+    setFb(fb, 'bad', '✗ Not quite. ' + note + 'Here is the full solution; compare it with your work to see where things diverged.');
+  }
+  sol.hidden = false; CHECKED[id] = true; updateProgress();
+}
+function checkSelects(id) {
+  var items = SEL[id];
+  var fb = document.getElementById('fb-' + id);
+  var sol = document.getElementById('sol-' + id);
+  var ok = 0, blank = 0, notes = [];
+  for (var i = 0; i < items.length; i++) {
+    var el = document.getElementById(items[i][0]);
+    if (!el.value) { blank++; continue; }
+    if (el.value === items[i][1]) { ok++; }
+    else { notes.push((items.length > 1 ? 'Item ' + (i + 1) + ': ' : '') + items[i][2]); }
+  }
+  if (blank) { setFb(fb, 'warn', 'Choose an answer for every item first, then choose Check my answers.'); return; }
+  RESULT[id] = {ok: ok === items.length, ans: items.length > 1 ? ok + ' of ' + items.length + ' choices correct' : document.getElementById(items[0][0]).value};
+  if (ok === items.length) { setFb(fb, 'good', '✓ Correct! ' + ok + ' of ' + items.length + '. Here is the explanation.'); }
+  else { setFb(fb, 'bad', '✗ ' + ok + ' of ' + items.length + ' correct. ' + notes.join(' ') + ' Review the explanation below.'); }
+  sol.hidden = false; CHECKED[id] = true; updateProgress();
+}
+
+function cell(tag, text, cls) { var el = document.createElement(tag); el.textContent = text; if (cls) { el.className = cls; } return el; }
+function scoreOf(ids) { var s = 0; ids.forEach(function (i) { if (RESULT[i] && RESULT[i].ok) { s++; } }); return s; }
+function checkedOf(ids) { var n = 0; ids.forEach(function (i) { if (CHECKED[i]) { n++; } }); return n; }
+function fillScoreRows(body, forPrint) {
+  body.textContent = '';
+  var tot = 0, max = 0, chk = 0;
+  PARTS.forEach(function (p) {
+    var s = scoreOf(p.ids), c = checkedOf(p.ids);
+    tot += s; max += p.ids.length; chk += c;
+    var tr = document.createElement('tr');
+    var th = cell('th', p.name); th.scope = 'row'; tr.appendChild(th);
+    tr.appendChild(cell('td', s + ' of ' + p.ids.length, forPrint ? 'num' : ''));
+    tr.appendChild(cell('td', c + ' of ' + p.ids.length, forPrint ? 'num' : ''));
+    body.appendChild(tr);
+  });
+  var t = document.createElement('tr'); t.className = 'total';
+  var th2 = cell('th', 'Total'); th2.scope = 'row'; t.appendChild(th2);
+  t.appendChild(cell('td', tot + ' of ' + max + ' (' + Math.round(tot / max * 100) + '%)', forPrint ? 'num' : ''));
+  t.appendChild(cell('td', chk + ' of ' + max, forPrint ? 'num' : ''));
+  body.appendChild(t);
+}
+function renderScores() {
+  var body = document.getElementById('scoreBody');
+  if (body) { fillScoreRows(body, false); }
+  var f = document.getElementById('fb-save');
+  if (f && f.classList.contains('warn')) { f.textContent = ''; f.className = 'feedback'; }
+}
+function fillScenTable() {
+  var pairs = SPEC.table(SCEN), t = document.querySelector('#ps-scen tbody');
+  t.textContent = '';
+  for (var i = 0; i < pairs.length; i += 2) {
+    var tr = document.createElement('tr');
+    [pairs[i], pairs[i + 1]].forEach(function (p) {
+      var th = cell('th', p ? p[0] : ''); th.scope = 'row';
+      tr.appendChild(th); tr.appendChild(cell('td', p ? p[1] : ''));
+    });
+    t.appendChild(tr);
+  }
+}
+function fillPrintSheet() {
+  var nm = document.getElementById('stu-name').value.trim() || '(not entered)';
+  var sid = document.getElementById('stu-id').value.trim() || '(not entered)';
+  document.getElementById('ps-name').textContent = nm;
+  document.getElementById('ps-id').textContent = sid;
+  var now = new Date();
+  document.getElementById('ps-date').textContent = now.toLocaleDateString('en-US', {year: 'numeric', month: 'long', day: 'numeric'}) + ', ' + now.toLocaleTimeString('en-US', {hour: 'numeric', minute: '2-digit'});
+  var n = Object.keys(CHECKED).length;
+  document.getElementById('ps-status').textContent = n === TOTAL ? 'Complete: all ' + TOTAL + ' items checked' : 'Incomplete: ' + n + ' of ' + TOTAL + ' items checked';
+  fillScoreRows(document.querySelector('#ps-scores tbody'), true);
+  var scWrap = document.getElementById('ps-scen-wrap');
+  if (SCEN) { fillScenTable(); scWrap.hidden = false; } else { scWrap.hidden = true; }
+  var body = document.querySelector('#ps-items tbody');
+  body.textContent = '';
+  PARTS.forEach(function (p) {
+    p.ids.forEach(function (id) {
+      var L = LABELS[id], r = RESULT[id];
+      var tr = document.createElement('tr');
+      tr.appendChild(cell('td', L.label));
+      tr.appendChild(cell('td', r ? (L.pre || '') + r.ans + (L.post || '') : '—'));
+      if (!r) { tr.appendChild(cell('td', 'Not checked', 'un')); }
+      else if (r.ok) { tr.appendChild(cell('td', '✓ Correct', 'ok')); }
+      else { tr.appendChild(cell('td', '✗ Not correct', 'no')); }
+      body.appendChild(tr);
+    });
+  });
+}
+function savePdf() {
+  var fb = document.getElementById('fb-save');
+  var nm = document.getElementById('stu-name').value.trim();
+  var sid = document.getElementById('stu-id').value.trim();
+  var missing = [];
+  if (!nm) { missing.push('your name'); }
+  if (!sid) { missing.push('your student ID'); }
+  if (missing.length) { setFb(fb, 'warn', 'Enter ' + missing.join(' and ') + ' at the top of the page first, then choose Save my completion PDF.'); return; }
+  var n = Object.keys(CHECKED).length;
+  if (SCEN && normId(sid) !== SCEN.id) {
+    resetScenario('');
+    setFb(fb, 'warn', 'Your student ID changed after you generated your scenario, so your answers were cleared. Generate your scenario again and recheck every item.');
+    return;
+  }
+  if (n < TOTAL) { setFb(fb, 'warn', 'Check all ' + TOTAL + ' items first (' + n + ' of ' + TOTAL + ' checked so far).' + (SCEN ? '' : ' Choose Generate my scenario first.')); return; }
+  setFb(fb, 'good', '✓ Opening the print window. Choose Save as PDF as the destination, then upload the file in Canvas.');
+  fillPrintSheet();
+  window.print();
+}
+
+function shuffle(a) {
+  for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)), t = a[i]; a[i] = a[j]; a[j] = t; }
+  return a;
+}
+function esc(t) { return String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+
+function itemHtml(it, s, idx) {
+  var hint = it.hint ? '<details class="hint"><summary>Need a hint?</summary><div>' + F(it.hint, s) + '</div></details>' : '';
+  var h = '<div class="example"><div class="ex-label">' + it.title + '</div><p>' + F(it.prompt, s) + '</p><div class="q">' + hint;
+  if (it.kind === 'sel') {
+    var rows = F(it.rows, s), body = '';
+    rows.forEach(function (r, i) {
+      var opts = shuffle([r.correct].concat(r.wrong)).map(function (o) { return '<option value="' + esc(o) + '">' + o + '</option>'; }).join('');
+      body += '<div class="sel-row"><label for="sel-' + it.id + '-' + i + '">' + r.label + '</label><select id="sel-' + it.id + '-' + i + '"><option value="">Choose…</option>' + opts + '</select></div>';
+    });
+    h += '<div class="input-col">' + body + '<div><button type="button" onclick="checkSelects(\'' + it.id + '\')">Check my answers</button></div></div>';
+  } else {
+    h += '<div class="input-row"><label for="ans-' + it.id + '">Your answer:</label>' + (it.pre ? '<span aria-hidden="true">' + it.pre + '</span>' : '') +
+      '<input type="text" inputmode="decimal" autocomplete="off" id="ans-' + it.id + '" placeholder="' + (it.ph || '0') + '" aria-describedby="fb-' + it.id + '">' +
+      (F(it.post, s) ? '<span aria-hidden="true">' + F(it.post, s) + '</span>' : '') +
+      '<button type="button" onclick="checkAnswer(\'' + it.id + '\')">Check my answer</button></div>';
+  }
+  h += '<div class="feedback" id="fb-' + it.id + '" role="status" aria-live="polite"></div>' +
+    '<div class="solution" id="sol-' + it.id + '" hidden><div class="solution-label">Solution</div><div id="solbody-' + it.id + '"></div></div></div></div>';
+  return h;
+}
+function renderBody() {
+  var s = SCEN, h = '<div id="scenario" tabindex="-1">' + SPEC.intro(s) + '</div>';
+  SPEC.parts.forEach(function (p, pi) {
+    h += '<section class="lo-block" aria-labelledby="h-' + pi + '"><span class="lo-tag">Part ' + (pi + 1) + '</span><h2 id="h-' + pi + '">' + p.heading + '</h2>';
+    if (p.intro) { h += F(p.intro, s); }
+    p.items.forEach(function (it) { h += itemHtml(it, s); });
+    h += '</section>';
+  });
+  document.getElementById('p-body').innerHTML = h;
+  SPEC.parts.forEach(function (p, pi) {
+    p.items.forEach(function (it) {
+      LABELS[it.id].label = 'Part ' + (pi + 1) + ' \u00b7 ' + F(it.label || it.title, s);
+      var solHtml = it.sol ? F(it.sol, s) : '';
+      if (it.kind === 'sel') {
+        var rows = F(it.rows, s);
+        SEL[it.id] = rows.map(function (r, i) { return ['sel-' + it.id + '-' + i, r.correct, r.why || '']; });
+        if (!it.sol) { solHtml = rows.map(function (r) { return '<p><strong>' + r.label + ':</strong> ' + r.correct + '. ' + (r.why || '') + '</p>'; }).join(''); }
+      } else {
+        ANS[it.id] = F(it.ans, s); LABELS[it.id].post = F(it.post, s);
+        DIAG[it.id] = it.diag ? it.diag(s) : [];
+      }
+      document.getElementById('solbody-' + it.id).innerHTML = solHtml;
+    });
+  });
+}
+function generateScenario() {
+  var fb = document.getElementById('fb-gen');
+  var idEl = document.getElementById('stu-id');
+  var id = normId(idEl.value);
+  if (!id) { setFb(fb, 'warn', 'Enter your student ID above first, then choose Generate my scenario.'); idEl.focus(); return; }
+  SCEN = SPEC.build(mulberry32(hashStr(SPEC.seed + ':' + id)), id);
+  SCEN.id = id;
+  renderBody();
+  fb.textContent = ''; fb.className = 'feedback';
+  document.getElementById('p-gate').hidden = true;
+  document.getElementById('p-body').hidden = false;
+  document.getElementById('scenario').focus();
+}
+function resetScenario(msg) {
+  SCEN = null; CHECKED = {}; RESULT = {}; ANS = {}; SEL = {}; DIAG = {};
+  var b = document.getElementById('p-body'); b.hidden = true; b.innerHTML = '';
+  document.getElementById('p-gate').hidden = false;
+  var g = document.getElementById('fb-gen');
+  if (msg) { setFb(g, 'warn', msg); } else { g.textContent = ''; g.className = 'feedback'; }
+  updateProgress();
+}
+document.getElementById('stu-id').addEventListener('change', function () {
+  if (SCEN && normId(this.value) !== SCEN.id) {
+    resetScenario('Your student ID changed, so your numbers and answers were cleared. Choose Generate my scenario to build the set for the new ID.');
+  }
+});
+document.getElementById('recall').innerHTML = SPEC.recall;
+document.getElementById('wrap').innerHTML = SPEC.wrap;
+window.addEventListener('beforeprint', fillPrintSheet);
+updateProgress();
+
+</script>
+</body>
+</html>
