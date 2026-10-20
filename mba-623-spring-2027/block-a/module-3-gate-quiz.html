@@ -42,8 +42,8 @@ textarea{width:100%;min-height:170px;font:14px/1.45 ui-monospace,Consolas,monosp
 <div id="intro">
 <div class="banner"><strong>What this is.</strong> Take this gate quiz <em>after</em> you finish the Module 3 interactive walkthrough. You are a new business analyst at Cullowhee Cycle Works, and the quiz shows what stuck. You get <strong>one attempt</strong>.</div>
 <div class="card"><h2 style="margin-top:0">What your score means</h2><ul>
-<li>The quiz has 14 questions. <strong>12 of 14 (about 86%) or higher</strong> meets the 85% gate.</li>
-<li><strong>Gate met:</strong> you do not need the Remedial Chapter Walkthrough. The Module Final Quiz is optional; take it if you want a chance to raise your score.</li>
+<li>The quiz has 14 questions. <strong>13 of 14 (about 93%) or higher</strong> meets the 90% gate.</li>
+<li><strong>Gate met:</strong> you do not need the Remedial Chapter Walkthrough. The Module Final Quiz is optional. If you would like to take it to try to raise your score, contact Dr. Marco Lam.</li>
 <li><strong>Below the gate:</strong> choose the Remedial Chapter Walkthrough or the lecture path (video lectures with a viewing guide), then take the Module Final Quiz (required). You get a short list of concepts to focus on.</li>
 <li>The <strong>higher</strong> of your Gate Quiz and Final Quiz scores counts for the module.</li>
 <li>Everyone completes the Block A Challenge, whatever the quiz scores.</li></ul></div>
@@ -411,7 +411,7 @@ function buildQuestions(idStr,dateStr,f,nonce){
 
 (function(){
 'use strict';
-var THRESH=0.85,PER=14,NEED=Math.ceil(THRESH*PER-1e-9);
+var THRESH=0.90,PER=14,NEED=Math.ceil(THRESH*PER-1e-9);
 var MODS=[{n:3,title:'Module 3: Recording Business Events with the FSET',sub:'What did each event do to assets, liabilities and equity?'}];
 var FORM=0;
 var Q=[],info={},results={};
@@ -489,8 +489,8 @@ function score(m){
   var seen={},list='';
   missed.forEach(function(q){if(!seen[q.concept]){seen[q.concept]=1;list+='<li>'+esc(q.concept)+' <span class="prog">('+esc(q.revisit)+')</span></li>';}});
   var html='<h3 style="margin-top:0">Module '+m+': '+right+' of '+PER+' ('+pct+'%)</h3>';
-  if(pass)html+='<p><strong>Gate met for Module '+m+'.</strong> You reached the 85% threshold, so you do not need the Remedial Chapter Walkthrough. The Module '+m+' Final Quiz is optional: take it if you want a chance to raise your score (the higher score counts). Review the feedback above for anything you missed.</p>';
-  else html+='<p><strong>Below the 85% gate</strong> ('+NEED+' of '+PER+' needed). Next step: complete the Module '+m+' Remedial Chapter Walkthrough, then take the Module '+m+' Final Quiz (required). The higher of your two scores counts. Start with these concepts:</p><ul>'+list+'</ul>';
+  if(pass)html+='<p><strong>Gate met for Module '+m+'.</strong> You reached the 90% threshold, so you do not need the Remedial Chapter Walkthrough. The Module '+m+' Final Quiz is optional. If you would like to take it to try to raise your score, contact Dr. Marco Lam (the higher score counts). Review the feedback above for anything you missed.</p>';
+  else html+='<p><strong>Below the 90% gate</strong> ('+NEED+' of '+PER+' needed). Next step: complete the Module '+m+' Remedial Chapter Walkthrough, then take the Module '+m+' Final Quiz (required). The higher of your two scores counts. Start with these concepts:</p><ul>'+list+'</ul>';
   if(unanswered)html+='<p class="prog">'+unanswered+' question'+(unanswered>1?'s were':' was')+' left blank and counted as not correct.</p>';
   var r=$('res'+m);r.className='res '+(pass?'pass':'nope');r.innerHTML=html;r.focus();
   $('prog'+m).textContent='Scored';
@@ -502,8 +502,8 @@ function updateSummary(){
     var r=results[M.n];
     if(r){done++;parts.push('M'+M.n+':'+r.right);}
     else parts.push('M'+M.n+':-');
-    rows+='<tr><th scope="row">Module '+M.n+' Gate Quiz</th><td>'+(r?r.right+' of '+PER:'Not scored')+'</td><td>'+(r?(r.pass?'Gate met (85% or above)':'Below 85%: Remedial Chapter Walkthrough, then Final Quiz'):'')+'</td></tr>';
-    lines.push('Module '+M.n+' Gate Quiz: '+(r?r.right+'/'+PER+' ('+Math.round(r.right/PER*100)+'%), '+(r.pass?'Gate met':'Below 85%'):'not scored'));
+    rows+='<tr><th scope="row">Module '+M.n+' Gate Quiz</th><td>'+(r?r.right+' of '+PER:'Not scored')+'</td><td>'+(r?(r.pass?'Gate met (90% or above)':'Below 90%: Remedial Chapter Walkthrough, then Final Quiz'):'')+'</td></tr>';
+    lines.push('Module '+M.n+' Gate Quiz: '+(r?r.right+'/'+PER+' ('+Math.round(r.right/PER*100)+'%), '+(r.pass?'Gate met':'Below 90%'):'not scored'));
   });
   $('sumrows').innerHTML=rows;
   if(!done)return;

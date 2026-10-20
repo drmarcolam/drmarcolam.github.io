@@ -40,9 +40,9 @@ textarea{width:100%;min-height:170px;font:14px/1.45 ui-monospace,Consolas,monosp
 <p class="meta">14 questions · About 25 minutes · One attempt · Scored on this page</p>
 
 <div id="intro">
-<div class="banner"><strong>What this is.</strong> The Final Quiz for Module 2 is a second look at the same ideas with <em>different questions</em>. It is required if you scored below 85% on the Gate Quiz (after the Remedial Chapter Walkthrough), and optional if you met the gate. You get <strong>one attempt</strong>.</div>
+<div class="banner"><strong>What this is.</strong> The Final Quiz for Module 2 is a second look at the same ideas with <em>different questions</em>. It is required if you scored below 90% on the Gate Quiz (after the Remedial Chapter Walkthrough), and optional if you met the gate (if you met the gate and would like to take it, contact Dr. Marco Lam). You get <strong>one attempt</strong>.</div>
 <div class="card"><h2 style="margin-top:0">What your score means</h2><ul>
-<li>The quiz has 14 questions. <strong>12 of 14 (about 86%)</strong> is the 85% mark.</li>
+<li>The quiz has 14 questions. <strong>13 of 14 (about 93%)</strong> is the 90% mark.</li>
 <li>The <strong>higher</strong> of your Gate Quiz and Final Quiz scores counts for the module, so an optional attempt cannot lower your grade.</li>
 <li>Everyone completes the Block A Challenge, whatever the quiz scores.</li></ul></div>
 <div class="card"><h3 style="margin-top:0">Academic integrity and use of AI</h3>
@@ -409,7 +409,7 @@ function buildQuestions(idStr,dateStr,f,nonce){
 
 (function(){
 'use strict';
-var THRESH=0.85,PER=14,NEED=Math.ceil(THRESH*PER-1e-9);
+var THRESH=0.90,PER=14,NEED=Math.ceil(THRESH*PER-1e-9);
 var MODS=[{n:2,title:'Module 2: Reading the Financial Statements',sub:'Do the four statements tell one consistent story?'}];
 var FORM=1;
 var Q=[],info={},results={};
@@ -487,8 +487,8 @@ function score(m){
   var seen={},list='';
   missed.forEach(function(q){if(!seen[q.concept]){seen[q.concept]=1;list+='<li>'+esc(q.concept)+' <span class="prog">('+esc(q.revisit)+')</span></li>';}});
   var html='<h3 style="margin-top:0">Module '+m+': '+right+' of '+PER+' ('+pct+'%)</h3>';
-  if(pass)html+='<p><strong>At or above the 85% mark.</strong> The higher of your Gate Quiz and Final Quiz scores counts for Module '+m+'. Review the feedback above for anything you missed.</p>';
-  else html+='<p><strong>Below the 85% mark</strong> ('+NEED+' of '+PER+' needed). The higher of your Gate Quiz and Final Quiz scores counts for Module '+m+'. Use the concepts below as a study list, and go on to the Block A Challenge.</p><ul>'+list+'</ul>';
+  if(pass)html+='<p><strong>At or above the 90% mark.</strong> The higher of your Gate Quiz and Final Quiz scores counts for Module '+m+'. Review the feedback above for anything you missed.</p>';
+  else html+='<p><strong>Below the 90% mark</strong> ('+NEED+' of '+PER+' needed). The higher of your Gate Quiz and Final Quiz scores counts for Module '+m+'. Use the concepts below as a study list, and go on to the Block A Challenge.</p><ul>'+list+'</ul>';
   if(unanswered)html+='<p class="prog">'+unanswered+' question'+(unanswered>1?'s were':' was')+' left blank and counted as not correct.</p>';
   var r=$('res'+m);r.className='res '+(pass?'pass':'nope');r.innerHTML=html;r.focus();
   $('prog'+m).textContent='Scored';
@@ -500,8 +500,8 @@ function updateSummary(){
     var r=results[M.n];
     if(r){done++;parts.push('M'+M.n+':'+r.right);}
     else parts.push('M'+M.n+':-');
-    rows+='<tr><th scope="row">Module '+M.n+' Final Quiz</th><td>'+(r?r.right+' of '+PER:'Not scored')+'</td><td>'+(r?(r.pass?'At or above 85%':'Below 85%'):'')+'</td></tr>';
-    lines.push('Module '+M.n+' Final Quiz: '+(r?r.right+'/'+PER+' ('+Math.round(r.right/PER*100)+'%), '+(r.pass?'At or above 85%':'Below 85%'):'not scored'));
+    rows+='<tr><th scope="row">Module '+M.n+' Final Quiz</th><td>'+(r?r.right+' of '+PER:'Not scored')+'</td><td>'+(r?(r.pass?'At or above 90%':'Below 90%'):'')+'</td></tr>';
+    lines.push('Module '+M.n+' Final Quiz: '+(r?r.right+'/'+PER+' ('+Math.round(r.right/PER*100)+'%), '+(r.pass?'At or above 90%':'Below 90%'):'not scored'));
   });
   $('sumrows').innerHTML=rows;
   if(!done)return;
