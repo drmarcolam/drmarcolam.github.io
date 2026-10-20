@@ -149,7 +149,7 @@ table.gridq tbody th{font-weight:500;min-width:14rem}
   <nav class="steps" aria-label="Walkthrough steps"><h2>Your steps</h2><ol id="stepnav"></ol></nav>
   <main id="main" tabindex="-1"><div id="app"></div></main>
 </div>
-<footer>Practice walkthrough. Hints are free and nothing here is graded or sent anywhere. All people and companies in the Cullowhee case are fictional.</footer>
+<footer>Practice walkthrough. Hints are free and your results can be downloaded as a PDF at the end for your instructor. Nothing is sent anywhere automatically. All people and companies in the Cullowhee case are fictional.</footer>
 <script>
 (function(){
 'use strict';
@@ -361,7 +361,7 @@ function tally(){
 function summaryText(t){
   var L=[];
   L.push('Cullowhee Cycle Works - Module '+M.num+' walkthrough results');
-  if(S.name) L.push('Name: '+S.name);
+  L.push('Name: '+(S.name||'(not entered)'));L.push('Student ID: '+(S.sid||'(not entered)'));var d0=new Date(),dd0=d0.getFullYear()+'-'+('0'+(d0.getMonth()+1)).slice(-2)+'-'+('0'+d0.getDate()).slice(-2);L.push('Date: '+dd0);
   var pred=predOpt();
   L.push('Step 1 prediction: '+(pred?pred[1].replace(/<[^>]+>/g,''):'none'));
   L.push('');
@@ -371,6 +371,7 @@ function summaryText(t){
   L.push('');
   L.push('Total: '+t.tot.ok+' of '+t.tot.n+' correct; '+t.tot.bad+' incorrect attempts; '+t.tot.first+' correct on first try; '+t.tot.shown+' answers shown');
   if(S.memo){L.push('');L.push('My note: ');L.push(S.memo);}
+  var h=2166136261,cs='CCW-W|'+[S.sid||'',dd0,'M'+M.num,t.tot.ok+'/'+t.tot.n,t.tot.bad].join('|');for(var ci=0;ci<cs.length;ci++){h^=cs.charCodeAt(ci);h=Math.imul(h,16777619);}h=(h>>>0).toString(16).toUpperCase();while(h.length<8)h='0'+h;L.push('');L.push('Verification code: '+h.slice(0,4)+'-'+h.slice(4));
   return L.join('\n');
 }
 function renderResults(focusHeading){
@@ -389,9 +390,9 @@ function renderResults(focusHeading){
     h+='<tr><th scope="row">Step '+(r.step+1)+', question '+(i+1)+': '+esc(q.label)+'</th><td>'+res+'</td><td>'+q.bad+'</td></tr>';
   });});
   h+='</tbody></table></div></details>';
-  h+='<div><label for="nm" style="font-weight:600">Your name (optional, included in the copied summary)</label><br><div class="row" style="margin-top:.35rem"><input type="text" id="nm" autocomplete="name" value="'+esc(S.name)+'" style="width:18rem"></div></div>';
+  h+='<div><label for="nm" style="font-weight:600">Your name (included in your summary)</label><br><div class="row" style="margin-top:.35rem"><input type="text" id="nm" autocomplete="name" value="'+esc(S.name)+'" style="width:18rem"></div></div><div style="margin-top:.7rem"><label for="sid" style="font-weight:600">Your student ID (digits only)</label><br><div class="row" style="margin-top:.35rem"><input type="text" id="sid" inputmode="numeric" autocomplete="off" value="'+esc(S.sid||'')+'" style="width:18rem"></div></div>';
   h+='<h3 style="font-family:var(--serif);margin:1.2rem 0 .4rem">Summary you can copy</h3><pre class="out" id="sum" tabindex="0">'+esc(summaryText(t))+'</pre>';
-  h+='<div class="row"><button class="btn" type="button" data-copy="1">Copy summary</button><button class="btn alt" type="button" data-print="1">Print this page</button><button class="btn alt" type="button" data-back="1">Back to step '+STEPS.length+'</button><button class="btn alt" type="button" data-reset="1">'+(S.confirmReset?'Select again to confirm start over':'Start over')+'</button></div><div id="copymsg" class="res" role="status"></div>';
+  h+='<div class="row"><button class="btn" type="button" data-pdf="1">Download PDF to upload</button><button class="btn alt" type="button" data-copy="1">Copy summary (backup)</button><button class="btn alt" type="button" data-print="1">Print this page</button><button class="btn alt" type="button" data-back="1">Back to step '+STEPS.length+'</button><button class="btn alt" type="button" data-reset="1">'+(S.confirmReset?'Select again to confirm start over':'Start over')+'</button></div><div id="copymsg" class="res" role="status"></div>';
   h+='</section>';
   app.innerHTML=h;
   if(focusHeading){var hd=document.getElementById('step-h');if(hd){hd.focus();window.scrollTo({top:0});}}
@@ -537,6 +538,7 @@ app.addEventListener('change',function(e){
 });
 app.addEventListener('input',function(e){
   if(e.target.id==='memo'){S.memo=e.target.value;save();}
+  if(e.target.id==='sid'){S.sid=e.target.value.replace(/\s/g,'');save();var sm2=document.getElementById('sum');if(sm2)sm2.textContent=summaryText(tally());}
   if(e.target.id==='nm'){S.name=e.target.value;save();var sm=document.getElementById('sum');if(sm)sm.textContent=summaryText(tally());}
 });
 
@@ -544,5 +546,27 @@ render(false);
 })();
 
 </script>
-</body>
+<script>(function(){'use strict';
+function clean(s){return String(s).replace(/[‘’]/g,"'").replace(/[“”]/g,'"').replace(/[–—−]/g,'-').replace(/·/g,'-').replace(/÷/g,'/').replace(/×/g,'x').replace(/[^\x20-\x7E\n]/g,'?');}
+function esc(s){return s.replace(/\\/g,'\\\\').replace(/\(/g,'\\(').replace(/\)/g,'\\)');}
+function wrap(text,max){var out=[];text.split('\n').forEach(function(p){if(!p.trim()){out.push('');return;}var line='';p.split(/\s+/).forEach(function(w){while(w.length>max){if(line){out.push(line);line='';}out.push(w.slice(0,max));w=w.slice(max);}if((line+' '+w).trim().length>max){out.push(line);line=w;}else line=(line?line+' ':'')+w;});out.push(line);});return out;}
+function pdf(lines){var per=52,pages=[];for(var i=0;i<lines.length;i+=per)pages.push(lines.slice(i,i+per));if(!pages.length)pages=[[]];
+  var objs=[];objs[1]='<< /Type /Catalog /Pages 2 0 R >>';var kids=[];
+  objs[3]='<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>';objs[4]='<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>';
+  pages.forEach(function(pl,pi){var po=5+pi*2,co=po+1;kids.push(po+' 0 R');
+    var c='BT /F1 10 Tf 13 TL 54 740 Td\n';pl.forEach(function(l,li){var bold=(pi===0&&li===0);c+=(bold?'/F2 12 Tf ':'/F1 10 Tf ')+'('+esc(l)+') Tj T*\n';});c+='ET';
+    objs[po]='<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents '+co+' 0 R >>';
+    objs[co]='<< /Length '+c.length+' >>\nstream\n'+c+'\nendstream';});
+  objs[2]='<< /Type /Pages /Kids ['+kids.join(' ')+'] /Count '+pages.length+' >>';
+  var out='%PDF-1.4\n',off=[];for(var n=1;n<objs.length;n++){off[n]=out.length;out+=n+' 0 obj\n'+objs[n]+'\nendobj\n';}
+  var x=out.length;out+='xref\n0 '+objs.length+'\n0000000000 65535 f \n';for(n=1;n<objs.length;n++)out+=('0000000000'+off[n]).slice(-10)+' 00000 n \n';
+  out+='trailer\n<< /Size '+objs.length+' /Root 1 0 R >>\nstartxref\n'+x+'\n%%EOF';return out;}
+document.addEventListener('click',function(ev){if(!ev.target.closest('[data-pdf]'))return;var el=document.getElementById('sum');if(!el)return;var t=el.textContent;
+  var sidv=(t.match(/Student ID: (\d{5,12})/)||[])[1];var mm=document.getElementById('copymsg');if(!sidv){if(mm)mm.textContent='Enter your name and a student ID (digits only) above first, then download the PDF.';return;}t=clean(t);
+  var id=(t.match(/Student ID: (\d+)/)||[])[1]||'student',title=t.split('\n')[0];
+  var lines=wrap(t,92);var data=pdf(lines);var blob=new Blob([data],{type:'application/pdf'});
+  var name=title.replace(/^MBA 623 - /,'MBA623 ').replace(/[^A-Za-z0-9 ]+/g,'').replace(/\s+/g,' ').trim()+' - '+id+'.pdf';
+  var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},500);
+  if(mm)mm.textContent='PDF downloaded: '+name;});
+})();</script></body>
 </html>
