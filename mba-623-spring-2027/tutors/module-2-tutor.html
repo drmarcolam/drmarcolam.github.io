@@ -391,6 +391,27 @@ footer.site{max-width:60rem;margin:0 auto;padding:1rem;color:var(--muted);border
     };
   }
 
+  /* G. Tie the statements together */
+  function genTie(R) {
+    var name = co(R);
+    var beg = R.step(200, 900, 10), re0 = R.step(1000, 4000, 10), ni = R.step(300, 1200, 10), div = Math.round(ni * R.step(20, 60, 5) / 100 / 10) * 10;
+    var cfo = ni + R.step(80, 300, 10), cfi = -R.step(200, 700, 10), cff = -div + R.step(-100, 200, 10);
+    var net = cfo + cfi + cff, end = beg + net, re1 = re0 + ni - div;
+    var cc = R.step(800, 2500, 10), liab = R.step(1500, 4000, 10), eq = cc + re1, ta = liab + eq, nonc = ta - end;
+    return {
+      intro: '<p><strong>' + name + '</strong> reports the following for the year ($ millions).</p>' + T(['Item', 'Amount'], [['Retained earnings, beginning of year', $(re0)], ['Net income (income statement)', $(ni)], ['Dividends declared and paid', $(div)], ['Cash, beginning of year', $(beg)], ['Cash from operating activities', $(cfo)], ['Cash from investing activities', $(cfi)], ['Cash from financing activities', $(cff)], ['Contributed capital, end of year', $(cc)], ['Total liabilities, end of year', $(liab)], ['Noncash assets, end of year', $(nonc)]]),
+      takeaway: 'The statements are linked: net income flows from the income statement into retained earnings, and the ending cash from the statement of cash flows is the cash on the balance sheet. When the links are right, total assets equal liabilities plus equity.',
+      steps: [
+        ns('What is <strong>ending retained earnings</strong> ($ millions)?', 'Ending retained earnings', re1, '$', 0, 'Beginning retained earnings + net income &minus; dividends.', $(re0) + ' + ' + $(ni) + ' &minus; ' + $(div) + ' = <strong>' + $(re1) + '</strong>.', { tol: 0 }),
+        ns('What is the <strong>net change in cash</strong> from the statement of cash flows ($ millions)? Enter a decrease as a negative number.', 'Net change in cash', net, '$', 0, 'Operating + investing + financing cash flows.', $(cfo) + G(cfi) + G(cff) + ' = <strong>' + $(net) + '</strong>.', { tol: 0 }),
+        ns('What is the <strong>cash balance on the balance sheet</strong> at year-end ($ millions)?', 'Ending cash', end, '$', 0, 'Beginning cash plus the net change in cash.', $(beg) + G(net) + ' = <strong>' + $(end) + '</strong>.', { tol: 0 }),
+        ns('What are <strong>total assets</strong> at year-end ($ millions)?', 'Total assets', ta, '$', 0, 'Ending cash plus noncash assets.', $(end) + ' + ' + $(nonc) + ' = <strong>' + $(ta) + '</strong>.', { tol: 0 }),
+        ns('What are <strong>total liabilities plus stockholders&rsquo; equity</strong> ($ millions)?', 'Liabilities + equity', ta, '$', 0, 'Liabilities + contributed capital + ending retained earnings.', $(liab) + ' + ' + $(cc) + ' + ' + $(re1) + ' = <strong>' + $(ta) + '</strong>. The balance sheet balances.', { tol: 0 }),
+        cs('Which statement reports the <strong>dividends</strong> that reduce retained earnings?', 'Where dividends appear', ['The income statement', 'The statement of stockholders&rsquo; equity (and the financing section of the cash flow statement)', 'Only the balance sheet', 'Only the notes'], 1, 'Dividends are a distribution of profit, not an expense.', 'Dividends reduce retained earnings (statement of stockholders&rsquo; equity) and the cash paid is a <strong>financing</strong> cash flow. They are not on the income statement.')
+      ]
+    };
+  }
+
   window.MODULE = {
     num: 2,
     title: 'Introducing Financial Statements',
@@ -401,7 +422,8 @@ footer.site{max-width:60rem;margin:0 auto;padding:1rem;color:var(--muted);border
       { label: 'Accrual Income vs. Cash Flow', desc: 'Cash collected, cash paid, net income, and why net income differs from operating cash flow.', gen: genAccrual },
       { label: 'Operating Cycle and Cash Conversion Cycle', desc: 'DSO, DIO, DPO, and the cash conversion cycle.', gen: genCCC },
       { label: 'Stockholders’ Equity and Market Value', desc: 'Retained earnings roll-forward, total equity, market capitalization, and market-to-book.', gen: genEquity },
-      { label: 'Link Net Income to Cash Flow', desc: 'Indirect method: net income to operating cash flow to ending cash.', gen: genNI2CFO }
+      { label: 'Link Net Income to Cash Flow', desc: 'Indirect method: net income to operating cash flow to ending cash.', gen: genNI2CFO },
+      { label: 'Tie the Statements Together', desc: 'Roll retained earnings forward, tie ending cash to the balance sheet, and check that it balances.', gen: genTie }
     ]
   };
 })();

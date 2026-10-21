@@ -374,6 +374,40 @@ footer.site{max-width:60rem;margin:0 auto;padding:1rem;color:var(--muted);border
     };
   }
 
+  /* G. Contingent liabilities */
+  var CONT = ['Accrue a liability and expense', 'Disclose in the notes only', 'No accrual or disclosure required'];
+  var CTP = [
+    ['A customer sued for injuries. Counsel says a loss is <strong>probable</strong> and estimates it at $%AMT%.', 0, 'Probable and the amount can be estimated: <strong>accrue</strong> the liability and expense.'],
+    ['A supplier disputes a contract. Counsel says a loss is <strong>reasonably possible</strong>; the estimate is $%AMT%.', 1, 'Reasonably possible: <strong>disclose in the notes</strong>, but do not accrue.'],
+    ['A competitor filed a weak claim. Counsel says a loss is <strong>remote</strong>.', 2, 'Remote: <strong>no accrual or disclosure</strong> is required.'],
+    ['An environmental cleanup is <strong>probable</strong> and the cost is estimated at $%AMT%.', 0, 'Probable and estimable: <strong>accrue</strong>.'],
+    ['A regulator may fine the company. A loss is <strong>reasonably possible</strong> but cannot be estimated.', 1, 'Reasonably possible: <strong>disclose</strong>. It cannot be accrued without an estimate.'],
+    ['A loss is <strong>probable</strong> but the amount cannot be reasonably estimated.', 1, 'Without a reasonable estimate the loss is not accrued; <strong>disclose</strong> it.']
+  ];
+  function genCont(R) {
+    var name = co(R), picks = R.sample(CTP, 4), amt = R.step(150, 900, 50) * 1000;
+    var steps = picks.map(function (p, i) { return cs('How should <strong>' + name + '</strong> report this? ' + p[0].replace('%AMT%', N(amt)), 'Situation ' + (i + 1), CONT, p[1], 'Probable and estimable: accrue. Reasonably possible (or probable but not estimable): disclose. Remote: nothing.', p[2]); });
+    steps.push(ns('Suppose a loss with an estimate of <strong>' + $(amt) + '</strong> must be accrued. What <strong>liability</strong> is recorded?', 'Liability recorded', amt, '$', 0, 'The accrual records a liability equal to the estimated loss.', 'Loss expense ' + $(amt) + ' and a liability of <strong>' + $(amt) + '</strong>.', { tol: 0 }));
+    return { intro: '<p>A <em>contingent liability</em> depends on a future event, such as the outcome of a lawsuit. Accounting depends on how likely the loss is and whether it can be estimated.</p>', steps: steps, takeaway: 'Accrue a loss if it is probable and can be reasonably estimated. Disclose it if it is reasonably possible, or probable but not estimable. Do nothing if it is remote.' };
+  }
+
+  /* H. Current portion of long-term debt */
+  function genCurPort(R) {
+    var name = co(R), bal = R.step(20, 80, 5) * 100000, yrs = R.pick([5, 8, 10]), r = R.pick([5, 6, 7, 8]);
+    var pay = bal / yrs, int1 = bal * r / 100;
+    return {
+      intro: '<p><strong>' + name + '</strong> has a term loan with a balance of <strong>' + $(bal) + '</strong> at the beginning of the year. The loan requires equal principal payments of <strong>' + $(pay) + '</strong> at the end of each of the next ' + yrs + ' years, and interest of ' + r + '% on the beginning balance.</p>',
+      takeaway: 'The principal due within 12 months is a current liability (the current portion of long-term debt). The rest is a long-term liability. Interest is an expense and is not part of the loan balance.',
+      steps: [
+        ns('How much of the loan will be reported as the <strong>current portion</strong> at the end of this year (due next year)?', 'Current portion', pay, '$', 0, 'Next year&rsquo;s principal payment.', 'Equal annual payments: ' + $(bal) + ' &divide; ' + yrs + ' = <strong>' + $(pay) + '</strong>.', { tol: 0 }),
+        ns('What is the loan balance <strong>after this year&rsquo;s principal payment</strong>?', 'Balance at year-end', bal - pay, '$', 0, 'Beginning balance minus the principal paid this year.', $(bal) + ' &minus; ' + $(pay) + ' = <strong>' + $(bal - pay) + '</strong>.', { tol: 0 }),
+        ns('How much is reported as <strong>long-term debt</strong> (noncurrent) at year-end?', 'Long-term portion', bal - 2 * pay, '$', 0, 'Year-end balance minus the current portion.', $(bal - pay) + ' &minus; ' + $(pay) + ' = <strong>' + $(bal - 2 * pay) + '</strong>.', { tol: 0 }),
+        ns('What is <strong>this year&rsquo;s interest expense</strong>?', 'Interest expense', int1, '$', 0, 'Beginning balance &times; ' + r + '%.', $(bal) + ' &times; ' + r + '% = <strong>' + $(int1) + '</strong>.', { tol: 0 }),
+        ns('What is the <strong>total cash paid</strong> to the lender this year?', 'Cash paid', pay + int1, '$', 0, 'Principal payment plus interest.', $(pay) + ' + ' + $(int1) + ' = <strong>' + $(pay + int1) + '</strong>.', { tol: 0 })
+      ]
+    };
+  }
+
   window.MODULE = {
     num: 7,
     title: 'Current and Long-Term Liabilities',
@@ -384,7 +418,9 @@ footer.site{max-width:60rem;margin:0 auto;padding:1rem;color:var(--muted);border
       { label: 'Bond Pricing', desc: 'Present value of principal and interest; discount or premium.', gen: genBondPrice },
       { label: 'Effective Interest Method', desc: 'Interest expense vs. cash interest and amortization of discount or premium.', gen: genEIR },
       { label: 'Bond Retirement', desc: 'Gain or loss on repurchasing bonds before maturity.', gen: genRetire },
-      { label: 'Time Value of Money', desc: 'Present value, future value, annuities, and loan payments.', gen: genTVM }
+      { label: 'Time Value of Money', desc: 'Present value, future value, annuities, and loan payments.', gen: genTVM },
+      { label: 'Contingent Liabilities', desc: 'Accrue, disclose, or do nothing, based on likelihood and estimability.', gen: genCont },
+      { label: 'Current Portion of Long-Term Debt', desc: 'Split a term loan into current and long-term parts.', gen: genCurPort }
     ]
   };
 })();

@@ -387,6 +387,30 @@ footer.site{max-width:60rem;margin:0 auto;padding:1rem;color:var(--muted);border
     };
   }
 
+  /* G. Tariff and price sensitivity */
+  function genTariff(R) {
+    var b = base(R), q = R.step(40, 120, 5) * 100, t = R.pick([10, 15, 20, 25]);
+    var dmNew = Math.round(b.dm * (1 + t / 100) * 100) / 100, vcNew = Math.round((b.vc - b.dm + dmNew) * 100) / 100;
+    var cmNew = Math.round((b.price - vcNew) * 100) / 100;
+    var rise = Math.round((vcNew - b.vc) * 100) / 100;
+    if (cmNew <= 0.05) { cmNew = 0.05; }
+    var beOld = ceil(b.F / b.cm), beNew = ceil(b.F / cmNew);
+    var pOld = b.price * q - b.F - b.vc * q, pNew = b.price * q - b.F - vcNew * q;
+    var priceNeeded = b.price + rise, pct = rise / b.price * 100;
+    return {
+      intro: baseIntro(b) + '<p>A new <strong>tariff</strong> will raise the cost of imported direct materials by <strong>' + t + '%</strong>. The company currently sells <strong>' + fmt(q) + '</strong> units per month.</p>',
+      takeaway: 'A cost increase lowers the contribution margin per unit, raises the break-even volume and reduces profit. To keep profit unchanged at the same volume, price must rise by the full increase in variable cost per unit.',
+      steps: [
+        ns('What will direct materials cost per unit be <strong>after the tariff</strong>?', 'New direct materials cost', dmNew, '$', 2, 'Old direct materials cost &times; (1 + ' + t + '%).', $(b.dm, 2) + ' &times; ' + (1 + t / 100).toFixed(2) + ' = <strong>' + $(dmNew, 2) + '</strong>.', { tol: 0.006 }),
+        ns('What is the <strong>new contribution margin per unit</strong> (price unchanged)?', 'New CM per unit', cmNew, '$', 2, 'Price minus the new total variable cost per unit (' + $(vcNew, 2) + ').', $(b.price, 2) + ' &minus; ' + $(vcNew, 2) + ' = <strong>' + $(cmNew, 2) + '</strong>.', { tol: 0.006 }),
+        ns('What is the <strong>change in monthly profit</strong> at ' + fmt(q) + ' units? Enter a decrease as a negative number.', 'Change in profit', pNew - pOld, '$', 0, 'Units &times; change in contribution margin per unit.', fmt(q) + ' &times; (' + $(cmNew, 2) + ' &minus; ' + $(b.cm, 2) + ') = <strong>' + $(pNew - pOld) + '</strong>.', { tol: 0.01 }),
+        ns('What is the <strong>new break-even point in units</strong>? Round up to a whole unit.', 'New break-even units', beNew, 'units', 0, 'Fixed costs divided by the new contribution margin per unit.', $(b.F) + ' &divide; ' + $(cmNew, 2) + ' = ' + (b.F / cmNew).toFixed(2) + ', rounded up to <strong>' + fmt(beNew) + '</strong> units.', { tol: 0.002 }),
+        ns('By how much must the <strong>price per unit rise</strong> to keep monthly profit unchanged at the same volume?', 'Price increase needed', rise, '$', 2, 'Price must cover the whole increase in variable cost per unit.', $(vcNew, 2) + ' &minus; ' + $(b.vc, 2) + ' = <strong>' + $(rise, 2) + '</strong>.', { tol: 0.006 }),
+        ns('That price increase is what <strong>percent of the current price</strong>? Round to one decimal.', 'Percent price increase', pct, '%', 1, 'Price increase divided by the current price.', $(rise, 2) + ' &divide; ' + $(b.price, 2) + ' = <strong>' + pct.toFixed(1) + '%</strong>.', { tol: 0.02 })
+      ]
+    };
+  }
+
   window.MODULE = {
     num: 16,
     title: 'Cost-Volume-Profit Analysis and Planning',
@@ -397,7 +421,8 @@ footer.site{max-width:60rem;margin:0 auto;padding:1rem;color:var(--muted);border
       { label: 'Break-Even and Margin of Safety', desc: 'Break-even in units and dollars, plus margin of safety.', gen: genBE },
       { label: 'Multiple-Product Break-Even', desc: 'Break-even for a constant sales mix.', gen: genMulti },
       { label: 'Operating Leverage', desc: 'Degree of operating leverage and risk of profit changes.', gen: genOL },
-      { label: 'CVP with Income Taxes', desc: 'Convert after-tax targets to before-tax and find volume.', gen: genTax }
+      { label: 'CVP with Income Taxes', desc: 'Convert after-tax targets to before-tax and find volume.', gen: genTax },
+      { label: 'Tariffs and Price Sensitivity', desc: 'How a cost increase changes contribution margin, break-even and the price needed.', gen: genTariff }
     ]
   };
 })();
