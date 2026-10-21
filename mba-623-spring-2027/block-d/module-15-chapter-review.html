@@ -1,0 +1,153 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Module 15 Chapter Review — Cullowhee Cycle Works</title><style>
+:root{--paper:#F5F8F5;--card:#fff;--ink:#16222B;--muted:#4D5D68;--rule:#C7D2CB;--spruce:#14574B;--soft:#E0EEE8;--ok:#0F6A37;--okbg:#E3F3E9;--miss:#9B2C1F;--missbg:#FBE8E4;--note:#274C8C;--focus:#1A47B8;--hl:#FFF3C4;--onsp:#fff}
+@media (prefers-color-scheme:dark){:root:not([data-print]){--paper:#0F1A17;--card:#17262A;--ink:#E8F0EC;--muted:#A9B9B2;--rule:#34504A;--spruce:#5FC2AB;--soft:#1D3A34;--ok:#7BD99E;--okbg:#17382A;--miss:#FF9C8C;--missbg:#40201C;--note:#9DB8F0;--focus:#8FB1FF;--hl:#4A4220;--onsp:#0F1A17}}
+[hidden]{display:none!important}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:900px;margin:0 auto;padding:20px 16px 80px}
+h1,h2,h3{font-family:Iowan Old Style,Palatino,Georgia,serif;color:var(--spruce);line-height:1.25}
+h1{font-size:1.8rem;margin:.2em 0}h2{font-size:1.3rem;margin:1.8em 0 .4em;border-bottom:2px solid var(--rule);padding-bottom:.2em}h3{font-size:1.05rem;margin:1.1em 0 .3em}
+.tag{display:inline-block;background:var(--soft);color:var(--spruce);font-weight:700;font-size:.8rem;padding:2px 10px;border-radius:99px;letter-spacing:.04em}
+.meta{color:var(--muted);margin:.2em 0 1em}
+.card{background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:14px 18px;margin:12px 0}
+.banner{background:var(--soft);border-left:5px solid var(--spruce);border-radius:8px;padding:10px 14px;margin:12px 0}
+.idbar{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end;margin:12px 0}.idbar label{font-weight:600;font-size:.9rem;display:flex;flex-direction:column;gap:2px;flex:1;min-width:200px}
+input[type=text],input[type=number]{font:inherit;color:var(--ink);background:var(--card);border:1.5px solid var(--muted);border-radius:6px;padding:7px 9px;min-height:44px;max-width:100%}
+input.num{width:14em;text-align:right}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+button{font:inherit;font-weight:700;min-height:44px;padding:8px 20px;border-radius:8px;border:2px solid var(--spruce);background:var(--spruce);color:var(--onsp);cursor:pointer}
+button.alt{background:var(--card);color:var(--spruce)}button:disabled{opacity:.55;cursor:not-allowed}
+.err{color:var(--miss);font-weight:600;min-height:1.2em}
+fieldset.q{border:1px solid var(--rule);border-radius:10px;background:var(--card);margin:14px 0;padding:12px 18px 14px}
+fieldset.q legend{font-weight:700;color:var(--spruce);padding:0 6px}
+.stem{margin:.2em 0 .6em}
+.opt{display:flex;gap:10px;align-items:flex-start;padding:6px 4px;min-height:44px}
+.opt input{margin-top:.35em;width:20px;height:20px;flex:none}
+.opt label{flex:1;cursor:pointer}
+.unit{color:var(--muted);margin-left:6px}
+.fb{margin-top:10px;padding:8px 12px;border-radius:8px;border-left:5px solid var(--rule)}
+.fb.ok{background:var(--okbg);border-color:var(--ok)}.fb.no{background:var(--missbg);border-color:var(--miss)}
+.fb strong.v{display:block}
+.prog{color:var(--muted);font-size:.9rem}
+.res{border:2px solid var(--spruce);border-radius:10px;padding:12px 16px;margin:14px 0;background:var(--card)}
+.res.pass{border-color:var(--ok)}.res.nope{border-color:var(--miss)}
+table{border-collapse:collapse;width:100%;background:var(--card)}th,td{border:1px solid var(--rule);padding:6px 8px;text-align:left}th{background:var(--soft);color:var(--spruce)}
+textarea{width:100%;min-height:170px;font:14px/1.45 ui-monospace,Consolas,monospace;color:var(--ink);background:var(--card);border:1.5px solid var(--muted);border-radius:6px;padding:8px}
+.aiv{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+@media print{:root{--paper:#fff}button,.idbar,.noprint{display:none!important}body{background:#fff;color:#000}fieldset.q{break-inside:avoid}}
+
+.tw{overflow-x:auto;margin:8px 0}td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}tr.tot th,tr.tot td{font-weight:700;border-top:2px solid var(--spruce)}caption{caption-side:top;text-align:left;font-weight:700;color:var(--spruce);padding:4px 0}
+.step{background:var(--card);border:1px solid var(--rule);border-radius:10px;margin:16px 0;padding:6px 18px 16px}
+.step h2{border:none;margin:.6em 0 .2em}.why{font-style:italic;color:var(--muted);margin:.2em 0 .6em}
+.lbl{font-weight:700;color:var(--spruce);font-size:.85rem;letter-spacing:.04em;text-transform:uppercase;margin:.9em 0 .2em}
+.try{background:var(--soft);border-radius:8px;padding:10px 14px;margin-top:12px}
+.done{display:inline-block;background:var(--okbg);color:var(--ok);font-weight:700;border-radius:99px;padding:2px 10px;font-size:.85rem}
+details{margin:8px 0}summary{cursor:pointer;font-weight:700;color:var(--spruce);min-height:32px}
+.memo{border-left:5px solid var(--spruce);background:var(--soft);padding:10px 14px;border-radius:8px}
+
+.callout{background:var(--soft);border-left:5px solid var(--spruce);border-radius:8px;padding:10px 14px;margin:12px 0}
+.tw{overflow-x:auto;margin:10px 0}td,th{vertical-align:top}th{white-space:normal}
+nav.toc{background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:8px 18px;margin:14px 0}nav.toc a{color:var(--spruce);font-weight:600}
+@media print{.noprint{display:none}}
+</style></head><body><main><span class="tag">MBA 623 · Block D · Module 15 · Optional</span><h1>Module 15 Chapter Review</h1><p class="meta">Cost behavior and cost estimation · Not graded · Print or save as PDF if you like</p><div class="banner"><strong>Use this as a refresher</strong> before the Gate Quiz, while you work through the walkthrough, or after a missed concept. Nothing here is submitted. The handout uses the lecture and textbook examples (Chapter 15); the Cullowhee examples are at the end.</div><nav class="toc noprint" aria-label="On this page"><strong>On this page:</strong> <a href="#s0">LO 15-1</a> · <a href="#s1">LO 15-2</a> · <a href="#s2">LO 15-3</a> · <a href="#s3">LO 15-4</a> · <a href="#s4">LO 15-5</a> · <a href="#s5">Key terms</a> · <a href="#cullowhee">Cullowhee examples</a></nav><div class="tw"><table><tr><th scope="col"><strong>What this chapter covers</strong></th><th scope="col"><strong>LO</strong></th><th scope="col"><strong>Learning objective</strong></th></tr><tr><td>Basic Cost Behavior Patterns</td><td><strong>LO 15-1</strong></td><td>Define basic cost terms and identify how costs respond to changes in volume</td></tr><tr><td>Total Cost Behavior &amp; Linear Cost Equations</td><td><strong>LO 15-2</strong></td><td>Estimate linear total cost equations, relevant range, and average vs. marginal cost</td></tr><tr><td>Analytic Approaches to Cost Estimation</td><td><strong>LO 15-3</strong></td><td>Calculate and compare High-Low, Scatter Diagrams, and Least-Squares Regression</td></tr><tr><td>Data &amp; Operational Cost Estimation Problems</td><td><strong>LO 15-4</strong></td><td>Identify problems with technology, inflation, environmental fees, and matching</td></tr><tr><td>Cost Classifications for Decision Making</td><td><strong>LO 15-5</strong></td><td>Classify manufacturing costs, combine behaviors, and select costs for decision contexts</td></tr></table></div>
+
+<h2 id="s0">LO 15-1  Basic Cost Behavior Patterns</h2>
+<p>Cost behavior refers to how a cost reacts to changes in the level of business activity. As activity volume (such as sales units, production units, or service hours) rises or falls, a particular cost may rise, fall, or remain constant. Understanding cost behavior patterns is essential for manager planning, budgeting, cost control, and short-run decision analysis.</p>
+<h3>Core Cost Behavior Classifications</h3>
+<p><strong>Variable Costs: </strong>Changes in total in direct proportion to changes in sales volume or activity level. Variable costs equal zero dollars when activity is zero. On a per-unit basis, variable cost remains constant. Total Variable Cost Equation: Y = bX, where b is the variable cost per unit and X is total activity volume.</p>
+<p><strong>Fixed Costs: </strong>Remain constant in total amount regardless of changes in activity volume within the relevant range. On a per-unit basis, fixed cost decreases as activity increases (spreading fixed cost over more units). Total Fixed Cost Equation: Y = a, where a is total fixed cost (slope is zero).</p>
+<p><strong>Mixed Costs: </strong>Contain both a fixed and a variable cost element (sometimes called semi-variable costs). Total mixed cost increases in a linear fashion as activity increases, but is positive in amount when activity is zero. Total Mixed Cost Equation: Y = a + bX.</p>
+<p><strong>Step Costs: </strong>Remain constant within a narrow range of activity, but shift abruptly to a higher level when activity exceeds that range. Step costs increase in a step-like fashion as activity increases (Equation: Y = a_i).</p>
+<div class="callout"><strong>Strategic Insights: Cost Behavior Assumptions &amp; Structural Shifts
+</strong>Shift in Corporate Cost Structures:
+Due to increased automation, robotics, and information technology, total cost functions in modern companies have shifted toward significantly HIGHER fixed costs and LOWER variable costs. Managing fixed costs and capacity utilization has become critical for organizational survival. One strategic response to reduce fixed cost exposure is outsourcing non-core operational activities.</div>
+
+<h2 id="s1">LO 15-2  Total Cost Behavior &amp; Linear Cost Equations</h2>
+<p>To model total organizational costs, managerial accountants represent cost behavior through a linear total cost equation. This equation models total cost (Y) as the sum of fixed capacity costs and variable activity-driven costs.</p>
+<div class="callout"><strong>The Accountant’s Linear Total Cost Equation
+</strong>Total Cost Equation:  Y = a + bX
+• Y = Total Cost (the dependent variable being estimated)
+• a = Total Fixed Cost (the vertical axis intercept / baseline cost when X = 0)
+• b = Variable Cost per Unit of Activity (the slope of the total cost line, ΔY / ΔX)
+• X = Total Activity Volume / Cost Driver (the independent variable, e.g., units or hours)</div>
+<h3>The Relevant Range &amp; Economic vs. Accounting Cost Models</h3>
+<p><strong>Relevant Range Concept: </strong>The relevant range is defined as the normal range of activity in which a company expects to operate, and where the linear cost assumptions (constant total fixed cost and constant variable cost per unit) remain valid. If demand surges outside the relevant range (e.g., Kellogg’s expanding into temporary production facilities), total fixed costs will jump to a new step level.</p>
+<p><strong>Economist vs. Accountant Model: </strong>Marginal cost is the extra cost incurred to produce one additional unit. While economists model total costs as a curvilinear function (where marginal cost fluctuates based on capacity constraints and efficiency), accountants use a linear approximation within the relevant range.</p>
+<h3>Total Cost vs. Average Cost Dynamics (FIXthat4U Repair Shop Example)</h3>
+<p>The table below demonstrates how total cost, average cost per unit, and variable cost per unit behave as customer repair volume increases ($3,000 monthly fixed rent/tools + $5.00 variable cost per repair):</p>
+<div class="tw"><table><tr><th scope="col"><strong>No. of Customer Repairs (X)</strong></th><th scope="col"><strong>Total Cost (Y)</strong></th><th scope="col"><strong>Average Cost per Repair*</strong></th><th scope="col"><strong>Variable Cost per Repair</strong></th></tr><tr><td>100 repairs</td><td class="n">$3,500</td><td class="n">$35.00</td><td class="n">$5.00</td></tr><tr><td>200 repairs</td><td class="n">$4,000</td><td class="n">$20.00</td><td class="n">$5.00</td></tr><tr><td>300 repairs</td><td class="n">$4,500</td><td class="n">$15.00</td><td class="n">$5.00</td></tr><tr><td>400 repairs</td><td class="n">$5,000</td><td class="n">$12.50</td><td class="n">$5.00</td></tr><tr><td>500 repairs</td><td class="n">$5,500</td><td class="n">$11.00</td><td class="n">$5.00</td></tr></table></div>
+<p><strong>Key Finding: </strong>*Note: Average Cost per Repair = Total Cost / Number of Repairs. Notice that while variable cost per unit remains constant ($5.00), average cost per unit declines dramatically from $35.00 to $11.00 as fixed costs are spread over higher volume.</p>
+<h3>Types of Fixed Costs: Committed vs. Discretionary</h3>
+<p><strong>Committed Fixed Costs (Capacity Costs): </strong>Investments in facilities, equipment, and organizational structure that cannot be significantly reduced in the short term without threatening long-run profitability (e.g., building leases, equipment depreciation, real estate taxes).</p>
+<p><strong>Discretionary Fixed Costs (Managed Costs): </strong>Fixed costs that arise from annual management decisions to spend on specific operating areas (e.g., advertising, employee training programs, research &amp; development, corporate internships). Can be adjusted in the short term.</p>
+
+<h2 id="s2">LO 15-3  Analytic Approaches to Cost Estimation</h2>
+<p>Cost estimation is the determination of the functional relationship between activity drivers and costs. Managerial accountants use three primary analytic methods to separate mixed costs into fixed and variable components:</p>
+<h3>1. The High-Low Method</h3>
+<p>A quick, two-point mathematical technique that estimates variable cost per unit and total fixed costs using only the period of highest activity and period of lowest activity.</p>
+<div class="callout"><strong>High-Low Method Equations &amp; Worked Example
+</strong>Step 1: Calculate Variable Cost per Unit (b):
+   b = (Total Cost at Highest Activity - Total Cost at Lowest Activity) ÷ (Highest Activity Level - Lowest Activity Level)
+   b = Δ Total Cost ÷ Δ Activity Level
+
+Step 2: Calculate Total Fixed Costs (a):
+   a = Total Cost - [b × Activity Level]  (using either the High or Low data point)
+
+Worked Cereal Production Example (Slide 29):
+• Low Activity (Jan): 8,600 cereal boxes produced, Total Cost = $25,000
+• High Activity (Nov): 11,600 cereal boxes produced, Total Cost = $31,600
+• b = ($31,600 - $25,000) ÷ (11,600 - 8,600) = $6,600 ÷ 3,000 boxes = $2.20 per box
+• a = $31,600 - [$2.20 × 11,600] = $31,600 - $25,520 = $6,080 Total Fixed Cost
+• Total Cost Equation: Y = $6,080 + $2.20X</div>
+<h3>2. Scatter Diagrams</h3>
+<p>A plot of historical activity levels (X-axis) against total costs (Y-axis), where individual observations are represented by visual dots. Scatter diagrams allow managers to visually inspect the data for linearity, detect obvious outliers, and gain intuitive insight into cost behavior before running statistical models.</p>
+<h3>3. The Least-Squares Regression Method</h3>
+<p>A statistical method that fits a cost line to data by mathematically minimizing the sum of all squared vertical deviations between individual actual cost observations and the estimated cost line. Regression is statistically superior to High-Low because it utilizes ALL data points rather than just two extremes.</p>
+<div class="callout"><strong>Least-Squares Regression Capabilities &amp; Limitations
+</strong>Statistical Measures &amp; Goodness of Fit:
+• Coefficient of Determination (R²): Measures the percentage of total variation in the dependent variable (Total Cost Y) explained by changes in the independent activity variable (X). R² ranges from 0.0 to 1.0 (higher is better).
+• Simple Regression: Models total cost using a single cost driver (Y = a + bX).
+• Multiple Regression: Models total cost using two or more activity drivers (Y = a + b₁X₁ + b₂X₂).
+• Managerial Caution: Mathematical equations do NOT make business decisions; they are analytical tools. Estimates must make intuitive business sense and reflect normal operating conditions.</div>
+
+<h2 id="s3">LO 15-4  Data &amp; Operational Problems in Cost Estimation</h2>
+<p>Managerial accountants frequently encounter practical data anomalies when estimating total cost equations. Reliable cost equations require addressing the following operational problems:</p>
+<p><strong>Changes in Technology: </strong>Historical cost data must reflect the current machinery, automation, and technological processes being used. Old data from discarded equipment distorts future cost predictions.</p>
+<p><strong>Price Level Changes: </strong>Cost data collected over multi-year periods must be adjusted for general inflation and specific raw material price changes so that future cost equations reflect current price levels.</p>
+<p><strong>Environmental &amp; ESG Factors: </strong>Companies investing in green technology or facing carbon pricing/taxes must incorporate environmental compliance fees. For instance, carbon tax increases variable cost per unit produced.</p>
+<p><strong>Time Lags &amp; Matching Activity with Costs: </strong>Costs are often recorded in a different time period than the activity that generated them (e.g., cell phone or utility bills arriving at month-end for daily usage). Shorter time periods increase matching errors.</p>
+<p><strong>Identifying Causal Activity Drivers: </strong>Selecting an activity driver requires judgment, experience, and establishing a logical, causal relationship between activity and cost rather than relying on spurious statistical correlations.</p>
+
+<h2 id="s4">LO 15-5  Cost Classifications for Decision Making</h2>
+<p>Manufacturing organizations divide product costs into three primary categories (Direct Materials, Direct Labor, Manufacturing Overhead). These costs can be simultaneously classified by behavior (Variable/Fixed) and traceability (Direct/Indirect).</p>
+<h3>Combining Cost Behaviors and Traceability (2x2 Matrix)</h3>
+<p>The matrix below illustrates how manufacturing costs can be classified into any combination of behavior and traceability:</p>
+<div class="tw"><table><tr><th scope="col"><strong>Cost Behavior</strong></th><th scope="col"><strong>Direct Costs (Traceable to Product)</strong></th><th scope="col"><strong>Indirect Costs (Common / Allocated)</strong></th></tr><tr><td><strong>Variable Costs</strong></td><td>Sugar used in Frosted Flakes cereal; direct materials</td><td>Factory utilities; electricity per machine hour</td></tr><tr><td><strong>Fixed Costs</strong></td><td>Salary of the dedicated Frosted Flakes production manager</td><td>Plant manager salary; factory building depreciation</td></tr></table></div>
+<p>Managerial decision-making requires selecting different cost concepts for different decision horizons:</p>
+<ul>
+<li><strong>• Short-Term Issues: </strong>Focus on Fixed vs. Variable costs, Contribution Margin, and Break-Even Analysis. Fixed costs are generally sunk or committed.</li>
+<li><strong>• Long-Run Evaluation: </strong>Focus on Full Product Cost, Direct vs. Indirect allocations, and total capacity investment evaluation.</li>
+</ul>
+
+<h2 id="s5">Key terms</h2>
+<div class="tw"><table><tr><th scope="col"><strong>Term</strong></th><th scope="col"><strong>Definition</strong></th></tr><tr><td><strong>Cost Behavior</strong></td><td>How a cost reacts to changes in the level of business activity (sales volume or production).</td></tr><tr><td><strong>Variable Cost</strong></td><td>A cost that varies in total in direct proportion to activity changes; remains constant per unit.</td></tr><tr><td><strong>Fixed Cost</strong></td><td>A cost that remains constant in total regardless of activity changes within the relevant range.</td></tr><tr><td><strong>Mixed Cost</strong></td><td>A cost containing both fixed and variable components (modeled as Y = a + bX).</td></tr><tr><td><strong>Step Cost</strong></td><td>A cost that remains constant over a narrow activity range but jumps to a higher level when volume exceeds that range.</td></tr><tr><td><strong>Relevant Range</strong></td><td>The normal operating activity range in which linear cost assumptions remain valid.</td></tr><tr><td><strong>Linear Cost Equation</strong></td><td>Mathematical representation of total cost: Y = a + bX (Fixed Cost + [Variable Rate × Activity]).</td></tr><tr><td><strong>Marginal Cost</strong></td><td>The incremental cost incurred to produce one additional unit of output.</td></tr><tr><td><strong>Committed Fixed Cost</strong></td><td>Long-term capacity investment in plant, equipment, or structure that cannot be easily altered.</td></tr><tr><td><strong>Discretionary Fixed Cost</strong></td><td>Fixed cost resulting from annual managerial decisions (e.g., advertising, training, R&amp;D).</td></tr><tr><td><strong>High-Low Method</strong></td><td>Analytic technique using highest and lowest activity points to estimate fixed and variable costs.</td></tr><tr><td><strong>Least-Squares Regression</strong></td><td>Statistical method fitting a cost line by minimizing the sum of squared vertical deviations.</td></tr><tr><td><strong>Coefficient of Determination (R²)</strong></td><td>Statistical measure representing the percentage of variation in total cost explained by the activity driver.</td></tr><tr><td><strong>Direct Cost</strong></td><td>A cost that can be easily and conveniently traced to a specific cost object.</td></tr><tr><td><strong>Indirect Cost</strong></td><td>A cost that cannot be easily or conveniently traced to a specific cost object; allocated common cost.</td></tr></table></div><h2 id="cullowhee">Cullowhee examples</h2><p>The review above uses the lecture and textbook examples. Here are the same ideas with Cullowhee Cycle Works, the company in your walkthroughs and quizzes.</p><h3>Cost behavior patterns and fixed cost per unit</h3><p>Cullowhee plant utilities and maintenance have a fixed part of about $47,071 a month.</p><div class="tw"><table><thead><tr><th scope="col">Monthly volume</th><th scope="col" class="n">Fixed cost per unit ($)</th></tr></thead><tbody><tr><th scope="row">3,000 units</th><td class="n">15.69</td></tr><tr><th scope="row">5,000 units</th><td class="n">9.41</td></tr><tr><th scope="row">8,000 units</th><td class="n">5.88</td></tr></tbody></table></div><p>Total fixed cost is the same. Spreading it over more bikes lowers the fixed cost per bike.</p><h3>The linear cost equation and the relevant range</h3><p>Cullowhee's estimated plant cost equation (regression, $):</p><div class="tw"><table><thead><tr><th scope="col"></th><th scope="col" class="n">Amount</th></tr></thead><tbody><tr><th scope="row">Fixed cost per month (a)</th><td class="n">47,071</td></tr><tr><th scope="row">Variable cost per unit (b)</th><td class="n">9.04</td></tr><tr><th scope="row">Predicted cost at 5,000 units</th><td class="n">92,291</td></tr><tr><th scope="row">Predicted cost at 8,000 units</th><td class="n">119,423</td></tr></tbody></table></div><p>The data stop at 6,797 units. The 8,000-unit prediction is outside the relevant range, so treat it as a floor.</p><h3>The high-low method</h3><p>Cullowhee: highest month May 2026 (6,797 units, $108,394); lowest month Jan 2025 (2,359 units, $67,935).</p><div class="tw"><table><thead><tr><th scope="col">Step</th><th scope="col" class="n">Result</th></tr></thead><tbody><tr><th scope="row">Variable cost per unit: (108,394 &minus; 67,935) &divide; (6,797 &minus; 2,359)</th><td class="n">$9.12</td></tr><tr><th scope="row">Fixed cost: 108,394 &minus; 9.12 &times; 6,797</th><td class="n">$46,429</td></tr><tr><th scope="row">Estimate at 5,000 units: 46,429 + 9.12 &times; 5,000</th><td class="n">$92,012</td></tr></tbody></table></div><h3>Scatter diagrams, regression and R-squared</h3><p>Cullowhee's 24 months of data:</p><div class="tw"><table><thead><tr><th scope="col"></th><th scope="col" class="n">Result</th></tr></thead><tbody><tr><th scope="row">Intercept (fixed cost per month)</th><td class="n">$47,071</td></tr><tr><th scope="row">Slope (variable cost per unit)</th><td class="n">$9.044</td></tr><tr><th scope="row">R-squared</th><td class="n">0.950</td></tr><tr><th scope="row">Estimate at 5,000 units</th><td class="n">$92,291</td></tr><tr><th scope="row">Difference from high-low at 5,000 units</th><td class="n">$279</td></tr></tbody></table></div><p>About 95% of the month-to-month variation in cost is explained by units produced.</p><h3>Data problems in cost estimation</h3><p>Cullowhee examples:</p><div class="tw"><table><thead><tr><th scope="col">Problem</th><th scope="col" class="n">Response</th></tr></thead><tbody><tr><th scope="row">Utility rates rose 12% during the 24 months</th><td class="n">Adjust costs with a price index before estimating</td></tr><tr><th scope="row">A flood shut the plant for most of one month</th><td class="n">Investigate as an outlier; consider excluding</td></tr><tr><th scope="row">The utility bill for March arrives in April</th><td class="n">Time lag: match the cost to the month of use</td></tr></tbody></table></div><h3>Manufacturing cost classifications</h3><p>Cullowhee classifications:</p><div class="tw"><table><thead><tr><th scope="col">Cost</th><th scope="col" class="n">Traceability</th><th scope="col" class="n">Behavior</th><th scope="col" class="n">Category</th></tr></thead><tbody><tr><th scope="row">Aluminum tubing</th><td class="n">Direct</td><td class="n">Variable</td><td class="n">Direct materials</td></tr><tr><th scope="row">Assembly worker wages (per bike)</th><td class="n">Direct</td><td class="n">Variable</td><td class="n">Direct labor</td></tr><tr><th scope="row">Floor supervisor salary</th><td class="n">Indirect</td><td class="n">Fixed</td><td class="n">Manufacturing overhead</td></tr><tr><th scope="row">Plant property tax</th><td class="n">Indirect</td><td class="n">Fixed</td><td class="n">Manufacturing overhead</td></tr></tbody></table></div><p class="noprint"><button type="button" onclick="window.print()">Print or save as PDF</button></p><p class="prog">All people and companies in the Cullowhee case are fictional.</p></main><script>(function(){'use strict';
+function clean(s){return String(s).replace(/[‘’]/g,"'").replace(/[“”]/g,'"').replace(/[–—−]/g,'-').replace(/·/g,'-').replace(/÷/g,'/').replace(/×/g,'x').replace(/[^\x20-\x7E\n]/g,'?');}
+function esc(s){return s.replace(/\\/g,'\\\\').replace(/\(/g,'\\(').replace(/\)/g,'\\)');}
+function wrap(text,max){var out=[];text.split('\n').forEach(function(p){if(!p.trim()){out.push('');return;}var line='';p.split(/\s+/).forEach(function(w){while(w.length>max){if(line){out.push(line);line='';}out.push(w.slice(0,max));w=w.slice(max);}if((line+' '+w).trim().length>max){out.push(line);line=w;}else line=(line?line+' ':'')+w;});out.push(line);});return out;}
+function pdf(lines){var per=52,pages=[];for(var i=0;i<lines.length;i+=per)pages.push(lines.slice(i,i+per));if(!pages.length)pages=[[]];
+  var objs=[];objs[1]='<< /Type /Catalog /Pages 2 0 R >>';var kids=[];
+  objs[3]='<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>';objs[4]='<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>';
+  pages.forEach(function(pl,pi){var po=5+pi*2,co=po+1;kids.push(po+' 0 R');
+    var c='BT /F1 10 Tf 13 TL 54 740 Td\n';pl.forEach(function(l,li){var bold=(pi===0&&li===0);c+=(bold?'/F2 12 Tf ':'/F1 10 Tf ')+'('+esc(l)+') Tj T*\n';});c+='ET';
+    objs[po]='<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents '+co+' 0 R >>';
+    objs[co]='<< /Length '+c.length+' >>\nstream\n'+c+'\nendstream';});
+  objs[2]='<< /Type /Pages /Kids ['+kids.join(' ')+'] /Count '+pages.length+' >>';
+  var out='%PDF-1.4\n',off=[];for(var n=1;n<objs.length;n++){off[n]=out.length;out+=n+' 0 obj\n'+objs[n]+'\nendobj\n';}
+  var x=out.length;out+='xref\n0 '+objs.length+'\n0000000000 65535 f \n';for(n=1;n<objs.length;n++)out+=('0000000000'+off[n]).slice(-10)+' 00000 n \n';
+  out+='trailer\n<< /Size '+objs.length+' /Root 1 0 R >>\nstartxref\n'+x+'\n%%EOF';return out;}
+var b=document.getElementById('pdfbtn');if(!b)return;
+b.addEventListener('click',function(){var t=document.getElementById('sumtxt').value;if(!t)return;t=clean(t);
+  var id=(t.match(/Student ID: (\d+)/)||[])[1]||'student',title=t.split('\n')[0];
+  var lines=wrap(t,92);var data=pdf(lines);var blob=new Blob([data],{type:'application/pdf'});
+  var name=title.replace(/^MBA 623 - /,'MBA623 ').replace(/[^A-Za-z0-9 ]+/g,'').replace(/\s+/g,' ').trim()+' - '+id+'.pdf';
+  var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},500);
+  var m=document.getElementById('copied');if(m)m.textContent='PDF downloaded: '+name;});
+})();</script></body></html>
