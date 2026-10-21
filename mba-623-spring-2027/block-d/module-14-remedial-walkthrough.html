@@ -65,31 +65,39 @@ function r1(x){return Math.round(x*10)/10;}
 function r2(x){return Math.round(x*100)/100;}
 function dol(n){return '$'+fmt(n);}
 
-var W7='Module 7 walkthrough, step ',W8='Module 8 walkthrough, step ';
-var H7='Module 7 review handout, ',H8='Module 8 review handout, ';
+var W14='Module 14 walkthrough, step ',W15='Module 15 walkthrough, step ',W16='Module 16 walkthrough, step ';
+var H14='Module 14 review handout, ',H15='Module 15 review handout, ',H16='Module 16 review handout, ';
 var SL={
-'7.1':[7,'Warranty liability rollforward',W7+'2: Warranty liability'],
-'7.2':[7,'Warranty expense as a percent of sales',W7+'2: Warranty liability'],
-'7.3':[7,'Contingent liabilities: accrue or disclose',W7+'2: Warranty liability'],
-'7.4':[7,'Interest on a revolver and a term loan',W7+'3: Term loan and revolver interest'],
-'7.5':[7,'Current portion of long-term debt',W7+'3: Term loan and revolver interest'],
-'7.6':[7,'Pricing a bond',W7+'4: Pricing and recording the bond'],
-'7.7':[7,'Coupon rate versus market rate',W7+'4: Pricing and recording the bond'],
-'7.8':[7,'Effective interest expense on a discount bond',W7+'4: Pricing and recording the bond'],
-'7.9':[7,'Times interest earned',W7+'5: Can Cullowhee afford more debt?'],
-'7.10':[7,'Time value of money',H7+'LO 7-6: Time value of money'],
-'8.1':[8,'Market value and book value of equity',H8+'LO 8-1: Stock as a financing source'],
-'8.2':[8,'Issuing common stock',W8+'2: Effects of share transactions'],
-'8.3':[8,'Repurchasing stock (treasury stock)',W8+'2: Effects of share transactions'],
-'8.4':[8,'Stock-based compensation expense',H8+'LO 8-3: Stock-based compensation'],
-'8.5':[8,'Cash dividends',W8+'4: Dividend and stock split proposals'],
-'8.6':[8,'Stock splits',W8+'4: Dividend and stock split proposals'],
-'8.7':[8,'Accumulated other comprehensive income',H8+'LO 8-5: AOCI'],
-'8.8':[8,'Weighted-average shares outstanding',W8+'3: Weighted-average shares and EPS'],
-'8.9':[8,'Earnings per share',W8+'3: Weighted-average shares and EPS'],
-'8.10':[8,'Why EPS and net income move differently',W8+'3: Weighted-average shares and EPS']};
-function pvf(r,n){return Math.pow(1+r,-n);}
-function ann(r,n){return (1-Math.pow(1+r,-n))/r;}
+'14.1':[14,'Financial versus managerial accounting',H14+'LO 14-1: Financial versus managerial accounting'],
+'14.2':[14,'Mission, goals and strategy',H14+'LO 14-2: Strategy, goals and the management cycle'],
+'14.3':[14,'Competitive strategy',W14+'2: Strategy and the value chain'],
+'14.4':[14,'Value chain activities',W14+'2: Strategy and the value chain'],
+'14.5':[14,'Classifying costs by behavior',W14+'3: Classify Cullowhee’s costs'],
+'14.6':[14,'Contribution margin per unit',W14+'4: Contribution margin by product line'],
+'14.7':[14,'Contribution margin ratio',W14+'4: Contribution margin by product line'],
+'14.8':[14,'Segment margin of a product line',W14+'4: Contribution margin by product line'],
+'14.9':[14,'Share of total contribution',W14+'4: Contribution margin by product line'],
+'14.10':[14,'Ethics and the IMA standards',H14+'LO 14-5: Ethics, ESG and governance'],
+'15.1':[15,'Fixed cost per unit',W15+'2: Fixed, variable or mixed?'],
+'15.2':[15,'The linear cost equation',W15+'2: Fixed, variable or mixed?'],
+'15.3':[15,'The relevant range',W15+'5: A second shift and the relevant range'],
+'15.4':[15,'High-low: variable cost per unit',W15+'3: Estimate with the high-low method'],
+'15.5':[15,'High-low: fixed cost',W15+'3: Estimate with the high-low method'],
+'15.6':[15,'High-low: cost estimate',W15+'3: Estimate with the high-low method'],
+'15.7':[15,'Reading regression output',W15+'4: Estimate with regression'],
+'15.8':[15,'Data problems in cost estimation',H15+'LO 15-4: Data and operational problems'],
+'15.9':[15,'Cost behavior patterns',W15+'2: Fixed, variable or mixed?'],
+'15.10':[15,'Manufacturing cost classification',H15+'LO 15-5: Cost classifications for decisions'],
+'16.1':[16,'Contribution format income statement',W16+'2: The contribution format'],
+'16.2':[16,'Break-even in units',W16+'3: Break-even and operating leverage'],
+'16.3':[16,'Break-even in sales dollars',W16+'3: Break-even and operating leverage'],
+'16.4':[16,'Units for a target profit',W16+'4: Break-even for the Balsam E1'],
+'16.5':[16,'Margin of safety',W16+'3: Break-even and operating leverage'],
+'16.6':[16,'Degree of operating leverage',W16+'3: Break-even and operating leverage'],
+'16.7':[16,'Using operating leverage',W16+'3: Break-even and operating leverage'],
+'16.8':[16,'Multi-product break-even and sales mix',H16+'LO 16-4: Multi-product CVP analysis'],
+'16.9':[16,'Target profit after tax',H16+'LO 16-6: CVP analysis with income taxes'],
+'16.10':[16,'What-if changes to cost and price',W16+'5: Motor tariff and pricing']};
 function buildQuestions(idStr,dateStr,f,nonce){
   f=f||0;
   var base=seedFrom(idStr+'|'+dateStr+'|F'+f+'|'+(nonce||''));
@@ -99,158 +107,181 @@ function buildQuestions(idStr,dateStr,f,nonce){
     shuf:function(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(r()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;},
     V:function(a){return f===2?a[Math.floor(r()*a.length)]:a[f];},
     o:function(t,ok){return {t:t,ok:!!ok};}};}
+  function NUM(unit,answer,tol,stem,why){return {type:'num',unit:unit,answer:answer,tol:tol,stem:stem,why:why};}
+  function MC(c,k){return {type:'mc',stem:k.stem,options:c.shuf(k.opts),why:k.why};}
   var S={};
-  /* ================= MODULE 7 ================= */
-  S['7.1']=function(c){var ri=c.ri;
-    var b=ri(9,14)*100,a=ri(11,14)*100,p=ri(7,10)*100,e=b+a-p;
-    if(c.V([0,1])===0)return {type:'num',unit:'$ thousand',answer:e,tol:0.5,stem:'Cullowhee’s warranty liability was '+usd(b)+' at the start of the year. During the year it accrued '+usd(a)+' of warranty expense and paid '+usd(p)+' to repair and replace bikes under warranty. What is the warranty liability at the end of the year?',
-      why:'Ending = beginning + accrual − payments = '+fmt(b)+' + '+fmt(a)+' − '+fmt(p)+' = <strong>'+fmt(e)+'</strong>.'};
-    return {type:'num',unit:'$ thousand',answer:p,tol:0.5,stem:'Cullowhee’s warranty liability was '+usd(b)+' at the start of the year and '+usd(e)+' at the end. It accrued '+usd(a)+' of warranty expense during the year. How much did it pay in warranty claims?',
-     why:'Beginning + accrual − payments = ending, so payments = '+fmt(b)+' + '+fmt(a)+' − '+fmt(e)+' = <strong>'+fmt(p)+'</strong>.'};};
-  S['7.2']=function(c){var ri=c.ri;
-    var ns=ri(44,60)*1000,rate=ri(200,260)/100,ex=Math.round(ns*rate/100);
-    if(c.V([0,1])===0)return {type:'num',unit:'$ thousand',answer:r1(ns*rate/100),tol:0.6,stem:'Cullowhee estimates that warranty claims will cost '+rate.toFixed(2)+'% of net sales. Net sales for the year were '+usd(ns)+'. How much warranty expense does it record for the year? Enter thousands of dollars.',
-      why:'Warranty expense = '+rate.toFixed(2)+'% × '+fmt(ns)+' = <strong>'+r1(ns*rate/100).toFixed(1)+'</strong>. The expense is recorded in the year of the sale, not when claims are paid.'};
-    var v=r2(ex/ns*100);
-    return {type:'num',unit:'%',answer:v,tol:0.02,stem:'Cullowhee recorded warranty expense of '+usd(ex)+' on net sales of '+usd(ns)+'. What percent of net sales is the warranty expense? Enter the percentage rounded to two decimal places.',
-     why:'Warranty expense ÷ net sales = '+fmt(ex)+' ÷ '+fmt(ns)+' = <strong>'+v.toFixed(2)+'%</strong>.'};};
-  S['7.3']=function(c){var o=c.o,amt=c.ri(2,9)*100,who=c.pick(['dealer','supplier','distributor']),kind=c.pick(['a distribution contract','a supply agreement','a territory agreement']);
-    var A={stem:'A '+who+' has sued Cullowhee over '+kind+'. Cullowhee’s lawyers say a loss is <em>probable</em> and the amount can be reasonably estimated at '+usd(amt)+'. What should Cullowhee do?',
-     opts:[o('Record a liability and an expense of '+usd(amt)+' and describe the lawsuit in the footnotes.',1),o('Disclose the lawsuit in the footnotes only.'),o('Do nothing, because the case is not settled.'),o('Record the expense only when it pays the '+who+'.')],
-     why:'A loss that is probable and can be reasonably estimated is accrued: record the liability and the expense now, and disclose it.'};
-    var B={stem:'A '+who+' has sued Cullowhee over '+kind+', claiming '+usd(amt)+'. Cullowhee’s lawyers say a loss is only <em>reasonably possible</em> and the amount cannot be reliably estimated. What should Cullowhee do?',
-     opts:[o('Disclose the contingency in the footnotes without recording a liability.',1),o('Record a liability for the full '+usd(amt)+' claim.'),o('Record an expense equal to half of the claim.'),o('Do nothing, because contingencies are never reported.')],
-     why:'A loss that is reasonably possible, or probable but not estimable, is disclosed but not accrued. Only probable and estimable losses are recorded. Remote losses need no disclosure.'};
-    var k=c.V([A,B]);return {type:'mc',stem:k.stem,options:c.shuf(k.opts),why:k.why};};
-  S['7.4']=function(c){var ri=c.ri;
-    if(c.V([0,1])===0){var bal=ri(10,30)*100,rt=ri(70,95)/10,m=ri(3,9),v=r1(bal*rt/100*m/12);
-      return {type:'num',unit:'$ thousand',answer:v,tol:0.15,stem:'Cullowhee borrowed '+usd(bal)+' on its revolving credit line at '+rt.toFixed(1)+'% annual interest. The loan is outstanding for '+m+' months this year. How much interest expense accrues for those '+m+' months? Enter thousands of dollars to one decimal place.',
-       why:'Interest = principal × rate × time = '+fmt(bal)+' × '+rt.toFixed(1)+'% × '+m+'/12 = <strong>'+v.toFixed(1)+'</strong>.'};}
-    var b=ri(46,54)*100,e=b-ri(4,6)*100,rt2=ri(65,75)/10,v2=r1((b+e)/2*rt2/100);
-    return {type:'num',unit:'$ thousand',answer:v2,tol:0.2,stem:'Cullowhee’s term loan balance was '+usd(b)+' at the start of the year and '+usd(e)+' at the end, after a steady principal repayment. The interest rate is '+rt2.toFixed(1)+'%. Estimate interest expense using the average balance. Enter thousands of dollars to one decimal place.',
-     why:'Average balance = ('+fmt(b)+' + '+fmt(e)+') ÷ 2 = '+fmt((b+e)/2)+'. Interest = '+fmt((b+e)/2)+' × '+rt2.toFixed(1)+'% = <strong>'+v2.toFixed(1)+'</strong>.'};};
-  S['7.5']=function(c){var ri=c.ri;
-    var L=ri(40,50)*100,P=ri(4,6)*100,R=ri(8,12)*100;
-    if(c.V([0,1])===0)return {type:'num',unit:'$ thousand',answer:L-P,tol:0.5,stem:'At year-end Cullowhee’s term loan balance is '+usd(L)+'. The loan agreement requires a principal payment of '+usd(P)+' during the next year. How much is reported as <em>long-term</em> debt (not current)? Enter thousands of dollars.',
-      why:'The principal due within one year is the current portion ('+fmt(P)+'). The rest is long-term: '+fmt(L)+' − '+fmt(P)+' = <strong>'+fmt(L-P)+'</strong>.'};
-    return {type:'num',unit:'$ thousand',answer:R+P,tol:0.5,stem:'At year-end Cullowhee owes '+usd(R)+' on its revolving credit line, which is due within the year, and its term loan requires a principal payment of '+usd(P)+' next year. How much <em>current</em> debt (short-term borrowings plus the current portion of long-term debt) does it report? Enter thousands of dollars.',
-     why:'Current debt = revolver + current portion of the term loan = '+fmt(R)+' + '+fmt(P)+' = <strong>'+fmt(R+P)+'</strong>.'};};
-  S['7.6']=function(c){var ri=c.ri;
-    var F=ri(8,12)*1000,cr=c.pick([5,6,7]),mr=cr+1,n=c.pick([10,20]);
-    var cp=F*cr/200,i=mr/200,price=cp*ann(i,n)+F*pvf(i,n),pr=Math.round(price);
-    var setup='Cullowhee issues bonds with a face value of '+usd(F)+' and a '+cr+'% annual coupon paid semiannually. The bonds mature in '+(n/2)+' years. Investors require a market (yield) rate of '+mr+'% per year, so use '+(mr/2)+'% per semiannual period for '+n+' periods. ';
-    var how=' (Price = coupon × present value of an annuity factor + face value × present value of a single amount factor.)';
-    if(c.V([0,1])===0)return {type:'num',unit:'$ thousand',answer:pr,tol:1,stem:setup+'What is the issue price of the bonds? Enter thousands of dollars, rounded to the nearest thousand.'+how,
-      why:'Semiannual coupon = '+fmt(F)+' × '+(cr/2)+'% = '+fmt(cp)+'. Present value of the coupons = '+fmt(cp)+' × '+ann(i,n).toFixed(4)+' = '+fmt(cp*ann(i,n))+'. Present value of the face value = '+fmt(F)+' × '+pvf(i,n).toFixed(4)+' = '+fmt(F*pvf(i,n))+'. Price ≈ <strong>'+fmt(pr)+'</strong>.'};
-    var d=Math.round(F-price);
-    return {type:'num',unit:'$ thousand',answer:d,tol:1,stem:setup+'By how much do the bonds sell below face value (the discount)? Enter thousands of dollars, rounded to the nearest thousand.'+how,
-     why:'Price ≈ '+fmt(pr)+' (coupons '+fmt(cp*ann(i,n))+' + face value '+fmt(F*pvf(i,n))+'). Discount = '+fmt(F)+' − '+fmt(pr)+' ≈ <strong>'+fmt(d)+'</strong>.'};};
-  S['7.7']=function(c){var o=c.o,cr=c.ri(4,8),d=c.ri(1,2),hi=cr+d,lo=cr-d;
-    var A={stem:'Cullowhee’s bonds pay a '+cr+'% coupon, but investors now require a '+hi+'% market rate for companies of Cullowhee’s risk. How will the bonds be priced?',
-     opts:[o('At a discount, below face value',1),o('At a premium, above face value'),o('At exactly face value'),o('The price is not affected by the market rate')],
-     why:'The coupon ('+cr+'%) is below what investors require ('+hi+'%), so investors pay less than face value. The bonds sell at a discount.'};
-    var B={stem:'Cullowhee’s bonds pay a '+cr+'% coupon, but investors now require only a '+lo+'% market rate. How will the bonds be priced?',
-     opts:[o('At a premium, above face value',1),o('At a discount, below face value'),o('At exactly face value'),o('The price is not affected by the market rate')],
-     why:'The coupon ('+cr+'%) is above what investors require ('+lo+'%), so investors pay more than face value. The bonds sell at a premium.'};
-    var k=c.V([A,B]);return {type:'mc',stem:k.stem,options:c.shuf(k.opts),why:k.why};};
-  S['7.8']=function(c){var ri=c.ri;
-    var F=ri(8,12)*1000,cr=c.pick([5,6,7]),mr=cr+1,cv=F-ri(5,9)*100,cp=F*cr/200,ex=r1(cv*mr/200);
-    var setup='Cullowhee’s '+cr+'% bonds (face value '+usd(F)+', interest paid semiannually) were issued to yield '+mr+'%. At the start of the first six-month period the bonds’ carrying value is '+usd(cv)+'. ';
-    if(c.V([0,1])===0)return {type:'num',unit:'$ thousand',answer:ex,tol:0.15,stem:setup+'What is interest expense for the first six months using the effective interest method? Enter thousands of dollars to one decimal place.',
-      why:'Interest expense = carrying value × semiannual market rate = '+fmt(cv)+' × '+(mr/2)+'% = <strong>'+ex.toFixed(1)+'</strong>. The cash coupon is only '+fmt(cp)+'.'};
-    var am=r1(ex-cp);
-    return {type:'num',unit:'$ thousand',answer:am,tol:0.15,stem:setup+'How much of the discount is amortized (added to the carrying value) in the first six months? Enter thousands of dollars to one decimal place.',
-     why:'Interest expense = '+fmt(cv)+' × '+(mr/2)+'% = '+ex.toFixed(1)+'. Cash coupon = '+fmt(F)+' × '+(cr/2)+'% = '+fmt(cp)+'. Amortization = '+ex.toFixed(1)+' − '+fmt(cp)+' = <strong>'+am.toFixed(1)+'</strong>.'};};
-  S['7.9']=function(c){var ri=c.ri;
-    var oi=ri(40,48)*100,ie=ri(65,90)*10,t=r2(oi/ie);
-    if(c.V([0,1])===0)return {type:'num',unit:'times',answer:t,tol:0.03,stem:'Cullowhee reported operating income of '+usd(oi)+' and interest expense of '+usd(ie)+'. Compute times interest earned. Enter the ratio rounded to two decimal places.',
-      why:'Times interest earned = operating income ÷ interest expense = '+fmt(oi)+' ÷ '+fmt(ie)+' = <strong>'+t.toFixed(2)+'</strong>.'};
-    var mn=c.pick([4,5,6]),cush=Math.round(oi-mn*ie);
-    return {type:'num',unit:'$ thousand',answer:cush,tol:0.5,stem:'Cullowhee’s bank covenant requires times interest earned of at least '+mn+'.0. Operating income is '+usd(oi)+' and interest expense is '+usd(ie)+'. By how much could operating income fall before Cullowhee breaks the covenant (assume interest expense stays the same)? Enter thousands of dollars.',
-     why:'Minimum operating income = '+mn+' × '+fmt(ie)+' = '+fmt(mn*ie)+'. Cushion = '+fmt(oi)+' − '+fmt(mn*ie)+' = <strong>'+fmt(cush)+'</strong>.'};};
-  S['7.10']=function(c){var ri=c.ri;
-    var rt=c.pick([6,8,10]),n=ri(3,6);
-    if(c.V([0,1])===0){var fv=ri(8,15)*100,pv=Math.round(fv*pvf(rt/100,n));
-      return {type:'num',unit:'$ thousand',answer:pv,tol:1,stem:'Cullowhee’s supplier will be paid '+usd(fv)+' in '+n+' years. At a discount rate of '+rt+'% per year, what is the present value of that payment today? Enter thousands of dollars, rounded to the nearest thousand.',
-       why:'PV = FV ÷ (1 + r)<sup>n</sup> = '+fmt(fv)+' × '+pvf(rt/100,n).toFixed(4)+' = <strong>'+fmt(pv)+'</strong>.'};}
-    var pm=ri(2,5)*100,pv2=Math.round(pm*ann(rt/100,n));
-    return {type:'num',unit:'$ thousand',answer:pv2,tol:1,stem:'Cullowhee will pay '+usd(pm)+' at the end of each of the next '+n+' years under a lease. At a discount rate of '+rt+'% per year, what is the present value of these payments? Enter thousands of dollars, rounded to the nearest thousand.',
-     why:'PV of an annuity = payment × annuity factor = '+fmt(pm)+' × '+ann(rt/100,n).toFixed(4)+' = <strong>'+fmt(pv2)+'</strong>.'};};
-  /* ================= MODULE 8 ================= */
-  S['8.1']=function(c){var ri=c.ri;
-    var sh=ri(76,82)*100,pr=ri(55,85)/10,mc=Math.round(sh*pr);
-    if(c.V([0,1])===0)return {type:'num',unit:'$ thousand',answer:mc,tol:1,stem:'Cullowhee has '+fmt(sh)+' thousand shares outstanding and its stock trades at $'+pr.toFixed(2)+' per share. What is its market capitalization? Enter thousands of dollars.',
-      why:'Market capitalization = shares outstanding × share price = '+fmt(sh)+' × '+pr.toFixed(2)+' = <strong>'+fmt(mc)+'</strong> ($ thousand).'};
-    var eq=ri(28,34)*1000,mb=r2(mc/eq);
-    return {type:'num',unit:'times',answer:mb,tol:0.03,stem:'Cullowhee has '+fmt(sh)+' thousand shares outstanding trading at $'+pr.toFixed(2)+' per share, and stockholders’ equity (book value) of '+usd(eq)+'. Compute the market-to-book ratio. Enter the ratio rounded to two decimal places.',
-     why:'Market value = '+fmt(sh)+' × '+pr.toFixed(2)+' = '+fmt(mc)+'. Market-to-book = '+fmt(mc)+' ÷ '+fmt(eq)+' = <strong>'+mb.toFixed(2)+'</strong>.'};};
-  S['8.2']=function(c){var ri=c.ri;
-    var n=ri(8,16)*100,p=ri(65,90)/10,par=0.01,apic=Math.round(n*(p-par));
-    if(c.V([0,1])===0)return {type:'num',unit:'$ thousand',answer:apic,tol:1,stem:'Cullowhee sells '+fmt(n)+' thousand new shares of $0.01 par value common stock for $'+p.toFixed(2)+' per share in cash. By how much does additional paid-in capital increase? Enter thousands of dollars, rounded to the nearest thousand.',
-      why:'Cash received = '+fmt(n)+' × '+p.toFixed(2)+' = '+fmt(Math.round(n*p))+'. Common stock (par) = '+fmt(n)+' × 0.01 = '+Math.round(n*par)+'. Additional paid-in capital = '+fmt(Math.round(n*p))+' − '+Math.round(n*par)+' ≈ <strong>'+fmt(apic)+'</strong>.'};
-    var cash=Math.round(n*p);
-    return {type:'num',unit:'$ thousand',answer:cash,tol:1,stem:'Cullowhee sells '+fmt(n)+' thousand new shares of $0.01 par value common stock for $'+p.toFixed(2)+' per share. By how much do total stockholders’ equity and cash each increase? Enter thousands of dollars, rounded to the nearest thousand.',
-     why:'Total equity and cash both increase by the full proceeds: '+fmt(n)+' × '+p.toFixed(2)+' = <strong>'+fmt(cash)+'</strong>. Par value and additional paid-in capital only split that amount between two equity accounts. Net income is not affected.'};};
-  S['8.3']=function(c){var ri=c.ri;
-    var n=ri(15,40)*10,p=ri(50,70)/10,cost=Math.round(n*p);
-    if(c.V([0,1])===0)return {type:'num',unit:'$ thousand',answer:cost,tol:1,stem:'Cullowhee repurchases '+fmt(n)+' thousand of its own shares in the open market at $'+p.toFixed(2)+' per share and holds them as treasury stock. By how much do cash and total stockholders’ equity each decrease? Enter thousands of dollars.',
-      why:'Cost of the repurchase = '+fmt(n)+' × '+p.toFixed(2)+' = <strong>'+fmt(cost)+'</strong>. Cash falls by that amount and treasury stock (a contra-equity account) reduces total equity by the same amount. There is no gain or loss and no effect on net income.'};
-    var iss=ri(80,84)*100,after=iss-n;
-    return {type:'num',unit:'thousand shares',answer:after,tol:0.5,stem:'Cullowhee has '+fmt(iss)+' thousand shares outstanding. It then repurchases '+fmt(n)+' thousand shares as treasury stock. How many shares are outstanding after the repurchase? Enter thousands of shares.',
-     why:'Shares outstanding = '+fmt(iss)+' − '+fmt(n)+' = <strong>'+fmt(after)+'</strong>. Treasury shares are still issued but are not outstanding, so they receive no dividends and are not counted in EPS.'};};
-  S['8.4']=function(c){var ri=c.ri;
-    var n=ri(8,20)*50,fv=ri(30,60)/10,yrs=c.pick([3,4,5]),tot=n*fv,ann1=r1(tot/yrs);
-    if(c.V([0,1])===0)return {type:'num',unit:'$ thousand',answer:ann1,tol:0.15,stem:'Cullowhee grants '+fmt(n)+' thousand restricted stock units to employees. The fair value on the grant date is $'+fv.toFixed(2)+' per unit, and the units vest at the end of '+yrs+' years. How much compensation expense is recorded each year? Enter thousands of dollars to one decimal place.',
-      why:'Total fair value = '+fmt(n)+' × '+fv.toFixed(2)+' = '+fmt(tot)+'. The expense is spread over the vesting period: '+fmt(tot)+' ÷ '+yrs+' = <strong>'+ann1.toFixed(1)+'</strong> per year.'};
-    var k=ri(2,yrs-1),cum=r1(tot*k/yrs);
-    return {type:'num',unit:'$ thousand',answer:cum,tol:0.15,stem:'Cullowhee grants stock options with a total grant-date fair value of '+usd(tot)+'. The options vest at the end of '+yrs+' years and the expense is recognized evenly over the vesting period. How much total expense has been recognized after '+k+' years? Enter thousands of dollars to one decimal place.',
-     why:'Annual expense = '+fmt(tot)+' ÷ '+yrs+' = '+r1(tot/yrs).toFixed(1)+'. After '+k+' years: '+k+'/'+yrs+' × '+fmt(tot)+' = <strong>'+cum.toFixed(1)+'</strong>. Stock compensation is a real expense even though it needs no cash when granted.'};};
-  S['8.5']=function(c){var ri=c.ri;
-    var sh=ri(75,80)*100,dps=c.pick([0.08,0.10,0.12,0.15]),div=Math.round(sh*dps);
-    if(c.V([0,1])===0)return {type:'num',unit:'$ thousand',answer:div,tol:1,stem:'Cullowhee’s board declares a cash dividend of $'+dps.toFixed(2)+' per share. There are '+fmt(sh)+' thousand shares outstanding. How much cash will Cullowhee pay in dividends? Enter thousands of dollars.',
-      why:'Dividends = shares × dividend per share = '+fmt(sh)+' × '+dps.toFixed(2)+' = <strong>'+fmt(div)+'</strong>. Cash and retained earnings both fall by this amount; net income is not affected.'};
-    var ni=ri(26,34)*100,po=r1(div/ni*100);
-    return {type:'num',unit:'%',answer:po,tol:0.1,stem:'Cullowhee paid cash dividends of '+usd(div)+' and earned net income of '+usd(ni)+'. Compute the dividend payout ratio. Enter the percentage rounded to one decimal place.',
-     why:'Payout ratio = dividends ÷ net income = '+fmt(div)+' ÷ '+fmt(ni)+' = <strong>'+po.toFixed(1)+'%</strong>.'};};
-  S['8.6']=function(c){var ri=c.ri,o=c.o;
-    if(c.V([0,1])===0){var k=c.pick([2,3,4]),sh=ri(70,82)*100,par=0.01;
-      return {type:'num',unit:'thousand shares',answer:sh*k,tol:0.5,stem:'Cullowhee has '+fmt(sh)+' thousand shares outstanding and declares a '+k+'-for-1 stock split. How many shares are outstanding after the split? Enter thousands of shares.',
-       why:'A '+k+'-for-1 split multiplies the number of shares by '+k+': '+fmt(sh)+' × '+k+' = <strong>'+fmt(sh*k)+'</strong>. Par value per share is divided by '+k+', and total equity does not change.'};}
-    var kk=c.pick([2,3,4]);var B={stem:'Cullowhee declares a '+kk+'-for-1 stock split. Which statement about the effect on the financial statements is correct?',
-     opts:[o('Total stockholders’ equity, cash and net income are unchanged; the number of shares is multiplied by '+kk+' and par value per share is divided by '+kk+'.',1),o('Retained earnings decreases and cash decreases.'),o('Total stockholders’ equity is multiplied by '+kk+' because the number of shares is.'),o('Net income is multiplied by '+kk+' because there are more shares.')],
-     why:'A stock split is not a monetary transaction. It changes the number of shares and the par value per share, but not cash, total equity or net income.'};
-    return {type:'mc',stem:B.stem,options:c.shuf(B.opts),why:B.why};};
-  S['8.7']=function(c){var o=c.o,cur=c.pick(['euro','Canadian dollar','British pound','Japanese yen']),dir=c.pick(['weakens','weakens']);
-    var A={stem:'Cullowhee’s foreign subsidiary reports in '+cur+'s. The '+cur+' '+dir+' against the dollar, creating a translation loss on the subsidiary’s net assets. Where is this loss reported?',
-     opts:[o('In accumulated other comprehensive income (AOCI), a part of stockholders’ equity',1),o('In net income on the income statement'),o('In retained earnings as a prior-period error'),o('In operating expenses')],
-     why:'Foreign currency translation adjustments bypass net income and are reported in other comprehensive income, which accumulates in AOCI in stockholders’ equity.'};
-    var B={stem:'Which statement about accumulated other comprehensive income (AOCI) is correct?',
-     opts:[o('It is a component of stockholders’ equity that holds gains and losses not included in net income, such as foreign currency translation adjustments.',1),o('It is a liability for taxes not yet paid.'),o('It is the same as retained earnings.'),o('It is reported in operating expenses.')],
-     why:'AOCI collects certain gains and losses (for example, foreign currency translation) that are reported in equity instead of net income. It is separate from retained earnings.'};
-    var k=c.V([A,B]);return {type:'mc',stem:k.stem,options:c.shuf(k.opts),why:k.why};};
-  S['8.8']=function(c){var ri=c.ri;
-    var S0=ri(76,80)*100,n=ri(8,15)*100,mo=c.pick([3,4,6,9]);
-    if(c.V([0,1])===0){var w=S0+n*(12-mo)/12;
-      return {type:'num',unit:'thousand shares',answer:r1(w),tol:0.5,stem:'Cullowhee’s fiscal year has 12 months. It started with '+fmt(S0)+' thousand shares outstanding and sold '+fmt(n)+' thousand new shares at the end of month '+mo+' (so they were outstanding for '+(12-mo)+' months). What are the weighted-average shares outstanding? Enter thousands of shares.',
-       why:'Weighted average = '+fmt(S0)+' + '+fmt(n)+' × '+(12-mo)+'/12 = <strong>'+fmt(w)+'</strong>.'};}
-    var k=ri(10,30)*10,w2=S0-k*(12-mo)/12;
-    return {type:'num',unit:'thousand shares',answer:r1(w2),tol:0.5,stem:'Cullowhee’s fiscal year has 12 months. It started with '+fmt(S0)+' thousand shares outstanding and repurchased '+fmt(k)+' thousand shares at the end of month '+mo+' (so the shares were out of the count for the last '+(12-mo)+' months). What are the weighted-average shares outstanding? Enter thousands of shares.',
-     why:'Weighted average = '+fmt(S0)+' − '+fmt(k)+' × '+(12-mo)+'/12 = <strong>'+fmt(w2)+'</strong>.'};};
-  S['8.9']=function(c){var ri=c.ri;
-    var ni=ri(26,34)*100,w=ri(79,86)*100+50,e=Math.round(ni/w*1000)/1000;
-    if(c.V([0,1])===0)return {type:'num',unit:'$ per share',answer:e,tol:0.006,stem:'Cullowhee earned net income of '+usd(ni)+' and had '+fmt(w)+' thousand weighted-average shares outstanding. It has no preferred stock. Compute basic earnings per share. Enter dollars per share rounded to three decimal places.',
-      why:'EPS = net income ÷ weighted-average shares = '+fmt(ni)+' ÷ '+fmt(w)+' = <strong>$'+e.toFixed(3)+'</strong>.'};
-    var te=c.pick([0.30,0.35,0.40]),need=Math.round(te*w);
-    return {type:'num',unit:'$ thousand',answer:need,tol:1,stem:'The board wants basic EPS of $'+te.toFixed(2)+'. Weighted-average shares outstanding are '+fmt(w)+' thousand. How much net income does Cullowhee need to earn? Enter thousands of dollars.',
-     why:'Net income = EPS × weighted-average shares = '+te.toFixed(2)+' × '+fmt(w)+' = <strong>'+fmt(need)+'</strong>.'};};
-  S['8.10']=function(c){var ri=c.ri,o=c.o;
-    if(c.V([0,1])===0){var n1=ri(30,36)*100,n2=Math.round(n1*(ri(82,92)/100)/10)*10,w1=ri(78,81)*100,w2=w1+ri(5,9)*100,g=r1(((n2/w2)/(n1/w1)-1)*100),gn=r1((n2/n1-1)*100);
-      return {type:'num',unit:'%',answer:g,tol:0.15,stem:'Net income fell from '+usd(n1)+' to '+usd(n2)+'. Weighted-average shares rose from '+fmt(w1)+' thousand to '+fmt(w2)+' thousand because of a stock sale. What was the percentage change in EPS? Enter the percentage change (negative if EPS fell) rounded to one decimal place.',
-       why:'EPS last year = '+fmt(n1)+' ÷ '+fmt(w1)+' = '+(n1/w1).toFixed(4)+'. EPS this year = '+fmt(n2)+' ÷ '+fmt(w2)+' = '+(n2/w2).toFixed(4)+'. Change = <strong>'+g.toFixed(1)+'%</strong>, compared with '+gn.toFixed(1)+'% for net income. More shares spread the income thinner.'};}
-    var nn=c.ri(26,34)*100;var B={stem:'Cullowhee’s net income was flat at '+usd(nn)+' this year, but EPS rose. Which is the most likely explanation?',
-     opts:[o('The weighted-average number of shares outstanding fell, for example because of a share repurchase.',1),o('The company issued many new shares.'),o('A stock split reduced the number of shares.'),o('Dividends were paid.')],
-     why:'EPS = net income ÷ weighted-average shares. With net income flat, EPS can rise only if the share count falls, which a repurchase does. (A stock split would not raise EPS in the restated statements, because it changes shares in all periods.)'};
-    return {type:'mc',stem:B.stem,options:c.shuf(B.opts),why:B.why};};
+  /* ================= MODULE 14 ================= */
+  S['14.1']=function(c){var o=c.o;
+    var A={stem:'Cullowhee’s lender wants to see the company’s results for the year, prepared under GAAP. Which kind of accounting produces this information, and who is it for?',
+      opts:[o('Financial accounting, for users outside the company',1),o('Managerial accounting, for users outside the company'),o('Managerial accounting, for users inside the company only'),o('Financial accounting, for managers only')],
+      why:'Financial accounting reports general-purpose statements under GAAP to outside users such as lenders and investors. Managerial accounting serves managers inside the company and is not bound by GAAP.'};
+    var B={stem:'The plant manager wants cost estimates for a new second shift, broken down by product line and looking ahead to next quarter. Which statement describes this kind of information?',
+      opts:[o('It is managerial accounting: it is for internal decisions, forward-looking, and not required to follow GAAP.',1),o('It is financial accounting: it must follow GAAP and be audited.'),o('It is financial accounting: it is prepared mainly for investors.'),o('It is managerial accounting: it must be filed with the SEC.')],
+      why:'Managerial information is internal, often forward-looking, detailed by product or department, and free of GAAP and SEC requirements.'};
+    return MC(c,c.V([A,B]));};
+  S['14.2']=function(c){var o=c.o,x=c.ri(8,12);
+    var A={stem:'Which of these statements is a measurable <em>goal</em> for Cullowhee?',
+      opts:[o('Raise operating income to '+x+'% of net sales by 2028.',1),o('Put every rider on a safe, joyful ride.'),o('Sell direct online to cut out dealer margins.'),o('Be the best bicycle company in the mountains.')],
+      why:'A goal is definable and measurable. The first statement has a number and a date. The second is a mission, the third is a strategy, and the fourth is too vague to measure.'};
+    var B={stem:'Which of these statements is a <em>strategy</em> for Cullowhee?',
+      opts:[o('Sell direct online to cut out dealer margins and lower the cost to reach riders.',1),o('Raise operating income to '+x+'% of net sales by 2028.'),o('Put every rider on a safe, joyful ride.'),o('Earn a profit.')],
+      why:'A strategy is a course of action for reaching goals. Selling direct online is an action. The other options are a goal with a number, a mission, and a general goal.'};
+    return MC(c,c.V([A,B]));};
+  S['14.3']=function(c){var o=c.o,p=c.ri(22,30)*100;
+    var opts=function(ok){var a=['Cost leadership','Product differentiation','Market niche','Vertical integration'];return a.map(function(t){return o(t,t===ok);});};
+    var A={stem:'The Balsam E1 sells for '+dol(p)+' and is promoted for its range and app features. Customers pay more for something they see as unique. Which competitive strategy is this?',opts:opts('Product differentiation'),why:'A premium price backed by features customers value is differentiation. Cost leadership would mean low cost and low price.'};
+    var B={stem:'Cullowhee’s Trail Cub is a simple bike built in large volumes with few options, so its cost per unit is among the lowest in the market. Which competitive strategy is this?',opts:opts('Cost leadership'),why:'Low cost from simple design and high volume is cost leadership. The firm can then price aggressively or keep a larger margin.'};
+    var C={stem:'Hemlock Custom builds a small number of made-to-order bikes for adaptive riders who cannot find a standard frame. Which competitive strategy is this?',opts:opts('Market niche'),why:'Serving a narrow, specialized group of customers is a market niche strategy.'};
+    return MC(c,c.V(f===2?[A,B,C]:[A,B]));};
+  S['14.4']=function(c){var o=c.o;
+    var A={stem:'Which Cullowhee activity belongs to a <em>primary</em> process of the internal value chain?',
+      opts:[o('Shipping finished bikes to dealers (outbound logistics)',1),o('Preparing the payroll (accounting)'),o('Hiring plant workers (human resources)'),o('Servicing the factory equipment (maintenance)')],
+      why:'The primary processes are inbound logistics, operations, outbound logistics, marketing and sales, and service. Accounting, HR, maintenance, finance and design are support processes.'};
+    var B={stem:'Which Cullowhee activity belongs to a <em>support</em> process of the internal value chain?',
+      opts:[o('Maintaining the assembly line equipment',1),o('Receiving and storing aluminum tubing (inbound logistics)'),o('Assembling the bikes (operations)'),o('Running online advertising (marketing and sales)')],
+      why:'Maintenance supports every primary process. Receiving materials, assembly and marketing are primary processes.'};
+    return MC(c,c.V([A,B]));};
+  S['14.5']=function(c){var o=c.o;
+    var items=[['Aluminum tubing used in each bike','Variable','Total cost rises in proportion to the bikes built.'],
+      ['Annual property tax on the plant','Fixed','The tax is the same no matter how many bikes are built (within the relevant range).'],
+      ['A plant electric bill with a monthly base charge plus a charge per kilowatt-hour','Mixed','It has a fixed part (the base charge) and a variable part (usage).'],
+      ['Sales commission of 3% of each online sale','Variable','Commission grows in direct proportion to sales.'],
+      ['The plant manager’s annual salary','Fixed','Salary does not change with output within the relevant range.']];
+    var it=f===2?c.pick(items):[items[c.ri(0,1)?0:3],items[c.ri(0,1)?1:4]][f];
+    var names=['Variable','Fixed','Mixed','Step'];
+    return {type:'mc',stem:'How does this Cullowhee cost behave as production volume changes? <strong>'+it[0]+'.</strong>',options:c.shuf(names.map(function(t){return o(t+' cost',t===it[1]);})),why:it[2]};};
+  S['14.6']=function(c){var ri=c.ri,p=ri(4,30)*100,v=Math.round(p*ri(55,75)/1000)*10,cm=p-v;
+    if(c.V([0,1])===0)return NUM('$ per unit',cm,0.5,'A Cullowhee model sells for '+dol(p)+' per unit. Total variable cost per unit is '+dol(v)+'. What is the contribution margin per unit?','Contribution margin per unit = price − variable cost per unit = '+fmt(p)+' − '+fmt(v)+' = <strong>'+fmt(cm)+'</strong>.');
+    return NUM('$ per unit',v,0.5,'A Cullowhee model sells for '+dol(p)+' per unit and earns a contribution margin of '+dol(cm)+' per unit. What is its variable cost per unit?','Variable cost = price − contribution margin = '+fmt(p)+' − '+fmt(cm)+' = <strong>'+fmt(v)+'</strong>.');};
+  S['14.7']=function(c){var ri=c.ri,p=ri(4,30)*100,v=Math.round(p*ri(50,75)/1000)*10,cm=p-v,pct=r1(cm/p*100);
+    if(c.V([0,1])===0)return NUM('%',pct,0.15,'A Cullowhee model sells for '+dol(p)+' per unit with variable cost of '+dol(v)+' per unit. What is the contribution margin ratio? Enter the percent to one decimal place.','Contribution margin ratio = ('+fmt(p)+' − '+fmt(v)+') ÷ '+fmt(p)+' = <strong>'+pct.toFixed(1)+'%</strong>.');
+    var s=ri(40,60)*1000,vc=Math.round(s*ri(50,70)/100/10)*10,cmr=r1((s-vc)/s*100);
+    return NUM('%',cmr,0.15,'A product line has net sales of '+usd(s)+' and total variable costs of '+usd(vc)+'. What is the contribution margin ratio? Enter the percent to one decimal place.','Contribution margin ÷ net sales = ('+fmt(s)+' − '+fmt(vc)+') ÷ '+fmt(s)+' = <strong>'+cmr.toFixed(1)+'%</strong>.');};
+  S['14.8']=function(c){var ri=c.ri,u=ri(5,12)*1000,p=ri(15,30)*100,v=Math.round(p*ri(55,70)/1000)*10,fx=ri(10,25)*100,sm=(u*(p-v))/1000-fx;
+    if(c.V([0,1])===0)return NUM('$ thousand',sm,0.6,'A Cullowhee product line sold '+fmt(u)+' units at '+dol(p)+' each. Variable cost is '+dol(v)+' per unit. The line has traceable fixed costs of '+usd(fx)+'. What is its segment margin? Enter thousands of dollars.','Contribution margin = '+fmt(u)+' × ('+fmt(p)+' − '+fmt(v)+') = '+fmt(u*(p-v)/1000)+' thousand. Segment margin = contribution margin − traceable fixed costs = '+fmt(u*(p-v)/1000)+' − '+fmt(fx)+' = <strong>'+fmt(sm)+'</strong>.');
+    var cm=ri(40,90)*100,t=ri(30,70)*100;
+    return NUM('$ thousand',cm-t,0.6,'A product line has a contribution margin of '+usd(cm)+' and traceable fixed costs of '+usd(t)+'. What is its segment margin? Enter thousands of dollars (negative if the line loses money).','Segment margin = contribution margin − traceable fixed costs = '+fmt(cm)+' − '+fmt(t)+' = <strong>'+fmt(cm-t)+'</strong>.');};
+  S['14.9']=function(c){var ri=c.ri,a=ri(60,90)*100,b=ri(30,60)*100,d=ri(10,25)*100,e=ri(5,15)*100,tot=a+b+d+e;
+    var names=['Ridge Commuter','Balsam E1','Hemlock Custom','Trail Cub'],vals=[a,b,d,e];
+    var k=c.V([0,1]);var share=r1(vals[k]/tot*100);
+    return NUM('%',share,0.15,'Cullowhee’s four product lines earned contribution margins of '+usd(a)+' (Ridge Commuter), '+usd(b)+' (Balsam E1), '+usd(d)+' (Hemlock Custom) and '+usd(e)+' (Trail Cub). What percent of the company’s total contribution margin comes from the '+names[k]+'? Enter the percent to one decimal place.',
+      'Total contribution margin = '+fmt(tot)+' thousand. '+names[k]+' = '+fmt(vals[k])+' ÷ '+fmt(tot)+' = <strong>'+share.toFixed(1)+'%</strong>.');};
+  S['14.10']=function(c){var o=c.o;
+    var A={stem:'The IMA Statement of Ethical Professional Practice names four standards. Which list is correct?',
+      opts:[o('Competence, confidentiality, integrity and credibility',1),o('Competence, profitability, integrity and loyalty'),o('Confidentiality, efficiency, accuracy and credibility'),o('Integrity, objectivity, independence and care')],
+      why:'The four standards are competence, confidentiality, integrity and credibility.'};
+    var B={stem:'A Cullowhee plant manager asks the cost accountant to move some costs to a product line that is already losing money, so a profitable line looks better. What should the accountant do first?',
+      opts:[o('Raise the concern with the manager and follow the company’s policy for resolving ethical conflicts, escalating if needed.',1),o('Make the change, because the manager is senior.'),o('Make half of the change as a compromise.'),o('Say nothing and keep a private copy of the numbers.')],
+      why:'The IMA standards of integrity and credibility require honest, fair reporting. The accountant should raise the issue, follow policy, and escalate if it is not resolved.'};
+    return MC(c,c.V([A,B]));};
+  /* ================= MODULE 15 ================= */
+  S['15.1']=function(c){var ri=c.ri;
+    if(c.V([0,1])===0){var F=ri(30,60)*1000,x=ri(3,6)*1000,u=r2(F/x);
+      return NUM('$ per unit',u,0.02,'Cullowhee’s plant has fixed costs of '+dol(F)+' per month. The plant builds '+fmt(x)+' bikes this month. What is the fixed cost per bike? Enter dollars per bike to two decimals.','Fixed cost per unit = '+fmt(F)+' ÷ '+fmt(x)+' = <strong>'+u.toFixed(2)+'</strong>.');}
+    var x1=ri(2,4)*1000,u1=ri(18,30),x2=x1+ri(2,4)*1000,F=u1*x1,u2=r2(F/x2);
+    return NUM('$ per unit',u2,0.02,'At '+fmt(x1)+' units a month, the plant’s fixed cost is '+dol(u1)+' per unit. Total fixed cost does not change. What is the fixed cost per unit at '+fmt(x2)+' units? Enter dollars per unit to two decimals.','Total fixed cost = '+fmt(u1)+' × '+fmt(x1)+' = '+fmt(F)+'. Per unit at '+fmt(x2)+' = <strong>'+u2.toFixed(2)+'</strong>. Fixed cost per unit falls as volume rises.');};
+  S['15.2']=function(c){var ri=c.ri,a=ri(40,60)*1000,b=ri(7,12),x=ri(3,6)*1000,y=a+b*x;
+    if(c.V([0,1])===0)return NUM('$',y,1,'The cost of running Cullowhee’s plant is estimated as Y = '+fmt(a)+' + '+b+'X, where X is units produced in a month. What is the predicted cost for a month with '+fmt(x)+' units?','Y = '+fmt(a)+' + '+b+' × '+fmt(x)+' = <strong>'+fmt(y)+'</strong>.');
+    return NUM('units',x,1,'The cost of running Cullowhee’s plant is estimated as Y = '+fmt(a)+' + '+b+'X. The budget for next month is '+dol(y)+'. How many units can be produced within that budget?','Solve '+fmt(y)+' = '+fmt(a)+' + '+b+'X, so X = ('+fmt(y)+' − '+fmt(a)+') ÷ '+b+' = <strong>'+fmt(x)+'</strong>.');};
+  S['15.3']=function(c){var o=c.o,lo=c.ri(2,3)*1000,hi=lo+c.ri(3,4)*1000,out=hi+c.ri(2,4)*1000;
+    var A={stem:'What is the <em>relevant range</em>?',
+      opts:[o('The normal range of activity within which the cost assumptions (fixed in total, constant per unit when variable) hold',1),o('The range of prices customers will pay'),o('The range of months in the data set'),o('The range between the highest and lowest cost')],
+      why:'Cost relationships are valid only within the relevant range, the activity levels the company normally operates in.'};
+    var B={stem:'Cullowhee’s cost equation was estimated from months with '+fmt(lo)+' to '+fmt(hi)+' units. Management wants to predict the cost of a second shift at '+fmt(out)+' units. What is the main concern?',
+      opts:[o('The volume is outside the relevant range, so fixed costs may step up and the equation may not hold.',1),o('Nothing, because a linear equation works at any volume.'),o('Variable cost per unit will become zero.'),o('The cost will be lower than predicted for sure.')],
+      why:'Predictions outside the data’s range are extrapolations. A second shift may add supervisors, equipment or overtime, so the equation can be wrong.'};
+    return MC(c,c.V([A,B]));};
+  function hl(c){var ri=c.ri,v=ri(80,120)/10,F=ri(40,55)*1000,ul=ri(20,30)*100,uh=ul+ri(20,40)*100;return {v:v,F:F,ul:ul,uh:uh,cl:Math.round(F+v*ul),ch:Math.round(F+v*uh)};}
+  function hlText(h){return 'In the lowest-activity month Cullowhee’s plant built '+fmt(h.ul)+' units at a total cost of '+dol(h.cl)+'. In the highest-activity month it built '+fmt(h.uh)+' units at '+dol(h.ch)+'.';}
+  S['15.4']=function(c){var h=hl(c),v=h.v;
+    return NUM('$ per unit',v,0.02,hlText(h)+' Use the high-low method. What is the variable cost per unit? Enter dollars per unit to two decimals.','Variable cost per unit = (high cost − low cost) ÷ (high units − low units) = ('+fmt(h.ch)+' − '+fmt(h.cl)+') ÷ ('+fmt(h.uh)+' − '+fmt(h.ul)+') = <strong>'+v.toFixed(2)+'</strong>.');};
+  S['15.5']=function(c){var h=hl(c);
+    return NUM('$',h.F,2,hlText(h)+' Use the high-low method. What is the fixed cost per month? Enter dollars.','Variable cost = ('+fmt(h.ch)+' − '+fmt(h.cl)+') ÷ ('+fmt(h.uh)+' − '+fmt(h.ul)+') = '+h.v.toFixed(2)+'. Fixed cost = '+fmt(h.ch)+' − '+h.v.toFixed(2)+' × '+fmt(h.uh)+' = <strong>'+fmt(h.F)+'</strong>.');};
+  S['15.6']=function(c){var h=hl(c),x=Math.round((h.ul+h.uh)/2/100)*100,y=Math.round(h.F+h.v*x);
+    return NUM('$',y,3,hlText(h)+' Use the high-low method to estimate the total cost of a month with '+fmt(x)+' units. Enter dollars.','Variable cost = '+h.v.toFixed(2)+' per unit and fixed cost = '+fmt(h.F)+'. Cost = '+fmt(h.F)+' + '+h.v.toFixed(2)+' × '+fmt(x)+' = <strong>'+fmt(y)+'</strong>.');};
+  S['15.7']=function(c){var o=c.o,a=c.ri(40,55)*1000,b=c.ri(80,120)/10,r2v=c.ri(91,97)/100;
+    var A={stem:'A regression of Cullowhee’s monthly plant cost on units produced gives an intercept of '+fmt(a)+', a slope of '+b.toFixed(1)+' and R² = '+r2v.toFixed(2)+'. Which statement is correct?',
+      opts:[o('Fixed cost is about '+dol(a)+' per month and each extra unit adds about '+'$'+b.toFixed(1)+' of cost.',1),o('Fixed cost is about '+'$'+b.toFixed(1)+' per month and each extra unit adds about '+dol(a)+'.'),o('Fixed cost is zero because R² is close to 1.'),o('Each unit adds '+r2v.toFixed(2)+' dollars of cost.')],
+      why:'In cost = intercept + slope × units, the intercept estimates fixed cost and the slope estimates variable cost per unit.'};
+    var pc=Math.round(r2v*100);
+    var B={stem:'The regression above has R² = '+r2v.toFixed(2)+'. What does that tell the plant manager?',
+      opts:[o('About '+pc+'% of the variation in monthly cost is explained by units produced, so the line fits the data well.',1),o('The estimate will be correct '+pc+'% of the time at any volume.'),o('Variable cost is '+pc+'% of total cost.'),o('The equation is reliable at any volume, even outside the data.')],
+      why:'R² measures how much of the variation in cost is explained by activity. It does not make predictions reliable outside the range of the data.'};
+    return MC(c,c.V([A,B]));};
+  S['15.8']=function(c){var o=c.o;
+    var A={stem:'The plant’s 24 months of cost data cover a period when utility rates rose 12%. What problem does this create for cost estimation?',
+      opts:[o('Cost changes are caused by price inflation, not only by volume, so the estimated cost behavior is distorted unless costs are adjusted.',1),o('None, because inflation affects only revenue.'),o('The relevant range becomes unlimited.'),o('Fixed costs become variable.')],
+      why:'Cost estimation assumes cost changes come from activity. Price-level changes should be adjusted for, for example with a cost index.'};
+    var B={stem:'One month in the data had a plant shutdown for a flood. Cost was low but volume was also very low and unusual. What should the analyst do?',
+      opts:[o('Investigate it as an outlier and consider excluding it, because it may distort the estimated relationship.',1),o('Always keep it, because every data point is equally reliable.'),o('Replace it with the average of all months without checking.'),o('Drop the three highest months as well.')],
+      why:'Outliers from unusual events can pull a line away from normal operations. Investigate, then decide, and document the choice.'};
+    return MC(c,c.V([A,B]));};
+  S['15.9']=function(c){var o=c.o;
+    var items=[['Cullowhee hires one quality inspector for every 2,000 units built.','Step','Cost is constant over a range of activity and then jumps, which is a step cost.'],
+      ['A plant electric bill is $4,000 a month plus $0.05 per kilowatt-hour used.','Mixed','It has a fixed element and a variable element, which is a mixed cost.'],
+      ['Dealer rebates equal 2% of every bike sold.','Variable','Rebates grow in proportion to sales, which is variable.'],
+      ['The monthly lease on the assembly building.','Fixed','The lease stays the same within the relevant range, which is fixed.']];
+    var it=c.V([items[0],items[1]]);if(f===2)it=c.pick(items);
+    return {type:'mc',stem:'How does this cost behave? <strong>'+it[0]+'</strong>',options:c.shuf(['Step','Mixed','Variable','Fixed'].map(function(t){return o(t+' cost',t===it[1]);})),why:it[2]};};
+  S['15.10']=function(c){var o=c.o;
+    var A={stem:'The salary of a supervisor who oversees the whole Cullowhee assembly floor is best classified as which manufacturing cost?',
+      opts:[o('Manufacturing overhead: an indirect, fixed cost',1),o('Direct labor: a direct, variable cost'),o('Direct materials: a direct, variable cost'),o('A selling expense')],
+      why:'Direct labor is the pay of workers who convert materials into the product. A supervisor for the whole floor cannot be traced to a single bike, so the salary is indirect, and it does not change with volume, so it is fixed. Indirect factory costs are manufacturing overhead.'};
+    var B={stem:'The aluminum tubing in each Cullowhee bike is best classified as:',
+      opts:[o('A direct cost (traceable to each bike) and a variable cost (rises with the number of bikes)',1),o('An indirect cost and a fixed cost'),o('Manufacturing overhead and a fixed cost'),o('A direct cost and a fixed cost')],
+      why:'Direct materials can be traced to each product, and their total rises in proportion to the number of bikes built, so they are direct and variable.'};
+    var C={stem:'Cullowhee is deciding how many bikes to build next month and wants a break-even number. Which classification matters most for that short-term decision?',
+      opts:[o('Variable versus fixed, because break-even analysis separates costs by behavior',1),o('Direct versus indirect, because break-even needs full product cost'),o('Manufacturing versus selling, because only factory costs matter'),o('None, because break-even does not use costs')],
+      why:'Short-term decisions and break-even analysis use the fixed/variable split. Direct versus indirect matters for long-run evaluation and full product cost.'};
+    return MC(c,c.V(f===2?[A,B,C]:[A,B]));};
+  /* ================= MODULE 16 ================= */
+  S['16.1']=function(c){var ri=c.ri,s=ri(45,60)*1000,vc=Math.round(s*ri(58,68)/100/10)*10,fx=ri(8,12)*1000,oi=s-vc-fx;
+    if(c.V([0,1])===0)return NUM('$ thousand',oi,0.6,'Cullowhee has net sales of '+usd(s)+', total variable costs of '+usd(vc)+' and total fixed costs of '+usd(fx)+'. What is operating income? Enter thousands of dollars.','Contribution margin = '+fmt(s)+' − '+fmt(vc)+' = '+fmt(s-vc)+'. Operating income = '+fmt(s-vc)+' − '+fmt(fx)+' = <strong>'+fmt(oi)+'</strong>.');
+    return NUM('$ thousand',fx,0.6,'Cullowhee has net sales of '+usd(s)+', total variable costs of '+usd(vc)+' and operating income of '+usd(oi)+'. What are total fixed costs? Enter thousands of dollars.','Contribution margin = '+fmt(s)+' − '+fmt(vc)+' = '+fmt(s-vc)+'. Fixed costs = contribution margin − operating income = '+fmt(s-vc)+' − '+fmt(oi)+' = <strong>'+fmt(fx)+'</strong>.');};
+  function cvp(c){var ri=c.ri,p=ri(8,30)*100,cm=ri(3,9)*100;if(cm>=p)cm=Math.round(p/2/100)*100||100;var n=ri(6,20)*100,F=cm*n;return {p:p,cm:cm,v:p-cm,F:F,n:n};}
+  S['16.2']=function(c){var m=cvp(c);
+    return NUM('units',m.n,1,'A Cullowhee model sells for '+dol(m.p)+' and has a variable cost of '+dol(m.v)+' per unit. Fixed costs for the line are '+dol(m.F)+' per period. What is the break-even point in units?','Contribution margin per unit = '+fmt(m.p)+' − '+fmt(m.v)+' = '+fmt(m.cm)+'. Break-even units = '+fmt(m.F)+' ÷ '+fmt(m.cm)+' = <strong>'+fmt(m.n)+'</strong>.');};
+  S['16.3']=function(c){var ri=c.ri,r=c.pick([0.30,0.35,0.40,0.45,0.50]),F=ri(60,160)*100,be=Math.round(F/r),
+    s=ri(8,14)*1000;
+    if(c.V([0,1])===0)return NUM('$ thousand',be,1,'Cullowhee’s contribution margin ratio is '+Math.round(r*100)+'%. Total fixed costs are '+usd(F)+'. What are the break-even sales? Enter thousands of dollars to the nearest thousand.','Break-even sales = fixed costs ÷ contribution margin ratio = '+fmt(F)+' ÷ '+r.toFixed(2)+' = <strong>'+fmt(be)+'</strong>.');
+    var vcp=1-r,v=Math.round(s*vcp);
+    var be2=Math.round(F/((s-v)/s));
+    return NUM('$ thousand',be2,1,'A Cullowhee product line has net sales of '+usd(s)+' and variable costs of '+usd(v)+'. Fixed costs are '+usd(F)+'. What are the break-even sales? Enter thousands of dollars to the nearest thousand.','Contribution margin ratio = ('+fmt(s)+' − '+fmt(v)+') ÷ '+fmt(s)+' = '+((s-v)/s).toFixed(4)+'. Break-even sales = '+fmt(F)+' ÷ '+((s-v)/s).toFixed(4)+' = <strong>'+fmt(be2)+'</strong>.');};
+  S['16.4']=function(c){var m=cvp(c),tp=m.cm*c.ri(300,900),u=m.n+tp/m.cm;
+    return NUM('units',u,1,'A Cullowhee model sells for '+dol(m.p)+' with a variable cost of '+dol(m.v)+' per unit. Fixed costs are '+dol(m.F)+'. How many units must be sold to earn a profit of '+dol(tp)+'?','Units = (fixed costs + target profit) ÷ contribution margin per unit = ('+fmt(m.F)+' + '+fmt(tp)+') ÷ '+fmt(m.cm)+' = <strong>'+fmt(u)+'</strong>.');};
+  S['16.5']=function(c){var ri=c.ri,be=ri(30,40)*1000,s=be+ri(6,12)*1000,mos=r1((s-be)/s*100);
+    if(c.V([0,1])===0)return NUM('%',mos,0.15,'Cullowhee’s sales are '+usd(s)+' and its break-even sales are '+usd(be)+'. What is the margin of safety as a percent of sales? Enter the percent to one decimal place.','Margin of safety = (sales − break-even) ÷ sales = ('+fmt(s)+' − '+fmt(be)+') ÷ '+fmt(s)+' = <strong>'+mos.toFixed(1)+'%</strong>.');
+    var u=ri(8,12)*1000,bu=u-ri(20,50)*100;
+    return NUM('units',u-bu,1,'A Cullowhee model sold '+fmt(u)+' units. Its break-even point is '+fmt(bu)+' units. What is the margin of safety in units?','Margin of safety = actual units − break-even units = '+fmt(u)+' − '+fmt(bu)+' = <strong>'+fmt(u-bu)+'</strong> units.');};
+  function oiSet(c){var ri=c.ri,cm=ri(18,24)*1000,oi=Math.round(cm*ri(15,30)/100/10)*10;return {cm:cm,oi:oi};}
+  S['16.6']=function(c){var ri=c.ri,m=oiSet(c);
+    if(c.V([0,1])===0){var d=r2(m.cm/m.oi);return NUM('times',d,0.02,'Cullowhee’s contribution margin is '+usd(m.cm)+' and its operating income is '+usd(m.oi)+'. What is the degree of operating leverage? Enter to two decimals.','DOL = contribution margin ÷ operating income = '+fmt(m.cm)+' ÷ '+fmt(m.oi)+' = <strong>'+d.toFixed(2)+'</strong>.');}
+    var s=ri(45,60)*1000,vc=Math.round(s*0.63/10)*10,fx=s-vc-m.oi,d2=r2((s-vc)/m.oi);
+    return NUM('times',d2,0.02,'Cullowhee has net sales of '+usd(s)+', variable costs of '+usd(vc)+' and operating income of '+usd(m.oi)+'. What is the degree of operating leverage? Enter to two decimals.','Contribution margin = '+fmt(s)+' − '+fmt(vc)+' = '+fmt(s-vc)+'. DOL = '+fmt(s-vc)+' ÷ '+fmt(m.oi)+' = <strong>'+d2.toFixed(2)+'</strong>.');};
+  S['16.7']=function(c){var ri=c.ri,m=oiSet(c),d=r2(m.cm/m.oi),g=ri(5,12);
+    if(c.V([0,1])===0){var v=r1(d*g);return NUM('%',v,0.2,'Cullowhee’s degree of operating leverage is '+d.toFixed(2)+'. If sales rise '+g+'%, by about what percent will operating income rise? Enter the percent to one decimal place.','% change in operating income ≈ DOL × % change in sales = '+d.toFixed(2)+' × '+g+'% = <strong>'+v.toFixed(1)+'%</strong>.');}
+    var s=ri(50,58)*1000,cmr=c.pick([0.35,0.4,0.45]),inc=Math.round(s*g/100*cmr);
+    return NUM('$ thousand',inc,1,'Cullowhee’s net sales are '+usd(s)+' and its contribution margin ratio is '+Math.round(cmr*100)+'%. Fixed costs will not change. If sales rise '+g+'%, by how much will operating income rise? Enter thousands of dollars.','Extra sales = '+fmt(s)+' × '+g+'% = '+fmt(s*g/100)+'. Operating income rises by the extra contribution margin: '+fmt(s*g/100)+' × '+cmr.toFixed(2)+' = <strong>'+fmt(inc)+'</strong>. Fixed costs stay the same.');};
+  S['16.8']=function(c){var ri=c.ri,pa=ri(2,4)*100,pb=ri(8,12)*100,ma=ri(2,4)*10,sa=ri(5,8)*10,mb=100-sa,w=r2(sa/100*pa+mb/100*pb),
+    cn=w;
+    if(c.V([0,1])===0)return NUM('$ per unit',w,0.02,'Cullowhee sells two products. Product A has a contribution margin of '+dol(pa)+' per unit and makes up '+sa+'% of units sold. Product B has a contribution margin of '+dol(pb)+' per unit and makes up '+mb+'% of units sold. What is the weighted-average contribution margin per unit? Enter dollars to two decimals.','Weighted average = '+(sa/100).toFixed(2)+' × '+fmt(pa)+' + '+(mb/100).toFixed(2)+' × '+fmt(pb)+' = <strong>'+w.toFixed(2)+'</strong>.');
+    var F=Math.round(w*ri(500,1500)),be=F/w;
+    return NUM('units',Math.round(be),1,'The weighted-average contribution margin per unit of Cullowhee’s sales mix is '+'$'+w.toFixed(2)+'. Fixed costs are '+dol(F)+'. What is the total break-even in units, at this mix? Enter units to the nearest whole unit.','Break-even units = '+fmt(F)+' ÷ '+w.toFixed(2)+' = <strong>'+fmt(be)+'</strong> total units, sold in the same mix.');};
+  S['16.9']=function(c){var ri=c.ri,t=c.pick([0.2,0.25,0.3]),at=ri(6,15)*100,pre=Math.round(at/(1-t));
+    if(c.V([0,1])===0)return NUM('$ thousand',pre,1,'Cullowhee wants an after-tax profit of '+usd(at)+'. The tax rate is '+Math.round(t*100)+'%. What pre-tax profit does it need? Enter thousands of dollars to the nearest thousand.','Pre-tax profit = after-tax profit ÷ (1 − tax rate) = '+fmt(at)+' ÷ '+(1-t).toFixed(2)+' = <strong>'+fmt(pre)+'</strong>.');
+    var m=cvp(c);var pt=ri(2,8)*m.cm*20,atx=Math.round(pt*(1-t)),u=m.n+pt/m.cm;
+    return NUM('units',u,1,'A Cullowhee model sells for '+dol(m.p)+' with variable cost of '+dol(m.v)+' per unit. Fixed costs are '+dol(m.F)+'. The tax rate is '+Math.round(t*100)+'%. How many units must be sold to earn an after-tax profit of '+dol(pt*(1-t))+'? Enter units.','Pre-tax profit needed = '+fmt(pt*(1-t))+' ÷ '+(1-t).toFixed(2)+' = '+fmt(pt)+'. Units = ('+fmt(m.F)+' + '+fmt(pt)+') ÷ '+fmt(m.cm)+' = <strong>'+fmt(u)+'</strong>.');};
+  S['16.10']=function(c){var o=c.o,pct=c.ri(5,12);
+    var A={stem:'A tariff raises the variable cost of Cullowhee’s main product by '+pct+'%, and the selling price does not change. What happens?',
+      opts:[o('Contribution margin per unit falls, break-even units rise, and the margin of safety shrinks.',1),o('Contribution margin per unit rises and break-even falls.'),o('Fixed costs rise by the same amount, so nothing changes.'),o('Only the margin of safety changes.')],
+      why:'Higher variable cost lowers the contribution margin per unit. Dividing the same fixed costs by a smaller margin raises break-even and reduces the cushion.'};
+    var B={stem:'Cullowhee shifts its sales mix toward Trail Cubs (low contribution margin per unit) and away from Balsam E1s (high contribution margin per unit). Total units sold stay the same. What happens to operating income?',
+      opts:[o('It falls, because the weighted-average contribution margin per unit falls.',1),o('It rises, because more units are cheap.'),o('It stays the same, because total units are unchanged.'),o('It falls only if fixed costs change.')],
+      why:'With the same total units, a mix with a lower weighted-average contribution margin earns less contribution and, with the same fixed costs, less operating income.'};
+    var C={stem:'Cullowhee cuts fixed costs by '+usd(c.ri(2,6)*100)+', and nothing else changes. What happens to break-even and operating leverage?',
+      opts:[o('Break-even falls and operating income rises by the amount of the cut.',1),o('Break-even rises and operating income falls.'),o('Break-even is unchanged because fixed costs do not affect it.'),o('Contribution margin per unit rises.')],
+      why:'Break-even equals fixed costs divided by contribution margin. Lower fixed costs reduce it, and operating income rises dollar for dollar with the cut.'};
+    return MC(c,c.V(f===2?[A,B,C]:[A,B]));};
   /* ============ assemble ============ */
   var ids=Object.keys(SL),Q=[],idx=0;
   ids.forEach(function(id){idx++;var c=ctx(idx);var x=S[id](c);x.id=id;x.module=Number(id.split('.')[0]);x.outcome=SL[id][0];x.concept=SL[id][1];x.revisit=SL[id][2];Q.push(x);});
