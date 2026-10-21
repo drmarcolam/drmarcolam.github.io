@@ -24,7 +24,8 @@ Headings Georgia (serif), bold, navy; h2 has a 3px navy underline. Body system-u
 3. Progress bar (checkpoints compared).
 4. Objectives in a `.key-idea` box (navy left rule, tint background).
 5. One `.lo-block` per step: `.lo-tag` (Step n of N · objective), h2, teaching text, optional `.textbook` line (AGNO 3e chapter and slides), then a `.example` card labelled "Checkpoint n" holding the question, a textarea, "Compare with the model answer", and a `.solution` block.
-6. Submit step: answers compiled for the Canvas text box; Copy button; `.feedback` good/warn messages.
+6. Start screen: name and Student ID (printed on the PDF). Each checkpoint locks the student's initial response and time-stamps it when they compare with the model answer.
+7. Finish step: preview of a printable record (name, Student ID, PDF-created time stamp, each checkpoint with the locked initial response and the model answer) and a Print or save as PDF button. Students upload the PDF to Canvas (file upload, PDF only). Print CSS hides everything except the record.
 
 ## Rules
 - Plain language first, then the term. One idea per step; five steps and five checkpoints per week.
