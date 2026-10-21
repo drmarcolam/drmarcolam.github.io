@@ -166,7 +166,7 @@ footer.site{max-width:60rem;margin:0 auto;padding:1rem;color:var(--muted);border
     if (opts.caption) h += '<caption>' + opts.caption + '</caption>';
     if (head && head.length) {
       h += '<thead><tr>';
-      head.forEach(function (c, i) { h += '<th scope="col"' + (i === 0 ? '' : ' class="r"') + '>' + c + '</th>'; });
+      head.forEach(function (c, i) { h += '<th scope="col"' + (i === 0 ? '' : ' class="r"') + '>' + (c === '' ? '<span class="sr-only">' + (i === 0 ? 'Item' : 'Amount') + '</span>' : c) + '</th>'; });
       h += '</tr></thead>';
     }
     h += '<tbody>';
