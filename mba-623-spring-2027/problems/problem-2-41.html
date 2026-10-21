@@ -10,22 +10,22 @@
 <style>
 
   :root{
-    --purple:#592C88;
-    --purple-deep:#38195A;
-    --purple-mid:#6E3FA3;
-    --gold:#B0925C;
-    --gold-soft:#D6C398;
-    --gold-pale:#F1E9D6;
-    --parchment:#F7F4EC;
-    --paper:#FFFEFA;
-    --ink:#221B2E;
-    --slate:#5F5A6B;
-    --line:#DBD3E0;
-    --line-soft:#EAE4EF;
+    --purple:#14574B;
+    --purple-deep:#0D3B32;
+    --purple-mid:#1F7A68;
+    --gold:#8CC7B0;
+    --gold-soft:#BFE0D2;
+    --gold-pale:#E6F0ED;
+    --parchment:#F5F8F5;
+    --paper:#FFFFFF;
+    --ink:#16222B;
+    --slate:#4D5D68;
+    --line:#C7D2CB;
+    --line-soft:#E0EEE8;
     --answer:#1E5C34;
     --answer-bg:#E7F1E9;
     --danger:#9C3B34;
-    --shadow: 0 1px 2px rgba(56,25,90,0.07), 0 6px 18px rgba(56,25,90,0.08);
+    --shadow: 0 1px 2px rgba(13,59,50,0.07), 0 6px 18px rgba(13,59,50,0.08);
   }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;}
@@ -40,7 +40,7 @@
 
   header{
     background: linear-gradient(180deg, var(--purple) 0%, var(--purple-deep) 100%);
-    color:#F1E9D6;
+    color:#E6F0ED;
     padding: 30px 6vw 24px;
     position:relative;
   }
@@ -58,7 +58,7 @@
     font-family:'Source Serif 4', serif; font-weight:600;
     font-size:clamp(24px,3.4vw,34px); margin:0 0 8px; letter-spacing:-0.01em;
   }
-  .subtitle{ font-size:14.5px; color:#D9CDE5; max-width:680px; margin:0; }
+  .subtitle{ font-size:14.5px; color:#CFE3DA; max-width:680px; margin:0; }
 
   .id-bar{
     max-width:900px; margin:0 auto; padding:18px 6vw 0;
@@ -70,7 +70,7 @@
     border:1px solid var(--line); border-radius:5px; background:var(--paper); color:var(--ink);
     width:180px;
   }
-  .id-bar input:focus{ outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); }
+  .id-bar input:focus{ outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(20,87,75,0.10); }
   .id-bar button{
     font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
     border-radius:5px; padding:8px 15px; border:1px solid var(--purple);
@@ -184,7 +184,7 @@
     color:var(--ink);
   }
   table.worksheet input[type="text"]:focus{
-    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(20,87,75,0.10); background:var(--paper);
   }
   table.worksheet select.acct{
     width:100%;
@@ -198,7 +198,7 @@
     color:var(--ink);
   }
   table.worksheet select.acct:focus{
-    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); background:var(--paper);
+    outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(20,87,75,0.10); background:var(--paper);
   }
   table.worksheet tr.ws-total select.acct, table.worksheet tr.ws-sub select.acct{ font-weight:600; }
   table.worksheet td.acctcell{ padding-right:14px; }
@@ -275,7 +275,7 @@
     border:1px solid var(--line); border-radius:5px; background:var(--parchment); color:var(--ink);
     width:240px;
   }
-  .submit-row input:focus{ outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(89,44,136,0.10); }
+  .submit-row input:focus{ outline:none; border-color:var(--purple-mid); box-shadow:0 0 0 3px rgba(20,87,75,0.10); }
   .btn-submit{
     font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
     border-radius:5px; padding:10px 18px; border:1px solid var(--purple);
@@ -324,7 +324,7 @@
 
 
   textarea.resp{width:100%;min-height:110px;font-family:'Inter',sans-serif;font-size:14px;padding:10px 12px;border:1px solid var(--line);border-radius:6px;background:var(--paper);color:var(--ink);resize:vertical}
-  textarea.resp:focus{outline:none;border-color:var(--purple-mid);box-shadow:0 0 0 3px rgba(89,44,136,0.10)}
+  textarea.resp:focus{outline:none;border-color:var(--purple-mid);box-shadow:0 0 0 3px rgba(20,87,75,0.10)}
   .model-ans{display:none;background:var(--answer-bg);border-left:3px solid var(--answer);border-radius:0 6px 6px 0;padding:12px 16px;margin:10px 0;font-size:14px}
   .model-ans.show{display:block}
   table.worksheet select{font-family:'Inter',sans-serif;font-size:13.5px;padding:6px 8px;border:1px solid var(--line);border-radius:5px;background:var(--paper);color:var(--ink)}
