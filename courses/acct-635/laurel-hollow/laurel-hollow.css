@@ -1,0 +1,11 @@
+/* Laurel Hollow walkthroughs: additions to walkthrough.css (blue style guide). Same palette, same components. */
+textarea{font:inherit;width:100%;min-height:110px;padding:10px;border:2px solid var(--line);border-radius:6px;background:var(--paper);color:var(--ink);}
+.ans-label{display:block;font-weight:700;margin:12px 0 6px;}
+.btn-row{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0;}
+button.secondary{background:transparent;color:var(--navy);border-color:var(--navy);}
+button.secondary:hover{background:var(--tint);color:var(--navy-deep);}
+button:disabled{opacity:.5;cursor:not-allowed;}
+.textbook{font-size:14px;color:var(--muted);border-top:1px solid var(--line);margin-top:14px;padding-top:8px;}
+.objectives{margin:14px 0;}
+pre.out{white-space:pre-wrap;background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:12px;font:inherit;overflow-wrap:anywhere;}
+.stepnav{display:flex;justify-content:space-between;gap:10px;margin-top:20px;}
