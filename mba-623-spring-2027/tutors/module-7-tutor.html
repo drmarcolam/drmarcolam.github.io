@@ -624,6 +624,10 @@ footer.site{max-width:60rem;margin:0 auto;padding:1rem;color:var(--muted);border
   document.getElementById('mod-sub').textContent = M.subtitle;
   document.getElementById('mod-num').textContent = 'Module ' + M.num;
   renderMenu();
+  try {
+    var qm = /[?&]type=(\d+)/.exec(window.location.search);
+    if (qm && parseInt(qm[1], 10) < M.types.length) { startProblem(parseInt(qm[1], 10)); }
+  } catch (e) {}
 })();
 
 </script>
