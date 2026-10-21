@@ -107,7 +107,7 @@ footer.site{max-width:60rem;margin:0 auto;padding:1rem;color:var(--muted);border
   <div class="wrap">
     <p class="eyebrow">MBA 623 &middot; <span id="mod-num">Module 14</span></p>
     <h1><span id="mod-title">Managerial Accounting: Tools for Decision Making</span> Tutor</h1>
-    <p class="sub" id="mod-sub">Financial vs. managerial accounting, strategy, performance reports, the value chain, business trends, and ethics.</p>
+    <p class="sub" id="mod-sub">Financial vs. managerial accounting, strategy, performance reports, the value chain, business trends, ethics, cost classification, and contribution margin.</p>
   </div>
 </header>
 <main id="app" tabindex="-1"></main>
@@ -388,17 +388,68 @@ footer.site{max-width:60rem;margin:0 auto;padding:1rem;color:var(--muted);border
     return quiz(R, '<p>The business environment has changed the work of management accountants at <strong>' + name + '</strong>. For each situation, identify the trend it illustrates.</p>', TRP, TR, 5, 'Which business environment trend does this describe?', 'Technology, data, risk, and global competition all expand the role of management accountants from record keeping to analysis and decision support.', 'Match the key idea in the description (data, automation, learning, risk, or competition) to a trend.');
   }
 
+  /* G. Cost classification */
+  var CC = ['Direct materials', 'Direct labor', 'Manufacturing overhead', 'Period (selling or administrative)'];
+  var CP = [
+    ['Steel tubing that becomes part of the bicycle frame', 0, 'Raw material that becomes part of the product and is easy to trace: <strong>direct materials</strong>.'],
+    ['Wages of the assembly-line worker who builds the frames', 1, 'Labor easily traced to the product: <strong>direct labor</strong>.'],
+    ['Depreciation on factory equipment', 2, 'A factory cost that is not directly traceable: <strong>manufacturing overhead</strong>.'],
+    ['Salary of the factory supervisor', 2, 'Indirect labor in the plant: <strong>manufacturing overhead</strong>.'],
+    ['Factory utilities', 2, 'A factory cost that is not directly traceable: <strong>manufacturing overhead</strong>.'],
+    ['Sales commissions paid to the sales team', 3, 'Not a cost of making the product: <strong>period (selling) cost</strong>, expensed as incurred.'],
+    ['Salary of the chief financial officer', 3, 'Administrative cost: a <strong>period cost</strong>.'],
+    ['Advertising for the new product line', 3, 'Selling cost: a <strong>period cost</strong>.'],
+    ['Glue and paint used in assembly (small amounts, not worth tracing)', 2, 'Indirect materials are part of <strong>manufacturing overhead</strong>.'],
+    ['Wages of the maintenance staff who service the factory machines', 2, 'Indirect labor: <strong>manufacturing overhead</strong>.']
+  ];
+  function genClass(R) {
+    var name = co(R), picks = R.sample(CP, 5);
+    var steps = picks.map(function (p, i) { return cs('How should <strong>' + name + '</strong> classify this cost? <em>' + p[0] + '</em>', 'Cost ' + (i + 1), CC, p[1], 'Product costs are direct materials, direct labor and manufacturing overhead. Selling and administrative costs are period costs.', p[2]); });
+    var vf = R.pick([['direct materials', 'Variable'], ['depreciation on factory equipment', 'Fixed'], ['the factory supervisor&rsquo;s salary', 'Fixed'], ['sales commissions of 5% of sales', 'Variable']]);
+    steps.push(cs('Cost behavior is a separate classification. How does <strong>' + vf[0] + '</strong> behave when production changes?', 'Cost behavior', ['Variable', 'Fixed'], vf[1] === 'Variable' ? 0 : 1, 'Does the total change in proportion to activity?', '<strong>' + vf[1] + '</strong>: ' + (vf[1] === 'Variable' ? 'the total changes with activity.' : 'the total stays the same within the relevant range.')));
+    return { intro: '<p>Manufacturing costs are classified as <strong>direct materials</strong>, <strong>direct labor</strong> and <strong>manufacturing overhead</strong>. These are <em>product costs</em>. Selling and administrative costs are <em>period costs</em>. Costs also behave as variable or fixed.</p>', steps: steps, takeaway: 'Product costs (direct materials, direct labor, manufacturing overhead) are included in inventory and expensed when the product is sold. Period costs are expensed in the period incurred. Behavior (variable or fixed) is a separate classification.' };
+  }
+
+  /* H. Contribution margin by product line */
+  function genCMline(R) {
+    var name = co(R);
+    var lines = R.sample(['Road bikes', 'Trail bikes', 'E-bikes', 'Helmets', 'Accessories'], 3);
+    var d, tie;
+    do {
+      d = lines.map(function (n) { var s = R.step(40, 160, 5) * 1000; var vcr = R.step(45, 80, 5) / 100; return { n: n, s: s, v: Math.round(s * vcr / 1000) * 1000 }; });
+      d.forEach(function (x) { x.cm = x.s - x.v; x.r = x.cm / x.s; });
+      tie = [0, 1, 2].some(function (i) { return [0, 1, 2].some(function (j) { return i < j && (d[i].r * 100).toFixed(1) === (d[j].r * 100).toFixed(1); }); });
+    } while (tie);
+    var fixed = R.step(25, 60, 5) * 1000, totCM = d[0].cm + d[1].cm + d[2].cm, oi = totCM - fixed;
+    var bi = 0; d.forEach(function (x, i) { if (x.r > d[bi].r) bi = i; });
+    var bigCM = 0; d.forEach(function (x, i) { if (x.cm > d[bigCM].cm) bigCM = i; });
+    return {
+      intro: '<p><strong>' + name + '</strong> sells three product lines. Results for last year are shown below. Fixed costs for the company total <strong>' + $(fixed) + '</strong>.</p>' + T(['Product line', 'Sales', 'Variable costs'], d.map(function (x) { return [x.n, $(x.s), $(x.v)]; })),
+      takeaway: 'Contribution margin = sales &minus; variable costs. The contribution margin ratio = contribution margin &divide; sales. Subtracting fixed costs from total contribution margin gives operating income.',
+      steps: [
+        ns('What is the <strong>contribution margin</strong> of ' + d[0].n + '?', 'Contribution margin, ' + d[0].n, d[0].cm, '$', 0, 'Sales minus variable costs.', $(d[0].s) + ' &minus; ' + $(d[0].v) + ' = <strong>' + $(d[0].cm) + '</strong>.', { tol: 0 }),
+        ns('What is the <strong>contribution margin ratio</strong> of ' + d[0].n + '? Enter as a percent rounded to one decimal.', 'CM ratio, ' + d[0].n, d[0].r * 100, '%', 1, 'Contribution margin divided by sales, times 100.', $(d[0].cm) + ' &divide; ' + $(d[0].s) + ' = <strong>' + (d[0].r * 100).toFixed(1) + '%</strong>.', { tol: 0.06 }),
+        ns('What is the <strong>contribution margin</strong> of ' + d[1].n + '?', 'Contribution margin, ' + d[1].n, d[1].cm, '$', 0, 'Sales minus variable costs.', $(d[1].s) + ' &minus; ' + $(d[1].v) + ' = <strong>' + $(d[1].cm) + '</strong>.', { tol: 0 }),
+        ns('What is the <strong>contribution margin</strong> of ' + d[2].n + '?', 'Contribution margin, ' + d[2].n, d[2].cm, '$', 0, 'Sales minus variable costs.', $(d[2].s) + ' &minus; ' + $(d[2].v) + ' = <strong>' + $(d[2].cm) + '</strong>.', { tol: 0 }),
+        cs('Which line earns the <strong>highest contribution margin ratio</strong>?', 'Highest CM ratio', lines, bi, 'Divide each line&rsquo;s contribution margin by its sales.', d.map(function (x) { return x.n + ': ' + (x.r * 100).toFixed(1) + '%'; }).join('; ') + '. The highest is <strong>' + d[bi].n + '</strong>.'),
+        ns('What is the company&rsquo;s <strong>operating income</strong>? (Total contribution margin minus fixed costs.) Enter a loss as a negative number.', 'Operating income', oi, '$', 0, 'Add the three contribution margins, then subtract fixed costs.', $(totCM) + ' &minus; ' + $(fixed) + ' = <strong>' + $(oi) + '</strong>.', { tol: 0 })
+      ]
+    };
+  }
+
   window.MODULE = {
     num: 14,
     title: 'Managerial Accounting: Tools for Decision Making',
-    subtitle: 'Financial vs. managerial accounting, strategy, performance reports, the value chain, business trends, and ethics.',
+    subtitle: 'Financial vs. managerial accounting, strategy, performance reports, the value chain, business trends, ethics, cost classification, and contribution margin.',
     types: [
       { label: 'Performance Report', desc: 'Compare budgeted and actual costs: deviations, percent deviation, and favorable or unfavorable.', gen: genPerf },
       { label: 'Financial vs. Managerial Accounting', desc: 'Decide which kind of accounting each description fits.', gen: genFM },
       { label: 'Strategy and Positioning', desc: 'Cost leadership, differentiation, or market niche?', gen: genStrat },
       { label: 'The Value Chain', desc: 'Classify activities as primary processes or support processes.', gen: genVC },
       { label: 'Ethics, ESG, and Governance', desc: 'Apply the IMA ethical standards and classify ESG considerations.', gen: genEthics },
-      { label: 'Trends in the Business Environment', desc: 'Big data, automation, AI, risk management, and global competition.', gen: genTrends }
+      { label: 'Trends in the Business Environment', desc: 'Big data, automation, AI, risk management, and global competition.', gen: genTrends },
+      { label: 'Classifying Costs', desc: 'Direct materials, direct labor, manufacturing overhead, period costs, and variable vs. fixed.', gen: genClass },
+      { label: 'Contribution Margin by Product Line', desc: 'Contribution margin, contribution margin ratio, and operating income.', gen: genCMline }
     ]
   };
 })();

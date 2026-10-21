@@ -107,7 +107,7 @@ footer.site{max-width:60rem;margin:0 auto;padding:1rem;color:var(--muted);border
   <div class="wrap">
     <p class="eyebrow">MBA 623 &middot; <span id="mod-num">Module 17</span></p>
     <h1><span id="mod-title">Using Relevant Costs and Differential Analysis for Decision-Making</span> Tutor</h1>
-    <p class="sub" id="mod-sub">Relevant and sunk costs, equipment replacement, profit plans, special orders, outsourcing, and dropping a product.</p>
+    <p class="sub" id="mod-sub">Relevant and sunk costs, equipment replacement, profit plans, special orders, outsourcing, dropping a product, limited capacity, and sell or process further.</p>
   </div>
 </header>
 <main id="app" tabindex="-1"></main>
@@ -389,17 +389,69 @@ footer.site{max-width:60rem;margin:0 auto;padding:1rem;color:var(--muted);border
     };
   }
 
+  /* G. Constrained resource */
+  function genConstraint(R) {
+    var name = co(R);
+    var hHigh = R.step(1, 2, 1), hLow = R.step(4, 6, 1);
+    var rateLow = R.step(20, 30, 2), rateHigh = rateLow + R.step(4, 10, 2);
+    var cmHigh = rateHigh * hHigh, cmLow = rateLow * hLow;
+    var dHigh = R.step(200, 500, 50), dLow = R.step(200, 400, 50);
+    var left = hLow * R.step(40, 100, 10);
+    var H = dHigh * hHigh + left;
+    var nm = R.pick([['Trail bikes', 'Road bikes'], ['Helmets', 'Panniers'], ['Wheel sets', 'Frames']]);
+    var swap = R.chance(0.5);
+    var P = swap ? { a: { n: nm[1], cm: cmLow, h: hLow, d: dLow, r: rateLow }, b: { n: nm[0], cm: cmHigh, h: hHigh, d: dHigh, r: rateHigh } }
+                 : { a: { n: nm[0], cm: cmHigh, h: hHigh, d: dHigh, r: rateHigh }, b: { n: nm[1], cm: cmLow, h: hLow, d: dLow, r: rateLow } };
+    var hi = swap ? P.b : P.a, lo = swap ? P.a : P.b;
+    var lowUnits = left / lo.h, best = hi.d * hi.cm + lowUnits * lo.cm;
+    var altLow = Math.min(lo.d, Math.floor(H / lo.h)), altRem = H - altLow * lo.h;
+    var altHigh = Math.min(hi.d, Math.floor(altRem / hi.h)), alt = altLow * lo.cm + altHigh * hi.cm;
+    return {
+      intro: '<p><strong>' + name + '</strong> makes two products that both need time on the same machine, which is available for only <strong>' + fmt(H) + ' hours</strong> per month. Demand for both products is more than the machine can handle.</p>' + T(['Product', 'Contribution margin per unit', 'Machine hours per unit', 'Monthly demand (units)'], [[P.a.n, $(P.a.cm), fmt(P.a.h), fmt(P.a.d)], [P.b.n, $(P.b.cm), fmt(P.b.h), fmt(P.b.d)]]),
+      takeaway: 'When one resource limits output, rank products by contribution margin per unit of that resource, not per unit of product. Fill demand for the top-ranked product first, then use the remaining hours on the next.',
+      steps: [
+        ns('What is the <strong>contribution margin per machine hour</strong> for ' + P.a.n + '?', 'CM per hour, ' + P.a.n, P.a.r, '$', 2, 'Divide the contribution margin per unit by the machine hours per unit.', $(P.a.cm) + ' &divide; ' + P.a.h + ' = <strong>' + $(P.a.r, 2) + '</strong>.', { tol: 0.005 }),
+        ns('What is the <strong>contribution margin per machine hour</strong> for ' + P.b.n + '?', 'CM per hour, ' + P.b.n, P.b.r, '$', 2, 'Divide the contribution margin per unit by the machine hours per unit.', $(P.b.cm) + ' &divide; ' + P.b.h + ' = <strong>' + $(P.b.r, 2) + '</strong>.', { tol: 0.005 }),
+        cs('Which product should get machine hours <strong>first</strong>?', 'Priority', [P.a.n, P.b.n, 'The product with the higher contribution margin per unit', 'Equal hours for each'], P.a === hi ? 0 : 1, 'Rank by contribution margin per unit of the scarce resource.', 'Higher contribution margin per machine hour: <strong>' + hi.n + '</strong> (' + $(hi.r, 2) + ' vs. ' + $(lo.r, 2) + '). The product with the larger margin per unit is not necessarily the best use of scarce hours.'),
+        ns('How many machine hours are <strong>left for ' + lo.n + '</strong> after producing all the demand for ' + hi.n + '?', 'Hours left', left, '', 0, 'Hours available minus (units of ' + hi.n + ' &times; hours per unit).', fmt(H) + ' &minus; (' + fmt(hi.d) + ' &times; ' + hi.h + ') = <strong>' + fmt(left) + '</strong> hours.', { tol: 0 }),
+        ns('How many units of ' + lo.n + ' can be made with the remaining hours?', 'Units of ' + lo.n, lowUnits, '', 0, 'Remaining hours divided by hours per unit.', fmt(left) + ' &divide; ' + lo.h + ' = <strong>' + fmt(lowUnits) + '</strong> units.', { tol: 0 }),
+        ns('What is the <strong>total contribution margin</strong> of this plan?', 'Total contribution margin', best, '$', 0, 'Units of each product &times; contribution margin per unit.', '(' + fmt(hi.d) + ' &times; ' + $(hi.cm) + ') + (' + fmt(lowUnits) + ' &times; ' + $(lo.cm) + ') = <strong>' + $(best) + '</strong>.', { tol: 0 }),
+        ns('How much <strong>more</strong> contribution margin does this plan earn than making ' + lo.n + ' first (up to its demand) and using leftover hours on ' + hi.n + '?', 'Advantage of ranking', best - alt, '$', 0, 'Alternative plan: ' + fmt(altLow) + ' units of ' + lo.n + ' and ' + fmt(altHigh) + ' units of ' + hi.n + '. Subtract its total from the best plan.', 'Alternative: (' + fmt(altLow) + ' &times; ' + $(lo.cm) + ') + (' + fmt(altHigh) + ' &times; ' + $(hi.cm) + ') = ' + $(alt) + '. Best plan ' + $(best) + ' &minus; ' + $(alt) + ' = <strong>' + $(best - alt) + '</strong>.', { tol: 0 })
+      ]
+    };
+  }
+
+  /* H. Special order at a bottleneck / sell or process further */
+  function genSell(R) {
+    var name = co(R), units = R.step(2, 10, 1) * 1000, joint = R.step(20, 60, 5) * 1000;
+    var p1 = R.step(8, 20, 1), extra = R.step(3, 8, 1), p2 = p1 + extra + R.step(-3, 4, 1);
+    var incRev = (p2 - p1) * units, varProc = extra * units, net = incRev - varProc;
+    return {
+      intro: '<p><strong>' + name + '</strong> makes ' + fmt(units) + ' units of a product in a joint process that costs <strong>' + $(joint) + '</strong>. The units can be sold at the split-off point for <strong>' + $(p1) + '</strong> each, or processed further at an added cost of <strong>' + $(extra) + '</strong> per unit and sold for <strong>' + $(p2) + '</strong> each.</p>',
+      takeaway: 'Joint costs are sunk by the split-off point and are irrelevant. Compare the extra revenue from processing further with the extra processing cost. Process further only if the extra revenue is greater.',
+      steps: [
+        cs('Is the <strong>' + $(joint) + ' joint cost</strong> relevant to the decision to sell now or process further?', 'Joint cost', ['Relevant, because it is a cost of the product', 'Irrelevant, because it is the same under both alternatives'], 1, 'Ask whether the amount differs between selling at split-off and processing further.', 'The joint cost has already been incurred and is the same either way: <strong>irrelevant</strong>.'),
+        ns('What is the <strong>extra revenue</strong> from processing further?', 'Extra revenue', incRev, '$', 0, '(Price after processing &minus; price at split-off) &times; units.', '(' + $(p2) + ' &minus; ' + $(p1) + ') &times; ' + fmt(units) + ' = <strong>' + $(incRev) + '</strong>.', { tol: 0 }),
+        ns('What is the <strong>total cost of processing further</strong>?', 'Processing cost', varProc, '$', 0, 'Added cost per unit &times; units.', $(extra) + ' &times; ' + fmt(units) + ' = <strong>' + $(varProc) + '</strong>.', { tol: 0 }),
+        ns('What is the <strong>advantage (disadvantage) of processing further</strong>? Enter a disadvantage as a negative number.', 'Advantage of processing further', net, '$', 0, 'Extra revenue minus processing cost.', $(incRev) + ' &minus; ' + $(varProc) + ' = <strong>' + $(net) + '</strong>.', { tol: 0 }),
+        cs('What should the company do?', 'Decision', ['Sell at the split-off point', 'Process further'], net > 0 ? 1 : 0, 'Process further only if the advantage is positive.', net > 0 ? 'Processing further adds ' + $(net) + ': <strong>process further</strong>.' : 'Processing further costs ' + $(-net) + ' more than it earns: <strong>sell at split-off</strong>.')
+      ]
+    };
+  }
+
   window.MODULE = {
     num: 17,
     title: 'Using Relevant Costs and Differential Analysis for Decision-Making',
-    subtitle: 'Relevant and sunk costs, equipment replacement, profit plans, special orders, outsourcing, and dropping a product.',
+    subtitle: 'Relevant and sunk costs, equipment replacement, profit plans, special orders, outsourcing, dropping a product, limited capacity, and sell or process further.',
     types: [
       { label: 'Relevant and Irrelevant Costs', desc: 'Sunk costs, opportunity costs, and what differs between alternatives.', gen: genRel },
       { label: 'Equipment Replacement', desc: 'Differential analysis of replacing an old machine.', gen: genEquip },
       { label: 'Changes in Profit Plans', desc: 'Compare advertising and pricing alternatives.', gen: genPlans },
       { label: 'Special Order', desc: 'Accept or reject a one-time order, with and without spare capacity.', gen: genSpecial },
       { label: 'Outsourcing (Make or Buy)', desc: 'Compare the cost to make with the cost to buy.', gen: genOut },
-      { label: 'Discontinue a Product Line', desc: 'Avoidable costs, lost contribution margin, and the decision to drop.', gen: genDisc }
+      { label: 'Discontinue a Product Line', desc: 'Avoidable costs, lost contribution margin, and the decision to drop.', gen: genDisc },
+      { label: 'Limited Capacity (Bottleneck)', desc: 'Rank products by contribution margin per unit of the scarce resource.', gen: genConstraint },
+      { label: 'Sell or Process Further', desc: 'Ignore the joint cost and compare extra revenue with extra processing cost.', gen: genSell }
     ]
   };
 })();

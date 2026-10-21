@@ -107,7 +107,7 @@ footer.site{max-width:60rem;margin:0 auto;padding:1rem;color:var(--muted);border
   <div class="wrap">
     <p class="eyebrow">MBA 623 &middot; <span id="mod-num">Module 15</span></p>
     <h1><span id="mod-title">Cost Definitions, Behavior, and Estimation</span> Tutor</h1>
-    <p class="sub" id="mod-sub">Variable, fixed, mixed, and step costs; total and average cost; the high-low method; and direct vs. indirect costs.</p>
+    <p class="sub" id="mod-sub">Variable, fixed, mixed, and step costs; total and average cost; the high-low method; regression; the relevant range; and direct vs. indirect costs.</p>
   </div>
 </header>
 <main id="app" tabindex="-1"></main>
@@ -329,15 +329,55 @@ footer.site{max-width:60rem;margin:0 auto;padding:1rem;color:var(--muted);border
     return { intro: '<p>Costs can be classified by <em>behavior</em> (variable or fixed) and by <em>traceability</em> (direct or indirect). Manufacturing costs are direct materials, direct labor, and manufacturing overhead.</p>', steps: steps, takeaway: 'Any cost can be a combination of variable or fixed and direct or indirect. Different purposes use different classifications: break-even analysis uses variable/fixed; full product cost uses direct/indirect.' };
   }
 
+  /* E. Regression output */
+  function genReg(R) {
+    var name = co(R), b = R.step(18, 60, 1) / 10, a = R.step(40, 120, 5) * 100;
+    var r2 = R.step(70, 98, 2) / 100, plan = R.step(80, 140, 5) * 100;
+    var pred = a + b * plan;
+    return {
+      intro: '<p><strong>' + name + '</strong> regressed monthly production cost on machine hours using 24 months of data. The software reports:</p>' + T(['Item', 'Value'], [['Intercept', $(a)], ['Slope (X variable: machine hours)', $(b, 2)], ['R-squared', r2.toFixed(2)]]),
+      takeaway: 'In a cost regression the intercept estimates fixed cost, the slope estimates variable cost per unit of activity, and R-squared shows how much of the variation in cost the activity explains. Predictions are reliable only within the relevant range.',
+      steps: [
+        cs('What does the <strong>intercept</strong> of ' + $(a) + ' estimate?', 'Intercept', ['Fixed cost per month', 'Variable cost per machine hour', 'Total cost at the highest activity', 'The percent of cost explained'], 0, 'The intercept is the predicted cost when activity equals zero.', 'The intercept is the estimated <strong>fixed cost</strong> per month.'),
+        cs('What does the <strong>slope</strong> of ' + $(b, 2) + ' estimate?', 'Slope', ['Fixed cost per month', 'Variable cost per machine hour', 'Total cost at the lowest activity', 'The percent of cost explained'], 1, 'The slope is the change in cost for each additional unit of activity.', 'Each additional machine hour adds about ' + $(b, 2) + ': the <strong>variable cost per machine hour</strong>.'),
+        ns('Next month the plant expects <strong>' + fmt(plan) + '</strong> machine hours. What is the <strong>predicted total cost</strong>?', 'Predicted cost', pred, '$', 0, 'Total cost = intercept + slope &times; machine hours.', $(a) + ' + (' + $(b, 2) + ' &times; ' + fmt(plan) + ') = <strong>' + $(pred) + '</strong>.', { tol: 0.5 }),
+        ns('What <strong>percent of the variation in cost</strong> is explained by machine hours? (Enter a percent.)', 'Percent explained', r2 * 100, '%', 0, 'R-squared tells the share of variation explained.', 'R-squared of ' + r2.toFixed(2) + ' means <strong>' + Math.round(r2 * 100) + '%</strong> of the variation is explained by machine hours.', { tol: 0.5 }),
+        cs('Which statement about the <strong>relevant range</strong> is correct?', 'Relevant range', ['The estimates are reliable only for activity levels like those in the data', 'The estimates hold at any activity level', 'The relevant range applies only to fixed costs', 'The relevant range is the difference between high and low cost'], 0, 'The cost equation was estimated from past activity.', 'The equation describes costs only within the range of past activity: the <strong>relevant range</strong>. Predicting far outside it is risky.')
+      ]
+    };
+  }
+
+  /* F. Step costs and the relevant range */
+  function genStep(R) {
+    var name = co(R), per = R.pick([400, 500, 600, 800]), sal = R.step(40, 70, 5) * 1000, vc = R.step(3, 9, 1);
+    var base = R.step(1, 3, 1), maxU = per * base;
+    var q1 = maxU - R.step(1, 3, 1) * 50, q2 = maxU + R.step(1, 3, 1) * 50;
+    var sup1 = Math.ceil(q1 / per), sup2 = Math.ceil(q2 / per);
+    var c1 = sup1 * sal, c2 = sup2 * sal;
+    return {
+      intro: '<p><strong>' + name + '</strong> needs one quality inspector for every <strong>' + fmt(per) + '</strong> units produced per month, or any part of that number. Each inspector costs <strong>' + $(sal) + '</strong> per year. Other costs behave in the usual variable or fixed way.</p>',
+      takeaway: 'A step cost is constant within a range of activity and jumps when activity moves into the next range. Within one range it behaves like a fixed cost; over a wide range it looks like a variable cost.',
+      steps: [
+        ns('How many inspectors are needed at <strong>' + fmt(q1) + '</strong> units per month?', 'Inspectors', sup1, '', 0, 'Divide units by ' + fmt(per) + ' and round up to a whole inspector.', fmt(q1) + ' &divide; ' + fmt(per) + ' = ' + (q1 / per).toFixed(2) + ', rounded up to <strong>' + sup1 + '</strong>.', { tol: 0 }),
+        ns('What is the <strong>annual inspection cost</strong> at ' + fmt(q1) + ' units per month?', 'Inspection cost', c1, '$', 0, 'Inspectors &times; annual cost per inspector.', sup1 + ' &times; ' + $(sal) + ' = <strong>' + $(c1) + '</strong>.', { tol: 0 }),
+        ns('What is the <strong>annual inspection cost</strong> if volume rises to ' + fmt(q2) + ' units per month?', 'Inspection cost at higher volume', c2, '$', 0, 'Volume is now above ' + fmt(maxU) + ', so another inspector is needed.', fmt(q2) + ' &divide; ' + fmt(per) + ' = ' + (q2 / per).toFixed(2) + ', rounded up to ' + sup2 + ' inspectors. ' + sup2 + ' &times; ' + $(sal) + ' = <strong>' + $(c2) + '</strong>.', { tol: 0 }),
+        ns('By how much does the annual inspection cost <strong>increase</strong> for this change in volume?', 'Increase in cost', c2 - c1, '$', 0, 'Higher cost minus lower cost.', $(c2) + ' &minus; ' + $(c1) + ' = <strong>' + $(c2 - c1) + '</strong>.', { tol: 0 }),
+        cs('Within a range such as 1 to ' + fmt(per) + ' units, how does the inspection cost behave?', 'Behavior within a range', ['Variable: it rises with every unit', 'Fixed: it stays constant within the range', 'Mixed: it has a fixed and a variable part', 'It falls as volume rises'], 1, 'Does the total change as volume moves within one range?', 'Within a single range the total does not change: it behaves as a <strong>fixed</strong> cost. It jumps when volume enters the next range.')
+      ]
+    };
+  }
+
   window.MODULE = {
     num: 15,
     title: 'Cost Definitions, Behavior, and Estimation',
-    subtitle: 'Variable, fixed, mixed, and step costs; total and average cost; the high-low method; and direct vs. indirect costs.',
+    subtitle: 'Variable, fixed, mixed, and step costs; total and average cost; the high-low method; regression; the relevant range; and direct vs. indirect costs.',
     types: [
       { label: 'Cost Behavior Patterns', desc: 'Classify costs as variable, fixed, mixed, or step.', gen: genBehavior },
       { label: 'Total and Average Cost', desc: 'Compute total and average cost per unit at two activity levels.', gen: genTotalAvg },
       { label: 'High-Low Cost Estimation', desc: 'Estimate variable and fixed costs, then predict total cost.', gen: genHighLow },
-      { label: 'Direct vs. Indirect Costs', desc: 'Trace costs to a product and combine with cost behavior.', gen: genDI }
+      { label: 'Direct vs. Indirect Costs', desc: 'Trace costs to a product and combine with cost behavior.', gen: genDI },
+      { label: 'Regression Output', desc: 'Read the intercept, slope and R-squared, then predict cost.', gen: genReg },
+      { label: 'Step Costs and the Relevant Range', desc: 'Compute step costs and see how they behave within and across ranges.', gen: genStep }
     ]
   };
 })();
