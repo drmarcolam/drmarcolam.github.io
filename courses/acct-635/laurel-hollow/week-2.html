@@ -23,7 +23,7 @@
   <div class="lab" id="lab">0 of 5 compared</div>
 </div>
 <main id="main" tabindex="-1">
-  <div class="key-idea objectives noprint"><strong>By the end of this walkthrough you will be able to:</strong><ol><li>Explain the budget cycle and why the adopted budget is legal authority, including the North Carolina budget ordinance and which funds are budgeted through it.</li><li>Compute a property tax levy and budgeted revenue, convert a rate per $100 to mills, and test how revenue responds to a change in the collection rate.</li><li>Record the opening budgetary entry for a governmental fund, explain why Budgetary Fund Balance is zero in a balanced budget, and distinguish a budgetary interchange from a budgetary revision.</li><li>Record an encumbrance through its life cycle and explain what an open encumbrance at year-end means.</li><li>Read a budget-to-actual report and separate timing differences from real problems.</li></ol></div>
+<div class="key-idea objectives noprint"><strong>By the end of this walkthrough you will be able to:</strong><ol><li>Explain the budget cycle and why the adopted budget is legal authority, including the North Carolina budget ordinance and which funds are budgeted through it.</li><li>Compute a property tax levy and budgeted revenue, convert a rate per $100 to mills, and test how revenue responds to a change in the collection rate.</li><li>Record the opening budgetary entry for a governmental fund, explain why Budgetary Fund Balance is zero in a balanced budget, and distinguish a budgetary interchange from a budgetary revision.</li><li>Record an encumbrance through its life cycle and explain what an open encumbrance at year-end means.</li><li>Read a budget-to-actual report and separate timing differences from real problems.</li></ol></div>
   <div id="stage"></div>
 </main>
 <footer class="noprint">ACCT 635 &middot; Western Carolina University</footer>
@@ -57,7 +57,7 @@ function show(){
   if(!state.name||!state.sid) return showId();
   if(state.i>=DATA.steps.length) return showSubmit();
   var st=DATA.steps[state.i], i=state.i, n=DATA.steps.length, done=!!state.seen[i];
-  stage.innerHTML='<section class="lo-block" aria-labelledby="sh"><span class="lo-tag">Step '+(i+1)+' of '+n+' &middot; '+esc(st.obj)+'</span><h2 id="sh" tabindex="-1">'+esc(st.h)+'</h2>'+st.body+(st.book?'<p class="textbook"><strong>Textbook:</strong> '+esc(st.book)+'</p>':'')+
+  stage.innerHTML='<section class="lo-block" aria-labelledby="sh"><span class="lo-tag">Step '+(i+1)+' of '+n+(st.obj?' &middot; '+esc(st.obj):'')+'</span><h2 id="sh" tabindex="-1">'+esc(st.h)+'</h2>'+st.body+(st.book?'<p class="textbook"><strong>Textbook:</strong> '+esc(st.book)+'</p>':'')+
    '<div class="example"><div class="ex-label">Checkpoint '+(i+1)+'</div><p>'+esc(st.q)+'</p><label class="ans-label" for="ans">Your answer, in your own words</label><textarea id="ans"'+(done?' readonly':'')+'></textarea>'+
    '<p class="hint-line" id="lockmsg">'+(done?'Your initial response is locked and time-stamped ('+esc(state.ts[i]||'')+').':'Write your answer first. When you compare, your initial response is locked and time-stamped.')+'</p>'+
    '<div class="btn-row"><button type="button" id="cmp" disabled>Compare with the model answer</button></div>'+

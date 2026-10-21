@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#1B365D">
+<meta name="description" content="Week 5 walkthrough for the City of Laurel Hollow case: Week 5 Walkthrough: Proprietary Funds, Pensions and the Reporting Entity">
+<title>Week 5 Walkthrough: Proprietary Funds, Pensions and the Reporting Entity | ACCT 635</title>
+<link rel="stylesheet" href="../chapter-walkthroughs/walkthrough.css">
+<link rel="stylesheet" href="laurel-hollow.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<nav class="crumbs noprint" aria-label="Breadcrumb"><a href="../../../index.html">Courses</a> &nbsp;/&nbsp; <a href="../../acct-635.html">ACCT 635</a> &nbsp;/&nbsp; Laurel Hollow Walkthroughs &nbsp;/&nbsp; Week 5</nav>
+<header class="banner noprint"><div class="banner-inner">
+  <p class="eyebrow">ACCT 635 &middot; Laurel Hollow &middot; Week 5 Walkthrough</p>
+  <h1 class="title">Week 5 Walkthrough: Proprietary Funds, Pensions and the Reporting Entity</h1>
+  <p class="sub">About 120 minutes. This is where the teaching happens. Enter your name and Student ID, read each step, write your answer to the checkpoint, then compare it with the model answer. At the end, save a PDF of your answers and the model answers and upload it to Canvas. Graded for completion.</p>
+</div></header>
+<div class="progress noprint" id="progress" role="progressbar" aria-label="Checkpoints compared" aria-valuemin="0" aria-valuemax="5" aria-valuenow="0">
+  <div class="track"><div class="fill" id="fill"></div></div>
+  <div class="lab" id="lab">0 of 5 compared</div>
+</div>
+<main id="main" tabindex="-1">
+
+  <div id="stage"></div>
+</main>
+<footer class="noprint">ACCT 635 &middot; Western Carolina University</footer>
+<script>
+var DATA = {"short": "Week 5 Walkthrough", "steps": [{"h": "Full accrual in proprietary funds", "obj": "", "book": "", "body": "<p>Enterprise funds report using the economic resources focus and accrual basis: capital assets are depreciated, debt is a liability, and no budgetary entries are required by GAAP. Water and Sewer billings of $12,000,000 with a $120,000 provision for uncollectibles and collections of $11,200,000 leave receivables up $800,000.<\/p>", "q": "The utility buys a $900,000 pump. Expense?", "a": "No. It is a capital asset, depreciated over its life."}, {"h": "Classification and cash flows", "obj": "", "book": "", "body": "<p>Operating revenue: charges for services. Nonoperating: investment income and interest expense. Transfers appear after nonoperating items. Cash flow categories: operating, noncapital financing (the transfer), capital and related financing (plant, principal, interest) and investing (investment income). Operating income 2,980,000; change in net position 1,440,000.<\/p>", "q": "In which cash flow category is principal on revenue bonds?", "a": "Capital and related financing."}, {"h": "Internal service funds", "obj": "", "book": "", "body": "<p>Fleet Management charges departments $1,800,000, with costs of $1,750,000 (personnel 650,000; parts and fuel 900,000; depreciation 200,000), so operating income is $50,000. In the General Fund the charges are expenditures; government-wide, the internal activity is eliminated and the net revenue is added back to the users' functions.<\/p>", "q": "Why do fleet charges not increase total government-wide expenses?", "a": "They are internal; eliminating them leaves only the real costs, adjusted by the net revenue."}, {"h": "Pensions", "obj": "", "book": "", "body": "<p>State cost-sharing plan: fund-level cost is the contribution; government-wide expense is the contribution plus change in net pension liability, less change in deferred outflows, plus change in deferred inflows. With +2,700,000, -400,000 and -400,000 the adjustment is 2,700,000. Separation allowance: 4,800,000 + 300,000 service cost + 187,200 interest (3.9%) - 420,000 benefits = 4,867,200. Officer 401(k): employer 5% of salary.<\/p>", "q": "Why does the separation allowance show a total, not net, pension liability?", "a": "No assets are accumulated in a qualifying trust."}, {"h": "Fiduciary funds and the reporting entity", "obj": "", "book": "", "body": "<p>Fiduciary funds appear in fund statements only. A legally separate organization is a component unit when the city is financially accountable for it (for example appointing the majority of its board and imposing its will or a financial burden or benefit). Pathways Together has its own board, the city appoints no members, and the city supplies about 16% of support under a contract: on those facts it is not a component unit.<\/p>", "q": "Name one fact that would change the conclusion.", "a": "City appointment of board members, power to approve the budget or remove the board, or a guarantee of the organization's debt."}]};
+var KEY = "acct635-lh-w5";
+var state = {i:0, name:"", sid:"", ans:[], init:[], ts:[], seen:[]};
+try{var s=localStorage.getItem(KEY); if(s){var o=JSON.parse(s); if(o&&o.ans){state=o; state.init=state.init||[]; state.ts=state.ts||[]; state.name=state.name||""; state.sid=state.sid||"";}}}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){}}
+var stage=document.getElementById('stage');
+function esc(t){var d=document.createElement('div');d.textContent=t;return d.innerHTML;}
+function stamp(d){return d.toLocaleString(undefined,{year:'numeric',month:'short',day:'numeric',hour:'numeric',minute:'2-digit',second:'2-digit',timeZoneName:'short'});}
+function prog(){var c=state.seen.filter(Boolean).length,n=DATA.steps.length;
+  document.getElementById('fill').style.width=(100*c/n)+'%';
+  document.getElementById('lab').textContent=c+' of '+n+' compared';
+  document.getElementById('progress').setAttribute('aria-valuenow',c);}
+function focusHead(){var h=document.getElementById('sh')||document.getElementById('subh')||document.getElementById('idh'); if(h) h.focus();}
+function showId(){
+  prog();
+  stage.innerHTML='<section class="lo-block" aria-labelledby="idh"><span class="lo-tag">Before you start</span><h2 id="idh" tabindex="-1">Your name and Student ID</h2><p>These appear on the PDF you will upload to Canvas, so enter them exactly as they appear in Canvas.</p>'+
+   '<div class="input-col"><div class="sel-row"><label for="nm">Full name</label><input id="nm" type="text" autocomplete="name"></div><div class="sel-row"><label for="sid">Student ID</label><input id="sid" type="text" autocomplete="off"></div></div>'+
+   '<div class="btn-row"><button type="button" id="go" disabled>Start the walkthrough</button></div></section>';
+  var nm=document.getElementById('nm'), si=document.getElementById('sid'), go=document.getElementById('go');
+  nm.value=state.name; si.value=state.sid;
+  function u(){go.disabled=!(nm.value.trim()&&si.value.trim());}
+  nm.addEventListener('input',u); si.addEventListener('input',u); u();
+  go.addEventListener('click',function(){state.name=nm.value.trim();state.sid=si.value.trim();save();show();window.scrollTo(0,0);focusHead();});
+}
+function show(){
+  prog();
+  if(!state.name||!state.sid) return showId();
+  if(state.i>=DATA.steps.length) return showSubmit();
+  var st=DATA.steps[state.i], i=state.i, n=DATA.steps.length, done=!!state.seen[i];
+  stage.innerHTML='<section class="lo-block" aria-labelledby="sh"><span class="lo-tag">Step '+(i+1)+' of '+n+(st.obj?' &middot; '+esc(st.obj):'')+'</span><h2 id="sh" tabindex="-1">'+esc(st.h)+'</h2>'+st.body+(st.book?'<p class="textbook"><strong>Textbook:</strong> '+esc(st.book)+'</p>':'')+
+   '<div class="example"><div class="ex-label">Checkpoint '+(i+1)+'</div><p>'+esc(st.q)+'</p><label class="ans-label" for="ans">Your answer, in your own words</label><textarea id="ans"'+(done?' readonly':'')+'></textarea>'+
+   '<p class="hint-line" id="lockmsg">'+(done?'Your initial response is locked and time-stamped ('+esc(state.ts[i]||'')+').':'Write your answer first. When you compare, your initial response is locked and time-stamped.')+'</p>'+
+   '<div class="btn-row"><button type="button" id="cmp" disabled>Compare with the model answer</button></div>'+
+   '<div class="solution" id="model" hidden><div class="solution-label">Model answer</div><p>'+esc(st.a)+'</p><p>Compare it with yours and note any difference. Both will appear in your PDF.</p></div></div></section>'+
+   '<div class="stepnav"><button type="button" class="secondary" id="prev"'+(i===0?' disabled':'')+'>Back</button><button type="button" id="next" disabled>'+(i===n-1?'Finish':'Next step')+'</button></div>';
+  var ta=document.getElementById('ans'), cmp=document.getElementById('cmp'), nx=document.getElementById('next'), model=document.getElementById('model');
+  ta.value=state.ans[i]||'';
+  function upd(){cmp.disabled = done || ta.value.trim().length<3; nx.disabled = !state.seen[i];}
+  if(done) model.hidden=false;
+  upd();
+  ta.addEventListener('input',function(){state.ans[i]=ta.value;save();upd();});
+  cmp.addEventListener('click',function(){state.ans[i]=ta.value;state.init[i]=ta.value;state.ts[i]=stamp(new Date());state.seen[i]=true;done=true;save();ta.readOnly=true;model.hidden=false;document.getElementById('lockmsg').textContent='Your initial response is locked and time-stamped ('+state.ts[i]+').';prog();upd();});
+  nx.addEventListener('click',function(){state.i=i+1;save();show();window.scrollTo(0,0);focusHead();});
+  document.getElementById('prev').addEventListener('click',function(){state.i=i-1;save();show();window.scrollTo(0,0);focusHead();});
+}
+function showSubmit(){
+  var missing=[]; for(var k=0;k<DATA.steps.length;k++){ if(!state.seen[k]) missing.push(k+1); }
+  var now=new Date();
+  var rep='<div id="report"><h2 class="rep-title">'+esc(DATA.short)+' &mdash; checkpoint record</h2>'+
+   '<table class="rep-id"><tbody><tr><th scope="row">Name</th><td>'+esc(state.name)+'</td></tr><tr><th scope="row">Student ID</th><td>'+esc(state.sid)+'</td></tr><tr><th scope="row">Course</th><td>ACCT 635 Governmental and Nonprofit Accounting</td></tr><tr><th scope="row">PDF created</th><td>'+esc(stamp(now))+'</td></tr></tbody></table>';
+  for(var j=0;j<DATA.steps.length;j++){
+    rep+='<div class="rep-cp"><h3>Checkpoint '+(j+1)+'. '+esc(DATA.steps[j].h)+'</h3><p class="rep-q">'+esc(DATA.steps[j].q)+'</p>'+
+     '<p class="rep-lab">Initial response'+(state.ts[j]?' (locked '+esc(state.ts[j])+')':'')+'</p><p class="rep-ans">'+(esc(state.init[j]||'')||'<em>No response recorded</em>')+'</p>'+
+     '<p class="rep-lab">Model answer</p><p class="rep-model">'+esc(DATA.steps[j].a)+'</p></div>';
+  }
+  rep+='</div>';
+  stage.innerHTML='<section class="lo-block noprint" aria-labelledby="subh"><span class="lo-tag">Finish</span><h2 id="subh" tabindex="-1">Save your PDF and upload it to Canvas</h2>'+
+   (missing.length?'<div class="feedback warn">Checkpoint'+(missing.length>1?'s':'')+' '+missing.join(', ')+' still need'+(missing.length>1?'':'s')+' a response compared with the model answer. Use Back to finish '+(missing.length>1?'them':'it')+'.</div>':
+   '<ol><li>Select <strong>Print or save as PDF</strong>.</li><li>In the print window, choose <strong>Save as PDF</strong> as the destination.</li><li>Return to Canvas, open this assignment, upload the PDF, and select Submit Assignment.</li></ol>')+
+   '<div class="btn-row"><button type="button" id="print"'+(missing.length?' disabled':'')+'>Print or save as PDF</button><button type="button" class="secondary" id="back">Back to the last step</button><button type="button" class="secondary" id="reset">Start over</button></div></section>'+
+   '<h2 class="noprint">Preview of your PDF</h2>'+rep;
+  document.getElementById('print').addEventListener('click',function(){
+    var old=document.title; document.title='ACCT635_'+DATA.short.replace(/[^A-Za-z0-9]+/g,'_')+'_'+state.name.replace(/[^A-Za-z0-9]+/g,'_')+'_'+state.sid.replace(/[^A-Za-z0-9]+/g,'');
+    window.print(); setTimeout(function(){document.title=old;},1500);});
+  document.getElementById('back').addEventListener('click',function(){state.i=DATA.steps.length-1;save();show();focusHead();});
+  document.getElementById('reset').addEventListener('click',function(){ if(confirm('Clear all of your answers and your name on this page?')){state={i:0,name:"",sid:"",ans:[],init:[],ts:[],seen:[]};save();show();focusHead();} });
+}
+show();
+</script>
+</body>
+</html>

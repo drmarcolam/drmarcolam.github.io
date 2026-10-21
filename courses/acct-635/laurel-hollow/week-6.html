@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#1B365D">
+<meta name="description" content="Week 6 walkthrough for the City of Laurel Hollow case: Week 6 Walkthrough: Year-End Close and Conversion">
+<title>Week 6 Walkthrough: Year-End Close and Conversion | ACCT 635</title>
+<link rel="stylesheet" href="../chapter-walkthroughs/walkthrough.css">
+<link rel="stylesheet" href="laurel-hollow.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<nav class="crumbs noprint" aria-label="Breadcrumb"><a href="../../../index.html">Courses</a> &nbsp;/&nbsp; <a href="../../acct-635.html">ACCT 635</a> &nbsp;/&nbsp; Laurel Hollow Walkthroughs &nbsp;/&nbsp; Week 6</nav>
+<header class="banner noprint"><div class="banner-inner">
+  <p class="eyebrow">ACCT 635 &middot; Laurel Hollow &middot; Week 6 Walkthrough</p>
+  <h1 class="title">Week 6 Walkthrough: Year-End Close and Conversion</h1>
+  <p class="sub">About 120 minutes. This is where the teaching happens. Enter your name and Student ID, read each step, write your answer to the checkpoint, then compare it with the model answer. At the end, save a PDF of your answers and the model answers and upload it to Canvas. Graded for completion.</p>
+</div></header>
+<div class="progress noprint" id="progress" role="progressbar" aria-label="Checkpoints compared" aria-valuemin="0" aria-valuemax="5" aria-valuenow="0">
+  <div class="track"><div class="fill" id="fill"></div></div>
+  <div class="lab" id="lab">0 of 5 compared</div>
+</div>
+<main id="main" tabindex="-1">
+
+  <div id="stage"></div>
+</main>
+<footer class="noprint">ACCT 635 &middot; Western Carolina University</footer>
+<script>
+var DATA = {"short": "Week 6 Walkthrough", "steps": [{"h": "Year-end entries", "obj": "", "book": "", "body": "<p>Encumbrance history on the partner agreement: 400,000 less payments of 90,000, 100,000 and 100,000 leaves 110,000, which is earned and unpaid at June 30 (1,230 households served). Reverse the encumbrance and record an expenditure and a payable. Accrue June sales tax received in August (1,330,000) and last-days payroll (560,000).<\/p>", "q": "Why does the city accrue the $110,000 owed to Pathways Together?", "a": "The service was delivered by June 30, so the liability was incurred and is payable from current resources on July 15."}, {"h": "Unavailable revenue and encumbrances", "obj": "", "book": "", "body": "<p>Property taxes not expected within 60 days (1,350,000) become a deferred inflow in the fund; last year's 1,100,000 is reversed into revenue, so revenue is 35,280,000 - 1,350,000 + 1,100,000 = 35,030,000. Encumbrances of 1,780,000 for orders honored next year are closed and reported as assigned fund balance.<\/p>", "q": "Property taxes collected 90 days after year-end: fund treatment, then government-wide treatment?", "a": "Funds: deferred inflow (unavailable revenue). Government-wide: revenue, because it is accrual basis."}, {"h": "Fund balance and major funds", "obj": "", "book": "", "body": "<p>Classify: cemetery principal (nonspendable), tourism and streets (restricted), stabilization ordinance (committed), encumbrances and next year's budget (assigned), General Fund residual (unassigned). Major fund test example: Capital Projects assets 8,970 of 48,880 governmental = 18.4% and 8,970 of 172,880 combined = 5.19%: major. Cemetery assets are 12.2% of governmental but 3.45% of combined: not major by the test.<\/p>", "q": "A fund has 12% of governmental assets but 3.5% of combined assets. Major?", "a": "No. It fails the 5% test, though management may elect to show it."}, {"h": "The reconciliations", "obj": "", "book": "", "body": "<p>Start with total governmental fund balances 42,830,000 and add capital assets net 148,000,000, subtract bonds 56,000,000, premium 526,188, accrued interest 512,500, compensated absences 3,900,000, pension liabilities 18,300,000 and 4,867,200, add deferred outflows 4,600,000, subtract deferred inflows 1,500,000, add unavailable revenue 1,350,000 and internal service fund 1,420,000: 112,594,112. For the operating statement start with 8,830,000: +12,900,000 capital outlay, -7,400,000 depreciation, +4,500,000 donated streets, -18,540,000 bond proceeds, +2,000,000 principal, +13,812 premium amortization, -162,500 accrued interest, -200,000 compensated absences, -2,700,000 pension adjustment, -67,200 separation allowance, +250,000 unavailable revenue, +100,000 internal service fund: -475,888.<\/p>", "q": "Bond proceeds and premium of $18.54M: add or subtract in the operating reconciliation, and why?", "a": "Subtract. They are a financing source in the funds, but a liability, not income, government-wide."}, {"h": "Telling the story", "obj": "", "book": "", "body": "<p>Borrowing is not income; building assets is not expense; depreciation is a real cost; donated streets add assets; pension obligations grew; spendable balances are strong.<\/p>", "q": "Give two reasons funds gain while net position declines, in plain language.", "a": "For example: borrowed money and capital spending appear in the funds but become a liability and an asset government-wide; depreciation and pension growth reduce net position but not fund balance."}]};
+var KEY = "acct635-lh-w6";
+var state = {i:0, name:"", sid:"", ans:[], init:[], ts:[], seen:[]};
+try{var s=localStorage.getItem(KEY); if(s){var o=JSON.parse(s); if(o&&o.ans){state=o; state.init=state.init||[]; state.ts=state.ts||[]; state.name=state.name||""; state.sid=state.sid||"";}}}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){}}
+var stage=document.getElementById('stage');
+function esc(t){var d=document.createElement('div');d.textContent=t;return d.innerHTML;}
+function stamp(d){return d.toLocaleString(undefined,{year:'numeric',month:'short',day:'numeric',hour:'numeric',minute:'2-digit',second:'2-digit',timeZoneName:'short'});}
+function prog(){var c=state.seen.filter(Boolean).length,n=DATA.steps.length;
+  document.getElementById('fill').style.width=(100*c/n)+'%';
+  document.getElementById('lab').textContent=c+' of '+n+' compared';
+  document.getElementById('progress').setAttribute('aria-valuenow',c);}
+function focusHead(){var h=document.getElementById('sh')||document.getElementById('subh')||document.getElementById('idh'); if(h) h.focus();}
+function showId(){
+  prog();
+  stage.innerHTML='<section class="lo-block" aria-labelledby="idh"><span class="lo-tag">Before you start</span><h2 id="idh" tabindex="-1">Your name and Student ID</h2><p>These appear on the PDF you will upload to Canvas, so enter them exactly as they appear in Canvas.</p>'+
+   '<div class="input-col"><div class="sel-row"><label for="nm">Full name</label><input id="nm" type="text" autocomplete="name"></div><div class="sel-row"><label for="sid">Student ID</label><input id="sid" type="text" autocomplete="off"></div></div>'+
+   '<div class="btn-row"><button type="button" id="go" disabled>Start the walkthrough</button></div></section>';
+  var nm=document.getElementById('nm'), si=document.getElementById('sid'), go=document.getElementById('go');
+  nm.value=state.name; si.value=state.sid;
+  function u(){go.disabled=!(nm.value.trim()&&si.value.trim());}
+  nm.addEventListener('input',u); si.addEventListener('input',u); u();
+  go.addEventListener('click',function(){state.name=nm.value.trim();state.sid=si.value.trim();save();show();window.scrollTo(0,0);focusHead();});
+}
+function show(){
+  prog();
+  if(!state.name||!state.sid) return showId();
+  if(state.i>=DATA.steps.length) return showSubmit();
+  var st=DATA.steps[state.i], i=state.i, n=DATA.steps.length, done=!!state.seen[i];
+  stage.innerHTML='<section class="lo-block" aria-labelledby="sh"><span class="lo-tag">Step '+(i+1)+' of '+n+(st.obj?' &middot; '+esc(st.obj):'')+'</span><h2 id="sh" tabindex="-1">'+esc(st.h)+'</h2>'+st.body+(st.book?'<p class="textbook"><strong>Textbook:</strong> '+esc(st.book)+'</p>':'')+
+   '<div class="example"><div class="ex-label">Checkpoint '+(i+1)+'</div><p>'+esc(st.q)+'</p><label class="ans-label" for="ans">Your answer, in your own words</label><textarea id="ans"'+(done?' readonly':'')+'></textarea>'+
+   '<p class="hint-line" id="lockmsg">'+(done?'Your initial response is locked and time-stamped ('+esc(state.ts[i]||'')+').':'Write your answer first. When you compare, your initial response is locked and time-stamped.')+'</p>'+
+   '<div class="btn-row"><button type="button" id="cmp" disabled>Compare with the model answer</button></div>'+
+   '<div class="solution" id="model" hidden><div class="solution-label">Model answer</div><p>'+esc(st.a)+'</p><p>Compare it with yours and note any difference. Both will appear in your PDF.</p></div></div></section>'+
+   '<div class="stepnav"><button type="button" class="secondary" id="prev"'+(i===0?' disabled':'')+'>Back</button><button type="button" id="next" disabled>'+(i===n-1?'Finish':'Next step')+'</button></div>';
+  var ta=document.getElementById('ans'), cmp=document.getElementById('cmp'), nx=document.getElementById('next'), model=document.getElementById('model');
+  ta.value=state.ans[i]||'';
+  function upd(){cmp.disabled = done || ta.value.trim().length<3; nx.disabled = !state.seen[i];}
+  if(done) model.hidden=false;
+  upd();
+  ta.addEventListener('input',function(){state.ans[i]=ta.value;save();upd();});
+  cmp.addEventListener('click',function(){state.ans[i]=ta.value;state.init[i]=ta.value;state.ts[i]=stamp(new Date());state.seen[i]=true;done=true;save();ta.readOnly=true;model.hidden=false;document.getElementById('lockmsg').textContent='Your initial response is locked and time-stamped ('+state.ts[i]+').';prog();upd();});
+  nx.addEventListener('click',function(){state.i=i+1;save();show();window.scrollTo(0,0);focusHead();});
+  document.getElementById('prev').addEventListener('click',function(){state.i=i-1;save();show();window.scrollTo(0,0);focusHead();});
+}
+function showSubmit(){
+  var missing=[]; for(var k=0;k<DATA.steps.length;k++){ if(!state.seen[k]) missing.push(k+1); }
+  var now=new Date();
+  var rep='<div id="report"><h2 class="rep-title">'+esc(DATA.short)+' &mdash; checkpoint record</h2>'+
+   '<table class="rep-id"><tbody><tr><th scope="row">Name</th><td>'+esc(state.name)+'</td></tr><tr><th scope="row">Student ID</th><td>'+esc(state.sid)+'</td></tr><tr><th scope="row">Course</th><td>ACCT 635 Governmental and Nonprofit Accounting</td></tr><tr><th scope="row">PDF created</th><td>'+esc(stamp(now))+'</td></tr></tbody></table>';
+  for(var j=0;j<DATA.steps.length;j++){
+    rep+='<div class="rep-cp"><h3>Checkpoint '+(j+1)+'. '+esc(DATA.steps[j].h)+'</h3><p class="rep-q">'+esc(DATA.steps[j].q)+'</p>'+
+     '<p class="rep-lab">Initial response'+(state.ts[j]?' (locked '+esc(state.ts[j])+')':'')+'</p><p class="rep-ans">'+(esc(state.init[j]||'')||'<em>No response recorded</em>')+'</p>'+
+     '<p class="rep-lab">Model answer</p><p class="rep-model">'+esc(DATA.steps[j].a)+'</p></div>';
+  }
+  rep+='</div>';
+  stage.innerHTML='<section class="lo-block noprint" aria-labelledby="subh"><span class="lo-tag">Finish</span><h2 id="subh" tabindex="-1">Save your PDF and upload it to Canvas</h2>'+
+   (missing.length?'<div class="feedback warn">Checkpoint'+(missing.length>1?'s':'')+' '+missing.join(', ')+' still need'+(missing.length>1?'':'s')+' a response compared with the model answer. Use Back to finish '+(missing.length>1?'them':'it')+'.</div>':
+   '<ol><li>Select <strong>Print or save as PDF</strong>.</li><li>In the print window, choose <strong>Save as PDF</strong> as the destination.</li><li>Return to Canvas, open this assignment, upload the PDF, and select Submit Assignment.</li></ol>')+
+   '<div class="btn-row"><button type="button" id="print"'+(missing.length?' disabled':'')+'>Print or save as PDF</button><button type="button" class="secondary" id="back">Back to the last step</button><button type="button" class="secondary" id="reset">Start over</button></div></section>'+
+   '<h2 class="noprint">Preview of your PDF</h2>'+rep;
+  document.getElementById('print').addEventListener('click',function(){
+    var old=document.title; document.title='ACCT635_'+DATA.short.replace(/[^A-Za-z0-9]+/g,'_')+'_'+state.name.replace(/[^A-Za-z0-9]+/g,'_')+'_'+state.sid.replace(/[^A-Za-z0-9]+/g,'');
+    window.print(); setTimeout(function(){document.title=old;},1500);});
+  document.getElementById('back').addEventListener('click',function(){state.i=DATA.steps.length-1;save();show();focusHead();});
+  document.getElementById('reset').addEventListener('click',function(){ if(confirm('Clear all of your answers and your name on this page?')){state={i:0,name:"",sid:"",ans:[],init:[],ts:[],seen:[]};save();show();focusHead();} });
+}
+show();
+</script>
+</body>
+</html>
