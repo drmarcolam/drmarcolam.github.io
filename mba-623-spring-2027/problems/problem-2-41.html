@@ -100,7 +100,7 @@
   }
   .part-label{
     font-family:'IBM Plex Mono', monospace;
-    font-size:12px; color:var(--gold); background:var(--purple);
+    font-size:12px; color:#ffffff; background:var(--purple);
     display:inline-block; padding:3px 9px; border-radius:4px; letter-spacing:.04em;
     margin-bottom:12px;
   }
@@ -129,7 +129,7 @@
   }
   .req span.reqlabel{ color:var(--purple); }
 
-  h4.subsection{
+  h3.subsection{
     font-family:'Source Serif 4',serif; font-size:15px; color:var(--purple); margin:22px 0 6px;
     border-bottom:1px solid var(--line-soft); padding-bottom:4px;
   }
@@ -295,7 +295,7 @@
     .score-panel{ background:#fff !important; border:1.5px solid #000 !important; break-inside:avoid; }
     .score-bar{ display:none !important; }
     .score-pct, .score-panel.scored-good .score-pct, .score-panel.scored-bad .score-pct{ color:#000 !important; }
-    .part h2, .part-label, .scenario, h4.subsection{ break-after:avoid; break-inside:avoid; }
+    .part h2, .part-label, .scenario, h3.subsection{ break-after:avoid; break-inside:avoid; }
     table.given, table.worksheet{ break-inside:auto; }
     table.given tr, table.worksheet tr{ break-inside:avoid; }
     ol.addinfo li{ break-inside:avoid; }
@@ -337,6 +337,7 @@
   <h1 class="title">Compare Cash Flows Across Retailers</h1>
   <p class="subtitle">Net income, operating cash flow and investing cash flow as a percentage of sales: what each ratio says about a retailer&rsquo;s business model.</p>
 </header>
+<div role="region" aria-label="Student information">
 <p class="print-name-line" id="printNameLine"></p>
 <div class="id-bar">
   <label for="studentName">Name</label>
@@ -349,6 +350,7 @@
 <div class="score-area" id="scoreArea"></div>
 <div class="rounding-note">
   <strong>Rounding convention:</strong> enter each ratio as a <strong>percent with one decimal place</strong> (for example 4.3 for 4.3%; use a minus sign for negative ratios). Do not round intermediate calculations. Rank each ratio from <strong>1 (highest) to 5 (lowest)</strong>, treating negative ratios as lower than positive ones, so the most negative ratio ranks 5.
+</div>
 </div>
 <main>
 <div class="part">
@@ -364,19 +366,19 @@
   </table>
   <div class="req"><span class="reqlabel">Required:</span> (a) Compute the ratio of net income to sales for each company. Rank the companies on the basis of this ratio. Do their respective business models give insight into these differences? (b) Compute net cash flows from operating activities as a percentage of sales. Rank the companies on the basis of this ratio. Does this ranking coincide with the ratio rankings from part (a)? Suggest one or more reasons for any differences observed. (c) Compute net cash flows from investing activities as a percentage of sales. Rank the companies on the basis of this ratio. Does this ranking coincide with the ratio rankings from part (a)? Suggest one or more reasons for any differences observed.</div>
 
-  <h4 class="subsection">(a) Net income as a percentage of sales</h4>
+  <h3 class="subsection">(a) Net income as a percentage of sales</h3>
   <table class="worksheet"><thead><tr><th>Company</th><th class="num">Net income &divide; sales (%)</th><th>Rank (1 = highest)</th></tr></thead><tbody id="rowsA"></tbody></table>
   <p class="hint">Write one or two sentences: do the business models (the mix of products, pricing and how each company serves customers) help explain the differences?</p>
   <textarea class="resp" id="respA" aria-label="Part a discussion"></textarea>
   <div class="model-ans" id="modelA"><strong>Suggested discussion.</strong> Net income margin reflects pricing power and cost structure. The home-improvement chain earns the highest margin on each sales dollar. Discount and supercenter formats sell lower-margin, high-volume goods, so a small margin on a very large sales base is normal. The department store, with branded merchandise and higher prices, sits in between.</div>
 
-  <h4 class="subsection">(b) Operating cash flow as a percentage of sales</h4>
+  <h3 class="subsection">(b) Operating cash flow as a percentage of sales</h3>
   <table class="worksheet"><thead><tr><th>Company</th><th class="num">Operating cash flow &divide; sales (%)</th><th>Rank (1 = highest)</th></tr></thead><tbody id="rowsB"></tbody></table>
   <p class="hint">Does the ranking match part (a)? Name at least one reason the two rankings can differ (think about noncash expenses such as depreciation, and changes in inventory and payables).</p>
   <textarea class="resp" id="respB" aria-label="Part b discussion"></textarea>
   <div class="model-ans" id="modelB"><strong>Suggested discussion.</strong> Operating cash flow exceeds net income for every company because depreciation and other noncash expenses are added back, and the gap is largest for capital-intensive chains with many stores and distribution centers. Differences from the part (a) ranking also come from working capital: a retailer that stretches payables to suppliers, or turns inventory quickly, converts more of its profit into cash. Here the discount chain moves up (third in part a, second here) and the department store moves down. The supercenter still ranks last, but it turns each dollar of profit into several dollars of operating cash, because depreciation on its huge store base is large relative to its thin income.</div>
 
-  <h4 class="subsection">(c) Investing cash flow as a percentage of sales</h4>
+  <h3 class="subsection">(c) Investing cash flow as a percentage of sales</h3>
   <table class="worksheet"><thead><tr><th>Company</th><th class="num">Investing cash flow &divide; sales (%)</th><th>Rank (1 = highest)</th></tr></thead><tbody id="rowsC"></tbody></table>
   <p class="hint">Investing cash flow is usually negative for a growing retailer (cash goes out for stores, equipment and acquisitions). A positive number means the company took in more cash from selling assets or investments than it spent. Does this ranking match part (a)? Suggest a reason.</p>
   <textarea class="resp" id="respC" aria-label="Part c discussion"></textarea>
@@ -665,8 +667,8 @@
     if(seed === '') return build(CO);
     return build(randomRows(mulberry32(hashSeed(seed.toLowerCase()))));
   }
-  function rankSelectHTML(id){
-    return '<select class="acct" id="' + id + '"><option value="">— rank —</option>' +
+  function rankSelectHTML(id, label){
+    return '<select class="acct" id="' + id + '" aria-label="' + (label || 'Rank') + '"><option value="">— rank —</option>' +
       [1,2,3,4,5].map(function(n){ return '<option value="' + n + '">' + n + '</option>'; }).join('') + '</select>';
   }
   function applyScenario(d){
@@ -677,7 +679,7 @@
       setHTML('rows' + k, d.rows.map(function(c, i){
         return '<tr><td class="method">' + c.name + '</td>' +
           '<td class="amt"><input type="text" placeholder="%" id="r' + k + i + '"></td>' +
-          '<td class="acctcell" style="width:150px;">' + rankSelectHTML('k' + k + i) + '</td></tr>';
+          '<td class="acctcell" style="width:150px;">' + rankSelectHTML('k' + k + i, 'Rank for ' + c.name + ', part ' + k) + '</td></tr>';
       }).join(''));
     });
   }
