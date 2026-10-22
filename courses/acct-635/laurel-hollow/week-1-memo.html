@@ -16,9 +16,25 @@
 <header class="banner"><div class="banner-inner">
   <p class="eyebrow">ACCT 635 &middot; Laurel Hollow &middot; Week 1</p>
   <h1 class="title">Memo from the Finance Director</h1>
-  <p class="sub">Read the memo and the outcomes below. The access code at the bottom is the answer to the first question of the Week 1 Memo quiz in Canvas.</p>
+  <p class="sub">Read the memo and the outcomes below. Enter the access code from the Week 1 Memo quiz in Canvas to open the memo. Then save a PDF record and upload it to the quiz.</p>
 </div></header>
 <main id="main" tabindex="-1">
+<section id="gate" class="noprint" aria-labelledby="gate-h">
+<div class="key-idea"><h2 id="gate-h">Enter your access code</h2>
+<p>The access code is in question 1 of the Week 1 Memo quiz in Canvas.</p>
+<form id="gform" autocomplete="off">
+<p><label for="code">Access code</label><br><input id="code" type="text" required style="font:inherit;padding:10px;min-height:44px;width:16em;max-width:100%"></p>
+<p><button type="submit" style="font:inherit;padding:10px 18px;min-height:44px">Open the memo</button></p>
+<p id="gmsg" role="alert" aria-live="assertive"></p>
+</form></div>
+<noscript><p>This page needs JavaScript to check the access code.</p></noscript>
+</section>
+<div id="memo" hidden>
+<div class="key-idea noprint"><h2>Your details</h2>
+<p><label for="nm">Name</label><br><input id="nm" type="text" style="font:inherit;padding:10px;min-height:44px;width:20em;max-width:100%"></p>
+<p><label for="sid">Student ID</label><br><input id="sid" type="text" style="font:inherit;padding:10px;min-height:44px;width:12em;max-width:100%"></p>
+</div>
+<div id="rec" class="print-only" style="display:none"><p><b>Name:</b> <span id="rn"></span> &nbsp; <b>Student ID:</b> <span id="rs"></span> &nbsp; <b>Opened:</b> <span id="rt"></span></p><p><b>ACCT 635 Week 1 memo record</b></p></div>
 <div class="example" role="region" aria-label="Memo header">
 <table>
 <tbody>
@@ -42,10 +58,30 @@
 <h2>Time and flow</h2>
 <p>About 15 hours: intro slides, walkthrough and chapter summary, Gate Quiz, the fund map deliverable, and a short reflection. If you score below 80% on the Gate Quiz, choose one remedial path, then take the Mastery Quiz. The higher of the two quiz scores counts.</p>
 <p><em>CPA relevance:</em> fund classification, measurement focus and basis of accounting appear under State and Local Government Concepts in the FAR section (check the current AICPA blueprint).</p>
-<div class="key-idea"><h2>Access code</h2>
-<p>Enter this code as your answer to question 1 of the Week 1 Memo quiz in Canvas:</p>
-<p style="font-family:ui-monospace,Menlo,Consolas,monospace;font-size:1.6em;font-weight:700;letter-spacing:.12em;margin:.3em 0">HOLLOW-W1</p>
+<div class="noprint"><h2>Save your record</h2>
+<p>Enter your name and Student ID above, then save a PDF of this memo and upload it to question 1 of the quiz in Canvas.</p>
+<p><button id="pbtn" type="button" style="font:inherit;padding:10px 18px;min-height:44px">Print or save as PDF</button></p><p id="pmsg" role="alert"></p></div>
 </div>
 </main>
+<style>@media print{.noprint,#gate,.banner,.crumbs{display:none!important}#rec{display:block!important}}</style>
+<script>
+(function(){
+var H="2922a9ebce85ede75203d52cbf5134aad04e64cfcca54844b338d41468c4adf6",opened=null;
+function hex(b){return Array.prototype.map.call(new Uint8Array(b),function(x){return('0'+x.toString(16)).slice(-2)}).join('')}
+document.getElementById('gform').addEventListener('submit',function(e){e.preventDefault();
+ var v=document.getElementById('code').value.trim().toUpperCase().replace(/\s+/g,'');
+ crypto.subtle.digest('SHA-256',new TextEncoder().encode(v)).then(function(d){
+  if(hex(d)===H){opened=new Date();document.getElementById('gate').hidden=true;document.getElementById('memo').hidden=false;document.getElementById('nm').focus();}
+  else{document.getElementById('gmsg').textContent='That code is not correct. Check question 1 of the quiz and try again.';}
+ });});
+document.getElementById('pbtn').addEventListener('click',function(){
+ var n=document.getElementById('nm').value.trim(),s=document.getElementById('sid').value.trim();
+ if(!n||!s){document.getElementById('pmsg').textContent='Enter your name and Student ID first.';return;}
+ document.getElementById('pmsg').textContent='';
+ document.getElementById('rn').textContent=n;document.getElementById('rs').textContent=s;
+ document.getElementById('rt').textContent=(opened||new Date()).toLocaleString();
+ window.print();});
+})();
+</script>
 </body>
 </html>
