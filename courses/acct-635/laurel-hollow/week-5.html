@@ -58,10 +58,10 @@ function show(){
   if(state.i>=DATA.steps.length) return showSubmit();
   var st=DATA.steps[state.i], i=state.i, n=DATA.steps.length, done=!!state.seen[i];
   stage.innerHTML='<section class="lo-block" aria-labelledby="sh"><span class="lo-tag">Step '+(i+1)+' of '+n+(st.obj?' &middot; '+esc(st.obj):'')+'</span><h2 id="sh" tabindex="-1">'+esc(st.h)+'</h2>'+st.body+(st.book?'<p class="textbook"><strong>Textbook:</strong> '+esc(st.book)+'</p>':'')+
-   '<div class="example"><div class="ex-label">Checkpoint '+(i+1)+'</div><p>'+esc(st.q)+'</p><label class="ans-label" for="ans">Your answer, in your own words</label><textarea id="ans"'+(done?' readonly':'')+'></textarea>'+
+   '<div class="example"><h3 class="ex-label">Checkpoint '+(i+1)+'</h3><p>'+esc(st.q)+'</p><label class="ans-label" for="ans">Your answer, in your own words</label><textarea id="ans"'+(done?' readonly':'')+'></textarea>'+
    '<p class="hint-line" id="lockmsg">'+(done?'Your initial response is locked and time-stamped ('+esc(state.ts[i]||'')+').':'Write your answer first. When you compare, your initial response is locked and time-stamped.')+'</p>'+
    '<div class="btn-row"><button type="button" id="cmp" disabled>Compare with the model answer</button></div>'+
-   '<div class="solution" id="model" hidden><div class="solution-label">Model answer</div><p>'+esc(st.a)+'</p><p>Compare it with yours and note any difference. Both will appear in your PDF.</p></div></div></section>'+
+   '<div class="solution" id="model" hidden><h3 class="solution-label">Model answer</h3><p>'+esc(st.a)+'</p><p>Compare it with yours and note any difference. Both will appear in your PDF.</p></div></div></section>'+
    '<div class="stepnav"><button type="button" class="secondary" id="prev"'+(i===0?' disabled':'')+'>Back</button><button type="button" id="next" disabled>'+(i===n-1?'Finish':'Next step')+'</button></div>';
   var ta=document.getElementById('ans'), cmp=document.getElementById('cmp'), nx=document.getElementById('next'), model=document.getElementById('model');
   ta.value=state.ans[i]||'';
