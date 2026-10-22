@@ -16,9 +16,20 @@
 <header class="banner"><div class="banner-inner">
   <p class="eyebrow">ACCT 635 &middot; Laurel Hollow &middot; Week 1</p>
   <h1 class="title">Week 1 Memo: Council Briefing</h1>
-  <p class="sub">Read the memo and the weekly outcomes. The assignment in Canvas explains the deliverable, the two format options and the rubric.</p>
+  <p class="sub">Read the memo and the weekly outcomes. Enter the access code from the Week 1 assignment in Canvas to open the memo. The assignment explains the deliverable, the two format options and the rubric.</p>
 </div></header>
 <main id="main" tabindex="-1">
+<section id="gate" aria-labelledby="gate-h">
+<div class="key-idea"><h2 id="gate-h">Enter your access code</h2>
+<p>The access code is in the Week 1 assignment in Canvas.</p>
+<form id="gform" autocomplete="off">
+<p><label for="code">Access code</label><br><input id="code" type="text" required style="font:inherit;padding:10px;min-height:44px;width:16em;max-width:100%"></p>
+<p><button type="submit" style="font:inherit;padding:10px 18px;min-height:44px">Open the memo</button></p>
+<p id="gmsg" role="alert" aria-live="assertive"></p>
+</form></div>
+<noscript><p>This page needs JavaScript to check the access code.</p></noscript>
+</section>
+<div id="memo" hidden>
 <div class="example" role="region" aria-label="Memo">
 <table><tbody>
 <tr><th scope="row">To</th><td>Staff Accountant</td></tr>
@@ -43,6 +54,17 @@
 <h2>Time and flow</h2>
 <p>About 15 hours: intro slides, walkthrough and chapter summary, Gate Quiz, the memo (plan on 5 to 6 hours), and a short reflection. Do the walkthrough and Gate Quiz first, because the memo uses what they teach. If you score below 80% on the Gate Quiz, choose one remedial path, then take the Mastery Quiz. The higher of the two quiz scores counts.</p>
 <p><em>CPA relevance:</em> fund classification, measurement focus and basis of accounting appear under State and Local Government Concepts in the FAR section (check the current AICPA blueprint).</p>
+</div>
 </main>
+<script>
+(function(){var H="2922a9ebce85ede75203d52cbf5134aad04e64cfcca54844b338d41468c4adf6";
+function hex(b){return Array.prototype.map.call(new Uint8Array(b),function(x){return('0'+x.toString(16)).slice(-2)}).join('')}
+document.getElementById('gform').addEventListener('submit',function(e){e.preventDefault();
+ var v=document.getElementById('code').value.trim().toUpperCase().replace(/\s+/g,'');
+ crypto.subtle.digest('SHA-256',new TextEncoder().encode(v)).then(function(d){
+  if(hex(d)===H){document.getElementById('gate').hidden=true;document.getElementById('memo').hidden=false;document.getElementById('main').focus();}
+  else{document.getElementById('gmsg').textContent='That code is not correct. Check the Week 1 assignment in Canvas and try again.';}
+ });});})();
+</script>
 </body>
 </html>
