@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Module 5 Challenge: How much of the 18.7% sales growth would survive a skeptical reviewer?</title>
+<style>
+
+:root{
+  --paper:#F5F8F5; --card:#FFFFFF; --ink:#16222B; --muted:#4D5D68; --rule:#C7D2CB;
+  --spruce:#14574B; --spruce-ink:#FFFFFF; --spruce-soft:#E0EEE8;
+  --ok:#0F6A37; --ok-bg:#E3F3E9; --miss:#9B2C1F; --miss-bg:#FBE8E4;
+  --note:#274C8C; --note-bg:#E8EEF9; --focus:#1A47B8; --hl:#FFF3C4;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --paper:#0F1A17; --card:#16231F; --ink:#E8EFEA; --muted:#A9B8B0; --rule:#33453E;
+    --spruce:#5FC2AB; --spruce-ink:#06241D; --spruce-soft:#1B3A33;
+    --ok:#7FDCA0; --ok-bg:#16352A; --miss:#FFAE9F; --miss-bg:#3E1D18;
+    --note:#A9C4FF; --note-bg:#1B2B4A; --focus:#9DB8FF; --hl:#4A4017;
+  }
+}
+*{box-sizing:border-box}
+html{font-size:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.55;font-size:1.0625rem}
+.skip{position:absolute;left:-999px;top:0;background:var(--spruce);color:var(--spruce-ink);padding:.6rem 1rem;z-index:10}
+.skip:focus{left:.5rem;top:.5rem}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:3px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+header.top{padding:1.1rem 1.25rem .4rem;max-width:1120px;margin:0 auto}
+header.top p{margin:0;color:var(--muted);font-size:.95rem}
+header.top h1{font-family:var(--serif);font-weight:700;font-size:1.65rem;line-height:1.2;margin:.15rem 0 0}
+.wrap{max-width:1120px;margin:0 auto;padding:0 1.25rem 3rem;display:grid;grid-template-columns:232px minmax(0,1fr);gap:1.75rem}
+nav.steps{position:sticky;top:.75rem;align-self:start}
+nav.steps h2{font-size:.95rem;margin:.2rem 0 .5rem;color:var(--muted);font-weight:600}
+nav.steps ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.25rem}
+nav.steps button{width:100%;text-align:left;display:flex;gap:.6rem;align-items:center;min-height:44px;padding:.35rem .6rem;border:1px solid transparent;border-radius:6px;background:none;color:var(--ink);font:inherit;font-size:.97rem;cursor:pointer}
+nav.steps button:hover:not([aria-disabled="true"]){background:var(--spruce-soft)}
+nav.steps button[aria-disabled="true"]{color:var(--muted);cursor:not-allowed;opacity:.75}
+nav.steps button[aria-current="step"]{background:var(--spruce-soft);border-color:var(--spruce);font-weight:600}
+.mark{flex:0 0 1.6rem;height:1.6rem;border-radius:50%;border:2px solid var(--rule);display:grid;place-items:center;font-size:.85rem;font-weight:700}
+.mark.done{background:var(--ok);border-color:var(--ok);color:var(--card)}
+.mark.cur{border-color:var(--spruce);color:var(--spruce)}
+main{min-width:0}
+.progress{display:flex;align-items:center;gap:.75rem;margin:.2rem 0 1rem;color:var(--muted);font-size:.95rem}
+progress{flex:1;height:.55rem;accent-color:var(--spruce)}
+.memo{background:var(--card);border:1px solid var(--rule);border-left:6px solid var(--spruce);border-radius:4px;padding:1.2rem 1.4rem;margin-bottom:1.25rem}
+.memo h2{font-family:var(--serif);font-size:1.25rem;margin:0 0 .6rem}
+.memo dl{display:grid;grid-template-columns:5.2rem 1fr;gap:.15rem .75rem;margin:0 0 .9rem;padding-bottom:.8rem;border-bottom:1px solid var(--rule);font-size:.97rem}
+.memo dt{color:var(--muted)} .memo dd{margin:0}
+.memo p{margin:.5rem 0;max-width:68ch}
+.howto{background:var(--spruce-soft);border-radius:4px;padding:.8rem 1rem;margin:0 0 1.25rem;font-size:.97rem}
+.howto strong{font-family:var(--serif)}
+.howto ul{margin:.35rem 0 0;padding-left:1.2rem}
+details.data{background:var(--card);border:1px solid var(--rule);border-radius:4px;margin:0 0 1.25rem}
+details.data>summary{cursor:pointer;padding:.8rem 1rem;font-weight:600;min-height:44px}
+details.data .inner{padding:0 1rem 1rem}
+.tscroll{overflow-x:auto;margin:.4rem 0 1rem}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums;font-size:.95rem}
+caption{text-align:left;font-weight:600;padding:.2rem 0 .4rem;font-family:var(--serif);font-size:1.02rem}
+th,td{padding:.32rem .6rem;border-bottom:1px solid var(--rule);text-align:right;white-space:nowrap}
+th:first-child,td:first-child{text-align:left;white-space:normal}
+thead th{border-bottom:2px solid var(--ink);font-weight:600}
+tr.tot td,tr.tot th{font-weight:700;border-top:1px solid var(--ink)}
+tr.sub th{text-align:left;font-weight:700;color:var(--spruce);padding-top:.7rem}
+section.step{background:var(--card);border:1px solid var(--rule);border-radius:4px;padding:1.3rem 1.4rem}
+section.step h2{font-family:var(--serif);font-size:1.45rem;line-height:1.25;margin:0 0 .2rem}
+section.step h2:focus{outline:none}
+.res{color:var(--muted);font-size:.93rem;margin:0 0 .9rem}
+.lead{max-width:70ch}
+.formula{display:inline-block;background:var(--hl);color:#111;padding:.05rem .45rem;border-radius:3px;font-variant-numeric:tabular-nums}
+@media (prefers-color-scheme: dark){.formula{color:var(--ink)}}
+.q{border-top:1px solid var(--rule);margin-top:1.2rem;padding-top:1.1rem}
+.q label.ql,.q legend{font-weight:600;display:block;margin-bottom:.45rem;max-width:68ch;padding:0}
+.q .unit{font-weight:400;color:var(--muted)}
+.q fieldset{border:0;margin:0;padding:0;min-width:0}
+.row{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center}
+input[type=text]{font:inherit;font-variant-numeric:tabular-nums;min-height:46px;width:12rem;padding:.35rem .7rem;border:2px solid var(--muted);border-radius:5px;background:var(--card);color:var(--ink)}
+input[type=text][disabled]{background:var(--paper);border-color:var(--rule)}
+.opt{display:flex;gap:.7rem;align-items:flex-start;padding:.55rem .7rem;border:1px solid var(--rule);border-radius:5px;margin:.4rem 0;max-width:68ch;cursor:pointer;min-height:44px}
+.opt:hover{background:var(--spruce-soft)}
+.opt input{margin-top:.3rem;width:1.15rem;height:1.15rem;accent-color:var(--spruce);flex:none}
+.opt.disabled{cursor:default;opacity:.85}
+.opt.picked{border-color:var(--spruce);background:var(--spruce-soft)}
+button.btn{font:inherit;font-weight:600;min-height:46px;padding:.45rem 1.15rem;border-radius:5px;border:2px solid var(--spruce);background:var(--spruce);color:var(--spruce-ink);cursor:pointer}
+button.btn:hover{filter:brightness(1.08)}
+button.btn.alt{background:transparent;color:var(--spruce)}
+button.btn[disabled]{opacity:.5;cursor:not-allowed}
+.fb{margin-top:.7rem;padding:.7rem .9rem;border-radius:5px;max-width:68ch}
+.fb.ok{background:var(--ok-bg);border-left:6px solid var(--ok)}
+.fb.no{background:var(--miss-bg);border-left:6px solid var(--miss)}
+.fb.info{background:var(--note-bg);border-left:6px solid var(--note)}
+.fb strong.tag{display:inline-block;margin-right:.35rem}
+.fb.ok strong.tag{color:var(--ok)} .fb.no strong.tag{color:var(--miss)}
+.notes{margin:.6rem 0 0;padding:0;list-style:none;max-width:68ch}
+.notes li{background:var(--note-bg);border-left:6px solid var(--note);padding:.6rem .85rem;margin:.45rem 0;border-radius:4px}
+.notes li b{color:var(--note)}
+.why{margin:.6rem 0 0;max-width:68ch}
+.nextbar{margin-top:1.6rem;padding-top:1.1rem;border-top:2px solid var(--ink);display:flex;gap:.8rem;flex-wrap:wrap;align-items:center}
+.nextbar .hint{color:var(--muted);font-size:.95rem}
+textarea{width:100%;max-width:68ch;min-height:9rem;font:inherit;padding:.7rem;border:2px solid var(--muted);border-radius:5px;background:var(--card);color:var(--ink)}
+.checks label{display:flex;gap:.6rem;align-items:flex-start;margin:.4rem 0;max-width:68ch;min-height:32px}
+.checks input{margin-top:.35rem;width:1.1rem;height:1.1rem;accent-color:var(--spruce)}
+.tick td:nth-child(n+2),.tick th:nth-child(n+2){text-align:center}
+.tick td.good{font-weight:700;color:var(--ok)}
+.tick td.bad{font-weight:700;color:var(--miss)}
+.tick tfoot td,.tick tfoot th{border-top:2px solid var(--ink);font-weight:700}
+pre.out{white-space:pre-wrap;background:var(--paper);border:1px solid var(--rule);padding:.8rem;border-radius:5px;font-size:.92rem;max-width:80ch}
+.cmp{display:grid;grid-template-columns:1fr;gap:.6rem}
+.model{background:var(--spruce-soft);border-radius:4px;padding:.8rem 1rem;max-width:72ch}
+footer{max-width:1120px;margin:0 auto;padding:0 1.25rem 2rem;color:var(--muted);font-size:.9rem}
+@media (max-width:860px){
+  .wrap{grid-template-columns:1fr}
+  nav.steps{position:static}
+  nav.steps ol{flex-direction:row;flex-wrap:wrap}
+  nav.steps li{flex:1 1 auto}
+  nav.steps button{justify-content:center;padding:.35rem .5rem}
+  nav.steps .lbl{display:none}
+  nav.steps button[aria-current="step"] .lbl{display:inline}
+  section.step,.memo{padding:1rem}
+}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+@media print{
+  nav.steps,.nextbar button,.btn,details.data,.skip{display:none!important}
+  body{background:#fff;color:#000}
+  .wrap{display:block}
+}
+
+select{font:inherit;min-height:44px;max-width:100%;padding:.3rem .5rem;border:2px solid var(--muted);border-radius:5px;background:var(--card);color:var(--ink)}
+select[disabled]{background:var(--paper);border-color:var(--rule)}
+table.gridq th,table.gridq td{white-space:normal;vertical-align:middle}
+table.gridq td{text-align:left}
+table.gridq tbody th{font-weight:500;min-width:14rem}
+
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the challenge</a>
+<div id="sr-live" class="sr-only" role="status" aria-live="polite"></div>
+<header class="top">
+  <p>Cullowhee Cycle Works case &middot; Module 5 challenge: Revenue quality, receivables, deferred revenue and foreign currency</p>
+  <h1>How much of the 18.7% sales growth would survive a skeptical reviewer?</h1>
+</header>
+<noscript><p style="max-width:700px;margin:1rem auto;padding:0 1.25rem">This challenge needs JavaScript. Please open it in a current browser.</p></noscript>
+<div class="wrap">
+  <nav class="steps" aria-label="Challenge steps"><h2>Your steps</h2><ol id="stepnav"></ol></nav>
+  <main id="main" tabindex="-1"><div id="app"></div></main>
+</div>
+<footer>Optional challenge. It is not graded and you do not need to submit it. Hints are free; nothing is sent anywhere automatically. You can download your results as a PDF if you want a copy for yourself. All people and companies in the Cullowhee case are fictional.</footer>
+<script>
+(function(){
+'use strict';
+var M = {"num": 5, "h1": "How much of the 18.7% sales growth would survive a skeptical reviewer?", "subject": "Revenue quality, receivables, deferred revenue and foreign currency", "textbook": "Financial & Managerial Accounting for MBAs, 7e", "memo": {"from": "Nora Crisp, Chief Financial Officer", "date": "March 29, 2027", "re": "Challenge: How reliable is revenue growth?", "body": ["The board is celebrating net sales of $55.2 million, up 18.7%. A skeptical director has asked four things: are customers returning more, is the allowance for bad debts big enough, is deferred revenue helping or hurting, and does the euro matter?", "Test each estimate. Where an estimate moved, show what the number would have been if it had stayed at last year's level, so that the board can see how much of the story depends on judgment.", "Finish with a short note that separates the growth we can rely on from the parts that depend on estimates.", "Nora"]}, "data": [{"cap": "Net sales and deductions", "heads": ["FY2025", "FY2026"], "rows": [["Gross sales", [49500, 59200]], ["Returns, allowances and rebates", [-3000, -4000]], ["Net sales", [46500, 55200], "tot"]], "unit": "$ thousands", "dec": 0, "zero": false}, {"cap": "Receivables and allowance for doubtful accounts, December 31", "heads": ["FY2025", "FY2026"], "rows": [["Accounts receivable, gross", [4900, 6400]], ["Allowance for doubtful accounts", [-240, -360]], ["Accounts receivable, net", [4660, 6040], "tot"]], "unit": "$ thousands", "dec": 0, "zero": false}, {"cap": "FY2026 allowance roll-forward and deferred revenue", "heads": ["FY2026"], "rows": [["Allowance, beginning of year", [240]], ["Bad debt expense", [350]], ["Allowance, end of year", [360]], ["Deferred revenue, beginning", [1500]], ["Amounts billed in advance", [2500]], ["Revenue recognized from deferred revenue (included in net sales)", [1900]], ["Deferred revenue, end of year", [2100]]], "unit": "$ thousands", "dec": 0, "zero": false}, {"cap": "European sales (invoiced in euros)", "heads": ["FY2025", "FY2026"], "rows": [["European sales (euro thousands)", ["2,500", "3,000"]], ["Average exchange rate (US dollars per euro)", ["1.10", "1.08"]]], "unit": "Item", "dec": 0, "zero": false}], "dataTitle": "Cullowhee data", "dataNote": "Use 365 days. Assume returns are measured as a percent of gross sales.", "rounding": "Answers are in $ thousands unless a different unit is shown. Percentages are to one decimal place unless noted; answers within a small tolerance are accepted.", "steps": [{"nav": "Predict", "title": "Make a prediction", "res": "Not scored. Your guess is revisited at the end.", "type": "predict", "intro": "<p class=\"lead\">Net sales grew 18.7%, but several parts of revenue depend on estimates.</p>", "legend": "What do you expect the estimates to do to reported growth?", "options": [["a", "They have no meaningful effect."], ["b", "They flatter FY2026: returns and bad-debt estimates moved in a way that supports profit."], ["c", "They understate FY2026, so true growth is higher."], ["d", "I need to test each one."]]}, {"nav": "Returns", "title": "Are customers sending more back?", "res": "Textbook: Module 5, Sales returns and allowances", "intro": "<p class=\"lead\">Net sales equals gross sales less returns, allowances and rebates.</p>", "qs": [{"id": "r1", "type": "num", "label": "FY2026 returns, allowances and rebates as a percent of gross sales", "unit": "percent", "answer": 6.756757, "tol": 0.05, "show": "6.76%", "kind": "pct", "traps": [], "hints": ["Divide the deduction by gross sales.", "4,000 ÷ 59,200.", "Worked step: 4,000 ÷ 59,200 × 100 = ?"], "explain": "The rate rose from 6.1% to 6.8%."}, {"id": "r2", "type": "num", "label": "FY2026 net sales if the deduction rate had stayed at the FY2025 rate of gross sales", "unit": "$ thousands", "answer": 55612.121212, "tol": 3, "show": "55,612", "kind": "num", "traps": [], "hints": ["Apply last year's rate to this year's gross sales.", "FY2025 rate = 3,000 ÷ 49,500 = 6.06%.", "Worked step: 59,200 × (1 − 3,000 ÷ 49,500) = ?"], "explain": "Net sales would have been about $412 thousand higher: rising returns cost the company that much of its growth."}, {"id": "r3", "type": "num", "label": "Growth in net sales if the FY2025 rate had applied (growth vs. FY2025 net sales of 46,500)", "unit": "percent", "answer": 19.59596, "tol": 0.2, "show": "19.6%", "kind": "pct", "traps": [], "hints": ["Divide your answer to the previous question by 46,500 and subtract 1.", "55,612 ÷ 46,500 − 1.", "Worked step: (55,612 ÷ 46,500 − 1) × 100 = ?"], "explain": "Growth would have been 19.6% rather than 18.7%. Returns held growth back; they did not flatter it."}]}, {"nav": "Receivables", "title": "Is the allowance big enough?", "res": "Textbook: Module 5, Receivables and the allowance method", "intro": "<p class=\"lead\">Bad debt expense and the allowance are estimates. Test them against last year's approach.</p>", "qs": [{"id": "b1", "type": "num", "label": "Accounts written off during FY2026 (beginning allowance + bad debt expense − ending allowance)", "unit": "$ thousands", "answer": 230, "tol": 1, "show": "230", "kind": "num", "traps": [], "hints": ["Write-offs reduce the allowance.", "240 + 350 − 360.", "Worked step: 240 + 350 − 360 = ?"], "explain": "$230 thousand of receivables were written off."}, {"id": "b2", "type": "num", "label": "FY2026 ending allowance as a percent of gross accounts receivable", "unit": "percent", "answer": 5.625, "tol": 0.05, "show": "5.62%", "kind": "pct", "traps": [], "hints": ["Divide the ending allowance by gross receivables.", "360 ÷ 6,400.", "Worked step: 360 ÷ 6,400 × 100 = ?"], "explain": "The allowance rose from 4.9% to 5.6% of gross receivables: management became more cautious."}, {"id": "b3", "type": "num", "label": "FY2026 bad debt expense if the ending allowance had stayed at the FY2025 percent of gross receivables (same write-offs)", "unit": "$ thousands", "answer": 303.469388, "tol": 2, "show": "303.5", "kind": "num", "traps": [], "hints": ["Required ending allowance = 4.9% × 6,400. Expense = required ending allowance − beginning allowance + write-offs.", "Required allowance = 6,400 × (240 ÷ 4,900).", "Worked step: 6,400 × (240 ÷ 4,900) − 240 + 230 = ?"], "explain": "Expense would have been about $47 thousand lower, so the more cautious estimate reduced profit rather than flattered it."}, {"id": "b4", "type": "num", "label": "FY2026 days sales outstanding (net receivables ÷ net sales × 365)", "unit": "days", "answer": 39.938406, "tol": 0.2, "show": "39.9", "kind": "num", "traps": [], "hints": ["Use ending net receivables and net sales.", "6,040 ÷ 55,200 × 365.", "Worked step: 6,040 ÷ 55,200 × 365 = ?"], "explain": "DSO lengthened from about 36.6 to 39.9 days: customers are paying more slowly."}]}, {"nav": "Deferred", "title": "Is deferred revenue helping?", "res": "Textbook: Module 5, Deferred revenue", "intro": "<p class=\"lead\">Deferred revenue is cash collected before the company has earned it.</p>", "qs": [{"id": "v1", "type": "num", "label": "Net increase in deferred revenue during FY2026 (billed in advance − revenue recognized)", "unit": "$ thousands", "answer": 600, "tol": 1, "show": "600", "kind": "num", "traps": [], "hints": ["Billings less recognition equals the change in the liability.", "2,500 − 1,900.", "Worked step: 2,500 − 1,900 = ?"], "explain": "The liability grew by $600 thousand: cash was collected ahead of revenue."}, {"id": "v2", "type": "num", "label": "Revenue recognized from deferred revenue as a percent of FY2026 net sales", "unit": "percent", "answer": 3.442029, "tol": 0.1, "show": "3.4%", "kind": "pct", "traps": [], "hints": ["Divide 1,900 by net sales.", "1,900 ÷ 55,200.", "Worked step: 1,900 ÷ 55,200 × 100 = ?"], "explain": "About 3.4% of FY2026 net sales came from revenue billed in earlier periods; growth in the balance (40%) supports future sales."}]}, {"nav": "Currency", "title": "What did the euro do?", "res": "Textbook: Module 5, Foreign currency", "intro": "<p class=\"lead\">European sales are invoiced in euros and translated at the average exchange rate.</p>", "qs": [{"id": "e1", "type": "num", "label": "FY2026 European sales in US dollars", "unit": "$ thousands", "answer": 3240.0, "tol": 1, "show": "3,240", "kind": "num", "traps": [], "hints": ["Multiply euro sales by the average rate.", "3,000 × 1.08.", "Worked step: 3,000 × 1.08 = ?"], "explain": "$3,240 thousand."}, {"id": "e2", "type": "num", "label": "Dollar sales lost in FY2026 because the euro was weaker than in FY2025 (euro sales × (FY2025 rate − FY2026 rate))", "unit": "$ thousands", "answer": 60.0, "tol": 1, "show": "60", "kind": "num", "traps": [], "hints": ["Compare euro sales at the two rates.", "3,000 × (1.10 − 1.08).", "Worked step: 3,000 × (1.10 − 1.08) = ?"], "explain": "The weaker euro cost about $60 thousand of reported sales."}, {"id": "e3", "type": "num", "label": "Growth in European sales in euros (constant currency)", "unit": "percent", "answer": 20.0, "tol": 0.1, "show": "20.0%", "kind": "pct", "traps": [], "hints": ["Compare euro sales directly.", "3,000 ÷ 2,500.", "Worked step: (3,000 ÷ 2,500 − 1) × 100 = ?"], "explain": "In euros sales grew 20.0%; in dollars only 17.8%. The currency masked some real growth."}, {"id": "e4", "type": "mc", "label": "What is the best summary for the board?", "options": [["a", "Reported growth of 18.7% is inflated by lenient estimates."], ["b", "The estimates moved in a conservative direction (more returns, a bigger allowance) and the euro hid some growth, but customers are paying more slowly and part of the growth rests on cash collected in advance."], ["c", "Estimates do not matter because the cash is real."], ["d", "Foreign currency affects only profit, not sales."]], "answer": "b", "optHints": {"a": "Returns, allowance and currency all moved against reported growth.", "c": "Estimates change reported revenue and profit directly.", "d": "Translation changes reported sales."}, "hints": ["What did each estimate do to FY2026 growth?", "What do the DSO and deferred revenue results add?", "Pick the answer that is balanced."], "explain": "Revenue quality is better than the headline in some ways and worse in others."}]}, {"nav": "Brief Nora", "title": "Write the note for Nora", "res": "Not scored. Compare your note with the checklist and the model answer.", "type": "memo", "prompt": "Write Nora five to seven sentences for the skeptical director. Separate the parts of growth that rely on estimates from the parts that do not, and use at least three figures.", "checklist": ["States that returns rose to 6.8% of gross sales, reducing growth about 0.9 points (19.6% at last year's rate).", "Notes the allowance rose to 5.6% and expense would have been about $47 thousand lower at last year's percent.", "Notes DSO lengthened to 39.9 days.", "Notes deferred revenue grew $600 thousand, supporting FY2027 revenue but meaning some cash is ahead of earnings.", "Notes the euro cost about $60 thousand and constant-currency growth was 20%."], "model": "The estimates did not flatter FY2026. Returns rose to 6.8% of gross sales; at last year's rate net sales would have grown 19.6% instead of 18.7%. The allowance rose to 5.6% of gross receivables and, at last year's percent, bad debt expense would have been about $47 thousand lower, but days sales outstanding lengthened to 39.9, so customers are paying more slowly. Deferred revenue grew $600 thousand, which supports FY2027 but means some cash was collected ahead of revenue, and the weaker euro cost about $60 thousand. The growth is real; the thing to watch is collections.", "feedback": {"b": "Good instinct, but the test shows the estimates were actually conservative.", "d": "Testing each estimate was the right approach.", "_": "The tests show estimates moved conservatively; the watch item is slower collections."}}]};
+/* ---------- Helpers ---------- */
+function esc(t){return String(t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+function fmtVal(v,spec){
+  if(v===null||v===undefined) return '';
+  if(typeof v==='string') return v;
+  var dec=(spec&&spec.dec)||0;
+  if(v===0&&!(spec&&spec.zero)) return '–';
+  var s=Math.abs(v).toLocaleString('en-US',{minimumFractionDigits:dec,maximumFractionDigits:dec});
+  return v<0?'('+s+')':s;
+}
+function table(spec){
+  var heads=spec.heads, unit=spec.unit||'$ thousands';
+  var h='<div class="tscroll" tabindex="0" role="region" aria-label="'+esc(spec.cap)+' (scrolls sideways on small screens)"><table><caption>'+esc(spec.cap)+'</caption><thead><tr><th scope="col">'+esc(unit)+'</th>';
+  heads.forEach(function(x){h+='<th scope="col">'+esc(x)+'</th>';});
+  h+='</tr></thead><tbody>';
+  spec.rows.forEach(function(r){
+    if(r[2]==='sub'){h+='<tr class="sub"><th scope="rowgroup" colspan="'+(heads.length+1)+'">'+esc(r[0])+'</th></tr>';return;}
+    h+='<tr'+(r[2]==='tot'?' class="tot"':'')+'><th scope="row">'+esc(r[0])+'</th>';
+    r[1].forEach(function(v){h+='<td>'+fmtVal(v,spec)+'</td>';});
+    h+='</tr>';
+  });
+  return h+'</tbody></table></div>';
+}
+function dataPanel(open){
+  if(!M.data||!M.data.length) return '';
+  return '<details class="data"'+(open?' open':'')+'><summary>'+esc(M.dataTitle||'Cullowhee data')+'</summary><div class="inner">'+
+   M.data.map(table).join('')+(M.dataNote?'<p>'+M.dataNote+'</p>':'')+'</div></details>';
+}
+
+var STEPS=M.steps;
+var KEY='summit-m'+M.num+'-challenge-v1';
+var S={cur:0,max:0,q:{},prediction:null,memo:'',checks:[],name:'',done:false,confirmReset:false};
+try{var raw=sessionStorage.getItem(KEY); if(raw){var p=JSON.parse(raw); if(p&&p.q) S=p;}}catch(e){}
+function save(){try{sessionStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
+function qs(id){if(!S.q[id])S.q[id]={wrong:0,done:false,revealed:false,log:[],val:null};return S.q[id];}
+function stepDone(i){
+  var st=STEPS[i];
+  if(st.type==='predict') return S.prediction!==null;
+  if(st.type==='memo') return true;
+  return st.qs.every(function(q){return qs(q.id).done;});
+}
+function announce(t){var el=document.getElementById('sr-live');el.textContent='';setTimeout(function(){el.textContent=t;},40);}
+
+/* ---------- Parsing and checking ---------- */
+function parseNum(s){
+  s=String(s).trim().replace(/[$,\s%]/g,'').replace(/−/g,'-');
+  var neg=false;
+  if(/^\(.*\)$/.test(s)){neg=true;s=s.slice(1,-1);}
+  if(!/^-?(\d+\.?\d*|\.\d+)$/.test(s)) return NaN;
+  var v=parseFloat(s); return neg?-v:v;
+}
+function normalize(q,v){ if(q.kind==='pct' && v!==0 && Math.abs(v)<1) return v*100; return v; }
+function near(v,t,tol){return Math.abs(v-t)<=tol;}
+function sameSet(a,b){a=a.slice().sort().join(',');b=b.slice().sort().join(',');return a===b;}
+
+/* ---------- Rendering ---------- */
+var app=document.getElementById('app'), nav=document.getElementById('stepnav');
+
+function renderNav(){
+  var h='';
+  var all=STEPS.concat([{nav:'Your results'}]);
+  all.forEach(function(st,i){
+    var locked=i>S.max, cur=i===S.cur;
+    var isDone=(i<STEPS.length && i<S.max && stepDone(i)) || (i===STEPS.length && S.done);
+    h+='<li><button type="button" data-nav="'+i+'"'+(cur?' aria-current="step"':'')+(locked?' aria-disabled="true"':'')+'>'+
+       '<span class="mark'+(isDone?' done':(cur?' cur':''))+'" aria-hidden="true">'+(isDone?'✓':(i<STEPS.length?(i+1):'★'))+'</span>'+
+       '<span class="lbl">'+esc(st.nav)+'<span class="sr-only">'+(isDone?' (completed)':(locked?' (locked)':''))+'</span></span></button></li>';
+  });
+  nav.innerHTML=h;
+}
+
+function qBlock(q,idx){return '<div class="q" id="blk-'+q.id+'">'+qInner(q,qs(q.id),idx)+'</div>';}
+function noteList(q,st){
+  if(!st.log.length) return '';
+  var h='<ol class="notes" aria-label="Reviewer\'s notes">';
+  st.log.forEach(function(entry,i){
+    var tier=Math.min(i+1,3);
+    h+='<li><b>Reviewer\'s note '+(i+1)+':</b> ';
+    if(entry.msg) h+=entry.msg+' ';
+    if(!entry.msg || i>=2) h+=q.hints[tier-1];
+    h+='</li>';
+  });
+  return h+'</ol>';
+}
+function optLabel(o,opts){var r=o;opts.forEach(function(x){if(x[0]===o)r=x[1];});return r;}
+function qInner(q,st,idx){
+  var h='', dis=st.done?' disabled':'';
+  var fbId='fb-'+q.id;
+  if(q.type==='num'){
+    h+='<form data-q="'+q.id+'" novalidate><label class="ql" for="in-'+q.id+'">'+idx+'. '+q.label+' <span class="unit">('+q.unit+')</span></label>'+
+       '<div class="row"><input type="text" id="in-'+q.id+'" inputmode="decimal" autocomplete="off" aria-describedby="'+fbId+'" value="'+esc(st.val||'')+'"'+dis+'>'+
+       (st.done?'':'<button class="btn" type="submit">Check answer</button>')+'</div></form>';
+  }else if(q.type==='grid'){
+    var cols=q.cols, vals=st.val||[];
+    h+='<form data-q="'+q.id+'" novalidate><fieldset'+dis+'><legend>'+idx+'. '+q.label+'</legend><div class="tscroll" tabindex="0" role="region" aria-label="Answer table (scrolls sideways on small screens)"><table class="gridq"><caption class="sr-only">'+esc(q.label.replace(/<[^>]+>/g,''))+'</caption><thead><tr><th scope="col">'+esc(q.rowHead||'Item')+'</th>';
+    cols.forEach(function(c){h+='<th scope="col">'+esc(c.n)+'</th>';});
+    h+='</tr></thead><tbody>';
+    q.rows.forEach(function(r,ri){
+      h+='<tr><th scope="row">'+r.t+'</th>';
+      cols.forEach(function(c,ci){
+        var cur=vals[ri*cols.length+ci]||'';
+        var opts=c.opts||q.opts;
+        h+='<td><select data-r="'+ri+'" data-c="'+ci+'" aria-label="'+esc(r.t.replace(/<[^>]+>/g,''))+', '+esc(c.n)+'"'+dis+'><option value="">Choose</option>';
+        opts.forEach(function(o){h+='<option value="'+esc(o[0])+'"'+(cur===o[0]?' selected':'')+'>'+esc(o[1])+'</option>';});
+        h+='</select></td>';
+      });
+      h+='</tr>';
+    });
+    h+='</tbody></table></div></fieldset>'+(st.done?'':'<div class="row" style="margin-top:.6rem"><button class="btn" type="submit">Check answers</button></div>')+'</form>';
+  }else{
+    var multi=q.type==='multi';
+    h+='<form data-q="'+q.id+'" novalidate><fieldset'+dis+'><legend>'+idx+'. '+q.label+'</legend>';
+    q.options.forEach(function(o){
+      var picked=multi?(st.val||[]).indexOf(o[0])>-1:st.val===o[0];
+      h+='<label class="opt'+(picked?' picked':'')+(st.done?' disabled':'')+'"><input type="'+(multi?'checkbox':'radio')+'" name="'+q.id+'" value="'+o[0]+'"'+(picked?' checked':'')+dis+'><span>'+o[1]+'</span></label>';
+    });
+    h+='</fieldset>'+(st.done?'':'<div class="row" style="margin-top:.6rem"><button class="btn" type="submit">Check answer</button></div>')+'</form>';
+  }
+  h+='<div id="'+fbId+'">';
+  if(st.msg) h+='<div class="fb '+st.msgType+'">'+st.msg+'</div>';
+  if(st.done && !st.revealed) h+='<div class="fb ok"><strong class="tag">✓ Correct.</strong>'+(q.explain?q.explain:'')+'</div>';
+  if(st.revealed) h+='<div class="fb info"><strong class="tag">Answer shown:</strong> '+answerText(q)+' '+(q.explain?q.explain:'')+'</div>';
+  h+='</div>';
+  h+=noteList(q,st);
+  if(!st.done && st.wrong>=3) h+='<p class="why"><button type="button" class="btn alt" data-reveal="'+q.id+'">Show the answer</button></p>';
+  return h;
+}
+function answerText(q){
+  if(q.type==='num') return q.show+'.';
+  if(q.type==='grid'){
+    return '<ul>'+q.rows.map(function(r){return '<li>'+r.t+': '+q.cols.map(function(c,ci){return esc(c.n)+' '+esc(optLabel(r.a[ci],c.opts||q.opts));}).join('; ')+'</li>';}).join('')+'</ul>';
+  }
+  var map={};q.options.forEach(function(o){map[o[0]]=o[1];});
+  var a=q.type==='multi'?q.answers:[q.answer];
+  return a.map(function(k){return map[k];}).join(' ');
+}
+
+function renderStage(focusHeading){
+  var st=STEPS[S.cur], h='';
+  if(S.cur===STEPS.length){return renderResults(focusHeading);}
+  h+='<div class="progress"><span>Step '+(S.cur+1)+' of '+STEPS.length+'</span><progress max="'+STEPS.length+'" value="'+(S.cur+1)+'" aria-label="Challenge progress"></progress></div>';
+  if(S.cur===0){
+    var m=M.memo;
+    h+='<article class="memo" aria-labelledby="memo-h"><h2 id="memo-h">Memo</h2><dl><dt>To</dt><dd>You, Business Analyst, Finance and Strategy</dd><dt>From</dt><dd>'+m.from+'</dd><dt>Date</dt><dd>'+m.date+'</dd><dt>Re</dt><dd>'+m.re+'</dd></dl>'+
+       m.body.map(function(p){return '<p>'+p+'</p>';}).join('')+'</article>'+
+       '<div class="howto"><strong>How this works</strong><ul><li>Type or choose an answer and select Check answer. If it is off, you get a reviewer\'s note and can try again as often as you like. Hints are free.</li><li>'+(M.rounding||'Round percentages to one decimal and ratios to two decimals. Answers within a small tolerance are accepted.')+'</li><li>The textbook ('+esc(M.textbook)+') is a resource, not a requirement. Everything you need is on this page.</li><li>Your results page at the end shows how many answers were correct and incorrect in each step.</li></ul></div>';
+  }
+  h+=dataPanel(S.cur<=1);
+  h+='<section class="step" aria-labelledby="step-h"><h2 id="step-h" tabindex="-1">Step '+(S.cur+1)+'. '+esc(st.title)+'</h2><p class="res">'+esc(st.res||'')+'</p>'+(st.intro||'');
+  if(st.type==='predict'){
+    h+='<form data-predict="1"><fieldset'+(S.prediction!==null?' disabled':'')+'><legend>'+st.legend+'</legend>';
+    st.options.forEach(function(o){
+      var picked=S.prediction===o[0];
+      h+='<label class="opt'+(picked?' picked':'')+'"><input type="radio" name="pred" value="'+o[0]+'"'+(picked?' checked':'')+'><span>'+o[1]+'</span></label>';
+    });
+    h+='</fieldset>'+(S.prediction===null?'<div class="row" style="margin-top:.6rem"><button class="btn" type="submit">Lock in my prediction</button></div>':'<div class="fb info" style="margin-top:.7rem">Prediction locked in. You will revisit it in Step '+STEPS.length+'.</div>')+'</form>';
+  }else if(st.type==='memo'){
+    h+=memoHTML(st);
+  }else{
+    st.qs.forEach(function(q,i){h+=qBlock(q,i+1);});
+  }
+  var done=stepDone(S.cur);
+  if(st.type!=='memo'){
+    h+='<div class="nextbar"><button type="button" class="btn" data-next="1"'+(done?'':' disabled')+'>Continue to '+(S.cur+1<STEPS.length?'step '+(S.cur+2):'results')+'</button>'+
+       (done?'':'<span class="hint">Finish every question in this step to continue.</span>')+'</div>';
+  }
+  h+='</section>';
+  app.innerHTML=h;
+  if(focusHeading){var hd=document.getElementById('step-h');if(hd){hd.focus();window.scrollTo({top:0});}}
+}
+
+function predOpt(){return STEPS[0].options.filter(function(o){return o[0]===S.prediction;})[0];}
+function memoHTML(st){
+  var pred=predOpt();
+  var fb=(st.feedback&&(st.feedback[S.prediction]||st.feedback._))||'';
+  var h='<p class="lead"><strong>Your prediction in Step 1:</strong> '+(pred?esc(pred[1].replace(/<[^>]+>/g,'')):'You skipped it.')+'</p>';
+  h+='<p class="lead">'+fb+'</p>';
+  h+='<form data-memo="1"><label class="ql" for="memo" style="font-weight:600;display:block;margin:.8rem 0 .4rem">'+st.prompt+'</label>'+
+     '<textarea id="memo" aria-describedby="memo-help">'+esc(S.memo)+'</textarea><p id="memo-help" class="res">Your note stays in this browser tab. It is not saved anywhere else.</p>'+
+     '<fieldset class="checks"><legend style="font-weight:600">Check your note against this list</legend>';
+  st.checklist.forEach(function(t,i){h+='<label><input type="checkbox" data-check="'+i+'"'+(S.checks.indexOf(i)>-1?' checked':'')+'><span>'+t+'</span></label>';});
+  h+='</fieldset></form>';
+  h+='<details class="model" style="margin-top:1rem"><summary>See a model answer</summary><p>'+st.model+'</p></details>';
+  h+='<div class="nextbar"><button type="button" class="btn" data-finish="1">See my results</button></div>';
+  return h;
+}
+
+function tally(){
+  var rows=[], tot={n:0,ok:0,bad:0,first:0,shown:0};
+  STEPS.forEach(function(st,i){
+    if(!st.qs) return;
+    var r={step:i,name:st.title,n:st.qs.length,ok:0,bad:0,first:0,shown:0,qrows:[]};
+    st.qs.forEach(function(q){
+      var s=qs(q.id);
+      var ok=s.done&&!s.revealed, first=ok&&s.wrong===0;
+      r.ok+=ok?1:0; r.bad+=s.wrong; r.first+=first?1:0; r.shown+=s.revealed?1:0;
+      r.qrows.push({label:q.label.replace(/<[^>]+>/g,''),ok:ok,bad:s.wrong,first:first,shown:s.revealed,done:s.done});
+    });
+    tot.n+=r.n;tot.ok+=r.ok;tot.bad+=r.bad;tot.first+=r.first;tot.shown+=r.shown;
+    rows.push(r);
+  });
+  return {rows:rows,tot:tot};
+}
+function summaryText(t){
+  var L=[];
+  L.push('Cullowhee Cycle Works - Module '+M.num+' challenge results');
+  L.push('Name: '+(S.name||'(not entered)'));L.push('Student ID: '+(S.sid||'(not entered)'));var d0=new Date(),dd0=d0.getFullYear()+'-'+('0'+(d0.getMonth()+1)).slice(-2)+'-'+('0'+d0.getDate()).slice(-2);L.push('Date: '+dd0);
+  var pred=predOpt();
+  L.push('Step 1 prediction: '+(pred?pred[1].replace(/<[^>]+>/g,''):'none'));
+  L.push('');
+  t.rows.forEach(function(r){
+    L.push('Step '+(r.step+1)+' ('+r.name+'): '+r.ok+' of '+r.n+' correct; '+r.bad+' incorrect attempt'+(r.bad===1?'':'s')+'; '+r.first+' correct on first try; '+r.shown+' answer'+(r.shown===1?'':'s')+' shown');
+  });
+  L.push('');
+  L.push('Total: '+t.tot.ok+' of '+t.tot.n+' correct; '+t.tot.bad+' incorrect attempts; '+t.tot.first+' correct on first try; '+t.tot.shown+' answers shown');
+  if(S.memo){L.push('');L.push('My note: ');L.push(S.memo);}
+  var h=2166136261,cs='CCW-C|'+[S.sid||'',dd0,'M'+M.num,t.tot.ok+'/'+t.tot.n,t.tot.bad].join('|');for(var ci=0;ci<cs.length;ci++){h^=cs.charCodeAt(ci);h=Math.imul(h,16777619);}h=(h>>>0).toString(16).toUpperCase();while(h.length<8)h='0'+h;L.push('');L.push('Verification code: '+h.slice(0,4)+'-'+h.slice(4));
+  return L.join('\n');
+}
+function renderResults(focusHeading){
+  var t=tally(), h='';
+  h+='<div class="progress"><span>Results</span></div>';
+  h+='<section class="step" aria-labelledby="step-h"><h2 id="step-h" tabindex="-1">Your results</h2><p class="res">Correct answers and incorrect attempts for each step.</p>';
+  h+='<div class="tscroll" tabindex="0" role="region" aria-label="Results by step (scrolls sideways on small screens)"><table class="tick"><caption>Answers by step</caption><thead><tr><th scope="col">Step</th><th scope="col">Correct answers</th><th scope="col">Incorrect attempts</th><th scope="col">Correct on first try</th><th scope="col">Answers shown</th></tr></thead><tbody>';
+  t.rows.forEach(function(r){
+    h+='<tr><th scope="row">Step '+(r.step+1)+'. '+esc(r.name)+'</th><td class="'+(r.ok===r.n?'good':'')+'">'+(r.ok===r.n?'✓ ':'')+r.ok+' of '+r.n+'</td><td class="'+(r.bad?'bad':'')+'">'+(r.bad?'✗ ':'')+r.bad+'</td><td>'+r.first+' of '+r.n+'</td><td>'+r.shown+'</td></tr>';
+  });
+  h+='</tbody><tfoot><tr><th scope="row">Total</th><td>'+t.tot.ok+' of '+t.tot.n+'</td><td>'+t.tot.bad+'</td><td>'+t.tot.first+' of '+t.tot.n+'</td><td>'+t.tot.shown+'</td></tr></tfoot></table></div>';
+  h+='<p class="lead">Steps 1 and '+STEPS.length+' are not scored. An incorrect attempt is any wrong answer you submitted. A question counts as correct once you answer it right, even after retries; answers you chose to show are not counted as correct.</p>';
+  h+='<details style="margin:1rem 0"><summary>See the breakdown by question</summary><div class="tscroll" tabindex="0" role="region" aria-label="Results by question"><table class="tick"><caption>Answers by question</caption><thead><tr><th scope="col">Question</th><th scope="col">Result</th><th scope="col">Incorrect attempts</th></tr></thead><tbody>';
+  t.rows.forEach(function(r){r.qrows.forEach(function(q,i){
+    var res=q.shown?'Answer shown':(q.ok?(q.first?'✓ Correct, first try':'✓ Correct after retries'):'Not answered');
+    h+='<tr><th scope="row">Step '+(r.step+1)+', question '+(i+1)+': '+esc(q.label)+'</th><td>'+res+'</td><td>'+q.bad+'</td></tr>';
+  });});
+  h+='</tbody></table></div></details>';
+  h+='<div><label for="nm" style="font-weight:600">Your name (included in your summary)</label><br><div class="row" style="margin-top:.35rem"><input type="text" id="nm" autocomplete="name" value="'+esc(S.name)+'" style="width:18rem"></div></div><div style="margin-top:.7rem"><label for="sid" style="font-weight:600">Your student ID (digits only)</label><br><div class="row" style="margin-top:.35rem"><input type="text" id="sid" inputmode="numeric" autocomplete="off" value="'+esc(S.sid||'')+'" style="width:18rem"></div></div>';
+  h+='<h3 style="font-family:var(--serif);margin:1.2rem 0 .4rem">Summary you can copy</h3><pre class="out" id="sum" tabindex="0">'+esc(summaryText(t))+'</pre>';
+  h+='<div class="row"><button class="btn" type="button" data-pdf="1">Download PDF</button><button class="btn alt" type="button" data-copy="1">Copy summary (backup)</button><button class="btn alt" type="button" data-print="1">Print this page</button><button class="btn alt" type="button" data-back="1">Back to step '+STEPS.length+'</button><button class="btn alt" type="button" data-reset="1">'+(S.confirmReset?'Select again to confirm start over':'Start over')+'</button></div><div id="copymsg" class="res" role="status"></div>';
+  h+='</section>';
+  app.innerHTML=h;
+  if(focusHeading){var hd=document.getElementById('step-h');if(hd){hd.focus();window.scrollTo({top:0});}}
+}
+
+function render(focusHeading){renderNav();renderStage(focusHeading);}
+
+/* ---------- Events ---------- */
+nav.addEventListener('click',function(e){
+  var b=e.target.closest('button[data-nav]'); if(!b) return;
+  var i=+b.getAttribute('data-nav'); if(i>S.max) {announce('That step is locked until you finish the earlier steps.');return;}
+  S.cur=i; save(); render(true);
+});
+function goNext(){
+  var i=S.cur;
+  if(i<STEPS.length-1){S.cur=i+1;S.max=Math.max(S.max,S.cur);}
+  else {S.cur=STEPS.length;S.max=Math.max(S.max,S.cur);S.done=true;}
+  save();render(true);
+}
+app.addEventListener('click',function(e){
+  var t=e.target;
+  var rv=t.closest('[data-reveal]');
+  if(rv){
+    var id=rv.getAttribute('data-reveal'), s=qs(id); s.done=true;s.revealed=true;s.msg=null;
+    save(); refreshQ(id); announce('Answer shown.'); return;
+  }
+  if(t.closest('[data-next]')){goNext();return;}
+  if(t.closest('[data-finish]')){S.max=Math.max(S.max,STEPS.length);S.cur=STEPS.length;S.done=true;save();render(true);return;}
+  if(t.closest('[data-back]')){S.cur=STEPS.length-1;save();render(true);return;}
+  if(t.closest('[data-print]')){window.print();return;}
+  if(t.closest('[data-copy]')){
+    var txt=document.getElementById('sum').textContent, m=document.getElementById('copymsg');
+    function ok(){m.textContent='Summary copied.';announce('Summary copied.');}
+    function fail(){var r=document.createRange();r.selectNodeContents(document.getElementById('sum'));var sel=window.getSelection();sel.removeAllRanges();sel.addRange(r);m.textContent='Select and copy the highlighted text (Ctrl+C or Command+C).';}
+    try{
+      if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(ok,fail);}
+      else{fail();}
+    }catch(err){fail();}
+    return;
+  }
+  if(t.closest('[data-reset]')){
+    if(!S.confirmReset){S.confirmReset=true;save();renderResults(false);return;}
+    S={cur:0,max:0,q:{},prediction:null,memo:'',checks:[],name:'',done:false,confirmReset:false};save();render(true);return;
+  }
+});
+function refreshQ(id){
+  var q=null,idx=0;
+  STEPS[S.cur].qs.forEach(function(x,i){if(x.id===id){q=x;idx=i+1;}});
+  var blk=document.getElementById('blk-'+id);
+  blk.innerHTML=qInner(q,qs(id),idx);
+  var done=stepDone(S.cur), nb=app.querySelector('[data-next]');
+  if(nb){nb.disabled=!done;var hint=app.querySelector('.nextbar .hint');if(hint)hint.style.display=done?'none':'';}
+}
+function firstFocus(id){return document.getElementById('in-'+id)||document.querySelector('#blk-'+id+' select, #blk-'+id+' input');}
+
+app.addEventListener('submit',function(e){
+  e.preventDefault();
+  var f=e.target;
+  if(f.hasAttribute('data-predict')){
+    var c=f.querySelector('input[name=pred]:checked');
+    if(!c){announce('Choose an option first.');var fb=document.createElement('div');fb.className='fb no';fb.textContent='Choose one option, then lock in your prediction.';if(!f.querySelector('.fb'))f.appendChild(fb);return;}
+    S.prediction=c.value;save();render(false);
+    announce('Prediction locked in.');
+    var nb=app.querySelector('[data-next]'); if(nb) nb.focus();
+    return;
+  }
+  if(f.hasAttribute('data-memo')){return;}
+  var id=f.getAttribute('data-q'); if(!id) return;
+  var q=null; STEPS[S.cur].qs.forEach(function(x){if(x.id===id) q=x;});
+  var s=qs(id); if(s.done) return;
+  var correct=false, trap=null, empty=false;
+  if(q.type==='num'){
+    var inp=f.querySelector('input[type=text]'), raw=inp.value; s.val=raw;
+    if(!raw.trim()){empty=true;s.msg='Enter a number first.';s.msgType='info';}
+    else{
+      var v=parseNum(raw);
+      if(isNaN(v)){empty=true;s.msg='Enter a number, such as 12.5. Commas, $ and % signs are fine.';s.msgType='info';}
+      else{
+        v=normalize(q,v);
+        if(near(v,q.answer,q.tol)) correct=true;
+        else (q.traps||[]).forEach(function(tp){if(!trap&&near(v,tp.v,tp.tol)) trap=tp.msg;});
+      }
+    }
+  }else if(q.type==='grid'){
+    var sels=[].slice.call(f.querySelectorAll('select')), vals=sels.map(function(x){return x.value;});
+    s.val=vals;
+    if(vals.some(function(x){return !x;})){empty=true;s.msg='Choose an answer in every cell first.';s.msgType='info';}
+    else{
+      var badRows=[], nc=q.cols.length;
+      q.rows.forEach(function(r,ri){
+        var ok=true;for(var ci=0;ci<nc;ci++){if(vals[ri*nc+ci]!==r.a[ci]) ok=false;}
+        if(!ok) badRows.push(ri);
+      });
+      if(!badRows.length) correct=true;
+      else{
+        var parts=['Check '+(badRows.length===1?'row ':'rows ')+badRows.map(function(x){return x+1;}).join(', ')+'.'];
+        badRows.slice(0,2).forEach(function(ri){if(q.rows[ri].why) parts.push('Row '+(ri+1)+': '+q.rows[ri].why);});
+        trap=parts.join(' ');
+      }
+    }
+  }else if(q.type==='mc'){
+    var c2=f.querySelector('input:checked');
+    if(!c2){empty=true;s.msg='Choose an answer first.';s.msgType='info';}
+    else{s.val=c2.value; if(c2.value===q.answer) correct=true; else trap=(q.optHints||{})[c2.value]||null;}
+  }else{
+    var picks=[].slice.call(f.querySelectorAll('input:checked')).map(function(x){return x.value;});
+    s.val=picks;
+    if(!picks.length){empty=true;s.msg='Select at least one answer first.';s.msgType='info';}
+    else if(sameSet(picks,q.answers)) correct=true;
+    else{
+      var msgs=[];picks.forEach(function(k){if(q.answers.indexOf(k)<0 && q.optHints && q.optHints[k]) msgs.push(q.optHints[k]);});
+      var missing=q.answers.filter(function(k){return picks.indexOf(k)<0;});
+      if(missing.length && !msgs.length) msgs.push('You have not selected everything that applies.');
+      trap=msgs.join(' ');
+    }
+  }
+  if(empty){save();refreshQ(id);announce(s.msg);var ni=firstFocus(id);if(ni)ni.focus();return;}
+  if(correct){
+    s.done=true;s.msg=null;save();refreshQ(id);
+    announce('Correct. '+(q.explain||'').replace(/<[^>]+>/g,''));
+    var nextQ=null;STEPS[S.cur].qs.forEach(function(x){if(!nextQ&&!qs(x.id).done)nextQ=x;});
+    if(nextQ){var ni2=firstFocus(nextQ.id);if(ni2)ni2.focus();}
+    else{var nb2=app.querySelector('[data-next]');if(nb2)nb2.focus();}
+    return;
+  }
+  s.wrong++; s.log.push({msg:trap}); s.msg='<strong class="tag">✗ Not quite.</strong>Try again. Reviewer\'s note '+s.log.length+' is below.'; s.msgType='no';
+  save();refreshQ(id);
+  var tier=Math.min(s.log.length,3);
+  announce('Not quite. '+((trap||'')+' '+(q.hints[tier-1]||'')).replace(/<[^>]+>/g,''));
+  var again=firstFocus(id);
+  if(again){again.focus(); if(again.select&&again.type==='text')again.select();}
+});
+app.addEventListener('change',function(e){
+  var t=e.target;
+  if(t.matches('[data-check]')){
+    var i=+t.getAttribute('data-check'), k=S.checks.indexOf(i);
+    if(t.checked&&k<0)S.checks.push(i); if(!t.checked&&k>-1)S.checks.splice(k,1); save();
+  }
+  if(t.closest('.opt')){
+    var grp=t.closest('form').querySelectorAll('.opt');
+    [].forEach.call(grp,function(l){l.classList.toggle('picked',l.querySelector('input').checked);});
+  }
+});
+app.addEventListener('input',function(e){
+  if(e.target.id==='memo'){S.memo=e.target.value;save();}
+  if(e.target.id==='sid'){S.sid=e.target.value.replace(/\s/g,'');save();var sm2=document.getElementById('sum');if(sm2)sm2.textContent=summaryText(tally());}
+  if(e.target.id==='nm'){S.name=e.target.value;save();var sm=document.getElementById('sum');if(sm)sm.textContent=summaryText(tally());}
+});
+
+render(false);
+})();
+
+</script>
+<script>(function(){'use strict';
+function clean(s){return String(s).replace(/[‘’]/g,"'").replace(/[“”]/g,'"').replace(/[–—−]/g,'-').replace(/·/g,'-').replace(/÷/g,'/').replace(/×/g,'x').replace(/[^\x20-\x7E\n]/g,'?');}
+function esc(s){return s.replace(/\\/g,'\\\\').replace(/\(/g,'\\(').replace(/\)/g,'\\)');}
+function wrap(text,max){var out=[];text.split('\n').forEach(function(p){if(!p.trim()){out.push('');return;}var line='';p.split(/\s+/).forEach(function(w){while(w.length>max){if(line){out.push(line);line='';}out.push(w.slice(0,max));w=w.slice(max);}if((line+' '+w).trim().length>max){out.push(line);line=w;}else line=(line?line+' ':'')+w;});out.push(line);});return out;}
+function pdf(lines){var per=52,pages=[];for(var i=0;i<lines.length;i+=per)pages.push(lines.slice(i,i+per));if(!pages.length)pages=[[]];
+  var objs=[];objs[1]='<< /Type /Catalog /Pages 2 0 R >>';var kids=[];
+  objs[3]='<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>';objs[4]='<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>';
+  pages.forEach(function(pl,pi){var po=5+pi*2,co=po+1;kids.push(po+' 0 R');
+    var c='BT /F1 10 Tf 13 TL 54 740 Td\n';pl.forEach(function(l,li){var bold=(pi===0&&li===0);c+=(bold?'/F2 12 Tf ':'/F1 10 Tf ')+'('+esc(l)+') Tj T*\n';});c+='ET';
+    objs[po]='<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents '+co+' 0 R >>';
+    objs[co]='<< /Length '+c.length+' >>\nstream\n'+c+'\nendstream';});
+  objs[2]='<< /Type /Pages /Kids ['+kids.join(' ')+'] /Count '+pages.length+' >>';
+  var out='%PDF-1.4\n',off=[];for(var n=1;n<objs.length;n++){off[n]=out.length;out+=n+' 0 obj\n'+objs[n]+'\nendobj\n';}
+  var x=out.length;out+='xref\n0 '+objs.length+'\n0000000000 65535 f \n';for(n=1;n<objs.length;n++)out+=('0000000000'+off[n]).slice(-10)+' 00000 n \n';
+  out+='trailer\n<< /Size '+objs.length+' /Root 1 0 R >>\nstartxref\n'+x+'\n%%EOF';return out;}
+document.addEventListener('click',function(ev){if(!ev.target.closest('[data-pdf]'))return;var el=document.getElementById('sum');if(!el)return;var t=el.textContent;
+  var sidv=(t.match(/Student ID: (\d{5,12})/)||[])[1];var mm=document.getElementById('copymsg');if(!sidv){if(mm)mm.textContent='Enter your name and a student ID (digits only) above first, then download the PDF.';return;}t=clean(t);
+  var id=(t.match(/Student ID: (\d+)/)||[])[1]||'student',title=t.split('\n')[0];
+  var lines=wrap(t,92);var data=pdf(lines);var blob=new Blob([data],{type:'application/pdf'});
+  var name=title.replace(/^MBA 623 - /,'MBA623 ').replace(/[^A-Za-z0-9 ]+/g,'').replace(/\s+/g,' ').trim()+' - '+id+'.pdf';
+  var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},500);
+  if(mm)mm.textContent='PDF downloaded: '+name;});
+})();</script></body>
+</html>
