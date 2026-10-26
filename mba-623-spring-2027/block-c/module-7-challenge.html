@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Module 7 Challenge: How much more can Cullowhee borrow, and at what real cost?</title>
+<style>
+
+:root{
+  --paper:#F5F8F5; --card:#FFFFFF; --ink:#16222B; --muted:#4D5D68; --rule:#C7D2CB;
+  --spruce:#14574B; --spruce-ink:#FFFFFF; --spruce-soft:#E0EEE8;
+  --ok:#0F6A37; --ok-bg:#E3F3E9; --miss:#9B2C1F; --miss-bg:#FBE8E4;
+  --note:#274C8C; --note-bg:#E8EEF9; --focus:#1A47B8; --hl:#FFF3C4;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --paper:#0F1A17; --card:#16231F; --ink:#E8EFEA; --muted:#A9B8B0; --rule:#33453E;
+    --spruce:#5FC2AB; --spruce-ink:#06241D; --spruce-soft:#1B3A33;
+    --ok:#7FDCA0; --ok-bg:#16352A; --miss:#FFAE9F; --miss-bg:#3E1D18;
+    --note:#A9C4FF; --note-bg:#1B2B4A; --focus:#9DB8FF; --hl:#4A4017;
+  }
+}
+*{box-sizing:border-box}
+html{font-size:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.55;font-size:1.0625rem}
+.skip{position:absolute;left:-999px;top:0;background:var(--spruce);color:var(--spruce-ink);padding:.6rem 1rem;z-index:10}
+.skip:focus{left:.5rem;top:.5rem}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:3px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+header.top{padding:1.1rem 1.25rem .4rem;max-width:1120px;margin:0 auto}
+header.top p{margin:0;color:var(--muted);font-size:.95rem}
+header.top h1{font-family:var(--serif);font-weight:700;font-size:1.65rem;line-height:1.2;margin:.15rem 0 0}
+.wrap{max-width:1120px;margin:0 auto;padding:0 1.25rem 3rem;display:grid;grid-template-columns:232px minmax(0,1fr);gap:1.75rem}
+nav.steps{position:sticky;top:.75rem;align-self:start}
+nav.steps h2{font-size:.95rem;margin:.2rem 0 .5rem;color:var(--muted);font-weight:600}
+nav.steps ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.25rem}
+nav.steps button{width:100%;text-align:left;display:flex;gap:.6rem;align-items:center;min-height:44px;padding:.35rem .6rem;border:1px solid transparent;border-radius:6px;background:none;color:var(--ink);font:inherit;font-size:.97rem;cursor:pointer}
+nav.steps button:hover:not([aria-disabled="true"]){background:var(--spruce-soft)}
+nav.steps button[aria-disabled="true"]{color:var(--muted);cursor:not-allowed;opacity:.75}
+nav.steps button[aria-current="step"]{background:var(--spruce-soft);border-color:var(--spruce);font-weight:600}
+.mark{flex:0 0 1.6rem;height:1.6rem;border-radius:50%;border:2px solid var(--rule);display:grid;place-items:center;font-size:.85rem;font-weight:700}
+.mark.done{background:var(--ok);border-color:var(--ok);color:var(--card)}
+.mark.cur{border-color:var(--spruce);color:var(--spruce)}
+main{min-width:0}
+.progress{display:flex;align-items:center;gap:.75rem;margin:.2rem 0 1rem;color:var(--muted);font-size:.95rem}
+progress{flex:1;height:.55rem;accent-color:var(--spruce)}
+.memo{background:var(--card);border:1px solid var(--rule);border-left:6px solid var(--spruce);border-radius:4px;padding:1.2rem 1.4rem;margin-bottom:1.25rem}
+.memo h2{font-family:var(--serif);font-size:1.25rem;margin:0 0 .6rem}
+.memo dl{display:grid;grid-template-columns:5.2rem 1fr;gap:.15rem .75rem;margin:0 0 .9rem;padding-bottom:.8rem;border-bottom:1px solid var(--rule);font-size:.97rem}
+.memo dt{color:var(--muted)} .memo dd{margin:0}
+.memo p{margin:.5rem 0;max-width:68ch}
+.howto{background:var(--spruce-soft);border-radius:4px;padding:.8rem 1rem;margin:0 0 1.25rem;font-size:.97rem}
+.howto strong{font-family:var(--serif)}
+.howto ul{margin:.35rem 0 0;padding-left:1.2rem}
+details.data{background:var(--card);border:1px solid var(--rule);border-radius:4px;margin:0 0 1.25rem}
+details.data>summary{cursor:pointer;padding:.8rem 1rem;font-weight:600;min-height:44px}
+details.data .inner{padding:0 1rem 1rem}
+.tscroll{overflow-x:auto;margin:.4rem 0 1rem}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums;font-size:.95rem}
+caption{text-align:left;font-weight:600;padding:.2rem 0 .4rem;font-family:var(--serif);font-size:1.02rem}
+th,td{padding:.32rem .6rem;border-bottom:1px solid var(--rule);text-align:right;white-space:nowrap}
+th:first-child,td:first-child{text-align:left;white-space:normal}
+thead th{border-bottom:2px solid var(--ink);font-weight:600}
+tr.tot td,tr.tot th{font-weight:700;border-top:1px solid var(--ink)}
+tr.sub th{text-align:left;font-weight:700;color:var(--spruce);padding-top:.7rem}
+section.step{background:var(--card);border:1px solid var(--rule);border-radius:4px;padding:1.3rem 1.4rem}
+section.step h2{font-family:var(--serif);font-size:1.45rem;line-height:1.25;margin:0 0 .2rem}
+section.step h2:focus{outline:none}
+.res{color:var(--muted);font-size:.93rem;margin:0 0 .9rem}
+.lead{max-width:70ch}
+.formula{display:inline-block;background:var(--hl);color:#111;padding:.05rem .45rem;border-radius:3px;font-variant-numeric:tabular-nums}
+@media (prefers-color-scheme: dark){.formula{color:var(--ink)}}
+.q{border-top:1px solid var(--rule);margin-top:1.2rem;padding-top:1.1rem}
+.q label.ql,.q legend{font-weight:600;display:block;margin-bottom:.45rem;max-width:68ch;padding:0}
+.q .unit{font-weight:400;color:var(--muted)}
+.q fieldset{border:0;margin:0;padding:0;min-width:0}
+.row{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center}
+input[type=text]{font:inherit;font-variant-numeric:tabular-nums;min-height:46px;width:12rem;padding:.35rem .7rem;border:2px solid var(--muted);border-radius:5px;background:var(--card);color:var(--ink)}
+input[type=text][disabled]{background:var(--paper);border-color:var(--rule)}
+.opt{display:flex;gap:.7rem;align-items:flex-start;padding:.55rem .7rem;border:1px solid var(--rule);border-radius:5px;margin:.4rem 0;max-width:68ch;cursor:pointer;min-height:44px}
+.opt:hover{background:var(--spruce-soft)}
+.opt input{margin-top:.3rem;width:1.15rem;height:1.15rem;accent-color:var(--spruce);flex:none}
+.opt.disabled{cursor:default;opacity:.85}
+.opt.picked{border-color:var(--spruce);background:var(--spruce-soft)}
+button.btn{font:inherit;font-weight:600;min-height:46px;padding:.45rem 1.15rem;border-radius:5px;border:2px solid var(--spruce);background:var(--spruce);color:var(--spruce-ink);cursor:pointer}
+button.btn:hover{filter:brightness(1.08)}
+button.btn.alt{background:transparent;color:var(--spruce)}
+button.btn[disabled]{opacity:.5;cursor:not-allowed}
+.fb{margin-top:.7rem;padding:.7rem .9rem;border-radius:5px;max-width:68ch}
+.fb.ok{background:var(--ok-bg);border-left:6px solid var(--ok)}
+.fb.no{background:var(--miss-bg);border-left:6px solid var(--miss)}
+.fb.info{background:var(--note-bg);border-left:6px solid var(--note)}
+.fb strong.tag{display:inline-block;margin-right:.35rem}
+.fb.ok strong.tag{color:var(--ok)} .fb.no strong.tag{color:var(--miss)}
+.notes{margin:.6rem 0 0;padding:0;list-style:none;max-width:68ch}
+.notes li{background:var(--note-bg);border-left:6px solid var(--note);padding:.6rem .85rem;margin:.45rem 0;border-radius:4px}
+.notes li b{color:var(--note)}
+.why{margin:.6rem 0 0;max-width:68ch}
+.nextbar{margin-top:1.6rem;padding-top:1.1rem;border-top:2px solid var(--ink);display:flex;gap:.8rem;flex-wrap:wrap;align-items:center}
+.nextbar .hint{color:var(--muted);font-size:.95rem}
+textarea{width:100%;max-width:68ch;min-height:9rem;font:inherit;padding:.7rem;border:2px solid var(--muted);border-radius:5px;background:var(--card);color:var(--ink)}
+.checks label{display:flex;gap:.6rem;align-items:flex-start;margin:.4rem 0;max-width:68ch;min-height:32px}
+.checks input{margin-top:.35rem;width:1.1rem;height:1.1rem;accent-color:var(--spruce)}
+.tick td:nth-child(n+2),.tick th:nth-child(n+2){text-align:center}
+.tick td.good{font-weight:700;color:var(--ok)}
+.tick td.bad{font-weight:700;color:var(--miss)}
+.tick tfoot td,.tick tfoot th{border-top:2px solid var(--ink);font-weight:700}
+pre.out{white-space:pre-wrap;background:var(--paper);border:1px solid var(--rule);padding:.8rem;border-radius:5px;font-size:.92rem;max-width:80ch}
+.cmp{display:grid;grid-template-columns:1fr;gap:.6rem}
+.model{background:var(--spruce-soft);border-radius:4px;padding:.8rem 1rem;max-width:72ch}
+footer{max-width:1120px;margin:0 auto;padding:0 1.25rem 2rem;color:var(--muted);font-size:.9rem}
+@media (max-width:860px){
+  .wrap{grid-template-columns:1fr}
+  nav.steps{position:static}
+  nav.steps ol{flex-direction:row;flex-wrap:wrap}
+  nav.steps li{flex:1 1 auto}
+  nav.steps button{justify-content:center;padding:.35rem .5rem}
+  nav.steps .lbl{display:none}
+  nav.steps button[aria-current="step"] .lbl{display:inline}
+  section.step,.memo{padding:1rem}
+}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+@media print{
+  nav.steps,.nextbar button,.btn,details.data,.skip{display:none!important}
+  body{background:#fff;color:#000}
+  .wrap{display:block}
+}
+
+select{font:inherit;min-height:44px;max-width:100%;padding:.3rem .5rem;border:2px solid var(--muted);border-radius:5px;background:var(--card);color:var(--ink)}
+select[disabled]{background:var(--paper);border-color:var(--rule)}
+table.gridq th,table.gridq td{white-space:normal;vertical-align:middle}
+table.gridq td{text-align:left}
+table.gridq tbody th{font-weight:500;min-width:14rem}
+
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the challenge</a>
+<div id="sr-live" class="sr-only" role="status" aria-live="polite"></div>
+<header class="top">
+  <p>Cullowhee Cycle Works case &middot; Module 7 challenge: Debt, bonds, contingencies and debt capacity</p>
+  <h1>How much more can Cullowhee borrow, and at what real cost?</h1>
+</header>
+<noscript><p style="max-width:700px;margin:1rem auto;padding:0 1.25rem">This challenge needs JavaScript. Please open it in a current browser.</p></noscript>
+<div class="wrap">
+  <nav class="steps" aria-label="Challenge steps"><h2>Your steps</h2><ol id="stepnav"></ol></nav>
+  <main id="main" tabindex="-1"><div id="app"></div></main>
+</div>
+<footer>Optional challenge. It is not graded and you do not need to submit it. Hints are free; nothing is sent anywhere automatically. You can download your results as a PDF if you want a copy for yourself. All people and companies in the Cullowhee case are fictional.</footer>
+<script>
+(function(){
+'use strict';
+var M = {"num": 7, "h1": "How much more can Cullowhee borrow, and at what real cost?", "subject": "Debt, bonds, contingencies and debt capacity", "textbook": "Financial & Managerial Accounting for MBAs, 7e", "memo": {"from": "Nora Crisp, Chief Financial Officer", "date": "April 12, 2027", "re": "Challenge: Dale Queen's covenant and a second borrowing", "body": ["Dale Queen at Cullasaja Mountain Bank has told us that any new loan will carry a covenant: times interest earned (operating income ÷ interest expense) must stay at 3.0 or above. We are considering another $5 million of borrowing and a lawsuit may have to be accrued.", "FY2026 interest only includes six months of the new bond. Rebuild a full-year picture, find out how much more we can borrow under the covenant, and see how the lawsuit changes the answer.", "Then compare the cost of a second bond with a bank loan at the same quoted rate. Finish with a short recommendation.", "Nora"]}, "data": [{"cap": "Cullowhee debt at December 31, 2026 and interest rates", "heads": ["Balance ($000)", "Interest rate"], "rows": [["Term loan", ["4,500", "7%"]], ["Revolving credit line", ["1,000", "8%"]], ["Bond (carrying value at Dec 31, 2026)", ["9,314", "Market rate 7% a year (3.5% per six months)"]]], "unit": "Item", "dec": 0, "zero": false}, {"cap": "FY2026 interest and earnings ($ thousands)", "heads": ["FY2026"], "rows": [["Operating income", [4250]], ["Interest expense", [798]], ["First-half bond interest expense, July–December (carrying value × 3.5%)", [325.1]], ["Term loan interest, average balance basis", [332.5]], ["Revolver interest, average balance basis", [140]]], "unit": "$ thousands", "dec": 1, "zero": false}, {"cap": "Proposed second bond (all amounts in $ thousands)", "heads": ["Terms"], "rows": [["Face value", ["5,000"]], ["Stated annual coupon", ["6%, paid semiannually (150 per period)"]], ["Market annual rate", ["8% (4% per six months)"]], ["Term", ["5 years (10 semiannual periods)"]], ["Present value factor, 10 periods at 4%", ["0.6756"]], ["Present value of annuity factor, 10 periods at 4%", ["8.1109"]]], "unit": "Item", "dec": 0, "zero": false}, {"cap": "Possible lawsuit", "heads": ["Amount"], "rows": [["Probable loss that must be accrued (reduces operating income)", [400]]], "unit": "$ thousands", "dec": 0, "zero": false}], "dataTitle": "Cullowhee data", "dataNote": "For FY2027, assume the loan balances stay at their December 31, 2026 levels all year. Bond interest each half is the carrying value at the start of the half × 3.5%, with discount amortization added to the carrying value.", "rounding": "Answers are in $ thousands unless a different unit is shown. Answers within a small tolerance are accepted.", "steps": [{"nav": "Predict", "title": "Make a prediction", "res": "Not scored. Your guess is revisited at the end.", "type": "predict", "intro": "<p class=\"lead\">Dale Queen reported times interest earned of 5.3 for FY2026. That includes only six months of interest on the new bond.</p>", "legend": "Do you think the covenant of 3.0 leaves much room?", "options": [["a", "Plenty of room: 5.3 is well above 3.0."], ["b", "Much less than it appears: a full year of bond interest and a new loan would use most of it."], ["c", "No room at all; the covenant is already breached."], ["d", "I need a full-year view first."]]}, {"nav": "Tie out", "title": "Does FY2026 interest tie?", "res": "Textbook: Module 7, Loans and interest", "intro": "<p class=\"lead\">Start by confirming the three sources of interest add to the reported expense.</p>", "qs": [{"id": "t1", "type": "num", "label": "Total FY2026 interest from the three sources (term loan, revolver and the first-half bond interest)", "unit": "$ thousands", "answer": 797.6, "tol": 0.5, "show": "797.6", "kind": "num", "traps": [], "hints": ["Add the three components in the data panel.", "332.5 + 140.0 + 325.1.", "Worked step: 332.5 + 140.0 + 325.1 = ?"], "explain": "$797.6 thousand, which ties to the reported $798 thousand."}]}, {"nav": "Full year", "title": "FY2027 interest and the covenant", "res": "Textbook: Module 7, Bonds and interest", "intro": "<p class=\"lead\">Next year the bond will carry a full year of interest. At 3.5% per six months, the bond's carrying value grows as the discount amortizes.</p>", "qs": [{"id": "f1", "type": "num", "label": "FY2027 interest on the bond (two halves: first half carrying value × 3.5%, then add discount amortization and compute the second half)", "unit": "$ thousands", "answer": 652.88965, "tol": 0.5, "show": "652.9", "kind": "num", "traps": [], "hints": ["First half: 9,314 × 3.5% = 326.0. Amortization = 326.0 − 300 coupon. Second-half carrying value = 9,314 + amortization.", "Second half = (9,314 + 26.0) × 3.5%.", "Worked step: 9,314 × 0.035 + (9,314 + 9,314 × 0.035 − 300) × 0.035 = ?"], "explain": "Full-year bond interest is about $653 thousand."}, {"id": "f2", "type": "num", "label": "Total FY2027 interest on the term loan, revolver and bond", "unit": "$ thousands", "answer": 1047.88965, "tol": 1, "show": "1,047.9", "kind": "num", "traps": [], "hints": ["Term loan 4,500 × 7%, revolver 1,000 × 8%, plus the bond figure.", "315 + 80 + bond interest.", "Worked step: 4,500 × 0.07 + 1,000 × 0.08 + 652.9 = ?"], "explain": "About $1,048 thousand."}, {"id": "f3", "type": "num", "label": "FY2027 times interest earned if operating income stays at 4,250", "unit": "times", "answer": 4.055771, "tol": 0.03, "show": "4.06", "kind": "num", "traps": [], "hints": ["Operating income ÷ interest expense.", "4,250 ÷ 1,047.9.", "Worked step: 4,250 ÷ 1,047.9 = ?"], "explain": "Coverage falls from 5.3 to about 4.1 with no new borrowing at all."}, {"id": "f4", "type": "num", "label": "FY2027 times interest earned if Cullowhee also borrows $5,000 thousand at 8% (add 400 of interest)", "unit": "times", "answer": 2.935307, "tol": 0.03, "show": "2.94", "kind": "num", "traps": [], "hints": ["Add 8% × 5,000 to interest expense.", "4,250 ÷ (1,047.9 + 400).", "Worked step: 4,250 ÷ (1,047.9 + 400) = ?"], "explain": "About 2.94: the covenant of 3.0 would be breached."}]}, {"nav": "Capacity", "title": "How much can it borrow?", "res": "Textbook: Module 7, Debt capacity and contingencies", "intro": "<p class=\"lead\">Solve for the largest extra loan, at 8%, that keeps coverage at 3.0.</p>", "qs": [{"id": "c1", "type": "num", "label": "Maximum additional borrowing at 8% that keeps times interest earned at 3.0 (operating income ÷ 3 = maximum interest)", "unit": "$ thousands", "answer": 4609.712708, "tol": 5, "show": "4,610", "kind": "num", "traps": [], "hints": ["Maximum interest = 4,250 ÷ 3. Subtract the interest already expected, then divide by 8%.", "4,250 ÷ 3 = 1,416.7 of allowable interest.", "Worked step: (4,250 ÷ 3 − 1,047.9) ÷ 0.08 = ?"], "explain": "About $4.6 million of new borrowing is possible, not $5 million."}, {"id": "c2", "type": "num", "label": "Maximum additional borrowing at 8% if the $400 lawsuit loss is accrued (operating income falls to 3,850)", "unit": "$ thousands", "answer": 2943.046042, "tol": 5, "show": "2,943", "kind": "num", "traps": [], "hints": ["Repeat the calculation with operating income 3,850.", "3,850 ÷ 3 = 1,283.3.", "Worked step: (3,850 ÷ 3 − 1,047.9) ÷ 0.08 = ?"], "explain": "The probable lawsuit loss cuts the borrowing capacity by more than half, to about $2.9 million."}]}, {"nav": "Bond", "title": "Bond or bank loan?", "res": "Textbook: Module 7, Bond pricing", "intro": "<p class=\"lead\">The second bond has a 6% coupon, but the market rate is 8%, so it will sell at a discount. Use the factors in the data panel.</p>", "qs": [{"id": "b1", "type": "num", "label": "Issue price of the second bond (coupon × annuity factor + face × present value factor)", "unit": "$ thousands", "answer": 4594.635, "tol": 2, "show": "4,594.6", "kind": "num", "traps": [], "hints": ["Coupon is 5,000 × 6% ÷ 2 = 150.", "150 × 8.1109 + 5,000 × 0.6756.", "Worked step: 150 × 8.1109 + 5,000 × 0.6756 = ?"], "explain": "The bond sells for about $4.59 million, a discount of about $405 thousand."}, {"id": "b2", "type": "num", "label": "Total interest cost over the life of the second bond (all coupons plus face minus issue price)", "unit": "$ thousands", "answer": 1905.365, "tol": 2, "show": "1,905.4", "kind": "num", "traps": [], "hints": ["Cash paid is 10 coupons plus the face value. Subtract what was received.", "10 × 150 + 5,000 − issue price.", "Worked step: 1,500 + 5,000 − 4,594.6 = ?"], "explain": "Total interest is about $1,905 thousand, which exceeds the 6% coupons alone ($1,500) because of the discount."}, {"id": "b3", "type": "num", "label": "Interest expense in the first six months of the second bond (issue price × 4%)", "unit": "$ thousands", "answer": 183.7854, "tol": 1, "show": "183.8", "kind": "num", "traps": [], "hints": ["Use the issue price, not the face value.", "4,594.6 × 4%.", "Worked step: 4,594.6 × 0.04 = ?"], "explain": "About $184 thousand, more than the $150 thousand coupon paid."}, {"id": "b4", "type": "mc", "label": "The bond coupon is 6% and the bank loan rate is 8%. Which statement is correct?", "options": [["a", "The bond is cheaper because its coupon is lower."], ["b", "The bond's true cost is the 8% market rate; the discount makes up the difference, so the two cost about the same interest rate."], ["c", "The bond is cheaper because the discount is a gain."], ["d", "The bank loan is cheaper because it has no discount."]], "answer": "b", "optHints": {"a": "The coupon is not the true cost.", "c": "The discount is additional interest, not a gain.", "d": "Both cost about 8% a year."}, "hints": ["What rate did investors demand?", "What does the discount represent?", "Pick the answer that equates the bond's true cost to the market rate."], "explain": "Compare effective rates, not coupons."}]}, {"nav": "Brief Nora", "title": "Recommend to Nora", "res": "Not scored. Compare your note with the checklist and the model answer.", "type": "memo", "prompt": "Write Nora a five to seven sentence recommendation on how much to borrow and whether to use the bond or the bank. Use at least three figures.", "checklist": ["Notes FY2027 coverage is about 4.1 before any new borrowing (full-year bond interest).", "Shows a $5 million loan at 8% would breach 3.0 (about 2.94).", "States capacity of about $4.6 million, or about $2.9 million if the lawsuit loss of $400 thousand is accrued.", "Explains the bond's true cost is the 8% market rate, not the 6% coupon.", "Recommends borrowing less than $5 million or resolving the lawsuit first."], "model": "Coverage will fall from 5.3 to about 4.1 in FY2027 simply because the new bond will carry a full year of interest, and an extra $5 million at 8% would take it to about 2.94, below Dale Queen's 3.0 covenant. At 8% we can borrow about $4.6 million, but only about $2.9 million if the probable $400 thousand lawsuit loss is accrued. The bond's 6% coupon is misleading: it would sell for about $4.59 million, so its true cost is the 8% market rate and total interest is about $1.9 million. I recommend borrowing no more than about $2.9 million until the lawsuit is resolved.", "feedback": {"b": "Correct: the full-year view cuts the room well below what 5.3 suggests.", "d": "Good: the full-year view is what the numbers needed.", "_": "The full-year view shows far less room than the headline 5.3."}}]};
+/* ---------- Helpers ---------- */
+function esc(t){return String(t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+function fmtVal(v,spec){
+  if(v===null||v===undefined) return '';
+  if(typeof v==='string') return v;
+  var dec=(spec&&spec.dec)||0;
+  if(v===0&&!(spec&&spec.zero)) return '–';
+  var s=Math.abs(v).toLocaleString('en-US',{minimumFractionDigits:dec,maximumFractionDigits:dec});
+  return v<0?'('+s+')':s;
+}
+function table(spec){
+  var heads=spec.heads, unit=spec.unit||'$ thousands';
+  var h='<div class="tscroll" tabindex="0" role="region" aria-label="'+esc(spec.cap)+' (scrolls sideways on small screens)"><table><caption>'+esc(spec.cap)+'</caption><thead><tr><th scope="col">'+esc(unit)+'</th>';
+  heads.forEach(function(x){h+='<th scope="col">'+esc(x)+'</th>';});
+  h+='</tr></thead><tbody>';
+  spec.rows.forEach(function(r){
+    if(r[2]==='sub'){h+='<tr class="sub"><th scope="rowgroup" colspan="'+(heads.length+1)+'">'+esc(r[0])+'</th></tr>';return;}
+    h+='<tr'+(r[2]==='tot'?' class="tot"':'')+'><th scope="row">'+esc(r[0])+'</th>';
+    r[1].forEach(function(v){h+='<td>'+fmtVal(v,spec)+'</td>';});
+    h+='</tr>';
+  });
+  return h+'</tbody></table></div>';
+}
+function dataPanel(open){
+  if(!M.data||!M.data.length) return '';
+  return '<details class="data"'+(open?' open':'')+'><summary>'+esc(M.dataTitle||'Cullowhee data')+'</summary><div class="inner">'+
+   M.data.map(table).join('')+(M.dataNote?'<p>'+M.dataNote+'</p>':'')+'</div></details>';
+}
+
+var STEPS=M.steps;
+var KEY='summit-m'+M.num+'-challenge-v1';
+var S={cur:0,max:0,q:{},prediction:null,memo:'',checks:[],name:'',done:false,confirmReset:false};
+try{var raw=sessionStorage.getItem(KEY); if(raw){var p=JSON.parse(raw); if(p&&p.q) S=p;}}catch(e){}
+function save(){try{sessionStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
+function qs(id){if(!S.q[id])S.q[id]={wrong:0,done:false,revealed:false,log:[],val:null};return S.q[id];}
+function stepDone(i){
+  var st=STEPS[i];
+  if(st.type==='predict') return S.prediction!==null;
+  if(st.type==='memo') return true;
+  return st.qs.every(function(q){return qs(q.id).done;});
+}
+function announce(t){var el=document.getElementById('sr-live');el.textContent='';setTimeout(function(){el.textContent=t;},40);}
+
+/* ---------- Parsing and checking ---------- */
+function parseNum(s){
+  s=String(s).trim().replace(/[$,\s%]/g,'').replace(/−/g,'-');
+  var neg=false;
+  if(/^\(.*\)$/.test(s)){neg=true;s=s.slice(1,-1);}
+  if(!/^-?(\d+\.?\d*|\.\d+)$/.test(s)) return NaN;
+  var v=parseFloat(s); return neg?-v:v;
+}
+function normalize(q,v){ if(q.kind==='pct' && v!==0 && Math.abs(v)<1) return v*100; return v; }
+function near(v,t,tol){return Math.abs(v-t)<=tol;}
+function sameSet(a,b){a=a.slice().sort().join(',');b=b.slice().sort().join(',');return a===b;}
+
+/* ---------- Rendering ---------- */
+var app=document.getElementById('app'), nav=document.getElementById('stepnav');
+
+function renderNav(){
+  var h='';
+  var all=STEPS.concat([{nav:'Your results'}]);
+  all.forEach(function(st,i){
+    var locked=i>S.max, cur=i===S.cur;
+    var isDone=(i<STEPS.length && i<S.max && stepDone(i)) || (i===STEPS.length && S.done);
+    h+='<li><button type="button" data-nav="'+i+'"'+(cur?' aria-current="step"':'')+(locked?' aria-disabled="true"':'')+'>'+
+       '<span class="mark'+(isDone?' done':(cur?' cur':''))+'" aria-hidden="true">'+(isDone?'✓':(i<STEPS.length?(i+1):'★'))+'</span>'+
+       '<span class="lbl">'+esc(st.nav)+'<span class="sr-only">'+(isDone?' (completed)':(locked?' (locked)':''))+'</span></span></button></li>';
+  });
+  nav.innerHTML=h;
+}
+
+function qBlock(q,idx){return '<div class="q" id="blk-'+q.id+'">'+qInner(q,qs(q.id),idx)+'</div>';}
+function noteList(q,st){
+  if(!st.log.length) return '';
+  var h='<ol class="notes" aria-label="Reviewer\'s notes">';
+  st.log.forEach(function(entry,i){
+    var tier=Math.min(i+1,3);
+    h+='<li><b>Reviewer\'s note '+(i+1)+':</b> ';
+    if(entry.msg) h+=entry.msg+' ';
+    if(!entry.msg || i>=2) h+=q.hints[tier-1];
+    h+='</li>';
+  });
+  return h+'</ol>';
+}
+function optLabel(o,opts){var r=o;opts.forEach(function(x){if(x[0]===o)r=x[1];});return r;}
+function qInner(q,st,idx){
+  var h='', dis=st.done?' disabled':'';
+  var fbId='fb-'+q.id;
+  if(q.type==='num'){
+    h+='<form data-q="'+q.id+'" novalidate><label class="ql" for="in-'+q.id+'">'+idx+'. '+q.label+' <span class="unit">('+q.unit+')</span></label>'+
+       '<div class="row"><input type="text" id="in-'+q.id+'" inputmode="decimal" autocomplete="off" aria-describedby="'+fbId+'" value="'+esc(st.val||'')+'"'+dis+'>'+
+       (st.done?'':'<button class="btn" type="submit">Check answer</button>')+'</div></form>';
+  }else if(q.type==='grid'){
+    var cols=q.cols, vals=st.val||[];
+    h+='<form data-q="'+q.id+'" novalidate><fieldset'+dis+'><legend>'+idx+'. '+q.label+'</legend><div class="tscroll" tabindex="0" role="region" aria-label="Answer table (scrolls sideways on small screens)"><table class="gridq"><caption class="sr-only">'+esc(q.label.replace(/<[^>]+>/g,''))+'</caption><thead><tr><th scope="col">'+esc(q.rowHead||'Item')+'</th>';
+    cols.forEach(function(c){h+='<th scope="col">'+esc(c.n)+'</th>';});
+    h+='</tr></thead><tbody>';
+    q.rows.forEach(function(r,ri){
+      h+='<tr><th scope="row">'+r.t+'</th>';
+      cols.forEach(function(c,ci){
+        var cur=vals[ri*cols.length+ci]||'';
+        var opts=c.opts||q.opts;
+        h+='<td><select data-r="'+ri+'" data-c="'+ci+'" aria-label="'+esc(r.t.replace(/<[^>]+>/g,''))+', '+esc(c.n)+'"'+dis+'><option value="">Choose</option>';
+        opts.forEach(function(o){h+='<option value="'+esc(o[0])+'"'+(cur===o[0]?' selected':'')+'>'+esc(o[1])+'</option>';});
+        h+='</select></td>';
+      });
+      h+='</tr>';
+    });
+    h+='</tbody></table></div></fieldset>'+(st.done?'':'<div class="row" style="margin-top:.6rem"><button class="btn" type="submit">Check answers</button></div>')+'</form>';
+  }else{
+    var multi=q.type==='multi';
+    h+='<form data-q="'+q.id+'" novalidate><fieldset'+dis+'><legend>'+idx+'. '+q.label+'</legend>';
+    q.options.forEach(function(o){
+      var picked=multi?(st.val||[]).indexOf(o[0])>-1:st.val===o[0];
+      h+='<label class="opt'+(picked?' picked':'')+(st.done?' disabled':'')+'"><input type="'+(multi?'checkbox':'radio')+'" name="'+q.id+'" value="'+o[0]+'"'+(picked?' checked':'')+dis+'><span>'+o[1]+'</span></label>';
+    });
+    h+='</fieldset>'+(st.done?'':'<div class="row" style="margin-top:.6rem"><button class="btn" type="submit">Check answer</button></div>')+'</form>';
+  }
+  h+='<div id="'+fbId+'">';
+  if(st.msg) h+='<div class="fb '+st.msgType+'">'+st.msg+'</div>';
+  if(st.done && !st.revealed) h+='<div class="fb ok"><strong class="tag">✓ Correct.</strong>'+(q.explain?q.explain:'')+'</div>';
+  if(st.revealed) h+='<div class="fb info"><strong class="tag">Answer shown:</strong> '+answerText(q)+' '+(q.explain?q.explain:'')+'</div>';
+  h+='</div>';
+  h+=noteList(q,st);
+  if(!st.done && st.wrong>=3) h+='<p class="why"><button type="button" class="btn alt" data-reveal="'+q.id+'">Show the answer</button></p>';
+  return h;
+}
+function answerText(q){
+  if(q.type==='num') return q.show+'.';
+  if(q.type==='grid'){
+    return '<ul>'+q.rows.map(function(r){return '<li>'+r.t+': '+q.cols.map(function(c,ci){return esc(c.n)+' '+esc(optLabel(r.a[ci],c.opts||q.opts));}).join('; ')+'</li>';}).join('')+'</ul>';
+  }
+  var map={};q.options.forEach(function(o){map[o[0]]=o[1];});
+  var a=q.type==='multi'?q.answers:[q.answer];
+  return a.map(function(k){return map[k];}).join(' ');
+}
+
+function renderStage(focusHeading){
+  var st=STEPS[S.cur], h='';
+  if(S.cur===STEPS.length){return renderResults(focusHeading);}
+  h+='<div class="progress"><span>Step '+(S.cur+1)+' of '+STEPS.length+'</span><progress max="'+STEPS.length+'" value="'+(S.cur+1)+'" aria-label="Challenge progress"></progress></div>';
+  if(S.cur===0){
+    var m=M.memo;
+    h+='<article class="memo" aria-labelledby="memo-h"><h2 id="memo-h">Memo</h2><dl><dt>To</dt><dd>You, Business Analyst, Finance and Strategy</dd><dt>From</dt><dd>'+m.from+'</dd><dt>Date</dt><dd>'+m.date+'</dd><dt>Re</dt><dd>'+m.re+'</dd></dl>'+
+       m.body.map(function(p){return '<p>'+p+'</p>';}).join('')+'</article>'+
+       '<div class="howto"><strong>How this works</strong><ul><li>Type or choose an answer and select Check answer. If it is off, you get a reviewer\'s note and can try again as often as you like. Hints are free.</li><li>'+(M.rounding||'Round percentages to one decimal and ratios to two decimals. Answers within a small tolerance are accepted.')+'</li><li>The textbook ('+esc(M.textbook)+') is a resource, not a requirement. Everything you need is on this page.</li><li>Your results page at the end shows how many answers were correct and incorrect in each step.</li></ul></div>';
+  }
+  h+=dataPanel(S.cur<=1);
+  h+='<section class="step" aria-labelledby="step-h"><h2 id="step-h" tabindex="-1">Step '+(S.cur+1)+'. '+esc(st.title)+'</h2><p class="res">'+esc(st.res||'')+'</p>'+(st.intro||'');
+  if(st.type==='predict'){
+    h+='<form data-predict="1"><fieldset'+(S.prediction!==null?' disabled':'')+'><legend>'+st.legend+'</legend>';
+    st.options.forEach(function(o){
+      var picked=S.prediction===o[0];
+      h+='<label class="opt'+(picked?' picked':'')+'"><input type="radio" name="pred" value="'+o[0]+'"'+(picked?' checked':'')+'><span>'+o[1]+'</span></label>';
+    });
+    h+='</fieldset>'+(S.prediction===null?'<div class="row" style="margin-top:.6rem"><button class="btn" type="submit">Lock in my prediction</button></div>':'<div class="fb info" style="margin-top:.7rem">Prediction locked in. You will revisit it in Step '+STEPS.length+'.</div>')+'</form>';
+  }else if(st.type==='memo'){
+    h+=memoHTML(st);
+  }else{
+    st.qs.forEach(function(q,i){h+=qBlock(q,i+1);});
+  }
+  var done=stepDone(S.cur);
+  if(st.type!=='memo'){
+    h+='<div class="nextbar"><button type="button" class="btn" data-next="1"'+(done?'':' disabled')+'>Continue to '+(S.cur+1<STEPS.length?'step '+(S.cur+2):'results')+'</button>'+
+       (done?'':'<span class="hint">Finish every question in this step to continue.</span>')+'</div>';
+  }
+  h+='</section>';
+  app.innerHTML=h;
+  if(focusHeading){var hd=document.getElementById('step-h');if(hd){hd.focus();window.scrollTo({top:0});}}
+}
+
+function predOpt(){return STEPS[0].options.filter(function(o){return o[0]===S.prediction;})[0];}
+function memoHTML(st){
+  var pred=predOpt();
+  var fb=(st.feedback&&(st.feedback[S.prediction]||st.feedback._))||'';
+  var h='<p class="lead"><strong>Your prediction in Step 1:</strong> '+(pred?esc(pred[1].replace(/<[^>]+>/g,'')):'You skipped it.')+'</p>';
+  h+='<p class="lead">'+fb+'</p>';
+  h+='<form data-memo="1"><label class="ql" for="memo" style="font-weight:600;display:block;margin:.8rem 0 .4rem">'+st.prompt+'</label>'+
+     '<textarea id="memo" aria-describedby="memo-help">'+esc(S.memo)+'</textarea><p id="memo-help" class="res">Your note stays in this browser tab. It is not saved anywhere else.</p>'+
+     '<fieldset class="checks"><legend style="font-weight:600">Check your note against this list</legend>';
+  st.checklist.forEach(function(t,i){h+='<label><input type="checkbox" data-check="'+i+'"'+(S.checks.indexOf(i)>-1?' checked':'')+'><span>'+t+'</span></label>';});
+  h+='</fieldset></form>';
+  h+='<details class="model" style="margin-top:1rem"><summary>See a model answer</summary><p>'+st.model+'</p></details>';
+  h+='<div class="nextbar"><button type="button" class="btn" data-finish="1">See my results</button></div>';
+  return h;
+}
+
+function tally(){
+  var rows=[], tot={n:0,ok:0,bad:0,first:0,shown:0};
+  STEPS.forEach(function(st,i){
+    if(!st.qs) return;
+    var r={step:i,name:st.title,n:st.qs.length,ok:0,bad:0,first:0,shown:0,qrows:[]};
+    st.qs.forEach(function(q){
+      var s=qs(q.id);
+      var ok=s.done&&!s.revealed, first=ok&&s.wrong===0;
+      r.ok+=ok?1:0; r.bad+=s.wrong; r.first+=first?1:0; r.shown+=s.revealed?1:0;
+      r.qrows.push({label:q.label.replace(/<[^>]+>/g,''),ok:ok,bad:s.wrong,first:first,shown:s.revealed,done:s.done});
+    });
+    tot.n+=r.n;tot.ok+=r.ok;tot.bad+=r.bad;tot.first+=r.first;tot.shown+=r.shown;
+    rows.push(r);
+  });
+  return {rows:rows,tot:tot};
+}
+function summaryText(t){
+  var L=[];
+  L.push('Cullowhee Cycle Works - Module '+M.num+' challenge results');
+  L.push('Name: '+(S.name||'(not entered)'));L.push('Student ID: '+(S.sid||'(not entered)'));var d0=new Date(),dd0=d0.getFullYear()+'-'+('0'+(d0.getMonth()+1)).slice(-2)+'-'+('0'+d0.getDate()).slice(-2);L.push('Date: '+dd0);
+  var pred=predOpt();
+  L.push('Step 1 prediction: '+(pred?pred[1].replace(/<[^>]+>/g,''):'none'));
+  L.push('');
+  t.rows.forEach(function(r){
+    L.push('Step '+(r.step+1)+' ('+r.name+'): '+r.ok+' of '+r.n+' correct; '+r.bad+' incorrect attempt'+(r.bad===1?'':'s')+'; '+r.first+' correct on first try; '+r.shown+' answer'+(r.shown===1?'':'s')+' shown');
+  });
+  L.push('');
+  L.push('Total: '+t.tot.ok+' of '+t.tot.n+' correct; '+t.tot.bad+' incorrect attempts; '+t.tot.first+' correct on first try; '+t.tot.shown+' answers shown');
+  if(S.memo){L.push('');L.push('My note: ');L.push(S.memo);}
+  var h=2166136261,cs='CCW-C|'+[S.sid||'',dd0,'M'+M.num,t.tot.ok+'/'+t.tot.n,t.tot.bad].join('|');for(var ci=0;ci<cs.length;ci++){h^=cs.charCodeAt(ci);h=Math.imul(h,16777619);}h=(h>>>0).toString(16).toUpperCase();while(h.length<8)h='0'+h;L.push('');L.push('Verification code: '+h.slice(0,4)+'-'+h.slice(4));
+  return L.join('\n');
+}
+function renderResults(focusHeading){
+  var t=tally(), h='';
+  h+='<div class="progress"><span>Results</span></div>';
+  h+='<section class="step" aria-labelledby="step-h"><h2 id="step-h" tabindex="-1">Your results</h2><p class="res">Correct answers and incorrect attempts for each step.</p>';
+  h+='<div class="tscroll" tabindex="0" role="region" aria-label="Results by step (scrolls sideways on small screens)"><table class="tick"><caption>Answers by step</caption><thead><tr><th scope="col">Step</th><th scope="col">Correct answers</th><th scope="col">Incorrect attempts</th><th scope="col">Correct on first try</th><th scope="col">Answers shown</th></tr></thead><tbody>';
+  t.rows.forEach(function(r){
+    h+='<tr><th scope="row">Step '+(r.step+1)+'. '+esc(r.name)+'</th><td class="'+(r.ok===r.n?'good':'')+'">'+(r.ok===r.n?'✓ ':'')+r.ok+' of '+r.n+'</td><td class="'+(r.bad?'bad':'')+'">'+(r.bad?'✗ ':'')+r.bad+'</td><td>'+r.first+' of '+r.n+'</td><td>'+r.shown+'</td></tr>';
+  });
+  h+='</tbody><tfoot><tr><th scope="row">Total</th><td>'+t.tot.ok+' of '+t.tot.n+'</td><td>'+t.tot.bad+'</td><td>'+t.tot.first+' of '+t.tot.n+'</td><td>'+t.tot.shown+'</td></tr></tfoot></table></div>';
+  h+='<p class="lead">Steps 1 and '+STEPS.length+' are not scored. An incorrect attempt is any wrong answer you submitted. A question counts as correct once you answer it right, even after retries; answers you chose to show are not counted as correct.</p>';
+  h+='<details style="margin:1rem 0"><summary>See the breakdown by question</summary><div class="tscroll" tabindex="0" role="region" aria-label="Results by question"><table class="tick"><caption>Answers by question</caption><thead><tr><th scope="col">Question</th><th scope="col">Result</th><th scope="col">Incorrect attempts</th></tr></thead><tbody>';
+  t.rows.forEach(function(r){r.qrows.forEach(function(q,i){
+    var res=q.shown?'Answer shown':(q.ok?(q.first?'✓ Correct, first try':'✓ Correct after retries'):'Not answered');
+    h+='<tr><th scope="row">Step '+(r.step+1)+', question '+(i+1)+': '+esc(q.label)+'</th><td>'+res+'</td><td>'+q.bad+'</td></tr>';
+  });});
+  h+='</tbody></table></div></details>';
+  h+='<div><label for="nm" style="font-weight:600">Your name (included in your summary)</label><br><div class="row" style="margin-top:.35rem"><input type="text" id="nm" autocomplete="name" value="'+esc(S.name)+'" style="width:18rem"></div></div><div style="margin-top:.7rem"><label for="sid" style="font-weight:600">Your student ID (digits only)</label><br><div class="row" style="margin-top:.35rem"><input type="text" id="sid" inputmode="numeric" autocomplete="off" value="'+esc(S.sid||'')+'" style="width:18rem"></div></div>';
+  h+='<h3 style="font-family:var(--serif);margin:1.2rem 0 .4rem">Summary you can copy</h3><pre class="out" id="sum" tabindex="0">'+esc(summaryText(t))+'</pre>';
+  h+='<div class="row"><button class="btn" type="button" data-pdf="1">Download PDF</button><button class="btn alt" type="button" data-copy="1">Copy summary (backup)</button><button class="btn alt" type="button" data-print="1">Print this page</button><button class="btn alt" type="button" data-back="1">Back to step '+STEPS.length+'</button><button class="btn alt" type="button" data-reset="1">'+(S.confirmReset?'Select again to confirm start over':'Start over')+'</button></div><div id="copymsg" class="res" role="status"></div>';
+  h+='</section>';
+  app.innerHTML=h;
+  if(focusHeading){var hd=document.getElementById('step-h');if(hd){hd.focus();window.scrollTo({top:0});}}
+}
+
+function render(focusHeading){renderNav();renderStage(focusHeading);}
+
+/* ---------- Events ---------- */
+nav.addEventListener('click',function(e){
+  var b=e.target.closest('button[data-nav]'); if(!b) return;
+  var i=+b.getAttribute('data-nav'); if(i>S.max) {announce('That step is locked until you finish the earlier steps.');return;}
+  S.cur=i; save(); render(true);
+});
+function goNext(){
+  var i=S.cur;
+  if(i<STEPS.length-1){S.cur=i+1;S.max=Math.max(S.max,S.cur);}
+  else {S.cur=STEPS.length;S.max=Math.max(S.max,S.cur);S.done=true;}
+  save();render(true);
+}
+app.addEventListener('click',function(e){
+  var t=e.target;
+  var rv=t.closest('[data-reveal]');
+  if(rv){
+    var id=rv.getAttribute('data-reveal'), s=qs(id); s.done=true;s.revealed=true;s.msg=null;
+    save(); refreshQ(id); announce('Answer shown.'); return;
+  }
+  if(t.closest('[data-next]')){goNext();return;}
+  if(t.closest('[data-finish]')){S.max=Math.max(S.max,STEPS.length);S.cur=STEPS.length;S.done=true;save();render(true);return;}
+  if(t.closest('[data-back]')){S.cur=STEPS.length-1;save();render(true);return;}
+  if(t.closest('[data-print]')){window.print();return;}
+  if(t.closest('[data-copy]')){
+    var txt=document.getElementById('sum').textContent, m=document.getElementById('copymsg');
+    function ok(){m.textContent='Summary copied.';announce('Summary copied.');}
+    function fail(){var r=document.createRange();r.selectNodeContents(document.getElementById('sum'));var sel=window.getSelection();sel.removeAllRanges();sel.addRange(r);m.textContent='Select and copy the highlighted text (Ctrl+C or Command+C).';}
+    try{
+      if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(ok,fail);}
+      else{fail();}
+    }catch(err){fail();}
+    return;
+  }
+  if(t.closest('[data-reset]')){
+    if(!S.confirmReset){S.confirmReset=true;save();renderResults(false);return;}
+    S={cur:0,max:0,q:{},prediction:null,memo:'',checks:[],name:'',done:false,confirmReset:false};save();render(true);return;
+  }
+});
+function refreshQ(id){
+  var q=null,idx=0;
+  STEPS[S.cur].qs.forEach(function(x,i){if(x.id===id){q=x;idx=i+1;}});
+  var blk=document.getElementById('blk-'+id);
+  blk.innerHTML=qInner(q,qs(id),idx);
+  var done=stepDone(S.cur), nb=app.querySelector('[data-next]');
+  if(nb){nb.disabled=!done;var hint=app.querySelector('.nextbar .hint');if(hint)hint.style.display=done?'none':'';}
+}
+function firstFocus(id){return document.getElementById('in-'+id)||document.querySelector('#blk-'+id+' select, #blk-'+id+' input');}
+
+app.addEventListener('submit',function(e){
+  e.preventDefault();
+  var f=e.target;
+  if(f.hasAttribute('data-predict')){
+    var c=f.querySelector('input[name=pred]:checked');
+    if(!c){announce('Choose an option first.');var fb=document.createElement('div');fb.className='fb no';fb.textContent='Choose one option, then lock in your prediction.';if(!f.querySelector('.fb'))f.appendChild(fb);return;}
+    S.prediction=c.value;save();render(false);
+    announce('Prediction locked in.');
+    var nb=app.querySelector('[data-next]'); if(nb) nb.focus();
+    return;
+  }
+  if(f.hasAttribute('data-memo')){return;}
+  var id=f.getAttribute('data-q'); if(!id) return;
+  var q=null; STEPS[S.cur].qs.forEach(function(x){if(x.id===id) q=x;});
+  var s=qs(id); if(s.done) return;
+  var correct=false, trap=null, empty=false;
+  if(q.type==='num'){
+    var inp=f.querySelector('input[type=text]'), raw=inp.value; s.val=raw;
+    if(!raw.trim()){empty=true;s.msg='Enter a number first.';s.msgType='info';}
+    else{
+      var v=parseNum(raw);
+      if(isNaN(v)){empty=true;s.msg='Enter a number, such as 12.5. Commas, $ and % signs are fine.';s.msgType='info';}
+      else{
+        v=normalize(q,v);
+        if(near(v,q.answer,q.tol)) correct=true;
+        else (q.traps||[]).forEach(function(tp){if(!trap&&near(v,tp.v,tp.tol)) trap=tp.msg;});
+      }
+    }
+  }else if(q.type==='grid'){
+    var sels=[].slice.call(f.querySelectorAll('select')), vals=sels.map(function(x){return x.value;});
+    s.val=vals;
+    if(vals.some(function(x){return !x;})){empty=true;s.msg='Choose an answer in every cell first.';s.msgType='info';}
+    else{
+      var badRows=[], nc=q.cols.length;
+      q.rows.forEach(function(r,ri){
+        var ok=true;for(var ci=0;ci<nc;ci++){if(vals[ri*nc+ci]!==r.a[ci]) ok=false;}
+        if(!ok) badRows.push(ri);
+      });
+      if(!badRows.length) correct=true;
+      else{
+        var parts=['Check '+(badRows.length===1?'row ':'rows ')+badRows.map(function(x){return x+1;}).join(', ')+'.'];
+        badRows.slice(0,2).forEach(function(ri){if(q.rows[ri].why) parts.push('Row '+(ri+1)+': '+q.rows[ri].why);});
+        trap=parts.join(' ');
+      }
+    }
+  }else if(q.type==='mc'){
+    var c2=f.querySelector('input:checked');
+    if(!c2){empty=true;s.msg='Choose an answer first.';s.msgType='info';}
+    else{s.val=c2.value; if(c2.value===q.answer) correct=true; else trap=(q.optHints||{})[c2.value]||null;}
+  }else{
+    var picks=[].slice.call(f.querySelectorAll('input:checked')).map(function(x){return x.value;});
+    s.val=picks;
+    if(!picks.length){empty=true;s.msg='Select at least one answer first.';s.msgType='info';}
+    else if(sameSet(picks,q.answers)) correct=true;
+    else{
+      var msgs=[];picks.forEach(function(k){if(q.answers.indexOf(k)<0 && q.optHints && q.optHints[k]) msgs.push(q.optHints[k]);});
+      var missing=q.answers.filter(function(k){return picks.indexOf(k)<0;});
+      if(missing.length && !msgs.length) msgs.push('You have not selected everything that applies.');
+      trap=msgs.join(' ');
+    }
+  }
+  if(empty){save();refreshQ(id);announce(s.msg);var ni=firstFocus(id);if(ni)ni.focus();return;}
+  if(correct){
+    s.done=true;s.msg=null;save();refreshQ(id);
+    announce('Correct. '+(q.explain||'').replace(/<[^>]+>/g,''));
+    var nextQ=null;STEPS[S.cur].qs.forEach(function(x){if(!nextQ&&!qs(x.id).done)nextQ=x;});
+    if(nextQ){var ni2=firstFocus(nextQ.id);if(ni2)ni2.focus();}
+    else{var nb2=app.querySelector('[data-next]');if(nb2)nb2.focus();}
+    return;
+  }
+  s.wrong++; s.log.push({msg:trap}); s.msg='<strong class="tag">✗ Not quite.</strong>Try again. Reviewer\'s note '+s.log.length+' is below.'; s.msgType='no';
+  save();refreshQ(id);
+  var tier=Math.min(s.log.length,3);
+  announce('Not quite. '+((trap||'')+' '+(q.hints[tier-1]||'')).replace(/<[^>]+>/g,''));
+  var again=firstFocus(id);
+  if(again){again.focus(); if(again.select&&again.type==='text')again.select();}
+});
+app.addEventListener('change',function(e){
+  var t=e.target;
+  if(t.matches('[data-check]')){
+    var i=+t.getAttribute('data-check'), k=S.checks.indexOf(i);
+    if(t.checked&&k<0)S.checks.push(i); if(!t.checked&&k>-1)S.checks.splice(k,1); save();
+  }
+  if(t.closest('.opt')){
+    var grp=t.closest('form').querySelectorAll('.opt');
+    [].forEach.call(grp,function(l){l.classList.toggle('picked',l.querySelector('input').checked);});
+  }
+});
+app.addEventListener('input',function(e){
+  if(e.target.id==='memo'){S.memo=e.target.value;save();}
+  if(e.target.id==='sid'){S.sid=e.target.value.replace(/\s/g,'');save();var sm2=document.getElementById('sum');if(sm2)sm2.textContent=summaryText(tally());}
+  if(e.target.id==='nm'){S.name=e.target.value;save();var sm=document.getElementById('sum');if(sm)sm.textContent=summaryText(tally());}
+});
+
+render(false);
+})();
+
+</script>
+<script>(function(){'use strict';
+function clean(s){return String(s).replace(/[‘’]/g,"'").replace(/[“”]/g,'"').replace(/[–—−]/g,'-').replace(/·/g,'-').replace(/÷/g,'/').replace(/×/g,'x').replace(/[^\x20-\x7E\n]/g,'?');}
+function esc(s){return s.replace(/\\/g,'\\\\').replace(/\(/g,'\\(').replace(/\)/g,'\\)');}
+function wrap(text,max){var out=[];text.split('\n').forEach(function(p){if(!p.trim()){out.push('');return;}var line='';p.split(/\s+/).forEach(function(w){while(w.length>max){if(line){out.push(line);line='';}out.push(w.slice(0,max));w=w.slice(max);}if((line+' '+w).trim().length>max){out.push(line);line=w;}else line=(line?line+' ':'')+w;});out.push(line);});return out;}
+function pdf(lines){var per=52,pages=[];for(var i=0;i<lines.length;i+=per)pages.push(lines.slice(i,i+per));if(!pages.length)pages=[[]];
+  var objs=[];objs[1]='<< /Type /Catalog /Pages 2 0 R >>';var kids=[];
+  objs[3]='<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>';objs[4]='<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>';
+  pages.forEach(function(pl,pi){var po=5+pi*2,co=po+1;kids.push(po+' 0 R');
+    var c='BT /F1 10 Tf 13 TL 54 740 Td\n';pl.forEach(function(l,li){var bold=(pi===0&&li===0);c+=(bold?'/F2 12 Tf ':'/F1 10 Tf ')+'('+esc(l)+') Tj T*\n';});c+='ET';
+    objs[po]='<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents '+co+' 0 R >>';
+    objs[co]='<< /Length '+c.length+' >>\nstream\n'+c+'\nendstream';});
+  objs[2]='<< /Type /Pages /Kids ['+kids.join(' ')+'] /Count '+pages.length+' >>';
+  var out='%PDF-1.4\n',off=[];for(var n=1;n<objs.length;n++){off[n]=out.length;out+=n+' 0 obj\n'+objs[n]+'\nendobj\n';}
+  var x=out.length;out+='xref\n0 '+objs.length+'\n0000000000 65535 f \n';for(n=1;n<objs.length;n++)out+=('0000000000'+off[n]).slice(-10)+' 00000 n \n';
+  out+='trailer\n<< /Size '+objs.length+' /Root 1 0 R >>\nstartxref\n'+x+'\n%%EOF';return out;}
+document.addEventListener('click',function(ev){if(!ev.target.closest('[data-pdf]'))return;var el=document.getElementById('sum');if(!el)return;var t=el.textContent;
+  var sidv=(t.match(/Student ID: (\d{5,12})/)||[])[1];var mm=document.getElementById('copymsg');if(!sidv){if(mm)mm.textContent='Enter your name and a student ID (digits only) above first, then download the PDF.';return;}t=clean(t);
+  var id=(t.match(/Student ID: (\d+)/)||[])[1]||'student',title=t.split('\n')[0];
+  var lines=wrap(t,92);var data=pdf(lines);var blob=new Blob([data],{type:'application/pdf'});
+  var name=title.replace(/^MBA 623 - /,'MBA623 ').replace(/[^A-Za-z0-9 ]+/g,'').replace(/\s+/g,' ').trim()+' - '+id+'.pdf';
+  var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},500);
+  if(mm)mm.textContent='PDF downloaded: '+name;});
+})();</script></body>
+</html>
