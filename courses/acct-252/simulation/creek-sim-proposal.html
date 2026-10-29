@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cullowhee Creek Home Products Company Simulation – Decision Proposal</title>
+<style>
+:root{--purple:#592c88;--purple-d:#3f1d63;--gold:#c1a875;--ink:#1f1f1f;--muted:#4d4d4d;--line:#c9c2d3;--bg:#ffffff;--panel:#f6f2fa;--err:#a30000;--ok:#1b6e2d;--warn:#7a4b00;--focus:#003d99}
+*{box-sizing:border-box}
+body{margin:0;font:16px/1.5 Arial,Helvetica,sans-serif;color:var(--ink);background:var(--bg)}
+.skip{position:absolute;left:-999px;top:0;background:#fff;color:var(--purple-d);padding:.5rem 1rem;z-index:10}
+.skip:focus{left:0}
+header.site{background:var(--purple);color:#fff;border-bottom:6px solid var(--gold);padding:1rem 1.25rem}
+header.site .kicker{margin:0;font-size:.95rem;letter-spacing:.02em}
+header.site h1{margin:.15rem 0 0;font-size:1.6rem}
+main{max-width:1000px;margin:0 auto;padding:1rem 1.25rem 4rem}
+h2{color:var(--purple-d);font-size:1.3rem;margin:2rem 0 .5rem;border-bottom:2px solid var(--gold);padding-bottom:.25rem}
+h3{color:var(--purple-d);font-size:1.1rem;margin:1.25rem 0 .4rem}
+p,li{max-width:70ch}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:1rem;margin:1rem 0}
+.panel>:first-child{margin-top:0}.panel>:last-child{margin-bottom:0}
+.note{color:var(--muted);font-size:.92rem}
+label{font-weight:700;display:block;margin:.6rem 0 .15rem}
+input[type=text],input[type=number],textarea,select{font:inherit;padding:.4rem .5rem;border:2px solid #6b6b6b;border-radius:4px;background:#fff;color:var(--ink);width:100%;max-width:22rem}
+textarea{max-width:100%;min-height:6.5rem}
+input[readonly]{background:#ececec}
+input[aria-invalid=true]{border-color:var(--err)}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+button{font:inherit;font-weight:700;background:var(--purple);color:#fff;border:2px solid var(--purple-d);border-radius:4px;padding:.5rem 1rem;cursor:pointer}
+button.secondary{background:#fff;color:var(--purple-d)}
+button:hover{background:var(--purple-d);color:#fff}
+button[disabled]{opacity:.55;cursor:not-allowed}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:.25rem 1.25rem}
+table{border-collapse:collapse;width:100%;margin:.5rem 0;font-size:.95rem}
+caption{text-align:left;font-weight:700;padding:.3rem 0;color:var(--purple-d)}
+th,td{border:1px solid var(--line);padding:.35rem .5rem;text-align:left;vertical-align:top;overflow-wrap:anywhere}
+.scroll{overflow-x:auto;max-width:100%}.scroll table{min-width:34rem}
+@media (max-width:30rem){th,td{padding:.3rem .35rem;font-size:.9rem}main{padding:1rem .75rem 4rem}}
+thead th,th[scope=col]{background:var(--purple);color:#fff}
+th[scope=row]{background:#efe9f6;font-weight:700}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+.msg{margin:.25rem 0;padding:.35rem .6rem;border-left:5px solid var(--line);background:#fff}
+.msg.err{border-color:var(--err);color:var(--err)}.msg.ok{border-color:var(--ok);color:var(--ok)}.msg.warn{border-color:var(--warn);color:var(--warn)}
+.msg strong:first-child{margin-right:.3rem}
+.tabs{display:flex;gap:.5rem;margin:1rem 0 0;flex-wrap:wrap}
+.tabs [role=tab]{background:#fff;color:var(--purple-d)}
+.tabs [role=tab][aria-selected=true]{background:var(--purple);color:#fff}
+.summary{background:#fff;border:3px solid var(--purple);border-radius:6px;padding:.75rem 1rem;margin:1rem 0}
+.summary h2{margin-top:0;border:0}
+.big{font-size:1.15rem;font-weight:700}
+details{margin:.75rem 0;border:1px solid var(--line);border-radius:6px;padding:.5rem .8rem;background:#fff}
+summary{cursor:pointer;font-weight:700;color:var(--purple-d)}
+fieldset{border:1px solid var(--line);border-radius:6px;margin:1rem 0;padding:.5rem 1rem 1rem}
+legend{font-weight:700;color:var(--purple-d);padding:0 .4rem}
+.row-actions{display:flex;gap:.75rem;flex-wrap:wrap;margin:1rem 0}
+.sr{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+@media print{header.site{-webkit-print-color-adjust:exact;print-color-adjust:exact}.tabs,.row-actions,.skip{display:none}[role=tabpanel][hidden]{display:block!important}details{display:block}details>*{display:block}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="site">
+  <p class="kicker">ACCT 252 · Managerial Accounting · Western Carolina University</p>
+  <h1>Cullowhee Creek Home Products Company Simulation – Decision Proposal</h1>
+</header>
+<main id="main">
+  <noscript><p class="msg err">This page needs JavaScript to run. Open it in a current browser.</p></noscript>
+  <div id="app"></div>
+</main>
+<script type="application/json" id="saved-state">{}</script>
+<script>
+"use strict";
+/* ===================== CONFIGURATION (instructor: keep in sync with the Excel Setup sheet) ===================== */
+const CFG={
+  teams:12, potPerTeam:800000, maxRound:8,
+  reachSpend:3200000, w0:0.28, p0:80, slope:0.012, wmin:0.02, calls:500, carry:0.8,
+  pmin:40, pmax:89, admax:4000000, repmax:300, salmax:20000, prodmax:180000, wagemin:6, wagemax:50, msizemax:200000, nordmax:40, eqmax:300,
+  baseUnits:72157, baseAd:300000, baseSeason:1.2,
+  hours:8, days:66, matPer:2, genoh:200000, matfix:44353, fgcarry:2, admin:240000, bdep:22500, intr:45500, tax:0.4,
+  upm:500, effexp:0.35, effcap:1.25, otcap:0.2, otprem:1.5, life:40, rawcarry:2,
+  tiers:[[0,1.10],[10000,1.05],[20000,1.00],[40000,0.95],[80000,0.90]],
+  base:{sal:7000,hire:2000,leave:1500,mat:10,wage:8,order:100,train:1000,relw:1000,eqp:50000},
+  growth:{ad:0.08,sal:0.04,hire:0.03,mat:0.04,wage:0.02,lab:0.03,eq:0.03},
+  seasons:[1,0.95,0.85,1.2], tbase:0.05, tsens:0.5, tmin:0.02, tmax:0.5,
+  colfrac:1/3, loancap:0.4, loanrate:0.10, bondrate:0.05, odrate:0.18, aprate:0.15, apfree:1000000, par:100,
+  u:{prod:2,crew:3,msize:3,nord:3,wage:4,equip:4,ot:4,loan:5,ap:5,fin:99},
+  start:{reps:128,fgu:12381,fgd:651608,price:80,ad:300000,sal:7000,crew:332,E:166,edep:207500,rawu:22000,cash:500000,ar:3848365,ap:0,loan:0,repay:0,eq:8802094,assets:14227549,msize:30000,nord:4},
+  fixedProdR1:60000
+};
+const REQUIRED_WORDS=20;
+const ROUNDS=Array.from({length:CFG.maxRound},(_,i)=>i+1);
+/* decisions in the same order as the Excel entry columns */
+const DEC=[
+ {k:'price',n:1,label:'Price per peeler ($)',u:'one',step:'0.01'},
+ {k:'ad',n:2,label:'Advertising ($)',u:'one'},
+ {k:'reps',n:3,label:'Number of sales people',u:'one',step:'1'},
+ {k:'sal',n:4,label:'Salary per sales person per quarter ($)',u:'one'},
+ {k:'prod',n:10,label:'Planned production (units)',u:'prod',step:'1'},
+ {k:'crew',n:5,label:'Number of factory workers',u:'crew',step:'1'},
+ {k:'wage',n:6,label:'Wage per hour ($)',u:'wage',step:'0.01'},
+ {k:'msize',n:7,label:'Material X order size (units)',u:'msize',step:'1'},
+ {k:'nord',n:8,label:'Number of orders',u:'nord',step:'1'},
+ {k:'equip',n:9,label:'Additional equipment (machines)',u:'equip',step:'1'},
+ {k:'ot',n:11,label:'Overtime',u:'ot',sel:true},
+ {k:'loan',n:12,label:'Bank loan ($)',u:'loan'},
+ {k:'ap',n:16,label:'Accounts payable payment ($)',u:'ap'},
+ {k:'bonds',n:13,label:'Bonds issued ($ face)',u:'fin'},
+ {k:'stock',n:14,label:'Common stock issued (shares)',u:'fin'},
+ {k:'div',n:15,label:'Dividend per share ($)',u:'fin',step:'0.01'}];
+const unlockRound=f=>f.u==='one'?1:CFG.u[f.u];
+const isOn=(f,k)=>k>=unlockRound(f);
+const RMETA={
+ 1:{ch:'Chapter 2 (cost-volume-profit)',due:'Friday, January 29',why:[['pa','Price and advertising','Explain how your CVP analysis and sales forecast support your price and advertising.'],['sf','Sales force and salary','How did you choose the number of sales people and the pay level? Use sales force capacity and turnover.'],['rv','Rivals','Which rival move worries you most, and how does your plan hold up if rivals cut price or advertise more?']]},
+ 2:{ch:'Chapters 3 and 4 (overhead rates; absorption and variable costing)',due:'Friday, February 12',why:[['learn','What you learned from Round 1','What did your Round 1 results and the rivals\' decisions show? What did you change and why?'],['prod','Production','Show how your production budget connects to your forecast, finished goods and capacity. Mention fixed cost per unit and what happens if you overproduce.'],['cost','Rising costs','Name at least two costs that rose this round. How did you adjust your decisions?']]},
+ 3:{ch:'Chapter 5 (activity-based costing)',due:'Monday, February 22',why:[['learn','What you learned from Round 2','Compare your forecast with what happened. What did you change?'],['mat','Ordering decision','Use the ordering analysis: what order size and number of orders did you choose, and what does each order cost you once carrying cost and the quantity discount are counted?'],['labor','Factory workers','How many workers did you choose and why? Include the cost of training and releasing workers and the machines they run.']]},
+ 4:{ch:'Chapter 6 (relevant costs and constrained resources)',due:'Friday, March 5',why:[['learn','What you learned from Round 3','What did your results show about materials, workers and capacity?'],['cap','Capacity decisions','Use the capacity analysis: did capacity limit your sales? Which of overtime, a higher wage or new machines did you choose, and which costs are relevant to that choice?'],['incr','Incremental analysis','Show the incremental revenue and incremental cost of your largest change this round. Say what costs you ignored because they do not differ between the options.']]},
+ 5:{ch:'Chapter 8 (master budget and cash budget)',due:'Friday, March 19',why:[['learn','What you learned from Round 4','What did your results show about capacity, the wage and overtime?'],['cash','Cash budget','Use the projected cash table: what is your lowest cash balance, and how do your loan and payables decisions keep you out of an overdraft?'],['fin','Financing choice','Compare the cost of a bank loan (10%), unpaid payables above the $1,000,000 limit (15%) and an overdraft (18%). Which did you use and why?']]},
+ 6:{ch:'Chapter 9 (flexible budgets and performance reports)',due:'Monday, April 5',why:[['learn','What you learned from Round 5','What did your Round 5 results show? What changed in your plan?'],['flex','Performance report','Use the flexible-budget report: how much of the difference from your budget came from activity, selling price, variable costs and fixed costs?'],['act','Actions','Name two actions you took this round because of the report, with the numbers behind each.']]},
+ 7:{ch:'Chapter 10 (standard costs and variances)',due:'Wednesday, April 14',why:[['learn','What you learned from Round 6','What did your Round 6 results show? What changed in your plan?'],['var','Variance analysis','Use the variance table: which variance is largest, who in the company controls it, and is it favorable or unfavorable?'],['act','Actions','Name two actions you took this round because of the variances, with the numbers behind each.']]},
+ 8:{ch:'Chapter 12 (balanced scorecard and operating measures)',due:'Wednesday, April 28',why:[['learn','What you learned from Round 7','What did your Round 7 results show? What changed in your plan?'],['card','Scorecard','Use the scorecard: which of the four perspectives is your strongest and which is your weakest? Support each with a measure.'],['final','Final reflection','Looking at all eight rounds, which two decisions mattered most to your results and what would you do differently?']]}
+};
+/* ===================== MODEL HELPERS ===================== */
+function env(k){const g=CFG.growth,b=CFG.base,p=k-1;return{
+  season:CFG.seasons[(k-1)%4], adIdx:Math.pow(1+g.ad,p), reachSpend:CFG.reachSpend*Math.pow(1+g.ad,p),
+  sal:b.sal*Math.pow(1+g.sal,p), hire:b.hire*Math.pow(1+g.hire,p), leave:b.leave*Math.pow(1+g.hire,p),
+  mat:b.mat*Math.pow(1+g.mat,p), wage:b.wage*Math.pow(1+g.wage,p), order:b.order*Math.pow(1+g.lab,p),
+  train:b.train*Math.pow(1+g.lab,p), relw:b.relw*Math.pow(1+g.lab,p), eqp:b.eqp*Math.pow(1+g.eq,p)};}
+const Ppot=()=>CFG.potPerTeam*CFG.teams;
+function reach(ad,k){return Math.sqrt(Math.min(1,Math.max(0,ad)/env(k).reachSpend));}
+function willing(p){return Math.max(CFG.wmin,CFG.w0-CFG.slope*(p-CFG.p0));}
+function kcal(){const N=CFG.teams,r=Math.sqrt(CFG.baseAd/CFG.reachSpend),U=1-Math.pow(1-r,N);return CFG.baseUnits*N/(CFG.baseSeason*Ppot()*U*CFG.w0);}
+function tierMult(size){let m=CFG.tiers[0][1];CFG.tiers.forEach(t=>{if(size>=t[0])m=t[1];});return m;}
+function turn(sal,k){const m=env(k).sal;return Math.min(CFG.tmax,Math.max(CFG.tmin,CFG.tbase+CFG.tsens*Math.max(0,(m-sal)/m)));}
+function wageEff(wage,k){return wage>0?Math.min(CFG.effcap,Math.pow(wage/env(k).wage,CFG.effexp)):0;}
+function estimateDemand(k,price,ad,rPrice,rAd){
+  const N=CFG.teams,P=Ppot(),r=reach(ad,k),rr=reach(rAd,k),w=willing(price),rw=willing(rPrice);
+  const Wme=P*r*w,Wr=P*rr*rw,Wtot=Wme+(N-1)*Wr,union=1-(1-r)*Math.pow(1-rr,N-1),sumReach=r+(N-1)*rr;
+  const wbar=sumReach>0?Wtot/(P*sumReach):0,D=kcal()*env(k).season*P*union*wbar,share=Wtot>0?Wme/Wtot:0;
+  return{reach:r,willing:w,share:share,industry:Math.round(D),own:Math.round(share*D)};}
+/* ===================== FORMATTING ===================== */
+const fmt={n:v=>isFinite(v)?Math.round(v).toLocaleString('en-US'):'–',
+  d:v=>isFinite(v)?(v<0?'(':'')+'$'+Math.abs(Math.round(v)).toLocaleString('en-US')+(v<0?')':''):'–',
+  d2:v=>isFinite(v)?'$'+v.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}):'–',
+  p:v=>isFinite(v)?(v*100).toFixed(1)+'%':'–',x:v=>isFinite(v)?v.toFixed(3):'–'};
+const num=v=>{if(v===''||v===null||v===undefined)return NaN;const x=Number(String(v).replace(/[$,\s]/g,''));return isFinite(x)?x:NaN;};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const words=t=>(t||'').trim().split(/\s+/).filter(Boolean).length;
+/* ===================== STATE ===================== */
+let state={team:{num:'',name:'',members:''},rounds:{},current:1};
+try{const raw=document.getElementById('saved-state').textContent.trim();if(raw&&raw!=='{}'){const s=JSON.parse(raw);state=Object.assign(state,s);state.rounds=Object.assign({},s.rounds||{});}}catch(e){}
+ROUNDS.forEach(k=>{if(!state.rounds[k])state.rounds[k]={};});
+if(!ROUNDS.includes(state.current))state.current=1;
+function getPath(p){return p.split('.').reduce((o,k)=>o==null?undefined:o[k],state);}
+function setPath(p,v){const ks=p.split('.');let o=state;for(let i=0;i<ks.length-1;i++){if(o[ks[i]]==null||typeof o[ks[i]]!=='object')o[ks[i]]={};o=o[ks[i]];}o[ks[ks.length-1]]=v;}
+const val=(p,d='')=>{const v=getPath(p);return v==null?d:v;};
+const R=k=>`rounds.${k}`;
+const idOf=p=>p.replace(/\./g,'-');
+/* ===================== TEMPLATES ===================== */
+function inp(path,label,o={}){
+  const id=idOf(path),hint=o.hint?`<span id="${id}-h" class="note">${o.hint}</span>`:'';
+  const v=val(path,o.def!==undefined?o.def:''),type=o.text?'text':'number';
+  return `<div><label for="${id}">${label}</label>${hint?hint+'<br>':''}<input id="${id}" data-path="${path}" type="${type}" ${o.step?`step="${o.step}"`:''} ${o.min!==undefined?`min="${o.min}"`:''} ${o.max!==undefined?`max="${o.max}"`:''} inputmode="${o.text?'text':'decimal'}" value="${esc(v)}" aria-describedby="${hint?id+'-h ':''}${id}-e" autocomplete="off"><span id="${id}-e" class="note" role="status"></span></div>`;}
+function sel(path,label,opts,o={}){
+  const id=idOf(path),hint=o.hint?`<span id="${id}-h" class="note">${o.hint}</span>`:'',v=String(val(path,o.def!==undefined?o.def:''));
+  return `<div><label for="${id}">${label}</label>${hint?hint+'<br>':''}<select id="${id}" data-path="${path}" aria-describedby="${hint?id+'-h ':''}${id}-e">${opts.map(x=>`<option value="${x[0]}"${String(x[0])===v?' selected':''}>${x[1]}</option>`).join('')}</select><span id="${id}-e" class="note" role="status"></span></div>`;}
+function area(path,label,hint){const id=idOf(path);
+  return `<div><label for="${id}">${label}</label><span id="${id}-h" class="note">${hint||''}</span><textarea id="${id}" data-path="${path}" aria-describedby="${id}-h ${id}-w">${esc(val(path))}</textarea><span id="${id}-w" class="note" role="status"></span></div>`;}
+const out=(id,cls='')=>`<span id="${id}" class="${cls}"></span>`;
+const trow=(label,id,cls='num')=>`<tr><th scope="row">${label}</th><td class="${cls}">${out(id)}</td></tr>`;
+const table=(cap,rows)=>`<table><caption>${cap}</caption><tbody>${rows.join('')}</tbody></table>`;
+/* ===================== DECISIONS, STARTING POSITION, PROJECTION ===================== */
+function defaultDec(k,f){const E=env(k),b=beg(k);
+  switch(f.k){case 'prod':return k===1?CFG.fixedProdR1:NaN;case 'crew':return b.crew;case 'wage':return E.wage;
+    case 'msize':return CFG.start.msize;case 'nord':return CFG.start.nord;case 'equip':case 'ot':case 'loan':case 'bonds':case 'stock':case 'div':return 0;
+    case 'ap':return NaN;default:return NaN;}}
+function decisions(k){const d={},raw=getPath(R(k)+'.dec')||{};
+  DEC.forEach(f=>{d[f.k]=isOn(f,k)?num(raw[f.k]):defaultDec(k,f);});
+  if(k===1)d.prod=CFG.fixedProdR1;return d;}
+const BASEF=['sold','waiting','fgu','fgd','reps','share','niv','rank','industry','rprice','rad'];
+const EXTF=['crew','E','edep','rawu','rawd','cash','ar','ap','loan','repay','eq','assets'];
+function beg(k){const s=CFG.start,g=x=>num(val(R(k)+'.res.'+x));
+  if(k===1)return{reps:s.reps,fgu:s.fgu,fgd:s.fgd,waiting:0,crew:s.crew,E:s.E,edep:s.edep,rawu:s.rawu,rawd:s.rawu*CFG.base.mat,cash:s.cash,ar:s.ar,ap:0,loan:0,repay:0,eq:s.eq,assets:s.assets};
+  const o={reps:g('reps'),fgu:g('fgu'),fgd:g('fgd'),waiting:g('waiting')||0};
+  EXTF.forEach(x=>{o[x]=k>=3?g(x):(x==='rawd'?s.rawu*env(2).mat:s[x]);});
+  return o;}
+function project(k,d,b,units,waiting){
+  const E=env(k),r={},u=CFG.u,legacy=k<u.msize;
+  const newo=Math.min(units,d.reps*CFG.calls),orders=newo+waiting;
+  const eff=wageEff(d.wage,k),capno=Math.min(b.E,d.crew/2)*CFG.upm*eff,captot=capno*(1+CFG.otcap*d.ot);
+  const purchu=legacy?0:d.msize*d.nord,availu=b.rawu+purchu,rawlim=legacy?Infinity:Math.floor(availu/CFG.matPer);
+  const pact=Math.max(0,Math.min(d.prod,Math.floor(captot),rawlim));
+  const f=(d.ot===1&&capno>0)?Math.min(CFG.otcap,Math.max(0,pact/capno-1)):0;
+  const labor=d.crew*CFG.hours*CFG.days*d.wage,otp=labor*f*CFG.otprem;
+  const avail=b.fgu+pact,sold=Math.min(orders,avail),ei=avail-sold;
+  let mat,purch,ordc=0,rc=0,invc,rawe;
+  if(legacy){mat=pact*CFG.matPer*E.mat;purch=mat;invc=CFG.matfix+CFG.fgcarry*ei;rawe=b.rawu;}
+  else{const pu=E.mat*tierMult(d.msize);purch=purchu*pu;const availd=b.rawd+purch,used=pact*CFG.matPer;
+    mat=availu>0?used*availd/availu:0;rawe=availu-used;ordc=d.nord*E.order;rc=CFG.rawcarry*(b.rawu+rawe)/2;invc=ordc+rc+CFG.fgcarry*ei;}
+  const ohfix=b.edep+CFG.genoh,cogm=mat+labor+otp+ohfix+invc,avg=avail>0?(b.fgd+cogm)/avail:0,cogs=sold*avg;
+  const hires=Math.max(0,d.reps-b.reps),rels=Math.max(0,b.reps-d.reps),quits=Math.round(d.reps*turn(d.sal,k));
+  const crewc=Math.max(0,d.crew-b.crew)*E.train+Math.max(0,b.crew-d.crew)*E.relw;
+  const opex=d.ad+d.reps*d.sal+CFG.admin+(hires+quits)*E.hire+(rels+quits)*E.leave+crewc+CFG.bdep;
+  const sales=sold*d.price,noi=sales-cogs-opex;
+  const fin=k>=u.fin;
+  const Leff=k>=u.loan?Math.min(isNaN(d.loan)?0:d.loan,Math.max(0,CFG.loancap*b.eq-b.loan)):0,repay=b.repay||0;
+  const bonds=fin?(d.bonds||0):0,stockAmt=fin?(d.stock||0)*CFG.par:0,divAmt=fin?(d.div||0)*86500:0;
+  const apdue=b.ap+purch,appaid=isNaN(d.ap)||k<u.ap?apdue:Math.max(0,Math.min(d.ap,apdue)),apE=apdue-appaid;
+  const pen=CFG.aprate/4*Math.max(0,apE-CFG.apfree),od=CFG.odrate/4*Math.max(0,-b.cash),loanInt=CFG.loanrate/4*b.loan;
+  const intr=CFG.intr+loanInt+pen+od,pre=noi-intr,tax=pre*CFG.tax,ni=pre-tax;
+  const eqcost=(k>=u.equip?(d.equip||0):0)*E.eqp,coll=sales*CFG.colfrac+b.ar;
+  const cashout=appaid+labor+otp+CFG.genoh+invc+(opex-CFG.bdep)+intr+tax+eqcost+repay+divAmt;
+  const cashE=b.cash+coll+Leff+bonds+stockAmt-cashout;
+  Object.assign(r,{eff,capno,captot,pact,f,labor,otp,mat,purch,ordc,rc,invc,cogm,avg,cogs,opex,sales,noi,sold,ei,orders,intr,ni,tax,coll,Leff,repay,appaid,apE,pen,od,loanInt,eqcost,cashout,cashE,rawe,crewc,ohfix,rawlim,quits,
+    vcu:(pact>0?(mat+otp)/pact:E.mat*CFG.matPer*tierMult(d.msize||CFG.start.msize)),fixedAll:labor+ohfix+invc+opex,loanRoom:Math.max(0,CFG.loancap*b.eq-b.loan)});
+  return r;}
+function forecast(k){
+  const f=getPath(R(k)+'.fc')||{},ind=num(f.ind),sh=num(f.sh),ind2=num(f.ind2),sh2=num(f.sh2);
+  const last=ind*sh/100,units=ind2*sh2/100,waiting=k===1?0:(num(val(R(k)+'.res.waiting'))||0);
+  return{last,units,waiting,adj:units+waiting};}
+/* ===================== ROUND PANELS ===================== */
+function resFields(k){
+  const p=R(k),h=(t)=>`Team Report: ${t}`;
+  const L=[['sold','Your units sold last round',h('Units sold')],['waiting','Undelivered orders that will wait for this round',h('Where you start next round')],['fgu','Finished goods units you start with',h('Where you start next round')],['fgd','Finished goods cost ($)',h('Where you start next round')],
+   ['reps','Sales people you start with',h('Where you start next round')],['share','Your market share of units sold (%)',h('Market share'),'0.1'],['niv','Net income, contribution basis ($)',h('Net income, contribution basis')],['rank','Your overall rank',h('Overall rank')],
+   ['industry','Industry units sold last round','Leaderboard: add up the Units sold column'],['rprice','Average price of the other teams ($)','Leaderboard: average of the Price column, without yours','0.01'],['rad','Average advertising of the other teams ($)','Leaderboard: average of the Advertising column, without yours']];
+  if(k>=3)L.push(['crew','Factory workers you start with',h('Where you start next round')],['E','Equipment units you start with',h('Where you start next round')],['edep','Equipment depreciation per quarter ($)',h('Where you start next round')],['rawu','Material X units on hand',h('Where you start next round')],['rawd','Material X cost ($)',h('Where you start next round')],
+   ['cash','Cash ($)',h('Where you start next round')],['ar','Accounts receivable ($)',h('Where you start next round')],['ap','Accounts payable ($)',h('Where you start next round')],['loan','Bank loan balance ($)',h('Where you start next round')],['repay','Loan installment due this round ($)',h('Where you start next round')],['eq','Stockholders\' equity ($)',h('Where you start next round')],['assets','Total assets ($)',h('Where you start next round')]);
+  return L.map(x=>inp(p+'.res.'+x[0],x[1],{hint:x[2],step:x[3]}));}
+function decisionForm(k){
+  const p=R(k),pid=idOf(p),E=env(k),b=beg(k),on=DEC.filter(f=>isOn(f,k)),off=DEC.filter(f=>!isOn(f,k)&&f.u!=='fin');
+  const hint=f=>({
+   price:`Between $${CFG.pmin} and $${CFG.pmax}.`,ad:`Up to ${fmt.d(CFG.admax)}. Reach stops growing at ${fmt.d(E.reachSpend)}.`,
+   reps:`Whole number. Each person takes up to ${CFG.calls} orders a quarter. Sales people do not change how many customers you reach: advertising does.`,
+   sal:`Up to ${fmt.d(CFG.salmax)}. Market salary is ${fmt.d(E.sal)}. Salary does not change sales. It changes how many people quit.`,
+   prod:`Whole number. Actual output is limited by capacity and by material X on hand.`,
+   crew:`Whole number. Each machine needs 2 workers, so ${fmt.n(b.E||CFG.start.E)} machines need ${fmt.n(2*(b.E||CFG.start.E))}. You pay every worker whatever you produce.`,
+   wage:`Between $${CFG.wagemin} and $${CFG.wagemax}. Market wage this round is ${fmt.d2(E.wage)}. Output per machine = (wage ÷ market wage) ^ ${CFG.effexp}, at most ${CFG.effcap}.`,
+   msize:`Larger orders get a lower price per unit (see the table in Step 3). Up to ${fmt.n(CFG.msizemax)} units.`,
+   nord:`Whole number up to ${CFG.nordmax}. Each order costs ${fmt.d(E.order)}. Order size × orders = units bought.`,
+   equip:`Whole number. Each machine costs ${fmt.d(E.eqp)}, arrives next round and adds ${fmt.n(CFG.upm)} units of capacity (needs 2 workers). The company can have ${CFG.eqmax} machines at most.`,
+   loan:`Up to 40% of your beginning equity less the balance you owe. Interest ${Math.round(CFG.loanrate*100)}% a year; repaid in four equal installments starting next round.`,
+   ap:`Leave blank to pay everything you owe. Payables above ${fmt.d(CFG.apfree)} cost ${Math.round(CFG.aprate*100)}% a year.`,
+   bonds:'',stock:'',div:''}[f.k]);
+  const field=f=>{const o={step:f.step,hint:`${hint(f)}`,def:undefined};
+    const prevv=k>1?val(R(k-1)+'.dec.'+f.k):'';
+    const dflt=(()=>{if(['price','ad','reps','sal','prod','crew','wage','msize','nord'].includes(f.k)&&prevv!=='')return prevv;
+      if(f.k==='wage')return +E.wage.toFixed(2);if(f.k==='msize')return CFG.start.msize;if(f.k==='nord')return CFG.start.nord;if(f.k==='crew')return b.crew||CFG.start.crew;
+      if(['equip','loan','ot'].includes(f.k))return 0;return '';})();
+    o.def=dflt;const lab=`${f.n}. ${f.label}`;
+    if(f.sel)return sel(p+'.dec.'+f.k,lab,[[0,'0 = no overtime'],[1,'1 = use overtime (+20% capacity, extra hours cost 1.5×)']],{def:0,hint:'Pay applies only to the extra hours you need.'});
+    return inp(p+'.dec.'+f.k,lab,o);};
+  let h=`<fieldset><legend>Round ${k} decisions</legend>`;
+  h+=`<div class="panel"><p><strong>How the two sales force decisions work</strong></p><ul>
+  <li><strong>Number of sales people</strong> sets how many orders you can take: people × ${CFG.calls} each quarter. If demand is higher, the extra is lost. Sales people do not change how many customers you reach (advertising does) or how many choose you over a rival (price and advertising do). You pay every person's salary, a hiring fee for each person you add and a release fee for each person you let go.</li>
+  <li><strong>Salary</strong> does not change how many orders you can take. It changes how many people quit. At or above the market salary about ${Math.round(CFG.tbase*100)}% quit each quarter. Below market, the quit rate rises by ${CFG.tsens} percentage point for each 1% your salary is below market (20% below market gives ${Math.round((CFG.tbase+CFG.tsens*0.2)*100)}%), up to ${Math.round(CFG.tmax*100)}%. Each quit is replaced at once for one hiring fee and one release fee. Paying more than market does not lower the quit rate further.</li></ul></div>`;
+  h+=`<div class="grid">${on.map(field).join('')}</div>`;
+  const offTxt=off.length?`<p class="note">Not yet available: ${[...new Set(off.map(f=>`Round ${unlockRound(f)} unlocks ${off.filter(g=>unlockRound(g)===unlockRound(f)).map(g=>g.label.replace(/ \(.*$/,'').toLowerCase()).join(', ')}`))].join('. ')}. Until then these use the company's current values.</p>`:'';
+  h+=offTxt+(k>=1&&k<CFG.u.fin?'<p class="note">Bonds, common stock and dividends are not part of this course. They stay at zero.</p>':'');
+  h+=`<div id="${pid}-sfinfo" class="msg" aria-live="polite"></div><div id="${pid}-checks" aria-live="polite"></div></fieldset>`;
+  return h;}
+function matTool(k,open){
+  const p='t'+k+'-m';
+  const alt=[10000,20000,40000,80000].map(s=>`<tr><th scope="row" class="num">${fmt.n(s)}</th><td class="num">${out(p+'-a'+s+'-n')}</td><td class="num">${out(p+'-a'+s+'-p')}</td><td class="num">${out(p+'-a'+s+'-t')}</td></tr>`).join('');
+  return `<details${open?' open':''}><summary>Ordering analysis (Chapter 5: cost per order)</summary>
+  <p>Each order costs the same no matter how much you buy, so cost per order is an activity cost. Larger orders cut the number of orders and the price per unit, but you carry more material at $${CFG.rawcarry} per unit per quarter.</p>
+  <div class="scroll" role="region" tabindex="0" aria-label="Quantity discount table"><table><caption>Material X price by order size (Round ${k})</caption><thead><tr><th scope="col">Order size at least</th>${CFG.tiers.map(t=>`<th scope="col" class="num">${fmt.n(t[0])}</th>`).join('')}</tr></thead><tbody><tr><th scope="row">Price per unit</th>${CFG.tiers.map(t=>`<td class="num">${fmt.d2(env(k).mat*t[1])}</td>`).join('')}</tr></tbody></table></div>
+  ${table('Your choice',[trow('Units of material needed (planned production × 2)',p+'-need'),trow('Units you buy (order size × orders)',p+'-buy'),trow('Price per unit at your order size',p+'-pu'),trow('Purchases',p+'-purch'),trow('Ordering cost (orders × cost per order)',p+'-ordc'),trow('Material on hand at quarter end (units)',p+'-end'),trow('Carrying cost (average units on hand × $'+CFG.rawcarry+')',p+'-rc'),trow('Total cost of buying and holding',p+'-tot'),trow('Cost per order including its share of carrying cost',p+'-cpo')])}
+  <div class="scroll" role="region" tabindex="0" aria-label="Order size comparison"><table><caption>Compare order sizes for the units you need (carrying cost uses half the order size as average stock)</caption><thead><tr><th scope="col" class="num">Order size</th><th scope="col" class="num">Orders needed</th><th scope="col" class="num">Price per unit</th><th scope="col" class="num">Total cost</th></tr></thead><tbody>${alt}</tbody></table></div></details>`;}
+function capTool(k,open){
+  const p='t'+k+'-c';
+  const wr=[0.8,1,1.25,1.5,2].map((m,i)=>`<tr><th scope="row" class="num">${out(p+'-w'+i+'-w')}</th><td class="num">${out(p+'-w'+i+'-e')}</td><td class="num">${out(p+'-w'+i+'-cap')}</td><td class="num">${out(p+'-w'+i+'-lab')}</td><td class="num">${out(p+'-w'+i+'-cpu')}</td></tr>`).join('');
+  return `<details${open?' open':''}><summary>Capacity and incremental analysis (Chapter 6: relevant costs)</summary>
+  <p>Only costs that differ between your options are relevant. Workers are paid whatever you produce, so extra regular output from machines you already staff costs only material. The question is what each way of getting <em>more</em> units costs.</p>
+  ${table('Your capacity this round',[trow('Machines and workers ÷ 2 (the lesser sets capacity)',p+'-mach'),trow('Wage efficiency at your wage',p+'-eff'),trow('Capacity at regular hours (units)',p+'-capno'),trow('Capacity if you use overtime (units)',p+'-captot'),trow('Units you plan to make',p+'-plan'),trow('Units your forecast needs from production (forecast − finished goods on hand)',p+'-need'),trow('Capacity left over (shortfall in brackets)',p+'-gap')])}
+  ${table('Cost of getting more units',[trow('Overtime: extra units available',p+'-ot-u'),trow('Overtime: labor cost per extra unit (1.5× regular pay for the hours)',p+'-ot-c'),trow('New machine: units per quarter added',p+'-eq-u'),trow('New machine: price plus workers\' pay over the quarters left, per unit',p+'-eq-c'),trow('Quarters a machine bought now would run (it arrives next round)',p+'-eq-q'),trow('Material X cost per unit (the same either way)',p+'-mat')])}
+  <div class="scroll" role="region" tabindex="0" aria-label="Wage comparison"><table><caption>What a different wage does with your workers and machines</caption><thead><tr><th scope="col" class="num">Wage per hour</th><th scope="col" class="num">Output per machine vs. market</th><th scope="col" class="num">Capacity (units)</th><th scope="col" class="num">Labor cost per quarter</th><th scope="col" class="num">Labor cost per unit of capacity</th></tr></thead><tbody>${wr}</tbody></table></div>
+  <p class="note">Depreciation on machines you already own and the cost of the machines you bought earlier do not differ between options, so they are irrelevant to the choice.</p></details>`;}
+function cashTool(k,open){
+  const p='t'+k+'-b';
+  return `<details${open?' open':''}><summary>Projected income and cash budget (Chapter 8)</summary>
+  <p>Uses your forecast (Step 2), your decisions (Step 4) and your starting position above. Collections are one-third of this round's sales plus last round's receivables.</p>
+  ${table('Projected income',[trow('Units you expect to make',p+'-pact'),trow('Units you expect to sell',p+'-sold'),trow('Sales',p+'-sales'),trow('Cost of goods sold',p+'-cogs'),trow('Operating expenses',p+'-opex'),trow('Interest (existing debt, loan, payables, overdraft)',p+'-intr'),trow('Net income (absorption)',p+'-ni')])}
+  ${table('Projected cash budget',[trow('Cash at the start',p+'-c0'),trow('Collections from customers',p+'-coll'),trow('New bank loan',p+'-loan'),trow('Payables paid',p+'-ap'),trow('Factory labor and overtime',p+'-lab'),trow('Overhead, inventory costs and operating expenses paid',p+'-oh'),trow('Interest and taxes paid',p+'-it'),trow('Equipment bought',p+'-eq'),trow('Loan installment due',p+'-rep'),trow('Cash at the end',p+'-c1'),trow('Payables at the end (interest starts above '+fmt.d(CFG.apfree)+')',p+'-ape'),trow('Most you could borrow this round',p+'-room')])}
+  <div id="${p}-flags" aria-live="polite"></div></details>`;}
+function flexTool(k){
+  const p=R(k)+'.tool',q='t'+k+'-f';
+  const pr=state.rounds[k-1]&&state.rounds[k-1]._proj,d=pr||{};
+  return `<div class="panel"><p><strong>Flexible-budget performance report</strong> for Round ${k-1}. The static budget is your own plan from last round. Take the actual results from your Round ${k-1} Team Report (contribution-basis income statement).</p>
+  <p><button type="button" class="secondary" data-action="fillBudget" data-round="${k}">Fill the budget from my Round ${k-1} plan</button> <span id="t${k}-f-fillmsg" class="note" role="status"></span></p>
+  <div class="grid">${inp(p+'.bq','Budgeted units sold',{def:d.sold!==undefined?Math.round(d.sold):''})}${inp(p+'.bp','Budgeted price ($)',{step:'0.01',def:d.price!==undefined?d.price:''})}${inp(p+'.bv','Budgeted variable cost per unit ($)',{step:'0.01',def:d.vcu!==undefined?+d.vcu.toFixed(2):''})}${inp(p+'.bf','Budgeted fixed costs ($)',{def:d.fixed!==undefined?Math.round(d.fixed):''})}
+  ${inp(p+'.aq','Actual units sold',{hint:'Team Report: Units sold'})}${inp(p+'.as','Actual sales ($)',{hint:'Team Report: Sales'})}${inp(p+'.av','Actual variable cost of goods sold ($)',{hint:'Team Report: Variable cost of goods sold'})}${inp(p+'.af','Actual fixed costs ($)',{hint:'Team Report: Fixed costs line'})}</div>
+  <div class="scroll" role="region" tabindex="0" aria-label="Flexible budget report"><table><caption>Performance report</caption><thead><tr><th scope="col">Line</th><th scope="col" class="num">Actual</th><th scope="col" class="num">Flexible budget (actual units)</th><th scope="col" class="num">Static budget</th></tr></thead><tbody>
+  <tr><th scope="row">Units sold</th><td class="num">${out(q+'-aq')}</td><td class="num">${out(q+'-aq2')}</td><td class="num">${out(q+'-bq')}</td></tr>
+  <tr><th scope="row">Sales</th><td class="num">${out(q+'-as')}</td><td class="num">${out(q+'-fs')}</td><td class="num">${out(q+'-bs')}</td></tr>
+  <tr><th scope="row">Variable costs</th><td class="num">${out(q+'-av')}</td><td class="num">${out(q+'-fv')}</td><td class="num">${out(q+'-bv')}</td></tr>
+  <tr><th scope="row">Contribution margin</th><td class="num">${out(q+'-acm')}</td><td class="num">${out(q+'-fcm')}</td><td class="num">${out(q+'-bcm')}</td></tr>
+  <tr><th scope="row">Fixed costs</th><td class="num">${out(q+'-af')}</td><td class="num">${out(q+'-ff')}</td><td class="num">${out(q+'-bf')}</td></tr>
+  <tr><th scope="row">Net operating income</th><td class="num">${out(q+'-ani')}</td><td class="num">${out(q+'-fni')}</td><td class="num">${out(q+'-bni')}</td></tr></tbody></table></div>
+  ${table('Variances (F = favorable, U = unfavorable)',[trow('Activity variance (flexible − static budget)',q+'-v-act'),trow('Selling price variance (actual sales − sales at budget price)',q+'-v-rev'),trow('Variable cost spending variance',q+'-v-var'),trow('Fixed cost spending variance',q+'-v-fix'),trow('Total variance (actual − static budget)',q+'-v-tot')])}</div>`;}
+function varTool(k){
+  const p=R(k)+'.tool',q='t'+k+'-v',E=env(k-1);
+  return `<div class="panel"><p><strong>Standard cost variances</strong> for Round ${k-1}. The standards are your plan: set them before looking at the actual results. Material price is measured on the units used. Take the actual figures from your Round ${k-1} Team Report.</p>
+  <div class="grid">${inp(p+'.sp','Standard price per unit of material X ($)',{step:'0.01',def:+(E.mat*tierMult(CFG.start.msize)).toFixed(2),hint:'Default: base price at the usual order size'})}${inp(p+'.sq','Standard units of material X per peeler',{def:CFG.matPer})}${inp(p+'.sr','Standard wage rate per hour ($)',{step:'0.01',def:+E.wage.toFixed(2),hint:'Default: market wage'})}${inp(p+'.sh','Standard labor hours per peeler',{step:'0.001',def:(2*CFG.hours*CFG.days/CFG.upm).toFixed(3),hint:'Default: 2 workers × 528 hours ÷ 500 units'})}
+  ${inp(p+'.au','Units actually made',{hint:'Team Report: Units made'})}${inp(p+'.am','Actual cost of materials used ($)',{hint:'Team Report: Materials used'})}${inp(p+'.ah','Actual factory hours paid',{hint:'Team Report: Factory hours paid'})}${inp(p+'.ar','Actual wage rate per hour ($)',{step:'0.01',hint:'Your Round decision, or market wage'})}</div>
+  ${table('Variances (F = favorable, U = unfavorable)',[trow('Material units used (units made × 2) and the average price paid',q+'-aq'),trow('Material price variance (actual price − standard price) × units used',q+'-mpv'),trow('Material quantity variance (units used − standard units allowed) × standard price',q+'-mqv'),trow('Standard hours allowed (units made × standard hours per peeler)',q+'-sh'),trow('Labor rate variance (actual rate − standard rate) × actual hours',q+'-lrv'),trow('Labor efficiency variance (actual hours − standard hours allowed) × standard rate',q+'-lev'),trow('Total labor variance',q+'-lt')])}
+  <p class="note">Every worker is paid for every hour whether or not they have machines to run or units to make, so an unfavorable labor efficiency variance measures idle capacity.</p></div>`;}
+function cardTool(k){
+  const p=R(k)+'.tool',q='t'+k+'-s';
+  return `<div class="panel"><p><strong>Balanced scorecard</strong> for your company, using your Round ${k-1} results (Team Report and Leaderboard). Operating measures such as OEE tie plant results to the financial result.</p>
+  <div class="grid">${inp(p+'.roa','Return on assets (%)',{step:'0.1',hint:'Team Report: Return on assets'})}${inp(p+'.ni','Net income, contribution basis ($)',{hint:'Team Report'})}${inp(p+'.rk','Overall rank',{hint:'Team Report'})}
+  ${inp(p+'.ms','Market share (%)',{step:'0.1',hint:'Team Report'})}${inp(p+'.orders','Total orders',{hint:'Team Report'})}${inp(p+'.sold','Units sold',{hint:'Team Report'})}
+  ${inp(p+'.made','Units made',{hint:'Team Report'})}${inp(p+'.capno','Capacity at regular hours (units)',{hint:'Team Report: Production and materials'})}${inp(p+'.quits','Sales people who quit',{hint:'Quit rate × sales people (see your sales force note)'})}${inp(p+'.reps','Sales people',{hint:'Team Report'})}</div>
+  ${table('Scorecard',[trow('Financial: return on assets',q+'-roa'),trow('Financial: net income, contribution basis',q+'-ni'),trow('Customer: market share',q+'-ms'),trow('Customer: orders filled (units sold ÷ total orders)',q+'-fill'),trow('Internal: overall equipment effectiveness = availability (made ÷ capacity) × quality (100%: no defects in this company) ',q+'-oee'),trow('Learning and growth: sales force quit rate',q+'-quit'),trow('Rank among all teams',q+'-rk')])}
+  <div class="grid">${inp(p+'.g1','Your target for the next measure you would improve',{text:true})}${inp(p+'.g2','The action you would take',{text:true})}</div></div>`;}
+function roundHTML(k){
+  const E=env(k),p=R(k),pid=idOf(p),M=RMETA[k],first=k===1;
+  let h=`<section id="panel-${k}" role="tabpanel" aria-labelledby="tab-${k}" ${state.current===k?'':'hidden'} tabindex="-1">`;
+  h+=`<h2>Round ${k} · Quarter ${(k-1)%4+1} of Year ${Math.floor((k-1)/4)+2}</h2><p class="note">Due ${M.due}. Course tool: ${M.ch}.</p>`;
+  h+=`<h3>Step 1. Read the situation</h3>`;
+  if(first){
+    h+=`<div class="panel"><p>You are the new management of Cullowhee Creek Home Products Company, a western North Carolina manufacturer of the Blue Ridge Apple Peeler. Last quarter (Quarter 4, Year 1) the company earned $117,094 on sales of $5,772,548. The company wants a 10% annual return on assets. Your team competes with ${CFG.teams-1} other teams. <strong>Your sales depend on every team's price and advertising, not only yours.</strong></p>
+    <table><caption>Last quarter at a glance (Quarter 4, Year 1)</caption><tbody>
+    <tr><th scope="row">Price</th><td class="num">$80.00</td><th scope="row">Units sold</th><td class="num">72,157</td></tr>
+    <tr><th scope="row">Advertising</th><td class="num">$300,000</td><th scope="row">Units made</th><td class="num">60,000</td></tr>
+    <tr><th scope="row">Sales people at quarter end</th><td class="num">128</td><th scope="row">Finished goods on hand</th><td class="num">12,381 units</td></tr>
+    <tr><th scope="row">Salary per sales person</th><td class="num">$7,000</td><th scope="row">Cost per unit made</th><td class="num">$51.65</td></tr>
+    <tr><th scope="row">Factory labor</th><td class="num">$1,402,368</td><th scope="row">Net income</th><td class="num">$117,094</td></tr></tbody></table>
+    <p class="note">This round you decide four things: price, advertising, number of sales people and sales salary. Planned production is set by management at ${fmt.n(CFG.fixedProdR1)} units. A new decision opens in most later rounds.</p></div>`;
+  }else{
+    h+=`<div class="panel"><p>Enter the figures from your Round ${k-1} Team Report and the Leaderboard. The planning tools below use them. Your Round ${k-1} decisions are in your saved file.</p><div class="grid">${resFields(k).join('')}</div></div>`;
+  }
+  h+=`<table><caption>Cost memo for Round ${k}. Prices rise each round.</caption><thead><tr><th scope="col">Item</th><th scope="col" class="num">This round</th><th scope="col">What it means</th></tr></thead><tbody>
+  <tr><th scope="row">Seasonal index</th><td class="num">${Math.round(E.season*100)}%</td><td>Demand in this quarter compared with a typical quarter.</td></tr>
+  <tr><th scope="row">Advertising that reaches 100% of customers</th><td class="num">${fmt.d(E.reachSpend)}</td><td>Rises ${Math.round(CFG.growth.ad*100)}% each round, so the same spending reaches fewer customers.</td></tr>
+  <tr><th scope="row">Market salary per sales person</th><td class="num">${fmt.d(E.sal)}</td><td>Paying less than this increases the number of people who quit.</td></tr>
+  <tr><th scope="row">Cost to hire / release a sales person</th><td class="num">${fmt.d(E.hire)} / ${fmt.d(E.leave)}</td><td>Each quit costs one of each.</td></tr>
+  <tr><th scope="row">Material X price per unit (2 units per peeler)</th><td class="num">${fmt.d2(E.mat)}</td><td>${k>=CFG.u.msize?'Base price; bigger orders earn a discount. ':''}Material in each peeler: ${fmt.d2(E.mat*CFG.matPer)} at the base price.</td></tr>
+  <tr><th scope="row">Market factory wage per hour</th><td class="num">${fmt.d2(E.wage)}</td><td>${k>=CFG.u.wage?'You choose the wage this round.':'Every worker is paid in full whatever you produce, so factory labor is a fixed cost.'}</td></tr>
+  ${k>=3?`<tr><th scope="row">Cost per material order</th><td class="num">${fmt.d(E.order)}</td><td>The same whatever the order size.</td></tr><tr><th scope="row">Train / release a factory worker</th><td class="num">${fmt.d(E.train)} / ${fmt.d(E.relw)}</td><td>Charged when you change the number of workers.</td></tr>`:''}
+  ${k>=4?`<tr><th scope="row">Price of one machine</th><td class="num">${fmt.d(E.eqp)}</td><td>Arrives next round; depreciated over ${CFG.life} quarters.</td></tr>`:''}
+  </tbody></table>`;
+  h+=`<details><summary>How the market works (formulas you can use)</summary><ol>
+  <li><strong>Reach.</strong> Share of all potential customers your advertising informs = square root of (your advertising ÷ ${fmt.d(E.reachSpend)}), capped at 100%.</li>
+  <li><strong>Willing to buy.</strong> Percent of informed customers who will buy = ${(CFG.w0*100).toFixed(0)}% − ${(CFG.slope*100).toFixed(1)} points for every $1 your price is above $${CFG.p0} (minimum ${(CFG.wmin*100).toFixed(0)}%).</li>
+  <li><strong>Your share of demand.</strong> Your (reach × willing) ÷ the sum of every team's (reach × willing).</li>
+  <li><strong>Industry demand.</strong> Grows when teams advertise more or charge less, and shrinks in slow seasons. Total potential customers: ${fmt.n(Ppot())} (${fmt.n(CFG.potPerTeam)} per team).</li>
+  <li><strong>Sales force.</strong> Each sales person can take ${CFG.calls} orders a quarter. Demand above that is lost.</li>
+  <li><strong>Delivery.</strong> You can sell only what you have: finished goods on hand plus units actually made. ${Math.round(CFG.carry*100)}% of undelivered orders wait for next round; the rest cancel.</li></ol>
+  <div class="scroll" role="region" tabindex="0" aria-label="Percent willing to buy, by price"><table><caption>Percent willing to buy, by price</caption><thead><tr><th scope="col">Price</th>${[64,68,72,76,80,84,88,89].map(x=>`<th scope="col" class="num">$${x}</th>`).join('')}</tr></thead><tbody><tr><th scope="row">Willing</th>${[64,68,72,76,80,84,88,89].map(x=>`<td class="num">${fmt.p(willing(x))}</td>`).join('')}</tr></tbody></table></div>
+  <div class="scroll" role="region" tabindex="0" aria-label="Share of customers reached, by advertising"><table><caption>Share of customers reached, by advertising (Round ${k} prices)</caption><thead><tr><th scope="col">Advertising</th>${[100000,200000,300000,500000,800000,1200000,2000000,3200000].map(x=>`<th scope="col" class="num">${fmt.d(x)}</th>`).join('')}</tr></thead><tbody><tr><th scope="row">Reached</th>${[100000,200000,300000,500000,800000,1200000,2000000,3200000].map(x=>`<td class="num">${fmt.p(reach(x,k))}</td>`).join('')}</tr></tbody></table></div></details>`;
+  if(k>=3)h+=`<details><summary>How the factory, materials and cash work</summary><ol>
+  <li><strong>Capacity.</strong> The lesser of your machines and your workers ÷ 2, × ${CFG.upm} units, × wage efficiency. Wage efficiency = (your wage ÷ market wage) ^ ${CFG.effexp}, at most ${CFG.effcap}.</li>
+  <li><strong>Overtime.</strong> Adds ${Math.round(CFG.otcap*100)}% capacity. You pay ${CFG.otprem}× the regular rate only for the extra hours you actually need.</li>
+  <li><strong>Material X.</strong> You can make only as many peeler as the material on hand allows (2 units each). Price per unit depends on order size. Material is costed at its average price.</li>
+  <li><strong>Machines.</strong> A machine bought this round arrives next round. It needs 2 workers to run. Depreciation: price ÷ ${CFG.life} each quarter.</li>
+  ${k>=5?`<li><strong>Cash.</strong> Customers pay one-third in the quarter of sale and the rest the next quarter. Payables above ${fmt.d(CFG.apfree)} cost ${Math.round(CFG.aprate*100)}% a year. Negative cash costs ${Math.round(CFG.odrate*100)}% a year next round. A bank loan costs ${Math.round(CFG.loanrate*100)}% a year and is repaid in four equal installments.</li>`:''}</ol></details>`;
+  h+=`<h3>Step 2. Plan: estimate demand</h3>
+  <div class="panel"><p><strong>Demand estimator.</strong> Estimates your demand if every rival acts alike. Rivals will not act alike, so treat the result as a starting point.</p>
+  <div class="grid">${inp(p+'.est.rprice','Assumed price of each rival ($)',{step:'0.01',def:first?CFG.start.price:'',hint:first?'Last quarter every team charged $80.':'Use the Leaderboard average.'})}${inp(p+'.est.rad','Assumed advertising of each rival ($)',{def:first?CFG.start.ad:'',hint:first?'Last quarter every team spent $300,000.':'Use the Leaderboard average.'})}</div>
+  <p>Your price and advertising come from the decision form in Step 4.</p>
+  ${table('Demand estimate for Round '+k,[trow('Share of customers your advertising reaches',pid+'-e-reach'),trow('Percent of informed customers willing to buy at your price',pid+'-e-will'),trow('Your estimated share of industry demand',pid+'-e-share'),trow('Estimated industry demand (units)',pid+'-e-ind'),trow('Estimated demand for your firm (units)',pid+'-e-own')])}
+  <button type="button" class="secondary" data-action="useEstimate" data-round="${k}">Copy these estimates into my sales forecast</button></div>
+  <div class="panel"><p><strong>Sales forecast worksheet</strong> (the form from the manual, page 75).</p>
+  <table><caption>Sales forecast, Round ${k}</caption><tbody>
+  <tr><th scope="row">1. Industry sales last quarter (units)</th><td>${inp(p+'.fc.ind','<span class="sr">Industry sales last quarter</span>',{def:first?CFG.baseUnits*CFG.teams:'',min:0})}</td></tr>
+  <tr><th scope="row">2. Your market share last quarter (%)</th><td>${inp(p+'.fc.sh','<span class="sr">Your market share last quarter</span>',{def:first?(100/CFG.teams).toFixed(1):'',step:'0.1',min:0})}</td></tr>
+  ${trow('3. Your sales last quarter (1 × 2)',pid+'-f3')}
+  <tr><th scope="row">4. Estimated industry sales this quarter (units)</th><td>${inp(p+'.fc.ind2','<span class="sr">Estimated industry sales this quarter</span>',{min:0})}</td></tr>
+  <tr><th scope="row">5. Your estimated market share (%)</th><td>${inp(p+'.fc.sh2','<span class="sr">Your estimated market share</span>',{step:'0.1',min:0})}</td></tr>
+  ${trow('6. Sales forecast, units (4 × 5)',pid+'-f6')}
+  <tr><th scope="row">7. Undelivered orders waiting from last quarter (units)</th><td class="num">${first?'0':out(pid+'-f7')}</td></tr>
+  ${trow('8. Adjusted sales forecast, units (6 + 7)',pid+'-f8')}${trow('9. Price (from your decision form)',pid+'-f9')}${trow('10. Forecast sales, dollars (8 × 9)',pid+'-f10')}</tbody></table></div>`;
+  h+=`<h3>Step 3. Plan: costs, profit and the round's tool</h3>
+  <div class="panel"><p>Break-even and target-profit units use the decisions you enter in Step 4. Workers and machines are fixed costs: you pay them whatever you produce.</p>
+  ${table('Costs for Round '+k,[trow('Material X per unit sold (price paid × 2)',pid+'-c-mat'),trow('Factory labor (workers × '+CFG.hours*CFG.days+' hours × wage)',pid+'-c-lab'),trow('Equipment depreciation + general factory overhead',pid+'-c-oh'),trow('Material ordering, handling and holding (fixed)',pid+'-c-inv'),trow('Advertising (your decision)',pid+'-c-ad'),trow('Sales salaries (people × salary)',pid+'-c-sal'),trow('Sales force and worker hiring, release and training (estimate)',pid+'-c-churn'),trow('Administrative expense + building depreciation',pid+'-c-adm'),trow('Total fixed costs',pid+'-c-fixed')])}
+  <div class="grid">${inp(p+'.cvp.target','Target operating income before interest ($)',{hint:'Last quarter: $270,990',def:'270990'})}</div>
+  ${table('CVP results',[trow('Contribution margin per unit (price − variable cost)',pid+'-v-cm'),trow('Break-even units',pid+'-v-be'),trow('Units needed to reach your target',pid+'-v-tg'),trow('Margin of safety: forecast units above break-even',pid+'-v-mos'),trow('Projected operating income at your forecast, before interest',pid+'-v-proj')])}
+  <p class="note">The projection assumes you sell the lesser of your forecast, your sales force capacity and the units you can supply. It ignores the effect of ending inventory on reported profit.</p></div>`;
+  if(k>=2){
+    h+=`<div class="panel"><p><strong>Production budget</strong> (manual, page 75).</p>${table('Production budget, Round '+k,[trow('1. Adjusted sales forecast (units)',pid+'-pb1'),`<tr><th scope="row">2. Desired finished goods at quarter end (units)</th><td>${inp(p+'.pb.desired','<span class="sr">Desired ending finished goods</span>',{min:0})}</td></tr>`,trow('3. Total units needed (1 + 2)',pid+'-pb3'),trow('4. Finished goods you start with (units)',pid+'-pb4'),trow('5. Planned production (3 − 4)',pid+'-pb5'),trow('Capacity at regular hours with your workers, machines and wage',pid+'-pbcap')])}
+    ${table('What producing more does to cost and reported profit',[trow('Fixed factory cost per unit at your planned production',pid+'-pc-fpu'),trow('Cost per unit made (absorption)',pid+'-pc-upc'),trow('Units added to inventory if you hit your forecast',pid+'-pc-inv'),trow('Fixed cost that moves into inventory (profit that appears under absorption costing only)',pid+'-pc-phantom'),trow('Carrying cost of the extra inventory',pid+'-pc-carry')])}
+    <p class="note">The Leaderboard ranks teams on contribution-basis income, which does not reward building inventory. Explain in Step 5 how you used this table.</p></div>`;
+  }
+  if(k>=3)h+=matTool(k,k===3);
+  if(k>=4)h+=capTool(k,k===4);
+  if(k>=5)h+=cashTool(k,k===5);
+  if(k===6)h+=flexTool(k);
+  if(k===7)h+=varTool(k);
+  if(k===8)h+=cardTool(k);
+  h+=`<h3>Step 4. Decision form for Round ${k}</h3>`+decisionForm(k);
+  h+=`<h3>Step 5. Explain your decisions</h3><p class="note">Write at least ${REQUIRED_WORDS} words in each box. Cite numbers from your forecast and analysis.</p>`+M.why.map(x=>area(p+'.why.'+x[0],x[1],x[2])).join('');
+  const act=DEC.filter(f=>isOn(f,k)&&!(f.u==='fin'));
+  h+=`<h3>Step 6. Check and save</h3><div class="panel"><div id="check-${k}" aria-live="polite"></div>
+  <div class="row-actions"><button type="button" data-action="save" data-round="${k}">Save file to upload</button><button type="button" class="secondary" data-action="copy" data-round="${k}">Copy decisions for Excel</button><button type="button" class="secondary" data-action="print">Print</button></div>
+  <p id="action-msg-${k}" class="note" role="status"></p><p class="note">Your instructor reads the decisions below. Save the file, then upload the saved .html file to Canvas. Keep your saved file: you reopen it for the next round.</p>
+  <div class="scroll" role="region" tabindex="0" aria-label="Decisions for entry"><table><caption>Decisions for entry (Round ${k})</caption><thead><tr>${act.map(f=>`<th scope="col">${f.label.replace(/ \(.*$/,'')}</th>`).join('')}</tr></thead><tbody><tr>${act.map(f=>`<td class="num">${out('sum-'+k+'-'+f.k)}</td>`).join('')}</tr></tbody></table></div></div>`;
+  return h+`</section>`;}
+function render(){
+  document.getElementById('app').innerHTML=`<section aria-labelledby="team-h"><h2 id="team-h">Team information</h2><div class="panel"><div class="grid">
+  ${inp('team.num','Team number (1 to '+CFG.teams+')',{min:1,max:CFG.teams,step:'1'})}${inp('team.name','Team name',{text:true})}</div>${area('team.members','Team members','Names of everyone on the team.')}</div></section>
+  <div class="summary" id="top-summary" aria-live="polite"><h2>Submission summary</h2><p id="top-summary-text"></p></div>
+  <div class="tabs" role="tablist" aria-label="Rounds">${ROUNDS.map(k=>`<button type="button" role="tab" id="tab-${k}" aria-controls="panel-${k}" aria-selected="${state.current===k}" tabindex="${state.current===k?0:-1}" data-tab="${k}">Round ${k}</button>`).join('')}</div>${ROUNDS.map(roundHTML).join('')}`;}
+/* ===================== CALCULATIONS ===================== */
+function setText(id,t){const e=document.getElementById(id);if(e)e.textContent=t;}
+function validate(k){
+  const d=decisions(k),E=env(k),b=beg(k),msgs=[],bad=new Set(),add=(t,s,m)=>msgs.push({t,s,m}),on=f=>isOn(DEC.find(x=>x.k===f),k);
+  const rng=(key,lo,hi,label,int)=>{if(!on(key))return;const v=d[key];if(isNaN(v)){if(key!=='ap')add('err',label,'Enter a value.');return;}if(v<lo||v>hi||(int&&v!==Math.floor(v))){add('err',label,`${label}: use ${int?'a whole number ':'a value '}from ${fmt.n(lo)} to ${fmt.n(hi)}.`);bad.add(key);}};
+  rng('price',CFG.pmin,CFG.pmax,'Price');rng('ad',0,CFG.admax,'Advertising');rng('reps',0,CFG.repmax,'Sales people',true);rng('sal',0,CFG.salmax,'Salary');
+  rng('prod',0,CFG.prodmax,'Production',true);rng('crew',0,2*CFG.eqmax,'Workers',true);rng('wage',CFG.wagemin,CFG.wagemax,'Wage');rng('msize',0,CFG.msizemax,'Order size',true);rng('nord',0,CFG.nordmax,'Orders',true);
+  rng('equip',0,CFG.eqmax-(b.E||CFG.start.E),'Equipment',true);rng('loan',0,1e9,'Loan');
+  if(k===1)d.prod=CFG.fixedProdR1;
+  if(!isNaN(d.ad)&&d.ad>E.reachSpend)add('warn','Advertising',`Spending above ${fmt.d(E.reachSpend)} adds no reach.`);
+  if(!isNaN(d.sal)&&d.sal<E.sal)add('warn','Salary',`Below the market salary of ${fmt.d(E.sal)}: expect more people to quit (about ${fmt.p(turn(d.sal,k))}).`);
+  const fc=forecast(k);
+  if(!isNaN(d.reps)&&fc.adj>0&&fc.adj>d.reps*CFG.calls)add('warn','Sales force',`Your forecast of ${fmt.n(fc.adj)} units is above what ${fmt.n(d.reps)} sales people can handle (${fmt.n(d.reps*CFG.calls)}). Demand above that is lost.`);
+  const dd=Object.assign({},d);DEC.forEach(f=>{if(isNaN(dd[f.k])&&f.k!=='ap')dd[f.k]=defaultDec(k,f)||0;});
+  if([dd.prod,dd.crew,dd.wage].every(x=>isFinite(x))&&b.E){const eff=wageEff(dd.wage,k),cap=Math.min(b.E,dd.crew/2)*CFG.upm*eff*(1+CFG.otcap*(dd.ot||0));
+    if(dd.prod>cap)add('warn','Capacity',`You plan ${fmt.n(dd.prod)} units but your capacity is ${fmt.n(Math.floor(cap))}. Only ${fmt.n(Math.floor(cap))} will be made.`);
+    if(k>=CFG.u.msize&&isFinite(b.rawu)){const lim=Math.floor((b.rawu+(dd.msize||0)*(dd.nord||0))/CFG.matPer);if(dd.prod>lim)add('warn','Materials',`The material you will have allows only ${fmt.n(lim)} peelers. Buy more or plan less.`);}}
+  if(fc.adj>0&&!isNaN(d.prod)&&d.prod+(b.fgu||0)>fc.adj+5000+ (b.fgu||0)&&k>1)add('warn','Supply','You plan to make far more than you expect to sell. Extra units add carrying cost.');
+  if(k>=CFG.u.loan&&!isNaN(d.loan)&&b.eq){const room=Math.max(0,CFG.loancap*b.eq-b.loan);if(d.loan>room)add('warn','Loan',`The bank will lend at most ${fmt.d(room)}. Any more is refused.`);}
+  return{msgs,bad,d};}
+function recalc(){
+  ROUNDS.forEach(k=>{
+    const p=R(k),pid=idOf(p),E=env(k),d=decisions(k),b=beg(k),fc=forecast(k);
+    const rp=num(val(p+'.est.rprice')),ra=num(val(p+'.est.rad'));
+    if(!isNaN(d.price)&&!isNaN(d.ad)&&!isNaN(rp)&&!isNaN(ra)){const e=estimateDemand(k,d.price,d.ad,rp,ra);
+      setText(pid+'-e-reach',fmt.p(e.reach));setText(pid+'-e-will',fmt.p(e.willing));setText(pid+'-e-share',fmt.p(e.share));setText(pid+'-e-ind',fmt.n(e.industry));setText(pid+'-e-own',fmt.n(e.own));}
+    else['reach','will','share','ind','own'].forEach(x=>setText(pid+'-e-'+x,'Enter your price, advertising and rival assumptions'));
+    setText(pid+'-f3',fmt.n(fc.last));setText(pid+'-f6',fmt.n(fc.units));if(k>1)setText(pid+'-f7',fmt.n(fc.waiting));setText(pid+'-f8',fmt.n(fc.adj));setText(pid+'-f9',fmt.d2(d.price));setText(pid+'-f10',fmt.d(fc.adj*d.price));
+    /* resolved decisions with safe fallbacks for the projection */
+    const dd=Object.assign({},d);DEC.forEach(f=>{if(isNaN(dd[f.k])&&f.k!=='ap')dd[f.k]=f.k==='prod'?(fc.adj>0?Math.max(0,fc.adj-(b.fgu||0)):NaN):defaultDec(k,f);});
+    const pr=project(k,dd,b,fc.units||0,fc.waiting||0),okp=[dd.price,dd.ad,dd.reps,dd.sal,dd.prod,dd.crew,dd.wage,b.reps,b.fgu,b.fgd,b.E].every(isFinite);
+    const sfb=document.getElementById(pid+'-sfinfo');
+    const hires=Math.max(0,d.reps-(b.reps||0)),rels=Math.max(0,(b.reps||0)-d.reps),quits=Math.round(d.reps*turn(d.sal,k));
+    if(sfb)sfb.textContent=(isNaN(d.reps)||isNaN(d.sal))?'Enter the number of sales people and the salary to see capacity and expected quits.':`Sales force capacity: ${fmt.n(d.reps)} × ${CFG.calls} = ${fmt.n(d.reps*CFG.calls)} orders. At a salary of ${fmt.d(d.sal)} about ${fmt.p(turn(d.sal,k))} quit (about ${fmt.n(quits)} people), a replacement cost of ${fmt.d(quits*(E.hire+E.leave))}. Hiring ${fmt.n(hires)} and releasing ${fmt.n(rels)} adds ${fmt.d(hires*E.hire+rels*E.leave)}.`;
+    /* CVP */
+    const crewc=Math.max(0,(dd.crew||0)-(b.crew||0))*E.train+Math.max(0,(b.crew||0)-(dd.crew||0))*E.relw;
+    const labor=dd.crew*CFG.hours*CFG.days*dd.wage,churn=(Math.max(0,d.reps-(b.reps||0))+quits)*E.hire+(Math.max(0,(b.reps||0)-d.reps)+quits)*E.leave+crewc;
+    const legacy=k<CFG.u.msize,inv=legacy?CFG.matfix:(dd.nord||0)*E.order+(okp?pr.rc:0);
+    const ohfix=(b.edep||CFG.start.edep)+CFG.genoh,fixed=labor+ohfix+inv+d.ad+d.reps*d.sal+churn+CFG.admin+CFG.bdep;
+    const vcu=E.mat*CFG.matPer*(legacy?1:tierMult(dd.msize)),cm=d.price-vcu,tgt=num(val(p+'.cvp.target'));
+    setText(pid+'-c-mat',fmt.d2(vcu));setText(pid+'-c-lab',fmt.d(labor));setText(pid+'-c-oh',fmt.d(ohfix));setText(pid+'-c-inv',fmt.d(inv));setText(pid+'-c-ad',fmt.d(d.ad));setText(pid+'-c-sal',fmt.d(d.reps*d.sal));setText(pid+'-c-churn',fmt.d(churn));setText(pid+'-c-adm',fmt.d(CFG.admin+CFG.bdep));setText(pid+'-c-fixed',fmt.d(fixed));
+    setText(pid+'-v-cm',fmt.d2(cm));setText(pid+'-v-be',cm>0?fmt.n(Math.ceil(fixed/cm))+' units':'Not possible: price is below variable cost');setText(pid+'-v-tg',cm>0&&!isNaN(tgt)?fmt.n(Math.ceil((fixed+tgt)/cm))+' units':'–');
+    if(cm>0&&fc.adj>0&&okp){setText(pid+'-v-mos',fmt.n(fc.adj-Math.ceil(fixed/cm))+' units');setText(pid+'-v-proj',fmt.d(Math.min(fc.adj,d.reps*CFG.calls,(b.fgu||0)+pr.pact)*cm-fixed));}else{setText(pid+'-v-mos','Enter your forecast');setText(pid+'-v-proj','Enter your forecast');}
+    /* production budget */
+    if(k>=2){const des=num(val(p+'.pb.desired'))||0,tot=fc.adj+des,bi=b.fgu||0,pl=Math.max(0,tot-bi);
+      setText(pid+'-pb1',fmt.n(fc.adj));setText(pid+'-pb3',fmt.n(tot));setText(pid+'-pb4',fmt.n(bi));
+      const cap=okp?Math.floor(pr.capno):NaN;setText(pid+'-pbcap',fmt.n(cap));setText(pid+'-pb5',fmt.n(pl)+(isFinite(cap)&&pl>cap?' (above capacity at regular hours)':''));
+      if(d.prod>0&&okp){const fpu=(labor+ohfix+inv)/d.prod,sold=Math.min(fc.adj,d.reps*CFG.calls,d.prod+bi),added=d.prod-sold;
+        setText(pid+'-pc-fpu',fmt.d2(fpu));setText(pid+'-pc-upc',fmt.d2(fpu+vcu));setText(pid+'-pc-inv',fmt.n(added)+' units');setText(pid+'-pc-phantom',fmt.d(added*fpu));setText(pid+'-pc-carry',fmt.d(Math.max(0,d.prod+bi-sold)*CFG.fgcarry));}
+      else['fpu','upc','inv','phantom','carry'].forEach(x=>setText(pid+'-pc-'+x,'Enter planned production'));}
+    /* tools */
+    if(k>=3){const q='t'+k+'-m',need=(dd.prod||0)*CFG.matPer,buy=(dd.msize||0)*(dd.nord||0),pu=E.mat*tierMult(dd.msize||0),rawe=(b.rawu||0)+buy-need,rc=CFG.rawcarry*((b.rawu||0)+rawe)/2,oc=(dd.nord||0)*E.order;
+      setText(q+'-need',fmt.n(need));setText(q+'-buy',fmt.n(buy));setText(q+'-pu',fmt.d2(pu));setText(q+'-purch',fmt.d(buy*pu));setText(q+'-ordc',fmt.d(oc));setText(q+'-end',fmt.n(rawe));setText(q+'-rc',fmt.d(rc));setText(q+'-tot',fmt.d(buy*pu+oc+rc));setText(q+'-cpo',dd.nord>0?fmt.d((oc+rc)/dd.nord):'–');
+      [10000,20000,40000,80000].forEach(s=>{const n=Math.max(1,Math.ceil(need/s)),p2=E.mat*tierMult(s);setText(q+'-a'+s+'-n',fmt.n(n));setText(q+'-a'+s+'-p',fmt.d2(p2));setText(q+'-a'+s+'-t',fmt.d(need*p2+n*E.order+CFG.rawcarry*s/2));});}
+    if(k>=4){const q='t'+k+'-c',m=b.E?Math.min(b.E,(dd.crew||0)/2):NaN,eff=wageEff(dd.wage,k),capno=m*CFG.upm*eff,captot=capno*(1+CFG.otcap),need=Math.max(0,fc.adj-(b.fgu||0));
+      setText(q+'-mach',fmt.n(m)+' machines');setText(q+'-eff',fmt.x(eff));setText(q+'-capno',fmt.n(capno));setText(q+'-captot',fmt.n(captot));setText(q+'-plan',fmt.n(dd.prod));setText(q+'-need',fmt.n(need));
+      const gap=capno-need;setText(q+'-gap',gap<0?'('+fmt.n(-gap)+')':fmt.n(gap));
+      const labReg=(dd.crew||0)*CFG.hours*CFG.days*(dd.wage||0);setText(q+'-ot-u',fmt.n(capno*CFG.otcap));setText(q+'-ot-c',capno>0?fmt.d2(CFG.otprem*labReg/capno):'–');
+      const rem=Math.max(1,CFG.maxRound-k),mu=CFG.upm*eff*rem,eqc=mu>0?(E.eqp+rem*2*CFG.hours*CFG.days*(dd.wage||0))/mu:NaN;
+      setText(q+'-eq-u',fmt.n(CFG.upm*eff));setText(q+'-eq-c',fmt.d2(eqc));setText(q+'-eq-q',fmt.n(rem));setText(q+'-mat',fmt.d2(E.mat*CFG.matPer*tierMult(dd.msize||CFG.start.msize)));
+      [0.8,1,1.25,1.5,2].forEach((mm,i)=>{const w=+(E.wage*mm).toFixed(2),ef=wageEff(w,k),cap=m*CFG.upm*ef,lab=(dd.crew||0)*CFG.hours*CFG.days*w;
+        setText(q+'-w'+i+'-w',fmt.d2(w));setText(q+'-w'+i+'-e',fmt.x(ef));setText(q+'-w'+i+'-cap',fmt.n(cap));setText(q+'-w'+i+'-lab',fmt.d(lab));setText(q+'-w'+i+'-cpu',cap>0?fmt.d2(lab/cap):'–');});}
+    if(k>=5){const q='t'+k+'-b';
+      if(okp&&isFinite(b.cash)&&isFinite(b.ar)&&isFinite(b.eq)){
+        setText(q+'-pact',fmt.n(pr.pact));setText(q+'-sold',fmt.n(pr.sold));setText(q+'-sales',fmt.d(pr.sales));setText(q+'-cogs',fmt.d(pr.cogs));setText(q+'-opex',fmt.d(pr.opex));setText(q+'-intr',fmt.d(pr.intr));setText(q+'-ni',fmt.d(pr.ni));
+        setText(q+'-c0',fmt.d(b.cash));setText(q+'-coll',fmt.d(pr.coll));setText(q+'-loan',fmt.d(pr.Leff));setText(q+'-ap',fmt.d(-pr.appaid));setText(q+'-lab',fmt.d(-(pr.labor+pr.otp)));setText(q+'-oh',fmt.d(-(CFG.genoh+pr.invc+pr.opex-CFG.bdep)));setText(q+'-it',fmt.d(-(pr.intr+pr.tax)));setText(q+'-eq',fmt.d(-pr.eqcost));setText(q+'-rep',fmt.d(-pr.repay));setText(q+'-c1',fmt.d(pr.cashE));setText(q+'-ape',fmt.d(pr.apE));setText(q+'-room',fmt.d(pr.loanRoom));
+        const fl=document.getElementById(q+'-flags');
+        if(fl)fl.innerHTML=(pr.cashE<0?`<p class="msg err"><strong>Overdraft:</strong> projected cash is ${fmt.d(pr.cashE)}. Negative cash costs ${Math.round(CFG.odrate*100)}% a year next round. Consider a loan or paying fewer payables.</p>`:'<p class="msg ok"><strong>OK:</strong> projected cash stays positive.</p>')+(pr.apE>CFG.apfree?`<p class="msg warn"><strong>Check:</strong> payables above ${fmt.d(CFG.apfree)} cost ${Math.round(CFG.aprate*100)}% a year (about ${fmt.d(pr.pen)} this round).</p>`:'');}
+      else{['pact','sold','sales','cogs','opex','intr','ni','c0','coll','loan','ap','lab','oh','it','eq','rep','c1','ape','room'].forEach(x=>setText(q+'-'+x,'Enter your starting position and decisions'));}}
+    if(okp&&fc.adj>0&&pr.sold>0)state.rounds[k]._proj={sold:pr.sold,price:dd.price,vcu:pr.vcu,fixed:pr.fixedAll};
+    if(k===6||k===7||k===8){}
+    /* tool calculators */
+    if(k===6){const t=getPath(p+'.tool')||{},q='t6-f',bq=num(t.bq),bp=num(t.bp),bv=num(t.bv),bf=num(t.bf),aq=num(t.aq),as=num(t.as),av=num(t.av),af=num(t.af);
+      const bs=bq*bp,bvv=bq*bv,fs=aq*bp,fv=aq*bv,F=x=>isFinite(x)?fmt.d(x):'–',FU=x=>isFinite(x)?fmt.d(Math.abs(x))+(x>=0?' F':' U'):'–';
+      setText(q+'-aq',fmt.n(aq));setText(q+'-aq2',fmt.n(aq));setText(q+'-bq',fmt.n(bq));setText(q+'-as',F(as));setText(q+'-fs',F(fs));setText(q+'-bs',F(bs));setText(q+'-av',F(av));setText(q+'-fv',F(fv));setText(q+'-bv',F(bvv));
+      setText(q+'-acm',F(as-av));setText(q+'-fcm',F(fs-fv));setText(q+'-bcm',F(bs-bvv));setText(q+'-af',F(af));setText(q+'-ff',F(bf));setText(q+'-bf',F(bf));setText(q+'-ani',F(as-av-af));setText(q+'-fni',F(fs-fv-bf));setText(q+'-bni',F(bs-bvv-bf));
+      setText(q+'-v-act',FU((fs-fv)-(bs-bvv)));setText(q+'-v-rev',FU(as-fs));setText(q+'-v-var',FU(fv-av));setText(q+'-v-fix',FU(bf-af));setText(q+'-v-tot',FU((as-av-af)-(bs-bvv-bf)));}
+    if(k===7){const t=getPath(p+'.tool')||{},q='t7-v',sp=num(t.sp),sq=num(t.sq),sr=num(t.sr),sh=num(t.sh),au=num(t.au),am=num(t.am),ah=num(t.ah),ar=num(t.ar);
+      const uses=au*CFG.matPer,apu=am/uses,mpv=(apu-sp)*uses,mqv=(uses-au*sq)*sp,hrs=au*sh,lrv=(ar-sr)*ah,lev=(ah-hrs)*sr,FU=x=>isFinite(x)?fmt.d(Math.abs(x))+(x<=0?' F':' U'):'–';
+      setText(q+'-aq',fmt.n(uses)+' units at '+(isFinite(apu)?fmt.d2(apu):'–'));setText(q+'-mpv',FU(mpv));setText(q+'-mqv',FU(mqv));setText(q+'-sh',fmt.n(hrs));setText(q+'-lrv',FU(lrv));setText(q+'-lev',FU(lev));setText(q+'-lt',FU(lrv+lev));}
+    if(k===8){const t=getPath(p+'.tool')||{},q='t8-s',made=num(t.made),capn=num(t.capno);
+      setText(q+'-roa',isFinite(num(t.roa))?num(t.roa).toFixed(1)+'%':'–');setText(q+'-ni',fmt.d(num(t.ni)));setText(q+'-ms',isFinite(num(t.ms))?num(t.ms).toFixed(1)+'%':'–');setText(q+'-fill',fmt.p(num(t.sold)/num(t.orders)));
+      setText(q+'-oee',fmt.p(made/capn));setText(q+'-quit',fmt.p(num(t.quits)/num(t.reps)));setText(q+'-rk',isFinite(num(t.rk))?'#'+num(t.rk)+' of '+CFG.teams:'–');}
+    /* checks & summary */
+    const v=validate(k),box=document.getElementById(pid+'-checks');
+    if(box)box.innerHTML=v.msgs.length?v.msgs.map(m=>`<p class="msg ${m.t}"><strong>${m.t==='err'?'Fix:':'Check:'}</strong> ${esc(m.m)}</p>`).join(''):'<p class="msg ok"><strong>OK:</strong> All decisions are within the limits.</p>';
+    DEC.forEach(f=>{const el=document.getElementById(pid+'-dec-'+f.k);if(el)el.setAttribute('aria-invalid',v.bad.has(f.k)?'true':'false');});
+    const okDec=!v.msgs.some(m=>m.t==='err'),act=DEC.filter(f=>isOn(f,k)&&f.u!=='fin');
+    act.forEach(f=>{const x=d[f.k];setText('sum-'+k+'-'+f.k,f.k==='ap'&&isNaN(x)?'Pay all':isNaN(x)?'–':['price','wage'].includes(f.k)?fmt.d2(x):['ad','sal','loan','ap'].includes(f.k)?fmt.d(x):fmt.n(x));});
+    const need=act.filter(f=>f.k!=='ap'&&f.k!=='loan'),allIn=need.every(f=>!isNaN(d[f.k]));
+    const resOK=k===1||(k===2?BASEF:BASEF.concat(EXTF)).every(x=>!isNaN(num(val(p+'.res.'+x))));
+    const items=[['Team number and team name entered',!!(num(val('team.num'))>=1&&String(val('team.name')).trim())],['All decisions entered within the limits',okDec&&allIn],['Sales forecast completed',fc.adj>0],['Each explanation has at least '+REQUIRED_WORDS+' words',RMETA[k].why.every(x=>words(val(p+'.why.'+x[0]))>=REQUIRED_WORDS)]];
+    if(k>1)items.splice(1,0,['Round '+(k-1)+' results entered',resOK]);
+    const cb=document.getElementById('check-'+k);
+    if(cb)cb.innerHTML='<ul>'+items.map(i=>`<li>${i[1]?'<strong>Done:</strong>':'<strong>Not yet:</strong>'} ${esc(i[0])}</li>`).join('')+'</ul>';
+    state.rounds[k]._complete=items.every(i=>i[1]);state.rounds[k]._valid=okDec;
+    RMETA[k].why.forEach(x=>{const w=document.getElementById(idOf(p)+'-why-'+x[0]+'-w');if(w)w.textContent=words(val(p+'.why.'+x[0]))+' words';});
+  });
+  const t=state.team,parts=[`Team ${t.num||'?'} · ${t.name||'(no team name)'}`];
+  ROUNDS.forEach(k=>{const d=decisions(k),any=['price','ad','reps','sal'].some(x=>!isNaN(d[x])&&val(R(k)+'.dec.'+x)!=='');if(any)parts.push(`Round ${k}: price ${isNaN(d.price)?'–':fmt.d2(d.price)}, advertising ${isNaN(d.ad)?'–':fmt.d(d.ad)}, sales people ${isNaN(d.reps)?'–':d.reps}${state.rounds[k]._complete?' (ready)':' (not complete)'}`);});
+  setText('top-summary-text',parts.join('  |  '));}
+/* ===================== ACTIONS ===================== */
+function sync(){document.querySelectorAll('[data-path]').forEach(el=>{setPath(el.dataset.path,el.value);});}
+function rowText(k){const d=decisions(k);return DEC.map(f=>{if(!isOn(f,k)||(f.u==='fin'))return'';const x=d[f.k];return isNaN(x)?'':String(x);}).join('\t');}
+function save(k){
+  sync();recalc();state.current=k;state.savedAt=new Date().toISOString();
+  const clone=document.documentElement.cloneNode(true);clone.querySelector('#app').innerHTML='';
+  clone.querySelector('#saved-state').textContent=JSON.stringify(state).replace(/</g,'\\u003c');
+  const n=String(num(state.team.num)||0).padStart(2,'0'),name='Team'+n+'_Round'+k+'_Proposal.html';
+  const blob=new Blob(['<!DOCTYPE html>\n'+clone.outerHTML],{type:'text/html'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();
+  setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},500);
+  setText('action-msg-'+k,'Saved as '+name+'. '+(state.rounds[k]._complete?'Upload this file to Canvas.':'Some items above are not finished. You can still upload, or finish them and save again.'));}
+function copyRow(k){
+  sync();recalc();
+  if(!state.rounds[k]._valid){setText('action-msg-'+k,'Fix the decisions marked above before copying.');return;}
+  const txt=rowText(k),done=()=>setText('action-msg-'+k,'Copied the decisions in the order of the Excel columns (tab-separated; blanks are decisions not open yet).');
+  if(navigator.clipboard&&window.isSecureContext)navigator.clipboard.writeText(txt).then(done,()=>fallbackCopy(txt,done));else fallbackCopy(txt,done);}
+function fallbackCopy(txt,done){const ta=document.createElement('textarea');ta.value=txt;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');done();}catch(e){}ta.remove();}
+function useEstimate(k){
+  const p=R(k),rp=num(val(p+'.est.rprice')),ra=num(val(p+'.est.rad')),d=decisions(k);
+  if([rp,ra,d.price,d.ad].some(isNaN))return;
+  const e=estimateDemand(k,d.price,d.ad,rp,ra);
+  setPath(p+'.fc.ind2',String(e.industry));setPath(p+'.fc.sh2',(e.share*100).toFixed(1));
+  document.getElementById(idOf(p+'.fc.ind2')).value=String(e.industry);document.getElementById(idOf(p+'.fc.sh2')).value=(e.share*100).toFixed(1);recalc();}
+function fillBudget(k){const pr=state.rounds[k-1]&&state.rounds[k-1]._proj,p=R(k)+'.tool';
+  if(!pr){setText('t'+k+'-f-fillmsg','No plan found: complete the sales forecast and decisions in Round '+(k-1)+' first.');return;}
+  const set=(f,v)=>{setPath(p+'.'+f,String(v));const el=document.getElementById(idOf(p+'.'+f));if(el)el.value=String(v);};
+  set('bq',Math.round(pr.sold));set('bp',pr.price);set('bv',pr.vcu.toFixed(2));set('bf',Math.round(pr.fixed));setText('t'+k+'-f-fillmsg','Filled from your Round '+(k-1)+' plan.');recalc();}
+function showTab(k){state.current=k;ROUNDS.forEach(r=>{const t=document.getElementById('tab-'+r),pn=document.getElementById('panel-'+r);t.setAttribute('aria-selected',r===k);t.tabIndex=r===k?0:-1;pn.hidden=r!==k;});}
+document.addEventListener('input',e=>{const el=e.target;if(el.dataset&&el.dataset.path){setPath(el.dataset.path,el.value);recalc();}});
+document.addEventListener('change',e=>{const el=e.target;if(el.dataset&&el.dataset.path){setPath(el.dataset.path,el.value);recalc();}});
+document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
+  if(b.dataset.tab){showTab(Number(b.dataset.tab));return;}
+  const a=b.dataset.action,k=Number(b.dataset.round);
+  if(a==='save')save(k);else if(a==='copy')copyRow(k);else if(a==='print')window.print();else if(a==='useEstimate')useEstimate(k);else if(a==='fillBudget')fillBudget(k);});
+document.addEventListener('keydown',e=>{const t=e.target;if(t&&t.getAttribute&&t.getAttribute('role')==='tab'&&(e.key==='ArrowRight'||e.key==='ArrowLeft')){const k=Number(t.dataset.tab),n=e.key==='ArrowRight'?Math.min(ROUNDS.length,k+1):Math.max(1,k-1);showTab(n);document.getElementById('tab-'+n).focus();}});
+render();sync();recalc();
+</script>
+</body>
+</html>
