@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cullowhee Cycle Works Simulation - Rounds 1-12</title>
+<style>
+:root{--paper:#F5F8F5;--card:#fff;--ink:#16222B;--muted:#4D5D68;--rule:#C7D2CB;--spruce:#14574B;--soft:#E0EEE8;--ok:#0F6A37;--okbg:#E3F3E9;--miss:#9B2C1F;--missbg:#FBE8E4;--note:#274C8C;--focus:#1A47B8;--hl:#FFF3C4;--onsp:#fff;--hl-ink:#4A3B00}
+@media (prefers-color-scheme:dark){:root{--paper:#0F1A17;--card:#17262A;--ink:#E8F0EC;--muted:#A9B9B2;--rule:#34504A;--spruce:#5FC2AB;--soft:#1D3A34;--ok:#7BD99E;--okbg:#17382A;--miss:#FF9C8C;--missbg:#40201C;--note:#9DB8F0;--focus:#8FB1FF;--hl:#4A4220;--onsp:#0F1A17;--hl-ink:#F3E6A8}}
+*{box-sizing:border-box}body{margin:0;font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:var(--paper)}
+header{background:var(--card);border-bottom:1px solid var(--rule);padding:18px 20px}header h1{margin:0;font:700 1.5rem/1.25 "Iowan Old Style",Palatino,Georgia,serif;color:var(--spruce)}header p{margin:6px 0 0;color:var(--muted);font-size:.95rem;max-width:900px}
+main{max-width:960px;margin:0 auto;padding:16px}
+section{background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:16px 18px;margin:14px 0}
+h2{margin:0 0 8px;font:700 1.2rem/1.3 "Iowan Old Style",Palatino,Georgia,serif;color:var(--spruce)}h3{margin:14px 0 6px;font:700 1.02rem/1.3 "Iowan Old Style",Palatino,Georgia,serif;color:var(--spruce)}
+.step{display:inline-block;background:var(--spruce);color:var(--onsp);border-radius:99px;width:28px;height:28px;text-align:center;line-height:28px;font:700 .9rem system-ui,sans-serif;margin-right:8px}
+label{display:block;font-weight:600;font-size:.92rem;margin-bottom:3px}
+input,select,textarea{font:inherit;color:var(--ink);padding:8px 10px;min-height:44px;border:1.5px solid var(--muted);border-radius:6px;width:100%;background:var(--card)}
+textarea{min-height:0}
+input:focus-visible,select:focus-visible,textarea:focus-visible,button:focus-visible,[role=tab]:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.grid{display:grid;gap:12px}.g2{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}.g4{grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
+.hint{color:var(--muted);font-size:.85rem;margin:3px 0 0}
+table{border-collapse:collapse;width:100%;font-size:.9rem}th,td{border:1px solid var(--rule);padding:6px 8px;text-align:right}th{background:var(--soft);color:var(--spruce);text-align:center}td:first-child,th:first-child{text-align:left}
+button.act{min-height:44px;background:var(--spruce);color:var(--onsp);border:2px solid var(--spruce);border-radius:6px;padding:8px 16px;font:inherit;font-weight:600;cursor:pointer}button.act.sec{background:var(--card);color:var(--spruce)}
+.box{padding:10px 12px;border-radius:6px;margin:8px 0;font-size:.92rem;border-left:5px solid var(--muted)}
+.ok{background:var(--okbg);color:var(--ok);border-left-color:var(--ok)}.bad{background:var(--missbg);color:var(--miss);border-left-color:var(--miss)}.warn{background:var(--hl);color:var(--hl-ink);border-left-color:#C9A400}.info{background:var(--soft);color:var(--ink);border-left-color:var(--spruce)}
+.kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}.kpi div{border:1px solid var(--rule);border-radius:8px;padding:8px 10px;background:var(--paper)}.kpi b{display:block;font-size:1.15rem;color:var(--spruce)}
+.tag{display:inline-block;background:var(--soft);color:var(--spruce);border-radius:99px;padding:1px 10px;font-size:.8rem;font-weight:600}
+.fset td input{width:90px;min-height:36px;text-align:right;padding:3px 5px}.fset td.r{background:var(--missbg)}.fset td.g{background:var(--okbg)}
+.fset th.ev{text-align:left;background:var(--paper);color:var(--ink);font-weight:600}
+pre{background:var(--paper);border:1px solid var(--rule);padding:10px;overflow:auto;font-size:.8rem;white-space:pre-wrap;word-break:break-all}
+.sr{position:absolute;left:-9999px}
+@media(max-width:640px){main{padding:8px}section{padding:12px}}
+@media print{body{background:#fff;color:#000}button,textarea{display:none}}
+</style></head><body>
+<header><h1>Cullowhee Cycle Works: Rounds 1 to 12</h1><p>MBA 623 Accounting in Action, Spring 2027. Your team runs its own company. All teams face the same market events. Ridgeline Bikes is the benchmark you are chasing.</p></header>
+<main>
+<section aria-labelledby="h0"><h2 id="h0">Your team and round</h2>
+<div class="grid g2">
+<div><label for="roundSel">Round</label><select id="roundSel"></select></div>
+<div><label for="teamNo">Team number</label><select id="teamNo"></select></div>
+<div><label for="teamName">Team name</label><input id="teamName" placeholder="e.g., Team 4"></div>
+</div>
+<div id="codeBox" hidden style="margin-top:12px"><label for="codeIn" id="codeLbl">Close code from your previous-round Team Report</label>
+<textarea id="codeIn" rows="3" placeholder='Paste the code that starts with {"round":1,...'></textarea>
+<p class="hint">Your instructor posts this with your Team Report. It carries your real closing position, including the hidden market noise, into this round.</p>
+<div id="codeMsg" role="status" aria-live="polite"></div></div>
+</section>
+<section aria-labelledby="h1"><h2 id="h1"><span class="step">1</span>Read the situation</h2><div id="situation"></div></section>
+<section aria-labelledby="h2"><h2 id="h2"><span class="step">2</span>Make your decisions</h2>
+<p class="hint">Amounts in dollars per unit or $ thousands as labeled. Entries outside the allowed range are pulled to the nearest allowed value. Policies you set earlier (credit terms, supplier policy, inventory method) stay in force unless you change them.</p>
+<h3>Prices (net price per unit, within 25% of the reference)</h3><div class="grid g4" id="fPrice"></div>
+<h3>Production for the quarter (units; limited by capacity)</h3><div class="grid g4" id="fProd"></div>
+<h3>Spending, investment and financing</h3><div class="grid g2" id="fOther"></div>
+<div id="fSpecial"></div>
+</section>
+<section aria-labelledby="h3"><h2 id="h3"><span class="step">3</span>Check your plan</h2>
+<p class="hint">Your expected result with no market surprises. Each team also gets a hidden demand draw of about plus or minus 4% on every product, so leave a cushion.</p>
+<div id="plan" aria-live="polite"></div><div id="mgr"></div></section>
+<section aria-labelledby="h4"><h2 id="h4"><span class="step">4</span>Explain your decisions</h2>
+<label for="expl" id="explLbl">In 100 to 200 words, explain what you decided and why. Support at least two choices with ratios (ROA, ROE, leverage, liquidity, times interest earned, EPS).</label>
+<textarea id="expl" rows="7"></textarea><p class="hint" id="wc">0 words</p></section>
+<section aria-labelledby="h5" id="fsetSec"><h2 id="h5"><span class="step">5</span>FSET check (one team member)</h2>
+<p>One teammate completes this each round; the role rotates. Enter how each event changes each account, in $ thousands (a minus sign for a decrease; blank or 0 for no effect). The events come from your own plan. Your score is the share of cells right on your first check; you may check again to learn.</p>
+<div class="grid g2"><div><label for="fsetMember">Team member completing the FSET</label><input id="fsetMember"></div></div>
+<div id="fset" class="fset" style="overflow:auto;margin-top:10px"></div>
+<p><button class="act" id="fsetBtn" type="button">Check my FSET</button></p><div id="fsetMsg" role="status" aria-live="polite"></div></section>
+<section aria-labelledby="h6"><h2 id="h6"><span class="step" id="stepSave">6</span>Save and submit</h2>
+<div id="saveMsg" class="box info">Complete steps 2 to 5, then copy your decisions.</div>
+<p><button class="act" id="copyRow" type="button">Copy my decisions for the instructor</button> <button class="act sec" id="copyAll" type="button">Copy full submission (decisions + explanation)</button> <button class="act sec" id="dl" type="button">Download as a text file</button></p>
+<p class="hint">Submit the copied text in Canvas by the due date.</p>
+<pre id="out" aria-label="Submission preview"></pre></section>
+</main>
+<script>
+var PARAMS={"x": {"ref": [800, 2400, 5200, 300], "base": [25000, 10000, 1000, 20000], "vc": [520, 1440, 3000, 215], "el": [1.8, 1.5, 0.9, 2.2], "cap": [9000, 3800, 420, 7500], "pr_band": 0.25, "mkt_coef": 0.1, "mkt_scale": 500, "line_cost": 6000, "line_cap": 0.2, "line_cut": 0.02, "line_life_q": 40, "equip_cost": 4000, "equip_cap": 0.15, "equip_life_q": 32, "mfg_other": 107.5, "mfg_dep": 475, "sga_cash": 2157.5, "sga_dep": 237.5, "sc": 85, "rd": 575, "amort": 25, "maint": 500, "hold": 0.015, "warr_pct": 0.022644927536231884, "bd_pct": 0.006340579710144928, "claims": 0.2, "allow_pct": 0.05625, "ar_pct": 0.55, "ap_pct": 0.7, "tax": 0.25, "rate_rev": 0.08, "rate_tl": 0.07, "rate_bond": 0.07, "bond_face": 10000, "coupon": 0.06, "rate_cash": 0.009, "min_cash": 1500, "rev_limit": 8000, "tl_sched": 125, "tl_term": 20, "tl_max": 8000, "shares": 8950, "dps_max": 0.3, "prep_cost": 1500, "prep_base": 450, "par": 0.01, "issue_cost": 0.04, "issue_max": 9000, "buy_max": 4000, "buy_prem": 1.05, "grant_max": 500, "rebate_max": 0.04, "rebate_dem": 2.0, "attach_max": 0.4, "plan_price": 0.2, "plan_q": 8, "plan_cost": 0.3, "plan_comm": 0.1, "terms_ar": [0.55, 0.42, 0.8], "terms_dem": [1.0, 1.01, 1.04], "terms_bd": [1.0, 0.9, 1.25], "terms_disc": [0.0, 0.008, 0.0], "std_dem": [0.97, 1.0, 1.03], "std_bd": [0.6, 1.0, 1.8], "pol_cost": [0.985, 1.0, 1.025], "pol_ap": [0.35, 0.7, 1.0], "eur_cost": [0, 3000, 6000], "eur_f": [0, 0.08, 0.14], "eur_dep": [0, 93.75, 150.0], "eur_oh": [0, 250, 500], "eur_ship": 0.04, "fx0": 1.08, "plant_cost": 14000, "plant_cap": 0.35, "plant_oh": 150, "plant_dep": 140, "acq_price": 10000, "acq_gw": 3500, "acq_ppe": 4500, "acq_int": 2000, "acq_cut": 0.03, "acq_oh": 300, "acq_ppe_dep": 112.5, "acq_am": 50, "bridge_limit": 12000, "rate_bridge": 0.095, "bond_max": 18000, "bond_cost": 0.015, "shift_cap": 0.3, "shift_cost": 900, "pos_cost": [0.97, 1.0, 1.04], "pos_el": [1.15, 1.0, 0.8], "pos_mkt": [1.0, 1.0, 1.5], "sup_prem": 10, "sup_exit": 1500, "motor_save": 70, "cut_max": 0.1, "cut_sev": 4, "cut_dem": 0.5, "fleet_rack": 0.018, "fleet_setup": 6, "fleet_min": 500, "fleet_max": 900, "fleet_accept": 700, "trace": [1050, 1350, 337.5, 525], "avoid": [0.6, 0.6, 0.6, 0.667], "salvage": 0.5, "pack_prem": 0.032, "pack_save": 150, "motor_cost": 6000, "motor_oh": 200, "motor_dep": 150, "hrs": [2, 10, 14, 1], "booth": 62000, "proc_cost": [0, 1500, 3000], "proc_batch": [0, 0.15, 0.3], "proc_order": [0, 0.1, 0.2], "proc_life": 20, "batch_pool": 1075, "ord_pool": [520, 700, 130], "chan_share": [0.52, 0.38, 0.1], "chan_el": 1.5, "min_dem": [0, 0.03, 0.08], "min_cost": [0, 0.15, 0.3], "fee_max": 0.05, "cov_tie": 1.5, "cov_fee": 150, "px0": 7.5, "pe0": 2.1, "pe_k": 8.0, "pe_roe0": 0.08, "pe_min": 1.2, "pe_max": 3.5}, "rounds": [{"q": "Q1 2027", "due": "Jan 17, 2027", "season": 0.19, "dem": [1.05, 1, 1, 1], "cost": 1.0, "dr": 0, "cpi": 1.0, "fx": 1.08, "warrm": 1, "pxf": 1, "tlmax": 8000, "allow": {"line": 1, "equip": 0, "method": 1, "prep": 0, "dps": 0, "issue": 0, "buyback": 0, "split": 0, "grant": 0, "credit": 0, "plans": 0, "eur": 0, "appol": 0, "plant": 0, "acq": 0, "bridge": 0, "bond": 0, "plansrec": 0, "shift": 0, "pos": 0, "sup": 0, "cut": 0, "target": 0, "fleet": 0, "drop": 0, "packs": 0, "motor": 0, "proc": 0, "chan": 0, "booth": 0}, "head": "Gas prices spike and commuters turn to bikes: Ridge Commuter demand runs 5% above normal. Frame costs are unchanged. Q1 is the slowest selling season (19% of the year).", "tariff": 0, "fleet_q": 0, "fleet_price": 0, "shipm": 1.0}, {"q": "Q2 2027", "due": "Jan 24, 2027", "season": 0.34, "dem": [1, 1, 1, 1], "cost": 1.03, "dr": 0, "cpi": 1.0, "fx": 1.08, "warrm": 1, "pxf": 1, "tlmax": 8000, "allow": {"line": 0, "equip": 1, "method": 0, "prep": 0, "dps": 1, "issue": 0, "buyback": 0, "split": 0, "grant": 0, "credit": 0, "plans": 0, "eur": 0, "appol": 0, "plant": 0, "acq": 0, "bridge": 0, "bond": 0, "plansrec": 0, "shift": 0, "pos": 0, "sup": 0, "cut": 0, "target": 0, "fleet": 0, "drop": 0, "packs": 0, "motor": 0, "proc": 0, "chan": 0, "booth": 0}, "head": "Aluminum frame prices rise and every unit costs 3% more to build. Spring is the biggest selling season (34% of the year).", "tariff": 0, "fleet_q": 0, "fleet_price": 0, "shipm": 1.0}, {"q": "Q3 2027", "due": "Jan 31, 2027", "season": 0.26, "dem": [1, 1, 1, 1], "cost": 1.03, "dr": 0.01, "cpi": 1.0, "fx": 1.08, "warrm": 1, "pxf": 1, "tlmax": 8000, "allow": {"line": 0, "equip": 1, "method": 0, "prep": 1, "dps": 1, "issue": 0, "buyback": 0, "split": 0, "grant": 0, "credit": 0, "plans": 0, "eur": 0, "appol": 0, "plant": 0, "acq": 0, "bridge": 0, "bond": 0, "plansrec": 0, "shift": 0, "pos": 0, "sup": 0, "cut": 0, "target": 0, "fleet": 0, "drop": 0, "packs": 0, "motor": 0, "proc": 0, "chan": 0, "booth": 0}, "head": "Interest rates rise one point: the revolver costs 9%, term loans 8%, and new bonds will price off a higher market rate. Summer is 26% of the year.", "tariff": 0, "fleet_q": 0, "fleet_price": 0, "shipm": 1.0}, {"q": "Q4 2027", "due": "Feb 7, 2027", "season": 0.21, "dem": [1, 1, 1, 1], "cost": 1.03, "dr": 0.01, "cpi": 0.97, "fx": 1.08, "warrm": 1, "pxf": 1, "tlmax": 8000, "allow": {"line": 0, "equip": 0, "method": 0, "prep": 0, "dps": 1, "issue": 1, "buyback": 0, "split": 0, "grant": 0, "credit": 0, "plans": 0, "eur": 0, "appol": 0, "plant": 0, "acq": 0, "bridge": 0, "bond": 0, "plansrec": 0, "shift": 0, "pos": 0, "sup": 0, "cut": 0, "target": 0, "fleet": 0, "drop": 0, "packs": 0, "motor": 0, "proc": 0, "chan": 0, "booth": 0}, "head": "A competitor cuts prices about 3%, so your old reference prices now look expensive. Cowee Growth Partners will buy new shares at the current market price less a 4% issue cost. Q4 is 21% of the year.", "tariff": 0, "fleet_q": 0, "fleet_price": 0, "shipm": 1.0}, {"q": "Q1 2028", "due": "Feb 14, 2027", "season": 0.19, "dem": [1.03, 1.03, 1.03, 1.03], "cost": 1.03, "dr": 0.01, "cpi": 0.97, "fx": 1.0, "warrm": 1, "pxf": 1, "tlmax": 8000, "allow": {"line": 0, "equip": 0, "method": 0, "prep": 0, "dps": 1, "issue": 1, "buyback": 0, "split": 0, "grant": 0, "credit": 1, "plans": 1, "eur": 1, "appol": 0, "plant": 0, "acq": 0, "bridge": 0, "bond": 0, "plansrec": 1, "shift": 0, "pos": 0, "sup": 0, "cut": 0, "target": 0, "fleet": 0, "drop": 0, "packs": 0, "motor": 0, "proc": 0, "chan": 0, "booth": 0}, "head": "The euro weakens to $1.00. Everything you sell through Velo Nord GmbH is worth less in dollars. Demand is 3% higher than last year.", "tariff": 0, "fleet_q": 0, "fleet_price": 0, "shipm": 1.0}, {"q": "Q2 2028", "due": "Feb 21, 2027", "season": 0.34, "dem": [1.03, 1.03, 1.03, 1.03], "cost": 1.08, "dr": 0.01, "cpi": 0.97, "fx": 1.0, "warrm": 1, "pxf": 1, "tlmax": 8000, "allow": {"line": 0, "equip": 0, "method": 0, "prep": 0, "dps": 1, "issue": 1, "buyback": 0, "split": 0, "grant": 0, "credit": 1, "plans": 1, "eur": 1, "appol": 1, "plant": 1, "acq": 1, "bridge": 1, "bond": 0, "plansrec": 1, "shift": 0, "pos": 0, "sup": 0, "cut": 0, "target": 0, "fleet": 0, "drop": 0, "packs": 0, "motor": 0, "proc": 0, "chan": 0, "booth": 0}, "head": "Steel costs jump: unit costs rise to 8% above the FY2026 level. Spring is 34% of the year.", "tariff": 0, "fleet_q": 0, "fleet_price": 0, "shipm": 1.0}, {"q": "Q3 2028", "due": "Mar 7, 2027", "season": 0.26, "dem": [1.03, 1.03, 1.03, 1.03], "cost": 1.08, "dr": 0.01, "cpi": 0.97, "fx": 1.0, "warrm": 1.5, "pxf": 1, "tlmax": 18000, "allow": {"line": 0, "equip": 0, "method": 0, "prep": 0, "dps": 1, "issue": 1, "buyback": 0, "split": 0, "grant": 0, "credit": 1, "plans": 1, "eur": 0, "appol": 1, "plant": 0, "acq": 0, "bridge": 1, "bond": 1, "plansrec": 1, "shift": 0, "pos": 0, "sup": 0, "cut": 0, "target": 0, "fleet": 0, "drop": 0, "packs": 0, "motor": 0, "proc": 0, "chan": 0, "booth": 0}, "head": "Warranty claims run 50% above plan this quarter. Bonds price at the new market rate of 8%.", "tariff": 0, "fleet_q": 0, "fleet_price": 0, "shipm": 1.0}, {"q": "Q4 2028", "due": "Mar 14, 2027", "season": 0.21, "dem": [1.03, 1.03, 1.03, 1.03], "cost": 1.08, "dr": 0.01, "cpi": 0.97, "fx": 1.02, "warrm": 1.25, "pxf": 0.85, "tlmax": 8000, "allow": {"line": 0, "equip": 0, "method": 0, "prep": 0, "dps": 1, "issue": 1, "buyback": 1, "split": 1, "grant": 1, "credit": 1, "plans": 1, "eur": 0, "appol": 1, "plant": 0, "acq": 0, "bridge": 1, "bond": 0, "plansrec": 1, "shift": 0, "pos": 0, "sup": 0, "cut": 0, "target": 0, "fleet": 0, "drop": 0, "packs": 0, "motor": 0, "proc": 0, "chan": 0, "booth": 0}, "head": "The share price falls 15% on a weak market. Warranty claims stay 25% above plan.", "tariff": 0, "fleet_q": 0, "fleet_price": 0, "shipm": 1.0}, {"q": "Q1 2029", "due": "Apr 11, 2027", "season": 0.19, "dem": [1.2, 1.2, 1.2, 1.2], "cost": 1.08, "dr": 0.01, "cpi": 0.97, "fx": 1.02, "warrm": 1, "pxf": 1, "tlmax": 8000, "allow": {"line": 0, "equip": 0, "method": 0, "prep": 0, "dps": 1, "issue": 1, "buyback": 0, "split": 0, "grant": 0, "credit": 1, "plans": 1, "eur": 0, "appol": 1, "plant": 0, "acq": 0, "bridge": 1, "bond": 0, "plansrec": 1, "shift": 1, "pos": 1, "sup": 0, "cut": 0, "target": 0, "fleet": 0, "drop": 0, "packs": 0, "motor": 0, "proc": 0, "chan": 0, "booth": 1}, "head": "Demand grows 20% above the FY2026 level. Your plant may not be able to build everything you can sell: the paint booth has a fixed number of hours, and a second shift adds capacity in a step.", "tariff": 0, "fleet_q": 0, "fleet_price": 0, "shipm": 1.0}, {"q": "Q2 2029", "due": "Apr 18, 2027", "season": 0.34, "dem": [1.2, 1.2, 1.2, 1.2], "cost": 1.08, "dr": 0.01, "cpi": 0.97, "fx": 1.02, "warrm": 1, "pxf": 1, "tlmax": 8000, "allow": {"line": 0, "equip": 0, "method": 0, "prep": 0, "dps": 1, "issue": 1, "buyback": 0, "split": 0, "grant": 0, "credit": 1, "plans": 1, "eur": 0, "appol": 1, "plant": 0, "acq": 0, "bridge": 1, "bond": 0, "plansrec": 1, "shift": 1, "pos": 0, "sup": 1, "cut": 1, "target": 1, "fleet": 0, "drop": 0, "packs": 0, "motor": 0, "proc": 0, "chan": 0, "booth": 1}, "head": "A 25% tariff takes effect on imported motors: every Balsam E1 now costs $80 more to build. Spring is the biggest quarter, and the paint booth is likely to be the limit.", "tariff": 80, "fleet_q": 0, "fleet_price": 0, "shipm": 1.0}, {"q": "Q3 2029", "due": "Apr 25, 2027", "season": 0.26, "dem": [1.2, 1.2, 1.2, 1.2], "cost": 1.08, "dr": 0.01, "cpi": 0.97, "fx": 1.02, "warrm": 1, "pxf": 1, "tlmax": 8000, "allow": {"line": 0, "equip": 0, "method": 0, "prep": 0, "dps": 1, "issue": 1, "buyback": 0, "split": 0, "grant": 0, "credit": 1, "plans": 1, "eur": 0, "appol": 1, "plant": 0, "acq": 0, "bridge": 1, "bond": 0, "plansrec": 1, "shift": 1, "pos": 0, "sup": 0, "cut": 0, "target": 0, "fleet": 1, "drop": 1, "packs": 1, "motor": 1, "proc": 0, "chan": 0, "booth": 1}, "head": "A fleet buyer, Western Carolina Courier Co., offers to buy 1,500 Ridge Commuters at $650 each (list is about $780). The tariff is still in force.", "tariff": 80, "fleet_q": 1500, "fleet_price": 650, "shipm": 1.0}, {"q": "Q4 2029", "due": "May 2, 2027", "season": 0.21, "dem": [1.2, 1.2, 1.2, 1.2], "cost": 1.08, "dr": 0.01, "cpi": 0.97, "fx": 1.02, "warrm": 1, "pxf": 1, "tlmax": 8000, "allow": {"line": 0, "equip": 0, "method": 0, "prep": 0, "dps": 1, "issue": 1, "buyback": 0, "split": 0, "grant": 0, "credit": 1, "plans": 1, "eur": 0, "appol": 1, "plant": 0, "acq": 0, "bridge": 1, "bond": 0, "plansrec": 1, "shift": 1, "pos": 0, "sup": 0, "cut": 0, "target": 0, "fleet": 0, "drop": 0, "packs": 0, "motor": 0, "proc": 1, "chan": 1, "booth": 1}, "head": "Dealer returns and shipping costs rise 25% on the dealer and online channels. Activity-based costing shows which channels and batch sizes really cost the most to serve.", "tariff": 80, "fleet_q": 0, "fleet_price": 0, "shipm": 1.25}], "c": {"prepaid": 1000, "other": 550, "accrued": 2600}, "open_equity": 31868};
+var OPEN={"cash": 12992, "ar": 6400, "allow": 360, "invU": [6700, 3000, 410, 12400], "invV": [3484, 4320, 1230, 2666], "ppe": 22300, "intang": 1500, "goodwill": 2200, "ppd": 0, "ppdq": 0, "ap": 5400, "warr": 1500, "defrev": 2100, "rev": 1000, "bridge": 0, "tl": 4500, "bond": 9314, "b2": 0, "b2f": 0, "b2c": 0, "b2y": 0, "cs": 92, "apic": 19618, "re": 13658, "treas": -1500, "shares": 8950, "px": 7.5, "tlcum": 0, "line": 0, "equip": 0, "eur": 0, "plant": 0, "acq": 0, "terms": 0, "std": 1, "rebate": 0, "appol": 1, "method": "", "cumni": 0, "cumsales": 0, "cumeps": 0, "shift": 0, "pos": 1, "sup": 0, "motor": 0, "packs": 0, "cut": 0, "proc": 0, "drop": [0, 0, 0, 0]};
+var COLSL=["price1", "price2", "price3", "price4", "prod1", "prod2", "prod3", "prod4", "mkt", "tl", "rev", "dps", "line", "equip", "method", "prep", "issue", "buyback", "split", "grant", "terms", "std", "rebate", "attach", "eur", "appol", "plant", "acq", "bridge", "bface", "bcoup", "bterm", "shift", "pos", "sup", "cut", "target", "fleet", "fprice", "drop1", "drop2", "drop3", "drop4", "packs", "motor", "proc", "fee_d", "fee_o", "fee_f", "min_d", "min_o", "min_f", "exitf"];
+function runRound(P, r, S, D, noise){
+  var R=P.rounds[r-1], X=P.x, A=R.allow, N=4, i;
+  function clamp(v,a,b){return Math.min(Math.max(v,a),b);}
+  function num(v){return typeof v==='number'&&isFinite(v);}
+  function nz(v,d){return num(v)?v:d;}
+  var o={r:r}, price=[],prodd=[],dem=[],capa=[],prod=[],avail=[],sold=[],ucost=[],pcost=[],cogs=[],rev=[],eU=[],eV=[];
+  var shift=A.shift?(D.shift===1?1:0):S.shift;
+  var pos=(A.pos&&num(D.pos))?clamp(Math.round(D.pos),0,2):S.pos;
+  var sup=((A.sup&&D.sup===1)||S.sup===1)?1:0, sup_new=(sup===1&&S.sup===0)?1:0;
+  var cut_new=(A.cut&&S.cut===0&&num(D.cut))?clamp(D.cut,0,X.cut_max):0, cut_eff=S.cut+cut_new;
+  var target=A.target?nz(D.target,0):0;
+  var fact=A.fleet?clamp(Math.round(nz(D.fleet,0)),0,2):0, fpr=clamp(nz(D.fprice,R.fleet_price),X.fleet_min,X.fleet_max);
+  var faccept=(fact===1||(fact===2&&fpr<=X.fleet_accept))?1:0, fprice=fact===1?R.fleet_price:fpr, fleetq=faccept?R.fleet_q:0;
+  var drop=[],newdrop=[];
+  for(i=0;i<N;i++){drop[i]=(S.drop[i]===1||(A.drop&&D.drop&&D.drop[i]===1))?1:0;newdrop[i]=(drop[i]===1&&S.drop[i]===0)?1:0;}
+  var packs=A.packs?(D.packs===1?1:0):S.packs, motor_buy=(A.motor&&D.motor===1&&S.motor===0)?1:0;
+  var proc=(A.proc&&num(D.proc))?Math.max(S.proc,clamp(Math.round(D.proc),0,2)):S.proc;
+  var fee=[],minp=[];
+  [D.fee_d,D.fee_o,D.fee_f].forEach(function(v,k){fee[k]=A.chan?clamp(nz(v,0),0,X.fee_max):0;});
+  [D.min_d,D.min_o,D.min_f].forEach(function(v,k){minp[k]=A.chan?clamp(Math.round(nz(v,0)),0,2):0;});
+  var exitf=(A.chan&&D.exitf===1)?1:0;
+  var chd=[],chan_mult=0,chan_fee=0;
+  for(var c=0;c<3;c++){chd[c]=(c===2&&exitf)?0:Math.pow(1+fee[c],-X.chan_el)*(1-X.min_dem[minp[c]]);chan_mult+=X.chan_share[c]*chd[c];chan_fee+=X.chan_share[c]*chd[c]*fee[c];}
+  for(i=0;i<N;i++){
+    price[i]=num(D.price[i])?clamp(D.price[i],X.ref[i]*(1-X.pr_band),X.ref[i]*(1+X.pr_band)):X.ref[i];
+    prodd[i]=(num(D.prod[i])&&!drop[i])?Math.max(D.prod[i],0):0;
+  }
+  var mkt=Math.max(nz(D.mkt,0),0);
+  var line_buy=(A.line&&D.line===1&&S.line===0)?1:0, equip_buy=(A.equip&&D.equip===1&&S.equip===0)?1:0;
+  var method=A.method?(D.method==='WA'?'WA':(D.method==='LIFO'?'LIFO':'FIFO')):S.method;
+  var tl_new=clamp(nz(D.tl,0),0,R.tlmax), rev_move=nz(D.rev,0);
+  var dps=A.dps?clamp(nz(D.dps,0),0,X.dps_max):0;
+  var prep_buy=(A.prep&&D.prep===1&&S.ppdq===0)?1:0;
+  var issue=A.issue?clamp(nz(D.issue,0),0,X.issue_max):0;
+  var buyback=A.buyback?clamp(nz(D.buyback,0),0,X.buy_max):0;
+  var split=(A.split&&D.split===1)?1:0;
+  var grant=A.grant?clamp(nz(D.grant,0),0,X.grant_max):0;
+  var terms=(A.credit&&num(D.terms))?clamp(Math.round(D.terms),0,2):S.terms;
+  var stdn=(A.credit&&num(D.std))?clamp(Math.round(D.std),0,2):S.std;
+  var rebate=(A.credit&&num(D.rebate))?clamp(D.rebate,0,X.rebate_max):S.rebate;
+  var attach=A.plans?clamp(nz(D.attach,0),0,X.attach_max):0;
+  var eur_t=(A.eur&&num(D.eur))?clamp(Math.round(D.eur),0,2):S.eur;
+  var eur_new=Math.max(eur_t,S.eur), eur_cost=X.eur_cost[eur_new]-X.eur_cost[S.eur];
+  var appol=(A.appol&&num(D.appol))?clamp(Math.round(D.appol),0,2):S.appol;
+  var plant_buy=(A.plant&&D.plant===1&&S.plant===0)?1:0, acq_buy=(A.acq&&D.acq===1&&S.acq===0)?1:0;
+  var bridge_eff=A.bridge?clamp(nz(D.bridge,0),-S.bridge,X.bridge_limit-S.bridge):0;
+  var bface=(A.bond&&S.b2f===0)?clamp(nz(D.bface,0),0,X.bond_max):0;
+  var bcoup=clamp(nz(D.bcoup,0.07),0.04,0.11), bterm=D.bterm===5?20:40;
+  var rrev=X.rate_rev+R.dr, rtl=X.rate_tl+R.dr, rbr=X.rate_bridge+R.dr, ymkt=X.rate_bond+R.dr;
+  var bi=ymkt/4, bprice=bface>0?(bface*bcoup/4)*(1-Math.pow(1+bi,-bterm))/bi+bface*Math.pow(1+bi,-bterm):0;
+  var b2start=S.b2+bprice, b2f=S.b2f+bface, b2c=bface>0?bcoup:S.b2c, b2y=bface>0?ymkt:S.b2y;
+  var issuecost_b=X.bond_cost*bface;
+  var pxs=S.px*R.pxf;
+  var upl=X.mkt_coef*X.pos_mkt[pos]*Math.sqrt(mkt/X.mkt_scale);
+  var efr=X.eur_f[S.eur], plant_in=S.plant>=2?1:0;
+  var fxm=1/(1+efr)+efr/(1+efr)*R.fx/X.fx0;
+  var tdem=X.terms_dem[terms]*X.std_dem[stdn]*(1+X.rebate_dem*rebate)*chan_mult*(1-X.cut_dem*cut_eff);
+  var gross0=0,cogsv=0,prodcost=0,endInv=0,eurrev=0,soldreg=[],soldfleet=0,rack=0,disp=[],dispU=[],proceeds=0,loss=0,hours=0;
+  var e1add=S.motor?-X.motor_save/1000:((sup?(R.tariff>0?X.sup_prem:0):R.tariff)/1000);
+  for(i=0;i<N;i++){
+    dem[i]=drop[i]?0:Math.round(X.base[i]*R.season*R.dem[i]*Math.pow(price[i]/(X.ref[i]*R.cpi),-X.el[i]*X.pos_el[pos])*(1+upl)*tdem*(1+efr)*noise);
+    capa[i]=Math.round(X.cap[i]*(1+(i<2?X.line_cap*S.line:0)+X.equip_cap*S.equip+X.plant_cap*plant_in+X.shift_cap*shift));
+    prod[i]=Math.min(prodd[i],capa[i]);
+    hours+=X.hrs[i]*prod[i];
+  }
+  var bc=X.booth*(1+X.shift_cap*shift+X.equip_cap*S.equip+X.plant_cap*plant_in), bscale=(A.booth&&hours>bc)?bc/hours:1;
+  for(i=0;i<N;i++){
+    prod[i]=Math.floor(prod[i]*bscale+1e-9);
+    avail[i]=S.invU[i]+prod[i];
+    if(i===0){soldfleet=Math.min(fleetq,avail[0]);soldreg[0]=Math.min(dem[0],avail[0]-soldfleet);sold[0]=soldreg[0]+soldfleet;}
+    else{soldreg[i]=Math.min(dem[i],avail[i]);sold[i]=soldreg[i];}
+    ucost[i]=X.vc[i]/1000*R.cost*(i<2?1-X.line_cut*S.line:1)*(1-X.acq_cut*S.acq)*X.pol_cost[appol]*X.pos_cost[pos]+(i===1?e1add:0)+(((i===1||i===2)&&packs)?X.pack_prem:0);
+    pcost[i]=prod[i]*ucost[i];
+    var cb=S.invU[i]>0?S.invV[i]/S.invU[i]:ucost[i];
+    if(method==='FIFO') cogs[i]=Math.min(sold[i],S.invU[i])*cb+Math.max(sold[i]-S.invU[i],0)*ucost[i];
+    else if(method==='LIFO') cogs[i]=Math.min(sold[i],prod[i])*ucost[i]+Math.max(sold[i]-prod[i],0)*cb;
+    else cogs[i]=avail[i]===0?0:sold[i]*(S.invV[i]+pcost[i])/avail[i];
+    rev[i]=soldreg[i]*price[i]/1000*fxm+(i===0?soldfleet*fprice/1000:0);
+    eurrev+=soldreg[i]*price[i]/1000*(efr/(1+efr))*R.fx/X.fx0;
+    disp[i]=newdrop[i]*S.invV[i];dispU[i]=newdrop[i]*S.invU[i];proceeds+=X.salvage*disp[i];loss+=disp[i]-X.salvage*disp[i];
+    eU[i]=S.invU[i]+prod[i]-sold[i]-dispU[i]; eV[i]=S.invV[i]+pcost[i]-cogs[i]-disp[i];
+    gross0+=rev[i]; cogsv+=cogs[i]; prodcost+=pcost[i]; endInv+=eV[i];
+  }
+  rack=X.fleet_rack*soldfleet;
+  var feerev=chan_mult>0?gross0*chan_fee/chan_mult:0, gross=gross0+feerev;
+  var disc=gross*(rebate+X.terms_disc[terms]), netp=gross-disc;
+  var billings=attach*(sold[0]+sold[1]+sold[2])*X.plan_price;
+  var planrev=A.plansrec?(S.defrev+billings)/X.plan_q:0, defrev=S.defrev+billings-planrev;
+  var plancost=X.plan_cost*planrev, comm=X.plan_comm*billings, ship=X.eur_ship*eurrev;
+  var sales=netp+planrev;
+  var mfgdep=X.mfg_dep+(X.line_cost/X.line_life_q)*S.line+(X.equip_cost/X.equip_life_q)*S.equip+X.plant_dep*plant_in+X.acq_ppe_dep*S.acq+X.motor_dep*S.motor;
+  var mfgx=X.mfg_other+X.plant_oh*plant_in+X.shift_cost*shift+X.motor_oh*S.motor;
+  var cogst=cogsv+rack+loss+mfgx+mfgdep+plancost+ship;
+  var warr=X.warr_pct*R.warrm*netp, bd=X.bd_pct*X.terms_bd[terms]*X.std_bd[stdn]*netp, hold=X.hold*endInv;
+  var ppd_start=S.ppd+prep_buy*X.prep_cost, ppdq_start=S.ppdq+prep_buy*4;
+  var ppd_act=ppdq_start>0?1:0, ppd_am=ppd_act?ppd_start/ppdq_start:0;
+  var oc=[X.ord_pool[0]*R.shipm,X.ord_pool[1]*R.shipm,X.ord_pool[2]], octot=oc[0]+oc[1]+oc[2];
+  var sav_min=oc[0]*X.min_cost[minp[0]]+oc[1]*X.min_cost[minp[1]]+oc[2]*X.min_cost[minp[2]];
+  var sav_exit=exitf*oc[2]*(1-X.min_cost[minp[2]]);
+  var sav_proc_o=X.proc_order[proc]*(octot-sav_min-sav_exit), sav_batch=X.batch_pool*X.proc_batch[proc];
+  var order_adj=(octot-(X.ord_pool[0]+X.ord_pool[1]+X.ord_pool[2]))-sav_min-sav_exit-sav_proc_o;
+  var favoid=0;for(i=0;i<N;i++)favoid+=drop[i]*X.avoid[i]*X.trace[i]/4;
+  var sgacash=X.sga_cash-(ppd_act?X.prep_base:0)-X.sga_cash*S.cut-favoid-packs*X.pack_save-sav_batch+order_adj;
+  var sev=cut_new*X.sga_cash*X.cut_sev, oneoff=sup_new*X.sup_exit+sev+(faccept?X.fleet_setup:0);
+  var sgadep=X.sga_dep+X.eur_dep[S.eur]+X.proc_cost[proc]/X.proc_life;
+  var eur_oh=X.eur_oh[S.eur], acq_oh=X.acq_oh*S.acq;
+  var grantexp=grant*pxs;
+  var sga_pre=sgacash+ppd_am+sgadep+X.sc+grantexp+warr+bd+hold+mkt+comm+eur_oh+acq_oh+issuecost_b+oneoff;
+  var amort=X.amort+X.acq_am*S.acq;
+  var opinc_pre=sales-cogst-sga_pre-X.rd-amort;
+  var revmove=Math.max(rev_move,-S.rev), revstart=S.rev+revmove, tlstart=S.tl+tl_new, brstart=S.bridge+bridge_eff;
+  var intrev=revstart*rrev/4, inttl=tlstart*rtl/4, intbr=brstart*rbr/4, bondint=S.bond*X.rate_bond/4, b2int=b2start*b2y/4;
+  var coupon=X.bond_face*X.coupon/4, coupon2=b2f*b2c/4, bondam=bondint-coupon, b2am=b2int-coupon2;
+  var inttot=intrev+inttl+intbr+bondint+b2int;
+  var covfee=(b2f>0&&inttot>0&&opinc_pre/inttot<X.cov_tie)?X.cov_fee:0;
+  var sga=sga_pre+covfee, opinc=opinc_pre-covfee;
+  var intinc=S.cash*X.rate_cash/4, pretax=opinc-inttot+intinc, tax=X.tax*pretax, ni=pretax-tax;
+  var arpct=X.terms_ar[terms], arg=arpct*netp, allow=X.allow_pct*arg, wo=S.allow+bd-allow, coll=S.ar+netp-wo-arg;
+  var ap=X.pol_ap[appol]*prodcost, cashprod=prodcost+S.ap-ap;
+  var claims=X.claims*S.warr, warrend=S.warr+warr-claims;
+  var cashops=coll+billings-cashprod-mfgx-sgacash-hold-mkt-X.rd-claims-plancost-comm-ship-eur_oh-acq_oh-issuecost_b-rack-oneoff-covfee+proceeds
+    -(intrev+inttl+intbr+coupon+coupon2)+intinc-tax-prep_buy*X.prep_cost;
+  var capex=line_buy*X.line_cost+equip_buy*X.equip_cost+plant_buy*X.plant_cost+eur_cost+acq_buy*X.acq_price+motor_buy*X.motor_cost+(X.proc_cost[proc]-X.proc_cost[S.proc]);
+  var inv=-(X.maint+capex);
+  var tlrepay=X.tl_sched+S.tlcum/X.tl_term, div=dps*S.shares;
+  var shares_issued=issue/pxs, issue_cost=X.issue_cost*issue, net_issue=issue-issue_cost;
+  var shares_bought=buyback/(pxs*X.buy_prem);
+  var fin=revmove+tl_new-tlrepay-div+bridge_eff+bprice+net_issue-buyback;
+  var cashpre=S.cash+cashops+inv+fin;
+  var draw=cashpre<X.min_cash?Math.max(0,Math.ceil(Math.min(X.min_cash-cashpre,X.rev_limit-(S.rev+revmove))-1e-9)):0;
+  var cashend=cashpre+draw;
+  var dep=mfgdep+sgadep;
+  var par=(shares_issued+grant)*X.par;
+  var shares_pre=S.shares+shares_issued-shares_bought+grant, shares_end=shares_pre*(split?2:1);
+  var wavg=(S.shares+0.5*(shares_issued-shares_bought+grant))*(split?2:1), eps=ni/wavg;
+  var E={cash:cashend,ar:arg,allow:allow,invU:eU,invV:eV,
+    ppe:S.ppe+X.maint+capex-eur_cost-acq_buy*X.acq_price+acq_buy*X.acq_ppe-dep,
+    intang:S.intang+acq_buy*X.acq_int-amort, goodwill:S.goodwill+acq_buy*X.acq_gw,
+    ppd:ppd_start-ppd_am, ppdq:Math.max(ppdq_start-1,0), ap:ap,warr:warrend,defrev:defrev,rev:S.rev+revmove+draw,bridge:brstart,tl:tlstart-tlrepay,
+    bond:S.bond+bondam, b2:b2start+b2am, b2f:b2f, b2c:b2c, b2y:b2y,
+    cs:S.cs+par, apic:S.apic+X.sc+net_issue-shares_issued*X.par+grantexp-grant*X.par, re:S.re+ni-div, treas:S.treas-buyback,
+    shares:shares_end, px:0, tlcum:S.tlcum+tl_new, line:S.line+line_buy, equip:S.equip+equip_buy, eur:eur_new,
+    plant:S.plant>0?S.plant+1:plant_buy, acq:S.acq+acq_buy, terms:terms, std:stdn, rebate:rebate, appol:appol,
+    shift:shift,pos:pos,sup:sup,motor:S.motor+motor_buy,packs:packs,cut:cut_eff,proc:proc,drop:drop,
+    method:method, cumni:S.cumni+ni, cumsales:S.cumsales+sales, cumeps:S.cumeps+eps};
+  // PP&E: add acquired PP&E and capital items, remove cash-only acquisition price handled via goodwill/intang
+  E.ppe=S.ppe+X.maint+line_buy*X.line_cost+equip_buy*X.equip_cost+plant_buy*X.plant_cost+eur_cost+acq_buy*X.acq_ppe+motor_buy*X.motor_cost+(X.proc_cost[proc]-X.proc_cost[S.proc])-dep;
+  var C=P.c;
+  var arnet=E.ar-E.allow, prepaidT=C.prepaid+E.ppd;
+  var ta=E.cash+arnet+endInv+prepaidT+E.ppe+E.goodwill+E.intang+C.other;
+  var tliab=E.ap+C.accrued+E.warr+E.defrev+E.rev+E.bridge+E.tl+E.bond+E.b2;
+  var eq=E.cs+E.apic+E.re+E.treas;
+  var begInv=0;for(i=0;i<N;i++)begInv+=S.invV[i];
+  var cfo=ni+dep+amort+X.sc+grantexp+bondam+b2am-(arnet-(S.ar-S.allow))-(endInv-begInv)-(E.ppd-S.ppd)+(ap-S.ap)+(warrend-S.warr)+(defrev-S.defrev);
+  var roe=E.cumni*(4/r)/((P.open_equity+eq)/2);
+  E.px=(eq/shares_end)*clamp(X.pe0+X.pe_k*(roe-X.pe_roe0),X.pe_min,X.pe_max)*R.pxf;
+  var varc=cogsv+rack+loss+warr+bd+comm+plancost+ship, cm=sales-varc, fixed=mfgx+mfgdep+(sga-warr-bd-comm)+X.rd+amort;
+  var cmr=sales>0?cm/sales:0, be=cmr>0?fixed/cmr:0, mos=sales>0?(sales-be)/sales:0, dol=opinc!==0?cm/opinc:0;
+  var cmi=[],seg=[],tbd=X.bd_pct*X.terms_bd[terms]*X.std_bd[stdn];
+  for(i=0;i<N;i++){var nr=gross>0?rev[i]*(1-disc/gross):0;cmi[i]=nr-cogs[i]-(X.warr_pct*R.warrm+tbd)*nr-(i===0?rack:0);seg[i]=cmi[i]-X.trace[i]/4*(1-drop[i]*X.avoid[i]);}
+  var needop=target/(1-X.tax)+inttot-intinc, reqsales=cmr>0?(fixed+needop)/cmr:0;
+  o.varc=varc;o.cm=cm;o.fixed=fixed;o.cmr=cmr;o.be=be;o.mos=mos;o.dol=dol;o.cmi=cmi;o.seg=seg;o.target=target;o.reqsales=reqsales;o.met=ni>=target?1:0;
+  o.soldfleet=soldfleet;o.fprice=fprice;o.faccept=faccept;o.rack=rack;o.loss=loss;o.proceeds=proceeds;o.covfee=covfee;o.hours=hours*bscale;o.bc=bc;o.bscale=bscale;o.feerev=feerev;o.order_adj=order_adj;o.sav_batch=sav_batch;o.sev=sev;o.oneoff=oneoff;o.motor_buy=motor_buy;o.shift=shift;o.pos=pos;o.sup=sup;o.packs=packs;o.cut=cut_eff;o.proc=proc;o.drop=drop;o.chan_mult=chan_mult;
+  o.price=price;o.dem=dem;o.cap=capa;o.prod=prod;o.sold=sold;o.rev=rev;o.cogs=cogs;o.pcost=pcost;o.eU=eU;
+  o.sales=sales;o.netp=netp;o.gross=gross;o.disc=disc;o.billings=billings;o.planrev=planrev;o.cogst=cogst;o.sga=sga;o.opinc=opinc;
+  o.inttot=inttot;o.ni=ni;o.tax=tax;o.coll=coll;o.warr=warr;o.bd=bd;o.hold=hold;o.mkt=mkt;o.dep=dep;o.amort=amort;
+  o.cashops=cashops;o.cfo=cfo;o.capex=capex;o.fin=fin;o.tl_new=tl_new;o.tlrepay=tlrepay;o.div=div;o.draw=draw;
+  o.cashpre=cashpre;o.cashend=cashend;o.ta=ta;o.tliab=tliab;o.eq=eq;o.check=ta-tliab-eq;o.endInv=endInv;o.E=E;
+  o.line_buy=line_buy;o.equip_buy=equip_buy;o.prep_buy=prep_buy;o.ppd_am=ppd_am;o.plant_buy=plant_buy;o.acq_buy=acq_buy;
+  o.eur_cost=eur_cost;o.bridge_eff=bridge_eff;o.bprice=bprice;o.b2int=b2int;o.coupon2=coupon2;o.b2am=b2am;o.bface=bface;
+  o.issue=issue;o.net_issue=net_issue;o.issue_cost=issue_cost;o.shares_issued=shares_issued;o.buyback=buyback;o.shares_bought=shares_bought;
+  o.grant=grant;o.grantexp=grantexp;o.split=split;o.pxs=pxs;o.eps=eps;o.roe=roe;o.method=method;o.dps=dps;o.claims=claims;
+  o.cashprod=cashprod;o.intinc=intinc;o.intrev=intrev;o.inttl=inttl;o.intbr=intbr;o.bondint=bondint;o.ap=ap;o.prodcost=prodcost;
+  o.terms=terms;o.std=stdn;o.rebate=rebate;o.appol=appol;o.attach=attach;o.eur=eur_new;o.tie=(opinc+amort+0)/(inttot||1);
+  o.lost=dem.map(function(d,k){return d-sold[k];});
+  o.liq=cashend<0;o.defrev=defrev;o.wavg=wavg;o.shares_end=shares_end;o.bd=bd;
+  return o;
+}
+
+
+var P=PARAMS, X=P.x, NAMES=["Ridge Commuter","Balsam E1","Hemlock Custom","Trail Cub"];
+var round=1, S=null, fsetScore=null, fsetTries=0, fsetKey=null, last=null, curEv=[], $=function(i){return document.getElementById(i);};
+function fmt(n,d){d=d||0;if(!isFinite(n))return "-";var s=Math.abs(n).toLocaleString("en-US",{minimumFractionDigits:d,maximumFractionDigits:d});return n<0&&Math.round(Math.abs(n)*Math.pow(10,d))>0?"("+s+")":s;}
+function pct(n){return (n*100).toFixed(1)+"%";}
+function sum(a){return a.reduce(function(x,y){return x+y;},0);}
+function stateFromCode(txt){var j=JSON.parse(txt);var s={invU:[],invV:[],drop:[]};for(var k in j){var m=/^(invU|invV|drop)_(\d)$/.exec(k);if(m)s[m[1]][+m[2]-1]=+j[k];else if(k==="method")s.method=j[k];else s[k]=+j[k];}return s;}
+for(var t=1;t<=12;t++){var op=document.createElement("option");op.value=t;op.textContent="Team "+t;$("teamNo").appendChild(op);}
+for(var q=1;q<=12;q++){var o2=document.createElement("option");o2.value=q;o2.textContent="Round "+q+" ("+P.rounds[q-1].q+", due "+P.rounds[q-1].due+")";$("roundSel").appendChild(o2);}
+function field(id,label,val,hint,min,max,step){return '<div><label for="'+id+'">'+label+'</label><input id="'+id+'" type="number" inputmode="decimal" value="'+val+'"'+(min!=null?' min="'+min+'"':'')+(max!=null?' max="'+max+'"':'')+(step?' step="'+step+'"':'')+'><p class="hint">'+hint+'</p></div>';}
+function sel(id,label,opts,cur,hint){var h='<div><label for="'+id+'">'+label+'</label><select id="'+id+'">';opts.forEach(function(o,i){h+='<option value="'+i+'"'+(i===cur?' selected':'')+'>'+o+'</option>';});return h+'</select><p class="hint">'+hint+'</p></div>';}
+function buildForm(){
+  var R=P.rounds[round-1],A=R.allow,h="",i,st=S||{terms:0,std:1,rebate:0,appol:1,eur:0,method:"",b2f:0,line:0,equip:0,ppdq:0,plant:0,acq:0};
+  for(i=0;i<4;i++)h+=field("pr"+i,NAMES[i],Math.round(X.ref[i]*R.cpi/5)*5,"Reference $"+fmt(X.ref[i])+"; allowed $"+fmt(X.ref[i]*(1-X.pr_band))+" to $"+fmt(X.ref[i]*(1+X.pr_band)),null,null,5);
+  $("fPrice").innerHTML=h;h="";
+  for(i=0;i<4;i++)h+=field("pd"+i,NAMES[i],0,"Capacity shown in your plan below",0,null,50);
+  $("fProd").innerHTML=h;
+  h=field("mkt","Incremental marketing ($K)",0,"Raises demand on all lines with diminishing returns",0,null,50);
+  if(A.line)h+=sel("line","Buy the new assembly line ($6,000K)?",["No","Yes"],0,"In service next quarter: +20% capacity and 2% lower unit cost on Ridge Commuter and Balsam E1; 10-year life.");
+  if(A.method)h+=sel("method","Inventory cost method (locked for the game)",["FIFO","Weighted average","LIFO"],0,"Costs keep rising, so this choice changes profit and taxes in every later round.");
+  if(A.equip&&!(S&&S.equip))h+=sel("equip","Buy the second equipment cell ($4,000K)?",["No","Yes"],0,"Paint-booth and finishing cell, one purchase: +15% capacity on every line from next quarter; 8-year life.");
+  if(A.prep&&!(S&&S.ppdq>0))h+=sel("prep","Prepay the 12-month insurance and marketing contract ($1,500K)?",["No","Yes"],0,"Normally $450K a quarter ($1,800K a year). You pay now and expense $375K a quarter.");
+  if(A.dps)h+=field("dps","Dividend per share ($)",0,"Cullowhee has never paid one. $0.10 a share costs about $895K. Maximum $0.30.",0,X.dps_max,0.01);
+  if(A.issue)h+=field("issue","Sell new shares ($K to raise)",0,"Sold at the last close price less a 4% issue cost. Maximum $"+fmt(X.issue_max)+"K. Dilutes EPS.",0,X.issue_max,250);
+  if(A.buyback)h+=field("buyback","Buy back shares ($K)",0,"Paid at 5% above market. Maximum $"+fmt(X.buy_max)+"K.",0,X.buy_max,250);
+  if(A.grant)h+=field("grant","Stock grant to managers (thousand shares)",0,"Expense = shares x market price; non-cash; issues new shares. Maximum "+X.grant_max+".",0,X.grant_max,25);
+  if(A.split)h+=sel("split","Stock split",["None","2-for-1"],0,"Doubles shares and halves the price. No effect on total equity.");
+  if(A.credit){h+=sel("terms","Customer credit terms",["Net 30","2/10 net 30","Net 60"],st.terms,"Net 60 lifts demand 4% but ties up receivables and raises bad debts. 2/10 net 30 speeds cash; 40% of sales take the 2% discount.");
+    h+=sel("std","Credit approval standard",["Tight","Standard","Loose"],st.std,"Loose approves more dealers (demand +3%) and increases bad debts.");
+    h+=field("rebate","Rebate (share of sales, 0 to 0.04)",st.rebate,"Costs the rate on every sale; lifts demand 2 points for each 1 point of rebate.",0,X.rebate_max,0.005);}
+  if(A.plans)h+=field("attach","Service-plan attach rate (plans per bike sold, 0 to 0.40)",0,"App subscriptions and extended warranties at $200, billed now and earned over 8 quarters. 10% commission when sold; 30% of revenue to serve.",0,X.attach_max,0.05);
+  if(A.eur)h+=sel("eur","Velo Nord expansion level",["None","Level 1: hub ($3,000K)","Level 2: hub + local assembly ($6,000K)"],st.eur,"Adds 8% (level 1) or 14% (level 2) to demand from next quarter. Sales are in euros, so the exchange rate moves your dollar revenue. Cannot go back down.");
+  if(A.appol)h+=sel("appol","Supplier payment policy",["Pay early (1.5% discount)","Pay on time","Stretch payables (2.5% price penalty)"],st.appol,"Early payment cuts payables to about 35% of purchases; stretching lifts it to 100%.");
+  if(A.plant&&!(S&&S.plant>0))h+=sel("plant","Plant expansion ($14,000K)",["No","Yes"],0,"+35% capacity on every line, in service two quarters after you buy it. Adds $150K a quarter of overhead; depreciated over 25 years.");
+  if(A.acq&&!(S&&S.acq>0))h+=sel("acq","Second acquisition: Pisgah Frame Works ($10,000K)",["No","Yes"],0,"Brings frame production in house: 3% lower unit cost on every line from next quarter, plus goodwill ($3,500K), PP&E ($4,500K) and intangibles ($2,000K); $300K a quarter overhead.");
+  if(A.shift)h+=sel("shift","Run a second shift?",["No","Yes"],S&&S.shift?1:0,"Adds "+Math.round(X.shift_cap*100)+"% to paint-booth hours and plant capacity for the quarter; costs $"+fmt(X.shift_cost)+"K in overtime premium and supervision.");
+  if(A.pos)h+=sel("pos","Market positioning",["Cost leader","Balanced","Differentiator"],S?S.pos:1,"Cost leader: unit cost "+Math.round((1-X.pos_cost[0])*100)+"% lower but buyers are more price sensitive. Differentiator: cost "+Math.round((X.pos_cost[2]-1)*100)+"% higher, buyers less price sensitive and marketing works "+X.pos_mkt[2]+" times as hard.");
+  if(A.sup&&!(S&&S.sup))h+=sel("sup","Switch Balsam E1 motors to a domestic supplier?",["No","Yes"],0,"Avoids the tariff (you pay only $"+X.sup_prem+" more per E1) but costs a one-time $"+fmt(X.sup_exit)+"K exit fee with the current supplier. Permanent.");
+  if(A.cut&&!(S&&S.cut>0))h+=field("cut","Fixed-cost cut (share of cash SG&A, 0 to "+X.cut_max+")",0,"Saves that share of cash SG&A every quarter after a one-time severance of "+X.cut_sev+" quarters of savings. Demand falls about "+X.cut_dem+" point for each point cut (less service and presence). One time only.",0,X.cut_max,0.01);
+  if(A.target)h+=field("target","Net income target for the quarter ($K)",0,"Your plan panel shows the sales you need to hit this target and whether you meet it.",null,null,100);
+  if(A.fleet)h+=sel("fleet","Fleet order: "+fmt(R.fleet_q)+" Ridge Commuters at $"+fmt(R.fleet_price),["Refuse","Accept at the offered price","Counter-offer"],0,"Accepting commits you to build and ship the units this quarter (they are sold first). Fleet bikes need a rack ("+(X.fleet_rack*1000).toFixed(0)+" dollars a bike) plus $"+fmt(X.fleet_setup)+"K of setup. Counters are accepted at $"+fmt(X.fleet_accept)+" or less.")+field("fprice","Counter-offer price per unit ($)",R.fleet_price,"Only used if you counter. Allowed $"+fmt(X.fleet_min)+" to $"+fmt(X.fleet_max)+".",X.fleet_min,X.fleet_max,10);
+  if(A.drop){var dh="";for(i=0;i<4;i++)dh+=(S&&S.drop&&S.drop[i]===1)?'<div><label>'+NAMES[i]+'</label><p class="hint">Already dropped.</p></div>':sel("drop"+i,"Drop "+NAMES[i]+"?",["Keep","Drop"],0,"Stops production; remaining stock and line assets are written off at salvage ("+Math.round(X.salvage*100)+"%). Traceable fixed costs ($"+fmt(X.trace[i])+"K a year, "+Math.round(X.avoid[i]*100)+"% avoidable) disappear.");h+=dh;}
+  if(A.packs)h+=sel("packs","Buy battery packs instead of building them?",["No","Yes"],S&&S.packs?1:0,"Raises unit cost of E1 and Hemlock about "+(X.pack_prem*100).toFixed(1)+"% but saves $"+fmt(X.pack_save)+"K of overhead a quarter. Reversible each quarter.");
+  if(A.motor&&!(S&&S.motor))h+=sel("motor","Build E1 motors in house ($"+fmt(X.motor_cost)+"K)?",["No","Yes"],0,"Saves $"+X.motor_save+" per E1 and removes the tariff effect, but adds $"+X.motor_oh+"K a quarter of overhead and $"+X.motor_dep+"K a quarter of depreciation.");
+  if(A.proc)h+=sel("proc","Process redesign (activity-based savings)",["None","Level 1 ($"+fmt(X.proc_cost[1])+"K)","Level 2 ($"+fmt(X.proc_cost[2])+"K)"],S?S.proc:0,"Cuts batch-related overhead "+Math.round(X.proc_batch[1]*100)+"% (level 1) or "+Math.round(X.proc_batch[2]*100)+"% (level 2) and order-handling cost "+Math.round(X.proc_order[1]*100)+"% or "+Math.round(X.proc_order[2]*100)+"%. Cannot go back down.");
+  if(A.chan){var cn=["Dealer","Online","Fleet and commercial"],sh=X.chan_share;cn.forEach(function(n,k){var ks=["d","o","f"][k];h+=field("fee_"+ks,n+" order fee (share of order, 0 to "+X.fee_max+")",0,"This channel is "+Math.round(sh[k]*100)+"% of volume. A fee recovers handling cost but cuts demand (price sensitive).",0,X.fee_max,0.005)+sel("min_"+ks,n+" minimum order",["None","Level 1","Level 2"],0,"Level 1: demand -"+Math.round(X.min_dem[1]*100)+"%, order-handling cost -"+Math.round(X.min_cost[1]*100)+"%. Level 2: -"+Math.round(X.min_dem[2]*100)+"% and -"+Math.round(X.min_cost[2]*100)+"%.");});
+    h+=sel("exitf","Exit the fleet channel?",["No","Yes"],0,"Stops selling to fleet buyers (and stops the fees and minimums there).");}
+  h+=field("tl","New term loan ($K)",0,"Floating rate "+pct(X.rate_tl+R.dr)+", repaid over 5 years from next quarter. Maximum $"+fmt(R.tlmax)+"K.",0,R.tlmax,100);
+  h+=field("rev","Revolver draw (+) or repay (-) ($K)",0,pct(X.rate_rev+R.dr)+" interest. Limit $"+fmt(X.rev_limit)+"K. Cash below $"+fmt(X.min_cash)+"K draws it automatically.",null,null,100);
+  if(A.bridge)h+=field("bridge","Bridge loan draw (+) or repay (-) ($K)",0,pct(X.rate_bridge+R.dr)+" interest. Limit $"+fmt(X.bridge_limit)+"K.",null,null,500);
+  $("fOther").innerHTML=h;
+  $("fSpecial").innerHTML=A.bond?'<h3>Bond issue (one per team)</h3><div class="grid g4"><div><label for="bface">Face amount ($K)</label><input id="bface" type="number" value="0" min="0" max="'+X.bond_max+'" step="500"><p class="hint">Maximum $'+fmt(X.bond_max)+'K. Issue cost 1.5% of face.</p></div><div><label for="bcoup">Coupon rate (annual)</label><input id="bcoup" type="number" value="0.08" min="0.04" max="0.11" step="0.005"><p class="hint">Market yield is '+pct(X.rate_bond+R.dr)+'. A lower coupon sells at a discount.</p></div><div><label for="bterm">Term</label><select id="bterm"><option value="10">10 years</option><option value="5">5 years</option></select><p class="hint">Interest paid quarterly in this simulation.</p></div></div><div id="bondInfo" class="hint"></div>':"";
+  var els=document.querySelectorAll("main input, main select");for(var k=0;k<els.length;k++){if(/^(roundSel|teamNo|teamName|codeIn|fsetMember|expl)$/.test(els[k].id)||els[k].id.charAt(0)==="f"&&/^f\d/.test(els[k].id))continue;els[k].addEventListener("input",refresh);els[k].addEventListener("change",refresh);}
+}
+function rd(id,def){var e=$(id);if(!e)return null;var v=e.value;return v===""?null:parseFloat(v);}
+function readD(){
+  var A=P.rounds[round-1].allow,D={price:[],prod:[]},i;
+  for(i=0;i<4;i++){D.price[i]=rd("pr"+i);D.prod[i]=rd("pd"+i);}
+  D.mkt=rd("mkt");D.tl=rd("tl");D.rev=rd("rev");
+  if($("line"))D.line=+$("line").value;if($("method"))D.method=["FIFO","WA","LIFO"][+$("method").value];if($("equip"))D.equip=+$("equip").value;if($("prep"))D.prep=+$("prep").value;
+  if($("dps"))D.dps=rd("dps");if($("issue"))D.issue=rd("issue");if($("buyback"))D.buyback=rd("buyback");if($("grant"))D.grant=rd("grant");if($("split"))D.split=+$("split").value;
+  if($("terms")){D.terms=+$("terms").value;D.std=+$("std").value;D.rebate=rd("rebate");}
+  if($("attach"))D.attach=rd("attach");if($("eur"))D.eur=+$("eur").value;if($("appol"))D.appol=+$("appol").value;
+  if($("plant"))D.plant=+$("plant").value;if($("acq"))D.acq=+$("acq").value;if($("bridge"))D.bridge=rd("bridge");
+  if($("bface")){D.bface=rd("bface");D.bcoup=rd("bcoup");D.bterm=+$("bterm").value;}
+  if($("shift"))D.shift=+$("shift").value;if($("pos"))D.pos=+$("pos").value;if($("sup"))D.sup=+$("sup").value;if($("cut"))D.cut=rd("cut");if($("target"))D.target=rd("target");
+  if($("fleet")){D.fleet=+$("fleet").value;D.fprice=rd("fprice");}
+  if(A.drop){D.drop=[];for(i=0;i<4;i++)D.drop[i]=$("drop"+i)?+$("drop"+i).value:0;}
+  if($("packs"))D.packs=+$("packs").value;if($("motor"))D.motor=+$("motor").value;if($("proc"))D.proc=+$("proc").value;
+  if(A.chan){["d","o","f"].forEach(function(k){D["fee_"+k]=rd("fee_"+k);D["min_"+k]=+$("min_"+k).value;});D.exitf=+$("exitf").value;}
+  return D;
+}
+function situation(){
+  var R=P.rounds[round-1],h='<p><b>'+R.q+'</b> &middot; due '+R.due+' (Gate Quiz date)</p><div class="box info"><b>Market news:</b> '+R.head+'</div>';
+  var debt=S.rev+S.tl+S.bridge+S.bond+S.b2, eqv=S.cs+S.apic+S.re+S.treas;
+  h+='<div class="kpi"><div>Cash<b>$'+fmt(S.cash)+'K</b></div><div>Debt (all)<b>$'+fmt(debt)+'K</b></div><div>Inventory (cost)<b>$'+fmt(sum(S.invV))+'K</b></div><div>Net income so far<b>$'+fmt(S.cumni)+'K</b></div><div>Shares / price<b>'+fmt(S.shares)+'K / $'+S.px.toFixed(2)+'</b></div></div>';
+  h+='<h3>Where each product stands</h3><table><tr><th>Product</th><th>Units on hand</th><th>Capacity this quarter</th><th>Reference price</th><th>Unit cost this quarter</th></tr>';
+  for(var i=0;i<4;i++){var cap=Math.round(X.cap[i]*(1+(i<2?X.line_cap*S.line:0)+X.equip_cap*S.equip+X.plant_cap*(S.plant>=2?1:0)));h+='<tr><td>'+NAMES[i]+'</td><td>'+fmt(S.invU[i])+'</td><td>'+fmt(cap)+'</td><td>$'+fmt(X.ref[i]*R.cpi)+'</td><td>$'+fmt(X.vc[i]*R.cost*(i<2?1-X.line_cut*S.line:1)*(1-X.acq_cut*S.acq)*X.pol_cost[S.appol])+'</td></tr>';}
+  h+='</table><p class="hint">Benchmark: Ridgeline Bikes earned a return on equity of 17.5% and a return on assets of 8.1% in FY2026 (net margin 6.2%, asset turnover 1.32, equity multiplier 2.15). The leaderboard ranks teams on year-to-date ROE and shows Ridgeline for comparison.</p>';
+  if(round===1)h+='<p class="hint">Opening position: December 31, 2026 balance sheet from Module 1 (total assets $58.3M, equity $31.9M). Q1 is the quietest quarter, so a small loss is normal.</p>';
+  $("situation").innerHTML=h;
+}
+function mgrPanel(o,D){
+  var h='<h3>Managerial view of your plan</h3><table><tr><th>Product</th><th>Units sold</th><th>Contribution margin per unit</th><th>Contribution margin ($K)</th><th>Segment margin ($K)</th></tr>';
+  for(var i=0;i<4;i++)h+='<tr><td>'+NAMES[i]+'</td><td>'+fmt(o.sold[i])+'</td><td>'+(o.sold[i]>0?'$'+fmt(o.cmi[i]/o.sold[i]*1000):'-')+'</td><td>'+fmt(o.cmi[i])+'</td><td>'+fmt(o.seg[i])+'</td></tr>';
+  h+='</table><div class="kpi" style="margin-top:10px"><div>Contribution margin ratio<b>'+pct(o.cmr)+'</b></div><div>Fixed costs this quarter<b>$'+fmt(o.fixed)+'K</b></div><div>Break-even sales<b>$'+fmt(o.be)+'K</b></div><div>Margin of safety<b>'+pct(o.mos)+'</b></div><div>Degree of operating leverage<b>'+(isFinite(o.dol)&&o.dol!==0?o.dol.toFixed(1):'-')+'</b></div><div>Paint-booth hours used<b>'+fmt(o.hours)+' of '+fmt(o.bc)+'</b><span class="hint">'+(o.bscale<1?'Booth is binding: output is scaled back to fit.':'Within booth capacity.')+'</span></div>';
+  if(o.target>0)h+='<div>Sales needed for your target<b>$'+fmt(o.reqsales)+'K</b><span class="hint">Plan sales $'+fmt(o.sales)+'K</span></div><div>Target net income $'+fmt(o.target)+'K<b>'+(o.met?'Met':'Not met')+'</b></div>';
+  if(o.faccept)h+='<div>Fleet order<b>Accepted</b><span class="hint">'+fmt(o.soldfleet)+' units at $'+fmt(o.fprice)+'</span></div>';
+  return h+'</div><p class="hint">Contribution margin is net sales less variable cost (materials, labor, variable overhead, warranty, bad debts, and rack cost for fleet bikes). Segment margin also subtracts the traceable fixed cost of the product line. Break-even uses fixed costs for the quarter.</p>';
+}
+function refresh(){
+  if(!S){$("plan").innerHTML='<div class="box warn">Paste your previous-round close code first.</div>';return;}
+  var D=readD();last=runRound(P,round,S,D,1);var o=last,lo=runRound(P,round,S,D,0.96),hi=runRound(P,round,S,D,1.04),h="",i;
+  h+='<table><tr><th>Product</th><th>Price</th><th>Expected demand</th><th>Capacity</th><th>Produce</th><th>Sold</th><th>Lost sales</th><th>Units left</th><th>Sales ($K)</th></tr>';
+  for(i=0;i<4;i++)h+='<tr><td>'+NAMES[i]+'</td><td>$'+fmt(o.price[i])+'</td><td>'+fmt(o.dem[i])+'</td><td>'+fmt(o.cap[i])+'</td><td>'+fmt(o.prod[i])+'</td><td>'+fmt(o.sold[i])+'</td><td>'+fmt(o.lost[i])+'</td><td>'+fmt(o.eU[i])+'</td><td>'+fmt(o.rev[i])+'</td></tr>';
+  h+='</table><div class="kpi" style="margin-top:10px"><div>Net sales<b>$'+fmt(o.sales)+'K</b></div><div>Operating income<b>$'+fmt(o.opinc)+'K</b></div><div>Net income<b>$'+fmt(o.ni)+'K</b><span class="hint">range $'+fmt(lo.ni)+'K to $'+fmt(hi.ni)+'K</span></div><div>EPS this quarter<b>$'+o.eps.toFixed(2)+'</b></div><div>Ending cash<b>$'+fmt(o.cashend)+'K</b></div><div>Equity ratio<b>'+pct(o.eq/o.ta)+'</b><span class="hint">equity / assets</span></div><div>Times interest earned<b>'+(o.inttot>0?(o.opinc/o.inttot).toFixed(1):"-")+'</b></div><div>ROE to date, annualized<b>'+pct(o.roe)+'</b><span class="hint">Ridgeline 17.5%</span></div><div>Share price at close<b>$'+o.E.px.toFixed(2)+'</b></div></div>';
+  var w="";
+  for(i=0;i<4;i++)if(D.prod[i]>o.cap[i]&&isFinite(D.prod[i]))w+='<div class="box warn">'+NAMES[i]+': you planned '+fmt(D.prod[i])+' units but capacity is '+fmt(o.cap[i])+'. The engine will build only '+fmt(o.cap[i])+'.</div>';
+  for(i=0;i<4;i++)if(o.lost[i]>0)w+='<div class="box warn">'+NAMES[i]+': demand exceeds what you can sell by '+fmt(o.lost[i])+' units (lost sales).</div>';
+  if(o.draw>0)w+='<div class="box warn">Cash would fall below $'+fmt(X.min_cash)+'K, so the revolver draws $'+fmt(o.draw)+'K automatically.</div>';
+  if(o.liq)w+='<div class="box bad">Liquidity crisis: cash would be negative even after the revolver limit. Reduce spending or raise financing.</div>';
+  if(Math.abs(o.check)>0.01)w+='<div class="box bad">Internal check failed. Tell your instructor.</div>';
+  $("plan").innerHTML=h+w;
+  $("mgr").innerHTML=round>=9?mgrPanel(o,D):"";
+  if($("bondInfo"))$("bondInfo").textContent=o.bface>0?"Issue price $"+fmt(o.bprice)+"K for a face of $"+fmt(o.bface)+"K ("+(o.bprice<o.bface?"discount":"premium")+" of $"+fmt(Math.abs(o.bface-o.bprice))+"K). Interest expense next quarter: $"+fmt(o.b2int)+"K; cash coupon $"+fmt(o.coupon2)+"K.":"";
+  buildFset(o,D);renderOut();
+}
+// ---------- FSET
+var COLS=[["cash","Cash"],["ar","Receivables"],["inv","Inventory"],["oa","Prepaid, goodwill and intangibles"],["ppe","PP&amp;E"],["ap","Accounts payable"],["debt","Debt"],["othl","Other liabilities (incl. deferred revenue)"],["cc","Contributed capital (incl. treasury)"],["re","Retained earnings"]];
+function zero(){return {cash:0,ar:0,inv:0,oa:0,ppe:0,ap:0,debt:0,othl:0,cc:0,re:0};}
+function argmax(a){var b=0;for(var i=1;i<a.length;i++)if(a[i]>a[b])b=i;return b;}
+function salesEv(o){var k=argmax(o.rev),e=zero();e.ar=o.rev[k];e.inv=-o.cogs[k];e.re=o.rev[k]-o.cogs[k];return {t:"You sold "+fmt(o.sold[k])+" "+NAMES[k]+" to dealers on account for $"+fmt(o.rev[k])+"K. The units cost you $"+fmt(o.cogs[k])+"K ("+o.method+").",a:e,h:"Receivables rise by the sale; inventory falls by the cost; retained earnings rise by the difference."};}
+function collEv(o){var e=zero(),c=Math.round(o.coll);e.cash=c;e.ar=-c;return {t:"Customers paid $"+fmt(c)+"K on account during the quarter.",a:e,h:"Cash rises and receivables fall by the same amount. No income effect."};}
+function divEv(o){var e=zero();if(o.dps>0){e.cash=-o.div;e.re=-o.div;return {t:"You declared and paid a cash dividend of $"+o.dps.toFixed(2)+" per share ($"+fmt(o.div)+"K).",a:e,h:"Cash and retained earnings both fall by the dividend."};}
+  e.re=-X.sc;e.cc=X.sc;return {t:"You recorded $"+fmt(X.sc)+"K of stock compensation expense for employee share awards.",a:e,h:"Expense reduces retained earnings; contributed capital rises by the same amount. No cash."};}
+function depEv(o){var e=zero();e.ppe=-o.dep;e.re=-o.dep;return {t:"You recorded depreciation of $"+fmt(o.dep)+"K for the quarter.",a:e,h:"Depreciation reduces PP&E and retained earnings. No cash."};}
+function loanEv(o){var e=zero();e.cash=o.tl_new;e.debt=o.tl_new;return {t:"You borrowed $"+fmt(o.tl_new)+"K on a new term loan.",a:e,h:"Cash and debt both rise. No income effect."};}
+function capEv(o,cost,what,fin){var e=zero(),f=Math.min(fin,cost);e.ppe=cost;e.cash=-(cost-f);e.debt=f;return {t:"You bought "+what+" for $"+fmt(cost)+"K, paying $"+fmt(cost-f)+"K in cash and borrowing $"+fmt(f)+"K on a term loan.",a:e,h:"PP&E up by the cost; cash down by what you paid; debt up by the loan."};}
+function events(o,D){
+  var ev=[],e,k;
+  if(round===1){
+    k=argmax(o.pcost);e=zero();e.inv=o.pcost[k];e.ap=o.pcost[k];
+    ev.push({t:"Your team produced "+fmt(o.prod[k])+" "+NAMES[k]+" and bought the materials and labor on account for $"+fmt(o.pcost[k])+"K.",a:e,h:"Inventory and accounts payable both rise. Nothing hits income."});
+    ev.push(salesEv(o));
+    if(o.line_buy)ev.push(capEv(o,X.line_cost,"the assembly line",o.tl_new));
+    else{e=zero();e.othl=o.warr;e.re=-o.warr;ev.push({t:"You recorded warranty expense of $"+fmt(o.warr)+"K for the quarter, not yet paid.",a:e,h:"A liability is created and the expense reduces retained earnings."});}
+  } else if(round===2){
+    ev.push(divEv(o));ev.push(o.equip_buy?capEv(o,X.equip_cost,"the second equipment cell",o.tl_new):depEv(o));ev.push(collEv(o));
+  } else if(round===3){
+    if(o.prep_buy){e=zero();e.cash=-X.prep_cost;e.oa=X.prep_cost;ev.push({t:"You paid $"+fmt(X.prep_cost)+"K cash for the 12-month insurance and marketing contract.",a:e,h:"Cash falls and a prepaid asset rises. No expense yet."});}
+    else{e=zero();var it=Math.round(o.inttot);e.othl=it;e.re=-it;ev.push({t:"You accrued $"+fmt(it)+"K of interest on your debt at quarter end, not yet paid.",a:e,h:"Interest expense reduces retained earnings and creates a liability."});}
+    if(o.ppd_am>0){e=zero();var am=Math.round(o.ppd_am);e.oa=-am;e.re=-am;ev.push({t:"You recorded $"+fmt(am)+"K as this quarter's share of the prepaid contract.",a:e,h:"Part of the prepaid asset becomes expense. No cash."});}
+    else ev.push(depEv(o));
+    ev.push(o.equip_buy?capEv(o,X.equip_cost,"the second equipment cell",o.tl_new):collEv(o));
+  } else if(round===4){
+    if(o.issue>0){e=zero();e.cash=o.net_issue;e.cc=o.net_issue;ev.push({t:"You sold new shares for $"+fmt(o.issue)+"K and paid $"+fmt(o.issue_cost)+"K of issue cost out of the proceeds.",a:e,h:"Cash rises by the net proceeds; contributed capital rises by the same net amount. No income effect."});}
+    else if(o.tl_new>0)ev.push(loanEv(o));else ev.push(collEv(o));
+    ev.push(divEv(o));ev.push(salesEv(o));
+  } else if(round===5){
+    if(o.billings>0){e=zero();e.cash=o.billings;e.othl=o.billings;ev.push({t:"You billed $"+fmt(o.billings)+"K for app subscriptions and extended warranties in advance and collected the cash.",a:e,h:"Cash rises and a liability (deferred revenue) rises. Nothing is earned yet."});}
+    else ev.push(divEv(o));
+    e=zero();var pr=Math.round(o.planrev);e.othl=-pr;e.re=pr;ev.push({t:"You recognized $"+fmt(pr)+"K of deferred revenue as earned this quarter.",a:e,h:"The liability falls and retained earnings rise. No cash."});
+    e=zero();var bd=Math.round(o.bd);e.ar=-bd;e.re=-bd;ev.push({t:"You recorded bad debt expense of $"+fmt(bd)+"K by adding to the allowance for doubtful accounts.",a:e,h:"Receivables (net) fall and retained earnings fall. No cash."});
+  } else if(round===6){
+    if(o.acq_buy){e=zero();e.cash=-X.acq_price;e.ppe=X.acq_ppe;e.oa=X.acq_gw+X.acq_int;ev.push({t:"You bought Pisgah Frame Works for $"+fmt(X.acq_price)+"K in cash: PP&E $"+fmt(X.acq_ppe)+"K, intangibles $"+fmt(X.acq_int)+"K, goodwill $"+fmt(X.acq_gw)+"K.",a:e,h:"Cash falls by the price; PP&E, intangibles and goodwill rise by the allocation."});}
+    else if(o.plant_buy){e=zero();e.cash=-X.plant_cost;e.ppe=X.plant_cost;ev.push({t:"You paid $"+fmt(X.plant_cost)+"K cash for the plant expansion.",a:e,h:"Cash falls and PP&E rises."});}
+    else ev.push(depEv(o));
+    if(o.bridge_eff>0){e=zero();e.cash=o.bridge_eff;e.debt=o.bridge_eff;ev.push({t:"You drew $"+fmt(o.bridge_eff)+"K on the short-term bridge loan.",a:e,h:"Cash and debt both rise."});}
+    else ev.push(collEv(o));
+    e=zero();var cp=Math.round(o.cashprod);e.cash=-cp;e.ap=-cp;ev.push({t:"You paid suppliers $"+fmt(cp)+"K on account for earlier purchases.",a:e,h:"Cash and accounts payable both fall. No income effect."});
+  } else if(round===7){
+    if(o.bface>0){e=zero();var bp=Math.round(o.bprice);e.cash=bp;e.debt=bp;ev.push({t:"You issued bonds with a face of $"+fmt(o.bface)+"K and a coupon of "+(P.x.bond_face?"":"")+((D.bcoup||0)*100).toFixed(1)+"%. They sold for $"+fmt(bp)+"K at the market yield.",a:e,h:"Cash and bonds payable (net) both rise by the issue price, not the face amount."});}
+    else if(o.tl_new>0)ev.push(loanEv(o));else ev.push(collEv(o));
+    if(o.E.b2>0){e=zero();var c2=Math.round(o.coupon2),i2=Math.round(o.b2int);e.cash=-c2;e.debt=i2-c2;e.re=-i2;ev.push({t:"Interest on the new bonds: expense $"+fmt(i2)+"K at the effective rate, cash coupon $"+fmt(c2)+"K.",a:e,h:"Retained earnings fall by the expense; cash falls by the coupon; the bond's carrying value moves by the difference."});}
+    else{e=zero();var il=Math.round(o.inttl);e.cash=-il;e.re=-il;ev.push({t:"You paid $"+fmt(il)+"K of interest on your term loans.",a:e,h:"Cash and retained earnings both fall."});}
+    e=zero();var wr=Math.round(o.warr);e.othl=wr;e.re=-wr;ev.push({t:"You recorded warranty expense of $"+fmt(wr)+"K, which claims are running above plan.",a:e,h:"A warranty liability is created and the expense reduces retained earnings."});
+  } else {
+    if(o.buyback>0){e=zero();e.cash=-o.buyback;e.cc=-o.buyback;ev.push({t:"You bought back shares for $"+fmt(o.buyback)+"K and hold them as treasury stock.",a:e,h:"Cash falls and equity falls through treasury stock (shown here under contributed capital). No income effect."});}
+    else ev.push(divEv(o));
+    if(o.grant>0){e=zero();var ge=Math.round(o.grantexp);e.re=-ge;e.cc=ge;ev.push({t:"You granted "+fmt(o.grant)+" thousand shares to managers when the price was $"+o.pxs.toFixed(2)+": expense $"+fmt(ge)+"K.",a:e,h:"Compensation expense reduces retained earnings; contributed capital rises by the same amount. No cash."});}
+    else{e=zero();e.re=-X.sc;e.cc=X.sc;ev.push({t:"You recorded $"+fmt(X.sc)+"K of stock compensation expense for employee share awards.",a:e,h:"Expense reduces retained earnings; contributed capital rises by the same amount. No cash."});}
+    if(o.split)ev.push({t:"You split the stock 2-for-1.",a:zero(),h:"A split changes the number of shares, not any account balance. Every effect is zero."});
+    else if(o.issue>0){e=zero();e.cash=o.net_issue;e.cc=o.net_issue;ev.push({t:"You sold new shares for $"+fmt(o.issue)+"K and paid $"+fmt(o.issue_cost)+"K of issue cost.",a:e,h:"Cash and contributed capital both rise by the net proceeds."});}
+    else ev.push(salesEv(o));
+  }
+  return ev;
+}
+function buildFset(o,D){
+  if(round>8){curEv=[];return;}
+  var key=JSON.stringify([round,o.sales,o.pcost,o.dps,o.tl_new,o.line_buy,o.equip_buy,o.method,o.prep_buy,o.issue,o.buyback,o.grant,o.split,o.acq_buy,o.plant_buy,o.bridge_eff,o.bface,D.bcoup,o.billings]);
+  if(key===fsetKey)return;fsetKey=key;curEv=events(o,D);fsetScore=null;fsetTries=0;$("fsetMsg").innerHTML="";
+  var h='<table><tr><th scope="col">Event</th>';COLS.forEach(function(c){h+='<th scope="col">'+c[1]+'</th>';});h+='</tr>';
+  curEv.forEach(function(ev,i){h+='<tr><th class="ev" scope="row" colspan="11">Event '+(i+1)+': '+ev.t+'</th></tr><tr><td>Effect ($K)</td>';COLS.forEach(function(c){h+='<td id="c'+i+c[0]+'"><input type="number" step="any" id="f'+i+c[0]+'" aria-label="Event '+(i+1)+' '+c[1].replace("&amp;","&")+'"></td>';});h+='</tr>';});
+  $("fset").innerHTML=h+'</table>';
+}
+function checkFset(){
+  if(!$("fsetMember").value.trim()){$("fsetMsg").innerHTML='<div class="box warn">Enter the name of the team member completing the FSET.</div>';$("fsetMember").focus();return;}
+  if(!curEv.length){$("fsetMsg").innerHTML='<div class="box warn">Load your close code first.</div>';return;}
+  var right=0,tot=0,hints="";
+  curEv.forEach(function(ev,i){var bad=false;COLS.forEach(function(c){var v=parseFloat($("f"+i+c[0]).value);if(!isFinite(v))v=0;var ok=Math.abs(v-ev.a[c[0]])<=1.0;tot++;if(ok)right++;else bad=true;var td=$("c"+i+c[0]);td.className=ok?"g":"r";td.title=ok?"Correct":"Not correct";
+    var m=td.querySelector("span");if(m)m.remove();var sp=document.createElement("span");sp.className=ok?"":"hint";sp.textContent=ok?" ✓":(fsetTries>=1?" → "+fmt(Math.round(ev.a[c[0]])):" ✗");td.appendChild(sp);});
+    if(bad)hints+="<li>Event "+(i+1)+": "+ev.h+"</li>";});
+  fsetTries++;if(fsetScore===null)fsetScore=Math.round(100*right/tot);
+  var m='<div class="box '+(right===tot?'ok':'bad')+'"><b>'+right+' of '+tot+' cells correct.</b> '+(right===tot?'Every cell is right.':'Red cells need another look.')+'</div>';
+  if(right<tot)m+='<ul>'+hints+'</ul>'+(fsetTries===1?'<p class="hint">Fix the red cells and check again. Correct answers appear after your second check.</p>':'');
+  m+='<p>Score recorded (first check): <b>'+fsetScore+' / 100</b></p>';$("fsetMsg").innerHTML=m;renderOut();
+}
+// ---------- Output
+function words(s){var m=s.trim().match(/\S+/g);return m?m.length:0;}
+function row(){
+  var D=readD(),A=P.rounds[round-1].allow,r=[$("teamNo").value,$("teamName").value||("Team "+$("teamNo").value)],i;
+  function v(x){return x===null||x===undefined||!isFinite(x)?"":x;}
+  function z(x){return v(x)===""?0:x;}
+  var m={};
+  for(i=0;i<4;i++){m["price"+(i+1)]=v(D.price[i]);m["prod"+(i+1)]=v(D.prod[i]);}
+  m.mkt=z(D.mkt);m.tl=z(D.tl);m.rev=z(D.rev);
+  m.dps=A.dps?z(D.dps):"";m.line=A.line?D.line:"";m.equip=$("equip")?D.equip:"";m.method=A.method?D.method:"";m.prep=$("prep")?D.prep:"";
+  m.issue=A.issue?z(D.issue):"";m.buyback=A.buyback?z(D.buyback):"";m.split=A.split?D.split:"";m.grant=A.grant?z(D.grant):"";
+  m.terms=A.credit?D.terms:"";m.std=A.credit?D.std:"";m.rebate=A.credit?v(D.rebate):"";m.attach=A.plans?z(D.attach):"";
+  m.eur=A.eur?D.eur:"";m.appol=A.appol?D.appol:"";m.plant=$("plant")?D.plant:"";m.acq=$("acq")?D.acq:"";m.bridge=A.bridge?z(D.bridge):"";
+  m.bface=A.bond?z(D.bface):"";m.bcoup=A.bond?v(D.bcoup):"";m.bterm=A.bond?D.bterm:"";
+  m.shift=A.shift?D.shift:"";m.pos=A.pos?D.pos:"";m.sup=$("sup")?D.sup:"";m.cut=$("cut")?z(D.cut):"";m.target=A.target?z(D.target):"";
+  m.fleet=A.fleet?D.fleet:"";m.fprice=(A.fleet&&D.fleet===2)?v(D.fprice):"";
+  for(i=0;i<4;i++)m["drop"+(i+1)]=A.drop?(D.drop[i]||0):"";
+  m.packs=A.packs?D.packs:"";m.motor=$("motor")?D.motor:"";m.proc=A.proc?D.proc:"";
+  ["d","o","f"].forEach(function(k){m["fee_"+k]=A.chan?z(D["fee_"+k]):"";m["min_"+k]=A.chan?D["min_"+k]:"";});m.exitf=A.chan?D.exitf:"";
+  COLSL.forEach(function(k){r.push(m[k]===undefined?"":m[k]);});
+  r.push($("fsetMember").value.trim());r.push(fsetScore===null?"":fsetScore);
+  return r.join("\t");
+}
+function renderOut(){
+  var w=words($("expl").value);$("wc").textContent=w+" words";
+  var miss=[];if(!S)miss.push("previous-round close code");if(w<60)miss.push("explanation (at least 60 words)");if(round<=8&&fsetScore===null)miss.push("FSET check");
+  $("saveMsg").className="box "+(miss.length?"warn":"ok");
+  $("saveMsg").textContent=miss.length?"Still needed: "+miss.join(", ")+".":"Ready to submit. Copy your decisions below.";
+  $("out").textContent=S?row().replace(/\t/g,"  |  "):"";
+}
+function fullText(){return "CULLOWHEE CYCLE WORKS - ROUND "+round+" ("+P.rounds[round-1].q+")\nTeam "+$("teamNo").value+": "+$("teamName").value+"\n\nDECISIONS (tab-separated row for the instructor workbook)\n"+row()+"\n\nEXPLANATION\n"+$("expl").value+(round<=8?"\n\nFSET: member "+$("fsetMember").value+", first-check score "+(fsetScore===null?"not completed":fsetScore):"")+"\n";}
+function copy(txt,btn){function done(){var o=btn.textContent;btn.textContent="Copied";setTimeout(function(){btn.textContent=o;},1500);}
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done,fb);}else fb();
+  function fb(){var ta=document.createElement("textarea");ta.value=txt;document.body.appendChild(ta);ta.select();try{document.execCommand("copy");done();}catch(e){}ta.remove();}}
+$("copyRow").onclick=function(){copy(row(),this);};$("copyAll").onclick=function(){copy(fullText(),this);};
+$("dl").onclick=function(){var b=new Blob([fullText()],{type:"text/plain"}),a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="CCW_Round"+round+"_Team"+$("teamNo").value+".txt";a.click();};
+$("fsetBtn").onclick=checkFset;$("expl").addEventListener("input",renderOut);["teamNo","teamName","fsetMember"].forEach(function(i){$(i).addEventListener("input",renderOut);});
+$("codeIn").addEventListener("input",loadCode);
+function loadCode(){
+  var t=$("codeIn").value.trim();if(!t){S=null;$("codeMsg").innerHTML="";$("situation").innerHTML='<p class="hint">Paste your Round '+(round-1)+' close code above to see your position.</p>';buildForm();refresh();return;}
+  try{var s=stateFromCode(t);var prev=JSON.parse(t).round;if(prev!==round-1)throw new Error("This code is from Round "+prev+"; Round "+round+" needs the Round "+(round-1)+" code.");
+    var tm=JSON.parse(t).team;
+    $("codeMsg").innerHTML=String(tm)!==$("teamNo").value?'<div class="box warn">This code is for Team '+tm+'. Your team number above is '+$("teamNo").value+'. Select the matching team.</div>':'<div class="box ok">Code accepted. Your Round '+prev+' closing position is loaded.</div>';
+    S=s;buildForm();situation();refresh();}
+  catch(e){S=null;$("codeMsg").innerHTML='<div class="box bad">That code could not be read: '+e.message+' Copy the whole line from your Team Report.</div>';$("situation").innerHTML="";refresh();}
+}
+function setRound(r){
+  round=r;$("roundSel").value=r;$("codeBox").hidden=r===1;$("codeLbl").textContent="Round "+(r-1)+" close code from your Team Report";fsetKey=null;$("fsetSec").hidden=r>8;$("stepSave").textContent=r>8?"5":"6";$("explLbl").textContent=r>8?"In 100 to 200 words, explain what you decided and why. Support at least two choices with managerial measures (contribution margin, break-even, margin of safety, operating leverage, segment margin) and at least one ratio.":"In 100 to 200 words, explain what you decided and why. Support at least two choices with ratios (ROA, ROE, leverage, liquidity, times interest earned, EPS).";
+  if(r===1){S=JSON.parse(JSON.stringify(OPEN));buildForm();situation();refresh();}
+  else{S=null;$("codeIn").value="";$("codeMsg").innerHTML="";buildForm();$("situation").innerHTML='<p class="hint">Paste your Round '+(r-1)+' close code above to see your position.</p>';refresh();}
+}
+$("roundSel").addEventListener("change",function(){setRound(+this.value);});
+$("teamNo").addEventListener("change",function(){if(!$("teamName").value||/^Team \d+$/.test($("teamName").value))$("teamName").value="Team "+$("teamNo").value;if(round>1&&$("codeIn").value)loadCode();});
+$("teamName").value="Team 1";
+setRound(1);
+</script></body></html>
