@@ -76,11 +76,18 @@ function compute(f) {
   return out;
 }
 function cpValue(f, cp, tb) {
-  var sp = cp.spec, v = 0, k;
-  if (sp.t === "fb") { for (k in tb) if (k.indexOf("Fund Balance") === 0) v += -tb[k].post; return v; }
-  if (sp.t === "acct") { var x = tb[sp.a] ? tb[sp.a].adj : 0; return sp.side === "dr" ? x : -x; }
+  var sp = cp.spec, v = 0, k, x;
+  if (sp.t === "fb") { for (k in tb) if (k.indexOf(sp.p || "Fund Balance") === 0) v += -tb[k].post; return v; }
+  if (sp.t === "chg") { for (k in tb) if (k.indexOf(sp.p) === 0) v += -tb[k].post + (tb[k].r.bd - tb[k].r.bc); return v; }
+  if (sp.t === "acct") { x = tb[sp.a] ? tb[sp.a].adj : 0; return sp.side === "dr" ? x : -x; }
+  if (sp.t === "accts") { x = 0; sp.a.forEach(function (a) { x += tb[a] ? tb[a].adj : 0; }); return sp.side === "dr" ? x : -x; }
   for (k in tb) if (k.indexOf(sp.p) === 0) v += tb[k].adj;
   return sp.side === "dr" ? v : -v;
+}
+function hasWork(f) {
+  var any = false;
+  ["j", "a", "c"].forEach(function (g) { f[{ j: "journal", a: "adjust", c: "closing" }[g]].forEach(function (e) { var s = st.e[ek(f, g, e.id)]; if (s) s.rows.forEach(function (r) { if (r.a || num(r.d) || num(r.c)) any = true; }); }); });
+  return any;
 }
 
 /* ---------- rendering ---------- */
@@ -191,7 +198,7 @@ function buildCheckpoints(f, host) {
     var res = h("span", { "class": "cp-r", role: "status", "aria-live": "polite", text: ok ? "✓ matches the checkpoint" : "" });
     var b = h("button", { type: "button", "class": "secondary", text: "Check" });
     b.addEventListener("click", function () {
-      var v = cpValue(f, cp, compute(f)), good = Math.abs(v - cp.v) <= 1;
+      var v = cpValue(f, cp, compute(f)), good = Math.abs(v - cp.v) <= 1 && hasWork(f);
       st.cp[k] = good; save(); res.textContent = good ? "✓ matches the checkpoint" : "✗ does not match. Recheck your entries and adjusted trial balance."; res.className = "cp-r " + (good ? "good" : "badmsg"); refresh();
     });
     row.appendChild(b); row.appendChild(res); host.appendChild(row);

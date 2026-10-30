@@ -51,3 +51,16 @@ table.tb.narrow{width:auto;min-width:340px;}
   table.grid thead th,table.tb thead th{background:#1B365D !important;color:#fff !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
   .model,.entry.info{background:#fff;}
 }
+/* Assignment 5 additions */
+#scorePanel ul.two{columns:2;column-gap:28px;}
+.ties{margin:8px 0 0 18px;}
+.ties li{margin:4px 0;}
+td.given{text-align:right;font-family:ui-monospace,Menlo,Consolas,monospace;background:var(--tint);}
+td.optional input{opacity:.85;}
+.ans{display:block;font-size:.85rem;font-family:ui-monospace,Menlo,Consolas,monospace;color:var(--muted);text-align:right;}
+.choice{border:1px solid var(--line);border-radius:8px;padding:10px 14px;margin:10px 0;}
+.choice legend{font-weight:700;padding:0 6px;}
+.choice label{cursor:pointer;}
+.choice input{width:22px;height:22px;vertical-align:middle;}
+table.grid th[scope=row]{background:var(--paper);color:var(--ink);font-weight:500;min-width:14em;}
+@media print{ #scorePanel ul.two{columns:1;} }

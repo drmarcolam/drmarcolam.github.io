@@ -1,6 +1,22 @@
 import sys, html
 cid, title, sub, intro = sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4]
 n = sys.argv[5]
+if cid == 'a5':
+    bullets = '''<ul>
+<li>Enter amounts in whole dollars, with no dollar signs. Enter decreases as negative numbers, for example -8500000 or (8500000).</li>
+<li>Choose <strong>Check this part</strong> to score a part. Each correct cell earns 1 point. Editing a cell later removes its point until you check the part again.</li>
+<li><strong>Show answers</strong> reveals the answers for that part, and the part then earns no points.</li>
+<li>The tie checks at the bottom update as you type. When every part is right, every tie holds.</li>
+<li>Everyone works the same figures. Your work stays in this browser; nothing is sent anywhere.</li></ul>'''
+else:
+    bullets = '''<ul>
+<li>Enter amounts in whole dollars, with no dollar signs. Pick each account from the list; the title must match the chart of accounts.</li>
+<li>Use one line per account. Debit lines have an amount in Debit; credit lines have an amount in Credit.</li>
+<li>Choose <strong>Check entry</strong> to score an entry. An entry earns 1 point when every line is right. Editing it later removes the point until you check it again.</li>
+<li><strong>Show model entry</strong> reveals the answer and the entry then earns no points.</li>
+<li>Everyone works the same figures. Your work stays in this browser; nothing is sent anywhere.</li></ul>'''
+eng = sys.argv[6] if len(sys.argv) > 6 else 'engine.js'
+tiesblock = '<section class="part" aria-labelledby="ties-h"><h3 id="ties-h">Tie checks</h3><p>These update as you type. A correct set of answers ties everywhere.</p><ul id="ties" class="ties"></ul></section>' if cid == 'a5' else ''
 out = f'''<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,19 +42,14 @@ out = f'''<!DOCTYPE html>
 <p class="print-line" id="printNameLine"></p>
 <div class="key-idea noprint"><h2 class="obj-h">How this page works</h2>
 <p>{html.escape(intro)}</p>
-<ul>
-<li>Enter amounts in whole dollars, with no dollar signs. Pick each account from the list; the title must match the chart of accounts.</li>
-<li>Use one line per account. Debit lines have an amount in Debit; credit lines have an amount in Credit.</li>
-<li>Choose <strong>Check entry</strong> to score an entry. An entry earns 1 point when every line is right. Editing it later removes the point until you check it again.</li>
-<li><strong>Show model entry</strong> reveals the answer and the entry then earns no points.</li>
-<li>Everyone works the same figures. Your work stays in this browser; nothing is sent anywhere.</li>
-</ul></div>
+{bullets}</ul></div>
 <div class="idbar noprint">
   <div><label for="studentName">Name</label><input type="text" id="studentName" autocomplete="name"></div>
   <div><label for="studentId">Student ID</label><input type="text" id="studentId" autocomplete="off"></div>
 </div>
 <div id="scorePanel" role="status" aria-live="polite" aria-label="Score"></div>
 <div id="app"></div>
+{tiesblock}
 <section class="finish noprint" aria-labelledby="fin-h">
 <h2 id="fin-h">Finish</h2>
 <p>When you are done, choose <strong>Print / Save as PDF</strong>. Your name, Student ID, score and everything you entered print on the PDF. Upload that PDF to the Week {n} Deliverable in Canvas.</p>
@@ -46,7 +57,7 @@ out = f'''<!DOCTYPE html>
 </section>
 </main>
 <script src="data/{cid}.js"></script>
-<script src="engine.js"></script>
+<script src="{eng}"></script>
 </body>
 </html>
 '''
