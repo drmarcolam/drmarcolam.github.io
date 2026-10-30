@@ -1,0 +1,53 @@
+/* Llama Falls V2 case pages: additions to walkthrough.css and laurel-hollow.css */
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
+main{max-width:1040px;}
+.idbar{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:12px 0;}
+.idbar label{display:block;font-weight:700;margin-bottom:4px;}
+#scorePanel{background:var(--tint);border-left:5px solid var(--navy);border-radius:6px;padding:10px 16px;margin:12px 0;position:sticky;top:0;z-index:4;}
+#scorePanel ul{margin:4px 0 4px 18px;padding:0;}
+.score-big{margin:0;font-size:1.1rem;}
+.part{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:6px 18px 18px;margin:18px 0;}
+.part h3{font:700 1.25rem/1.3 Georgia,serif;color:var(--navy);border-bottom:3px solid var(--navy);padding-bottom:4px;}
+.entry{border:1px solid var(--line);border-radius:8px;padding:10px 14px;margin:14px 0;background:var(--paper);}
+.entry.info{background:var(--tint);}
+.entry-h{margin:0 0 4px;font:700 1rem/1.3 Georgia,serif;color:var(--navy-deep);}
+.entry-txt{margin:0 0 8px;}
+table.grid{border-collapse:collapse;width:100%;margin:6px 0;}
+table.grid th,table.grid td{border:1px solid var(--line);padding:4px 6px;text-align:left;vertical-align:middle;}
+table.grid thead th{background:var(--navy);color:#fff;}
+table.grid select{width:100%;min-height:44px;font:inherit;padding:4px;background:var(--paper);color:var(--ink);border:2px solid var(--line);border-radius:6px;}
+table.grid input{min-height:44px;width:100%;min-width:7.5em;text-align:right;font:inherit;font-family:ui-monospace,Menlo,Consolas,monospace;padding:4px 8px;background:var(--paper);color:var(--ink);border:2px solid var(--line);border-radius:6px;}
+table.grid tr.ok td{background:var(--good-bg);}
+table.grid tr.bad td{background:var(--bad-bg);}
+.mark{font-weight:700;white-space:nowrap;font-size:.9rem;}
+table.grid.mini td{padding:4px 8px;}
+.entry-res{min-height:1.4em;margin:6px 0 0;font-weight:600;}
+.entry-res.good,.cp-r.good{color:var(--good-ink);}
+.entry-res.badmsg,.cp-r.badmsg{color:var(--bad-ink);}
+.model{border-left:4px solid var(--navy);background:var(--tint);padding:6px 12px;margin-top:8px;}
+.model-note{margin:0 0 4px;font-weight:700;}
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:6px;}
+table.tb{border-collapse:collapse;width:100%;font-size:.9rem;}
+table.tb caption{text-align:left;font-weight:700;padding:6px 0;}
+table.tb th,table.tb td{border:1px solid var(--line);padding:3px 8px;}
+table.tb thead th{background:var(--navy);color:#fff;text-align:right;white-space:nowrap;}
+table.tb thead th:first-child,table.tb tbody th{text-align:left;}
+table.tb tbody th{font-weight:500;background:var(--paper);}
+table.tb td.n{text-align:right;font-family:ui-monospace,Menlo,Consolas,monospace;}
+table.tb tr.tot th,table.tb tr.tot td{font-weight:700;border-top:3px double var(--navy);}
+table.tb.narrow{width:auto;min-width:340px;}
+.cp{display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid var(--line);}
+.cp-l{font-weight:700;min-width:15em;}
+.cp-v{font-family:ui-monospace,Menlo,Consolas,monospace;}
+.print-line{display:none;}
+.finish{margin:24px 0;}
+@media print{
+  .noprint,.btn-row,#scorePanel .hint-line,.skip,.crumbs{display:none !important;}
+  .print-line{display:block !important;font-size:12pt;margin:0 0 10px;}
+  #scorePanel{position:static;border:1px solid #000;background:#fff;}
+  .part{border:1px solid #999;break-inside:auto;}
+  .entry{break-inside:avoid;}
+  table.grid select,table.grid input{border:0;min-height:0;appearance:none;-webkit-appearance:none;}
+  table.grid thead th,table.tb thead th{background:#1B365D !important;color:#fff !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .model,.entry.info{background:#fff;}
+}
