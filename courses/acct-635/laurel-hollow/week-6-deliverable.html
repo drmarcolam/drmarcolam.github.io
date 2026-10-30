@@ -23,28 +23,28 @@ a.btn-link:hover{background:var(--navy);}
 <header class="banner noprint"><div class="banner-inner">
   <p class="eyebrow">ACCT 635 &middot; Laurel Hollow &middot; Week 6 Deliverable</p>
   <h1 class="title">Week 6 Deliverable: Government-Wide Conversion</h1>
-  <p class="sub">Complete Llama Falls Assignment 5, then upload the PDF and your completion record to Canvas.</p>
+  <p class="sub">Complete Llama Falls Assignment 5 (Version 2), then upload the PDF and your completion record to Canvas.</p>
 </div></header>
 <main id="main" tabindex="-1">
 <div class="noprint">
-<div class="key-idea objectives"><h2 class="obj-h">This deliverable practices these objectives</h2><ol><li>Reconcile fund statements to the government-wide statements, both the balance sheet and the operating statement.</li><li>Convert fund-level results to the full accrual basis and prepare the Statement of Net Position and Statement of Activities.</li><li>Explain the differences to a non-accountant.</li></ol></div>
+<div class="key-idea objectives"><h2 class="obj-h">This deliverable practices these objectives</h2><ol><li>Reconcile fund statements to the government-wide statements, both the balance sheet and the operating statement.</li><li>Convert fund-level results to the full accrual basis and prepare the Statement of Net Position and Statement of Activities.</li><li>Explain why the custodial fund is left out of the government-wide statements.</li></ol></div>
 <h2>How this deliverable works</h2>
-<p>The work for Week 6 is the Llama Falls case assignment below. 1 step, 50 points in all. Your Student ID sets your scenario figures, so enter the same ID every time. Enter amounts in whole dollars and pick account titles from the dropdowns. Use <strong>Check my work</strong> as you go; the page updates its score.</p>
-<div class="key-idea"><strong>Note.</strong> Assignment 5 builds on your results from Assignments 1 to 4, so finish Weeks 3 to 5 first and use the same Student ID. This assignment has no correction entries.</div>
-<section class="lo-block" aria-labelledby="s1"><p class="lo-tag">Step 1 of 1 &middot; 50 points</p><h2 id="s1">Assignment 5: Government-Wide Conversion</h2><p><a class="btn-link" href="../problems/5.html" target="_blank" rel="noopener">Open Assignment 5: Government-Wide Conversion (new tab)</a></p><p>On that page you will complete:</p><ul><li>Fund-level results carried forward from Assignments 1 to 4</li><li>Government-wide conversion data</li><li>Conversion worksheet entries</li><li>Reconciliation of fund balances to net position</li><li>Reconciliation of the change in fund balances to the change in net position</li><li>Functional expense conversion</li><li>Statement of Net Position and Statement of Activities</li></ul><p class="hint-line">When you finish, use the <strong>Print / Save as PDF</strong> button at the bottom of that page. Your name, Student ID and overall score print on the PDF.</p></section>
+<p>The work for Week 6 is the Llama Falls case assignment below. 1 step, 50 points in all. Everyone works the same Version 2 figures, and the assignments tie to each other. Enter amounts in whole dollars and pick account titles from the dropdowns. Use <strong>Check entry</strong> as you go; the page updates its score.</p>
+<div class="key-idea"><strong>Note.</strong> Assignment 5 builds on your results from Assignments 1 to 4, so finish Weeks 3 to 5 first. Everyone works the same figures, and no correction entries are needed.</div>
+<section class="lo-block" aria-labelledby="s1"><p class="lo-tag">Step 1 of 1 &middot; 50 points</p><h2 id="s1">Assignment 5: Government-Wide Conversion</h2><p><a class="btn-link" href="../llama-falls-v2/a5.html" target="_blank" rel="noopener">Open Assignment 5: Government-Wide Conversion (new tab)</a></p><p>On that page you will complete:</p><ul><li>Fund-level results carried forward from Assignments 1 to 4</li><li>Government-wide conversion data</li><li>Reconciliation of fund balances to net position</li><li>Reconciliation of the change in fund balances to the change in net position</li><li>Functional expense conversion</li><li>Statement of Net Position and Statement of Activities</li><li>The custodial fund, and eight tie checks</li></ul><p class="hint-line">When you finish, use the <strong>Print / Save as PDF</strong> button at the bottom of that page. Your name, Student ID, score and everything you entered print on the PDF.</p></section>
 <h2>Submit in Canvas</h2>
 <ol>
-<li>Save the PDF from each assignment page (the Print / Save as PDF button on that page).</li>
+<li>Save a PDF from each assignment page (the Print / Save as PDF button at the bottom of that page).</li>
 <li>Complete your completion record below and save it as a PDF too.</li>
 <li>Upload all the PDFs to the Week 6 Deliverable in Canvas.</li>
 </ol>
-<p><strong>Grading.</strong> Each step is worth the points shown. Your points for a step are the share of the page&rsquo;s points that it shows as earned on your PDF, so a page showing 30 of 40 points earns 75% of that step&rsquo;s value. Late or missing steps earn no points for that step.</p>
+<p><strong>Grading.</strong> Each step is worth the points shown. Your points for a step are the share of that step&rsquo;s points that your PDF shows as earned, so a fund showing 27 of 36 points earns 75% of that step&rsquo;s value. A missing step earns no points.</p>
 </div>
 <h2 class="noprint">Completion record</h2>
 <div class="noprint">
 <p><label class="ans-label" for="nm">Name</label><input id="nm" type="text" autocomplete="name"></p>
 <p><label class="ans-label" for="sid">Student ID</label><input id="sid" type="text" autocomplete="off"></p>
-<ul class="chk-list"><li><label><input type="checkbox" class="chk" data-k="a5"> I completed Assignment 5: Government-Wide Conversion and saved its PDF</label></li></ul>
+<ul class="chk-list"><li><label><input type="checkbox" class="chk" data-k="a5"> I completed Assignment 5: Government-Wide Conversion</label></li></ul>
 <div class="btn-row"><button id="mk" type="button">Preview my record</button></div>
 </div>
 <div id="report" hidden aria-live="polite"></div>
@@ -63,7 +63,7 @@ function save(){var o={nm:nm.value,sid:sid.value,c:{}};chks.forEach(function(c){
 nm.addEventListener("input",save); sid.addEventListener("input",save); chks.forEach(function(c){c.addEventListener("change",save);});
 function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
 document.getElementById("mk").addEventListener("click",function(){
-  var rows=P.map(function(p){var c=document.querySelector('.chk[data-k="'+p[0]+'"]').checked;return "<tr><td>"+esc(p[1])+"</td><td>"+p[2]+"</td><td>"+(c?"Completed, PDF saved":"Not marked complete")+"</td></tr>";}).join("");
+  var rows=P.map(function(p){var c=document.querySelector('.chk[data-k="'+p[0]+'"]').checked;return "<tr><td>"+esc(p[1])+"</td><td>"+p[2]+"</td><td>"+(c?"Completed":"Not marked complete")+"</td></tr>";}).join("");
   var d=new Date();
   document.getElementById("report").innerHTML='<h2 class="rep-title">ACCT 635 Week '+W+' Deliverable: Completion Record</h2>'+
    '<table class="rep-id"><tbody><tr><th scope="row">Name</th><td>'+esc(nm.value||"(not entered)")+'</td></tr><tr><th scope="row">Student ID</th><td>'+esc(sid.value||"(not entered)")+'</td></tr><tr><th scope="row">Record created</th><td>'+esc(d.toLocaleString())+'</td></tr></tbody></table>'+
